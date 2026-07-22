@@ -1,29 +1,11 @@
 import { useState, useEffect } from 'react';
+import { primaryNavItems, secondaryNavItems, languages } from '../data/header/navigation';
+import type { Language } from '../data/header/navigation';
 
-const primaryNavItems = [
-  { href: '#rooms', label: '客室', en: 'Rooms', icon: '室' },
-  { href: '#onsen', label: '温泉', en: 'Onsen', icon: '湯' },
-  { href: '#food', label: 'お料理', en: 'Dinner', icon: '膳' },
-  { href: '#facilities', label: '館内', en: 'Facilities', icon: '館' },
-  { href: '#access', label: 'アクセス', en: 'Access', icon: '道' },
-];
-
-const secondaryNavItems = [
-  { href: '#', label: 'よくあるご質問' },
-  { href: '#', label: 'お客様の声' },
-  { href: '#', label: '採用情報' },
-  { href: '#', label: '会社情報' },
-  { href: '#', label: 'プライバシーポリシー' },
-  { href: '#', label: '特定商取引法に基づく表記' },
-  { href: '#', label: '利用規約' },
-  { href: '#', label: 'Cookieポリシー' },
-];
-
-const languages = ['JP', 'EN', 'CH', 'KR'];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLang, setActiveLang] = useState('JP');
+  const [activeLang, setActiveLang] = useState<Language>('JP');
   const closeNav = () => setIsOpen(false);
 
   useEffect(() => {
