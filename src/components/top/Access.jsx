@@ -33,7 +33,7 @@ export default function Access() {
       <div className="text-center mb-[72px]">
         <p className="flex items-center justify-center gap-2.5 text-[0.74rem] tracking-[0.14em] font-medium text-[#29415C] mb-[18px]">
           <span
-            className="inline-flex items-center justify-center w-[26px] h-[26px] shrink-0 border border-[1.5px] border-[#A24730] text-[#A24730] font-serif font-semibold text-[0.82rem] leading-none -rotate-3 rounded-[1px]"
+            className="inline-flex items-center justify-center w-[26px] h-[26px] shrink-0 border-[1.5px] border-[#A24730] text-[#A24730] font-serif font-semibold text-[0.82rem] leading-none -rotate-3 rounded-[1px]"
             aria-hidden="true"
           >
             道

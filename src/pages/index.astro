@@ -1,26 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import HeaderHero from '../components/HeaderHero.jsx';
-import Concept from '../components/Concept.jsx';
-import Rooms from '../components/Rooms.jsx';
-import Onsen from '../components/Onsen.jsx';
-import Food from '../components/Food.jsx';
-import Facilities from '../components/Facilities.jsx';
-import Access from '../components/Access.jsx';
-import Footer from '../components/Footer.jsx';
+import Hero from '../components/top/Hero.jsx';
+import ContentSection from '../components/top/ContentSection.jsx';
+import Access from '../components/top/Access.jsx';
+import { sections } from '../data/top/sections.js';
 ---
-
 <Layout>
-  <HeaderHero client:load />
-
   <main id="top">
-    <Concept />
-    <Rooms />
-    <Onsen />
-    <Food />
-    <Facilities />
+    <Hero client:load />
+    {sections.map((section) => (
+      <ContentSection {...section} />
+    ))}
     <Access />
   </main>
-
-  <Footer />
 </Layout>

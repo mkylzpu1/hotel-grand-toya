@@ -6,7 +6,7 @@ export default function Footer() {
           <div className="mt-0">
             <div className="flex items-center gap-2 mb-4">
               <span
-                className="inline-flex items-center justify-center w-[26px] h-[26px] shrink-0 border border-[1.5px] border-white text-white font-serif font-semibold text-[0.82rem] leading-none -rotate-3 rounded-[1px]"
+                className="inline-flex items-center justify-center w-[26px] h-[26px] shrink-0 border-[1.5px] border-white text-white font-serif font-semibold text-[0.82rem] leading-none -rotate-3 rounded-[1px]"
                 aria-hidden="true"
               >
                 湖
