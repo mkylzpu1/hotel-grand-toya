@@ -29,7 +29,7 @@ export const sections: SectionData[] = [
       "和室・洋室に加え、大人数でご利用いただける大広間もご用意しています。",
       "お一人様やご夫婦・ご家族での旅行はもちろん、修学旅行やスポーツ合宿、団体旅行まで、さまざまなご宿泊に対応いたします。",
     ],
-    linkText: "客室のご案内 →",
+    linkText: "客室のご案内",
     linkHref: "#",
     tallImagePosition: "left",
     images: [
@@ -47,7 +47,7 @@ export const sections: SectionData[] = [
       "保温性に優れた源泉かけ流しの天然温泉。",
       "熱め・ぬるめ・人肌の3つの浴槽で、お好みの湯加減をお楽しみいただけます。宿泊はもちろん、日帰り入浴でもご利用いただけます。",
     ],
-    linkText: "温泉のご案内 →",
+    linkText: "温泉のご案内",
     linkHref: "#",
     tallImagePosition: "right",
     images: [
@@ -65,7 +65,7 @@ export const sections: SectionData[] = [
       "ご夕食は会席膳、朝は和朝食をご用意。",
       "ご宿泊とともに、夕食・朝食をお楽しみいただけるプランをご用意しております。温泉とお食事で、ゆったりとしたひとときをお過ごしください。",
     ],
-    linkText: "お料理のご案内 →",
+    linkText: "お料理のご案内",
     linkHref: "#",
     centerText: true,
     images: [
@@ -85,7 +85,7 @@ export const sections: SectionData[] = [
     description: [
       "ロビーや売店、喫茶スペースなどの館内施設に加え、多国籍スタッフによる多言語でのご案内にも対応。初めて洞爺湖を訪れる方や海外からのお客様にも、安心してお過ごしいただけます。",
     ],
-    linkText: "館内施設・サービスを見る →",
+    linkText: "館内施設・サービスを見る",
     linkHref: "#",
     tallImagePosition: "right",
     images: [

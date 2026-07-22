@@ -1,10 +1,18 @@
-const sceneryItems = [
+import ArrowLink from "../ui/ArrowLink";
+interface SceneryItem {
+  img: string;
+  title: string;
+  note: string;
+}
+
+const sceneryItems: SceneryItem[] = [
   { img: '/assets/photos/garden-2.jpg', title: 'ひまわり畑', note: 'ホテルから車で約15分' },
   { img: '/assets/photos/image2.png', title: '洞爺湖ロングラン花火大会', note: '湖畔から観覧できます' },
   { img: '/assets/photos/hero-lake-sub.jpg', title: '洞爺湖遊覧船', note: '乗り場まで徒歩約8分' },
 ];
+
 // シームレスな無限スクロールのためにリストを複製
-const sceneryLoop = [...sceneryItems, ...sceneryItems];
+const sceneryLoop: SceneryItem[] = [...sceneryItems, ...sceneryItems];
 
 export default function Access() {
   return (
@@ -62,15 +70,10 @@ export default function Access() {
               <b>新千歳空港</b>：空港連絡バスで約2時間
             </li>
           </ul>
-          <p className="my-5 text-[#8A8781] text-[0.78rem]">
+          <p className="my-5 text-[#8A8781] text-[0.78rem] mb-[30px]">
             冬季は積雪・路面凍結のため、お車でお越しの際は冬用タイヤをご準備ください。
           </p>
-          <a
-            href="#"
-            className="inline-flex items-center gap-2.5 mt-[30px] text-[0.82rem] tracking-[0.05em] text-[#29415C] font-medium pb-[5px] border-b border-[#A24730] hover:text-[#7E3623] hover:border-[#7E3623] transition-colors"
-          >
-            詳細はこちら →
-          </a>
+          <ArrowLink href="#">詳細はこちら</ArrowLink>
         </div>
         <div className="h-[360px] border-[0.5px] border-[#29415C]">
           <iframe
@@ -95,7 +98,6 @@ export default function Access() {
           秋の紅葉、冬のイルミネーションなど、
           季節ごとの見どころへのアクセスにも便利です。
         </p>
-
         <div className="w-screen ml-[calc(50%-50vw)] overflow-hidden mt-[60px]">
           <div
             className="flex gap-7 w-max"
@@ -125,13 +127,7 @@ export default function Access() {
       </div>
 
       <div className="mt-[70px] text-center">
-
-        <a
-          href="#"
-          className="inline-flex items-center gap-2.5 text-[0.82rem] tracking-[0.05em] text-[#29415C] font-medium pb-[5px] border-b border-[#A24730] hover:text-[#7E3623] hover:border-[#7E3623] transition-colors"
-        >
-          周辺観光はこちら →
-        </a>
+        <ArrowLink href="#">周辺観光はこちら</ArrowLink>
       </div>
     </section>
   );

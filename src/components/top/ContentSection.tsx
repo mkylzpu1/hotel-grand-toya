@@ -1,4 +1,5 @@
 import type { SectionData } from "../../types/section";
+import ArrowLink from "../ui/ArrowLink";
 
 export default function ContentSection({
   id,
@@ -50,7 +51,7 @@ export default function ContentSection({
             ))}
           </h2>
 
-          <p className={`text-[#55524C] ${centerText ? "mt-2" : ""}`}>
+          <p className={`text-[#55524C] ${centerText ? "mt-2" : ""} mb-[30px]`}>
             {description.map((line, i) => (
               <span key={i}>
                 {line}
@@ -60,12 +61,7 @@ export default function ContentSection({
           </p>
 
           {linkText && (
-            <a
-              href={linkHref}
-              className="inline-flex items-center gap-2.5 mt-[30px] text-[0.82rem] tracking-[0.05em] text-[#29415C] font-medium pb-[5px] border-b border-[#A24730] hover:text-[#7E3623] hover:border-[#7E3623] transition-colors"
-            >
-              {linkText}
-            </a>
+            <ArrowLink href={linkHref}>{linkText}</ArrowLink>
           )}
         </div>
 
