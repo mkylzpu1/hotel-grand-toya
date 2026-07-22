@@ -1,71 +1,266 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+const primaryNavItems = [
+  { href: '#rooms', label: '客室', en: 'Rooms', icon: '室' },
+  { href: '#onsen', label: '温泉', en: 'Onsen', icon: '湯' },
+  { href: '#food', label: 'お料理', en: 'Dinner', icon: '膳' },
+  { href: '#facilities', label: '館内', en: 'Facilities', icon: '館' },
+  { href: '#access', label: 'アクセス', en: 'Access', icon: '道' },
+];
+
+const secondaryNavItems = [
+  { href: '#', label: 'よくあるご質問' },
+  { href: '#', label: 'お客様の声' },
+  { href: '#', label: '採用情報' },
+  { href: '#', label: '会社情報' },
+  { href: '#', label: 'プライバシーポリシー' },
+  { href: '#', label: '特定商取引法に基づく表記' },
+  { href: '#', label: '利用規約' },
+  { href: '#', label: 'Cookieポリシー' },
+];
+
+const languages = ['JP', 'EN', 'CH', 'KR'];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeLang, setActiveLang] = useState('JP');
   const closeNav = () => setIsOpen(false);
 
-  const navLinkClass =
-    'relative text-white text-[15px] tracking-[0.18em] font-medium [text-shadow:0_2px_10px_rgba(0,0,0,.35)] transition-colors ' +
-    "after:content-[''] after:absolute after:left-1/2 after:-bottom-2 after:-translate-x-1/2 after:w-0 after:h-px after:bg-[#A24730] after:transition-[width] after:duration-300 " +
-    'hover:text-[#A24730] hover:after:w-full';
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   return (
-    <header className="absolute left-0 top-0 z-20 w-full px-12 py-[30px]" id="site-header">
+    <header
+      className="absolute left-0 top-0 z-20 w-full px-8 py-7 lg:px-12 lg:py-9 lg:pr-[168px]"
+      id="site-header"
+    >
       <div className="flex items-center">
         <a href="#top" className="flex-none">
           <img
             src="/assets/photos/ttl.png"
             alt="ホテルグランドトーヤのロゴ"
-            className="block w-[170px]"
+            className="block w-[150px] lg:w-[170px]"
           />
         </a>
 
         <nav
-          className={`flex-1 justify-center gap-[54px] lg:flex ${
-            isOpen
-              ? 'max-[760px]:absolute max-[760px]:left-0 max-[760px]:right-0 max-[760px]:top-full max-[760px]:flex max-[760px]:flex-col max-[760px]:items-start max-[760px]:gap-5 max-[760px]:border-b-[3px] max-[760px]:border-[#A24730] max-[760px]:bg-[#16283A] max-[760px]:px-6 max-[760px]:py-7'
-              : 'max-[760px]:hidden'
-          }`}
-          id="main-nav"
+          className="ml-16 hidden items-center gap-11 lg:flex"
           aria-label="グローバルナビゲーション"
         >
-          <a href="#rooms" onClick={closeNav} className={navLinkClass}>
-            客室
-          </a>
-          <a href="#onsen" onClick={closeNav} className={navLinkClass}>
-            温泉
-          </a>
-          <a href="#food" onClick={closeNav} className={navLinkClass}>
-            お料理
-          </a>
-          <a href="#facilities" onClick={closeNav} className={navLinkClass}>
-            館内
-          </a>
-          <a href="#access" onClick={closeNav} className={navLinkClass}>
-            アクセス
-          </a>
+          {primaryNavItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="group relative flex flex-col items-start"
+            >
+              <span className="text-[10px] font-medium tracking-[0.22em] text-white/50 transition-colors duration-300 group-hover:text-[#A24730]">
+                {item.en}
+              </span>
+              <span className="mt-1 flex items-center gap-1.5 font-serif text-[15px] tracking-[0.08em] text-white [text-shadow:0_2px_10px_rgba(0,0,0,.35)]">
+                <span className="h-[3px] w-[3px] shrink-0 origin-left scale-0 rounded-full bg-[#A24730] transition-transform duration-300 group-hover:scale-100" />
+                {item.label}
+              </span>
+            </a>
+          ))}
         </nav>
 
-        <div
-          className={`ml-5 text-sm font-medium tracking-[0.18em] text-white [text-shadow:0_2px_10px_rgba(0,0,0,.35)] ${
-            isOpen ? 'max-[760px]:hidden' : ''
+        <div className="ml-auto hidden flex-col items-end lg:flex">
+          <div className="flex items-center gap-0.5 rounded-full border border-white/20 bg-white/5 p-1 backdrop-blur-sm">
+            {languages.map((lang) => (
+              <button
+                key={lang}
+                onClick={() => setActiveLang(lang)}
+                className={`rounded-full px-3 py-1.5 text-[11px] font-medium tracking-[0.1em] transition-colors duration-200 ${
+                  activeLang === lang
+                    ? 'bg-white text-[#16283A]'
+                    : 'text-white/60 hover:text-white'
+                }`}
+              >
+                {lang}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <button
+        className="group fixed right-6 top-6 z-[999] flex h-[52px] items-center gap-3 rounded-full border border-white/20 bg-[#16283A]/70 pl-5 pr-[18px] backdrop-blur-md transition-colors hover:bg-[#16283A]/90 lg:right-9 lg:top-9"
+        id="nav-toggle"
+        aria-label={isOpen ? 'メニューを閉じる' : 'メニューを開く'}
+        aria-expanded={isOpen}
+        aria-controls="site-nav"
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        <span
+          className={`hidden text-[11px] font-medium tracking-[0.2em] text-white/85 transition-opacity duration-200 sm:inline ${
+            isOpen ? 'opacity-0' : 'opacity-100'
           }`}
         >
-          JP|EN|CH|KR
+          MENU
+        </span>
+        <span className="relative flex h-4 w-[22px] flex-col items-center justify-center">
+          <span
+            className={`absolute h-[1.5px] w-full origin-center rounded-full bg-white transition-all duration-300 ease-out ${
+              isOpen ? 'rotate-45' : '-translate-y-[6px]'
+            }`}
+          />
+          <span
+            className={`absolute h-[1.5px] rounded-full bg-white transition-all duration-200 ease-out ${
+              isOpen ? 'w-0 opacity-0' : 'w-full opacity-100'
+            }`}
+          />
+          <span
+            className={`absolute h-[1.5px] w-full origin-center rounded-full bg-white transition-all duration-300 ease-out ${
+              isOpen ? '-rotate-45' : 'translate-y-[6px]'
+            }`}
+          />
+        </span>
+      </button>
+
+      <div
+        className={`fixed inset-0 z-[900] bg-[#0F1A26]/60 backdrop-blur-sm transition-opacity duration-300 ${
+          isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        onClick={closeNav}
+        aria-hidden="true"
+      />
+
+      {/* ドロワー */}
+      <nav
+        id="site-nav"
+        className={`fixed right-0 top-0 z-[950] flex h-full w-[88%] max-w-[340px] flex-col overflow-hidden bg-[#16283A] shadow-2xl transition-transform duration-500 ease-out sm:max-w-[400px] lg:max-w-[460px] ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        aria-label="ドロワーナビゲーション"
+        aria-hidden={!isOpen}
+      >
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-8 -top-12 font-serif text-[200px] leading-none text-white/[0.03]"
+        >
+          湖
+        </span>
+
+        <div className="relative flex items-center justify-between px-7 pt-7 lg:px-10 lg:pt-9">
+          <span className="font-serif text-[12px] tracking-[0.14em] text-white/50">
+            Hotel Grand Toya
+          </span>
+          <button
+            onClick={closeNav}
+            aria-label="メニューを閉じる"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            <span className="relative block h-3 w-3">
+              <span className="absolute left-1/2 top-1/2 h-[1.5px] w-full -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-full bg-current" />
+              <span className="absolute left-1/2 top-1/2 h-[1.5px] w-full -translate-x-1/2 -translate-y-1/2 -rotate-45 rounded-full bg-current" />
+            </span>
+          </button>
         </div>
 
-        <button
-          className="fixed right-7 top-7 z-[999] flex h-[58px] w-[58px] cursor-pointer flex-col items-center justify-center gap-[5px] rounded-full border border-[rgba(255,255,255,.28)] bg-[rgba(22,40,58,.82)] backdrop-blur-md transition-colors hover:bg-[#A24730]"
-          id="nav-toggle"
-          aria-label="メニューを開く"
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((prev) => !prev)}
-        >
-          <span className="block h-0.5 w-[22px] bg-white" />
-          <span className="block h-0.5 w-[22px] bg-white" />
-          <span className="block h-0.5 w-[22px] bg-white" />
-        </button>
-      </div>
+        {/* スクロール領域: 万一入りきらない画面サイズでも崩れないための保険 */}
+        <div className="relative flex flex-1 flex-col overflow-y-auto px-7 pt-5 lg:px-10">
+          {/* 主要コンテンツナビ */}
+          <ul className="flex flex-col">
+            {primaryNavItems.map((item, i) => (
+              <li
+                key={item.href}
+                className="transition-[opacity,transform] duration-500"
+                style={{
+                  transitionDelay: isOpen ? `${i * 45 + 100}ms` : '0ms',
+                  opacity: isOpen ? 1 : 0,
+                  transform: isOpen ? 'translateX(0)' : 'translateX(20px)',
+                }}
+              >
+                <a
+                  href={item.href}
+                  onClick={closeNav}
+                  className="group relative flex items-center gap-4 border-b border-white/[0.08] py-3.5"
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[2px] border-[1.5px] border-white/25 font-serif text-[13px] text-white/60 transition-all duration-300 group-hover:-rotate-3 group-hover:border-[#A24730] group-hover:text-[#A24730]">
+                    {item.icon}
+                  </span>
+                  <span className="flex flex-1 items-baseline gap-2.5">
+                    <span className="font-serif text-[17px] tracking-[0.05em] text-white transition-colors duration-300 group-hover:text-[#E8A87C]">
+                      {item.label}
+                    </span>
+                    <span className="text-[9px] font-medium tracking-[0.18em] text-white/35">
+                      {item.en}
+                    </span>
+                  </span>
+                  <span className="text-[12px] text-white/25 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#E8A87C]">
+                    →
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* 予約・電話CTA */}
+          <div className="my-5 flex items-center gap-3">
+            <a
+              href="https://reserve.example.com/grandtoya"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeNav}
+              className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#A24730] py-3 text-[12px] font-medium tracking-[0.12em] text-white transition-colors hover:bg-[#8A3B27]"
+            >
+              ご予約はこちら
+            </a>
+            <a
+              href="tel:0142-XX-XXXX"
+              className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors hover:border-[#A24730] hover:text-[#A24730]"
+              aria-label="電話をかける"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </a>
+          </div>
+
+          {/* 利用規約・会社情報などの副次ナビ */}
+          <div className="border-t border-white/[0.08] pb-6 pt-5">
+            <span className="mb-3 block text-[9px] font-medium tracking-[0.2em] text-white/30">
+              SITE INFORMATION
+            </span>
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
+              {secondaryNavItems.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    onClick={closeNav}
+                    className="text-[11.5px] leading-snug tracking-[0.02em] text-white/45 transition-colors hover:text-white"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* フッター: 言語切替（モバイルのみ） */}
+        <div className="relative flex items-center justify-between border-t border-white/[0.08] px-7 py-4 lg:hidden lg:px-10">
+          <div className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.12em] text-white/60">
+            {languages.map((lang, i) => (
+              <span key={lang} className="flex items-center">
+                {i > 0 && <span className="mx-1.5 h-2.5 w-px bg-white/20" />}
+                <button
+                  onClick={() => setActiveLang(lang)}
+                  className={`transition-colors ${
+                    activeLang === lang ? 'text-[#E8A87C]' : 'hover:text-white'
+                  }`}
+                >
+                  {lang}
+                </button>
+              </span>
+            ))}
+          </div>
+        </div>
+      </nav>
     </header>
   );
 }
