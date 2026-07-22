@@ -5,12 +5,11 @@ import ContentSection from '../components/top/ContentSection';
 import Access from '../components/top/Access';
 import { sections } from '../data/top/sections';
 ---
+
 <Layout>
   <main id="top">
     <Hero client:load />
-    {sections.map((section) => (
-      <ContentSection {...section} />
-    ))}
+    {sections.map((section) => <ContentSection {...section} />)}
     <Access />
   </main>
 </Layout>

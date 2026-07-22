@@ -15,6 +15,6 @@ export interface SectionData {
   linkHref?: string;
   centerText?: boolean;
   showDivider?: boolean;
-  tallImagePosition?: "left" | "right";
+  tallImagePosition?: 'left' | 'right';
   images?: SectionImage[];
 }

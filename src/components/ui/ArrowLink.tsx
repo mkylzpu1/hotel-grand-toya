@@ -1,4 +1,4 @@
-import type { AnchorHTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, ReactNode } from 'react';
 
 interface ArrowLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode;
@@ -8,14 +8,14 @@ interface ArrowLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 
 export default function ArrowLink({
   children,
-  href = "#",
-  className = "",
+  href = '#',
+  className = '',
   ...props
 }: ArrowLinkProps) {
   return (
     <a
       href={href}
-      className={`inline-flex items-center gap-2.5 text-[0.82rem] tracking-[0.05em] text-[#29415C] font-medium pb-[5px] border-b border-[#A24730] hover:text-[#7E3623] hover:border-[#7E3623] transition-colors ${className}`}
+      className={`inline-flex items-center gap-2.5 border-b border-[#A24730] pb-[5px] text-[0.82rem] font-medium tracking-[0.05em] text-[#29415C] transition-colors hover:border-[#7E3623] hover:text-[#7E3623] ${className}`}
       {...props}
     >
       {children} →
