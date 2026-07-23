@@ -1,0 +1,235 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SectionEyebrow from '../../components/onsen/SectionEyebrow.astro';
+import { locales, localeFromId, type Locale } from '../../content/config';
+
+const LANG_LABELS: Record<Locale, string> = {
+  ja: 'JP',
+  en: 'EN',
+  zh: 'CH',
+  ko: 'KR',
+};
+
+export async function getStaticPaths() {
+  // onsen-page のコンテンツが用意されている言語のみビルドする
+  const entries = await getCollection('onsen-page');
+  return entries.map((entry) => ({ params: { lang: localeFromId(entry.id) } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+
+const [siteEntry, navigationEntry, onsenEntry] = await Promise.all([
+  getEntry('site', `site.${lang}`),
+  getEntry('navigation', `navigation.${lang}`),
+  getEntry('onsen-page', `onsen-page.${lang}`),
+]);
+
+if (!siteEntry || !navigationEntry || !onsenEntry) {
+  throw new Error(`Missing content for locale "${lang}". Check src/content/*/*.${lang}.json`);
+}
+
+const page = onsenEntry.data;
+const { reservationUrl } = siteEntry.data;
+
+// 予約に関するリンクはサイト共通の予約URLを使用する
+const dayUseCtaHref = page.dayUse.ctaHref === '#' ? reservationUrl : page.dayUse.ctaHref;
+const relatedLinks = page.related.links.map((link) =>
+  link.label === 'ご宿泊予約' || link.icon === '予' ? { ...link, href: reservationUrl } : link
+);
+
+// 利用可能な言語のみ切り替えリンクを出す（onsen-page が無い言語には遷移させない）
+const availableOnsenEntries = await getCollection('onsen-page');
+const availableLocales = new Set(availableOnsenEntries.map((entry) => localeFromId(entry.id)));
+
+const langLinks = locales
+  .filter((code) => availableLocales.has(code))
+  .map((code) => ({
+    code,
+    label: LANG_LABELS[code],
+    href: `/${code}/onsen/`,
+    active: code === lang,
+  }));
+---
+
+<Layout
+  lang={lang}
+  title={`${page.pageTitle}｜${siteEntry.data.title}`}
+  description={siteEntry.data.description}
+  navigation={navigationEntry.data}
+  site={siteEntry.data}
+  langLinks={langLinks}
+>
+  <main id="top">
+    <!-- ページタイトル帯（ヒーローではなく、ヘッダーの視認性を確保するための最小限のダーク帯） -->
+    <section class="relative overflow-hidden bg-[#16283A] pb-14 pt-[152px] text-white lg:pb-[68px] lg:pt-[196px]">
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute -right-6 -top-16 select-none font-serif text-[220px] leading-none text-white/[0.05] lg:-right-4 lg:-top-24 lg:text-[300px]"
+      >
+        {page.quality.icon}
+      </span>
+      <div class="relative mx-auto max-w-[1320px] px-10">
+        <p class="mb-4 text-[0.78rem] font-medium tracking-[0.2em] text-white/60">
+          {page.pageTitleEn}
+        </p>
+        <h1 class="font-serif text-[clamp(1.9rem,1.5rem+1.6vw,2.6rem)] font-semibold tracking-[0.06em] text-white">
+          {page.pageTitle}
+        </h1>
+      </div>
+    </section>
+
+    <!-- 利用区分への導線 -->
+    <nav aria-label="利用区分" class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
+      <div class="mx-auto grid max-w-[1320px] grid-cols-1 gap-px sm:grid-cols-2">
+        {
+          page.usageNav.map((item) => (
+            <a
+              href={item.href}
+              class="group flex items-center justify-between gap-4 px-10 py-7 transition-colors hover:bg-white"
+            >
+              <span class="font-serif text-[1.05rem] tracking-[0.04em] text-[#1E1C1A]">
+                {item.label}
+              </span>
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[0.85rem] text-[#A24730] transition-transform duration-300 group-hover:translate-x-1">
+                ↓
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </nav>
+
+    <!-- 泉質・効能 -->
+    <section
+      id="quality"
+      class="relative mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]"
+    >
+      <SectionEyebrow icon={page.quality.icon} eyebrow={page.quality.eyebrow} heading={page.quality.heading} />
+      <dl class="mt-12 grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-2">
+        {
+          page.quality.items.map((item) => (
+            <div class="border-t border-[#D8D7D2] pt-5">
+              <dt class="mb-2 text-[0.78rem] font-medium tracking-[0.12em] text-[#29415C]">
+                {item.label}
+              </dt>
+              <dd class="m-0 text-[0.94rem] leading-[1.9] text-[#55524C]">{item.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <!-- 温泉施設紹介（宿泊・日帰り共通） -->
+    <section class="relative bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+      <div class="mx-auto max-w-[1320px] px-10">
+        <SectionEyebrow
+          icon={page.facilities.icon}
+          eyebrow={page.facilities.eyebrow}
+          heading={page.facilities.heading}
+        />
+        <div class="mt-12 grid grid-cols-1 gap-10 md:grid-cols-3">
+          {
+            page.facilities.items.map((facility) => (
+              <article>
+                <div class="mb-5 aspect-[4/5] overflow-hidden">
+                  <img src={facility.image} alt={facility.imageAlt} class="h-full w-full object-cover" />
+                </div>
+                <h3 class="mb-2.5 font-serif text-[1.15rem] font-semibold text-[#1E1C1A]">
+                  {facility.name}
+                </h3>
+                <p class="mb-3.5 text-[0.88rem] leading-[1.9] text-[#55524C]">{facility.description}</p>
+                <p class="text-[0.78rem] tracking-[0.04em] text-[#8A8781]">
+                  <span class="text-[#29415C]">利用時間</span> {facility.hours}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 利用案内：宿泊 / 日帰り -->
+    <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
+      <div class="mb-14 text-center">
+        <h2 class="font-serif text-[clamp(1.5rem,1.2rem+1.1vw,2.05rem)] font-semibold text-[#1E1C1A]">
+          利用案内
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
+        <!-- 宿泊 -->
+        <div id={page.stay.id} class="scroll-mt-6 border border-[#D8D7D2] p-9 lg:p-11">
+          <SectionEyebrow icon={page.stay.icon} eyebrow={page.stay.eyebrow} heading={page.stay.heading} compact />
+          <dl class="mt-8 space-y-6">
+            {
+              page.stay.items.map((item) => (
+                <div class="border-t border-[#D8D7D2] pt-4">
+                  <dt class="mb-1.5 text-[0.78rem] font-medium tracking-[0.1em] text-[#29415C]">
+                    {item.label}
+                  </dt>
+                  <dd class="m-0 text-[0.88rem] leading-[1.85] text-[#55524C]">{item.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+
+        <!-- 日帰り -->
+        <div id={page.dayUse.id} class="scroll-mt-6 border border-[#A24730] p-9 lg:p-11">
+          <SectionEyebrow
+            icon={page.dayUse.icon}
+            eyebrow={page.dayUse.eyebrow}
+            heading={page.dayUse.heading}
+            compact
+          />
+          <dl class="mt-8 space-y-6">
+            {
+              page.dayUse.items.map((item) => (
+                <div class="border-t border-[#D8D7D2] pt-4">
+                  <dt class="mb-1.5 text-[0.78rem] font-medium tracking-[0.1em] text-[#29415C]">
+                    {item.label}
+                  </dt>
+                  <dd class="m-0 text-[0.88rem] leading-[1.85] text-[#55524C]">{item.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+          <a
+            href={dayUseCtaHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-9 inline-flex items-center justify-center whitespace-nowrap border border-[#29415C] bg-[#29415C] px-[38px] py-[15px] text-[0.84rem] font-medium tracking-[0.1em] text-white transition-colors hover:border-[#A24730] hover:bg-[#A24730]"
+          >
+            {page.dayUse.ctaText}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 関連ページへの導線 -->
+    <section class="border-t border-[#D8D7D2] bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+      <div class="mx-auto max-w-[1320px] px-10">
+        <h2 class="mb-10 text-center font-serif text-[clamp(1.3rem,1.1rem+0.8vw,1.7rem)] font-semibold text-[#1E1C1A]">
+          {page.related.heading}
+        </h2>
+        <div class="grid grid-cols-2 gap-5 lg:grid-cols-4">
+          {
+            relatedLinks.map((link) => (
+              <a
+                href={link.href}
+                class="group flex flex-col items-center gap-3 border border-[#D8D7D2] bg-white px-6 py-10 text-center transition-colors hover:border-[#A24730]"
+              >
+                <span class="flex h-9 w-9 shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-[#A24730] font-serif text-[0.9rem] font-semibold leading-none text-[#A24730]">
+                  {link.icon}
+                </span>
+                <span class="font-serif text-[0.94rem] tracking-[0.04em] text-[#1E1C1A] transition-colors group-hover:text-[#A24730]">
+                  {link.label}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

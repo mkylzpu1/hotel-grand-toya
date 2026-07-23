@@ -1,0 +1,31 @@
+---
+interface Props {
+  icon: string;
+  eyebrow: string;
+  heading: string;
+  compact?: boolean;
+}
+
+const { icon, eyebrow, heading, compact = false } = Astro.props;
+---
+
+<div>
+  <p class="mb-[14px] flex items-center gap-2.5 text-[0.74rem] font-medium tracking-[0.14em] text-[#29415C]">
+    <span
+      class="inline-flex h-[26px] w-[26px] shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-[#A24730] font-serif text-[0.82rem] font-semibold leading-none text-[#A24730]"
+      aria-hidden="true"
+    >
+      {icon}
+    </span>
+    {eyebrow}
+  </p>
+  <h2
+    class={`font-serif font-semibold text-[#1E1C1A] ${
+      compact
+        ? 'text-[clamp(1.2rem,1.05rem+0.6vw,1.4rem)] leading-[1.5]'
+        : 'text-[clamp(1.5rem,1.2rem+1.1vw,2.05rem)] leading-[1.65]'
+    }`}
+  >
+    {heading}
+  </h2>
+</div>

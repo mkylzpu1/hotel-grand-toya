@@ -133,10 +133,79 @@ const access = defineCollection({
   }),
 });
 
+// 温泉ページ（宿泊・日帰り共通の施設紹介 + 利用区分別の案内）
+const labeledItem = z.object({
+  label: z.string(),
+  value: z.string(),
+});
+
+const onsenPage = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    usageNav: z.array(
+      z.object({
+        href: z.string(),
+        label: z.string(),
+      })
+    ),
+    quality: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      items: z.array(labeledItem),
+    }),
+    facilities: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      items: z.array(
+        z.object({
+          name: z.string(),
+          image: z.string(),
+          imageAlt: z.string(),
+          description: z.string(),
+          hours: z.string(),
+        })
+      ),
+    }),
+    stay: z.object({
+      id: z.string(),
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      items: z.array(labeledItem),
+      notes: z.array(z.string()).optional(),
+    }),
+    dayUse: z.object({
+      id: z.string(),
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      items: z.array(labeledItem),
+      notes: z.array(z.string()).optional(),
+      ctaText: z.string(),
+      ctaHref: z.string(),
+    }),
+    related: z.object({
+      heading: z.string(),
+      links: z.array(
+        z.object({
+          label: z.string(),
+          href: z.string(),
+          icon: z.string(),
+        })
+      ),
+    }),
+  }),
+});
+
 export const collections = {
   site,
   navigation,
   hero,
   access,
   'top-sections': topSections,
+  'onsen-page': onsenPage,
 };
