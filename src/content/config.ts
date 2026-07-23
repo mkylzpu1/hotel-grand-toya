@@ -213,6 +213,7 @@ const onsenPage = defineCollection({
 const roomAmenity = z.object({
   key: z.string(),
   label: z.string(),
+  note: z.string().optional(),
 });
 
 const roomGalleryItem = z.object({
@@ -232,63 +233,68 @@ const roomsPage = defineCollection({
       heading: z.string(),
       description: z.array(z.string()),
     }),
+    // ページ内アンカーナビ。「和室」「洋室」の2リンクのみ。
     quickNav: z.array(
       z.object({
         href: z.string(),
         label: z.string(),
       })
     ),
-    listHeading: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-    }),
-    detailHeading: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-    }),
-    detailLinkText: z.string(),
-    reserveLinkText: z.string(),
     basicInfoLabels: z.object({
       size: z.string(),
       capacity: z.string(),
       view: z.string(),
       bedding: z.string(),
       smoking: z.string(),
+      // 階数は該当タイプ（1階客室など）にのみ表示するため任意ラベル扱い
+      floor: z.string(),
     }),
+    amenitiesIcon: z.string(),
+    amenitiesEyebrow: z.string(),
     amenitiesHeading: z.string(),
-    descriptionHeading: z.string(),
     detailCtaText: z.string(),
-    // 客室タイプを問わず共通の標準設備。各客室オブジェクトには持たせず、ここで一度だけ定義する。
+    // 客室タイプを問わず共通の標準設備。和室・洋室それぞれのセクション末尾に1回だけ表示する。
     commonAmenities: z.array(roomAmenity),
-    // 洋室のみ追加される設備（ユニットバス）。roomType: 'western' の客室にだけ表示する。
-    unitBathAmenity: roomAmenity,
-    // 1階客室共通の注意書き。isFirstFloor: true の客室詳細にだけ表示する。
+    // 1階客室共通の注意書き。isFirstFloor: true の客室にだけ表示する。
     firstFloorNotice: z.object({
       heading: z.string(),
       items: z.array(z.string()),
     }),
-    rooms: z.array(
+    // 和室セクション・洋室セクション。ページ内の大枠はこの2つのみ。
+    sections: z.array(
       z.object({
         id: z.string(),
-        name: z.string(),
+        navLabel: z.string(),
+        icon: z.string(),
+        eyebrow: z.string(),
+        heading: z.string(),
         catchcopy: z.string(),
-        // 畳数のみで㎡表記が無いタイプもあるため任意項目にする
-        size: z.string().optional(),
-        capacity: z.string(),
-        bedding: z.string(),
-        view: z.string(),
-        smoking: z.string(),
-        // 標準設備に加えてユニットバスを表示するかどうかの判定に使用
-        roomType: z.enum(['japanese', 'western']),
-        // 一覧・詳細の両方で名称の下に表示する短い特徴タグ（例：デスク付き／花火鑑賞可能）
-        badges: z.array(z.string()).optional(),
-        // true の場合、共通の1階客室注意書きを詳細に表示する
-        isFirstFloor: z.boolean().optional(),
-        listImage: z.object({ src: z.string().optional(), alt: z.string() }),
-        gallery: z.array(roomGalleryItem),
-        description: z.array(z.string()),
+        intro: z.array(z.string()),
+        rooms: z.array(
+          z.object({
+            id: z.string(),
+            icon: z.string(),
+            eyebrow: z.string(),
+            name: z.string(),
+            description: z.array(z.string()),
+            image: roomGalleryItem,
+            size: z.string().optional(),
+            capacity: z.string(),
+            bedding: z.string(),
+            view: z.string(),
+            smoking: z.string(),
+            floors: z.array(
+              z.object({
+                label: z.string(),
+                reservationName: z.string(),
+                badges: z.array(z.string()).optional(),
+                images: z.array(roomGalleryItem).max(3),
+                description: z.array(z.string()),
+                isFirstFloor: z.boolean().optional(),
+              })
+            ),
+          })
+        ),
       })
     ),
     related: z.object({
