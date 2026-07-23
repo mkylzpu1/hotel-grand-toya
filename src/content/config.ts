@@ -195,6 +195,8 @@ const onsenPage = defineCollection({
           label: z.string(),
           href: z.string(),
           icon: z.string(),
+          image: z.string(),
+          imageAlt: z.string(),
         })
       ),
     }),

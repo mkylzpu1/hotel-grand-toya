@@ -111,10 +111,34 @@
   "related": {
     "heading": "あわせてご覧ください",
     "links": [
-      { "label": "客室", "href": "/ja/#rooms", "icon": "室" },
-      { "label": "お料理", "href": "/ja/#food", "icon": "膳" },
-      { "label": "館内施設", "href": "/ja/#facilities", "icon": "館" },
-      { "label": "ご宿泊予約", "href": "#", "icon": "予" }
+      {
+        "label": "客室",
+        "href": "/ja/#rooms",
+        "icon": "室",
+        "image": "/assets/photos/image3.png",
+        "imageAlt": "和室客室"
+      },
+      {
+        "label": "お料理",
+        "href": "/ja/#food",
+        "icon": "膳",
+        "image": "/assets/photos/lobby-1.jpg",
+        "imageAlt": "夕食のお料理"
+      },
+      {
+        "label": "館内施設",
+        "href": "/ja/#facilities",
+        "icon": "館",
+        "image": "/assets/photos/image1.png",
+        "imageAlt": "館内の様子"
+      },
+      {
+        "label": "ご宿泊予約",
+        "href": "#",
+        "icon": "予",
+        "image": "/assets/photos/onsen-3.jpg",
+        "imageAlt": "露天風呂"
+      }
     ]
   }
 }

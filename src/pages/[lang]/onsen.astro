@@ -33,7 +33,6 @@ const page = onsenEntry.data;
 const { reservationUrl } = siteEntry.data;
 
 // 予約に関するリンクはサイト共通の予約URLを使用する
-const dayUseCtaHref = page.dayUse.ctaHref === '#' ? reservationUrl : page.dayUse.ctaHref;
 const relatedLinks = page.related.links.map((link) =>
   link.label === 'ご宿泊予約' || link.icon === '予' ? { ...link, href: reservationUrl } : link
 );
@@ -194,20 +193,12 @@ const langLinks = locales
               ))
             }
           </dl>
-          <a
-            href={dayUseCtaHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-9 inline-flex items-center justify-center whitespace-nowrap border border-[#29415C] bg-[#29415C] px-[38px] py-[15px] text-[0.84rem] font-medium tracking-[0.1em] text-white transition-colors hover:border-[#A24730] hover:bg-[#A24730]"
-          >
-            {page.dayUse.ctaText}
-          </a>
         </div>
       </div>
     </section>
 
     <!-- 関連ページへの導線 -->
-    <section class="border-t border-[#D8D7D2] bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+    <section class="bg-[#FAFAFA] py-[88px] lg:py-[108px]">
       <div class="mx-auto max-w-[1320px] px-10">
         <h2 class="mb-10 text-center font-serif text-[clamp(1.3rem,1.1rem+0.8vw,1.7rem)] font-semibold text-[#1E1C1A]">
           {page.related.heading}
@@ -215,15 +206,24 @@ const langLinks = locales
         <div class="grid grid-cols-2 gap-5 lg:grid-cols-4">
           {
             relatedLinks.map((link) => (
-              <a
-                href={link.href}
-                class="group flex flex-col items-center gap-3 border border-[#D8D7D2] bg-white px-6 py-10 text-center transition-colors hover:border-[#A24730]"
-              >
-                <span class="flex h-9 w-9 shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-[#A24730] font-serif text-[0.9rem] font-semibold leading-none text-[#A24730]">
+              <a href={link.href} class="group relative block aspect-[3/4] overflow-hidden">
+                <img
+                  src={link.image}
+                  alt={link.imageAlt}
+                  class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08]"
+                />
+                <div
+                  class="absolute inset-0"
+                  style="background: linear-gradient(180deg, rgba(22,40,58,.05) 45%, rgba(22,40,58,.82) 100%);"
+                />
+                <span class="absolute left-4 top-4 flex h-9 w-9 shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-white/70 font-serif text-[0.9rem] font-semibold leading-none text-white">
                   {link.icon}
                 </span>
-                <span class="font-serif text-[0.94rem] tracking-[0.04em] text-[#1E1C1A] transition-colors group-hover:text-[#A24730]">
-                  {link.label}
+                <span class="absolute inset-x-4 bottom-4 flex items-center justify-between">
+                  <span class="font-serif text-[1.02rem] tracking-[0.04em] text-white">{link.label}</span>
+                  <span class="text-[0.95rem] text-white/85 transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
                 </span>
               </a>
             ))
