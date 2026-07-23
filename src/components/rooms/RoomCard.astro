@@ -8,10 +8,11 @@ interface Props {
   id: string;
   name: string;
   catchcopy: string;
-  size: string;
+  size?: string;
   capacity: string;
   bedding: string;
   view: string;
+  badges?: string[];
   listImage: { src?: string; alt: string };
   reservationUrl: string;
   detailLinkText: string;
@@ -27,6 +28,7 @@ const {
   capacity,
   bedding,
   view,
+  badges = [],
   listImage,
   reservationUrl,
   detailLinkText,
@@ -34,8 +36,9 @@ const {
   labels,
 } = Astro.props as Props;
 
+// 広さ（畳数のみで㎡表記が無い客室もあるため）が無い場合は表示項目から外す
 const specs = [
-  { label: labels.size, value: size },
+  ...(size ? [{ label: labels.size, value: size }] : []),
   { label: labels.capacity, value: capacity },
   { label: labels.bedding, value: bedding },
   { label: labels.view, value: view },
@@ -54,6 +57,17 @@ const specs = [
   </div>
   <div class="flex flex-1 flex-col p-7 lg:p-8">
     <h3 class="mb-2 font-serif text-[1.2rem] font-semibold text-[#1E1C1A]">{name}</h3>
+    {
+      badges.length > 0 && (
+        <ul class="mb-3 flex flex-wrap gap-1.5">
+          {badges.map((badge) => (
+            <li class="rounded-[2px] border border-[#A24730]/40 px-2 py-0.5 text-[0.68rem] tracking-[0.03em] text-[#A24730]">
+              {badge}
+            </li>
+          ))}
+        </ul>
+      )
+    }
     <p class="mb-6 text-[0.86rem] leading-[1.8] text-[#55524C]">{catchcopy}</p>
 
     <dl class="mb-7 grid grid-cols-2 gap-x-4 gap-y-3.5 border-t border-[#D8D7D2] pt-5">

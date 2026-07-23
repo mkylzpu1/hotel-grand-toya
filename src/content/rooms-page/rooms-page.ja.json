@@ -7,13 +7,16 @@
     "heading": "旅のかたちに合わせて選ぶ、洞爺湖の客室",
     "description": [
       "湖面を渡る風の色は清らかで優しく無色透明。緑の山々を映す美しい水鏡は、安らぎを伝えてくれる澄んだ青です。",
-      "当館では和室35部屋・洋室4部屋をご用意しております。眺望やベッドタイプの異なる客室から、旅のスタイルに合わせてお選びいただけます。まずは一覧で全体像をご確認のうえ、気になる客室の詳細へお進みください。"
+      "当館では、眺望やベッドタイプ、階数の異なる6タイプの客室をご用意しております。まずは一覧で全体像を比較のうえ、気になる客室の詳細へお進みください。"
     ]
   },
   "quickNav": [
-    { "href": "#detail-japanese-lake", "label": "和室（湖側）" },
-    { "href": "#detail-japanese-mountain", "label": "和室（山側）" },
-    { "href": "#detail-western-twin", "label": "洋室（ツイン）" }
+    { "href": "#detail-japanese-lake-standard", "label": "湖に面した和室8畳（スタンダード）" },
+    { "href": "#detail-japanese-lake-firstfloor", "label": "【1階】湖に面した和室8畳" },
+    { "href": "#detail-japanese-lake-desk", "label": "デスク付き 湖側和室8畳" },
+    { "href": "#detail-japanese-lake-sideview", "label": "窓辺から洞爺湖を望む和室" },
+    { "href": "#detail-western-twin-lake", "label": "湖に面した洋室ツイン" },
+    { "href": "#detail-western-twin-firstfloor", "label": "【1階】湖に面した洋室ツイン" }
   ],
   "listHeading": {
     "icon": "室",
@@ -37,82 +40,61 @@
   "amenitiesHeading": "アメニティ・設備",
   "descriptionHeading": "客室紹介",
   "detailCtaText": "この客室を予約する",
+  "commonAmenities": [
+    { "key": "wifi", "label": "Wi-Fi" },
+    { "key": "tv", "label": "テレビ" },
+    { "key": "phone", "label": "電話" },
+    { "key": "fridge", "label": "冷蔵庫" },
+    { "key": "aircon", "label": "冷暖房" },
+    { "key": "humidifier", "label": "加湿空気清浄機" },
+    { "key": "washlet", "label": "洗浄機付トイレ" },
+    { "key": "dryer", "label": "ドライヤー" }
+  ],
+  "unitBathAmenity": { "key": "unitbath", "label": "ユニットバス" },
+  "firstFloorNotice": {
+    "heading": "1階客室のご注意",
+    "items": [
+      "景観・花火は見えづらい場合があります。",
+      "遊覧船運航時間帯は大型バスが停車する場合があります。",
+      "客室小窓はマジックミラー仕様です。"
+    ]
+  },
   "rooms": [
     {
-      "id": "japanese-lake",
-      "name": "和室（湖側）",
-      "catchcopy": "洞爺湖の水鏡を望む、寛ぎの和室。",
-      "size": "10畳＋広縁（約16.5㎡）",
-      "capacity": "2〜5名",
+      "id": "japanese-lake-standard",
+      "name": "湖に面した和室8畳（スタンダード）",
+      "catchcopy": "洞爺湖を一望できる、当館のスタンダード和室。",
+      "size": "26㎡",
+      "capacity": "1〜4名",
       "bedding": "布団（ご人数に応じてご用意）",
       "view": "洞爺湖ビュー",
-      "smoking": "禁煙（喫煙コーナーを別途ご用意）",
-      "listImage": { "src": "/assets/photos/image3.png", "alt": "和室客室" },
+      "smoking": "禁煙",
+      "roomType": "japanese",
+      "badges": ["洞爺湖ロングラン花火鑑賞可能（4/28〜10/31）"],
+      "listImage": { "src": "/assets/photos/image3.png", "alt": "湖に面した和室8畳（スタンダード）" },
       "gallery": [
-        { "label": "客室全体", "src": "/assets/photos/image3.png", "alt": "和室客室" },
+        { "label": "客室全体", "src": "/assets/photos/image3.png", "alt": "湖に面した和室8畳（スタンダード）" },
         { "label": "水まわり" },
         { "label": "窓からの眺望", "src": "/assets/photos/facility-4.jpg", "alt": "客室からの眺め" },
         { "label": "夜の雰囲気" }
       ],
       "description": [
-        "窓の外に洞爺湖を望む和室です。緑の山々を映す澄んだ水鏡を眺めながら、畳の香りと広縁のくつろぎの中で、北海道の四季の移ろいをゆっくりとお楽しみいただけます。",
-        "ご夫婦やご家族でのご旅行、複数名でのご利用まで幅広く対応する広さも魅力です。"
-      ],
-      "amenities": [
-        { "key": "wifi", "label": "Wi-Fi" },
-        { "key": "tv", "label": "テレビ" },
-        { "key": "fridge", "label": "冷蔵庫" },
-        { "key": "dryer", "label": "ドライヤー" },
-        { "key": "yukata", "label": "浴衣" },
-        { "key": "towel", "label": "タオル" },
-        { "key": "shampoo", "label": "シャンプー類" },
-        { "key": "toothbrush", "label": "歯ブラシ" },
-        { "key": "safe", "label": "金庫" },
-        { "key": "kettle", "label": "電気ポット" }
+        "洞爺湖・中島・羊蹄山を望む和室です。",
+        "四季折々の景色と、ロングラン花火大会の眺望をお部屋からゆっくりお楽しみいただけます。"
       ]
     },
     {
-      "id": "japanese-mountain",
-      "name": "和室（山側）",
-      "catchcopy": "静けさに包まれる、落ち着きの和室。",
-      "size": "8畳（約13.2㎡）",
-      "capacity": "2〜4名",
+      "id": "japanese-lake-firstfloor",
+      "name": "【1階】湖に面した和室8畳",
+      "catchcopy": "価格を抑えながら湖側客室を楽しめる1階和室。",
+      "size": "26㎡",
+      "capacity": "1〜4名",
       "bedding": "布団（ご人数に応じてご用意）",
-      "view": "山側ビュー",
-      "smoking": "禁煙（喫煙コーナーを別途ご用意）",
-      "listImage": { "src": "/assets/photos/image3.png", "alt": "和室客室" },
-      "gallery": [
-        { "label": "客室全体", "src": "/assets/photos/image3.png", "alt": "和室客室" },
-        { "label": "水まわり" },
-        { "label": "窓からの眺望" },
-        { "label": "夜の雰囲気" }
-      ],
-      "description": [
-        "緑の木々に抱かれるように佇む、静かな山側の和室です。湖側に比べて落ち着いた雰囲気で、ゆっくりとお休みいただきたい方や、就寝時間の異なるご家族連れのお客様にもおすすめです。",
-        "館内の温泉やお食事処へのアクセスも良く、快適にお過ごしいただけます。"
-      ],
-      "amenities": [
-        { "key": "wifi", "label": "Wi-Fi" },
-        { "key": "tv", "label": "テレビ" },
-        { "key": "fridge", "label": "冷蔵庫" },
-        { "key": "dryer", "label": "ドライヤー" },
-        { "key": "yukata", "label": "浴衣" },
-        { "key": "towel", "label": "タオル" },
-        { "key": "shampoo", "label": "シャンプー類" },
-        { "key": "toothbrush", "label": "歯ブラシ" },
-        { "key": "kettle", "label": "電気ポット" }
-      ]
-    },
-    {
-      "id": "western-twin",
-      "name": "洋室（ツイン）",
-      "catchcopy": "ベッドでくつろぐ、シンプルな洋室ツイン。",
-      "size": "24㎡",
-      "capacity": "2名",
-      "bedding": "ツインベッド（幅100cm×2台）",
-      "view": "山側ビュー",
+      "view": "湖側",
       "smoking": "禁煙",
-      "listImage": { "alt": "洋室ツインルーム" },
+      "roomType": "japanese",
+      "isFirstFloor": true,
+      "listImage": { "alt": "【1階】湖に面した和室8畳" },
       "gallery": [
         { "label": "客室全体" },
         { "label": "水まわり" },
@@ -120,19 +102,96 @@
         { "label": "夜の雰囲気" }
       ],
       "description": [
-        "ベッドでのご滞在をお好みの方向けの、シンプルで機能的な洋室ツインです。畳での就寝に慣れていない海外からのお客様や、お年を重ねたご両親とのご旅行にもおすすめです。",
-        "館内設備は和室と共通でご利用いただけますので、温泉やお食事はそのままお楽しみいただけます。"
+        "湖側に面した1階客室です。",
+        "通常客室よりリーズナブルにご利用いただけます。"
+      ]
+    },
+    {
+      "id": "japanese-lake-desk",
+      "name": "デスク付き 湖側和室8畳",
+      "catchcopy": "湖を眺めながら仕事や読書も楽しめる客室。",
+      "capacity": "1〜4名",
+      "bedding": "布団（ご人数に応じてご用意）",
+      "view": "湖側",
+      "smoking": "禁煙",
+      "roomType": "japanese",
+      "badges": ["デスク付き"],
+      "listImage": { "alt": "デスク付き 湖側和室8畳" },
+      "gallery": [
+        { "label": "客室全体" },
+        { "label": "水まわり" },
+        { "label": "窓からの眺望" },
+        { "label": "夜の雰囲気" }
       ],
-      "amenities": [
-        { "key": "wifi", "label": "Wi-Fi" },
-        { "key": "tv", "label": "テレビ" },
-        { "key": "fridge", "label": "冷蔵庫" },
-        { "key": "dryer", "label": "ドライヤー" },
-        { "key": "towel", "label": "タオル" },
-        { "key": "shampoo", "label": "シャンプー類" },
-        { "key": "toothbrush", "label": "歯ブラシ" },
-        { "key": "safe", "label": "金庫" },
-        { "key": "kettle", "label": "電気ポット" }
+      "description": [
+        "窓際にデスクを設置した和室です。",
+        "ワーケーションやテレワーク、読書などにも快適にご利用いただけます。"
+      ]
+    },
+    {
+      "id": "japanese-lake-sideview",
+      "name": "窓辺から洞爺湖を望む和室",
+      "catchcopy": "窓辺から洞爺湖を望む落ち着いた和室。",
+      "capacity": "1〜4名",
+      "bedding": "布団（ご人数に応じてご用意）",
+      "view": "横向きレイクビュー",
+      "smoking": "禁煙",
+      "roomType": "japanese",
+      "listImage": { "alt": "窓辺から洞爺湖を望む和室" },
+      "gallery": [
+        { "label": "客室全体" },
+        { "label": "水まわり" },
+        { "label": "窓からの眺望" },
+        { "label": "夜の雰囲気" }
+      ],
+      "description": [
+        "湖に対して横向きに配置された客室です。",
+        "窓辺から洞爺湖やロングラン花火をご覧いただけます。"
+      ]
+    },
+    {
+      "id": "western-twin-lake",
+      "name": "湖に面した洋室ツイン",
+      "catchcopy": "ベッドで快適に過ごせる湖側ツインルーム。",
+      "size": "26㎡",
+      "capacity": "1〜2名",
+      "bedding": "ツインベッド",
+      "view": "洞爺湖ビュー",
+      "smoking": "禁煙",
+      "roomType": "western",
+      "listImage": { "alt": "湖に面した洋室ツイン" },
+      "gallery": [
+        { "label": "客室全体" },
+        { "label": "水まわり" },
+        { "label": "窓からの眺望" },
+        { "label": "夜の雰囲気" }
+      ],
+      "description": [
+        "ベッドタイプをご希望のお客様向けの洋室です。",
+        "洞爺湖・中島・羊蹄山を望み、ロングラン花火もお部屋からご覧いただけます。"
+      ]
+    },
+    {
+      "id": "western-twin-firstfloor",
+      "name": "【1階】湖に面した洋室ツイン",
+      "catchcopy": "リーズナブルに利用できる1階ツインルーム。",
+      "size": "26㎡",
+      "capacity": "1〜2名",
+      "bedding": "ツインベッド",
+      "view": "湖側",
+      "smoking": "禁煙",
+      "roomType": "western",
+      "isFirstFloor": true,
+      "listImage": { "alt": "【1階】湖に面した洋室ツイン" },
+      "gallery": [
+        { "label": "客室全体" },
+        { "label": "水まわり" },
+        { "label": "窓からの眺望" },
+        { "label": "夜の雰囲気" }
+      ],
+      "description": [
+        "湖側の1階洋室です。",
+        "価格を抑えながら洋室をご利用いただけます。"
       ]
     }
   ],

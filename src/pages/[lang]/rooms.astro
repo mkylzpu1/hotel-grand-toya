@@ -76,7 +76,7 @@ const langLinks = locales
 
     <!-- 客室タイプへの導線（クイックナビ） -->
     <nav aria-label="客室タイプ" class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
-      <div class="mx-auto grid max-w-[1320px] grid-cols-1 gap-px sm:grid-cols-3">
+      <div class="mx-auto grid max-w-[1320px] grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3">
         {
           page.quickNav.map((item) => (
             <a
@@ -126,6 +126,7 @@ const langLinks = locales
                 capacity={room.capacity}
                 bedding={room.bedding}
                 view={room.view}
+                badges={room.badges}
                 listImage={room.listImage}
                 reservationUrl={reservationUrl}
                 detailLinkText={page.detailLinkText}
@@ -151,96 +152,129 @@ const langLinks = locales
 
       <div class="space-y-[88px] lg:space-y-[108px]">
         {
-          page.rooms.map((room) => (
-            <div id={`detail-${room.id}`} class="scroll-mt-6 border-t border-[#D8D7D2] pt-14 first:border-t-0 first:pt-0">
-              <div class="mb-10">
-                <h3 class="mb-3 font-serif text-[clamp(1.3rem,1.1rem+0.7vw,1.7rem)] font-semibold text-[#1E1C1A]">
-                  {room.name}
-                </h3>
-                <p class="text-[0.9rem] leading-[1.85] text-[#55524C]">{room.catchcopy}</p>
-              </div>
+          page.rooms.map((room) => {
+            // 標準設備（共通コンポーネント）＋ 洋室のみユニットバスを追加した、この客室の設備一覧
+            const amenities =
+              room.roomType === 'western'
+                ? [...page.commonAmenities, page.unitBathAmenity]
+                : page.commonAmenities;
 
-              {/* 写真ギャラリー */}
-              <div class="mb-12">
-                <RoomGallery items={room.gallery} />
-              </div>
-
-              <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-                {/* 基本情報（表形式） */}
-                <div>
-                  <h4 class="mb-4 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">基本情報</h4>
-                  <table class="w-full border-t border-[#D8D7D2] text-[0.86rem]">
-                    <tbody>
-                      <tr class="border-b border-[#D8D7D2]">
-                        <th scope="row" class="w-[35%] py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
-                          {page.basicInfoLabels.size}
-                        </th>
-                        <td class="py-3.5 text-[#1E1C1A]">{room.size}</td>
-                      </tr>
-                      <tr class="border-b border-[#D8D7D2]">
-                        <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
-                          {page.basicInfoLabels.capacity}
-                        </th>
-                        <td class="py-3.5 text-[#1E1C1A]">{room.capacity}</td>
-                      </tr>
-                      <tr class="border-b border-[#D8D7D2]">
-                        <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
-                          {page.basicInfoLabels.view}
-                        </th>
-                        <td class="py-3.5 text-[#1E1C1A]">{room.view}</td>
-                      </tr>
-                      <tr class="border-b border-[#D8D7D2]">
-                        <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
-                          {page.basicInfoLabels.bedding}
-                        </th>
-                        <td class="py-3.5 text-[#1E1C1A]">{room.bedding}</td>
-                      </tr>
-                      <tr class="border-b border-[#D8D7D2]">
-                        <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
-                          {page.basicInfoLabels.smoking}
-                        </th>
-                        <td class="py-3.5 text-[#1E1C1A]">{room.smoking}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  {/* 客室紹介 */}
-                  <h4 class="mb-4 mt-10 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
-                    {page.descriptionHeading}
-                  </h4>
-                  {room.description.map((line) => (
-                    <p class="mb-3 text-[0.88rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
-                  ))}
+            return (
+              <div id={`detail-${room.id}`} class="scroll-mt-6 border-t border-[#D8D7D2] pt-14 first:border-t-0 first:pt-0">
+                <div class="mb-10">
+                  {room.badges && room.badges.length > 0 && (
+                    <ul class="mb-4 flex flex-wrap gap-2">
+                      {room.badges.map((badge) => (
+                        <li class="rounded-[2px] border border-[#A24730]/40 px-2.5 py-1 text-[0.72rem] tracking-[0.03em] text-[#A24730]">
+                          {badge}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <h3 class="mb-3 font-serif text-[clamp(1.3rem,1.1rem+0.7vw,1.7rem)] font-semibold text-[#1E1C1A]">
+                    {room.name}
+                  </h3>
+                  <p class="text-[0.9rem] leading-[1.85] text-[#55524C]">{room.catchcopy}</p>
                 </div>
 
-                {/* アメニティ・設備 */}
-                <div>
-                  <h4 class="mb-5 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
-                    {page.amenitiesHeading}
-                  </h4>
-                  <ul class="grid grid-cols-3 gap-x-4 gap-y-6 sm:grid-cols-4">
-                    {room.amenities.map((amenity) => (
-                      <li class="flex flex-col items-center gap-2.5 text-center">
-                        <span class="flex h-11 w-11 shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-[#29415C] text-[#29415C]">
-                          <AmenityIcon iconKey={amenity.key} />
-                        </span>
-                        <span class="text-[0.72rem] leading-[1.5] tracking-[0.03em] text-[#55524C]">
-                          {amenity.label}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* 写真ギャラリー */}
+                <div class="mb-12">
+                  <RoomGallery items={room.gallery} />
+                </div>
 
-                  {/* 予約CTA */}
-                  <div class="mt-12">
-                    <CtaButton href={reservationUrl} className="w-full sm:w-auto">
-                      {page.detailCtaText}
-                    </CtaButton>
+                <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+                  {/* 基本情報（表形式） */}
+                  <div>
+                    <h4 class="mb-4 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">基本情報</h4>
+                    <table class="w-full border-t border-[#D8D7D2] text-[0.86rem]">
+                      <tbody>
+                        {room.size && (
+                          <tr class="border-b border-[#D8D7D2]">
+                            <th scope="row" class="w-[35%] py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
+                              {page.basicInfoLabels.size}
+                            </th>
+                            <td class="py-3.5 text-[#1E1C1A]">{room.size}</td>
+                          </tr>
+                        )}
+                        <tr class="border-b border-[#D8D7D2]">
+                          <th scope="row" class="w-[35%] py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
+                            {page.basicInfoLabels.capacity}
+                          </th>
+                          <td class="py-3.5 text-[#1E1C1A]">{room.capacity}</td>
+                        </tr>
+                        <tr class="border-b border-[#D8D7D2]">
+                          <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
+                            {page.basicInfoLabels.view}
+                          </th>
+                          <td class="py-3.5 text-[#1E1C1A]">{room.view}</td>
+                        </tr>
+                        <tr class="border-b border-[#D8D7D2]">
+                          <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
+                            {page.basicInfoLabels.bedding}
+                          </th>
+                          <td class="py-3.5 text-[#1E1C1A]">{room.bedding}</td>
+                        </tr>
+                        <tr class="border-b border-[#D8D7D2]">
+                          <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
+                            {page.basicInfoLabels.smoking}
+                          </th>
+                          <td class="py-3.5 text-[#1E1C1A]">{room.smoking}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    {/* 客室紹介 */}
+                    <h4 class="mb-4 mt-10 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
+                      {page.descriptionHeading}
+                    </h4>
+                    {room.description.map((line) => (
+                      <p class="mb-3 text-[0.88rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+                    ))}
+
+                    {/* 1階客室の共通注意書き */}
+                    {room.isFirstFloor && (
+                      <div class="mt-8 border border-[#D8D7D2] bg-[#FAFAFA] p-5">
+                        <p class="mb-2.5 text-[0.78rem] font-medium tracking-[0.06em] text-[#29415C]">
+                          {page.firstFloorNotice.heading}
+                        </p>
+                        <ul class="space-y-1.5">
+                          {page.firstFloorNotice.items.map((note) => (
+                            <li class="text-[0.8rem] leading-[1.8] text-[#55524C]">※ {note}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* アメニティ・設備（共通コンポーネント + 洋室のみユニットバス） */}
+                  <div>
+                    <h4 class="mb-5 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
+                      {page.amenitiesHeading}
+                    </h4>
+                    <ul class="grid grid-cols-3 gap-x-4 gap-y-6 sm:grid-cols-4">
+                      {amenities.map((amenity) => (
+                        <li class="flex flex-col items-center gap-2.5 text-center">
+                          <span class="flex h-11 w-11 shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-[#29415C] text-[#29415C]">
+                            <AmenityIcon iconKey={amenity.key} />
+                          </span>
+                          <span class="text-[0.72rem] leading-[1.5] tracking-[0.03em] text-[#55524C]">
+                            {amenity.label}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* 予約CTA */}
+                    <div class="mt-12">
+                      <CtaButton href={reservationUrl} className="w-full sm:w-auto">
+                        {page.detailCtaText}
+                      </CtaButton>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))
+            );
+          })
         }
       </div>
     </section>
