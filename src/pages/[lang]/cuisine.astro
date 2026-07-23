@@ -1,0 +1,205 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import PageHeroBand from '../../components/common/PageHeroBand.astro';
+import { locales, localeFromId, type Locale } from '../../content/config';
+
+const LANG_LABELS: Record<Locale, string> = {
+  ja: 'JP',
+  en: 'EN',
+  zh: 'CH',
+  ko: 'KR',
+};
+
+export async function getStaticPaths() {
+  const entries = await getCollection('cuisine-page');
+  return entries.map((entry) => ({ params: { lang: localeFromId(entry.id) } }));
+}
+const { lang } = Astro.params as { lang: Locale };
+const homeHref = `/${lang}/`;
+const [siteEntry, navigationEntry, cuisineEntry] = await Promise.all([
+  getEntry('site', `site.${lang}`),
+  getEntry('navigation', `navigation.${lang}`),
+  getEntry('cuisine-page', `cuisine-page.${lang}`),
+]);
+if (!siteEntry || !navigationEntry || !cuisineEntry) {
+  throw new Error(`Missing content for locale "${lang}".`);
+}
+const page = cuisineEntry.data;
+
+// 利用可能な言語のみ切り替えリンクを出す（onsen-page が無い言語には遷移させない）
+const availableOnsenEntries = await getCollection('onsen-page');
+const availableLocales = new Set(availableOnsenEntries.map((entry) => localeFromId(entry.id)));
+
+const langLinks = locales
+  .filter((code) => availableLocales.has(code))
+  .map((code) => ({
+    code,
+    label: LANG_LABELS[code],
+    href: `/${code}/onsen/`,
+    active: code === lang,
+  }));
+---
+<Layout
+  lang={lang}
+  title={`${page.pageTitle}｜${siteEntry.data.title}`}
+  description={siteEntry.data.description}
+  navigation={navigationEntry.data}
+  site={siteEntry.data}
+  langLinks={langLinks}
+>
+  <main id="top">
+    <PageHeroBand
+      icon={page.intro.icon}
+      pageTitle={page.pageTitle}
+      pageTitleEn={page.pageTitleEn}
+      homeHref={homeHref}
+    />
+
+    {/* アンカーナビ：夕食／朝食／お食事会場 */}
+    <nav aria-label="お料理" class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
+      <div class="mx-auto grid max-w-[1320px] grid-cols-3">
+        {page.quickNav.map((item) => (
+          <a
+            href={item.href}
+            class="group flex items-center justify-center gap-3 border-l border-[#D8D7D2] px-10 py-7 transition-colors first:border-l-0 hover:bg-white"
+          >
+            <span class="font-serif text-[1.1rem] font-medium tracking-[0.04em] text-[#1E1C1A]">
+              {item.label}
+            </span>
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[0.9rem] text-[#A24730] transition-transform duration-300 group-hover:translate-x-1">
+              ↓
+            </span>
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    {/* リード */}
+    <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
+      <SectionEyebrow icon={page.intro.icon} eyebrow={page.intro.eyebrow} heading={page.intro.heading} />
+      <div class="mt-8 max-w-[640px]">
+        {page.intro.description.map((line) => (
+          <p class="mb-4 text-[0.94rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+        ))}
+      </div>
+    </section>
+
+    {/* 夕食：和食会席（写真主体） */}
+    <section id="section-dinner" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+      <div class="mx-auto max-w-[1320px] px-10">
+        <div class="mb-14 max-w-[760px]">
+          <SectionEyebrow icon={page.dinner.icon} eyebrow={page.dinner.eyebrow} heading={page.dinner.heading} />
+        </div>
+        <div class="mb-12 aspect-[16/9] overflow-hidden">
+          <img src={page.dinner.mainImage.src} alt={page.dinner.mainImage.alt} class="h-full w-full object-cover" loading="lazy" />
+        </div>
+        <div class="mb-14 grid grid-cols-2 gap-3 lg:grid-cols-3">
+          {page.dinner.gallery.map((img) => (
+            <div class="aspect-[3/2] overflow-hidden">
+              <img src={img.src} alt={img.alt} class="h-full w-full object-cover" loading="lazy" />
+            </div>
+          ))}
+        </div>
+        <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            {page.dinner.description.map((line) => (
+              <p class="mb-3 text-[0.9rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+            ))}
+            <p class="mt-4 text-[0.78rem] text-[#8A8781]">※ {page.dinner.seasonalNote}</p>
+          </div>
+          <div>
+            <h4 class="mb-4 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
+              {page.dinner.menuExample.heading}
+            </h4>
+            <ul class="space-y-2">
+              {page.dinner.menuExample.items.map((item) => (
+                <li class="border-b border-[#D8D7D2] pb-2 text-[0.86rem] text-[#1E1C1A]">{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* 朝食：和朝食 */}
+    <section id="section-breakfast" class="scroll-mt-6 py-[88px] lg:py-[108px]">
+      <div class="mx-auto max-w-[1320px] px-10">
+        <div class="mb-14 max-w-[760px]">
+          <SectionEyebrow icon={page.breakfast.icon} eyebrow={page.breakfast.eyebrow} heading={page.breakfast.heading} />
+        </div>
+        <div class="mb-12 aspect-[16/9] overflow-hidden">
+          <img src={page.breakfast.mainImage.src} alt={page.breakfast.mainImage.alt} class="h-full w-full object-cover" loading="lazy" />
+        </div>
+        <div class="mb-14 grid grid-cols-2 gap-3 lg:grid-cols-3">
+          {page.breakfast.gallery.map((img) => (
+            <div class="aspect-[3/2] overflow-hidden">
+              <img src={img.src} alt={img.alt} class="h-full w-full object-cover" loading="lazy" />
+            </div>
+          ))}
+        </div>
+        <div class="max-w-[640px]">
+          {page.breakfast.description.map((line) => (
+            <p class="mb-3 text-[0.9rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+          ))}
+          <p class="mt-4 text-[0.78rem] text-[#8A8781]">※ {page.breakfast.seasonalNote}</p>
+        </div>
+      </div>
+    </section>
+
+    {/* お食事会場 */}
+    <section id="section-venues" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+      <div class="mx-auto max-w-[1320px] px-10">
+        <div class="mb-14 max-w-[760px]">
+          <SectionEyebrow icon={page.diningVenues.icon} eyebrow={page.diningVenues.eyebrow} heading={page.diningVenues.heading} />
+        </div>
+        <div class="mb-14 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+          {[page.diningVenues.inRoom, page.diningVenues.hall].map((venue) => (
+            <div>
+              <div class="mb-6 aspect-[4/3] overflow-hidden">
+                <img src={venue.image.src} alt={venue.image.alt} class="h-full w-full object-cover" loading="lazy" />
+              </div>
+              <h4 class="mb-3 font-serif text-[1.05rem] font-semibold text-[#1E1C1A]">{venue.heading}</h4>
+              {venue.description.map((line) => (
+                <p class="mb-2 text-[0.88rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+              ))}
+              <p class="mt-3 text-[0.76rem] text-[#8A8781]">※ {venue.note}</p>
+            </div>
+          ))}
+        </div>
+        <div class="mb-16 border border-[#D8D7D2] bg-white p-6">
+          {page.diningVenues.planNote.map((line) => (
+            <p class="text-[0.86rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+          ))}
+        </div>
+        {/* アレルギー対応・お子様連れ対応 */}
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {page.guestConsiderations.map((item) => (
+            <div class="flex items-start gap-4 border border-[#D8D7D2] bg-white p-6">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#29415C] font-serif text-[#29415C]">
+                {item.icon}
+              </span>
+              <div>
+                <p class="mb-1.5 text-[0.9rem] font-medium text-[#1E1C1A]">{item.heading}</p>
+                <p class="text-[0.84rem] leading-[1.8] text-[#55524C]">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* 注意事項 */}
+    <section class="mx-auto max-w-[1320px] px-10 py-[64px]">
+      <h4 class="mb-4 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
+        {page.notices.heading}
+      </h4>
+      <ul class="space-y-1.5">
+        {page.notices.items.map((note) => (
+          <li class="text-[0.8rem] leading-[1.8] text-[#55524C]">※ {note}</li>
+        ))}
+      </ul>
+    </section>
+  </main>
+</Layout>

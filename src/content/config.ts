@@ -312,6 +312,77 @@ const roomsPage = defineCollection({
   }),
 });
 
+
+// content/config.ts
+
+const cuisinePage = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    intro: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      description: z.array(z.string()),
+    }),
+    quickNav: z.array(
+      z.object({ href: z.string(), label: z.string() })
+    ),
+    dinner: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      mainImage: roomGalleryItem,
+      gallery: z.array(roomGalleryItem),
+      menuExample: z.object({
+        heading: z.string(),
+        items: z.array(z.string()),
+      }),
+      description: z.array(z.string()),
+      seasonalNote: z.string(),
+    }),
+    breakfast: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      mainImage: roomGalleryItem,
+      gallery: z.array(roomGalleryItem),
+      description: z.array(z.string()),
+      seasonalNote: z.string(),
+    }),
+    diningVenues: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      inRoom: z.object({
+        heading: z.string(),
+        image: roomGalleryItem,
+        description: z.array(z.string()),
+        note: z.string(),
+      }),
+      hall: z.object({
+        heading: z.string(),
+        image: roomGalleryItem,
+        description: z.array(z.string()),
+        note: z.string(),
+      }),
+      planNote: z.array(z.string()),
+    }),
+    guestConsiderations: z.array(
+      z.object({
+        icon: z.string(),
+        heading: z.string(),
+        description: z.string(),
+      })
+    ),
+    notices: z.object({
+      heading: z.string(),
+      items: z.array(z.string()),
+    }),
+  }),
+});
+
 export const collections = {
   site,
   navigation,
@@ -320,4 +391,5 @@ export const collections = {
   'top-sections': topSections,
   'onsen-page': onsenPage,
   'rooms-page': roomsPage,
+  'cuisine-page': cuisinePage,
 };
