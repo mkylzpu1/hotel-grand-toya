@@ -1,0 +1,193 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import PageHeroBand from '../../components/common/PageHeroBand.astro';
+import { locales, localeFromId, type Locale } from '../../content/config';
+
+const LANG_LABELS: Record<Locale, string> = {
+  ja: 'JP',
+  en: 'EN',
+  zh: 'CH',
+  ko: 'KR',
+};
+
+export async function getStaticPaths() {
+  const entries = await getCollection('facilities-page');
+  return entries.map((entry) => ({ params: { lang: localeFromId(entry.id) } }));
+}
+const { lang } = Astro.params as { lang: Locale };
+const [siteEntry, navigationEntry, pageEntry] = await Promise.all([
+  getEntry('site', `site.${lang}`),
+  getEntry('navigation', `navigation.${lang}`),
+  getEntry('facilities-page', `facilities-page.${lang}`),
+]);
+if (!siteEntry || !navigationEntry || !pageEntry) {
+  throw new Error(`Missing content for locale "${lang}".`);
+}
+const page = pageEntry.data;
+
+
+// 利用可能な言語のみ切り替えリンクを出す（onsen-page が無い言語には遷移させない）
+const availableOnsenEntries = await getCollection('onsen-page');
+const availableLocales = new Set(availableOnsenEntries.map((entry) => localeFromId(entry.id)));
+
+const langLinks = locales
+  .filter((code) => availableLocales.has(code))
+  .map((code) => ({
+    code,
+    label: LANG_LABELS[code],
+    href: `/${code}/onsen/`,
+    active: code === lang,
+  }));
+
+// 未確定項目のフォールバック表示
+const FALLBACK = 'フロントまでお問い合わせください';
+const withFallback = (value?: string) => value || FALLBACK;
+---
+<Layout
+  lang={lang}
+  title={`${page.pageTitle}｜${siteEntry.data.title}`}
+  description={siteEntry.data.description}
+  navigation={navigationEntry.data}
+  site={siteEntry.data}
+  langLinks={langLinks}
+>
+  <main id="top">
+    <PageHeroBand icon={page.intro.icon} pageTitle={page.pageTitle} pageTitleEn={page.pageTitleEn} homeHref={`/${lang}/`} />
+
+    <nav aria-label="館内施設・サービス" class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
+      <div class="mx-auto grid max-w-[1320px] grid-cols-3">
+        {page.quickNav.map((item) => (
+          <a href={item.href} class="group flex items-center justify-center gap-3 border-l border-[#D8D7D2] px-10 py-7 transition-colors first:border-l-0 hover:bg-white">
+            <span class="font-serif text-[1.1rem] font-medium tracking-[0.04em] text-[#1E1C1A]">{item.label}</span>
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[0.9rem] text-[#A24730] transition-transform duration-300 group-hover:translate-x-1">↓</span>
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
+      <SectionEyebrow icon={page.intro.icon} eyebrow={page.intro.eyebrow} heading={page.intro.heading} />
+      <div class="mt-8 max-w-[640px]">
+        {page.intro.description.map((line) => (
+          <p class="mb-4 text-[0.94rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+        ))}
+      </div>
+    </section>
+
+    {/* 館内施設 */}
+    <section id="section-facilities" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+      <div class="mx-auto max-w-[1320px] px-10">
+        <div class="mb-14 max-w-[760px]">
+          <SectionEyebrow icon={page.facilitiesSection.icon} eyebrow={page.facilitiesSection.eyebrow} heading={page.facilitiesSection.heading} />
+        </div>
+        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {page.facilitiesSection.items.map((item) => (
+            <div class="border border-[#D8D7D2] bg-white">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src={item.image?.src} alt={item.image?.alt ?? item.name} class="h-full w-full object-cover" loading="lazy" />
+              </div>
+              <div class="p-6">
+                <h4 class="mb-2 font-serif text-[1rem] font-semibold text-[#1E1C1A]">{item.name}</h4>
+                {item.description.map((line) => (
+                  <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">{line}</p>
+                ))}
+                <dl class="mt-4 space-y-1.5 text-[0.78rem] text-[#8A8781]">
+                  {(item.hours || item.location) && (
+                    <div class="flex justify-between gap-2"><dt>利用時間</dt><dd class="text-right text-[#1E1C1A]">{withFallback(item.hours ?? item.location)}</dd></div>
+                  )}
+                  {item.fee && <div class="flex justify-between gap-2"><dt>料金</dt><dd class="text-right text-[#1E1C1A]">{item.fee}</dd></div>}
+                  {item.payment && <div class="flex justify-between gap-2"><dt>支払方法</dt><dd class="text-right text-[#1E1C1A]">{item.payment}</dd></div>}
+                  {item.languages && (
+                    <div class="flex justify-between gap-2"><dt>対応言語</dt><dd class="text-right text-[#1E1C1A]">{item.languages.join('／')}</dd></div>
+                  )}
+                </dl>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* 館内サービス */}
+    <section id="section-services" class="scroll-mt-6 py-[88px] lg:py-[108px]">
+      <div class="mx-auto max-w-[1320px] px-10">
+        <div class="mb-14 max-w-[760px]">
+          <SectionEyebrow icon={page.servicesSection.icon} eyebrow={page.servicesSection.eyebrow} heading={page.servicesSection.heading} />
+        </div>
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          {page.servicesSection.items.map((item) => (
+            <div class="grid grid-cols-1 border border-[#D8D7D2] bg-white sm:grid-cols-2">
+              <div class="aspect-[4/3] overflow-hidden sm:aspect-auto">
+                <img src={item.image?.src} alt={item.image?.alt ?? item.name} class="h-full w-full object-cover" loading="lazy" />
+              </div>
+              <div class="p-6">
+                <h4 class="mb-2 font-serif text-[1rem] font-semibold text-[#1E1C1A]">{item.name}</h4>
+                {item.description.map((line) => (
+                  <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">{line}</p>
+                ))}
+                <dl class="mt-4 space-y-1.5 text-[0.78rem] text-[#8A8781]">
+                  <div class="flex justify-between gap-2"><dt>料金</dt><dd class="text-right text-[#1E1C1A]">{withFallback(item.fee)}</dd></div>
+                  {item.plans && <div class="flex justify-between gap-2"><dt>コース</dt><dd class="text-right text-[#1E1C1A]">{item.plans.join('／')}</dd></div>}
+                  {item.duration && <div class="flex justify-between gap-2"><dt>所要時間</dt><dd class="text-right text-[#1E1C1A]">{item.duration}</dd></div>}
+                  <div class="flex justify-between gap-2"><dt>受付・利用時間</dt><dd class="text-right text-[#1E1C1A]">{withFallback(item.hours ?? item.receptionHours)}</dd></div>
+                  <div class="flex justify-between gap-2"><dt>予約方法</dt><dd class="text-right text-[#1E1C1A]">{withFallback(item.reservationMethod)}</dd></div>
+                </dl>
+                {item.notes && (
+                  <ul class="mt-4 space-y-1">
+                    {item.notes.map((note) => <li class="text-[0.76rem] text-[#8A8781]">※ {note}</li>)}
+                  </ul>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* 周辺アクティビティ */}
+    <section id="section-activities" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+      <div class="mx-auto max-w-[1320px] px-10">
+        <div class="mb-14 max-w-[760px]">
+          <SectionEyebrow icon={page.activitiesSection.icon} eyebrow={page.activitiesSection.eyebrow} heading={page.activitiesSection.heading} />
+        </div>
+        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          {page.activitiesSection.items.map((item) => (
+            <div class="border border-[#D8D7D2] bg-white">
+              <div class="relative aspect-[4/3] overflow-hidden">
+                <img src={item.image?.src} alt={item.image?.alt ?? item.name} class="h-full w-full object-cover" loading="lazy" />
+                <span class="absolute left-3 top-3 border border-white/80 bg-black/50 px-2.5 py-1 text-[0.68rem] tracking-[0.04em] text-white">
+                  {page.activitiesSection.externalBadgeLabel}
+                </span>
+              </div>
+              <div class="p-6">
+                <h4 class="mb-2 font-serif text-[1rem] font-semibold text-[#1E1C1A]">{item.name}</h4>
+                {item.description.map((line) => (
+                  <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">{line}</p>
+                ))}
+                <dl class="mt-4 space-y-1.5 text-[0.78rem] text-[#8A8781]">
+                  <div class="flex justify-between gap-2"><dt>ホテルからの所要時間</dt><dd class="text-right text-[#1E1C1A]">{withFallback(item.accessFromHotel)}</dd></div>
+                  <div class="flex justify-between gap-2"><dt>料金</dt><dd class="text-right text-[#1E1C1A]">{withFallback(item.fee)}</dd></div>
+                  {item.beginnerFriendly && <div class="flex justify-between gap-2"><dt>初心者</dt><dd class="text-right text-[#1E1C1A]">{item.beginnerFriendly}</dd></div>}
+                  {item.period && <div class="flex justify-between gap-2"><dt>開催期間</dt><dd class="text-right text-[#1E1C1A]">{item.period}</dd></div>}
+                  <div class="flex justify-between gap-2"><dt>予約方法</dt><dd class="text-right text-[#1E1C1A]">{withFallback(item.reservationMethod)}</dd></div>
+                </dl>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* 利用案内 */}
+    <section class="mx-auto max-w-[1320px] px-10 py-[64px]">
+      <h4 class="mb-4 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">{page.usageNotice.heading}</h4>
+      <ul class="space-y-1.5">
+        {page.usageNotice.items.map((note) => (
+          <li class="text-[0.8rem] leading-[1.8] text-[#55524C]">※ {note}</li>
+        ))}
+      </ul>
+    </section>
+  </main>
+</Layout>

@@ -383,6 +383,99 @@ const cuisinePage = defineCollection({
   }),
 });
 
+const facilityItem = z.object({
+  id: z.string(),
+  name: z.string(),
+  image: roomGalleryItem.optional(),
+  description: z.array(z.string()),
+  hours: z.string().optional(),
+  location: z.string().optional(),
+  fee: z.string().optional(), // 「無料」「有料（○○円）」など
+  payment: z.string().optional(),
+  target: z.string().optional(),
+  // 多言語対応など、他項目に当てはまらない補足
+  languages: z.array(z.string()).optional(),
+  staffSupport: z.string().optional(),
+});
+
+const serviceItem = z.object({
+  id: z.string(),
+  name: z.string(),
+  image: roomGalleryItem.optional(),
+  description: z.array(z.string()),
+  fee: z.string().optional(),
+  plans: z.array(z.string()).optional(),
+  duration: z.string().optional(),
+  hours: z.string().optional(),
+  receptionHours: z.string().optional(),
+  reservationMethod: z.string().optional(),
+  location: z.string().optional(),
+  cancellationPolicy: z.string().optional(),
+  notes: z.array(z.string()).optional(),
+});
+
+const activityItem = z.object({
+  id: z.string(),
+  name: z.string(),
+  image: roomGalleryItem.optional(),
+  description: z.array(z.string()),
+  location: z.string().optional(),
+  accessFromHotel: z.string().optional(),
+  duration: z.string().optional(),
+  hours: z.string().optional(),
+  closedDays: z.string().optional(),
+  period: z.string().optional(),
+  fee: z.string().optional(),
+  rentalItems: z.string().optional(),
+  planDetails: z.string().optional(),
+  reservationMethod: z.string().optional(),
+  targetAge: z.string().optional(),
+  beginnerFriendly: z.string().optional(),
+  rainyDayPolicy: z.string().optional(),
+  itemsToBring: z.string().optional(),
+  officialSite: z.string().optional(),
+  notes: z.array(z.string()).optional(),
+});
+
+const facilitiesPage = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    intro: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      description: z.array(z.string()),
+    }),
+    quickNav: z.array(z.object({ href: z.string(), label: z.string() })),
+    facilitiesSection: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      items: z.array(facilityItem),
+    }),
+    servicesSection: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      items: z.array(serviceItem),
+    }),
+    activitiesSection: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      // 「ホテル内施設ではない」ことを明示するバッジ文言
+      externalBadgeLabel: z.string(),
+      items: z.array(activityItem),
+    }),
+    usageNotice: z.object({
+      heading: z.string(),
+      items: z.array(z.string()),
+    }),
+  }),
+});
+
 export const collections = {
   site,
   navigation,
@@ -392,4 +485,5 @@ export const collections = {
   'onsen-page': onsenPage,
   'rooms-page': roomsPage,
   'cuisine-page': cuisinePage,
+  'facilities-page': facilitiesPage,
 };
