@@ -1,0 +1,20 @@
+{
+  "order": 1,
+  "icon": "心",
+  "eyebrow": "理念",
+  "titleLines": ["在洞爷湖畔，", "享受身心舒展的时光。"],
+  "description": [
+    "格兰多洞爷酒店坐落于洞爷湖畔，是一家温泉旅馆。",
+    "漫步湖畔、游览周边景点之后，不妨在天然温泉中慢慢舒缓疲惫。我们致力于提供不拘小节、舒适自在的住宿体验。"
+  ],
+  "centerText": true,
+  "showDivider": false,
+  "images": [
+    { "src": "/assets/photos/image12.jpg", "alt": "酒店大堂", "className": "h-full" },
+    {
+      "src": "/assets/photos/image2.png",
+      "alt": "洞爷湖畔的烟花",
+      "className": "h-[74%] self-end mt-0 lg:mt-[70px]"
+    }
+  ]
+}

@@ -1,15 +1,3 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/top/Hero';
-import ContentSection from '../components/top/ContentSection';
-import Access from '../components/top/Access';
-import { sections } from '../data/top/sections';
+return Astro.redirect('/ja/');
 ---
-
-<Layout>
-  <main id="top">
-    <Hero client:load />
-    {sections.map((section) => <ContentSection {...section} />)}
-    <Access />
-  </main>
-</Layout>

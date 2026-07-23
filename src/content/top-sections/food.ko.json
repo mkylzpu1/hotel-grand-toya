@@ -1,0 +1,22 @@
+{
+  "order": 4,
+  "sectionId": "food",
+  "icon": "膳",
+  "eyebrow": "Dinner",
+  "titleLines": ["홋카이도의 맛을,", "느긋하게 즐기다."],
+  "description": [
+    "저녁은 가이세키 요리, 아침은 일본식 조식을 준비합니다.",
+    "숙박과 함께 저녁・아침 식사를 즐기실 수 있는 플랜을 마련하고 있습니다. 온천과 식사로 여유로운 시간을 보내세요."
+  ],
+  "linkText": "요리 안내",
+  "linkHref": "#",
+  "centerText": true,
+  "images": [
+    { "src": "/assets/photos/lobby-1.jpg", "alt": "저녁 요리", "className": "h-full" },
+    {
+      "src": "/assets/photos/lobby-2.jpg",
+      "alt": "요리의 한 가지",
+      "className": "h-[78%] self-end mb-0 lg:mb-14"
+    }
+  ]
+}

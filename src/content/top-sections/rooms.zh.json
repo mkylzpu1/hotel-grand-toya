@@ -1,0 +1,19 @@
+{
+  "order": 2,
+  "sectionId": "rooms",
+  "icon": "室",
+  "eyebrow": "客房",
+  "titleLines": ["多种多样的客房，", "满足不同的旅行方式。"],
+  "description": [
+    "除和室、洋室外，还设有可容纳多人使用的大宴会厅。",
+    "无论是单人出行、夫妻或家庭旅行，还是学校修学旅行、运动集训、团体旅游，我们都能提供相应的住宿方案。"
+  ],
+  "linkText": "客房介绍",
+  "linkHref": "#",
+  "tallImagePosition": "left",
+  "images": [
+    { "src": "/assets/photos/image3.png", "alt": "和式客房", "caption": "和室" },
+    { "src": "/assets/photos/facility-4.jpg", "alt": "客房眺望的景色" },
+    { "src": "/assets/photos/facility-3.jpg", "alt": "酒店外观（黄昏）", "caption": "酒店外观" }
+  ]
+}

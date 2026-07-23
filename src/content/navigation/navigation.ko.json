@@ -1,0 +1,24 @@
+{
+  "primaryNavItems": [
+    { "href": "#rooms", "label": "객실", "en": "Rooms", "icon": "室" },
+    { "href": "#onsen", "label": "온천", "en": "Onsen", "icon": "湯" },
+    { "href": "#food", "label": "식사", "en": "Dinner", "icon": "膳" },
+    { "href": "#facilities", "label": "시설 안내", "en": "Facilities", "icon": "館" },
+    { "href": "#access", "label": "오시는 길", "en": "Access", "icon": "道" }
+  ],
+  "secondaryNavItems": [
+    { "href": "#", "label": "자주 묻는 질문" },
+    { "href": "#", "label": "고객 후기" },
+    { "href": "#", "label": "채용 정보" },
+    { "href": "#", "label": "회사 정보" },
+    { "href": "#", "label": "개인정보 처리방침" },
+    { "href": "#", "label": "특정상거래법에 근거한 표기" },
+    { "href": "#", "label": "이용약관" },
+    { "href": "#", "label": "쿠키 정책" }
+  ],
+  "reserveCta": "지금 예약하기",
+  "phoneAriaLabel": "전화 걸기",
+  "menuOpenLabel": "메뉴 열기",
+  "menuCloseLabel": "메뉴 닫기",
+  "siteInfoHeading": "SITE INFORMATION"
+}

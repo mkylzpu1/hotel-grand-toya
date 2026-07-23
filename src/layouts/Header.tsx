@@ -1,11 +1,56 @@
 import { useState, useEffect } from 'react';
-import { primaryNavItems, secondaryNavItems, languages } from '../data/header/navigation';
-import type { Language } from '../data/header/navigation';
 
+interface PrimaryNavItem {
+  href: string;
+  label: string;
+  en: string;
+  icon: string;
+}
 
-export default function Header() {
+interface SecondaryNavItem {
+  href: string;
+  label: string;
+}
+
+interface LangLink {
+  code: string;
+  label: string;
+  href: string;
+  active: boolean;
+}
+
+interface HeaderProps {
+  primaryNavItems: PrimaryNavItem[];
+  secondaryNavItems: SecondaryNavItem[];
+  reserveCta: string;
+  phoneAriaLabel: string;
+  menuOpenLabel: string;
+  menuCloseLabel: string;
+  siteInfoHeading: string;
+  reservationUrl: string;
+  tel: string;
+  logoAlt: string;
+  navAriaLabel: string;
+  drawerNavAriaLabel: string;
+  langLinks: LangLink[];
+}
+
+export default function Header({
+  primaryNavItems,
+  secondaryNavItems,
+  reserveCta,
+  phoneAriaLabel,
+  menuOpenLabel,
+  menuCloseLabel,
+  siteInfoHeading,
+  reservationUrl,
+  tel,
+  logoAlt,
+  navAriaLabel,
+  drawerNavAriaLabel,
+  langLinks,
+}: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLang, setActiveLang] = useState<Language>('JP');
   const closeNav = () => setIsOpen(false);
 
   useEffect(() => {
@@ -24,15 +69,12 @@ export default function Header() {
         <a href="#top" className="flex-none">
           <img
             src="/assets/photos/ttl.png"
-            alt="ホテルグランドトーヤのロゴ"
+            alt={logoAlt}
             className="block w-[150px] lg:w-[170px]"
           />
         </a>
 
-        <nav
-          className="ml-16 hidden items-center gap-11 lg:flex"
-          aria-label="グローバルナビゲーション"
-        >
+        <nav className="ml-16 hidden items-center gap-11 lg:flex" aria-label={navAriaLabel}>
           {primaryNavItems.map((item) => (
             <a
               key={item.href}
@@ -52,18 +94,16 @@ export default function Header() {
 
         <div className="ml-auto hidden flex-col items-end lg:flex">
           <div className="flex items-center gap-0.5 rounded-full border border-white/20 bg-white/5 p-1 backdrop-blur-sm">
-            {languages.map((lang) => (
-              <button
-                key={lang}
-                onClick={() => setActiveLang(lang)}
+            {langLinks.map((lang) => (
+              <a
+                key={lang.code}
+                href={lang.href}
                 className={`rounded-full px-3 py-1.5 text-[11px] font-medium tracking-[0.1em] transition-colors duration-200 ${
-                  activeLang === lang
-                    ? 'bg-white text-[#16283A]'
-                    : 'text-white/60 hover:text-white'
+                  lang.active ? 'bg-white text-[#16283A]' : 'text-white/60 hover:text-white'
                 }`}
               >
-                {lang}
-              </button>
+                {lang.label}
+              </a>
             ))}
           </div>
         </div>
@@ -72,7 +112,7 @@ export default function Header() {
       <button
         className="group fixed right-6 top-6 z-[999] flex h-[52px] items-center gap-3 rounded-full border border-white/20 bg-[#16283A]/70 pl-5 pr-[18px] backdrop-blur-md transition-colors hover:bg-[#16283A]/90 lg:right-9 lg:top-9"
         id="nav-toggle"
-        aria-label={isOpen ? 'メニューを閉じる' : 'メニューを開く'}
+        aria-label={isOpen ? menuCloseLabel : menuOpenLabel}
         aria-expanded={isOpen}
         aria-controls="site-nav"
         onClick={() => setIsOpen((prev) => !prev)}
@@ -117,7 +157,7 @@ export default function Header() {
         className={`fixed right-0 top-0 z-[950] flex h-full w-[88%] max-w-[340px] flex-col overflow-hidden bg-[#16283A] shadow-2xl transition-transform duration-500 ease-out sm:max-w-[400px] lg:max-w-[460px] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
-        aria-label="ドロワーナビゲーション"
+        aria-label={drawerNavAriaLabel}
         aria-hidden={!isOpen}
       >
         <span
@@ -133,7 +173,7 @@ export default function Header() {
           </span>
           <button
             onClick={closeNav}
-            aria-label="メニューを閉じる"
+            aria-label={menuCloseLabel}
             className="flex h-8 w-8 items-center justify-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-white"
           >
             <span className="relative block h-3 w-3">
@@ -184,20 +224,27 @@ export default function Header() {
           {/* 予約・電話CTA */}
           <div className="my-5 flex items-center gap-3">
             <a
-              href="https://reserve.example.com/grandtoya"
+              href={reservationUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeNav}
               className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#A24730] py-3 text-[12px] font-medium tracking-[0.12em] text-white transition-colors hover:bg-[#8A3B27]"
             >
-              ご予約はこちら
+              {reserveCta}
             </a>
             <a
-              href="tel:0142-XX-XXXX"
+              href={`tel:${tel}`}
               className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors hover:border-[#A24730] hover:text-[#A24730]"
-              aria-label="電話をかける"
+              aria-label={phoneAriaLabel}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
             </a>
@@ -206,7 +253,7 @@ export default function Header() {
           {/* 利用規約・会社情報などの副次ナビ */}
           <div className="border-t border-white/[0.08] pb-6 pt-5">
             <span className="mb-3 block text-[9px] font-medium tracking-[0.2em] text-white/30">
-              SITE INFORMATION
+              {siteInfoHeading}
             </span>
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {secondaryNavItems.map((item) => (
@@ -227,17 +274,17 @@ export default function Header() {
         {/* フッター: 言語切替（モバイルのみ） */}
         <div className="relative flex items-center justify-between border-t border-white/[0.08] px-7 py-4 lg:hidden lg:px-10">
           <div className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.12em] text-white/60">
-            {languages.map((lang, i) => (
-              <span key={lang} className="flex items-center">
+            {langLinks.map((lang, i) => (
+              <span key={lang.code} className="flex items-center">
                 {i > 0 && <span className="mx-1.5 h-2.5 w-px bg-white/20" />}
-                <button
-                  onClick={() => setActiveLang(lang)}
+                <a
+                  href={lang.href}
                   className={`transition-colors ${
-                    activeLang === lang ? 'text-[#E8A87C]' : 'hover:text-white'
+                    lang.active ? 'text-[#E8A87C]' : 'hover:text-white'
                   }`}
                 >
-                  {lang}
-                </button>
+                  {lang.label}
+                </a>
               </span>
             ))}
           </div>

@@ -1,0 +1,19 @@
+{
+  "order": 3,
+  "sectionId": "onsen",
+  "icon": "湯",
+  "eyebrow": "Onsen",
+  "titleLines": ["源泉かけ流しの湯で、", "心も体もゆっくりと。"],
+  "description": [
+    "保温性に優れた源泉かけ流しの天然温泉。",
+    "熱め・ぬるめ・人肌の3つの浴槽で、お好みの湯加減をお楽しみいただけます。宿泊はもちろん、日帰り入浴でもご利用いただけます。"
+  ],
+  "linkText": "温泉のご案内",
+  "linkHref": "#",
+  "tallImagePosition": "right",
+  "images": [
+    { "src": "/assets/photos/room-2.jpg", "alt": "大浴場", "caption": "大浴場" },
+    { "src": "/assets/photos/image9.png", "alt": "露天風呂（夜景）" },
+    { "src": "/assets/photos/onsen-3.jpg", "alt": "露天風呂", "caption": "露天風呂" }
+  ]
+}

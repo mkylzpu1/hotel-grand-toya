@@ -1,0 +1,19 @@
+{
+  "order": 2,
+  "sectionId": "rooms",
+  "icon": "室",
+  "eyebrow": "Rooms",
+  "titleLines": ["旅のスタイルに合わせて選べる、多彩な客室。"],
+  "description": [
+    "和室・洋室に加え、大人数でご利用いただける大広間もご用意しています。",
+    "お一人様やご夫婦・ご家族での旅行はもちろん、修学旅行やスポーツ合宿、団体旅行まで、さまざまなご宿泊に対応いたします。"
+  ],
+  "linkText": "客室のご案内",
+  "linkHref": "#",
+  "tallImagePosition": "left",
+  "images": [
+    { "src": "/assets/photos/image3.png", "alt": "和室客室", "caption": "和室" },
+    { "src": "/assets/photos/facility-4.jpg", "alt": "客室からの眺め" },
+    { "src": "/assets/photos/facility-3.jpg", "alt": "ホテル外観（夕景）", "caption": "ホテル外観" }
+  ]
+}

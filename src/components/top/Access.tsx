@@ -1,24 +1,50 @@
 import ArrowLink from '../ui/ArrowLink';
+
 interface SceneryItem {
   img: string;
   title: string;
   note: string;
 }
 
-const sceneryItems: SceneryItem[] = [
-  { img: '/assets/photos/garden-2.jpg', title: 'ひまわり畑', note: 'ホテルから車で約15分' },
-  {
-    img: '/assets/photos/image2.png',
-    title: '洞爺湖ロングラン花火大会',
-    note: '湖畔から観覧できます',
-  },
-  { img: '/assets/photos/hero-lake-sub.jpg', title: '洞爺湖遊覧船', note: '乗り場まで徒歩約8分' },
-];
+interface AccessListItem {
+  label: string;
+  value: string;
+}
 
-// シームレスな無限スクロールのためにリストを複製
-const sceneryLoop: SceneryItem[] = [...sceneryItems, ...sceneryItems];
+interface AccessProps {
+  heroImage: string;
+  heroImageAlt: string;
+  eyebrow: string;
+  heading: string;
+  accessList: AccessListItem[];
+  note: string;
+  detailLinkText: string;
+  mapEmbedUrl: string;
+  mapTitle: string;
+  sceneryHeading: string;
+  sceneryDescription: string;
+  sceneryItems: SceneryItem[];
+  sceneryLinkText: string;
+}
 
-export default function Access() {
+export default function Access({
+  heroImage,
+  heroImageAlt,
+  eyebrow,
+  heading,
+  accessList,
+  note,
+  detailLinkText,
+  mapEmbedUrl,
+  mapTitle,
+  sceneryHeading,
+  sceneryDescription,
+  sceneryItems,
+  sceneryLinkText,
+}: AccessProps) {
+  // シームレスな無限スクロールのためにリストを複製
+  const sceneryLoop: SceneryItem[] = [...sceneryItems, ...sceneryItems];
+
   return (
     <section
       className="relative mx-auto max-w-[1320px] px-10 py-[108px] before:absolute before:left-0 before:right-0 before:top-0 before:h-px before:bg-[#D8D7D2] before:content-[''] after:absolute after:-top-px after:left-1/2 after:h-[3px] after:w-11 after:-translate-x-1/2 after:bg-[#A24730] after:content-['']"
@@ -34,11 +60,7 @@ export default function Access() {
 
       {/* Hero image (full-bleed) */}
       <div className="mb-20 ml-[calc(50%-50vw)] h-[52vh] min-h-[340px] w-screen overflow-hidden">
-        <img
-          src="/assets/photos/image12.jpg"
-          alt="ホテルグランドトーヤ周辺"
-          className="block h-full w-full object-cover"
-        />
+        <img src={heroImage} alt={heroImageAlt} className="block h-full w-full object-cover" />
       </div>
 
       {/* Heading */}
@@ -50,10 +72,10 @@ export default function Access() {
           >
             道
           </span>
-          Access
+          {eyebrow}
         </p>
         <h2 className="font-serif text-[clamp(1.5rem,1.2rem+1.1vw,2.05rem)] font-semibold leading-[1.65] text-[#1E1C1A]">
-          アクセス・周辺観光
+          {heading}
         </h2>
       </div>
 
@@ -61,31 +83,22 @@ export default function Access() {
       <div className="mb-[110px] grid grid-cols-1 items-start gap-[72px] lg:grid-cols-[1.2fr_1fr]">
         <div>
           <ul className="m-0 list-none p-0">
-            <li className="border-b border-[#D8D7D2] py-4 text-[0.9rem]">
-              <b>お車</b>：札幌市街から約2時間
-            </li>
-            <li className="border-b border-[#D8D7D2] py-4 text-[0.9rem]">
-              <b>JR</b>：JR洞爺駅より送迎バス約20分
-            </li>
-            <li className="border-b border-[#D8D7D2] py-4 text-[0.9rem]">
-              <b>高速バス</b>：札幌から約2時間30分
-            </li>
-            <li className="border-b border-[#D8D7D2] py-4 text-[0.9rem]">
-              <b>新千歳空港</b>：空港連絡バスで約2時間
-            </li>
+            {accessList.map((item) => (
+              <li key={item.label} className="border-b border-[#D8D7D2] py-4 text-[0.9rem]">
+                <b>{item.label}</b>：{item.value}
+              </li>
+            ))}
           </ul>
-          <p className="my-5 mb-[30px] text-[0.78rem] text-[#8A8781]">
-            冬季は積雪・路面凍結のため、お車でお越しの際は冬用タイヤをご準備ください。
-          </p>
-          <ArrowLink href="#">詳細はこちら</ArrowLink>
+          <p className="my-5 mb-[30px] text-[0.78rem] text-[#8A8781]">{note}</p>
+          <ArrowLink href="#">{detailLinkText}</ArrowLink>
         </div>
         <div className="h-[360px] border-[0.5px] border-[#29415C]">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp"
+            src={mapEmbedUrl}
             loading="lazy"
             allowFullScreen
             referrerPolicy="strict-origin-when-cross-origin"
-            title="ホテルグランドトーヤ地図"
+            title={mapTitle}
             className="block h-full w-full border-0"
           />
         </div>
@@ -93,10 +106,9 @@ export default function Access() {
 
       {/* Scenery lead + marquee gallery */}
       <div className="text-center">
-        <h3 className="mb-5 text-[1.7rem] font-medium">四季折々の洞爺湖を楽しめる立地</h3>
+        <h3 className="mb-5 text-[1.7rem] font-medium">{sceneryHeading}</h3>
         <p className="mx-auto mb-14 max-w-[720px] leading-[2] text-[#55524C]">
-          ホテルグランドトーヤは洞爺湖畔に位置し、 春の桜、夏のロングラン花火大会やひまわり畑、
-          秋の紅葉、冬のイルミネーションなど、 季節ごとの見どころへのアクセスにも便利です。
+          {sceneryDescription}
         </p>
         <div className="ml-[calc(50%-50vw)] mt-[60px] w-screen overflow-hidden">
           <div
@@ -123,7 +135,7 @@ export default function Access() {
       </div>
 
       <div className="mt-[70px] text-center">
-        <ArrowLink href="#">周辺観光はこちら</ArrowLink>
+        <ArrowLink href="#">{sceneryLinkText}</ArrowLink>
       </div>
     </section>
   );

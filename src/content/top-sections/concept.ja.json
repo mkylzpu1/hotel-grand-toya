@@ -1,0 +1,20 @@
+{
+  "order": 1,
+  "icon": "心",
+  "eyebrow": "Concept",
+  "titleLines": ["洞爺湖のほとりで、", "心ほどける時間を。"],
+  "description": [
+    "ホテルグランドトーヤは、洞爺湖のほとりに佇む温泉宿です。",
+    "湖畔の散策や周辺観光を楽しんだあとは、天然温泉でゆっくりと疲れを癒やす。気取らず、心地よく過ごせる滞在をご提供します。"
+  ],
+  "centerText": true,
+  "showDivider": false,
+  "images": [
+    { "src": "/assets/photos/image12.jpg", "alt": "館内のロビー", "className": "h-full" },
+    {
+      "src": "/assets/photos/image2.png",
+      "alt": "洞爺湖畔の花火",
+      "className": "h-[74%] self-end mt-0 lg:mt-[70px]"
+    }
+  ]
+}

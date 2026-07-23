@@ -1,15 +1,29 @@
 import CtaButton from '../ui/CtaButton';
 
-export default function Hero() {
+interface HeroProps {
+  image: string;
+  imageAlt: string;
+  eyebrow: string;
+  titleLines: string[];
+  description: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+export default function Hero({
+  image,
+  imageAlt,
+  eyebrow,
+  titleLines,
+  description,
+  ctaLabel,
+  ctaHref,
+}: HeroProps) {
   return (
     <div className="relative m-[28px] overflow-hidden rounded-[28px]">
       <section className="relative h-[calc(100vh-56px)] max-h-[920px] min-h-[560px] max-[760px]:h-[84vh]">
         <div className="absolute inset-0">
-          <img
-            src="/assets/photos/image10.png"
-            alt="洞爺湖の湖畔からの眺め"
-            className="block h-full w-full object-cover"
-          />
+          <img src={image} alt={imageAlt} className="block h-full w-full object-cover" />
         </div>
         <div
           className="absolute inset-0"
@@ -20,17 +34,20 @@ export default function Hero() {
         />
         <div className="relative z-[1] flex h-full max-w-[620px] flex-col items-start justify-end pb-[72px] pl-14 pr-10 pt-0 text-left text-white max-[760px]:max-w-none max-[760px]:px-[22px]">
           <p className="mb-[22px] text-[0.78rem] font-medium tracking-[0.18em] opacity-95">
-            洞爺湖温泉
+            {eyebrow}
           </p>
           <h1 className="mb-[26px] text-[clamp(1.9rem,1.4rem+2.2vw,2.9rem)] font-bold leading-[1.6] tracking-[0.05em] text-white">
-            湖畔に、
-            <br />
-            いちばん近い時間を。
+            {titleLines.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < titleLines.length - 1 && <br />}
+              </span>
+            ))}
           </h1>
           <p className="mb-[38px] max-w-[34ch] text-[0.94rem] font-normal tracking-[0.02em] opacity-90">
-            源泉かけ流しの湯と、洞爺湖を望む客室で過ごす静かなひととき。
+            {description}
           </p>
-          <CtaButton href="https://reserve.example.com/grandtoya">ご予約はこちら</CtaButton>
+          <CtaButton href={ctaHref}>{ctaLabel}</CtaButton>
         </div>
       </section>
     </div>

@@ -1,0 +1,19 @@
+{
+  "order": 3,
+  "sectionId": "onsen",
+  "icon": "湯",
+  "eyebrow": "Onsen",
+  "titleLines": ["Let body and mind unwind", "in our natural hot spring."],
+  "description": [
+    "Our source-fed natural hot spring holds its heat beautifully.",
+    "Choose from three baths — hot, warm, and body-temperature — to find your favorite. Available to overnight guests and day-trip bathers alike."
+  ],
+  "linkText": "About Our Onsen",
+  "linkHref": "#",
+  "tallImagePosition": "right",
+  "images": [
+    { "src": "/assets/photos/room-2.jpg", "alt": "Large communal bath", "caption": "Large communal bath" },
+    { "src": "/assets/photos/image9.png", "alt": "Open-air bath at night" },
+    { "src": "/assets/photos/onsen-3.jpg", "alt": "Open-air bath", "caption": "Open-air bath" }
+  ]
+}

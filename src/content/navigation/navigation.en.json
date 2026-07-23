@@ -1,0 +1,24 @@
+{
+  "primaryNavItems": [
+    { "href": "#rooms", "label": "Rooms", "en": "Rooms", "icon": "室" },
+    { "href": "#onsen", "label": "Onsen", "en": "Onsen", "icon": "湯" },
+    { "href": "#food", "label": "Dinner", "en": "Dinner", "icon": "膳" },
+    { "href": "#facilities", "label": "Facilities", "en": "Facilities", "icon": "館" },
+    { "href": "#access", "label": "Access", "en": "Access", "icon": "道" }
+  ],
+  "secondaryNavItems": [
+    { "href": "#", "label": "FAQ" },
+    { "href": "#", "label": "Guest Reviews" },
+    { "href": "#", "label": "Careers" },
+    { "href": "#", "label": "Company Information" },
+    { "href": "#", "label": "Privacy Policy" },
+    { "href": "#", "label": "Legal Notice" },
+    { "href": "#", "label": "Terms of Use" },
+    { "href": "#", "label": "Cookie Policy" }
+  ],
+  "reserveCta": "Book Now",
+  "phoneAriaLabel": "Call us",
+  "menuOpenLabel": "Open menu",
+  "menuCloseLabel": "Close menu",
+  "siteInfoHeading": "SITE INFORMATION"
+}

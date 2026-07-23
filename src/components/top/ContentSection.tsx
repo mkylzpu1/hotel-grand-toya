@@ -2,7 +2,7 @@ import type { SectionData } from '../../types/section';
 import ArrowLink from '../ui/ArrowLink';
 
 export default function ContentSection({
-  id,
+  sectionId,
   icon,
   eyebrow,
   titleLines = [],
@@ -21,7 +21,7 @@ export default function ContentSection({
   const isThreeImages = images.length === 3;
 
   return (
-    <section id={id} className={`relative mx-auto max-w-[1320px] px-10 py-[108px] ${dividerClass}`}>
+    <section id={sectionId} className={`relative mx-auto max-w-[1320px] px-10 py-[108px] ${dividerClass}`}>
       <div className="grid grid-cols-12 items-start gap-7">
         {/* テキストカラム */}
         <div

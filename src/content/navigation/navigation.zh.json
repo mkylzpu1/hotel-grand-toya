@@ -1,0 +1,24 @@
+{
+  "primaryNavItems": [
+    { "href": "#rooms", "label": "客房", "en": "Rooms", "icon": "室" },
+    { "href": "#onsen", "label": "温泉", "en": "Onsen", "icon": "湯" },
+    { "href": "#food", "label": "餐饮", "en": "Dinner", "icon": "膳" },
+    { "href": "#facilities", "label": "馆内设施", "en": "Facilities", "icon": "館" },
+    { "href": "#access", "label": "交通指南", "en": "Access", "icon": "道" }
+  ],
+  "secondaryNavItems": [
+    { "href": "#", "label": "常见问题" },
+    { "href": "#", "label": "顾客评价" },
+    { "href": "#", "label": "招聘信息" },
+    { "href": "#", "label": "公司信息" },
+    { "href": "#", "label": "隐私政策" },
+    { "href": "#", "label": "法定标注事项" },
+    { "href": "#", "label": "使用条款" },
+    { "href": "#", "label": "Cookie 政策" }
+  ],
+  "reserveCta": "立即预订",
+  "phoneAriaLabel": "拨打电话",
+  "menuOpenLabel": "打开菜单",
+  "menuCloseLabel": "关闭菜单",
+  "siteInfoHeading": "网站信息"
+}

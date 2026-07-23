@@ -1,0 +1,20 @@
+{
+  "order": 1,
+  "icon": "心",
+  "eyebrow": "Concept",
+  "titleLines": ["도야코 호반에서,", "마음이 풀어지는 시간을."],
+  "description": [
+    "호텔 그랜드 토야는 도야코 호반에 자리한 온천 숙소입니다.",
+    "호반 산책과 주변 관광을 즐긴 후에는 천연 온천에서 느긋하게 피로를 풀어보세요. 꾸밈없이 편안하게 머무를 수 있는 숙박을 제공합니다."
+  ],
+  "centerText": true,
+  "showDivider": false,
+  "images": [
+    { "src": "/assets/photos/image12.jpg", "alt": "호텔 로비", "className": "h-full" },
+    {
+      "src": "/assets/photos/image2.png",
+      "alt": "도야코 호반의 불꽃놀이",
+      "className": "h-[74%] self-end mt-0 lg:mt-[70px]"
+    }
+  ]
+}

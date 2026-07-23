@@ -1,0 +1,22 @@
+{
+  "order": 4,
+  "sectionId": "food",
+  "icon": "膳",
+  "eyebrow": "Dinner",
+  "titleLines": ["北海道の味覚を、", "ゆったりと味わう。"],
+  "description": [
+    "ご夕食は会席膳、朝は和朝食をご用意。",
+    "ご宿泊とともに、夕食・朝食をお楽しみいただけるプランをご用意しております。温泉とお食事で、ゆったりとしたひとときをお過ごしください。"
+  ],
+  "linkText": "お料理のご案内",
+  "linkHref": "#",
+  "centerText": true,
+  "images": [
+    { "src": "/assets/photos/lobby-1.jpg", "alt": "夕食のお料理", "className": "h-full" },
+    {
+      "src": "/assets/photos/lobby-2.jpg",
+      "alt": "お食事の一品",
+      "className": "h-[78%] self-end mb-0 lg:mb-14"
+    }
+  ]
+}

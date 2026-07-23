@@ -1,0 +1,19 @@
+{
+  "order": 3,
+  "sectionId": "onsen",
+  "icon": "湯",
+  "eyebrow": "温泉",
+  "titleLines": ["源泉放流的温泉，", "让身心都得到舒缓。"],
+  "description": [
+    "保温性极佳的源泉放流天然温泉。",
+    "设有高温、微温、接近体温三种浴池，可根据喜好选择水温。除住宿客人外，也欢迎当天往返泡汤的客人。"
+  ],
+  "linkText": "温泉介绍",
+  "linkHref": "#",
+  "tallImagePosition": "right",
+  "images": [
+    { "src": "/assets/photos/room-2.jpg", "alt": "大浴场", "caption": "大浴场" },
+    { "src": "/assets/photos/image9.png", "alt": "露天风吕（夜景）" },
+    { "src": "/assets/photos/onsen-3.jpg", "alt": "露天风吕", "caption": "露天风吕" }
+  ]
+}

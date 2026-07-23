@@ -1,0 +1,57 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/top/Hero';
+import ContentSection from '../../components/top/ContentSection';
+import Access from '../../components/top/Access';
+import { locales, localeFromId, type Locale } from '../../content/config';
+
+const LANG_LABELS: Record<Locale, string> = {
+  ja: 'JP',
+  en: 'EN',
+  zh: 'CH',
+  ko: 'KR',
+};
+
+export async function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+
+const [siteEntry, navigationEntry, heroEntry, accessEntry, sectionEntries] = await Promise.all([
+  getEntry('site', `site.${lang}`),
+  getEntry('navigation', `navigation.${lang}`),
+  getEntry('hero', `hero.${lang}`),
+  getEntry('access', `access.${lang}`),
+  getCollection('top-sections', (entry) => localeFromId(entry.id) === lang),
+]);
+
+if (!siteEntry || !navigationEntry || !heroEntry || !accessEntry) {
+  throw new Error(`Missing content for locale "${lang}". Check src/content/*/*.${lang}.json`);
+}
+
+const sections = sectionEntries.sort((a, b) => a.data.order - b.data.order).map((entry) => entry.data);
+
+const langLinks = locales.map((code) => ({
+  code,
+  label: LANG_LABELS[code],
+  href: `/${code}/`,
+  active: code === lang,
+}));
+---
+
+<Layout
+  lang={lang}
+  title={siteEntry.data.title}
+  description={siteEntry.data.description}
+  navigation={navigationEntry.data}
+  site={siteEntry.data}
+  langLinks={langLinks}
+>
+  <main id="top">
+    <Hero client:load {...heroEntry.data} />
+    {sections.map((section) => <ContentSection {...section} />)}
+    <Access {...accessEntry.data} />
+  </main>
+</Layout>

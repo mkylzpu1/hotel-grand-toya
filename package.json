@@ -12,7 +12,8 @@
     "format:check": "prettier --check .",
     "lint": "eslint . --ext .ts,.tsx,.astro",
     "lint:fix": "eslint . --ext .ts,.tsx,.astro --fix",
-    "quality": "npm run format && npm run lint:fix"
+    "quality": "npm run format && npm run lint:fix",
+    "cms": "npx decap-server"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.2",

@@ -1,0 +1,16 @@
+{
+  "title": "호텔 그랜드 토야 | 도야코 온천・호반 리조트 호텔",
+  "description": "도야코 호반에서 가장 가까운 시간을. 원천 흐름식 온천과 호수가 보이는 객실에서 보내는 조용한 한때. 호텔 그랜드 토야 공식 웹사이트입니다.",
+  "address": "일본 홋카이도 아부타군 도야코초 XXXX (우편번호 049-XXXX)",
+  "tel": "+81-142-XX-XXXX",
+  "reservationUrl": "https://reserve.example.com/grandtoya",
+  "footer": {
+    "guideHeading": "이용 안내",
+    "infoHeading": "사이트 정보",
+    "reservationHeading": "예약",
+    "reservationExternalText": "외부 예약 사이트로 이동",
+    "copyright": "© 2026 Hotel Grand Toya",
+    "mobileTelLabel": "전화",
+    "mobileReserveLabel": "지금 예약하기"
+  }
+}

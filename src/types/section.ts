@@ -6,7 +6,8 @@ export interface SectionImage {
 }
 
 export interface SectionData {
-  id?: string;
+  sectionId?: string;
+  order?: number;
   icon: string;
   eyebrow: string;
   titleLines?: string[];
