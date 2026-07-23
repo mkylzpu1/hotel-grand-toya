@@ -47,7 +47,7 @@ export default function Access({
 
   return (
     <section
-      className="relative mx-auto max-w-[1320px] px-10 py-[108px] before:absolute before:left-0 before:right-0 before:top-0 before:h-px before:bg-[#D8D7D2] before:content-[''] after:absolute after:-top-px after:left-1/2 after:h-[3px] after:w-11 after:-translate-x-1/2 after:bg-[#A24730] after:content-['']"
+      className="relative mx-auto max-w-[1320px] px-10 pb-[108px] before:absolute before:left-0 before:right-0 before:top-0 before:h-px before:bg-[#D8D7D2] before:content-[''] after:absolute after:-top-px after:left-1/2 after:h-[3px] after:w-11 after:-translate-x-1/2 after:bg-[#A24730] after:content-['']"
       id="access"
     >
       {/* キーフレームはTailwind標準にないため個別定義 */}
