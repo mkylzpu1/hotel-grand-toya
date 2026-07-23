@@ -187,6 +187,12 @@ const onsenPage = defineCollection({
       notes: z.array(z.string()).optional(),
       ctaText: z.string(),
       ctaHref: z.string(),
+      rentals: z.array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+        })
+      ),
     }),
     related: z.object({
       heading: z.string(),

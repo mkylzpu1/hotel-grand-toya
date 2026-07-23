@@ -148,7 +148,7 @@ const langLinks = locales
       </div>
     </section>
 
-    <!-- 利用案内：宿泊 / 日帰り -->
+<!-- 利用案内：宿泊 / 日帰り -->
     <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
       <div class="mb-14 text-center">
         <h2 class="font-serif text-[clamp(1.5rem,1.2rem+1.1vw,2.05rem)] font-semibold text-[#1E1C1A]">
@@ -172,7 +172,6 @@ const langLinks = locales
             }
           </dl>
         </div>
-
         <!-- 日帰り -->
         <div id={page.dayUse.id} class="scroll-mt-6 border border-[#A24730] p-9 lg:p-11">
           <SectionEyebrow
@@ -191,6 +190,32 @@ const langLinks = locales
                   <dd class="m-0 text-[0.88rem] leading-[1.85] text-[#55524C]">{item.value}</dd>
                 </div>
               ))
+            }
+            {
+              page.dayUse.rentals && page.dayUse.rentals.length > 0 && (
+                <div class="border-t border-[#cdcdca] pt-4">
+                  <dt class="mb-1.5 text-[0.78rem] font-medium tracking-[0.1em] text-[#29415C]">
+                    レンタル品・料金
+                  </dt>
+                  <dd class="m-0">
+                    <div class="space-y-2">
+                      {page.dayUse.rentals.map((item) => (
+                        <div class="flex items-center justify-between text-[0.88rem] leading-[1.85] text-[#55524C]">
+                          <span>{item.label}</span>
+                          <span class="text-[#55524C]">{item.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                    {page.dayUse.notes && page.dayUse.notes.length > 0 && (
+                      <div class="mt-3 space-y-1">
+                        {page.dayUse.notes.map((note) => (
+                          <p class="m-0 text-[0.8rem] leading-[1.7]">※{note}</p>
+                        ))}
+                      </div>
+                    )}
+                  </dd>
+                </div>
+              )
             }
           </dl>
         </div>
