@@ -1,0 +1,283 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import PageHeroBand from '../../components/common/PageHeroBand.astro';
+import RoomCard from '../../components/rooms/RoomCard.astro';
+import RoomGallery from '../../components/rooms/RoomGallery.astro';
+import AmenityIcon from '../../components/rooms/AmenityIcon.astro';
+import CtaButton from '../../components/ui/CtaButton.tsx';
+import { locales, localeFromId, type Locale } from '../../content/config';
+
+const LANG_LABELS: Record<Locale, string> = {
+  ja: 'JP',
+  en: 'EN',
+  zh: 'CH',
+  ko: 'KR',
+};
+
+export async function getStaticPaths() {
+  // rooms-page のコンテンツが用意されている言語のみビルドする
+  const entries = await getCollection('rooms-page');
+  return entries.map((entry) => ({ params: { lang: localeFromId(entry.id) } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const homeHref = `/${lang}/`;
+
+const [siteEntry, navigationEntry, roomsEntry] = await Promise.all([
+  getEntry('site', `site.${lang}`),
+  getEntry('navigation', `navigation.${lang}`),
+  getEntry('rooms-page', `rooms-page.${lang}`),
+]);
+
+if (!siteEntry || !navigationEntry || !roomsEntry) {
+  throw new Error(`Missing content for locale "${lang}". Check src/content/*/*.${lang}.json`);
+}
+
+const page = roomsEntry.data;
+const { reservationUrl } = siteEntry.data;
+
+// 関連リンクのうち「ご宿泊予約」はサイト共通の予約URLを使用する
+const relatedLinks = page.related.links.map((link) =>
+  link.label === 'ご宿泊予約' || link.icon === '予' ? { ...link, href: reservationUrl } : link
+);
+
+// 利用可能な言語のみ切り替えリンクを出す（rooms-page が無い言語には遷移させない）
+const availableRoomsEntries = await getCollection('rooms-page');
+const availableLocales = new Set(availableRoomsEntries.map((entry) => localeFromId(entry.id)));
+
+const langLinks = locales
+  .filter((code) => availableLocales.has(code))
+  .map((code) => ({
+    code,
+    label: LANG_LABELS[code],
+    href: `/${code}/rooms/`,
+    active: code === lang,
+  }));
+---
+
+<Layout
+  lang={lang}
+  title={`${page.pageTitle}｜${siteEntry.data.title}`}
+  description={siteEntry.data.description}
+  navigation={navigationEntry.data}
+  site={siteEntry.data}
+  langLinks={langLinks}
+>
+  <main id="top">
+    <!-- ページタイトル帯（温泉ページと共通コンポーネント） -->
+    <PageHeroBand
+      icon={page.intro.icon}
+      pageTitle={page.pageTitle}
+      pageTitleEn={page.pageTitleEn}
+      homeHref={homeHref}
+    />
+
+    <!-- 客室タイプへの導線（クイックナビ） -->
+    <nav aria-label="客室タイプ" class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
+      <div class="mx-auto grid max-w-[1320px] grid-cols-1 gap-px sm:grid-cols-3">
+        {
+          page.quickNav.map((item) => (
+            <a
+              href={item.href}
+              class="group flex items-center justify-between gap-4 px-10 py-7 transition-colors hover:bg-white"
+            >
+              <span class="font-sans text-[1.05rem] font-medium tracking-[0.02em] text-[#1E1C1A]">
+                {item.label}
+              </span>
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[0.9rem] text-[#A24730] transition-transform duration-300 group-hover:translate-x-1">
+                ↓
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </nav>
+
+    <!-- イントロダクション -->
+    <section class="relative mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
+      <SectionEyebrow icon={page.intro.icon} eyebrow={page.intro.eyebrow} heading={page.intro.heading} />
+      <div class="mt-8 max-w-[640px]">
+        {
+          page.intro.description.map((line) => (
+            <p class="mb-4 text-[0.94rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- 客室一覧（比較用カードグリッド） -->
+    <section id="room-list" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+      <div class="mx-auto max-w-[1320px] px-10">
+        <SectionEyebrow
+          icon={page.listHeading.icon}
+          eyebrow={page.listHeading.eyebrow}
+          heading={page.listHeading.heading}
+        />
+        <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {
+            page.rooms.map((room) => (
+              <RoomCard
+                id={room.id}
+                name={room.name}
+                catchcopy={room.catchcopy}
+                size={room.size}
+                capacity={room.capacity}
+                bedding={room.bedding}
+                view={room.view}
+                listImage={room.listImage}
+                reservationUrl={reservationUrl}
+                detailLinkText={page.detailLinkText}
+                reserveLinkText={page.reserveLinkText}
+                labels={page.basicInfoLabels}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 客室詳細 -->
+    <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
+      <div class="mb-14 text-center">
+        <p class="mb-[14px] text-[0.74rem] font-medium tracking-[0.14em] text-[#29415C]">
+          {page.detailHeading.eyebrow}
+        </p>
+        <h2 class="font-serif text-[clamp(1.5rem,1.2rem+1.1vw,2.05rem)] font-semibold text-[#1E1C1A]">
+          {page.detailHeading.heading}
+        </h2>
+      </div>
+
+      <div class="space-y-[88px] lg:space-y-[108px]">
+        {
+          page.rooms.map((room) => (
+            <div id={`detail-${room.id}`} class="scroll-mt-6 border-t border-[#D8D7D2] pt-14 first:border-t-0 first:pt-0">
+              <div class="mb-10">
+                <h3 class="mb-3 font-serif text-[clamp(1.3rem,1.1rem+0.7vw,1.7rem)] font-semibold text-[#1E1C1A]">
+                  {room.name}
+                </h3>
+                <p class="text-[0.9rem] leading-[1.85] text-[#55524C]">{room.catchcopy}</p>
+              </div>
+
+              {/* 写真ギャラリー */}
+              <div class="mb-12">
+                <RoomGallery items={room.gallery} />
+              </div>
+
+              <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+                {/* 基本情報（表形式） */}
+                <div>
+                  <h4 class="mb-4 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">基本情報</h4>
+                  <table class="w-full border-t border-[#D8D7D2] text-[0.86rem]">
+                    <tbody>
+                      <tr class="border-b border-[#D8D7D2]">
+                        <th scope="row" class="w-[35%] py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
+                          {page.basicInfoLabels.size}
+                        </th>
+                        <td class="py-3.5 text-[#1E1C1A]">{room.size}</td>
+                      </tr>
+                      <tr class="border-b border-[#D8D7D2]">
+                        <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
+                          {page.basicInfoLabels.capacity}
+                        </th>
+                        <td class="py-3.5 text-[#1E1C1A]">{room.capacity}</td>
+                      </tr>
+                      <tr class="border-b border-[#D8D7D2]">
+                        <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
+                          {page.basicInfoLabels.view}
+                        </th>
+                        <td class="py-3.5 text-[#1E1C1A]">{room.view}</td>
+                      </tr>
+                      <tr class="border-b border-[#D8D7D2]">
+                        <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
+                          {page.basicInfoLabels.bedding}
+                        </th>
+                        <td class="py-3.5 text-[#1E1C1A]">{room.bedding}</td>
+                      </tr>
+                      <tr class="border-b border-[#D8D7D2]">
+                        <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
+                          {page.basicInfoLabels.smoking}
+                        </th>
+                        <td class="py-3.5 text-[#1E1C1A]">{room.smoking}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  {/* 客室紹介 */}
+                  <h4 class="mb-4 mt-10 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
+                    {page.descriptionHeading}
+                  </h4>
+                  {room.description.map((line) => (
+                    <p class="mb-3 text-[0.88rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+                  ))}
+                </div>
+
+                {/* アメニティ・設備 */}
+                <div>
+                  <h4 class="mb-5 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
+                    {page.amenitiesHeading}
+                  </h4>
+                  <ul class="grid grid-cols-3 gap-x-4 gap-y-6 sm:grid-cols-4">
+                    {room.amenities.map((amenity) => (
+                      <li class="flex flex-col items-center gap-2.5 text-center">
+                        <span class="flex h-11 w-11 shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-[#29415C] text-[#29415C]">
+                          <AmenityIcon iconKey={amenity.key} />
+                        </span>
+                        <span class="text-[0.72rem] leading-[1.5] tracking-[0.03em] text-[#55524C]">
+                          {amenity.label}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* 予約CTA */}
+                  <div class="mt-12">
+                    <CtaButton href={reservationUrl} className="w-full sm:w-auto">
+                      {page.detailCtaText}
+                    </CtaButton>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- 関連ページへの導線 -->
+    <section class="bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+      <div class="mx-auto max-w-[1320px] px-10">
+        <h2 class="mb-10 text-center font-serif text-[clamp(1.3rem,1.1rem+0.8vw,1.7rem)] font-semibold text-[#1E1C1A]">
+          {page.related.heading}
+        </h2>
+        <div class="grid grid-cols-2 gap-5 lg:grid-cols-4">
+          {
+            relatedLinks.map((link) => (
+              <a href={link.href} class="group relative block aspect-[3/4] overflow-hidden">
+                <img
+                  src={link.image}
+                  alt={link.imageAlt}
+                  class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08]"
+                />
+                <div
+                  class="absolute inset-0"
+                  style="background: linear-gradient(180deg, rgba(22,40,58,.05) 45%, rgba(22,40,58,.82) 100%);"
+                />
+                <span class="absolute left-4 top-4 flex h-9 w-9 shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-white/70 font-serif text-[0.9rem] font-semibold leading-none text-white">
+                  {link.icon}
+                </span>
+                <span class="absolute inset-x-4 bottom-4 flex items-center justify-between">
+                  <span class="font-serif text-[1.02rem] tracking-[0.04em] text-white">{link.label}</span>
+                  <span class="text-[0.95rem] text-white/85 transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

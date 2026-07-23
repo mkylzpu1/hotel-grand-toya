@@ -1,0 +1,172 @@
+{
+  "pageTitle": "客室",
+  "pageTitleEn": "ROOMS",
+  "intro": {
+    "icon": "室",
+    "eyebrow": "Rooms",
+    "heading": "旅のかたちに合わせて選ぶ、洞爺湖の客室",
+    "description": [
+      "湖面を渡る風の色は清らかで優しく無色透明。緑の山々を映す美しい水鏡は、安らぎを伝えてくれる澄んだ青です。",
+      "当館では和室35部屋・洋室4部屋をご用意しております。眺望やベッドタイプの異なる客室から、旅のスタイルに合わせてお選びいただけます。まずは一覧で全体像をご確認のうえ、気になる客室の詳細へお進みください。"
+    ]
+  },
+  "quickNav": [
+    { "href": "#detail-japanese-lake", "label": "和室（湖側）" },
+    { "href": "#detail-japanese-mountain", "label": "和室（山側）" },
+    { "href": "#detail-western-twin", "label": "洋室（ツイン）" }
+  ],
+  "listHeading": {
+    "icon": "室",
+    "eyebrow": "Room Types",
+    "heading": "客室一覧"
+  },
+  "detailHeading": {
+    "icon": "室",
+    "eyebrow": "Room Details",
+    "heading": "客室詳細"
+  },
+  "detailLinkText": "詳細を見る",
+  "reserveLinkText": "予約する",
+  "basicInfoLabels": {
+    "size": "広さ",
+    "capacity": "定員",
+    "view": "眺望",
+    "bedding": "ベッド／布団",
+    "smoking": "喫煙可否"
+  },
+  "amenitiesHeading": "アメニティ・設備",
+  "descriptionHeading": "客室紹介",
+  "detailCtaText": "この客室を予約する",
+  "rooms": [
+    {
+      "id": "japanese-lake",
+      "name": "和室（湖側）",
+      "catchcopy": "洞爺湖の水鏡を望む、寛ぎの和室。",
+      "size": "10畳＋広縁（約16.5㎡）",
+      "capacity": "2〜5名",
+      "bedding": "布団（ご人数に応じてご用意）",
+      "view": "洞爺湖ビュー",
+      "smoking": "禁煙（喫煙コーナーを別途ご用意）",
+      "listImage": { "src": "/assets/photos/image3.png", "alt": "和室客室" },
+      "gallery": [
+        { "label": "客室全体", "src": "/assets/photos/image3.png", "alt": "和室客室" },
+        { "label": "水まわり" },
+        { "label": "窓からの眺望", "src": "/assets/photos/facility-4.jpg", "alt": "客室からの眺め" },
+        { "label": "夜の雰囲気" }
+      ],
+      "description": [
+        "窓の外に洞爺湖を望む和室です。緑の山々を映す澄んだ水鏡を眺めながら、畳の香りと広縁のくつろぎの中で、北海道の四季の移ろいをゆっくりとお楽しみいただけます。",
+        "ご夫婦やご家族でのご旅行、複数名でのご利用まで幅広く対応する広さも魅力です。"
+      ],
+      "amenities": [
+        { "key": "wifi", "label": "Wi-Fi" },
+        { "key": "tv", "label": "テレビ" },
+        { "key": "fridge", "label": "冷蔵庫" },
+        { "key": "dryer", "label": "ドライヤー" },
+        { "key": "yukata", "label": "浴衣" },
+        { "key": "towel", "label": "タオル" },
+        { "key": "shampoo", "label": "シャンプー類" },
+        { "key": "toothbrush", "label": "歯ブラシ" },
+        { "key": "safe", "label": "金庫" },
+        { "key": "kettle", "label": "電気ポット" }
+      ]
+    },
+    {
+      "id": "japanese-mountain",
+      "name": "和室（山側）",
+      "catchcopy": "静けさに包まれる、落ち着きの和室。",
+      "size": "8畳（約13.2㎡）",
+      "capacity": "2〜4名",
+      "bedding": "布団（ご人数に応じてご用意）",
+      "view": "山側ビュー",
+      "smoking": "禁煙（喫煙コーナーを別途ご用意）",
+      "listImage": { "src": "/assets/photos/image3.png", "alt": "和室客室" },
+      "gallery": [
+        { "label": "客室全体", "src": "/assets/photos/image3.png", "alt": "和室客室" },
+        { "label": "水まわり" },
+        { "label": "窓からの眺望" },
+        { "label": "夜の雰囲気" }
+      ],
+      "description": [
+        "緑の木々に抱かれるように佇む、静かな山側の和室です。湖側に比べて落ち着いた雰囲気で、ゆっくりとお休みいただきたい方や、就寝時間の異なるご家族連れのお客様にもおすすめです。",
+        "館内の温泉やお食事処へのアクセスも良く、快適にお過ごしいただけます。"
+      ],
+      "amenities": [
+        { "key": "wifi", "label": "Wi-Fi" },
+        { "key": "tv", "label": "テレビ" },
+        { "key": "fridge", "label": "冷蔵庫" },
+        { "key": "dryer", "label": "ドライヤー" },
+        { "key": "yukata", "label": "浴衣" },
+        { "key": "towel", "label": "タオル" },
+        { "key": "shampoo", "label": "シャンプー類" },
+        { "key": "toothbrush", "label": "歯ブラシ" },
+        { "key": "kettle", "label": "電気ポット" }
+      ]
+    },
+    {
+      "id": "western-twin",
+      "name": "洋室（ツイン）",
+      "catchcopy": "ベッドでくつろぐ、シンプルな洋室ツイン。",
+      "size": "24㎡",
+      "capacity": "2名",
+      "bedding": "ツインベッド（幅100cm×2台）",
+      "view": "山側ビュー",
+      "smoking": "禁煙",
+      "listImage": { "alt": "洋室ツインルーム" },
+      "gallery": [
+        { "label": "客室全体" },
+        { "label": "水まわり" },
+        { "label": "窓からの眺望" },
+        { "label": "夜の雰囲気" }
+      ],
+      "description": [
+        "ベッドでのご滞在をお好みの方向けの、シンプルで機能的な洋室ツインです。畳での就寝に慣れていない海外からのお客様や、お年を重ねたご両親とのご旅行にもおすすめです。",
+        "館内設備は和室と共通でご利用いただけますので、温泉やお食事はそのままお楽しみいただけます。"
+      ],
+      "amenities": [
+        { "key": "wifi", "label": "Wi-Fi" },
+        { "key": "tv", "label": "テレビ" },
+        { "key": "fridge", "label": "冷蔵庫" },
+        { "key": "dryer", "label": "ドライヤー" },
+        { "key": "towel", "label": "タオル" },
+        { "key": "shampoo", "label": "シャンプー類" },
+        { "key": "toothbrush", "label": "歯ブラシ" },
+        { "key": "safe", "label": "金庫" },
+        { "key": "kettle", "label": "電気ポット" }
+      ]
+    }
+  ],
+  "related": {
+    "heading": "あわせてご覧ください",
+    "links": [
+      {
+        "label": "温泉",
+        "href": "/ja/onsen/",
+        "icon": "湯",
+        "image": "/assets/photos/onsen-3.jpg",
+        "imageAlt": "露天風呂"
+      },
+      {
+        "label": "お料理",
+        "href": "/ja/#food",
+        "icon": "膳",
+        "image": "/assets/photos/lobby-1.jpg",
+        "imageAlt": "夕食のお料理"
+      },
+      {
+        "label": "館内施設",
+        "href": "/ja/#facilities",
+        "icon": "館",
+        "image": "/assets/photos/image1.png",
+        "imageAlt": "館内の様子"
+      },
+      {
+        "label": "ご宿泊予約",
+        "href": "#",
+        "icon": "予",
+        "image": "/assets/photos/image3.png",
+        "imageAlt": "和室客室"
+      }
+    ]
+  }
+}

@@ -9,7 +9,7 @@
     "お一人様やご夫婦・ご家族での旅行はもちろん、修学旅行やスポーツ合宿、団体旅行まで、さまざまなご宿泊に対応いたします。"
   ],
   "linkText": "客室のご案内",
-  "linkHref": "#",
+  "linkHref": "/ja/rooms/",
   "tallImagePosition": "left",
   "images": [
     { "src": "/assets/photos/image3.png", "alt": "和室客室", "caption": "和室" },

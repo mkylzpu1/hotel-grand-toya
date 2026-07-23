@@ -209,6 +209,88 @@ const onsenPage = defineCollection({
   }),
 });
 
+// 客室ページ（客室タイプ一覧＋各客室の詳細情報。比較検討〜予約導線を担う）
+const roomAmenity = z.object({
+  key: z.string(),
+  label: z.string(),
+});
+
+const roomGalleryItem = z.object({
+  label: z.string(),
+  src: z.string().optional(),
+  alt: z.string().optional(),
+});
+
+const roomsPage = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    intro: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      description: z.array(z.string()),
+    }),
+    quickNav: z.array(
+      z.object({
+        href: z.string(),
+        label: z.string(),
+      })
+    ),
+    listHeading: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+    }),
+    detailHeading: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+    }),
+    detailLinkText: z.string(),
+    reserveLinkText: z.string(),
+    basicInfoLabels: z.object({
+      size: z.string(),
+      capacity: z.string(),
+      view: z.string(),
+      bedding: z.string(),
+      smoking: z.string(),
+    }),
+    amenitiesHeading: z.string(),
+    descriptionHeading: z.string(),
+    detailCtaText: z.string(),
+    rooms: z.array(
+      z.object({
+        id: z.string(),
+        name: z.string(),
+        catchcopy: z.string(),
+        size: z.string(),
+        capacity: z.string(),
+        bedding: z.string(),
+        view: z.string(),
+        smoking: z.string(),
+        listImage: z.object({ src: z.string().optional(), alt: z.string() }),
+        gallery: z.array(roomGalleryItem),
+        description: z.array(z.string()),
+        amenities: z.array(roomAmenity),
+      })
+    ),
+    related: z.object({
+      heading: z.string(),
+      links: z.array(
+        z.object({
+          label: z.string(),
+          href: z.string(),
+          icon: z.string(),
+          image: z.string(),
+          imageAlt: z.string(),
+        })
+      ),
+    }),
+  }),
+});
+
 export const collections = {
   site,
   navigation,
@@ -216,4 +298,5 @@ export const collections = {
   access,
   'top-sections': topSections,
   'onsen-page': onsenPage,
+  'rooms-page': roomsPage,
 };

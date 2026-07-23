@@ -1,0 +1,82 @@
+---
+// 客室一覧カード。写真・名称・一言紹介・主要スペックを揃えて表示することで、
+// カードを横に並べて見るだけで客室ごとの違いを比較できるようにする。
+import CtaButton from '../ui/CtaButton.tsx';
+import PlaceholderImage from './PlaceholderImage.astro';
+
+interface Props {
+  id: string;
+  name: string;
+  catchcopy: string;
+  size: string;
+  capacity: string;
+  bedding: string;
+  view: string;
+  listImage: { src?: string; alt: string };
+  reservationUrl: string;
+  detailLinkText: string;
+  reserveLinkText: string;
+  labels: { size: string; capacity: string; bedding: string; view: string };
+}
+
+const {
+  id,
+  name,
+  catchcopy,
+  size,
+  capacity,
+  bedding,
+  view,
+  listImage,
+  reservationUrl,
+  detailLinkText,
+  reserveLinkText,
+  labels,
+} = Astro.props as Props;
+
+const specs = [
+  { label: labels.size, value: size },
+  { label: labels.capacity, value: capacity },
+  { label: labels.bedding, value: bedding },
+  { label: labels.view, value: view },
+];
+---
+
+<article class="flex h-full flex-col border border-[#D8D7D2] bg-white">
+  <div class="aspect-[4/3] overflow-hidden">
+    {
+      listImage.src ? (
+        <img src={listImage.src} alt={listImage.alt} class="h-full w-full object-cover" />
+      ) : (
+        <PlaceholderImage label={listImage.alt} />
+      )
+    }
+  </div>
+  <div class="flex flex-1 flex-col p-7 lg:p-8">
+    <h3 class="mb-2 font-serif text-[1.2rem] font-semibold text-[#1E1C1A]">{name}</h3>
+    <p class="mb-6 text-[0.86rem] leading-[1.8] text-[#55524C]">{catchcopy}</p>
+
+    <dl class="mb-7 grid grid-cols-2 gap-x-4 gap-y-3.5 border-t border-[#D8D7D2] pt-5">
+      {
+        specs.map((spec) => (
+          <div>
+            <dt class="mb-1 text-[0.68rem] font-medium tracking-[0.1em] text-[#8A8781]">{spec.label}</dt>
+            <dd class="m-0 text-[0.84rem] leading-[1.6] text-[#1E1C1A]">{spec.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="mt-auto flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <a
+        href={`#detail-${id}`}
+        class="inline-flex items-center gap-2 text-[0.82rem] font-medium tracking-[0.05em] text-[#29415C] transition-colors hover:text-[#7E3623]"
+      >
+        {detailLinkText} ↓
+      </a>
+      <CtaButton href={reservationUrl} className="px-7 py-3 text-[0.8rem]">
+        {reserveLinkText}
+      </CtaButton>
+    </div>
+  </div>
+</article>
