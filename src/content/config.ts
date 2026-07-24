@@ -476,6 +476,112 @@ const facilitiesPage = defineCollection({
   }),
 });
 
+const accessPage = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    icon: z.string(), // PageHeroBand用（leadセクション削除に伴い、ページ直下に移動）
+    quickNav: z.array(z.object({ href: z.string(), label: z.string() })),
+
+byTrain: z.object({
+  icon: z.string(),
+  eyebrow: z.string(),
+  heading: z.string(),
+  nearestStation: z.string(),
+  departures: z.array(
+    z.object({
+      from: z.string(),
+      boardingStation: z.string(),
+      trainName: z.string(),
+      duration: z.string(),
+    })
+  ),
+  // 洞爺駅からホテルまでの手段（タクシー・路線バス・直行バス等）をすべてここに並べる
+toHotelOptions: z.array(
+  z.object({
+    method: z.string(),
+    line: z.string().optional(),
+    boarding: z.string().optional(),
+    alighting: z.string().optional(),
+    duration: z.string(),
+    frequency: z.string().optional(), // 追加：運行頻度・予約要否
+    note: z.string().optional(),
+    url: z.string().optional(), // 追加：バス会社の路線ページへのリンク
+  })
+),
+  walkToHotel: z.object({
+    duration: z.string(),
+    distance: z.string().optional(),
+    note: z.string().optional(),
+  }).optional(),
+  shuttleAvailable: z.string().optional(),
+  officialTimetableUrl: z.string().optional(),
+}),
+
+byCar: z.object({
+  icon: z.string(),
+  eyebrow: z.string(),
+  heading: z.string(),
+  // 各出発地→最寄ICまでの区間
+  departures: z.array(
+    z.object({
+      from: z.string(),
+      ic: z.string(),
+      duration: z.string(),
+    })
+  ),
+  // ICからホテルまでは共通なので1箇所にまとめる
+  fromIc: z.array(
+    z.object({
+      ic: z.string(),
+      duration: z.string(),
+    })
+  ),
+}),
+byBus: z.object({
+  icon: z.string(),
+  eyebrow: z.string(),
+  heading: z.string(),
+  from: z.string(),
+  to: z.string(),
+  duration: z.string(),
+  frequency: z.string().optional(),
+  note: z.string().optional(),
+  url: z.string().optional(),
+}).optional(),
+
+map: z.object({
+  icon: z.string(),
+  eyebrow: z.string(),
+  heading: z.string(),
+  embedUrl: z.string(),
+  openMapUrl: z.string(),
+  routeUrl: z.string(),
+}),
+contact: z.object({
+  name: z.string(),
+  postalCode: z.string(),
+  address: z.string(),
+  tel: z.string(),
+  fax: z.string().optional(),
+  email: z.string(),
+}),
+parking: z.object({
+  heading: z.string(),
+  notes: z.array(z.string()),
+}),
+surroundings: z.object({
+  heading: z.string(),
+  items: z.array(z.object({ label: z.string(), duration: z.string() })),
+}),
+    faq: z.object({
+      heading: z.string(),
+      items: z.array(z.object({ question: z.string(), answer: z.string() })),
+    }),
+  }),
+});
+
 export const collections = {
   site,
   navigation,
@@ -486,4 +592,5 @@ export const collections = {
   'rooms-page': roomsPage,
   'cuisine-page': cuisinePage,
   'facilities-page': facilitiesPage,
+  'access-page': accessPage,
 };
