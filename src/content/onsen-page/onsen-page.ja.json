@@ -1,6 +1,7 @@
 {
   "pageTitle": "温泉",
   "pageTitleEn": "ONSEN",
+  "icon": "泉",
   "quickNav": [
     { "href": "#quality", "label": "泉質・効能" },
     { "href": "#facilities", "label": "温泉施設のご紹介" },
