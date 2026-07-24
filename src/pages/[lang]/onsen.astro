@@ -32,26 +32,8 @@ const page = pageEntry.data;
   relatedLinksHeading={relatedLinksData.heading}
   relatedLinks={relatedLinksData.links}
 >
-
-  <!-- 泉質・効能 -->
-  <section id="quality" class="relative mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
-    <SectionEyebrow icon={page.quality.icon} eyebrow={page.quality.eyebrow} heading={page.quality.heading} />
-    <dl class="mt-12 grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-2">
-      {
-        page.quality.items.map((item) => (
-          <div class="border-t border-[#cdcdca] pt-5">
-            <dt class="mb-2 text-[0.78rem] font-medium tracking-[0.12em] text-[#29415C]">
-              {item.label}
-            </dt>
-            <dd class="m-0 text-[0.94rem] leading-[1.9] text-[#55524C]">{item.value}</dd>
-          </div>
-        ))
-      }
-    </dl>
-  </section>
-
   <!-- 温泉施設紹介 -->
-  <section id="facilities" class="relative bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+  <section id="facilities" class="relative py-[88px] lg:py-[108px]">
     <div class="mx-auto max-w-[1320px] px-10">
       <SectionEyebrow
         icon={page.facilities.icon}
@@ -76,6 +58,25 @@ const page = pageEntry.data;
           ))
         }
       </div>
+    </div>
+  </section>
+
+  <!-- 泉質・効能 -->
+  <section id="quality" class="relative bg-[#FAFAFA] mx-auto px-10 py-[88px] lg:py-[108px]">
+    <div class="mx-auto max-w-[1320px] px-10">
+      <SectionEyebrow icon={page.quality.icon} eyebrow={page.quality.eyebrow} heading={page.quality.heading} />
+      <dl class="mt-12 grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-2">
+        {
+          page.quality.items.map((item) => (
+            <div class="border-t border-[#cdcdca] pt-5">
+              <dt class="mb-2 text-[0.78rem] font-medium tracking-[0.12em] text-[#29415C]">
+                {item.label}
+              </dt>
+              <dd class="m-0 text-[0.94rem] leading-[1.9] text-[#55524C]">{item.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
     </div>
   </section>
 
