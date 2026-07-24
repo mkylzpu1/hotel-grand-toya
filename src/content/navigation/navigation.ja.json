@@ -25,7 +25,7 @@
       "icon": "館"
     },
     {
-      "href": "/ja/#access",
+      "href": "/ja/access/",
       "label": "アクセス",
       "en": "Access",
       "icon": "道"
@@ -35,10 +35,6 @@
     {
       "href": "#",
       "label": "よくあるご質問"
-    },
-    {
-      "href": "#",
-      "label": "お客様の声"
     },
     {
       "href": "#",
