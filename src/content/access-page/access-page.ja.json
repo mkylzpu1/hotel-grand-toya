@@ -3,9 +3,9 @@
   "pageTitleEn": "ACCESS",
   "icon": "道",
 "quickNav": [
-  { "href": "#section-train", "label": "JR" },
-  { "href": "#section-car", "label": "車" },
-  { "href": "#section-bus", "label": "高速バス" },
+  { "href": "#section-train", "label": "JRでお越しの方" },
+  { "href": "#section-car", "label": "お車でお越しの方" },
+  { "href": "#section-bus", "label": "高速バスでお越しの方" },
   { "href": "#section-parking", "label": "地図・お問い合わせ" }
 ],
 "byTrain": {

@@ -144,12 +144,14 @@ const onsenPage = defineCollection({
   schema: z.object({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
-    usageNav: z.array(
+    // ページ内アンカーナビ。「和室」「洋室」の2リンクのみ。
+    quickNav: z.array(
       z.object({
         href: z.string(),
         label: z.string(),
       })
     ),
+    icon: z.string(), // PageHeroBand用（leadセクション削除に伴い、ページ直下に移動）
     quality: z.object({
       icon: z.string(),
       eyebrow: z.string(),
@@ -233,6 +235,7 @@ const roomsPage = defineCollection({
       heading: z.string(),
       description: z.array(z.string()),
     }),
+    icon: z.string(),
     // ページ内アンカーナビ。「和室」「洋室」の2リンクのみ。
     quickNav: z.array(
       z.object({
@@ -326,6 +329,7 @@ const cuisinePage = defineCollection({
       heading: z.string(),
       description: z.array(z.string()),
     }),
+    icon: z.string(),
     quickNav: z.array(
       z.object({ href: z.string(), label: z.string() })
     ),
@@ -448,6 +452,7 @@ const facilitiesPage = defineCollection({
       heading: z.string(),
       description: z.array(z.string()),
     }),
+    icon: z.string(),
     quickNav: z.array(z.object({ href: z.string(), label: z.string() })),
     facilitiesSection: z.object({
       icon: z.string(),
@@ -481,8 +486,14 @@ const accessPage = defineCollection({
   schema: z.object({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
-    icon: z.string(), // PageHeroBand用（leadセクション削除に伴い、ページ直下に移動）
-    quickNav: z.array(z.object({ href: z.string(), label: z.string() })),
+    icon: z.string(),
+    // ページ内アンカーナビ。「和室」「洋室」の2リンクのみ。
+    quickNav: z.array(
+      z.object({
+        href: z.string(),
+        label: z.string(),
+      })
+    ),
 
 byTrain: z.object({
   icon: z.string(),

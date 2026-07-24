@@ -1,9 +1,10 @@
 {
   "pageTitle": "温泉",
   "pageTitleEn": "ONSEN",
-  "usageNav": [
-    { "href": "#stay", "label": "宿泊でご利用の方" },
-    { "href": "#dayuse", "label": "日帰り入浴をご利用の方" }
+  "quickNav": [
+    { "href": "#quality", "label": "泉質・効能" },
+    { "href": "#facilities", "label": "温泉施設のご紹介" },
+    { "href": "#useage", "label": "ご利用案内" }
   ],
   "quality": {
     "icon": "泉",

@@ -1,0 +1,132 @@
+---
+// src/layouts/PageTemplate.astro
+import Layout from './Layout.astro';
+import PageHeroBand from '../components/common/PageHeroBand.astro';
+import RelatedLinks from '../components/common/RelatedLinks.astro';
+import type { Locale } from '../content/config';
+
+interface LangLink {
+  code: Locale;
+  label: string;
+  href: string;
+  active: boolean;
+}
+
+interface RelatedLink {
+  id: string;
+  href: string;
+  image: string;
+  imageAlt: string;
+  icon: string;
+  label: string;
+}
+
+interface QuickNavItem {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  lang: Locale;
+  title: string;
+  description: string;
+  navigation: any;
+  site: any;
+  langLinks: LangLink[];
+
+  // PageHeroBand 用
+  heroIcon: string;
+  pageTitle: string;
+  pageTitleEn: string;
+
+  // アンカーナビ用（デフォルトで表示。項目が無ければ渡さなくてよい）
+  showQuickNav?: boolean;
+  quickNav?: QuickNavItem[];
+  quickNavLabel?: string; // aria-label（例: "客室タイプ"）
+
+  // RelatedLinks 用
+  currentPageId: string;
+  relatedLinksHeading: string;
+  relatedLinks: RelatedLink[];
+  relatedLinksBackground?: 'white' | 'none';
+}
+
+const {
+  lang,
+  title,
+  description,
+  navigation,
+  site,
+  langLinks,
+  heroIcon,
+  pageTitle,
+  pageTitleEn,
+  showQuickNav = true,
+  quickNav,
+  quickNavLabel = 'ページ内メニュー',
+  currentPageId,
+  relatedLinksHeading,
+  relatedLinks,
+  relatedLinksBackground = 'white',
+} = Astro.props;
+
+// quickNav が渡されていなければ表示しようがないので実質非表示にする
+const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
+---
+
+<Layout
+  lang={lang}
+  title={title}
+  description={description}
+  navigation={navigation}
+  site={site}
+  langLinks={langLinks}
+>
+  <main id="top">
+    <!-- ページタイトル帯（全ページ共通） -->
+    <PageHeroBand
+      icon={heroIcon}
+      pageTitle={pageTitle}
+      pageTitleEn={pageTitleEn}
+      homeHref={`/${lang}/`}
+    />
+
+    <!-- ページ内アンカーナビ（全ページ共通・フラグで表示切替） -->
+    {shouldShowQuickNav && (
+      <nav aria-label={quickNavLabel} class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
+        <div
+          class="mx-auto grid max-w-[1320px]"
+          style={`grid-template-columns: repeat(${quickNav!.length}, minmax(0, 1fr));`}
+        >
+          {
+            quickNav!.map((item) => (
+              <a
+                href={item.href}
+                class="group flex items-center justify-center gap-3 border-l border-[#D8D7D2] px-10 py-7 transition-colors first:border-l-0 hover:bg-white"
+              >
+                <span class="font-serif text-[1.1rem] font-medium tracking-[0.04em] text-[#1E1C1A]">
+                  {item.label}
+                </span>
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[0.9rem] text-[#A24730] transition-transform duration-300 group-hover:translate-x-1">
+                  ↓
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </nav>
+    )}
+
+    <!-- ▼ ページ固有のコンテンツ ▼ -->
+    <slot />
+    <!-- ▲ ここまで ▲ -->
+
+    <!-- 関連ページへの導線（全ページ共通） -->
+    <RelatedLinks
+      heading={relatedLinksHeading}
+      links={relatedLinks}
+      currentPageId={currentPageId}
+      background={relatedLinksBackground}
+    />
+  </main>
+</Layout>

@@ -1,68 +1,37 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import PageHeroBand from '../../components/common/PageHeroBand.astro';
+import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
-import { locales, localeFromId, type Locale } from '../../content/config';
-import { getRelatedLinksData } from '../../utils/relatedLinks';
-import RelatedLinks from '../../components/common/RelatedLinks.astro';
-
-const LANG_LABELS: Record<Locale, string> = {
-  ja: 'JP',
-  en: 'EN',
-  zh: 'CH',
-  ko: 'KR',
-};
+import { type Locale } from '../../content/config';
+import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('faq-page');
-  return entries.map((entry) => ({ params: { lang: localeFromId(entry.id) } }));
+  return getLocalizedStaticPaths('faq-page');
 }
 
 const { lang } = Astro.params as { lang: Locale };
 
-const [siteEntry, navigationEntry, pageEntry] = await Promise.all([
-  getEntry('site', `site.${lang}`),
-  getEntry('navigation', `navigation.${lang}`),
-  getEntry('faq-page', `faq-page.${lang}`),
-]);
-
-if (!siteEntry || !navigationEntry || !pageEntry) {
-  throw new Error(`Missing content for locale "${lang}".`);
-}
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
+  await getPageContext(lang, 'faq-page', 'faq');
 
 const page = pageEntry.data;
-const { reservationUrl } = siteEntry.data;
-const relatedLinksData = await getRelatedLinksData(lang, reservationUrl);
-
-const availableEntries = await getCollection('faq-page');
-const availableLocales = new Set(availableEntries.map((entry) => localeFromId(entry.id)));
-const langLinks = locales
-  .filter((code) => availableLocales.has(code))
-  .map((code) => ({
-    code,
-    label: LANG_LABELS[code],
-    href: `/${code}/faq/`,
-    active: code === lang,
-  }));
 ---
 
-<Layout
+<PageTemplate
   lang={lang}
   title={`${page.pageTitle}｜${siteEntry.data.title}`}
   description={siteEntry.data.description}
   navigation={navigationEntry.data}
   site={siteEntry.data}
   langLinks={langLinks}
+  heroIcon={page.icon}
+  pageTitle={page.pageTitle}
+  pageTitleEn={page.pageTitleEn}
+  quickNavLabel="ページ内ナビゲーション"
+  currentPageId="faq"
+  relatedLinksHeading={relatedLinksData.heading}
+  relatedLinks={relatedLinksData.links}
+  relatedLinksBackground="none"
 >
-  <main id="top">
-    <!-- ページタイトル帯 -->
-    <PageHeroBand
-      icon={page.icon}
-      pageTitle={page.pageTitle}
-      pageTitleEn={page.pageTitleEn}
-      homeHref={`/${lang}/`}
-    />
 
     <!-- Q&A一覧 -->
     <section class="py-[88px] lg:py-[108px] bg-white/95">
@@ -178,15 +147,7 @@ const langLinks = locales
         </div>
       </div>
     </section>
-
-    <!-- 関連ページへの導線 -->
-    <RelatedLinks
-      heading={relatedLinksData.heading}
-      links={relatedLinksData.links}
-      currentPageId="faq"
-    />
-  </main>
-</Layout>
+</PageTemplate>
 
 <style>
   /* アコーディオン：grid-template-rowsで滑らかに開閉 */

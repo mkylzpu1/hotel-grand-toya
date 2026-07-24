@@ -15,6 +15,7 @@
     { "href": "#section-breakfast", "label": "朝食" },
     { "href": "#section-venues", "label": "お食事会場" }
   ],
+  "icon": "膳",
   "dinner": {
     "icon": "会",
     "eyebrow": "Kaiseki Dinner",

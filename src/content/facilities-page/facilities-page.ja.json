@@ -16,6 +16,7 @@
     { "href": "#section-services", "label": "館内サービス" },
     { "href": "#section-activities", "label": "周辺アクティビティ" }
   ],
+  "icon": "館",
   "facilitiesSection": {
     "icon": "設",
     "eyebrow": "Facilities",

@@ -1,74 +1,40 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
+import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
-import PageHeroBand from '../../components/common/PageHeroBand.astro';
-import { locales, localeFromId, type Locale } from '../../content/config';
-import { getRelatedLinksData } from '../../utils/relatedLinks';
-import RelatedLinks from '../../components/common/RelatedLinks.astro';
-
-const LANG_LABELS: Record<Locale, string> = {
-  ja: 'JP',
-  en: 'EN',
-  zh: 'CH',
-  ko: 'KR',
-};
+import { type Locale } from '../../content/config';
+import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('facilities-page');
-  return entries.map((entry) => ({ params: { lang: localeFromId(entry.id) } }));
+  return getLocalizedStaticPaths('facilities-page');
 }
+
 const { lang } = Astro.params as { lang: Locale };
-const [siteEntry, navigationEntry, pageEntry] = await Promise.all([
-  getEntry('site', `site.${lang}`),
-  getEntry('navigation', `navigation.${lang}`),
-  getEntry('facilities-page', `facilities-page.${lang}`),
-]);
-if (!siteEntry || !navigationEntry || !pageEntry) {
-  throw new Error(`Missing content for locale "${lang}".`);
-}
+
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
+  await getPageContext(lang, 'facilities-page', 'facilities');
+
 const page = pageEntry.data;
-const { reservationUrl } = siteEntry.data;
-const relatedLinksData = await getRelatedLinksData(lang, reservationUrl);
-
-// 利用可能な言語のみ切り替えリンクを出す（facilities-page が無い言語には遷移させない）
-const availableFacilitiesEntries = await getCollection('facilities-page');
-const availableLocales = new Set(availableFacilitiesEntries.map((entry) => localeFromId(entry.id)));
-
-const langLinks = locales
-  .filter((code) => availableLocales.has(code))
-  .map((code) => ({
-    code,
-    label: LANG_LABELS[code],
-    href: `/${code}/facilities/`,
-    active: code === lang,
-  }));
-
 // 未確定項目のフォールバック表示
 const FALLBACK = 'フロントまでお問い合わせください';
 const withFallback = (value?: string) => value || FALLBACK;
 ---
-<Layout
+
+<PageTemplate
   lang={lang}
   title={`${page.pageTitle}｜${siteEntry.data.title}`}
   description={siteEntry.data.description}
   navigation={navigationEntry.data}
   site={siteEntry.data}
   langLinks={langLinks}
+  heroIcon={page.icon}
+  pageTitle={page.pageTitle}
+  pageTitleEn={page.pageTitleEn}
+  quickNav={page.quickNav}
+  quickNavLabel="ページ内ナビゲーション"
+  currentPageId="facilities"
+  relatedLinksHeading={relatedLinksData.heading}
+  relatedLinks={relatedLinksData.links}
 >
-  <main id="top">
-    <PageHeroBand icon={page.intro.icon} pageTitle={page.pageTitle} pageTitleEn={page.pageTitleEn} homeHref={`/${lang}/`} />
-
-    <nav aria-label="館内施設・サービス" class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
-      <div class="mx-auto grid max-w-[1320px] grid-cols-3">
-        {page.quickNav.map((item) => (
-          <a href={item.href} class="group flex items-center justify-center gap-3 border-l border-[#D8D7D2] px-10 py-7 transition-colors first:border-l-0 hover:bg-white">
-            <span class="font-serif text-[1.1rem] font-medium tracking-[0.04em] text-[#1E1C1A]">{item.label}</span>
-            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[0.9rem] text-[#A24730] transition-transform duration-300 group-hover:translate-x-1">↓</span>
-          </a>
-        ))}
-      </div>
-    </nav>
 
     <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
       <SectionEyebrow icon={page.intro.icon} eyebrow={page.intro.eyebrow} heading={page.intro.heading} />
@@ -192,12 +158,4 @@ const withFallback = (value?: string) => value || FALLBACK;
         ))}
       </ul>
     </section>
-    <!-- 関連ページへの導線 -->
-    <RelatedLinks
-      heading={relatedLinksData.heading}
-      links={relatedLinksData.links}
-      currentPageId="rooms"
-      background="white"
-    />
-  </main>
-</Layout>
+</PageTemplate>
