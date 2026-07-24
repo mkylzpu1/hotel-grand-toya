@@ -582,6 +582,56 @@ surroundings: z.object({
   }),
 });
 
+const faqPage = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    icon: z.string(),
+    breadcrumbLabel: z.string(), // パンくず末尾の表示名（通常はpageTitleと同じ）
+    categories: z.array(
+      z.object({
+        id: z.string(), // タブ切替用のスラッグ（例: "checkin"）
+        icon: z.string(), // SectionEyebrow等と同じ1〜2文字アイコン
+        label: z.string(),
+        items: z.array(
+          z.object({
+            question: z.string(),
+            answer: z.string(),
+          })
+        ),
+      })
+    ),
+    qaSection: z.object({
+  icon: z.string(),
+  eyebrow: z.string(),
+  heading: z.string(),
+}),
+    contact: z.object({
+      tel: z.string(),
+      telNote: z.string().optional(), // 例：受付時間
+      email: z.string(), // 追加
+    }),
+  }),
+});
+
+const relatedLinksCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    heading: z.string(),
+    links: z.array(
+      z.object({
+        id: z.string(), // ページを一意に識別するキー（rooms / onsen / reservation など）
+        href: z.string(),
+        image: z.string(),
+        imageAlt: z.string(),
+        icon: z.string(),
+        label: z.string(),
+      })
+    ),
+  }),
+});
+
 export const collections = {
   site,
   navigation,
@@ -593,4 +643,6 @@ export const collections = {
   'cuisine-page': cuisinePage,
   'facilities-page': facilitiesPage,
   'access-page': accessPage,
+  'faq-page': faqPage,
+  'related-links': relatedLinksCollection,
 };

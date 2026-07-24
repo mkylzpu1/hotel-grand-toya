@@ -4,6 +4,8 @@ import Layout from '../../layouts/Layout.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import PageHeroBand from '../../components/common/PageHeroBand.astro';
 import { locales, localeFromId, type Locale } from '../../content/config';
+import { getRelatedLinksData } from '../../utils/relatedLinks';
+import RelatedLinks from '../../components/common/RelatedLinks.astro';
 
 const LANG_LABELS: Record<Locale, string> = {
   ja: 'JP',
@@ -26,18 +28,19 @@ if (!siteEntry || !navigationEntry || !pageEntry) {
   throw new Error(`Missing content for locale "${lang}".`);
 }
 const page = pageEntry.data;
+const { reservationUrl } = siteEntry.data;
+const relatedLinksData = await getRelatedLinksData(lang, reservationUrl);
 
-
-// 利用可能な言語のみ切り替えリンクを出す（onsen-page が無い言語には遷移させない）
-const availableOnsenEntries = await getCollection('onsen-page');
-const availableLocales = new Set(availableOnsenEntries.map((entry) => localeFromId(entry.id)));
+// 利用可能な言語のみ切り替えリンクを出す（facilities-page が無い言語には遷移させない）
+const availableFacilitiesEntries = await getCollection('facilities-page');
+const availableLocales = new Set(availableFacilitiesEntries.map((entry) => localeFromId(entry.id)));
 
 const langLinks = locales
   .filter((code) => availableLocales.has(code))
   .map((code) => ({
     code,
     label: LANG_LABELS[code],
-    href: `/${code}/onsen/`,
+    href: `/${code}/facilities/`,
     active: code === lang,
   }));
 
@@ -189,5 +192,12 @@ const withFallback = (value?: string) => value || FALLBACK;
         ))}
       </ul>
     </section>
+    <!-- 関連ページへの導線 -->
+    <RelatedLinks
+      heading={relatedLinksData.heading}
+      links={relatedLinksData.links}
+      currentPageId="rooms"
+      background="white"
+    />
   </main>
 </Layout>

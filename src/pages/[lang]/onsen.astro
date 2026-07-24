@@ -2,8 +2,9 @@
 import { getCollection, getEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
-import PageHeroBand from '../../components/common/PageHeroBand.astro';
 import { locales, localeFromId, type Locale } from '../../content/config';
+import { getRelatedLinksData } from '../../utils/relatedLinks';
+import RelatedLinks from '../../components/common/RelatedLinks.astro';
 
 const LANG_LABELS: Record<Locale, string> = {
   ja: 'JP',
@@ -33,11 +34,7 @@ if (!siteEntry || !navigationEntry || !onsenEntry) {
 
 const page = onsenEntry.data;
 const { reservationUrl } = siteEntry.data;
-
-// 予約に関するリンクはサイト共通の予約URLを使用する
-const relatedLinks = page.related.links.map((link) =>
-  link.label === 'ご宿泊予約' || link.icon === '予' ? { ...link, href: reservationUrl } : link
-);
+const relatedLinksData = await getRelatedLinksData(lang, reservationUrl);
 
 // 利用可能な言語のみ切り替えリンクを出す（onsen-page が無い言語には遷移させない）
 const availableOnsenEntries = await getCollection('onsen-page');
@@ -63,12 +60,32 @@ const langLinks = locales
 >
   <main id="top">
     <!-- ページタイトル帯（ヒーローではなく、ヘッダーの視認性を確保するための最小限のダーク帯） -->
-    <PageHeroBand
-      icon={page.quality.icon}
-      pageTitle={page.pageTitle}
-      pageTitleEn={page.pageTitleEn}
-      homeHref={homeHref}
-    />
+    <section class="relative overflow-hidden bg-[#16283A] pb-14 pt-[132px] text-white lg:pb-[68px] lg:pt-[136px]">
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute -right-6 -top-16 select-none font-serif text-[220px] leading-none text-white/[0.05] lg:-right-4 lg:-top-24 lg:text-[300px]"
+      >
+        {page.quality.icon}
+      </span>
+      <div class="relative mx-auto max-w-[1320px] px-10">
+        <!-- パンくずリスト -->
+        <nav aria-label="パンくずリスト" class="mb-7">
+          <ol class="flex flex-wrap items-center gap-2 text-[0.74rem] tracking-[0.06em] text-white/50">
+            <li>
+              <a href={homeHref} class="transition-colors hover:text-white">ホーム</a>
+            </li>
+            <li aria-hidden="true" class="text-white/30">/</li>
+            <li class="text-white/85" aria-current="page">{page.pageTitle}</li>
+          </ol>
+        </nav>
+        <p class="mb-4 text-[0.78rem] font-medium tracking-[0.2em] text-white/60">
+          {page.pageTitleEn}
+        </p>
+        <h1 class="font-serif text-[clamp(1.9rem,1.5rem+1.6vw,2.6rem)] font-semibold tracking-[0.06em] text-white">
+          {page.pageTitle}
+        </h1>
+      </div>
+    </section>
 
     <!-- 利用区分への導線 -->
     <nav aria-label="利用区分" class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
@@ -215,38 +232,11 @@ const langLinks = locales
     </section>
 
     <!-- 関連ページへの導線 -->
-    <section class="bg-[#FAFAFA] py-[88px] lg:py-[108px]">
-      <div class="mx-auto max-w-[1320px] px-10">
-        <h2 class="mb-10 text-center font-serif text-[clamp(1.3rem,1.1rem+0.8vw,1.7rem)] font-semibold text-[#1E1C1A]">
-          {page.related.heading}
-        </h2>
-        <div class="grid grid-cols-2 gap-5 lg:grid-cols-4">
-          {
-            relatedLinks.map((link) => (
-              <a href={link.href} class="group relative block aspect-[3/4] overflow-hidden">
-                <img
-                  src={link.image}
-                  alt={link.imageAlt}
-                  class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08]"
-                />
-                <div
-                  class="absolute inset-0"
-                  style="background: linear-gradient(180deg, rgba(22,40,58,.05) 45%, rgba(22,40,58,.82) 100%);"
-                />
-                <span class="absolute left-4 top-4 flex h-9 w-9 shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-white/70 font-serif text-[0.9rem] font-semibold leading-none text-white">
-                  {link.icon}
-                </span>
-                <span class="absolute inset-x-4 bottom-4 flex items-center justify-between">
-                  <span class="font-serif text-[1.02rem] tracking-[0.04em] text-white">{link.label}</span>
-                  <span class="text-[0.95rem] text-white/85 transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </span>
-              </a>
-            ))
-          }
-        </div>
-      </div>
-    </section>
+    <RelatedLinks
+      heading={relatedLinksData.heading}
+      links={relatedLinksData.links}
+      currentPageId="rooms"
+      background="white"
+    />
   </main>
 </Layout>

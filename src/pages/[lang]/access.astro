@@ -4,6 +4,8 @@ import Layout from '../../layouts/Layout.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import PageHeroBand from '../../components/common/PageHeroBand.astro';
 import { locales, localeFromId, type Locale } from '../../content/config';
+import { getRelatedLinksData } from '../../utils/relatedLinks';
+import RelatedLinks from '../../components/common/RelatedLinks.astro';
 
 const LANG_LABELS: Record<Locale, string> = {
   ja: 'JP',
@@ -29,6 +31,8 @@ if (!siteEntry || !navigationEntry || !pageEntry) {
 }
 
 const page = pageEntry.data;
+const { reservationUrl } = siteEntry.data;
+const relatedLinksData = await getRelatedLinksData(lang, reservationUrl);
 
 const availableEntries = await getCollection('access-page');
 const availableLocales = new Set(availableEntries.map((entry) => localeFromId(entry.id)));
@@ -399,5 +403,12 @@ const langLinks = locales
     </div>
   </div>
 </section>
+    <!-- 関連ページへの導線 -->
+    <RelatedLinks
+      heading={relatedLinksData.heading}
+      links={relatedLinksData.links}
+      currentPageId="rooms"
+      background="white"
+    />
   </main>
 </Layout>

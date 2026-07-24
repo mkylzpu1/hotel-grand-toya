@@ -1,0 +1,240 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PageHeroBand from '../../components/common/PageHeroBand.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import { locales, localeFromId, type Locale } from '../../content/config';
+import { getRelatedLinksData } from '../../utils/relatedLinks';
+import RelatedLinks from '../../components/common/RelatedLinks.astro';
+
+const LANG_LABELS: Record<Locale, string> = {
+  ja: 'JP',
+  en: 'EN',
+  zh: 'CH',
+  ko: 'KR',
+};
+
+export async function getStaticPaths() {
+  const entries = await getCollection('faq-page');
+  return entries.map((entry) => ({ params: { lang: localeFromId(entry.id) } }));
+}
+
+const { lang } = Astro.params as { lang: Locale };
+
+const [siteEntry, navigationEntry, pageEntry] = await Promise.all([
+  getEntry('site', `site.${lang}`),
+  getEntry('navigation', `navigation.${lang}`),
+  getEntry('faq-page', `faq-page.${lang}`),
+]);
+
+if (!siteEntry || !navigationEntry || !pageEntry) {
+  throw new Error(`Missing content for locale "${lang}".`);
+}
+
+const page = pageEntry.data;
+const { reservationUrl } = siteEntry.data;
+const relatedLinksData = await getRelatedLinksData(lang, reservationUrl);
+
+const availableEntries = await getCollection('faq-page');
+const availableLocales = new Set(availableEntries.map((entry) => localeFromId(entry.id)));
+const langLinks = locales
+  .filter((code) => availableLocales.has(code))
+  .map((code) => ({
+    code,
+    label: LANG_LABELS[code],
+    href: `/${code}/faq/`,
+    active: code === lang,
+  }));
+---
+
+<Layout
+  lang={lang}
+  title={`${page.pageTitle}｜${siteEntry.data.title}`}
+  description={siteEntry.data.description}
+  navigation={navigationEntry.data}
+  site={siteEntry.data}
+  langLinks={langLinks}
+>
+  <main id="top">
+    <!-- ページタイトル帯 -->
+    <PageHeroBand
+      icon={page.icon}
+      pageTitle={page.pageTitle}
+      pageTitleEn={page.pageTitleEn}
+      homeHref={`/${lang}/`}
+    />
+
+    <!-- Q&A一覧 -->
+    <section class="py-[88px] lg:py-[108px] bg-white/95">
+      <div class="mx-auto max-w-[840px] px-6 sm:px-10">
+        <!-- セクション見出し -->
+        <div class="mb-10 max-w-[760px]">
+          <SectionEyebrow icon={page.qaSection.icon} eyebrow={page.qaSection.eyebrow} heading={page.qaSection.heading} />
+        </div>
+
+        <!-- カテゴリタブ -->
+        <div
+          id="faq-tablist"
+          role="tablist"
+          aria-label="質問カテゴリ"
+          class="mb-14 flex flex-wrap gap-2"
+        >
+          {page.categories.map((cat, i) => (
+            <button
+              type="button"
+              role="tab"
+              id={`tab-${cat.id}`}
+              aria-controls={`panel-${cat.id}`}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              data-category={cat.id}
+              class:list={[
+                'faq-tab',
+                'flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full border px-5 py-2.5 text-[0.82rem] font-medium transition-colors',
+                i === 0
+                  ? 'border-[#A24730] bg-[#A24730] text-white'
+                  : 'border-[#C7C5BF] bg-white text-[#55524C] hover:border-[#A24730] hover:text-[#A24730]',
+              ]}
+            >
+              <span class="font-serif text-[0.9rem]">{cat.icon}</span>
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {page.categories.map((cat, i) => (
+          <div
+            id={`panel-${cat.id}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${cat.id}`}
+            data-category-panel={cat.id}
+            class="faq-panel"
+            hidden={i !== 0}
+          >
+            <div class="divide-y divide-[#C7C5BF] border-y border-[#C7C5BF]">
+              {cat.items.map((item) => (
+                <div class="faq-item">
+                  <button
+                    type="button"
+                    class="faq-question flex w-full items-start justify-between gap-4 py-5 text-left"
+                    aria-expanded="false"
+                  >
+                    <span class="flex-1">
+                      <span class="mr-2 font-serif text-[0.9rem] font-bold text-[#A24730]">Q.</span>
+                      <span class="text-[0.92rem] font-medium leading-[1.7] text-[#1E1C1A]">{item.question}</span>
+                    </span>
+                    <span class="faq-icon mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[0.85rem] text-[#A24730] transition-transform duration-300">
+                      ＋
+                    </span>
+                  </button>
+                  <div class="faq-answer-wrap">
+                    <div class="faq-answer-inner overflow-hidden">
+                      <div class="flex items-start gap-4 pb-6 pl-0 pr-11">
+                        <span class="font-serif text-[0.9rem] font-bold text-[#29415C]">A.</span>
+                        <p class="flex-1 text-[0.86rem] leading-[1.9] text-[#55524C]">{item.answer}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
+<!-- 問い合わせ先 -->
+        <div class="mt-20 border border-[#D8D7D2] bg-[#FAFAFA] px-8 py-12 sm:px-14">
+          <p class="mb-8 text-center text-[0.82rem] tracking-[0.04em] text-[#8A8781]">
+            ご不明な点がございましたら、お気軽にお問い合わせください
+          </p>
+          <div class="mx-auto grid max-w-[560px] grid-cols-1 gap-6 sm:grid-cols-2">
+            <!-- 電話 -->
+            <a
+              href={`tel:${page.contact.tel.replace(/-/g, '')}`}
+              class="group flex flex-col items-center gap-3 border border-[#D8D7D2] bg-white px-6 py-8 text-center transition-shadow hover:shadow-[0_4px_16px_rgba(30,28,26,0.06)]"
+            >
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[1rem] text-[#A24730]">
+                ☎
+              </span>
+              <span class="font-serif text-[1.25rem] font-semibold tracking-[0.02em] text-[#1E1C1A] transition-colors group-hover:text-[#A24730]">
+                {page.contact.tel}
+              </span>
+              {page.contact.telNote && (
+                <span class="text-[0.74rem] text-[#8A8781]">{page.contact.telNote}</span>
+              )}
+            </a>
+            <!-- メール -->
+            <a
+              href={`mailto:${page.contact.email}`}
+              class="group flex flex-col items-center gap-3 border border-[#D8D7D2] bg-white px-6 py-8 text-center transition-shadow hover:shadow-[0_4px_16px_rgba(30,28,26,0.06)]"
+            >
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#29415C] text-[1rem] text-[#29415C]">
+                ✉
+              </span>
+              <span class="break-all font-serif text-[0.98rem] font-semibold tracking-[0.02em] text-[#1E1C1A] transition-colors group-hover:text-[#29415C]">
+                {page.contact.email}
+              </span>
+              <span class="text-[0.74rem] text-[#8A8781]">メールでのお問い合わせ</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 関連ページへの導線 -->
+    <RelatedLinks
+      heading={relatedLinksData.heading}
+      links={relatedLinksData.links}
+      currentPageId="faq"
+    />
+  </main>
+</Layout>
+
+<style>
+  /* アコーディオン：grid-template-rowsで滑らかに開閉 */
+  .faq-answer-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 320ms ease;
+  }
+  .faq-item.is-open .faq-answer-wrap {
+    grid-template-rows: 1fr;
+  }
+  .faq-item.is-open .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>
+
+<script>
+  // カテゴリタブ切り替え
+  const tablist = document.getElementById('faq-tablist');
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.faq-tab'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-category-panel]'));
+  tablist?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.faq-tab');
+    if (!btn) return;
+    const target = btn.dataset['category'];
+    tabs.forEach((t) => {
+      const active = t.dataset['category'] === target;
+      t.setAttribute('aria-selected', String(active));
+      t.classList.toggle('border-[#A24730]', active);
+      t.classList.toggle('bg-[#A24730]', active);
+      t.classList.toggle('text-white', active);
+      t.classList.toggle('border-[#C7C5BF]', !active);
+      t.classList.toggle('bg-white', !active);
+      t.classList.toggle('text-[#55524C]', !active);
+    });
+    panels.forEach((p) => {
+      p.hidden = p.dataset['categoryPanel'] !== target;
+    });
+    // モバイルでタブ位置が画面外にならないよう軽くスクロール
+    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  });
+
+  // アコーディオン開閉
+  document.querySelectorAll<HTMLElement>('.faq-item').forEach((item) => {
+    const question = item.querySelector<HTMLButtonElement>('.faq-question');
+    question?.addEventListener('click', () => {
+      const isOpen = item.classList.toggle('is-open');
+      question.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+</script>

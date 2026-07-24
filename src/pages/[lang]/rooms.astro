@@ -1,37 +1,43 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
-import PageHeroBand from '../../components/common/PageHeroBand.astro';
-import AmenityIcon from '../../components/rooms/AmenityIcon.astro';
 import { locales, localeFromId, type Locale } from '../../content/config';
+import PageHeroBand from '../../components/common/PageHeroBand.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import AmenityIcon from '../../components/rooms/AmenityIcon.astro';
+import RelatedLinks from '../../components/common/RelatedLinks.astro';
+import { getRelatedLinksData } from '../../utils/relatedLinks';
+
 const LANG_LABELS: Record<Locale, string> = {
   ja: 'JP',
   en: 'EN',
   zh: 'CH',
   ko: 'KR',
 };
+
 export async function getStaticPaths() {
   // rooms-page のコンテンツが用意されている言語のみビルドする
   const entries = await getCollection('rooms-page');
   return entries.map((entry) => ({ params: { lang: localeFromId(entry.id) } }));
 }
+
 const { lang } = Astro.params as { lang: Locale };
 const homeHref = `/${lang}/`;
+
 const [siteEntry, navigationEntry, roomsEntry] = await Promise.all([
   getEntry('site', `site.${lang}`),
   getEntry('navigation', `navigation.${lang}`),
   getEntry('rooms-page', `rooms-page.${lang}`),
 ]);
+
 if (!siteEntry || !navigationEntry || !roomsEntry) {
-  throw new Error(`Missing content for locale "${lang}". Check src/content/*/*.${lang}.json`);
+  throw new Error(`Missing content for locale "${lang}".`);
 }
-const page = roomsEntry.data;
+
 const { reservationUrl } = siteEntry.data;
-// 関連リンクのうち「ご宿泊予約」はサイト共通の予約URLを使用する
-const relatedLinks = page.related.links.map((link) =>
-  link.label === 'ご宿泊予約' || link.icon === '予' ? { ...link, href: reservationUrl } : link
-);
+const relatedLinksData = await getRelatedLinksData(lang, reservationUrl);
+
+const page = roomsEntry.data;
 // 利用可能な言語のみ切り替えリンクを出す（rooms-page が無い言語には遷移させない）
 const availableRoomsEntries = await getCollection('rooms-page');
 const availableLocales = new Set(availableRoomsEntries.map((entry) => localeFromId(entry.id)));
@@ -44,6 +50,7 @@ const langLinks = locales
     active: code === lang,
   }));
 ---
+
 <Layout
   lang={lang}
   title={`${page.pageTitle}｜${siteEntry.data.title}`}
@@ -60,6 +67,7 @@ const langLinks = locales
       pageTitleEn={page.pageTitleEn}
       homeHref={homeHref}
     />
+
     <!-- ページ内アンカーナビ（和室／洋室／アメニティの3リンク） -->
     <nav aria-label="客室タイプ" class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
       <div class="mx-auto grid max-w-[1320px] grid-cols-3">
@@ -80,6 +88,7 @@ const langLinks = locales
         }
       </div>
     </nav>
+
     <!-- 和室セクション／洋室セクション -->
     {
       page.sections.map((section, sectionIndex) => (
@@ -101,7 +110,6 @@ const langLinks = locales
                       ))}
                     </div>
                   </div>
-
                   {/* 共通レイアウト：代表写真1枚＋基本情報 */}
                   <div class="mb-16 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
                     <div class="aspect-[4/3] overflow-hidden">
@@ -154,7 +162,6 @@ const langLinks = locales
                       </table>
                     </div>
                   </div>
-
                   {/* フロアごとのサブセクション：可変グリッド写真（1〜3枚）＋右側に説明。フロア情報が無ければ非表示 */}
                   {room.floors && room.floors.length > 0 && (
                     <div class="space-y-14">
@@ -225,62 +232,37 @@ const langLinks = locales
         </section>
       ))
     }
-<!-- 共通アメニティ（和室・洋室で共通。ページ下部に1回だけ掲載） -->
-<section id="section-amenities" class="scroll-mt-6 py-[88px] lg:py-[108px]">
-  <div class="mx-auto max-w-[1320px] px-10">
-    <div class="mb-14 max-w-[760px]">
-      <SectionEyebrow icon={page.amenitiesIcon} eyebrow={page.amenitiesEyebrow} heading={page.amenitiesHeading} />
-    </div>
-    <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-      {page.commonAmenities.map((amenity) => (
-        <li class="flex items-center gap-4 border border-[#D8D7D2] bg-white px-5 py-5 transition-shadow hover:shadow-[0_4px_16px_rgba(30,28,26,0.06)]">
-          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#29415C] text-[#29415C]">
-            <AmenityIcon iconKey={amenity.key} />
-          </span>
-          <div>
-            <p class="text-[0.86rem] font-medium tracking-[0.02em] text-[#1E1C1A]">{amenity.label}</p>
-            {amenity.note && (
-              <p class="mt-0.5 text-[0.72rem] leading-[1.5] text-[#A24730]">※ {amenity.note}</p>
-            )}
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
-</section>
-    <!-- 関連ページへの導線 -->
-    <section class="bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+
+    <!-- 共通アメニティ（和室・洋室で共通。ページ下部に1回だけ掲載） -->
+    <section id="section-amenities" class="scroll-mt-6 py-[88px] lg:py-[108px]">
       <div class="mx-auto max-w-[1320px] px-10">
-        <h2 class="mb-10 text-center font-serif text-[clamp(1.3rem,1.1rem+0.8vw,1.7rem)] font-semibold text-[#1E1C1A]">
-          {page.related.heading}
-        </h2>
-        <div class="grid grid-cols-2 gap-5 lg:grid-cols-4">
-          {
-            relatedLinks.map((link) => (
-              <a href={link.href} class="group relative block aspect-[3/4] overflow-hidden">
-                <img
-                  src={link.image}
-                  alt={link.imageAlt}
-                  class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08]"
-                />
-                <div
-                  class="absolute inset-0"
-                  style="background: linear-gradient(180deg, rgba(22,40,58,.05) 45%, rgba(22,40,58,.82) 100%);"
-                />
-                <span class="absolute left-4 top-4 flex h-9 w-9 shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-white/70 font-serif text-[0.9rem] font-semibold leading-none text-white">
-                  {link.icon}
-                </span>
-                <span class="absolute inset-x-4 bottom-4 flex items-center justify-between">
-                  <span class="font-serif text-[1.02rem] tracking-[0.04em] text-white">{link.label}</span>
-                  <span class="text-[0.95rem] text-white/85 transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </span>
-              </a>
-            ))
-          }
+        <div class="mb-14 max-w-[760px]">
+          <SectionEyebrow icon={page.amenitiesIcon} eyebrow={page.amenitiesEyebrow} heading={page.amenitiesHeading} />
         </div>
+        <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          {page.commonAmenities.map((amenity) => (
+            <li class="flex items-center gap-4 border border-[#D8D7D2] bg-white px-5 py-5 transition-shadow hover:shadow-[0_4px_16px_rgba(30,28,26,0.06)]">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#29415C] text-[#29415C]">
+                <AmenityIcon iconKey={amenity.key} />
+              </span>
+              <div>
+                <p class="text-[0.86rem] font-medium tracking-[0.02em] text-[#1E1C1A]">{amenity.label}</p>
+                {amenity.note && (
+                  <p class="mt-0.5 text-[0.72rem] leading-[1.5] text-[#A24730]">※ {amenity.note}</p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
+
+    <!-- 関連ページへの導線 -->
+    <RelatedLinks
+      heading={relatedLinksData.heading}
+      links={relatedLinksData.links}
+      currentPageId="rooms"
+      background="white"
+    />
   </main>
 </Layout>

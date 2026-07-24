@@ -1,0 +1,62 @@
+---
+// src/components/common/RelatedLinks.astro
+export interface RelatedLink {
+  id: string;
+  href: string;
+  image: string;
+  imageAlt: string;
+  icon: string;
+  label: string;
+}
+
+interface Props {
+  heading: string;
+  links: RelatedLink[];
+  /** 現在開いているページの id。一致するリンクは表示しない */
+  currentPageId?: string;
+  /** セクションの背景色 */
+  background?: 'white' | 'none';
+}
+
+const { heading, links, currentPageId, background = 'none' } = Astro.props;
+
+const visibleLinks = currentPageId
+  ? links.filter((link) => link.id !== currentPageId)
+  : links;
+
+const bgClass = background === 'white' ? 'bg-white' : '';
+---
+
+<section class={`py-[88px] lg:py-[108px] ${bgClass}`}>
+  <div class="mx-auto max-w-[1320px] px-10">
+    <h2 class="mb-10 text-center font-serif text-[clamp(1.3rem,1.1rem+0.8vw,1.7rem)] font-semibold text-[#1E1C1A]">
+      {heading}
+    </h2>
+    <div class="grid grid-cols-2 gap-5 lg:grid-cols-4">
+      {
+        visibleLinks.map((link) => (
+          <a href={link.href} class="group relative block aspect-[3/4] overflow-hidden">
+            <img
+              src={link.image}
+              alt={link.imageAlt}
+              class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08]"
+            />
+            <div
+              class="absolute inset-0"
+              style="background: linear-gradient(180deg, rgba(22,40,58,.05) 45%, rgba(22,40,58,.82) 100%);"
+            />
+            <span class="absolute left-4 top-4 flex h-9 w-9 shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-white/70 font-serif text-[0.9rem] font-semibold leading-none text-white">
+              {link.icon}
+            </span>
+            <span class="absolute inset-x-4 bottom-4 flex items-center justify-between">
+              <span class="font-serif text-[1.02rem] tracking-[0.04em] text-white">{link.label}</span>
+              <span class="text-[0.95rem] text-white/85 transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

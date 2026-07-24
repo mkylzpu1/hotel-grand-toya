@@ -1,0 +1,10 @@
+{
+  "heading": "あわせてご覧ください",
+  "links": [
+    { "id": "onsen", "label": "温泉", "href": "/ja/onsen/", "icon": "湯", "image": "/assets/photos/onsen-3.jpg", "imageAlt": "露天風呂" },
+    { "id": "cuisine", "label": "お料理", "href": "/ja/cuisine/", "icon": "膳", "image": "/assets/photos/lobby-1.jpg", "imageAlt": "夕食のお料理" },
+    { "id": "facilities", "label": "館内施設", "href": "/ja/facilities", "icon": "館", "image": "/assets/photos/image1.png", "imageAlt": "館内の様子" },
+    { "id": "rooms", "label": "客室", "href": "/ja/rooms/", "icon": "室", "image": "/assets/photos/image4.png", "imageAlt": "客室" },
+    { "id": "reservation", "label": "ご予約", "href": "/ja/reservation/", "icon": "予", "image": "/assets/photos/image5.png", "imageAlt": "ご予約" }
+  ]
+}
