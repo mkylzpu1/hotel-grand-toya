@@ -1,0 +1,45 @@
+---
+// src/components/cuisine/CuisinePlanBlock.astro
+interface Props {
+  name: string;
+  nameEn?: string;
+  image: { src: string; alt: string };
+  description: string[];
+  menuExample?: { heading: string; items: string[] };
+  seasonalNote: string;
+}
+
+const { name, nameEn, image, description, menuExample, seasonalNote } = Astro.props;
+---
+
+<div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
+  <div class="aspect-[4/3] overflow-hidden">
+    <img src={image.src} alt={image.alt} class="h-full w-full object-cover" loading="lazy" />
+  </div>
+  <div>
+    <div class="mb-5">
+      {nameEn && (
+        <p class="mb-1.5 text-[0.72rem] font-medium tracking-[0.18em] text-[#8A8781]">{nameEn}</p>
+      )}
+      <h3 class="font-serif text-[1.2rem] font-semibold text-[#1E1C1A]">{name}</h3>
+    </div>
+    {description.map((line) => (
+      <p class="mb-3 text-[0.88rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+    ))}
+
+    {menuExample && (
+      <div class="mt-7">
+        <h4 class="mb-3 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
+          {menuExample.heading}
+        </h4>
+        <ul class="space-y-2">
+          {menuExample.items.map((item) => (
+            <li class="border-b border-[#D8D7D2] pb-2 text-[0.86rem] text-[#1E1C1A]">{item}</li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <p class="mt-5 text-[0.78rem] text-[#8A8781]">※ {seasonalNote}</p>
+  </div>
+</div>

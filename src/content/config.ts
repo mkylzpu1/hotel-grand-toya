@@ -316,7 +316,23 @@ const roomsPage = defineCollection({
 });
 
 
-// content/config.ts
+const cuisinePlanItem = z.object({
+  id: z.string().optional(), // dinner.plans では必須運用、breakfast では省略可
+  name: z.string(),
+  nameEn: z.string().optional(),
+  image: z.object({
+    src: z.string(),
+    alt: z.string(),
+  }),
+  description: z.array(z.string()),
+  menuExample: z
+    .object({
+      heading: z.string(),
+      items: z.array(z.string()),
+    })
+    .optional(),
+  seasonalNote: z.string(),
+});
 
 const cuisinePage = defineCollection({
   type: 'data',
@@ -337,23 +353,15 @@ const cuisinePage = defineCollection({
       icon: z.string(),
       eyebrow: z.string(),
       heading: z.string(),
-      mainImage: roomGalleryItem,
-      gallery: z.array(roomGalleryItem),
-      menuExample: z.object({
-        heading: z.string(),
-        items: z.array(z.string()),
-      }),
       description: z.array(z.string()),
-      seasonalNote: z.string(),
+      plans: z.array(cuisinePlanItem),
     }),
     breakfast: z.object({
       icon: z.string(),
       eyebrow: z.string(),
       heading: z.string(),
-      mainImage: roomGalleryItem,
-      gallery: z.array(roomGalleryItem),
       description: z.array(z.string()),
-      seasonalNote: z.string(),
+      plan: cuisinePlanItem,
     }),
     diningVenues: z.object({
       icon: z.string(),
@@ -379,11 +387,7 @@ const cuisinePage = defineCollection({
         heading: z.string(),
         description: z.string(),
       })
-    ),
-    notices: z.object({
-      heading: z.string(),
-      items: z.array(z.string()),
-    }),
+    )
   }),
 });
 

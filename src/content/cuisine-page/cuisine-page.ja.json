@@ -17,49 +17,79 @@
   ],
   "icon": "膳",
   "dinner": {
-    "icon": "会",
-    "eyebrow": "Kaiseki Dinner",
-    "heading": "和食会席",
-    "mainImage": { "label": "会席料理", "src": "/assets/photos/lobby-3.jpg", "alt": "和食会席" },
-    "gallery": [
-      { "label": "お造り", "src": "/assets/photos/lobby-1.jpg", "alt": "お造り" },
-      { "label": "季節料理", "src": "/assets/photos/lobby-2.jpg", "alt": "季節料理" },
-      { "label": "焼物", "src": "/assets/photos/lobby-3.jpg", "alt": "焼物" }
-    ],
-    "menuExample": {
-      "heading": "お品書き（例）",
-      "items": [
-        "先付",
-        "お造り盛り合わせ",
-        "季節の焼物",
-        "煮物椀",
-        "鍋物",
-        "食事・止め椀・香の物",
-        "水菓子"
+      "icon": "会",
+      "eyebrow": "Kaiseki Dinner",
+      "heading": "夕食",
+      "description": [
+        "夕食は、季節の食材を活かした2種類の会席プランからお選びいただけます。",
+        "どちらのプランも、洞爺湖周辺や道内各地から届く旬の食材を使い、温かい料理は温かいうちにご提供いたします。"
+      ],
+      "plans": [
+        {
+          "id": "yosenabe",
+          "name": "寄せ鍋会席",
+          "nameEn": "Yosenabe Kaiseki",
+          "image": { "src": "/assets/photos/food-night1.jpg", "alt": "寄せ鍋会席" },
+          "description": [
+            "魚介と野菜をふんだんに使った寄せ鍋を中心に、旬の味わいをお楽しみいただく会席プランです。",
+            "体の芯から温まる、温泉旅館ならではの冬におすすめのお料理です。"
+          ],
+          "menuExample": {
+            "heading": "お品書き（例）",
+            "items": [
+              "先付",
+              "お造り盛り合わせ",
+              "季節の焼物",
+              "寄せ鍋",
+              "食事・止め椀・香の物",
+              "水菓子"
+            ]
+          },
+          "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。"
+        },
+        {
+          "id": "sukiyaki",
+          "name": "すき焼き会席",
+          "nameEn": "Sukiyaki Kaiseki",
+          "image": { "src": "/assets/photos/food-night2.jpg", "alt": "すき焼き会席" },
+          "description": [
+            "北海道産牛肉を使ったすき焼きを主役に、季節の前菜や焼物と共にお楽しみいただく会席プランです。",
+            "甘辛い割り下と卵の絡む、定番ながら贅沢なひと品をご堪能ください。"
+          ],
+          "menuExample": {
+            "heading": "お品書き（例）",
+            "items": [
+              "先付",
+              "お造り盛り合わせ",
+              "季節の焼物",
+              "すき焼き",
+              "食事・止め椀・香の物",
+              "水菓子"
+            ]
+          },
+          "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。"
+        }
       ]
     },
-    "description": [
-      "洞爺湖周辺や道内各地から届く旬の食材を使い、和食会席としてご用意しています。",
-      "温かい料理は温かいうちに、季節の彩りとともにお楽しみいただけます。"
-    ],
-    "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。"
-  },
-  "breakfast": {
-    "icon": "朝",
-    "eyebrow": "Japanese Breakfast",
-    "heading": "和朝食",
-    "mainImage": { "label": "朝食全体", "src": "/assets/photos/lobby-3.jpg", "alt": "朝食全体" },
-    "gallery": [
-      { "label": "焼魚", "src": "/assets/photos/lobby-1.jpg", "alt": "焼魚" },
-      { "label": "小鉢", "src": "/assets/photos/lobby-2.jpg", "alt": "小鉢" },
-      { "label": "ご飯", "src": "/assets/photos/lobby-3.jpg", "alt": "ご飯" }
-    ],
-    "description": [
-      "焼魚や小鉢、炊きたてのご飯と味噌汁など、身体にやさしい和朝食をご用意しています。",
-      "朝から温かいお食事で、1日の始まりをゆっくりとお迎えください。"
-    ],
-    "seasonalNote": "内容は季節・仕入れ状況により変更となる場合があります。"
-  },
+    "breakfast": {
+      "icon": "朝",
+      "eyebrow": "Japanese Breakfast",
+      "heading": "朝食",
+      "description": [
+        "朝食は、焼魚や小鉢、炊きたてのご飯を中心とした和朝食を1種類ご用意しております。",
+        "身体にやさしいお料理で、1日の始まりをゆっくりとお迎えください。"
+      ],
+      "plan": {
+        "name": "和朝食",
+        "nameEn": "Japanese Breakfast",
+        "image": { "src": "/assets/photos/food-morning.png", "alt": "和朝食" },
+        "description": [
+          "焼魚や小鉢、炊きたてのご飯と味噌汁など、身体にやさしい和朝食をご用意しています。",
+          "朝から温かいお食事で、1日の始まりをゆっくりとお迎えください。"
+        ],
+        "seasonalNote": "内容は季節・仕入れ状況により変更となる場合があります。"
+      }
+    },
   "diningVenues": {
     "icon": "場",
     "eyebrow": "Dining Venues",
@@ -98,13 +128,5 @@
       "heading": "お子様連れ歓迎",
       "description": "お子様連れのご家族も安心してお過ごしいただけます。お子様用のお食事やお椅子など、事前にご相談ください。"
     }
-  ],
-  "notices": {
-    "heading": "ご利用にあたって",
-    "items": [
-      "季節・仕入れ状況により、料理内容が変更となる場合があります。",
-      "掲載写真はイメージです。",
-      "お食事時間は宿泊プランによって異なります。詳しくは各プランをご確認ください。"
-    ]
-  }
+  ]
 }

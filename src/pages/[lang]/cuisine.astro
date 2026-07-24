@@ -3,6 +3,7 @@ import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
+import CuisinePlanBlock from '../../components/cuisine/CuisinePlanBlock.astro';
 
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('cuisine-page');
@@ -31,6 +32,7 @@ const page = pageEntry.data;
   currentPageId="cuisine"
   relatedLinksHeading={relatedLinksData.heading}
   relatedLinks={relatedLinksData.links}
+  relatedLinksBackground="none"
 >
     {/* リード */}
     <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
@@ -42,65 +44,54 @@ const page = pageEntry.data;
       </div>
     </section>
 
-    {/* 夕食：和食会席（写真主体） */}
+{/* 夕食：会席プラン（複数展開可） */}
     <section id="section-dinner" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
       <div class="mx-auto max-w-[1320px] px-10">
-        <div class="mb-14 max-w-[760px]">
+        <div class="mb-8 max-w-[760px]">
           <SectionEyebrow icon={page.dinner.icon} eyebrow={page.dinner.eyebrow} heading={page.dinner.heading} />
         </div>
-        <div class="mb-12 aspect-[16/9] overflow-hidden">
-          <img src={page.dinner.mainImage.src} alt={page.dinner.mainImage.alt} class="h-full w-full object-cover" loading="lazy" />
-        </div>
-        <div class="mb-14 grid grid-cols-2 gap-3 lg:grid-cols-3">
-          {page.dinner.gallery.map((img) => (
-            <div class="aspect-[3/2] overflow-hidden">
-              <img src={img.src} alt={img.alt} class="h-full w-full object-cover" loading="lazy" />
-            </div>
+        <div class="mb-14 max-w-[760px]">
+          {page.dinner.description.map((line) => (
+            <p class="mb-3 text-[0.9rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
           ))}
         </div>
-        <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            {page.dinner.description.map((line) => (
-              <p class="mb-3 text-[0.9rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
-            ))}
-            <p class="mt-4 text-[0.78rem] text-[#8A8781]">※ {page.dinner.seasonalNote}</p>
-          </div>
-          <div>
-            <h4 class="mb-4 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
-              {page.dinner.menuExample.heading}
-            </h4>
-            <ul class="space-y-2">
-              {page.dinner.menuExample.items.map((item) => (
-                <li class="border-b border-[#D8D7D2] pb-2 text-[0.86rem] text-[#1E1C1A]">{item}</li>
-              ))}
-            </ul>
-          </div>
+
+        <div class="space-y-16 lg:space-y-20">
+          {page.dinner.plans.map((plan) => (
+            <div id={plan.id ? `plan-${plan.id}` : undefined} class="scroll-mt-6 border-t border-[#D8D7D2] pt-14 first:border-t-0 first:pt-0">
+              <CuisinePlanBlock
+                name={plan.name}
+                nameEn={plan.nameEn}
+                image={plan.image}
+                description={plan.description}
+                menuExample={plan.menuExample}
+                seasonalNote={plan.seasonalNote}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
-    {/* 朝食：和朝食 */}
+    {/* 朝食：和朝食（単一プラン。夕食と同じレイアウトを流用） */}
     <section id="section-breakfast" class="scroll-mt-6 py-[88px] lg:py-[108px]">
       <div class="mx-auto max-w-[1320px] px-10">
-        <div class="mb-14 max-w-[760px]">
+        <div class="mb-8 max-w-[760px]">
           <SectionEyebrow icon={page.breakfast.icon} eyebrow={page.breakfast.eyebrow} heading={page.breakfast.heading} />
         </div>
-        <div class="mb-12 aspect-[16/9] overflow-hidden">
-          <img src={page.breakfast.mainImage.src} alt={page.breakfast.mainImage.alt} class="h-full w-full object-cover" loading="lazy" />
-        </div>
-        <div class="mb-14 grid grid-cols-2 gap-3 lg:grid-cols-3">
-          {page.breakfast.gallery.map((img) => (
-            <div class="aspect-[3/2] overflow-hidden">
-              <img src={img.src} alt={img.alt} class="h-full w-full object-cover" loading="lazy" />
-            </div>
-          ))}
-        </div>
-        <div class="max-w-[640px]">
+        <div class="mb-14 max-w-[760px]">
           {page.breakfast.description.map((line) => (
             <p class="mb-3 text-[0.9rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
           ))}
-          <p class="mt-4 text-[0.78rem] text-[#8A8781]">※ {page.breakfast.seasonalNote}</p>
         </div>
+
+        <CuisinePlanBlock
+          name={page.breakfast.plan.name}
+          nameEn={page.breakfast.plan.nameEn}
+          image={page.breakfast.plan.image}
+          description={page.breakfast.plan.description}
+          seasonalNote={page.breakfast.plan.seasonalNote}
+        />
       </div>
     </section>
 
@@ -145,17 +136,4 @@ const page = pageEntry.data;
         </div>
       </div>
     </section>
-
-    {/* 注意事項 */}
-    <section class="mx-auto max-w-[1320px] px-10 py-[64px]">
-      <h4 class="mb-4 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
-        {page.notices.heading}
-      </h4>
-      <ul class="space-y-1.5">
-        {page.notices.items.map((note) => (
-          <li class="text-[0.8rem] leading-[1.8] text-[#55524C]">※ {note}</li>
-        ))}
-      </ul>
-    </section>
-    <!-- 関連ページへの導線 -->
 </PageTemplate>
