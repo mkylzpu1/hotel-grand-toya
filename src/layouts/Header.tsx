@@ -92,18 +92,26 @@ export default function Header({
           ))}
         </nav>
 
-        <div className="ml-auto hidden flex-col items-end lg:flex">
+<div className="ml-auto hidden items-center gap-5 lg:flex">
+          <a
+            href={reservationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-[#A24730] px-6 py-2.5 text-[12px] font-medium tracking-[0.12em] text-white transition-colors hover:bg-[#8A3B27]"
+          >
+            {reserveCta}
+          </a>
           <div className="flex items-center gap-0.5 rounded-full border border-white/20 bg-white/5 p-1 backdrop-blur-sm">
             {langLinks.map((lang) => (
-              <a
-                key={lang.code}
-                href={lang.href}
-                className={`rounded-full px-3 py-1.5 text-[11px] font-medium tracking-[0.1em] transition-colors duration-200 ${
-                  lang.active ? 'bg-white text-[#16283A]' : 'text-white/60 hover:text-white'
-                }`}
-              >
-                {lang.label}
-              </a>
+            <a
+              key={lang.code}
+              href={lang.href}
+              className={`rounded-full px-3 py-1.5 text-[11px] font-medium tracking-[0.1em] transition-colors duration-200 ${
+                lang.active ? 'bg-white text-[#16283A]' : 'text-white/60 hover:text-white'
+              }`}
+            >
+              {lang.label}
+            </a>
             ))}
           </div>
         </div>

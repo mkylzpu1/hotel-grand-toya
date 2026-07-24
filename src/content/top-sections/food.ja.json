@@ -9,7 +9,7 @@
     "ご宿泊とともに、夕食・朝食をお楽しみいただけるプランをご用意しております。温泉とお食事で、ゆったりとしたひとときをお過ごしください。"
   ],
   "linkText": "お料理のご案内",
-  "linkHref": "#",
+  "linkHref": "/ja/cuisine",
   "centerText": true,
   "images": [
     { "src": "/assets/photos/lobby-1.jpg", "alt": "夕食のお料理", "className": "h-full" },

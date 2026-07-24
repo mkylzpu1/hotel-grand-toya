@@ -1,5 +1,3 @@
-import CtaButton from '../ui/CtaButton';
-
 interface HeroProps {
   image: string;
   imageAlt: string;
@@ -16,8 +14,6 @@ export default function Hero({
   eyebrow,
   titleLines,
   description,
-  ctaLabel,
-  ctaHref,
 }: HeroProps) {
   return (
     <div className="relative m-[28px] overflow-hidden rounded-[28px]">
@@ -47,7 +43,6 @@ export default function Hero({
           <p className="mb-[38px] max-w-[34ch] text-[0.94rem] font-normal tracking-[0.02em] opacity-90">
             {description}
           </p>
-          <CtaButton href={ctaHref}>{ctaLabel}</CtaButton>
         </div>
       </section>
     </div>
