@@ -3,6 +3,7 @@ import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
+import { Footprints, Car } from 'lucide-astro';
 
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('facilities-page');
@@ -17,6 +18,13 @@ const page = pageEntry.data;
 // 未確定項目のフォールバック表示
 const FALLBACK = 'フロントまでお問い合わせください';
 const withFallback = (value?: string) => value || FALLBACK;
+
+function getAccessIcon(accessText?: string) {
+  if (!accessText) return null;
+  if (accessText.includes('徒歩')) return 'walk';
+  if (accessText.includes('車')) return 'car';
+  return null;
+}
 ---
 
 <PageTemplate
@@ -115,39 +123,85 @@ const withFallback = (value?: string) => value || FALLBACK;
       </div>
     </section>
 
-    {/* 周辺アクティビティ */}
-    <section id="section-activities" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
-      <div class="mx-auto max-w-[1320px] px-10">
-        <div class="mb-14 max-w-[760px]">
-          <SectionEyebrow icon={page.activitiesSection.icon} eyebrow={page.activitiesSection.eyebrow} heading={page.activitiesSection.heading} />
-        </div>
-        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
-          {page.activitiesSection.items.map((item) => (
-            <div class="border border-[#D8D7D2] bg-white">
-              <div class="relative aspect-[4/3] overflow-hidden">
-                <img src={item.image?.src} alt={item.image?.alt ?? item.name} class="h-full w-full object-cover" loading="lazy" />
-                <span class="absolute left-3 top-3 border border-white/80 bg-black/50 px-2.5 py-1 text-[0.68rem] tracking-[0.04em] text-white">
-                  {page.activitiesSection.externalBadgeLabel}
+{/* 周辺アクティビティ */}
+<section id="section-activities" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+  <div class="mx-auto max-w-[1320px] px-10">
+    <div class="mb-14 max-w-[760px]">
+      <SectionEyebrow icon={page.activitiesSection.icon} eyebrow={page.activitiesSection.eyebrow} heading={page.activitiesSection.heading} />
+    </div>
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {page.activitiesSection.items.map((item) => (
+        <div class="border border-[#D8D7D2] bg-white">
+          {/* 画像エリア */}
+          <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8]">
+            {item.image ? (
+              <img src={item.image.src} alt={item.image.alt ?? item.name} class="h-full w-full object-cover" loading="lazy" />
+            ) : (
+              <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-[#A8A5A0]">
+                <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF] font-serif text-[1.1rem]">
+                  {page.activitiesSection.icon}
                 </span>
+                <span class="text-[0.7rem] tracking-[0.06em]">{item.name}</span>
               </div>
-              <div class="p-6">
-                <h4 class="mb-2 font-serif text-[1rem] font-semibold text-[#1E1C1A]">{item.name}</h4>
-                {item.description.map((line) => (
-                  <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">{line}</p>
+            )}
+            <span class="absolute left-3 top-3 border border-white/80 bg-black/50 px-2.5 py-1 text-[0.68rem] tracking-[0.04em] text-white">
+              {page.activitiesSection.externalBadgeLabel}
+            </span>
+            {item.accessFromHotel && (
+              <span class="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A]">
+                {getAccessIcon(item.accessFromHotel) === 'walk' && <Footprints size={13} strokeWidth={2} />}
+                {getAccessIcon(item.accessFromHotel) === 'car' && <Car size={13} strokeWidth={2} />}
+                {item.accessFromHotel}
+              </span>
+            )}
+          </div>
+
+          {/* テキストエリア */}
+          <div class="px-6 py-6">
+            <h4 class="mb-2 font-serif text-[1.05rem] font-semibold text-[#1E1C1A]">{item.name}</h4>
+            {item.description.map((line) => (
+              <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">{line}</p>
+            ))}
+
+            {item.location && (
+              <div class="mt-3 flex items-start gap-2 border-t border-[#EDEBE6] pt-3 text-[0.78rem] text-[#8A8781]">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mt-[1px] shrink-0">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>{item.location}</span>
+              </div>
+            )}
+
+            {item.notes && item.notes.length > 0 && (
+              <ul class="mt-3 space-y-1">
+                {item.notes.map((note) => (
+                  <li class="text-[0.74rem] leading-[1.6] text-[#8A8781]">※ {note}</li>
                 ))}
-                <dl class="mt-4 space-y-1.5 text-[0.78rem] text-[#8A8781]">
-                  <div class="flex justify-between gap-2"><dt>ホテルからの所要時間</dt><dd class="text-right text-[#1E1C1A]">{withFallback(item.accessFromHotel)}</dd></div>
-                  <div class="flex justify-between gap-2"><dt>料金</dt><dd class="text-right text-[#1E1C1A]">{withFallback(item.fee)}</dd></div>
-                  {item.beginnerFriendly && <div class="flex justify-between gap-2"><dt>初心者</dt><dd class="text-right text-[#1E1C1A]">{item.beginnerFriendly}</dd></div>}
-                  {item.period && <div class="flex justify-between gap-2"><dt>開催期間</dt><dd class="text-right text-[#1E1C1A]">{item.period}</dd></div>}
-                  <div class="flex justify-between gap-2"><dt>予約方法</dt><dd class="text-right text-[#1E1C1A]">{withFallback(item.reservationMethod)}</dd></div>
-                </dl>
-              </div>
-            </div>
-          ))}
+              </ul>
+            )}
+
+            {item.officialSite && (
+              <a
+                href={item.officialSite}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group mt-4 inline-flex items-center gap-1.5 text-[0.8rem] font-medium text-[#A24730] transition-colors hover:text-[#8A3B27]"
+              >
+                公式サイトを見る
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-300 group-hover:translate-x-1">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+              </a>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
+  </div>
+</section>
 
     {/* 利用案内 */}
     <section class="mx-auto max-w-[1320px] px-10 py-[64px]">

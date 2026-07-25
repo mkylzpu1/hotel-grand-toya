@@ -87,47 +87,122 @@
       }
     ]
   },
-  "activitiesSection": {
-    "icon": "外",
-    "eyebrow": "Activities",
-    "heading": "周辺アクティビティ",
-    "externalBadgeLabel": "提携施設・ホテル外",
-    "items": [
-      {
-        "id": "canoe",
-        "name": "カヌー",
-        "image": { "label": "カヌー" },
-        "description": ["洞爺湖の澄んだ水面を、カヌーで巡るアクティビティです。初心者の方にもおすすめです。"],
-        "beginnerFriendly": "可",
-        "duration": "約60分",
-        "period": "4月下旬〜10月下旬",
-        "reservationMethod": "フロントまでお問い合わせください。"
-      },
-      {
-        "id": "golf",
-        "name": "ゴルフ",
-        "image": { "label": "ゴルフ場" },
-        "description": ["洞爺湖畔のゴルフ場で、雄大な景色とともにゴルフをお楽しみいただけます。"],
-        "accessFromHotel": "お問い合わせください",
-        "reservationMethod": "各ゴルフ場へ直接お問い合わせください。"
-      },
-      {
-        "id": "putting-golf",
-        "name": "パターゴルフ",
-        "image": { "label": "パターゴルフ" },
-        "description": ["ご家族で気軽に楽しめるパターゴルフです。"],
-        "reservationMethod": "現地にてご案内いたします。"
-      },
-      {
-        "id": "horse-riding",
-        "name": "乗馬",
-        "image": { "label": "乗馬" },
-        "description": ["洞爺湖周辺の自然の中で、乗馬体験をお楽しみいただけます。初心者向けコースもございます。"],
-        "beginnerFriendly": "可",
-        "reservationMethod": "フロントまでお問い合わせください。"
-      }
-    ]
-  },
+"activitiesSection": {
+  "icon": "外",
+  "eyebrow": "Activities",
+  "heading": "周辺アクティビティ",
+  "externalBadgeLabel": "提携施設・ホテル外",
+  "items": [
+    {
+      "id": "cruise",
+      "name": "洞爺湖遊覧船",
+      "image": { "label": "洞爺湖遊覧船", "src": "/assets/photos/facility-out8.png" },
+      "description": [
+        "洞爺湖を周遊する遊覧船です。湖上から中島や有珠山、羊蹄山など洞爺湖ならではの雄大な景色を楽しめます。",
+        "花火大会期間には花火鑑賞船も運航されます。"
+      ],
+      "location": "北海道虻田郡洞爺湖町洞爺湖温泉",
+      "accessFromHotel": "徒歩約5分",
+      "officialSite": "https://www.toyakokisen.com/"
+    },
+    {
+      "id": "usuzan-ropeway",
+      "name": "有珠山ロープウェイ",
+      "image": { "label": "有珠山ロープウェイ", "src": "/assets/photos/facility-out9.png" },
+      "description": [
+        "昭和新山の麓から山頂へ約6分で到着するロープウェイです。",
+        "洞爺湖や昭和新山、噴火湾を望む壮大な景色と、火山の迫力を間近で体感できます。"
+      ],
+      "location": "北海道有珠郡壮瞥町昭和新山184-5",
+      "accessFromHotel": "車約10分",
+      "officialSite": "https://usuzan.hokkaido.jp/"
+    },
+    {
+      "id": "showa-shinzan",
+      "name": "昭和新山",
+      "image": { "label": "昭和新山", "src": "/assets/photos/facility-out6.png" },
+      "description": [
+        "1943年の噴火活動によって誕生した世界的にも珍しい火山です。",
+        "現在も赤褐色の山肌が残り、有珠山ロープウェイとあわせて楽しめます。"
+      ],
+      "location": "北海道有珠郡壮瞥町昭和新山",
+      "accessFromHotel": "車約10分",
+      "officialSite": "https://usuzan.hokkaido.jp/"
+    },
+    {
+      "id": "silo-observatory",
+      "name": "サイロ展望台",
+      "image": { "label": "サイロ展望台", "src": "/assets/photos/facility-out7.png" },
+      "description": [
+        "洞爺湖、中島、有珠山、昭和新山を一望できる人気の展望スポットです。",
+        "洞爺湖を代表する景色を眺めながら、お土産や名物プリンも楽しめます。"
+      ],
+      "location": "北海道虻田郡洞爺湖町成香3-5",
+      "accessFromHotel": "車約15分",
+      "officialSite": "https://toyako.biz/"
+    },
+    {
+      "id": "nishiyama-crater-trail",
+      "name": "西山山麓火口散策路",
+      "image": { "label": "西山山麓火口散策路", "src": "/assets/photos/facility-out3.png" },
+      "description": [
+        "2000年の有珠山噴火によってできた火口や被災した建物を間近で見学できる散策路です。",
+        "火山の力と自然の変化を体感できます。"
+      ],
+      "location": "北海道虻田郡洞爺湖町泉",
+      "accessFromHotel": "車約8分",
+      "officialSite": "https://www.laketoya.com/"
+    },
+    {
+      "id": "fireworks",
+      "name": "洞爺湖ロングラン花火大会",
+      "image": { "label": "洞爺湖ロングラン花火大会", "src": "/assets/photos/facility-out4.png" },
+      "description": [
+        "春から秋まで毎晩開催される洞爺湖名物の花火大会です。",
+        "湖上を移動しながら打ち上げられるため、湖畔のさまざまな場所から楽しめます。"
+      ],
+      "location": "洞爺湖温泉湖畔",
+      "accessFromHotel": "徒歩約3分",
+      "officialSite": "https://www.laketoya.com/"
+    },
+    {
+      "id": "onsen-street",
+      "name": "洞爺湖温泉街散策",
+      "image": { "label": "洞爺湖温泉街散策", "src": "/assets/photos/facility-out5.png" },
+      "description": [
+        "飲食店やカフェ、お土産店、足湯などが点在する温泉街です。",
+        "湖畔を散策しながら、洞爺湖ならではの穏やかな時間を楽しめます。"
+      ],
+      "location": "北海道虻田郡洞爺湖町洞爺湖温泉",
+      "accessFromHotel": "徒歩約1分",
+      "officialSite": "https://www.laketoya.com/"
+    },
+    {
+      "id": "canoe-sup",
+      "name": "洞爺湖カヌー・SUP体験",
+      "image": { "label": "洞爺湖カヌー・SUP体験", "src": "/assets/photos/facility-out1.png" },
+      "description": [
+        "透明度の高い洞爺湖で、カヌーやSUPを体験できます。",
+        "湖面から眺める景色は、陸上とは異なる魅力があります。"
+      ],
+      "location": "洞爺湖温泉周辺",
+      "accessFromHotel": "徒歩約5分",
+      "officialSite": "https://www.laketoya.com/"
+    },
+    {
+      "id": "rental-cycle",
+      "name": "レンタサイクル",
+      "image": { "label": "レンタサイクル", "src": "/assets/photos/facility-out2.png" },
+      "description": [
+        "湖畔沿いを自転車で巡りながら、洞爺湖の自然や街並みをゆったり楽しめます。",
+        "季節を感じながら自由に散策したい方におすすめです。"
+      ],
+      "location": "洞爺湖温泉街",
+      "accessFromHotel": "徒歩約5分",
+      "officialSite": "https://www.laketoya.com/"
+    }
+  ]
+},
   "usageNotice": {
     "heading": "ご利用にあたって",
     "items": [
