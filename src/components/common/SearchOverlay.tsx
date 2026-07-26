@@ -28,6 +28,7 @@ export default function SearchOverlay({
   const [activeIndex, setActiveIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const isComposingRef = useRef(false); // IME変換中かどうか
 
   useEffect(() => {
     if (!isOpen || fuse || !searchIndexUrl) return;
@@ -68,53 +69,54 @@ export default function SearchOverlay({
     setActiveIndex(0);
   }, [query]);
 
+  // ESCとカーソル移動はグローバルで受ける（IMEに影響されないため）
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        setActiveIndex((i) => Math.min(i + 1, results.length - 1));
+        setActiveIndex((i) => Math.min(i + 1, Math.max(results.length - 1, 0)));
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
         setActiveIndex((i) => Math.max(i - 1, 0));
-      } else if (e.key === 'Enter' && results[activeIndex]) {
-        window.location.href = results[activeIndex].item.url;
       }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [onClose, results, activeIndex]);
+  }, [onClose, results.length]);
+
+  // Enterでの決定は入力欄側で、IME確定と区別して処理する
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== 'Enter') return;
+    // 変換中のEnter、またはIME確定のEnter(keyCode 229)は無視
+    if (isComposingRef.current || (e as any).keyCode === 229) return;
+    if (results[activeIndex]) {
+      window.location.href = results[activeIndex].item.url;
+    }
+  };
 
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 z-[1000] flex items-start justify-center bg-[#0B141F]/80 px-6 pt-[10vh] backdrop-blur-md"
+      className="fixed inset-0 z-[1000] flex items-start justify-center bg-[#1E1C1A]/50 px-6 pt-[10vh] backdrop-blur-[2px]"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-[600px] overflow-hidden rounded-[3px] border border-white/[0.08] bg-[#16283A] shadow-[0_30px_80px_rgba(0,0,0,0.5)] transition-all duration-300"
+        className="relative w-full max-w-[640px] overflow-hidden rounded-[2px] border border-[#D8D7D2] bg-[#FDFCFA] shadow-[0_20px_60px_rgba(30,28,26,0.18)]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* 装飾: 右上の淡い漢字 */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-6 -top-10 select-none font-serif text-[140px] leading-none text-white/[0.025]"
-        >
-          探
-        </span>
-
         {/* 入力欄 */}
-        <div className="relative flex items-center gap-4 border-b border-white/[0.08] px-6 py-5">
+        <div className="relative flex items-center gap-4 border-b border-[#D8D7D2] px-7 py-6">
           <svg
-            width="18"
-            height="18"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             strokeWidth="1.75"
-            className="shrink-0 text-[#E8A87C]"
+            className="shrink-0 text-[#A24730]"
           >
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.3-4.3" />
@@ -123,76 +125,80 @@ export default function SearchOverlay({
             ref={inputRef}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleInputKeyDown}
+            onCompositionStart={() => {
+              isComposingRef.current = true;
+            }}
+            onCompositionEnd={() => {
+              // ブラウザによってはcompositionendとkeydownの順序がずれるため、
+              // 少し遅らせてフラグを下ろす
+              setTimeout(() => {
+                isComposingRef.current = false;
+              }, 0);
+            }}
             placeholder={placeholder}
-            className="w-full bg-transparent font-serif text-[17px] tracking-[0.04em] text-white placeholder:text-white/30 focus:outline-none"
+            className="w-full bg-transparent font-serif text-[19px] tracking-[0.03em] text-[#1E1C1A] placeholder:text-[#8A8781] focus:outline-none"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
               aria-label="clear"
-              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white/30 transition-colors hover:bg-white/10 hover:text-white"
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[#8A8781] transition-colors hover:bg-[#F0EFEA] hover:text-[#1E1C1A]"
             >
-              <span className="relative block h-2.5 w-2.5">
+              <span className="relative block h-3 w-3">
                 <span className="absolute left-1/2 top-1/2 h-[1.5px] w-full -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-full bg-current" />
                 <span className="absolute left-1/2 top-1/2 h-[1.5px] w-full -translate-x-1/2 -translate-y-1/2 -rotate-45 rounded-full bg-current" />
               </span>
             </button>
           )}
-          <kbd className="hidden shrink-0 rounded-[3px] border border-white/15 px-2 py-1 text-[10px] tracking-[0.08em] text-white/35 sm:block">
-            ESC
-          </kbd>
         </div>
 
         {/* 結果一覧 */}
-        <div className="relative max-h-[52vh] overflow-y-auto">
+        <div className="relative max-h-[54vh] overflow-y-auto">
           {isLoading && (
-            <div className="flex items-center justify-center gap-2 px-6 py-10 text-[12px] tracking-[0.1em] text-white/35">
-              <span className="h-1 w-1 animate-pulse rounded-full bg-[#E8A87C]" />
-              <span className="h-1 w-1 animate-pulse rounded-full bg-[#E8A87C] [animation-delay:0.15s]" />
-              <span className="h-1 w-1 animate-pulse rounded-full bg-[#E8A87C] [animation-delay:0.3s]" />
+            <div className="flex items-center justify-center gap-2 px-7 py-12 text-[13px] tracking-[0.1em] text-[#8A8781]">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#A24730]" />
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#A24730] [animation-delay:0.15s]" />
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#A24730] [animation-delay:0.3s]" />
             </div>
           )}
 
           {!isLoading && query.trim() && results.length === 0 && (
-            <div className="flex flex-col items-center gap-3 px-6 py-14 text-center">
-              <span className="font-serif text-[28px] text-white/15">無</span>
-              <p className="text-[13px] tracking-[0.05em] text-white/40">{noResultsLabel}</p>
+            <div className="flex flex-col items-center gap-3 px-7 py-16 text-center">
+              <span className="font-serif text-[15px] tracking-[0.04em] text-[#8A8781]">
+                {noResultsLabel}
+              </span>
             </div>
           )}
 
           {!isLoading && results.length > 0 && (
-            <ul className="py-2">
+            <ul className="divide-y divide-[#EFEEEA] py-1">
               {results.map((r, i) => (
                 <li key={r.item.url + i}>
                   <a
                     href={r.item.url}
                     onClick={onClose}
                     onMouseEnter={() => setActiveIndex(i)}
-                    className={`group flex items-start gap-4 px-6 py-4 transition-colors ${
-                      i === activeIndex ? 'bg-white/[0.06]' : ''
+                    className={`group flex items-center gap-4 px-7 py-5 transition-colors ${
+                      i === activeIndex ? 'bg-[#FAF6F0]' : ''
                     }`}
                   >
-                    <span
-                      className={`mt-1 h-[3px] w-[3px] shrink-0 origin-left rounded-full bg-[#A24730] transition-transform duration-200 ${
-                        i === activeIndex ? 'scale-150' : 'scale-0'
-                      }`}
-                    />
-                    <span className="flex flex-1 flex-col gap-1">
-                      <span className="flex items-baseline gap-2.5">
-                        <span className="font-serif text-[15.5px] tracking-[0.03em] text-white">
+                    <span className="flex flex-1 flex-col gap-1.5">
+                      <span className="flex items-baseline gap-3">
+                        <span className="font-serif text-[17px] tracking-[0.02em] text-[#1E1C1A]">
                           {r.item.title}
                         </span>
-                        <span className="text-[9.5px] font-medium tracking-[0.16em] text-[#E8A87C]/70">
+                        <span className="text-[11px] font-medium tracking-[0.12em] text-[#A24730]">
                           {r.item.category}
                         </span>
                       </span>
-                      <span className="line-clamp-1 text-[12.5px] leading-relaxed text-white/40">
+                      <span className="line-clamp-1 text-[13.5px] leading-relaxed text-[#55524C]">
                         {r.item.excerpt}
                       </span>
                     </span>
                     <span
-                      className={`mt-1.5 shrink-0 text-[12px] text-white/20 transition-all duration-200 ${
-                        i === activeIndex ? 'translate-x-0.5 text-[#E8A87C]' : ''
+                      className={`shrink-0 text-[14px] text-[#8A8781] transition-transform duration-200 ${
+                        i === activeIndex ? 'translate-x-1 text-[#A24730]' : ''
                       }`}
                     >
                       →
@@ -204,11 +210,8 @@ export default function SearchOverlay({
           )}
 
           {!isLoading && !query.trim() && (
-            <div className="flex flex-col items-center gap-2 px-6 py-14 text-center">
-              <span className="font-serif text-[10px] tracking-[0.2em] text-white/25">
-                SEARCH
-              </span>
-              <p className="text-[12px] tracking-[0.05em] text-white/30">
+            <div className="flex flex-col items-center gap-2 px-7 py-16 text-center">
+              <p className="text-[13.5px] tracking-[0.04em] text-[#8A8781]">
                 客室・温泉・お料理・館内施設などを検索できます
               </p>
             </div>
@@ -217,13 +220,13 @@ export default function SearchOverlay({
 
         {/* フッター: キー操作ヒント */}
         {results.length > 0 && (
-          <div className="flex items-center justify-end gap-4 border-t border-white/[0.06] px-6 py-2.5 text-[10px] tracking-[0.08em] text-white/25">
-            <span className="flex items-center gap-1">
-              <kbd className="rounded-[2px] border border-white/15 px-1.5 py-0.5">↑↓</kbd>
+          <div className="flex items-center justify-end gap-5 border-t border-[#D8D7D2] bg-[#FAFAFA] px-7 py-3 text-[11px] tracking-[0.06em] text-[#8A8781]">
+            <span className="flex items-center gap-1.5">
+              <kbd className="rounded-[2px] border border-[#D8D7D2] bg-white px-1.5 py-0.5">↑↓</kbd>
               移動
             </span>
-            <span className="flex items-center gap-1">
-              <kbd className="rounded-[2px] border border-white/15 px-1.5 py-0.5">↵</kbd>
+            <span className="flex items-center gap-1.5">
+              <kbd className="rounded-[2px] border border-[#D8D7D2] bg-white px-1.5 py-0.5">↵</kbd>
               開く
             </span>
           </div>
