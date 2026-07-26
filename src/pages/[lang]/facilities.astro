@@ -3,7 +3,8 @@ import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
-import { Footprints, Car } from 'lucide-astro';
+import { Footprints, Car, Star, Ticket, MapPin, ExternalLink, Store } from 'lucide-astro';
+
 
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('facilities-page');
@@ -25,6 +26,9 @@ function getAccessIcon(accessText?: string) {
   if (accessText.includes('車')) return 'car';
   return null;
 }
+
+const partnerActivities = page.activitiesSection.items.filter((item) => item.isPartner);
+const otherActivities = page.activitiesSection.items.filter((item) => !item.isPartner);
 ---
 
 <PageTemplate
@@ -129,77 +133,226 @@ function getAccessIcon(accessText?: string) {
     <div class="mb-14 max-w-[760px]">
       <SectionEyebrow icon={page.activitiesSection.icon} eyebrow={page.activitiesSection.eyebrow} heading={page.activitiesSection.heading} />
     </div>
-    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {page.activitiesSection.items.map((item) => (
-        <div class="border border-[#D8D7D2] bg-white">
-          {/* 画像エリア */}
-          <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8]">
-            {item.image ? (
-              <img src={item.image.src} alt={item.image.alt ?? item.name} class="h-full w-full object-cover" loading="lazy" />
-            ) : (
-              <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-[#A8A5A0]">
-                <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF] font-serif text-[1.1rem]">
-                  {page.activitiesSection.icon}
+    {/* 提携アクティビティ（先頭・横長カード） */}
+    {partnerActivities.length > 0 && (
+      <div class="mb-14">
+        <p class="mb-4 text-[0.78rem] font-medium tracking-[0.06em] text-[#A24730]">
+          {page.activitiesSection.partnerHeading}
+        </p>
+        <div class="space-y-6">
+          {partnerActivities.map((item) => (
+            <div class="grid grid-cols-1 overflow-hidden border-2 border-[#A24730] bg-white lg:grid-cols-[1.1fr_1.4fr]">
+              <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8] lg:aspect-auto">
+                {item.image?.src ? (
+                  <img src={item.image.src} alt={item.image.alt ?? item.image.label} class="h-full w-full object-cover" loading="lazy" />
+                ) : (
+                  <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-[#A8A5A0]">
+                    <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF] font-serif text-[1.1rem]">
+                      {page.activitiesSection.icon}
+                    </span>
+                    <span class="text-[0.7rem] tracking-[0.06em]">{item.name}</span>
+                  </div>
+                )}
+                <span class="absolute left-3 top-3 flex items-center gap-1.5 bg-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-white">
+                  <Star size={13} strokeWidth={2} />
+                  {item.partnerBadgeLabel ?? 'おすすめ'}
                 </span>
-                <span class="text-[0.7rem] tracking-[0.06em]">{item.name}</span>
+                {item.accessFromHotel && (
+                  <span class="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A]">
+                    {getAccessIcon(item.accessFromHotel) === 'walk' && <Footprints size={13} strokeWidth={2} />}
+                    {getAccessIcon(item.accessFromHotel) === 'car' && <Car size={13} strokeWidth={2} />}
+                    {item.accessFromHotel}
+                  </span>
+                )}
               </div>
-            )}
-            <span class="absolute left-3 top-3 border border-white/80 bg-black/50 px-2.5 py-1 text-[0.68rem] tracking-[0.04em] text-white">
-              {page.activitiesSection.externalBadgeLabel}
-            </span>
-            {item.accessFromHotel && (
-              <span class="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A]">
-                {getAccessIcon(item.accessFromHotel) === 'walk' && <Footprints size={13} strokeWidth={2} />}
-                {getAccessIcon(item.accessFromHotel) === 'car' && <Car size={13} strokeWidth={2} />}
-                {item.accessFromHotel}
-              </span>
-            )}
-          </div>
-
-          {/* テキストエリア */}
-          <div class="px-6 py-6">
-            <h4 class="mb-2 font-serif text-[1.05rem] font-semibold text-[#1E1C1A]">{item.name}</h4>
-            {item.description.map((line) => (
-              <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">{line}</p>
-            ))}
-
-            {item.location && (
-              <div class="mt-3 flex items-start gap-2 border-t border-[#EDEBE6] pt-3 text-[0.78rem] text-[#8A8781]">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mt-[1px] shrink-0">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                <span>{item.location}</span>
-              </div>
-            )}
-
-            {item.notes && item.notes.length > 0 && (
-              <ul class="mt-3 space-y-1">
-                {item.notes.map((note) => (
-                  <li class="text-[0.74rem] leading-[1.6] text-[#8A8781]">※ {note}</li>
+              <div class="flex flex-col px-7 py-8 lg:px-9">
+<div class="mb-2.5 flex items-center gap-3">
+  <span class="h-[20px] w-[3px] shrink-0 bg-[#A24730]"></span>
+  <h4 class="font-serif text-[1.2rem] font-semibold tracking-[0.01em] text-[#1E1C1A]">
+    {item.name}
+  </h4>
+</div>
+                {item.description.map((line) => (
+                  <p class="mb-2 text-[0.88rem] leading-[1.85] text-[#55524C] last:mb-0">{line}</p>
                 ))}
-              </ul>
-            )}
-
-            {item.officialSite && (
-              <a
-                href={item.officialSite}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group mt-4 inline-flex items-center gap-1.5 text-[0.8rem] font-medium text-[#A24730] transition-colors hover:text-[#8A3B27]"
-              >
-                公式サイトを見る
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-300 group-hover:translate-x-1">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-              </a>
-            )}
-          </div>
+                {item.includedInPlans && item.includedInPlans.length > 0 && (
+                  <div class="mt-5">
+                    <p class="mb-2.5 text-[0.72rem] tracking-[0.02em] text-[#8A8781]">この体験が含まれるプラン</p>
+                    <div class="flex flex-wrap gap-2">
+                      {item.includedInPlans.map((plan) => (
+                        <a
+                          href={plan.href}
+                          class="inline-flex items-center gap-1.5 rounded-full border border-[#D8D7D2] bg-[#FAFAFA] px-3 py-1.5 text-[0.76rem] font-medium text-[#1E1C1A] transition-colors hover:border-[#A24730] hover:text-[#A24730]"
+                        >
+                          <Ticket size={13} strokeWidth={2} class="text-[#A24730]" />
+                          {plan.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div class="mt-auto flex flex-col gap-1.5 pt-6 text-[0.78rem] text-[#8A8781]">
+                  {item.shopName && (
+                    <span class="flex items-center gap-1.5">
+                      <Store size={14} strokeWidth={2} />
+                      {item.shopName}
+                    </span>
+                  )}
+                  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    {item.location && (
+                      <span class="flex items-center gap-1.5">
+                        <MapPin size={14} strokeWidth={2} />
+                        {item.location}
+                      </span>
+                    )}
+                    {item.location && item.officialSite && <span class="text-[#C7C5BF]">　</span>}
+{item.officialSite && (
+  <a
+    href={item.officialSite}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-3 py-1 text-[0.74rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
+  >
+    公式サイトを見る
+    <ExternalLink size={12} strokeWidth={2} class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+  </a>
+)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    )}
+    {/* その他のアクティビティ（カテゴリタブ + グリッド） */}
+    {otherActivities.length > 0 && (
+      <div>
+        {partnerActivities.length > 0 && (
+          <p class="mb-5 text-[0.78rem] font-medium tracking-[0.06em] text-[#8A8781]">
+            {page.activitiesSection.otherHeading}
+          </p>
+        )}
+        {/* カテゴリフィルタタブ */}
+<div id="activity-tablist" class="mb-8 flex flex-wrap gap-2">
+  <button
+    type="button"
+    data-activity-category="all"
+    class="activity-tab rounded-full border px-4 py-2 text-[0.78rem] font-medium transition-colors border-[#A24730] bg-[#A24730] text-white"
+  >
+    {page.activitiesSection.allCategoryLabel}
+  </button>
+  {page.activitiesSection.categoryFilters.map((cat) => (
+    <button
+      type="button"
+      data-activity-category={cat.id}
+      class="activity-tab rounded-full border px-4 py-2 text-[0.78rem] font-medium transition-colors border-[#D8D7D2] bg-white text-[#55524C]"
+    >
+      {cat.label}
+    </button>
+  ))}
+</div>
+        <div id="activity-grid" class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {otherActivities.map((item) => (
+            <div class="activity-card border border-[#D8D7D2] bg-white" data-categories={(item.categories ?? []).join(',')}>
+              <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8]">
+                {item.image?.src ? (
+                  <img src={item.image.src} alt={item.image.alt ?? item.image.label} class="h-full w-full object-cover" loading="lazy" />
+                ) : (
+                  <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-[#A8A5A0]">
+                    <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF] font-serif text-[1.1rem]">
+                      {page.activitiesSection.icon}
+                    </span>
+                    <span class="text-[0.7rem] tracking-[0.06em]">{item.name}</span>
+                  </div>
+                )}
+                {item.accessFromHotel && (
+                  <span class="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A]">
+                    {getAccessIcon(item.accessFromHotel) === 'walk' && <Footprints size={13} strokeWidth={2} />}
+                    {getAccessIcon(item.accessFromHotel) === 'car' && <Car size={13} strokeWidth={2} />}
+                    {item.accessFromHotel}
+                  </span>
+                )}
+              </div>
+              <div class="px-6 py-6">
+<div class="mb-2 flex items-center gap-2.5">
+  <span class="h-[16px] w-[2.5px] shrink-0 bg-[#A24730]"></span>
+  <h4 class="font-serif text-[1.05rem] font-semibold tracking-[0.01em] text-[#1E1C1A]">
+    {item.name}
+  </h4>
+</div>
+                {item.categories && item.categories.length > 0 && (
+                  <div class="mb-3 flex flex-wrap gap-1.5">
+  {item.categories.map((catId) => {
+  const cat = page.activitiesSection.categoryFilters.find((c) => c.id === catId);
+  return cat ? (
+    <span class="rounded-full bg-[#F7EAE5] px-2.5 py-1 text-[0.68rem] font-medium text-[#A24730]">
+      {cat.label}
+    </span>
+  ) : null;
+})}
+                  </div>
+                )}
+                {item.description.map((line) => (
+                  <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">{line}</p>
+                ))}
+                {item.includedInPlans && item.includedInPlans.length > 0 && (
+                  <div class="mt-3">
+                    <p class="mb-2 text-[0.7rem] text-[#8A8781]">含まれるプラン</p>
+                    <div class="flex flex-wrap gap-1.5">
+                      {item.includedInPlans.map((plan) => (
+                        <a
+                          href={plan.href}
+                          class="inline-flex items-center gap-1 rounded-full border border-[#D8D7D2] px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A] transition-colors hover:border-[#A24730] hover:text-[#A24730]"
+                        >
+                          <Ticket size={11} strokeWidth={2} class="text-[#A24730]" />
+                          {plan.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div class="mt-3 flex flex-col gap-1.5 border-t border-[#EDEBE6] pt-3 text-[0.78rem] text-[#8A8781]">
+                  {item.shopName && (
+                    <span class="flex items-center gap-1.5">
+                      <Store size={13} strokeWidth={2} />
+                      {item.shopName}
+                    </span>
+                  )}
+                  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    {item.location && (
+                      <span class="flex items-center gap-1.5">
+                        <MapPin size={13} strokeWidth={2} />
+                        {item.location}
+                      </span>
+                    )}
+                    {item.location && item.officialSite && <span class="text-[#C7C5BF]">　</span>}
+{item.officialSite && (
+<a
+    href={item.officialSite}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
+  >
+    公式サイト
+    <ExternalLink size={11} strokeWidth={2} class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+  </a>
+)}
+                  </div>
+                </div>
+                {item.notes && item.notes.length > 0 && (
+                  <ul class="mt-3 space-y-1">
+                    {item.notes.map((note) => (
+                      <li class="text-[0.72rem] leading-[1.6] text-[#8A8781]">※ {note}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
   </div>
 </section>
 
@@ -213,3 +366,31 @@ function getAccessIcon(accessText?: string) {
       </ul>
     </section>
 </PageTemplate>
+
+<script>
+  const activityTablist = document.getElementById('activity-tablist');
+  const activityTabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.activity-tab'));
+  const activityCards = Array.from(document.querySelectorAll<HTMLElement>('.activity-card'));
+
+  const ACTIVE_CLASSES = ['border-[#A24730]', 'bg-[#A24730]', 'text-white', 'hover:bg-[#8A3B27]', 'hover:border-[#8A3B27]'];
+  const INACTIVE_CLASSES = ['border-[#D8D7D2]', 'bg-white', 'text-[#55524C]', 'hover:border-[#A24730]', 'hover:text-[#A24730]', 'hover:bg-[#F7EAE5]'];
+
+  function setTabState(tab: HTMLButtonElement, active: boolean) {
+    tab.classList.remove(...ACTIVE_CLASSES, ...INACTIVE_CLASSES);
+    tab.classList.add(...(active ? ACTIVE_CLASSES : INACTIVE_CLASSES));
+  }
+
+  activityTablist?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.activity-tab');
+    if (!btn) return;
+    const target = btn.dataset['activityCategory'];
+    activityTabs.forEach((t) => {
+      setTabState(t, t.dataset['activityCategory'] === target);
+    });
+    activityCards.forEach((card) => {
+      const categories = (card.dataset['categories'] ?? '').split(',').filter(Boolean);
+      const show = target === 'all' || categories.includes(target ?? '');
+      card.style.display = show ? '' : 'none';
+    });
+  });
+</script>

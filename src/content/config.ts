@@ -423,27 +423,37 @@ const serviceItem = z.object({
 });
 
 const activityItem = z.object({
-   id: z.string(),
-   name: z.string(),
-   image: roomGalleryItem.optional(),
-   description: z.array(z.string()),
-   location: z.string().optional(),
-   accessFromHotel: z.string().optional(),
-   duration: z.string().optional(),
-   hours: z.string().optional(),
-   closedDays: z.string().optional(),
-   period: z.string().optional(),
-   fee: z.string().optional(),
-   rentalItems: z.string().optional(),
-   planDetails: z.string().optional(),
-   reservationMethod: z.string().optional(),
-   targetAge: z.string().optional(),
-   beginnerFriendly: z.string().optional(),
-   rainyDayPolicy: z.string().optional(),
-   itemsToBring: z.string().optional(),
-   officialSite: z.string().optional(),
-   notes: z.array(z.string()).optional(),
- });
+  id: z.string(),
+  name: z.string(),
+  shopName: z.string().optional(),
+  image: roomGalleryItem.optional(),
+  description: z.array(z.string()),
+  location: z.string().optional(),
+  accessFromHotel: z.string().optional(),
+  duration: z.string().optional(),
+  hours: z.string().optional(),
+  closedDays: z.string().optional(),
+  period: z.string().optional(),
+  fee: z.string().optional(),
+  rentalItems: z.string().optional(),
+  planDetails: z.string().optional(),
+  reservationMethod: z.string().optional(),
+  targetAge: z.string().optional(),
+  beginnerFriendly: z.string().optional(),
+  rainyDayPolicy: z.string().optional(),
+  itemsToBring: z.string().optional(),
+  officialSite: z.string().optional(),
+  notes: z.array(z.string()).optional(),
+  isPartner: z.boolean().optional(),
+  partnerBadgeLabel: z.string().optional(),
+  includedInPlans: z.array(
+    z.object({
+      name: z.string(),
+      href: z.string(),
+    })
+  ).optional(),
+  categories: z.array(z.string()).optional(), // 複数カテゴリに属してよい
+});
 
 const facilitiesPage = defineCollection({
   type: 'data',
@@ -474,8 +484,12 @@ const facilitiesPage = defineCollection({
       icon: z.string(),
       eyebrow: z.string(),
       heading: z.string(),
-      // 「ホテル内施設ではない」ことを明示するバッジ文言
-      externalBadgeLabel: z.string(),
+      partnerHeading: z.string(),
+      otherHeading: z.string(),
+      categoryFilters: z.array(
+        z.object({ id: z.string(), label: z.string() })
+      ),
+      allCategoryLabel: z.string(), // 例: "すべて"
       items: z.array(activityItem),
     }),
     usageNotice: z.object({
