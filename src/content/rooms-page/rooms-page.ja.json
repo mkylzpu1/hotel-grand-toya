@@ -21,8 +21,7 @@
     "capacity": "定員",
     "view": "眺望",
     "bedding": "ベッド／布団",
-    "smoking": "喫煙可否",
-    "floor": "階数"
+    "smoking": "喫煙可否"
   },
   "amenitiesIcon": "設",
   "amenitiesEyebrow": "Amenities",
@@ -32,12 +31,16 @@
     { "key": "wifi", "label": "Wi-Fi" },
     { "key": "tv", "label": "テレビ" },
     { "key": "phone", "label": "電話" },
-    { "key": "fridge", "label": "冷蔵庫", "note": "中身は有料です" },
     { "key": "aircon", "label": "冷暖房" },
     { "key": "humidifier", "label": "加湿機能付空気清浄機" },
+    { "key": "fridge", "label": "冷蔵庫", "note": "中身は有料です" },
+    { "key": "unitbath", "label": "ユニットバス", "note": "洋室のみ" },
     { "key": "washlet", "label": "洗浄機付トイレ" },
     { "key": "dryer", "label": "ドライヤー" },
-    { "key": "unitbath", "label": "ユニットバス", "note": "洋室のみ" }
+    { "key": "loungewear", "label": "館内着" },
+    { "key": "bathtowel", "label": "バスタオル" },
+    { "key": "towel", "label": "タオル" },
+    { "key": "toothbrush", "label": "歯ブラシ" }
   ],
   "firstFloorNotice": {
     "heading": "1階客室のご注意",
@@ -66,7 +69,8 @@
           "name": "和室",
           "description": [
             "寛ぎの和室。畳のぬくもりと洞爺湖の景色に包まれながら、ゆったりとした時間をお過ごしいただけます。",
-            "1階・2階のフロアからお選びいただけ、ご予算やお好みの眺望に合わせてご案内いたします。"
+            "1階、または2階以上のフロアからお選びいただけ、ご予算やお好みの眺望に合わせてご案内いたします。",
+            "※内観は一例です。実際の客室と異なる場合がございます。"
           ],
           "image": { "label": "客室全体", "src": "/assets/photos/lounge-2.jpg", "alt": "湖側和室" },
           "size": "26㎡",
@@ -80,7 +84,7 @@
               "reservationName": "【1階】湖に面した和室8畳",
               "badges": ["洞爺湖ビュー", "花火鑑賞可能（4/28〜10/31）"],
               "images": [
-                { "label": "客室全体", "src": "/assets/photos/image19.png" },
+                { "label": "客室全体", "src": "/assets/photos/room-1st-1.png" },
                 { "label": "客室全体", "src": "/assets/photos/image2.png" }
               ],
               "description": [
@@ -152,7 +156,7 @@
           "name": "洋室",
           "description": [
             "畳での就寝に慣れていない方や、ベッドでのご滞在をお好みの方には洋室がおすすめです。",
-            "1階・2階のフロアからお選びいただけます。"
+            "1階、または2階以上のフロアからお選びいただけます。"
           ],
           "image": { "label": "客室全体", "src": "/assets/photos/facility-3.jpg", "alt": "湖側洋室（スタンダード）" },
           "size": "26㎡",
@@ -166,7 +170,7 @@
               "reservationName": "【1階】湖に面した洋室ツイン",
               "badges": ["洞爺湖ビュー", "花火鑑賞可能（4/28〜10/31）"],
               "images": [
-                { "label": "客室全体", "src": "/assets/photos/image19.png" },
+                { "label": "客室全体", "src": "/assets/photos/room-1st-1.png" },
                 { "label": "窓からの景色", "src": "/assets/photos/image2.png", "alt": "客室からの眺め" }
               ],
               "description": [

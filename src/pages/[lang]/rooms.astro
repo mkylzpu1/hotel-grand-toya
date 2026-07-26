@@ -95,14 +95,6 @@ const page = pageEntry.data;
                             </th>
                             <td class="py-3.5 text-[#1E1C1A]">{room.smoking}</td>
                           </tr>
-                          {room.floors && (
-                            <tr class="border-b border-[#D8D7D2]">
-                              <th scope="row" class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]">
-                                {page.basicInfoLabels.floor}
-                              </th>
-                              <td class="py-3.5 text-[#1E1C1A]">{room.floors.map(floor => floor.label).join(', ')}</td>
-                            </tr>
-                          )}
                         </tbody>
                       </table>
                     </div>

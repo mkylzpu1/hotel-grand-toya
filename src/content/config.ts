@@ -249,8 +249,6 @@ const roomsPage = defineCollection({
       view: z.string(),
       bedding: z.string(),
       smoking: z.string(),
-      // 階数は該当タイプ（1階客室など）にのみ表示するため任意ラベル扱い
-      floor: z.string(),
     }),
     amenitiesIcon: z.string(),
     amenitiesEyebrow: z.string(),

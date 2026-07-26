@@ -1,118 +1,59 @@
 ---
-// 客室アメニティ用のミニマルなラインアイコン。外部アイコンライブラリに依存せず、
-// サイトの配色（藍）に合わせた currentColor の SVG を key ごとに出し分ける。
+import { Wifi, Tv, Phone, Refrigerator, AirVent, Wind, Toilet, Bath, Shirt } from 'lucide-astro';
+
 interface Props {
   iconKey: string;
 }
-
 const { iconKey } = Astro.props as Props;
+
+const ICON_MAP: Record<string, any> = {
+  wifi: Wifi,
+  tv: Tv,
+  phone: Phone,
+  fridge: Refrigerator,
+  aircon: AirVent,
+  humidifier: Wind,
+  washlet: Toilet,
+  unitbath: Bath,
+  yukata: Shirt,
+};
+
+const LucideIcon = ICON_MAP[iconKey];
 ---
-
 <span class="amenity-icon" aria-hidden="true">
-  {
-    iconKey === 'wifi' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-        <path d="M4 8.5c4.4-4 11.6-4 16 0" />
-        <path d="M7 12.2c2.9-2.6 7.1-2.6 10 0" />
-        <path d="M10 15.8c1.2-1 2.8-1 4 0" />
-        <circle cx="12" cy="18.5" r="1" fill="currentColor" stroke="none" />
-      </svg>
-    ) : iconKey === 'tv' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="5.5" width="18" height="12" rx="1" />
-        <path d="M8 20.5h8" />
-        <path d="M12 17.5v3" />
-      </svg>
-    ) : iconKey === 'fridge' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="5.5" y="2.5" width="13" height="19" rx="1" />
-        <path d="M5.5 9.5h13" />
-        <path d="M8.5 5v2.5" />
-        <path d="M8.5 13v2.5" />
-      </svg>
-    ) : iconKey === 'dryer' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3.5 7.5c0-2 1.6-3.2 3.6-2.7 1.6.4 2.4 1.7 3.6 1.7 2 0 3-2 5.3-1.4 2.2.6 3.5 3 2.6 5.4-.6 1.6-2.2 2.3-2.2 3.8 0 1.8 1.7 1.9 1.7 3.7" />
-        <circle cx="7.2" cy="16" r="1" fill="currentColor" stroke="none" />
-      </svg>
-    ) : iconKey === 'yukata' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 3.5 12 6l3-2.5 4 2.5-2.5 3.5-1.5-1v11.5h-6.5V8.5l-1.5 1L4.5 6z" />
-        <path d="M10 6.5v3" />
-      </svg>
-    ) : iconKey === 'towel' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="4" y="3.5" width="16" height="17" rx="1" />
-        <path d="M4 8.5h16" />
-        <path d="M4 13.5h16" />
-      </svg>
-    ) : iconKey === 'shampoo' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M10 3.5h4v2.6l1.2 1.4v11.5a1.5 1.5 0 0 1-1.5 1.5h-3.4A1.5 1.5 0 0 1 8.8 19V7.5L10 6.1z" />
-        <path d="M9.7 11h4.6" />
-      </svg>
-    ) : iconKey === 'toothbrush' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 20 15 9" />
-        <path d="M13 7l4-4 4 4-4 4z" />
-        <path d="M15 9l2 2" />
-        <path d="M13.5 10.5l2 2" />
-      </svg>
-    ) : iconKey === 'safe' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="4" y="4" width="16" height="16" rx="1.2" />
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 9v0.6" />
-        <path d="M15.6 8.4v0" />
-      </svg>
-    ) : iconKey === 'kettle' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 12.5h11.5a2.5 2.5 0 0 1 0 5H5z" />
-        <path d="M5 9.5h9v3H5z" />
-        <path d="M9.5 9.5V7h2.5" />
-        <path d="M6.5 17.5v1.5" />
-        <path d="M11 17.5v1.5" />
-      </svg>
-    ) : iconKey === 'phone' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M6 4h3l1.5 4-2 1.5a10 10 0 0 0 6 6l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 4.5 5.6 1.5 1.5 0 0 1 6 4z" />
-      </svg>
-    ) : iconKey === 'aircon' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="5" width="18" height="6" rx="1" />
-        <path d="M6.5 14.5c0 2-1.2 2.4-1.2 4.5" />
-        <path d="M11.5 14.5c0 2.6-1.2 3-1.2 5.5" />
-        <path d="M16.5 14.5c0 2-1.2 2.4-1.2 4.5" />
-      </svg>
-    ) : iconKey === 'humidifier' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3.5c2 2.6 3.2 4.6 3.2 6.4a3.2 3.2 0 0 1-6.4 0c0-1.8 1.2-3.8 3.2-6.4z" />
-        <path d="M6 14.5h12l-1 6.5H7z" />
-        <path d="M9.5 17.5h5" />
-      </svg>
-    ) : iconKey === 'washlet' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M7.5 10.5V7a2.5 2.5 0 0 1 5 0" />
-        <path d="M5.5 10.5h11l-.9 6.3A3 3 0 0 1 12.6 19.3h-1.2a3 3 0 0 1-3-2.5z" />
-        <path d="M8.5 13.5h5" />
-      </svg>
-    ) : iconKey === 'unitbath' ? (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 12.5h16v2A4.5 4.5 0 0 1 15.5 19h-7A4.5 4.5 0 0 1 4 14.5z" />
-        <path d="M6 12.5V7.8A2.3 2.3 0 0 1 8.3 5.5c1 0 1.8.55 2.1 1.4" />
-        <path d="M4 12.5V10" />
-        <path d="M7 19v1.5" />
-        <path d="M15 19v1.5" />
-      </svg>
-    ) : (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="8.5" />
-        <path d="M12 8v4.5l3 2" />
-      </svg>
-    )
-  }
+  {LucideIcon ? (
+    <LucideIcon size={22} stroke-width={1.6} />
+  ) : iconKey === 'dryer' ? (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3.5 7.5c0-2 1.6-3.2 3.6-2.7 1.6.4 2.4 1.7 3.6 1.7 2 0 3-2 5.3-1.4 2.2.6 3.5 3 2.6 5.4-.6 1.6-2.2 2.3-2.2 3.8 0 1.8 1.7 1.9 1.7 3.7" />
+      <circle cx="7.2" cy="16" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  ) : iconKey === 'bathtowel' ? (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="4.5" width="12" height="15" rx="1.5" />
+      <path d="M4 9.5h12" />
+      <path d="M16 8.5c2 0 3.5 1.3 3.5 3v6c0 1-.7 1.5-1.5 1.5H16" />
+    </svg>
+  ) : iconKey === 'towel' ? (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="3.5" width="16" height="17" rx="1" />
+      <path d="M4 8.5h16" />
+      <path d="M4 13.5h16" />
+    </svg>
+  ) : iconKey === 'toothbrush' ? (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 20 15 9" />
+      <path d="M13 7l4-4 4 4-4 4z" />
+      <path d="M15 9l2 2" />
+      <path d="M13.5 10.5l2 2" />
+    </svg>
+  ) : (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 8v4.5l3 2" />
+    </svg>
+  )}
 </span>
-
 <style>
   .amenity-icon {
     display: flex;
