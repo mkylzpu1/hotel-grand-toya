@@ -330,6 +330,7 @@ const cuisinePlanItem = z.object({
     })
     .optional(),
   seasonalNote: z.string(),
+  reservationHref: z.string().optional(), 
 });
 
 const cuisinePage = defineCollection({

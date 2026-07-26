@@ -25,50 +25,38 @@
         "どちらのプランも、洞爺湖周辺や道内各地から届く旬の食材を使い、温かい料理は温かいうちにご提供いたします。"
       ],
       "plans": [
-        {
-          "id": "yosenabe",
-          "name": "寄せ鍋会席",
-          "nameEn": "Yosenabe Kaiseki",
-          "image": { "src": "/assets/photos/food-night1.jpg", "alt": "寄せ鍋会席" },
-          "description": [
-            "魚介と野菜をふんだんに使った寄せ鍋を中心に、旬の味わいをお楽しみいただく会席プランです。",
-            "体の芯から温まる、温泉旅館ならではの冬におすすめのお料理です。"
-          ],
-          "menuExample": {
-            "heading": "お品書き（例）",
-            "items": [
-              "先付",
-              "お造り盛り合わせ",
-              "季節の焼物",
-              "寄せ鍋",
-              "食事・止め椀・香の物",
-              "水菓子"
-            ]
-          },
-          "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。"
-        },
-        {
-          "id": "sukiyaki",
-          "name": "すき焼き会席",
-          "nameEn": "Sukiyaki Kaiseki",
-          "image": { "src": "/assets/photos/food-night2.jpg", "alt": "すき焼き会席" },
-          "description": [
-            "北海道産牛肉を使ったすき焼きを主役に、季節の前菜や焼物と共にお楽しみいただく会席プランです。",
-            "甘辛い割り下と卵の絡む、定番ながら贅沢なひと品をご堪能ください。"
-          ],
-          "menuExample": {
-            "heading": "お品書き（例）",
-            "items": [
-              "先付",
-              "お造り盛り合わせ",
-              "季節の焼物",
-              "すき焼き",
-              "食事・止め椀・香の物",
-              "水菓子"
-            ]
-          },
-          "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。"
-        }
+{
+  "id": "yosenabe",
+  "name": "寄せ鍋会席膳",
+  "nameEn": "Yosenabe Kaiseki",
+  "image": { "src": "/assets/photos/food-night1.jpg", "alt": "寄せ鍋会席" },
+  "description": [
+    "魚介と野菜をふんだんに使った寄せ鍋を中心に、旬の味わいをお楽しみいただく会席プランです。",
+    "体の芯から温まる、温泉旅館ならではの冬におすすめのお料理です。"
+  ],
+  "menuExample": {
+    "heading": "お品書き（例）",
+    "items": ["先付", "お造り盛り合わせ", "季節の焼物", "寄せ鍋", "食事・止め椀・香の物", "水菓子"]
+  },
+  "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。",
+  "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045433&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+},
+{
+  "id": "sukiyaki",
+  "name": "おまかせ和食会席膳",
+  "nameEn": "Omakase Japanese Kaiseki",
+  "image": { "src": "/assets/photos/food-night2.jpg", "alt": "おまかせ和食会席膳" },
+  "description": [
+    "特選豚肩ロースを使用したしゃぶしゃぶを主役に、季節の前菜や焼物と共にお楽しみいただく会席プランです。",
+    "甘辛い割り下と卵の絡む、定番ながら贅沢なひと品をご堪能ください。"
+  ],
+  "menuExample": {
+    "heading": "お品書き（例）",
+    "items": ["先付", "お造り盛り合わせ", "季節の焼物", "しゃぶしゃぶ", "食事・止め椀・香の物", "水菓子"]
+  },
+  "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。",
+  "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045415&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+}
       ]
     },
     "breakfast": {

@@ -56,20 +56,21 @@ const page = pageEntry.data;
           ))}
         </div>
 
-        <div class="space-y-16 lg:space-y-20">
-          {page.dinner.plans.map((plan) => (
-            <div id={plan.id ? `plan-${plan.id}` : undefined} class="scroll-mt-6 border-t border-[#D8D7D2] pt-14 first:border-t-0 first:pt-0">
-              <CuisinePlanBlock
-                name={plan.name}
-                nameEn={plan.nameEn}
-                image={plan.image}
-                description={plan.description}
-                menuExample={plan.menuExample}
-                seasonalNote={plan.seasonalNote}
-              />
-            </div>
-          ))}
-        </div>
+<div class="space-y-16 lg:space-y-20">
+  {page.dinner.plans.map((plan) => (
+    <div id={plan.id ? `plan-${plan.id}` : undefined} class="scroll-mt-6 border-t border-[#D8D7D2] pt-14 first:border-t-0 first:pt-0">
+      <CuisinePlanBlock
+        name={plan.name}
+        nameEn={plan.nameEn}
+        image={plan.image}
+        description={plan.description}
+        menuExample={plan.menuExample}
+        seasonalNote={plan.seasonalNote}
+        reservationHref={plan.reservationHref}
+      />
+    </div>
+  ))}
+</div>
       </div>
     </section>
 

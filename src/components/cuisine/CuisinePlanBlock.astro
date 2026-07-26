@@ -7,11 +7,10 @@ interface Props {
   description: string[];
   menuExample?: { heading: string; items: string[] };
   seasonalNote: string;
+  reservationHref?: string;
 }
-
-const { name, nameEn, image, description, menuExample, seasonalNote } = Astro.props;
+const { name, nameEn, image, description, menuExample, seasonalNote, reservationHref } = Astro.props;
 ---
-
 <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
   <div class="aspect-[4/3] overflow-hidden">
     <img src={image.src} alt={image.alt} class="h-full w-full object-cover" loading="lazy" />
@@ -26,7 +25,6 @@ const { name, nameEn, image, description, menuExample, seasonalNote } = Astro.pr
     {description.map((line) => (
       <p class="mb-3 text-[0.88rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
     ))}
-
     {menuExample && (
       <div class="mt-7">
         <h4 class="mb-3 text-[0.8rem] font-medium tracking-[0.1em] text-[#29415C]">
@@ -39,7 +37,17 @@ const { name, nameEn, image, description, menuExample, seasonalNote } = Astro.pr
         </ul>
       </div>
     )}
-
     <p class="mt-5 text-[0.78rem] text-[#8A8781]">※ {seasonalNote}</p>
+    {reservationHref && (
+      <div class="mt-7">
+        <a
+          href={reservationHref}
+          class="group inline-flex items-center gap-2 bg-[#A24730] px-7 py-3.5 text-[0.86rem] font-medium tracking-[0.04em] text-white transition-colors hover:bg-[#8A3B27]"
+        >
+          {name}プランの予約はこちら
+          <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    )}
   </div>
 </div>
