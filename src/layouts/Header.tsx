@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import SearchOverlay from '../components/common/SearchOverlay'; // パスは実際の配置に合わせて調整してください
 
 interface PrimaryNavItem {
   href: string;
@@ -6,21 +7,18 @@ interface PrimaryNavItem {
   en: string;
   icon: string;
 }
-
 interface SecondaryNavItem {
   href: string;
   label: string;
 }
-
 interface LangLink {
   code: string;
   label: string;
   href: string;
   active: boolean;
 }
-
 interface HeaderProps {
-  primaryNavItems: PrimaryNavItem[];
+  primaryNavItems: PrimaryNavInpmtem[];
   secondaryNavItems: SecondaryNavItem[];
   reserveCta: string;
   phoneAriaLabel: string;
@@ -33,8 +31,11 @@ interface HeaderProps {
   navAriaLabel: string;
   drawerNavAriaLabel: string;
   langLinks: LangLink[];
+  searchIndexUrl: string;
+  searchPlaceholder: string;
+  searchOpenLabel: string;
+  searchNoResultsLabel: string;
 }
-
 export default function Header({
   primaryNavItems,
   secondaryNavItems,
@@ -49,17 +50,20 @@ export default function Header({
   navAriaLabel,
   drawerNavAriaLabel,
   langLinks,
+  searchIndexUrl,
+  searchPlaceholder,
+  searchOpenLabel,
+  searchNoResultsLabel,
 }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const closeNav = () => setIsOpen(false);
-
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
   }, [isOpen]);
-
   return (
     <header
       className="absolute left-0 top-0 z-20 w-full px-8 py-7 lg:px-12 lg:py-9 lg:pr-[168px]"
@@ -73,10 +77,9 @@ export default function Header({
             className="block w-[150px] lg:w-[170px]"
           />
         </a>
-
         <nav className="ml-16 hidden items-center gap-11 lg:flex" aria-label={navAriaLabel}>
           {primaryNavItems.map((item) => (
-            <a
+<a
               key={item.href}
               href={item.href}
               className="group relative flex flex-col items-start"
@@ -91,24 +94,35 @@ export default function Header({
             </a>
           ))}
         </nav>
+        <div className="ml-auto hidden items-center gap-3 lg:flex">
+          {/* 検索アイコン */}
+          <button
+            onClick={() => setIsSearchOpen(true)}
+            aria-label={searchOpenLabel}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/60 backdrop-blur-sm transition-colors hover:border-[#A24730] hover:text-[#A24730]"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+          </button>
 
-<div className="ml-auto hidden items-center gap-5 lg:flex">
+          {/* 言語切替 */}
           <div className="flex items-center gap-0.5 rounded-full border border-white/20 bg-white/5 p-1 backdrop-blur-sm">
             {langLinks.map((lang) => (
-            <a
-              key={lang.code}
-              href={lang.href}
-              className={`rounded-full px-3 py-1.5 text-[11px] font-medium tracking-[0.1em] transition-colors duration-200 ${
-                lang.active ? 'bg-white text-[#16283A]' : 'text-white/60 hover:text-white'
-              }`}
-            >
-              {lang.label}
-            </a>
+<a
+                key={lang.code}
+                href={lang.href}
+                className={`rounded-full px-3 py-1.5 text-[11px] font-medium tracking-[0.1em] transition-colors duration-200 ${
+                  lang.active ? 'bg-white text-[#16283A]' : 'text-white/60 hover:text-white'
+                }`}
+              >
+                {lang.label}
+              </a>
             ))}
           </div>
         </div>
       </div>
-
       <button
         className="group fixed right-6 top-6 z-[999] flex h-[52px] items-center gap-3 rounded-full border border-white/20 bg-[#16283A]/70 pl-5 pr-[18px] backdrop-blur-md transition-colors hover:bg-[#16283A]/90 lg:right-9 lg:top-9"
         id="nav-toggle"
@@ -142,7 +156,6 @@ export default function Header({
           />
         </span>
       </button>
-
       <div
         className={`fixed inset-0 z-[900] bg-[#0F1A26]/60 backdrop-blur-sm transition-opacity duration-300 ${
           isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
@@ -150,7 +163,6 @@ export default function Header({
         onClick={closeNav}
         aria-hidden="true"
       />
-
       {/* ドロワー */}
       <nav
         id="site-nav"
@@ -166,7 +178,6 @@ export default function Header({
         >
           湖
         </span>
-
         <div className="relative flex items-center justify-between px-7 pt-7 lg:px-10 lg:pt-9">
           <span className="font-serif text-[12px] tracking-[0.14em] text-white/50">
             Hotel Grand Toya
@@ -182,7 +193,6 @@ export default function Header({
             </span>
           </button>
         </div>
-
         {/* スクロール領域: 万一入りきらない画面サイズでも崩れないための保険 */}
         <div className="relative flex flex-1 flex-col overflow-y-auto px-7 pt-5 lg:px-10">
           {/* 主要コンテンツナビ */}
@@ -197,7 +207,7 @@ export default function Header({
                   transform: isOpen ? 'translateX(0)' : 'translateX(20px)',
                 }}
               >
-                <a
+<a
                   href={item.href}
                   onClick={closeNav}
                   className="group relative flex items-center gap-4 border-b border-white/[0.08] py-3.5"
@@ -220,10 +230,9 @@ export default function Header({
               </li>
             ))}
           </ul>
-
           {/* 予約・電話CTA */}
           <div className="my-5 flex items-center gap-3">
-            <a
+<a
               href={reservationUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -232,7 +241,7 @@ export default function Header({
             >
               {reserveCta}
             </a>
-            <a
+<a
               href={`tel:${tel}`}
               className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors hover:border-[#A24730] hover:text-[#A24730]"
               aria-label={phoneAriaLabel}
@@ -249,7 +258,6 @@ export default function Header({
               </svg>
             </a>
           </div>
-
           {/* 利用規約・会社情報などの副次ナビ */}
           <div className="border-t border-white/[0.08] pb-6 pt-5">
             <span className="mb-3 block text-[9px] font-medium tracking-[0.2em] text-white/30">
@@ -258,7 +266,7 @@ export default function Header({
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {secondaryNavItems.map((item) => (
                 <li key={item.label}>
-                  <a
+<a
                     href={item.href}
                     onClick={closeNav}
                     className="text-[11.5px] leading-snug tracking-[0.02em] text-white/45 transition-colors hover:text-white"
@@ -270,14 +278,13 @@ export default function Header({
             </ul>
           </div>
         </div>
-
         {/* フッター: 言語切替（モバイルのみ） */}
         <div className="relative flex items-center justify-between border-t border-white/[0.08] px-7 py-4 lg:hidden lg:px-10">
           <div className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.12em] text-white/60">
             {langLinks.map((lang, i) => (
               <span key={lang.code} className="flex items-center">
                 {i > 0 && <span className="mx-1.5 h-2.5 w-px bg-white/20" />}
-                <a
+<a
                   href={lang.href}
                   className={`transition-colors ${
                     lang.active ? 'text-[#E8A87C]' : 'hover:text-white'
@@ -290,6 +297,14 @@ export default function Header({
           </div>
         </div>
       </nav>
+
+      <SearchOverlay
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        searchIndexUrl={searchIndexUrl}
+        placeholder={searchPlaceholder}
+        noResultsLabel={searchNoResultsLabel}
+      />
     </header>
   );
 }
