@@ -33,12 +33,12 @@
   ],
   "secondaryNavItems": [
     {
-      "href": "/ja/faq/",
-      "label": "よくあるご質問"
-    },
-    {
       "href": "/ja/news/",
       "label": "お知らせ"
+    },
+    {
+      "href": "/ja/faq/",
+      "label": "よくあるご質問"
     },
     {
       "href": "#",
