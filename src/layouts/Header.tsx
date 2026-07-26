@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SearchOverlay from '../components/common/SearchOverlay'; // パスは実際の配置に合わせて調整してください
 
 interface PrimaryNavItem {
@@ -18,7 +18,7 @@ interface LangLink {
   active: boolean;
 }
 interface HeaderProps {
-  primaryNavItems: PrimaryNavInpmtem[];
+  primaryNavItems: PrimaryNavItem[];
   secondaryNavItems: SecondaryNavItem[];
   reserveCta: string;
   phoneAriaLabel: string;
@@ -31,11 +31,117 @@ interface HeaderProps {
   navAriaLabel: string;
   drawerNavAriaLabel: string;
   langLinks: LangLink[];
+  langSwitcherLabel: string; // 例: "言語を選択" — ドロップダウンの aria-label 用
   searchIndexUrl: string;
   searchPlaceholder: string;
   searchOpenLabel: string;
   searchNoResultsLabel: string;
 }
+
+/**
+ * 言語切替ドロップダウン(案A)
+ * 常時表示は現在の言語のみ。クリック/Enterで展開し、Escapeまたは外側クリックで閉じる。
+ * 4言語以上に増えても横幅を消費しないため、ヘッダーの主要ナビと衝突しない。
+ */
+function LanguageDropdown({
+  langLinks,
+  label,
+}: {
+  langLinks: LangLink[];
+  label: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const firstItemRef = useRef<HTMLAnchorElement>(null);
+  const active = langLinks.find((l) => l.active) ?? langLinks[0];
+
+  useEffect(() => {
+    if (!open) return;
+    firstItemRef.current?.focus();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    const onClickOutside = (e: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('mousedown', onClickOutside);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('mousedown', onClickOutside);
+    };
+  }, [open]);
+
+  return (
+    <div ref={rootRef} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        aria-label={label}
+        className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-3 py-2 text-[11px] font-medium tracking-[0.08em] text-white backdrop-blur-sm transition-colors hover:border-[#A24730]"
+      >
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          className="text-white/60"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 1 0 20" />
+        </svg>
+        {active.label}
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          className={`text-white/60 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          aria-hidden="true"
+        >
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+
+      {open && (
+        <div
+          role="listbox"
+          aria-label={label}
+          className="absolute right-0 top-[calc(100%+8px)] z-20 min-w-[110px] rounded-[10px] border border-white/10 bg-[#1D3247] p-1.5 shadow-2xl"
+        >
+          {langLinks.map((lang, i) => (
+            <a
+              key={lang.code}
+              ref={i === 0 ? firstItemRef : undefined}
+              href={lang.href}
+              role="option"
+              aria-selected={lang.active}
+              onClick={() => setOpen(false)}
+              className={`block rounded-md px-2.5 py-2 text-[12px] tracking-[0.03em] transition-colors ${
+                lang.active
+                  ? 'bg-white/10 text-[#E8A87C]'
+                  : 'text-white/65 hover:bg-white/5 hover:text-white'
+              }`}
+            >
+              {lang.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Header({
   primaryNavItems,
   secondaryNavItems,
@@ -50,6 +156,7 @@ export default function Header({
   navAriaLabel,
   drawerNavAriaLabel,
   langLinks,
+  langSwitcherLabel,
   searchIndexUrl,
   searchPlaceholder,
   searchOpenLabel,
@@ -58,15 +165,17 @@ export default function Header({
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const closeNav = () => setIsOpen(false);
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
   }, [isOpen]);
+
   return (
     <header
-      className="absolute left-0 top-0 z-20 w-full px-8 py-7 lg:px-12 lg:py-9 lg:pr-[168px]"
+      className="absolute left-0 top-0 z-20 w-full px-8 py-7 lg:px-12 lg:py-9 lg:pr-28"
       id="site-header"
     >
       <div className="flex items-center">
@@ -79,7 +188,7 @@ export default function Header({
         </a>
         <nav className="ml-16 hidden items-center gap-11 lg:flex" aria-label={navAriaLabel}>
           {primaryNavItems.map((item) => (
-<a
+            <a
               key={item.href}
               href={item.href}
               className="group relative flex flex-col items-start"
@@ -106,38 +215,18 @@ export default function Header({
               <path d="m21 21-4.3-4.3" />
             </svg>
           </button>
-
-          {/* 言語切替 */}
-          <div className="flex items-center gap-0.5 rounded-full border border-white/20 bg-white/5 p-1 backdrop-blur-sm">
-            {langLinks.map((lang) => (
-<a
-                key={lang.code}
-                href={lang.href}
-                className={`rounded-full px-3 py-1.5 text-[11px] font-medium tracking-[0.1em] transition-colors duration-200 ${
-                  lang.active ? 'bg-white text-[#16283A]' : 'text-white/60 hover:text-white'
-                }`}
-              >
-                {lang.label}
-              </a>
-            ))}
-          </div>
+          {/* 言語切替(案A: ドロップダウン) */}
+          <LanguageDropdown langLinks={langLinks} label={langSwitcherLabel} />
         </div>
       </div>
       <button
-        className="group fixed right-6 top-6 z-[999] flex h-[52px] items-center gap-3 rounded-full border border-white/20 bg-[#16283A]/70 pl-5 pr-[18px] backdrop-blur-md transition-colors hover:bg-[#16283A]/90 lg:right-9 lg:top-9"
+        className="group fixed right-6 top-6 z-[999] flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-[#16283A]/70 backdrop-blur-md transition-colors hover:bg-[#16283A]/90 lg:right-9 lg:top-9"
         id="nav-toggle"
         aria-label={isOpen ? menuCloseLabel : menuOpenLabel}
         aria-expanded={isOpen}
         aria-controls="site-nav"
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <span
-          className={`hidden text-[11px] font-medium tracking-[0.2em] text-white/85 transition-opacity duration-200 sm:inline ${
-            isOpen ? 'opacity-0' : 'opacity-100'
-          }`}
-        >
-          MENU
-        </span>
         <span className="relative flex h-4 w-[22px] flex-col items-center justify-center">
           <span
             className={`absolute h-[1.5px] w-full origin-center rounded-full bg-white transition-all duration-300 ease-out ${
@@ -207,7 +296,7 @@ export default function Header({
                   transform: isOpen ? 'translateX(0)' : 'translateX(20px)',
                 }}
               >
-<a
+                <a
                   href={item.href}
                   onClick={closeNav}
                   className="group relative flex items-center gap-4 border-b border-white/[0.08] py-3.5"
@@ -232,7 +321,7 @@ export default function Header({
           </ul>
           {/* 予約・電話CTA */}
           <div className="my-5 flex items-center gap-3">
-<a
+            <a
               href={reservationUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -241,7 +330,7 @@ export default function Header({
             >
               {reserveCta}
             </a>
-<a
+            <a
               href={`tel:${tel}`}
               className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors hover:border-[#A24730] hover:text-[#A24730]"
               aria-label={phoneAriaLabel}
@@ -266,7 +355,7 @@ export default function Header({
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {secondaryNavItems.map((item) => (
                 <li key={item.label}>
-<a
+                  <a
                     href={item.href}
                     onClick={closeNav}
                     className="text-[11.5px] leading-snug tracking-[0.02em] text-white/45 transition-colors hover:text-white"
@@ -278,13 +367,13 @@ export default function Header({
             </ul>
           </div>
         </div>
-        {/* フッター: 言語切替（モバイルのみ） */}
+        {/* フッター: 言語切替(モバイルのみ、ドロワーは横幅に余裕があるため従来通りインライン表示) */}
         <div className="relative flex items-center justify-between border-t border-white/[0.08] px-7 py-4 lg:hidden lg:px-10">
           <div className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.12em] text-white/60">
             {langLinks.map((lang, i) => (
               <span key={lang.code} className="flex items-center">
                 {i > 0 && <span className="mx-1.5 h-2.5 w-px bg-white/20" />}
-<a
+                <a
                   href={lang.href}
                   className={`transition-colors ${
                     lang.active ? 'text-[#E8A87C]' : 'hover:text-white'
@@ -297,7 +386,6 @@ export default function Header({
           </div>
         </div>
       </nav>
-
       <SearchOverlay
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
