@@ -12,9 +12,9 @@
   "linkHref": "/ja/cuisine",
   "centerText": true,
   "images": [
-    { "src": "/assets/photos/lobby-1.jpg", "alt": "夕食のお料理", "className": "h-full" },
+    { "src": "/assets/photos/food-night1.jpg", "alt": "夕食のお料理", "className": "h-full" },
     {
-      "src": "/assets/photos/lobby-2.jpg",
+      "src": "/assets/photos/food-night2.jpg",
       "alt": "お食事の一品",
       "className": "h-[78%] self-end mb-0 lg:mb-14"
     }

@@ -66,7 +66,7 @@ export default function Header({
       id="site-header"
     >
       <div className="flex items-center">
-        <a href="#top" className="flex-none">
+        <a href="/" className="flex-none">
           <img
             src="/assets/photos/ttl.png"
             alt={logoAlt}

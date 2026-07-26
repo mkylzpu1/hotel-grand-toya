@@ -90,7 +90,7 @@ export default function Access({
             ))}
           </ul>
           <p className="my-5 mb-[30px] text-[0.78rem] text-[#8A8781]">{note}</p>
-          <ArrowLink href="#">{detailLinkText}</ArrowLink>
+          <ArrowLink href="/ja/access/">{detailLinkText}</ArrowLink>
         </div>
         <div className="h-[360px] border-[0.5px] border-[#29415C]">
           <iframe
@@ -135,7 +135,7 @@ export default function Access({
       </div>
 
       <div className="mt-[70px] text-center">
-        <ArrowLink href="#">{sceneryLinkText}</ArrowLink>
+        <ArrowLink href="/ja/facilities/">{sceneryLinkText}</ArrowLink>
       </div>
     </section>
   );
