@@ -16,6 +16,17 @@ interface SearchOverlayProps {
   noResultsLabel: string;
 }
 
+function withHighlight(url: string, term: string): string {
+  if (!term.trim()) return url;
+
+  const hashIndex = url.indexOf('#');
+  const hash = hashIndex !== -1 ? url.slice(hashIndex) : '';
+  const base = hashIndex !== -1 ? url.slice(0, hashIndex) : url;
+
+  const separator = base.includes('?') ? '&' : '?';
+  return `${base}${separator}highlight=${encodeURIComponent(term.trim())}${hash}`;
+}
+
 export default function SearchOverlay({
   isOpen,
   onClose,
@@ -92,7 +103,7 @@ export default function SearchOverlay({
     // 変換中のEnter、またはIME確定のEnter(keyCode 229)は無視
     if (isComposingRef.current || (e as any).keyCode === 229) return;
     if (results[activeIndex]) {
-      window.location.href = results[activeIndex].item.url;
+      window.location.href = withHighlight(results[activeIndex].item.url, query);
     }
   };
 
@@ -176,7 +187,7 @@ export default function SearchOverlay({
               {results.map((r, i) => (
                 <li key={r.item.url + i}>
                   <a
-                    href={r.item.url}
+                    href={withHighlight(r.item.url, query)}
                     onClick={onClose}
                     onMouseEnter={() => setActiveIndex(i)}
                     className={`group flex items-center gap-4 px-7 py-5 transition-colors ${

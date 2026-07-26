@@ -17,7 +17,7 @@ type SearchEntry = {
   category: string;
 };
 
-function excerpt(lines: string[] | string, max = 80): string {
+function excerpt(lines: string[] | string, max = 90): string {
   const text = Array.isArray(lines) ? lines.join(' ') : lines;
   return text.slice(0, max);
 }
@@ -50,19 +50,74 @@ export const GET: APIRoute = async ({ params }) => {
   const onsenEntry = findByLang(await getCollection('onsen-page'), lang);
   if (onsenEntry) {
     const page = onsenEntry.data;
+
     entries.push({
       title: page.pageTitle,
       excerpt: excerpt(page.quality.heading + ' ' + page.facilities.heading),
       url: `/${lang}/onsen/`,
       category: page.pageTitle,
     });
+
+    // 温泉施設（大浴場・露天風呂など）
     for (const item of page.facilities.items) {
       entries.push({
         title: item.name,
         excerpt: excerpt(item.description),
-        url: `/${lang}/onsen/`,
+        url: `/${lang}/onsen/#facilities`,
         category: page.pageTitle,
       });
+    }
+
+    // 泉質・効能
+    for (const item of page.quality.items) {
+      entries.push({
+        title: item.label,
+        excerpt: excerpt(item.value),
+        url: `/${lang}/onsen/#quality`,
+        category: page.pageTitle,
+      });
+    }
+
+    // 宿泊のお客様（アメニティ、利用時間、注意事項）
+    for (const item of page.stay.items) {
+      entries.push({
+        title: item.label,
+        excerpt: excerpt(item.value),
+        url: `/${lang}/onsen/#${page.stay.id}`,
+        category: page.pageTitle,
+      });
+    }
+
+    // 日帰り入浴のお客様（料金、時間、注意事項）
+    for (const item of page.dayUse.items) {
+      entries.push({
+        title: item.label,
+        excerpt: excerpt(item.value),
+        url: `/${lang}/onsen/#${page.dayUse.id}`,
+        category: page.pageTitle,
+      });
+    }
+
+    // 日帰り入浴：貸出品（タオル等）
+    for (const item of page.dayUse.rentals) {
+      entries.push({
+        title: item.label,
+        excerpt: excerpt(item.value),
+        url: `/${lang}/onsen/#${page.dayUse.id}`,
+        category: page.pageTitle,
+      });
+    }
+
+    // 日帰り入浴：備考（シャンプー・リンス等の完備情報はここに入っている）
+    if (page.dayUse.notes) {
+      for (const note of page.dayUse.notes) {
+        entries.push({
+          title: page.dayUse.heading,
+          excerpt: excerpt(note),
+          url: `/${lang}/onsen/#${page.dayUse.id}`,
+          category: page.pageTitle,
+        });
+      }
     }
   }
 
@@ -70,6 +125,7 @@ export const GET: APIRoute = async ({ params }) => {
   const cuisineEntry = findByLang(await getCollection('cuisine-page'), lang);
   if (cuisineEntry) {
     const page = cuisineEntry.data;
+
     for (const plan of page.dinner.plans) {
       entries.push({
         title: plan.name,
@@ -78,12 +134,37 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
+
     entries.push({
       title: page.breakfast.plan.name,
       excerpt: excerpt(page.breakfast.plan.description),
       url: `/${lang}/cuisine/`,
       category: page.pageTitle,
     });
+
+    // 食事会場（部屋食・大広間など）
+    entries.push({
+      title: page.diningVenues.inRoom.heading,
+      excerpt: excerpt(page.diningVenues.inRoom.description),
+      url: `/${lang}/cuisine/`,
+      category: page.pageTitle,
+    });
+    entries.push({
+      title: page.diningVenues.hall.heading,
+      excerpt: excerpt(page.diningVenues.hall.description),
+      url: `/${lang}/cuisine/`,
+      category: page.pageTitle,
+    });
+
+    // アレルギー等、食事に関する配慮事項
+    for (const item of page.guestConsiderations) {
+      entries.push({
+        title: item.heading,
+        excerpt: excerpt(item.description),
+        url: `/${lang}/cuisine/`,
+        category: page.pageTitle,
+      });
+    }
   }
 
   // --- 館内施設ページ ---
@@ -105,18 +186,79 @@ export const GET: APIRoute = async ({ params }) => {
         });
       }
     }
+
+    // 利用上の注意
+    for (const note of page.usageNotice.items) {
+      entries.push({
+        title: page.usageNotice.heading,
+        excerpt: excerpt(note),
+        url: `/${lang}/facilities/`,
+        category: page.pageTitle,
+      });
+    }
   }
 
-  // --- アクセスページ(FAQ部分のみ個別エントリー化) ---
+  // --- アクセスページ ---
   const accessEntry = findByLang(await getCollection('access-page'), lang);
   if (accessEntry) {
     const page = accessEntry.data;
+
     entries.push({
       title: page.pageTitle,
       excerpt: excerpt(page.byTrain.heading + ' ' + page.byCar.heading),
       url: `/${lang}/access/`,
       category: page.pageTitle,
     });
+
+    // 電車での経路（洞爺駅までの区間 → ホテルまでの手段）
+    for (const dep of page.byTrain.departures) {
+      entries.push({
+        title: `${dep.from} → ${page.byTrain.nearestStation}`,
+        excerpt: excerpt(`${dep.trainName} ${dep.duration}`),
+        url: `/${lang}/access/`,
+        category: page.pageTitle,
+      });
+    }
+    for (const opt of page.byTrain.toHotelOptions) {
+      entries.push({
+        title: opt.method,
+        excerpt: excerpt(opt.note ?? `${opt.duration}`),
+        url: `/${lang}/access/`,
+        category: page.pageTitle,
+      });
+    }
+
+    // 車での経路
+    for (const dep of page.byCar.departures) {
+      entries.push({
+        title: `${dep.from} → ${dep.ic}`,
+        excerpt: excerpt(dep.duration),
+        url: `/${lang}/access/`,
+        category: page.pageTitle,
+      });
+    }
+
+    // 駐車場の注意事項
+    for (const note of page.parking.notes) {
+      entries.push({
+        title: page.parking.heading,
+        excerpt: excerpt(note),
+        url: `/${lang}/access/`,
+        category: page.pageTitle,
+      });
+    }
+
+    // 周辺観光地までの所要時間
+    for (const item of page.surroundings.items) {
+      entries.push({
+        title: item.label,
+        excerpt: excerpt(item.duration),
+        url: `/${lang}/access/`,
+        category: page.pageTitle,
+      });
+    }
+
+    // アクセスページ内のFAQ
     for (const qa of page.faq.items) {
       entries.push({
         title: qa.question,

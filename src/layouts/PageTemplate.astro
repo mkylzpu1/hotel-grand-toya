@@ -4,14 +4,12 @@ import Layout from './Layout.astro';
 import PageHeroBand from '../components/common/PageHeroBand.astro';
 import RelatedLinks from '../components/common/RelatedLinks.astro';
 import type { Locale } from '../content/config';
-
 interface LangLink {
   code: Locale;
   label: string;
   href: string;
   active: boolean;
 }
-
 interface RelatedLink {
   id: string;
   href: string;
@@ -20,12 +18,10 @@ interface RelatedLink {
   icon: string;
   label: string;
 }
-
 interface QuickNavItem {
   href: string;
   label: string;
 }
-
 interface Props {
   lang: Locale;
   title: string;
@@ -33,24 +29,20 @@ interface Props {
   navigation: any;
   site: any;
   langLinks: LangLink[];
-
   // PageHeroBand 用
   heroIcon: string;
   pageTitle: string;
   pageTitleEn: string;
-
   // アンカーナビ用（デフォルトで表示。項目が無ければ渡さなくてよい）
   showQuickNav?: boolean;
   quickNav?: QuickNavItem[];
   quickNavLabel?: string; // aria-label（例: "客室タイプ"）
-
   // RelatedLinks 用
   currentPageId: string;
   relatedLinksHeading: string;
   relatedLinks: RelatedLink[];
   relatedLinksBackground?: 'white' | 'none';
 }
-
 const {
   lang,
   title,
@@ -69,11 +61,9 @@ const {
   relatedLinks,
   relatedLinksBackground = 'white',
 } = Astro.props;
-
 // quickNav が渡されていなければ表示しようがないので実質非表示にする
 const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
 ---
-
 <Layout
   lang={lang}
   title={title}
@@ -90,7 +80,6 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
       pageTitleEn={pageTitleEn}
       homeHref={`/${lang}/`}
     />
-
     <!-- ページ内アンカーナビ（全ページ共通・フラグで表示切替） -->
     {shouldShowQuickNav && (
       <nav aria-label={quickNavLabel} class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
@@ -116,11 +105,9 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
         </div>
       </nav>
     )}
-
     <!-- ▼ ページ固有のコンテンツ ▼ -->
     <slot />
     <!-- ▲ ここまで ▲ -->
-
     <!-- 関連ページへの導線（全ページ共通） -->
     <RelatedLinks
       heading={relatedLinksHeading}
@@ -129,4 +116,66 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
       background={relatedLinksBackground}
     />
   </main>
+
+<!-- 検索結果からの遷移時に、該当箇所をハイライトする -->
+  <script is:inline>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const term = params.get('highlight');
+      if (!term || !term.trim()) return;
+
+      const target = term.trim();
+
+      function collectMatches(root) {
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+          acceptNode(node) {
+            if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+            const tag = node.parentElement && node.parentElement.tagName;
+            if (tag === 'SCRIPT' || tag === 'STYLE') return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+          },
+        });
+        const matches = [];
+        let node;
+        while ((node = walker.nextNode())) {
+          const idx = node.nodeValue.toLowerCase().indexOf(target.toLowerCase());
+          if (idx !== -1) matches.push({ node, idx });
+        }
+        return matches;
+      }
+
+      // アンカー先のセクションがあればその中だけ探す（無関係な箇所の誤ハイライトを防ぐ）
+      const hash = window.location.hash.replace('#', '');
+      const scope = (hash && document.getElementById(hash)) || document.body;
+
+      let matches = collectMatches(scope);
+      // アンカー内で見つからなければページ全体にフォールバック
+      if (matches.length === 0 && scope !== document.body) {
+        matches = collectMatches(document.body);
+      }
+      if (matches.length === 0) return;
+
+      const { node, idx } = matches[0];
+      const range = document.createRange();
+      range.setStart(node, idx);
+      range.setEnd(node, idx + target.length);
+      const mark = document.createElement('mark');
+      mark.className = 'search-highlight';
+      range.surroundContents(mark);
+
+      requestAnimationFrame(() => {
+        mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    })();
+  </script>
+
+<style is:global>
+    mark.search-highlight {
+      background-color: #ffff00;
+      color: #1e1c1a;
+      padding: 1px 4px;
+      border-radius: 2px;
+      box-shadow: 0 0 0 3px rgba(255, 255, 0, 0.4);
+    }
+  </style>
 </Layout>
