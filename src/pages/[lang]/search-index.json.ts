@@ -285,6 +285,20 @@ export const GET: APIRoute = async ({ params }) => {
     }
   }
 
+  // --- お知らせ ---
+  const newsEntry = findByLang(await getCollection('news-page'), lang);
+  if (newsEntry) {
+    const page = newsEntry.data;
+    for (const post of page.posts) {
+      entries.push({
+        title: post.title,
+        excerpt: excerpt(post.body),
+        url: `/${lang}/news/`,
+        category: page.pageTitle,
+      });
+    }
+  }
+
   return new Response(JSON.stringify(entries), {
     headers: { 'Content-Type': 'application/json' },
   });

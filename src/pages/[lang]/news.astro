@@ -1,0 +1,125 @@
+---
+import PageTemplate from '../../layouts/PageTemplate.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import { type Locale } from '../../content/config';
+import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
+
+export async function getStaticPaths() {
+  return getLocalizedStaticPaths('news-page');
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
+  await getPageContext(lang, 'news-page', 'news');
+const page = pageEntry.data;
+
+// 日付降順に並べ替え
+const posts = [...page.posts].sort((a, b) => (a.date < b.date ? 1 : -1));
+
+const categoryIdMap: Record<string, string> = {
+  'お知らせ': 'other',
+  'イベント': 'event',
+  'メンテナンス': 'maintenance',
+  'キャンペーン': 'campaign',
+};
+---
+<PageTemplate
+  lang={lang}
+  title={`${page.pageTitle}｜${siteEntry.data.title}`}
+  description={siteEntry.data.description}
+  navigation={navigationEntry.data}
+  site={siteEntry.data}
+  langLinks={langLinks}
+  heroIcon={page.icon}
+  pageTitle={page.pageTitle}
+  pageTitleEn={page.pageTitleEn}
+  showQuickNav={false}
+  currentPageId="news"
+  relatedLinksHeading={relatedLinksData.heading}
+  relatedLinks={relatedLinksData.links}
+>
+  <section class="mx-auto max-w-[1000px] px-10 py-[88px] lg:py-[108px]">
+    <SectionEyebrow icon={page.icon} eyebrow="News" heading={page.pageTitle} />
+
+    <!-- カテゴリフィルター -->
+    <div class="mb-12 mt-10 flex flex-wrap gap-3" data-news-filters>
+      <button
+        type="button"
+        data-filter="all"
+        class="news-filter-btn rounded-full border border-[#A24730] bg-[#A24730] px-5 py-2 text-[0.86rem] tracking-[0.04em] text-white transition-colors"
+      >
+        {page.allCategoryLabel}
+      </button>
+      {
+        page.categoryFilters.map((cat) => (
+          <button
+            type="button"
+            data-filter={cat.id}
+            class="news-filter-btn rounded-full border border-[#D8D7D2] bg-white px-5 py-2 text-[0.86rem] tracking-[0.04em] text-[#55524C] transition-colors hover:border-[#A24730] hover:text-[#A24730]"
+          >
+            {cat.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- 一覧 -->
+    <div class="space-y-0 divide-y divide-[#D8D7D2] border-t border-[#D8D7D2]" data-news-list>
+      {
+        posts.length === 0 && (
+          <p class="py-10 text-center text-[0.9rem] text-[#8A8781]">{page.emptyLabel}</p>
+        )
+      }
+      {
+        posts.map((post) => (
+          <article
+            class="news-item flex flex-col gap-2 py-7 sm:flex-row sm:items-baseline sm:gap-8"
+            data-category={categoryIdMap[post.category] ?? 'other'}
+          >
+            <div class="flex shrink-0 items-center gap-4 sm:w-[180px]">
+              <time class="text-[0.82rem] tracking-[0.04em] text-[#8A8781]">{post.date}</time>
+              <span class="rounded-[2px] border border-[#A24730]/40 px-2.5 py-1 text-[0.72rem] tracking-[0.03em] text-[#A24730]">
+                {post.category}
+              </span>
+            </div>
+            <div class="flex-1">
+              <h3 class="mb-2 font-serif text-[1.02rem] font-semibold text-[#1E1C1A]">
+                {post.isImportant && <span class="mr-2 text-[#A24730]">【重要】</span>}
+                {post.title}
+              </h3>
+              {post.body.map((line) => (
+                <p class="mb-2 text-[0.88rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      const buttons = document.querySelectorAll('.news-filter-btn');
+      const items = document.querySelectorAll('.news-item');
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
+
+          buttons.forEach((b) => {
+            b.classList.remove('bg-[#A24730]', 'text-white', 'border-[#A24730]');
+            b.classList.add('bg-white', 'text-[#55524C]', 'border-[#D8D7D2]');
+          });
+          btn.classList.remove('bg-white', 'text-[#55524C]', 'border-[#D8D7D2]');
+          btn.classList.add('bg-[#A24730]', 'text-white', 'border-[#A24730]');
+
+          items.forEach((item) => {
+            const category = item.getAttribute('data-category');
+            const show = filter === 'all' || filter === category;
+            item.style.display = show ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
+</PageTemplate>

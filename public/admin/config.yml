@@ -175,3 +175,38 @@ collections:
               - { label: 'タイトル', name: title, widget: string }
               - { label: '補足（所要時間など）', name: note, widget: string }
           - { label: '「周辺観光はこちら」リンク文言', name: sceneryLinkText, widget: string }
+
+  - name: "news-page"
+    label: "お知らせページ"
+    files:
+      - file: "src/content/news-page/news-page.{{locale}}.json"
+        label: "お知らせ"
+        fields:
+          - { label: "ページタイトル", name: "pageTitle", widget: "string" }
+          - { label: "ページタイトル(英語表記)", name: "pageTitleEn", widget: "string" }
+          - { label: "アイコン(1文字)", name: "icon", widget: "string" }
+          - { label: "パンくずラベル", name: "breadcrumbLabel", widget: "string" }
+          - { label: "「すべて」ラベル", name: "allCategoryLabel", widget: "string" }
+          - { label: "該当なし文言", name: "emptyLabel", widget: "string" }
+          - label: "カテゴリフィルター"
+            name: "categoryFilters"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "表示名", name: "label", widget: "string" }
+          - label: "投稿一覧"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.date}} - {{fields.title}}"
+            fields:
+              - { label: "公開日", name: "date", widget: "date", date_format: "YYYY-MM-DD" }
+              - label: "カテゴリ"
+                name: "category"
+                widget: "select"
+                options: ["お知らせ", "イベント", "メンテナンス", "キャンペーン"]
+              - { label: "タイトル", name: "title", widget: "string" }
+              - label: "本文"
+                name: "body"
+                widget: "list"
+                field: { label: "段落", name: "paragraph", widget: "text" }
+              - { label: "重要なお知らせとして強調", name: "isImportant", widget: "boolean", default: false, required: false }

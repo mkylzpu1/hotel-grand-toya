@@ -662,6 +662,31 @@ const relatedLinksCollection = defineCollection({
   }),
 });
 
+// お知らせページ（投稿は配列としてこのファイル内に持つ）
+const newsPost = z.object({
+  date: z.string(), // "2026-07-27" 形式
+  category: z.enum(['お知らせ', 'イベント', 'メンテナンス', 'キャンペーン']),
+  title: z.string(),
+  body: z.array(z.string()),
+  isImportant: z.boolean().optional(),
+});
+
+const newsPage = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    icon: z.string(),
+    breadcrumbLabel: z.string(),
+    categoryFilters: z.array(
+      z.object({ id: z.string(), label: z.string() })
+    ),
+    allCategoryLabel: z.string(),
+    emptyLabel: z.string(),
+    posts: z.array(newsPost), // ← 投稿はここに配列で
+  }),
+});
+
 export const collections = {
   site,
   navigation,
@@ -675,4 +700,5 @@ export const collections = {
   'access-page': accessPage,
   'faq-page': faqPage,
   'related-links': relatedLinksCollection,
+  'news-page': newsPage,
 };
