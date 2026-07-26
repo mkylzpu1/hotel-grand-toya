@@ -99,7 +99,7 @@ const page = pageEntry.data;
                       </table>
                     </div>
                   </div>
-                  {/* フロアごとのサブセクション：可変グリッド写真（1〜3枚）＋右側に説明。フロア情報が無ければ非表示 */}
+{/* フロアごとのサブセクション：可変グリッド写真（1〜3枚）＋右側に説明。フロア情報が無ければ非表示 */}
                   {room.floors && room.floors.length > 0 && (
                     <div class="space-y-14">
                       {room.floors.map((floor) => (
@@ -156,6 +156,17 @@ const page = pageEntry.data;
                                   </ul>
                                 </div>
                               )}
+                              {/* 予約ボタン（フロア／プランごと） */}
+                              <div class="mt-8">
+                                <a
+                                  href={floor.reservationUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="inline-flex items-center justify-center gap-2 rounded-[2px] bg-[#C2622B] px-8 py-3 text-[0.84rem] font-medium tracking-[0.06em] text-white transition-colors hover:bg-[#A8531F]"
+                                >
+                                  {page.detailCtaText}
+                                </a>
+                              </div>
                             </div>
                           </div>
                         </div>

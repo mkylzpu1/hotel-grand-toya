@@ -93,14 +93,6 @@ export default function Header({
         </nav>
 
 <div className="ml-auto hidden items-center gap-5 lg:flex">
-          <a
-            href={reservationUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-[#A24730] px-6 py-2.5 text-[12px] font-medium tracking-[0.12em] text-white transition-colors hover:bg-[#8A3B27]"
-          >
-            {reserveCta}
-          </a>
           <div className="flex items-center gap-0.5 rounded-full border border-white/20 bg-white/5 p-1 backdrop-blur-sm">
             {langLinks.map((lang) => (
             <a

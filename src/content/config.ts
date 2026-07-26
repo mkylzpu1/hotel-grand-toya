@@ -288,6 +288,7 @@ const roomsPage = defineCollection({
               z.object({
                 label: z.string(),
                 reservationName: z.string(),
+                reservationUrl: z.string().url().optional(),
                 badges: z.array(z.string()).optional(),
                 images: z.array(roomGalleryItem).max(3),
                 description: z.array(z.string()),
@@ -330,7 +331,7 @@ const cuisinePlanItem = z.object({
     })
     .optional(),
   seasonalNote: z.string(),
-  reservationHref: z.string().optional(), 
+  reservationHref: z.string().optional(),
 });
 
 const cuisinePage = defineCollection({
