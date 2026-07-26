@@ -420,6 +420,7 @@ const serviceItem = z.object({
   location: z.string().optional(),
   cancellationPolicy: z.string().optional(),
   notes: z.array(z.string()).optional(),
+  isFeatured: z.boolean().optional(),
 });
 
 const activityItem = z.object({
