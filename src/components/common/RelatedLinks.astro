@@ -8,7 +8,6 @@ export interface RelatedLink {
   icon: string;
   label: string;
 }
-
 interface Props {
   heading: string;
   links: RelatedLink[];
@@ -16,17 +15,16 @@ interface Props {
   currentPageId?: string;
   /** セクションの背景色 */
   background?: 'white' | 'none';
+  /** 予約ボタンのラベル（省略時は「ご予約はこちら」） */
+  reservationLabel?: string;
 }
-
-const { heading, links, currentPageId, background = 'none' } = Astro.props;
-
-const visibleLinks = currentPageId
-  ? links.filter((link) => link.id !== currentPageId)
-  : links;
-
+const { heading, links, currentPageId, background = 'none', reservationLabel = 'ご予約はこちら' } = Astro.props;
+const visibleLinks = links.filter(
+  (link) => link.id !== currentPageId && link.id !== 'reservation'
+);
 const bgClass = background === 'white' ? 'bg-white' : '';
+const reservationHref = links.find((link) => link.id === 'reservation')?.href ?? '/ja/reservation/';
 ---
-
 <section class={`py-[88px] lg:py-[108px] ${bgClass}`}>
   <div class="mx-auto max-w-[1320px] px-10">
     <h2 class="mb-10 text-center font-serif text-[clamp(1.3rem,1.1rem+0.8vw,1.7rem)] font-semibold text-[#1E1C1A]">
@@ -57,6 +55,15 @@ const bgClass = background === 'white' ? 'bg-white' : '';
           </a>
         ))
       }
+    </div>
+    <div class="mt-14 flex justify-center">
+      <a
+        href={reservationHref}
+        class="group inline-flex items-center gap-2 bg-[#A24730] px-9 py-4 text-[0.92rem] font-medium tracking-[0.04em] text-white transition-colors hover:bg-[#8A3B27]"
+      >
+        {reservationLabel}
+        <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+      </a>
     </div>
   </div>
 </section>
