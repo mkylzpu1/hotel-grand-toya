@@ -69,30 +69,34 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
       homeHref={asset(`/${lang}/`)}
     />
     <!-- ページ内アンカーナビ（全ページ共通・フラグで表示切替） -->
-    {
-      shouldShowQuickNav && (
-        <nav aria-label={quickNavLabel} class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
-          <div
-            class="mx-auto grid max-w-[1320px]"
-            style={`grid-template-columns: repeat(${quickNav!.length}, minmax(0, 1fr));`}
+<!-- ページ内アンカーナビ（全ページ共通・フラグで表示切替） -->
+{
+  shouldShowQuickNav && (
+    <nav aria-label={quickNavLabel} class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
+      <div
+        class="quick-nav mx-auto grid max-w-[1320px] grid-cols-2"
+        style={`--nav-count: ${quickNav!.length};`}
+      >
+        {quickNav!.map((item, index) => (
+          <a
+            href={item.href}
+            class:list={[
+              "quick-nav-item group flex items-center justify-center gap-2 px-4 py-5 text-center transition-colors hover:bg-white",
+              { "quick-nav-item--wide": quickNav!.length === 3 && index === 2 },
+            ]}
           >
-            {quickNav!.map((item) => (
-              <a
-                href={item.href}
-                class="group flex items-center justify-center gap-3 border-l border-[#D8D7D2] px-10 py-7 transition-colors first:border-l-0 hover:bg-white"
-              >
-                <span class="font-serif text-[1.1rem] font-medium tracking-[0.04em] text-[#1E1C1A]">
-                  {item.label}
-                </span>
-                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[0.9rem] text-[#A24730] transition-transform duration-300 group-hover:translate-x-1">
-                  ↓
-                </span>
-              </a>
-            ))}
-          </div>
-        </nav>
-      )
-    }
+            <span class="font-serif text-[0.9rem] leading-snug font-medium tracking-[0.02em] text-[#1E1C1A] break-keep">
+              {item.label}
+            </span>
+            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[0.7rem] text-[#A24730] transition-transform duration-300 group-hover:translate-x-1">
+              ↓
+            </span>
+          </a>
+        ))}
+      </div>
+    </nav>
+  )
+}
     <!-- ▼ ページ固有のコンテンツ ▼ -->
     <slot />
     <!-- ▲ ここまで ▲ -->
@@ -169,5 +173,49 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
       border-radius: 2px;
       box-shadow: 0 0 0 3px rgba(255, 255, 0, 0.4);
     }
+          .quick-nav-item {
+            border-left: 1px solid #D8D7D2;
+            border-top: 1px solid #D8D7D2;
+          }
+          /* モバイル：2カラム前提のボーダー調整 */
+          .quick-nav-item:nth-child(2n+1) {
+            border-left: none;
+          }
+          .quick-nav-item:nth-child(-n+2) {
+            border-top: none;
+          }
+          /* 3件のときだけ、3番目を下段フル幅に */
+          .quick-nav-item--wide {
+            grid-column: 1 / -1;
+          }
+
+          @media (min-width: 768px) {
+            .quick-nav {
+              grid-template-columns: repeat(var(--nav-count), minmax(0, 1fr));
+            }
+            .quick-nav-item {
+              padding: 1.75rem 2.5rem;
+              gap: 0.75rem;
+              border-top: none !important;
+            }
+            .quick-nav-item:nth-child(n) {
+              border-left: 1px solid #D8D7D2;
+            }
+            .quick-nav-item:first-child {
+              border-left: none;
+            }
+            .quick-nav-item--wide {
+              grid-column: auto;
+            }
+            .quick-nav-item span:first-child {
+              font-size: 1.1rem;
+              letter-spacing: 0.04em;
+            }
+            .quick-nav-item span:last-child {
+              height: 2.25rem;
+              width: 2.25rem;
+              font-size: 0.9rem;
+            }
+          }
   </style>
 </Layout>
