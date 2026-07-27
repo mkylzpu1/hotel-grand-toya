@@ -289,14 +289,20 @@ export const GET: APIRoute = async ({ params }) => {
   }
 
   // --- お知らせ ---
-  const newsEntry = findByLang(await getCollection('news-page'), lang);
-  if (newsEntry) {
-    const page = newsEntry.data;
-    for (const post of page.posts) {
+  const newsPageEntry = findByLang(await getCollection('news-page'), lang);
+  if (newsPageEntry) {
+    const page = newsPageEntry.data;
+    const newsEntries = await getCollection('news');
+    for (const post of newsEntries) {
+      const translated = post.data.translations[lang];
+      const fallback = post.data.translations.ja;
+      const title = translated.title || fallback.title;
+      if (!title) continue;
+
       entries.push({
-        title: post.title,
-        excerpt: excerpt(post.body),
-        url: `/${lang}/news/`,
+        title,
+        excerpt: excerpt(translated.body.length > 0 ? translated.body : fallback.body),
+        url: `/${lang}/news/#${post.data.slug ?? post.id}`,
         category: page.pageTitle,
       });
     }

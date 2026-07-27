@@ -21,7 +21,7 @@ i18n:
 collections:
   # ── サイト全体設定・フッター文言 ───────────────────────
   - name: site
-    label: 'サイト設定'
+    label: '01 サイト共通｜基本情報・フッター'
     folder: 'src/content/site'
     create: false
     i18n: true
@@ -47,7 +47,7 @@ collections:
 
   # ── ヘッダー / ドロワーナビゲーション ───────────────────────
   - name: navigation
-    label: 'ナビゲーション'
+    label: '01 サイト共通｜ヘッダー・ナビゲーション'
     folder: 'src/content/navigation'
     create: false
     i18n: true
@@ -86,7 +86,7 @@ collections:
 
   # ── ヒーローセクション ───────────────────────
   - name: hero
-    label: 'ヒーローセクション'
+    label: '02 トップページ｜ヒーロー'
     folder: 'src/content/hero'
     create: false
     i18n: true
@@ -104,7 +104,7 @@ collections:
 
   # ── トップページ コンテンツセクション（客室・温泉・お料理・館内・コンセプト）──
   - name: top_sections
-    label: 'トップページ セクション'
+    label: '02 トップページ｜各紹介セクション'
     folder: 'src/content/top-sections'
     create: true
     slug: '{{slug}}'
@@ -176,7 +176,7 @@ collections:
 
   # ── アクセス・周辺観光セクション ───────────────────────
   - name: access
-    label: 'アクセスセクション'
+    label: '02 トップページ｜アクセス・周辺観光'
     folder: 'src/content/access'
     create: false
     i18n: true
@@ -215,7 +215,7 @@ collections:
 
   # ── お知らせページ ───────────────────────
   - name: 'news-page'
-    label: 'お知らせページ'
+    label: '09 お知らせ｜ページ設定'
     folder: 'src/content/news-page'
     create: false
     i18n: true
@@ -233,41 +233,67 @@ collections:
         fields:
           - { label: 'ID', name: 'id', widget: 'string' }
           - { label: '表示名', name: 'label', widget: 'string' }
-      - label: '投稿一覧'
-        name: 'posts'
-        widget: 'list'
-        collapsed: true
-        hint: '新しい記事を追加するときは「投稿一覧に追加」を押してください。一覧では各記事が畳んだ状態（日付とタイトルのみ）で表示されます。クリックすると展開して編集できます。'
-        summary: '{{fields.date}} - {{fields.title}}'
+
+  # ── お知らせ投稿 ───────────────────────
+  - name: news
+    label: '09 お知らせ｜投稿一覧'
+    folder: 'src/content/news'
+    create: true
+    slug: '{{fields.slug}}'
+    i18n: false
+    extension: json
+    format: json
+    identifier_field: 'slug'
+    summary: '{{fields.date}}｜{{fields.translations.ja.title}}'
+    fields:
+      - {
+          label: '投稿ID（URLアンカー・半角英数字）',
+          name: slug,
+          widget: string,
+          hint: '例: fireworks-2026。同じIDは使わないでください。',
+        }
+      - { label: '公開日', name: date, widget: date, date_format: 'YYYY-MM-DD', default: '{{now}}' }
+      - label: 'カテゴリ'
+        name: category
+        widget: select
+        options: ['お知らせ', 'イベント', 'メンテナンス', 'キャンペーン']
+      - {
+          label: '重要なお知らせとして強調',
+          name: isImportant,
+          widget: boolean,
+          default: false,
+          required: false,
+        }
+      - label: '本文・翻訳'
+        name: translations
+        widget: object
         fields:
-          - {
-              label: '公開日',
-              name: 'date',
-              widget: 'date',
-              date_format: 'YYYY-MM-DD',
-              default: '{{now}}',
-            }
-          - label: 'カテゴリ'
-            name: 'category'
-            widget: 'select'
-            options: ['お知らせ', 'イベント', 'メンテナンス', 'キャンペーン']
-          - { label: 'タイトル', name: 'title', widget: 'string' }
-          - label: '本文'
-            name: 'body'
-            widget: 'list'
-            hint: '1行＝1段落として表示されます。段落を分けたいときだけ「段落を追加」してください。'
-            field: { label: '段落', name: 'paragraph', widget: 'text' }
-          - {
-              label: '重要なお知らせとして強調',
-              name: 'isImportant',
-              widget: 'boolean',
-              default: false,
-              required: false,
-            }
+          - label: '日本語'
+            name: ja
+            widget: object
+            fields: &newsTranslationFields
+              - { label: 'タイトル', name: title, widget: string }
+              - label: '本文'
+                name: body
+                widget: list
+                hint: '1行＝1段落として表示されます。まず日本語だけ入力すれば、未翻訳の言語ページでは日本語を表示します。'
+                field: { label: '段落', name: paragraph, widget: text }
+          - label: '英語（未入力なら日本語を表示）'
+            name: en
+            widget: object
+            fields: *newsTranslationFields
+          - label: '中国語（未入力なら日本語を表示）'
+            name: zh
+            widget: object
+            fields: *newsTranslationFields
+          - label: '韓国語（未入力なら日本語を表示）'
+            name: ko
+            widget: object
+            fields: *newsTranslationFields
 
   # ── 温泉ページ ───────────────────────
   - name: 'onsen-page'
-    label: '温泉ページ'
+    label: '04 温泉ページ'
     folder: 'src/content/onsen-page'
     create: false
     i18n: true
@@ -364,7 +390,7 @@ collections:
 
   # ── 客室ページ ───────────────────────
   - name: 'rooms-page'
-    label: '客室ページ'
+    label: '03 客室ページ'
     folder: 'src/content/rooms-page'
     create: false
     i18n: true
@@ -504,7 +530,7 @@ collections:
 
   # ── お料理ページ ───────────────────────
   - name: 'cuisine-page'
-    label: 'お料理ページ'
+    label: '05 お料理ページ'
     folder: 'src/content/cuisine-page'
     create: false
     i18n: true
@@ -669,7 +695,7 @@ collections:
 
   # ── 館内施設ページ ───────────────────────
   - name: 'facilities-page'
-    label: '館内施設ページ'
+    label: '06 館内施設ページ'
     folder: 'src/content/facilities-page'
     create: false
     i18n: true
@@ -911,7 +937,7 @@ collections:
 
   # ── アクセスページ(詳細版) ───────────────────────
   - name: 'access-page'
-    label: 'アクセスページ'
+    label: '07 アクセスページ'
     folder: 'src/content/access-page'
     create: false
     i18n: true
@@ -1083,7 +1109,7 @@ collections:
 
   # ── よくある質問ページ ───────────────────────
   - name: 'faq-page'
-    label: 'よくある質問ページ'
+    label: '08 よくある質問ページ'
     folder: 'src/content/faq-page'
     create: false
     i18n: true
@@ -1128,7 +1154,7 @@ collections:
 
   # ── 関連リンク集(各ページ末尾の「関連ページ」ブロック) ─────
   - name: 'related-links'
-    label: '関連リンク集'
+    label: '01 サイト共通｜関連リンク'
     folder: 'src/content/related-links'
     create: true
     slug: '{{slug}}'
@@ -1155,7 +1181,7 @@ collections:
 
   # ── プライバシーポリシーページ ───────────────────────
   - name: 'privacy-page'
-    label: 'プライバシーポリシーページ'
+    label: '10 その他｜プライバシーポリシー'
     folder: 'src/content/privacy-page'
     create: false
     i18n: true
@@ -1191,7 +1217,7 @@ collections:
 
   # ── 関連情報ページ(福利厚生) ───────────────────────
   - name: 'information-page'
-    label: '関連情報ページ(福利厚生)'
+    label: '10 その他｜福利厚生'
     folder: 'src/content/information-page'
     create: false
     i18n: true
@@ -1216,7 +1242,7 @@ collections:
 
   # ── 採用情報ページ ───────────────────────
   - name: 'recruit-page'
-    label: '採用情報ページ'
+    label: '10 その他｜採用情報'
     folder: 'src/content/recruit-page'
     create: false
     i18n: true

@@ -624,15 +624,6 @@ const relatedLinksCollection = defineCollection({
   }),
 });
 
-// お知らせページ（投稿は配列としてこのファイル内に持つ）
-const newsPost = z.object({
-  date: z.string(), // "2026-07-27" 形式
-  category: z.enum(['お知らせ', 'イベント', 'メンテナンス', 'キャンペーン']),
-  title: z.string(),
-  body: z.array(z.string()),
-  isImportant: z.boolean().optional(),
-});
-
 const newsPage = defineCollection({
   type: 'data',
   schema: z.object({
@@ -642,7 +633,27 @@ const newsPage = defineCollection({
     categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
     allCategoryLabel: z.string(),
     emptyLabel: z.string(),
-    posts: z.array(newsPost), // ← 投稿はここに配列で
+  }),
+});
+
+const newsTranslation = z.object({
+  title: z.string(),
+  body: z.array(z.string()),
+});
+
+const news = defineCollection({
+  type: 'data',
+  schema: z.object({
+    slug: z.string().optional(),
+    date: z.string(),
+    category: z.enum(['お知らせ', 'イベント', 'メンテナンス', 'キャンペーン']),
+    isImportant: z.boolean().optional(),
+    translations: z.object({
+      ja: newsTranslation,
+      en: newsTranslation,
+      zh: newsTranslation,
+      ko: newsTranslation,
+    }),
   }),
 });
 
@@ -781,6 +792,7 @@ export const collections = {
   'faq-page': faqPage,
   'related-links': relatedLinksCollection,
   'news-page': newsPage,
+  news,
   'privacy-page': privacyPage,
   'information-page': informationPage,
   'recruit-page': recruitPage,

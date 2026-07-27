@@ -1,6 +1,7 @@
 ---
 import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import { getCollection } from 'astro:content';
 import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
 
@@ -16,15 +17,29 @@ const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = a
 );
 const page = pageEntry.data;
 
-// 日付降順に並べ替え
-const posts = [...page.posts].sort((a, b) => (a.date < b.date ? 1 : -1));
-
 const categoryIdMap: Record<string, string> = {
   お知らせ: 'other',
   イベント: 'event',
   メンテナンス: 'maintenance',
   キャンペーン: 'campaign',
 };
+
+const newsEntries = await getCollection('news');
+const posts = newsEntries
+  .map((entry) => {
+    const translated = entry.data.translations[lang];
+    const fallback = entry.data.translations.ja;
+    return {
+      id: entry.data.slug ?? entry.id,
+      date: entry.data.date,
+      category: entry.data.category,
+      isImportant: entry.data.isImportant,
+      title: translated.title || fallback.title,
+      body: translated.body.length > 0 ? translated.body : fallback.body,
+    };
+  })
+  .filter((post) => post.title)
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
 ---
 
 <PageTemplate
