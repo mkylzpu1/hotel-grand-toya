@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry, type CollectionKey } from 'astro:content';
 import { locales, localeFromId, type Locale } from '../../content/config';
 
 export const prerender = true;
@@ -22,12 +22,15 @@ function excerpt(lines: string[] | string, max = 90): string {
   return text.slice(0, max);
 }
 
-function findByLang<T extends CollectionEntry<any>>(entries: T[], lang: Locale): T | undefined {
+function findByLang<C extends CollectionKey>(
+  entries: CollectionEntry<C>[],
+  lang: Locale,
+): CollectionEntry<C> | undefined {
   return entries.find((e) => localeFromId(e.id) === lang);
 }
 
 export const GET: APIRoute = async ({ params }) => {
-  const lang = params.lang as Locale;
+  const lang = params['lang'] as Locale;
   const entries: SearchEntry[] = [];
 
   // --- 客室ページ ---
@@ -293,7 +296,7 @@ export const GET: APIRoute = async ({ params }) => {
       entries.push({
         title: post.title,
         excerpt: excerpt(post.body),
-        url: post.id ? `/${lang}/news/#${post.id}` : `/${lang}/news/`,
+        url: `/${lang}/news/`,
         category: page.pageTitle,
       });
     }

@@ -4,20 +4,8 @@ import Layout from './Layout.astro';
 import PageHeroBand from '../components/common/PageHeroBand.astro';
 import RelatedLinks from '../components/common/RelatedLinks.astro';
 import type { Locale } from '../content/config';
-interface LangLink {
-  code: Locale;
-  label: string;
-  href: string;
-  active: boolean;
-}
-interface RelatedLink {
-  id: string;
-  href: string;
-  image: string;
-  imageAlt: string;
-  icon: string;
-  label: string;
-}
+import type { LangLink, NavigationContent, RelatedLink, SiteContent } from '../types/site';
+
 interface QuickNavItem {
   href: string;
   label: string;
@@ -26,18 +14,15 @@ interface Props {
   lang: Locale;
   title: string;
   description: string;
-  navigation: any;
-  site: any;
+  navigation: NavigationContent;
+  site: SiteContent;
   langLinks: LangLink[];
-  // PageHeroBand 用
   heroIcon: string;
   pageTitle: string;
   pageTitleEn: string;
-  // アンカーナビ用（デフォルトで表示。項目が無ければ渡さなくてよい）
   showQuickNav?: boolean;
   quickNav?: QuickNavItem[];
-  quickNavLabel?: string; // aria-label（例: "客室タイプ"）
-  // RelatedLinks 用
+  quickNavLabel?: string;
   currentPageId: string;
   relatedLinksHeading: string;
   relatedLinks: RelatedLink[];
@@ -63,9 +48,9 @@ const {
   relatedLinksBackground = 'white',
   showRelatedLinks = 'true',
 } = Astro.props;
-// quickNav が渡されていなければ表示しようがないので実質非表示にする
 const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
 ---
+
 <Layout
   lang={lang}
   title={title}
@@ -83,14 +68,14 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
       homeHref={`/${lang}/`}
     />
     <!-- ページ内アンカーナビ（全ページ共通・フラグで表示切替） -->
-    {shouldShowQuickNav && (
-      <nav aria-label={quickNavLabel} class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
-        <div
-          class="mx-auto grid max-w-[1320px]"
-          style={`grid-template-columns: repeat(${quickNav!.length}, minmax(0, 1fr));`}
-        >
-          {
-            quickNav!.map((item) => (
+    {
+      shouldShowQuickNav && (
+        <nav aria-label={quickNavLabel} class="border-b border-[#D8D7D2] bg-[#FAFAFA]">
+          <div
+            class="mx-auto grid max-w-[1320px]"
+            style={`grid-template-columns: repeat(${quickNav!.length}, minmax(0, 1fr));`}
+          >
+            {quickNav!.map((item) => (
               <a
                 href={item.href}
                 class="group flex items-center justify-center gap-3 border-l border-[#D8D7D2] px-10 py-7 transition-colors first:border-l-0 hover:bg-white"
@@ -102,26 +87,28 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
                   ↓
                 </span>
               </a>
-            ))
-          }
-        </div>
-      </nav>
-    )}
+            ))}
+          </div>
+        </nav>
+      )
+    }
     <!-- ▼ ページ固有のコンテンツ ▼ -->
     <slot />
     <!-- ▲ ここまで ▲ -->
     <!-- 関連ページへの導線（全ページ共通） -->
-    {showRelatedLinks === 'true' && (
-      <RelatedLinks
-        heading={relatedLinksHeading}
-        links={relatedLinks}
-        currentPageId={currentPageId}
-        background={relatedLinksBackground}
-      />
-    )}
+    {
+      showRelatedLinks === 'true' && (
+        <RelatedLinks
+          heading={relatedLinksHeading}
+          links={relatedLinks}
+          currentPageId={currentPageId}
+          background={relatedLinksBackground}
+        />
+      )
+    }
   </main>
 
-<!-- 検索結果からの遷移時に、該当箇所をハイライトする -->
+  <!-- 検索結果からの遷移時に、該当箇所をハイライトする -->
   <script is:inline>
     (function () {
       const params = new URLSearchParams(window.location.search);
@@ -173,7 +160,7 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
     })();
   </script>
 
-<style is:global>
+  <style is:global>
     mark.search-highlight {
       background-color: #ffff00;
       color: #1e1c1a;

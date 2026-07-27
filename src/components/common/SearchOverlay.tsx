@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Fuse from 'fuse.js';
 
 interface SearchEntry {
@@ -39,14 +39,20 @@ export default function SearchOverlay({
   const [activeIndex, setActiveIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const isComposingRef = useRef(false); // IME変換中かどうか
+  const isComposingRef = useRef(false);
 
   useEffect(() => {
-    if (!isOpen || fuse || !searchIndexUrl) return;
-    setIsLoading(true);
-    fetch(searchIndexUrl)
-      .then((res) => res.json())
-      .then((data: SearchEntry[]) => {
+    if (!isOpen || fuse || !searchIndexUrl) return undefined;
+
+    let isCancelled = false;
+
+    async function loadIndex() {
+      setIsLoading(true);
+
+      try {
+        const response = await fetch(searchIndexUrl);
+        const data = (await response.json()) as SearchEntry[];
+        if (isCancelled) return;
         setFuse(
           new Fuse(data, {
             keys: [
@@ -55,11 +61,20 @@ export default function SearchOverlay({
               { name: 'category', weight: 0.5 },
             ],
             threshold: 0.35,
-          })
+          }),
         );
-      })
-      .catch(() => {})
-      .finally(() => setIsLoading(false));
+      } catch {
+        // 検索できない場合は、結果なしの表示に留める。
+      } finally {
+        if (!isCancelled) setIsLoading(false);
+      }
+    }
+
+    void loadIndex();
+
+    return () => {
+      isCancelled = true;
+    };
   }, [isOpen, fuse, searchIndexUrl]);
 
   useEffect(() => {
@@ -67,24 +82,29 @@ export default function SearchOverlay({
       document.body.style.overflow = 'hidden';
       const t = setTimeout(() => inputRef.current?.focus(), 50);
       return () => clearTimeout(t);
-    } else {
-      document.body.style.overflow = '';
-      setQuery('');
-      setActiveIndex(0);
     }
+
+    document.body.style.overflow = '';
+    return undefined;
   }, [isOpen]);
 
   const results = query.trim() && fuse ? fuse.search(query).slice(0, 8) : [];
 
-  useEffect(() => {
+  const handleClose = useCallback(() => {
+    setQuery('');
     setActiveIndex(0);
-  }, [query]);
+    onClose();
+  }, [onClose]);
 
-  // ESCとカーソル移動はグローバルで受ける（IMEに影響されないため）
+  const handleQueryChange = (value: string) => {
+    setQuery(value);
+    setActiveIndex(0);
+  };
+
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onClose();
+        handleClose();
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
         setActiveIndex((i) => Math.min(i + 1, Math.max(results.length - 1, 0)));
@@ -95,13 +115,11 @@ export default function SearchOverlay({
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [onClose, results.length]);
+  }, [handleClose, results.length]);
 
-  // Enterでの決定は入力欄側で、IME確定と区別して処理する
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== 'Enter') return;
-    // 変換中のEnter、またはIME確定のEnter(keyCode 229)は無視
-    if (isComposingRef.current || (e as any).keyCode === 229) return;
+    if (isComposingRef.current || e.keyCode === 229) return;
     if (results[activeIndex]) {
       window.location.href = withHighlight(results[activeIndex].item.url, query);
     }
@@ -112,13 +130,12 @@ export default function SearchOverlay({
   return (
     <div
       className="fixed inset-0 z-[1000] flex items-start justify-center bg-[#1E1C1A]/50 px-6 pt-[10vh] backdrop-blur-[2px]"
-      onClick={onClose}
+      onClick={handleClose}
     >
       <div
         className="relative w-full max-w-[640px] overflow-hidden rounded-[2px] border border-[#D8D7D2] bg-[#FDFCFA] shadow-[0_20px_60px_rgba(30,28,26,0.18)]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* 入力欄 */}
         <div className="relative flex items-center gap-4 border-b border-[#D8D7D2] px-7 py-6">
           <svg
             width="20"
@@ -135,14 +152,12 @@ export default function SearchOverlay({
           <input
             ref={inputRef}
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => handleQueryChange(e.target.value)}
             onKeyDown={handleInputKeyDown}
             onCompositionStart={() => {
               isComposingRef.current = true;
             }}
             onCompositionEnd={() => {
-              // ブラウザによってはcompositionendとkeydownの順序がずれるため、
-              // 少し遅らせてフラグを下ろす
               setTimeout(() => {
                 isComposingRef.current = false;
               }, 0);
@@ -152,7 +167,7 @@ export default function SearchOverlay({
           />
           {query && (
             <button
-              onClick={() => setQuery('')}
+              onClick={() => handleQueryChange('')}
               aria-label="clear"
               className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[#8A8781] transition-colors hover:bg-[#F0EFEA] hover:text-[#1E1C1A]"
             >
@@ -164,7 +179,6 @@ export default function SearchOverlay({
           )}
         </div>
 
-        {/* 結果一覧 */}
         <div className="relative max-h-[54vh] overflow-y-auto">
           {isLoading && (
             <div className="flex items-center justify-center gap-2 px-7 py-12 text-[13px] tracking-[0.1em] text-[#8A8781]">
@@ -188,7 +202,7 @@ export default function SearchOverlay({
                 <li key={r.item.url + i}>
                   <a
                     href={withHighlight(r.item.url, query)}
-                    onClick={onClose}
+                    onClick={handleClose}
                     onMouseEnter={() => setActiveIndex(i)}
                     className={`group flex items-center gap-4 px-7 py-5 transition-colors ${
                       i === activeIndex ? 'bg-[#FAF6F0]' : ''
@@ -229,7 +243,6 @@ export default function SearchOverlay({
           )}
         </div>
 
-        {/* フッター: キー操作ヒント */}
         {results.length > 0 && (
           <div className="flex items-center justify-end gap-5 border-t border-[#D8D7D2] bg-[#FAFAFA] px-7 py-3 text-[11px] tracking-[0.06em] text-[#8A8781]">
             <span className="flex items-center gap-1.5">
