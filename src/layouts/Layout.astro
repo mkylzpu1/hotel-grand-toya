@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import { locales, type Locale } from '../content/config';
 import type { LangLink, NavigationContent, SiteContent } from '../types/site';
+import bgTexture from '../../public/assets/textures/bg_v4_2x.jpg';
 
 interface Props {
   lang: Locale;
@@ -43,7 +44,7 @@ const searchNoResultsLabel = '該当する情報が見つかりませんでし�
       })
     }
   </head>
-  <body>
+  <body style={`--bg-texture-url: url(${bgTexture.src})`}>
     <Header
       client:load
       primaryNavItems={navigation.primaryNavItems}
@@ -73,7 +74,7 @@ const searchNoResultsLabel = '該当する情報が見つかりませんでし�
       tel={site.tel}
       reservationUrl={site.reservationUrl}
       logoAlt="Hotel Grand Toya"
-      logoSrc="/assets/photos/ttl.png"
+      logoSrc={`${import.meta.env.BASE_URL}assets/photos/ttl.png`}
     />
   </body>
 </html>

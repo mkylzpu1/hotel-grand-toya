@@ -29,6 +29,12 @@ function findByLang<T extends { id: string; data: unknown }>(
   return entries.find((e) => localeFromId(e.id) === lang);
 }
 
+// entries内のurl(先頭/付きの絶対パス)にbaseを付与する
+function withBase(url: string): string {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  return `${base}${url}`;
+}
+
 export const GET: APIRoute = async ({ params }) => {
   const lang = params['lang'] as Locale;
   const entries: SearchEntry[] = [];
@@ -53,15 +59,13 @@ export const GET: APIRoute = async ({ params }) => {
   const onsenEntry = findByLang(await getCollection('onsen-page'), lang);
   if (onsenEntry) {
     const page = onsenEntry.data;
-
     entries.push({
       title: page.pageTitle,
       excerpt: excerpt(page.quality.heading + ' ' + page.facilities.heading),
       url: `/${lang}/onsen/`,
       category: page.pageTitle,
     });
-
-    // 温泉施設（大浴場・露天風呂など）
+    // 温泉施設(大浴場・露天風呂など)
     for (const item of page.facilities.items) {
       entries.push({
         title: item.name,
@@ -70,7 +74,6 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
-
     // 泉質・効能
     for (const item of page.quality.items) {
       entries.push({
@@ -80,8 +83,7 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
-
-    // 宿泊のお客様（アメニティ、利用時間、注意事項）
+    // 宿泊のお客様(アメニティ、利用時間、注意事項)
     for (const item of page.stay.items) {
       entries.push({
         title: item.label,
@@ -90,8 +92,7 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
-
-    // 日帰り入浴のお客様（料金、時間、注意事項）
+    // 日帰り入浴のお客様(料金、時間、注意事項)
     for (const item of page.dayUse.items) {
       entries.push({
         title: item.label,
@@ -100,8 +101,7 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
-
-    // 日帰り入浴：貸出品（タオル等）
+    // 日帰り入浴:貸出品(タオル等)
     for (const item of page.dayUse.rentals) {
       entries.push({
         title: item.label,
@@ -110,8 +110,7 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
-
-    // 日帰り入浴：備考（シャンプー・リンス等の完備情報はここに入っている）
+    // 日帰り入浴:備考(シャンプー・リンス等の完備情報はここに入っている)
     if (page.dayUse.notes) {
       for (const note of page.dayUse.notes) {
         entries.push({
@@ -128,7 +127,6 @@ export const GET: APIRoute = async ({ params }) => {
   const cuisineEntry = findByLang(await getCollection('cuisine-page'), lang);
   if (cuisineEntry) {
     const page = cuisineEntry.data;
-
     for (const plan of page.dinner.plans) {
       entries.push({
         title: plan.name,
@@ -137,15 +135,13 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
-
     entries.push({
       title: page.breakfast.plan.name,
       excerpt: excerpt(page.breakfast.plan.description),
       url: `/${lang}/cuisine/`,
       category: page.pageTitle,
     });
-
-    // 食事会場（部屋食・大広間など）
+    // 食事会場(部屋食・大広間など)
     entries.push({
       title: page.diningVenues.inRoom.heading,
       excerpt: excerpt(page.diningVenues.inRoom.description),
@@ -158,7 +154,6 @@ export const GET: APIRoute = async ({ params }) => {
       url: `/${lang}/cuisine/`,
       category: page.pageTitle,
     });
-
     // アレルギー等、食事に関する配慮事項
     for (const item of page.guestConsiderations) {
       entries.push({
@@ -189,7 +184,6 @@ export const GET: APIRoute = async ({ params }) => {
         });
       }
     }
-
     // 利用上の注意
     for (const note of page.usageNotice.items) {
       entries.push({
@@ -205,15 +199,13 @@ export const GET: APIRoute = async ({ params }) => {
   const accessEntry = findByLang(await getCollection('access-page'), lang);
   if (accessEntry) {
     const page = accessEntry.data;
-
     entries.push({
       title: page.pageTitle,
       excerpt: excerpt(page.byTrain.heading + ' ' + page.byCar.heading),
       url: `/${lang}/access/`,
       category: page.pageTitle,
     });
-
-    // 電車での経路（洞爺駅までの区間 → ホテルまでの手段）
+    // 電車での経路(洞爺駅までの区間 → ホテルまでの手段)
     for (const dep of page.byTrain.departures) {
       entries.push({
         title: `${dep.from} → ${page.byTrain.nearestStation}`,
@@ -230,7 +222,6 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
-
     // 車での経路
     for (const dep of page.byCar.departures) {
       entries.push({
@@ -240,7 +231,6 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
-
     // 駐車場の注意事項
     for (const note of page.parking.notes) {
       entries.push({
@@ -250,7 +240,6 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
-
     // 周辺観光地までの所要時間
     for (const item of page.surroundings.items) {
       entries.push({
@@ -260,7 +249,6 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
-
     // アクセスページ内のFAQ
     for (const qa of page.faq.items) {
       entries.push({
@@ -298,7 +286,6 @@ export const GET: APIRoute = async ({ params }) => {
       const fallback = post.data.translations.ja;
       const title = translated.title || fallback.title;
       if (!title) continue;
-
       entries.push({
         title,
         excerpt: excerpt(translated.body.length > 0 ? translated.body : fallback.body),
@@ -308,7 +295,7 @@ export const GET: APIRoute = async ({ params }) => {
     }
   }
 
-  return new Response(JSON.stringify(entries), {
+  return new Response(JSON.stringify(entries.map((e) => ({ ...e, url: withBase(e.url) }))), {
     headers: { 'Content-Type': 'application/json' },
   });
 };

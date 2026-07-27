@@ -42,7 +42,7 @@ body {
   font-weight: 400;
   color: var(--color-ink);
   background-color: var(--color-bg);
-  background-image: url('/assets/textures/bg_v4_2x.jpg');
+  background-image: var(--bg-texture-url);
   background-repeat: repeat;
   background-size: 375px 375px;
   line-height: 1.85;

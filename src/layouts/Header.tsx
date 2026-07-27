@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import SearchOverlay from '../components/common/SearchOverlay'; // パスは実際の配置に合わせて調整してください
+import {asset} from './../utils/asset';
 
 interface PrimaryNavItem {
   href: string;
@@ -117,7 +118,7 @@ function LanguageDropdown({ langLinks, label }: { langLinks: LangLink[]; label: 
             <a
               key={lang.code}
               ref={i === 0 ? firstItemRef : undefined}
-              href={lang.href}
+              href={asset(lang.href)}
               role="option"
               aria-selected={lang.active}
               onClick={() => setOpen(false)}
@@ -173,9 +174,9 @@ export default function Header({
       id="site-header"
     >
       <div className="flex items-center">
-        <a href="/" className="flex-none">
+        <a href={`${import.meta.env.BASE_URL}`} className="flex-none">
           <img
-            src="/assets/photos/ttl.png"
+            src={`${import.meta.env.BASE_URL}assets/photos/ttl.png`}
             alt={logoAlt}
             className="block w-[150px] lg:w-[170px]"
           />
@@ -183,8 +184,8 @@ export default function Header({
         <nav className="ml-16 hidden items-center gap-11 lg:flex" aria-label={navAriaLabel}>
           {primaryNavItems.map((item) => (
             <a
-              key={item.href}
-              href={item.href}
+              key={asset(item.href)}
+              href={asset(item.href)}
               className="group relative flex flex-col items-start"
             >
               <span className="text-[10px] font-medium tracking-[0.22em] text-white/50 transition-colors duration-300 group-hover:text-[#A24730]">
@@ -289,7 +290,7 @@ export default function Header({
           <ul className="flex flex-col">
             {primaryNavItems.map((item, i) => (
               <li
-                key={item.href}
+                key={asset(item.href)}
                 className="transition-[opacity,transform] duration-500"
                 style={{
                   transitionDelay: isOpen ? `${i * 45 + 100}ms` : '0ms',
@@ -298,7 +299,7 @@ export default function Header({
                 }}
               >
                 <a
-                  href={item.href}
+                  href={asset(item.href)}
                   onClick={closeNav}
                   className="group relative flex items-center gap-4 border-b border-white/[0.08] py-3.5"
                 >
@@ -357,7 +358,7 @@ export default function Header({
               {secondaryNavItems.map((item) => (
                 <li key={item.label}>
                   <a
-                    href={item.href}
+                    href={asset(item.href)}
                     onClick={closeNav}
                     className="text-[11.5px] leading-snug tracking-[0.02em] text-white/45 transition-colors hover:text-white"
                   >
@@ -375,7 +376,7 @@ export default function Header({
               <span key={lang.code} className="flex items-center">
                 {i > 0 && <span className="mx-1.5 h-2.5 w-px bg-white/20" />}
                 <a
-                  href={lang.href}
+                  href={asset(lang.href)}
                   className={`transition-colors ${
                     lang.active ? 'text-[#E8A87C]' : 'hover:text-white'
                   }`}

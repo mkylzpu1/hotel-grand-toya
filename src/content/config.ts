@@ -1,5 +1,10 @@
 import { defineCollection, z } from 'astro:content';
 
+const imagePath = z.string().transform((path) => {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  return `${base}/${path.replace(/^\//, '')}`;
+});
+
 // サポートする言語。Decap CMS の i18n 設定 (public/admin/config.yml) と一致させること。
 export const locales = ['ja', 'en', 'zh', 'ko'] as const;
 export type Locale = (typeof locales)[number];
@@ -16,7 +21,7 @@ export function localeFromId(id: string): Locale {
 }
 
 const imageSchema = z.object({
-  src: z.string(),
+  src: imagePath,
   alt: z.string(),
   className: z.string().optional(),
   caption: z.string().optional(),
@@ -73,7 +78,7 @@ const navigation = defineCollection({
 const hero = defineCollection({
   type: 'data',
   schema: z.object({
-    image: z.string(),
+    image: imagePath,
     imageAlt: z.string(),
     eyebrow: z.string(),
     titleLines: z.array(z.string()),
@@ -104,7 +109,7 @@ const topSections = defineCollection({
 const access = defineCollection({
   type: 'data',
   schema: z.object({
-    heroImage: z.string(),
+    heroImage: imagePath,
     heroImageAlt: z.string(),
     eyebrow: z.string(),
     heading: z.string(),
@@ -122,7 +127,7 @@ const access = defineCollection({
     sceneryDescription: z.string(),
     sceneryItems: z.array(
       z.object({
-        img: z.string(),
+        img: imagePath,
         title: z.string(),
         note: z.string(),
       }),
@@ -163,7 +168,7 @@ const onsenPage = defineCollection({
       items: z.array(
         z.object({
           name: z.string(),
-          image: z.string(),
+          image: imagePath,
           imageAlt: z.string(),
           description: z.string(),
           hours: z.string(),
@@ -204,7 +209,7 @@ const roomAmenity = z.object({
 
 const roomGalleryItem = z.object({
   label: z.string(),
-  src: z.string().optional(),
+  src: imagePath.optional(),
   alt: z.string().optional(),
 });
 
@@ -281,7 +286,7 @@ const cuisinePlanItem = z.object({
   name: z.string(),
   nameEn: z.string().optional(),
   image: z.object({
-    src: z.string(),
+    src: imagePath,
     alt: z.string(),
   }),
   description: z.array(z.string()),
@@ -712,7 +717,7 @@ const recruitJobSchema = z.object({
   icon: z.enum(['chef-hat', 'bed-double', 'concierge-bell']), // 写真が無い場合に出すアイコンのキー
   image: z
     .object({
-      src: z.string(), // 例: "/images/recruit/kitchen-staff.jpg"
+      src: imagePath, // 例: "/images/recruit/kitchen-staff.jpg"
       alt: z.string(),
     })
     .optional(), // 写真がある場合はこちらを優先表示
@@ -758,7 +763,7 @@ const recruitPage = defineCollection({
       points: z.array(z.string()), // 職場の特徴を箇条書きで
       photos: z.array(
         z.object({
-          src: z.string(), // 例: "/images/recruit/kitchen.jpg"
+          src: imagePath, // 例: "/images/recruit/kitchen.jpg"
           alt: z.string(),
         }),
       ),

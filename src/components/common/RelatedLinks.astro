@@ -1,5 +1,6 @@
 ---
 import type { RelatedLink } from '../../types/site';
+import { asset } from '../../utils/asset';
 
 interface Props {
   heading: string;
@@ -30,9 +31,9 @@ const reservationHref = links.find((link) => link.id === 'reservation')?.href ??
     <div class="grid grid-cols-2 gap-5 lg:grid-cols-4">
       {
         visibleLinks.map((link) => (
-          <a href={link.href} class="group relative block aspect-[3/4] overflow-hidden">
+          <a href={asset(link.href)} class="group relative block aspect-[3/4] overflow-hidden">
             <img
-              src={link.image}
+              src={asset(link.image)}
               alt={link.imageAlt}
               class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08]"
             />

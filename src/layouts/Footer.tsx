@@ -1,3 +1,4 @@
+import { asset } from './../utils/asset';
 interface NavLink {
   href: string;
   label: string;
@@ -54,8 +55,8 @@ export default function Footer({ guideLinks, infoLinks, copy, logoSrc, logoAlt }
             </h4>
             {guideLinks.map((link) => (
               <a
-                key={link.href}
-                href={link.href}
+                key={asset(link.href)}
+                href={asset(link.href)}
                 className="text-[0.82rem] opacity-80 hover:opacity-100"
               >
                 {link.label}
@@ -70,8 +71,8 @@ export default function Footer({ guideLinks, infoLinks, copy, logoSrc, logoAlt }
             </h4>
             {infoLinks.map((link) => (
               <a
-                key={link.href}
-                href={link.href}
+                key={asset(link.href)}
+                href={asset(link.href)}
                 className="text-[0.82rem] opacity-80 hover:opacity-100"
               >
                 {link.label}
