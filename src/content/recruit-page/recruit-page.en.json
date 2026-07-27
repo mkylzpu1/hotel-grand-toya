@@ -1,0 +1,129 @@
+{
+  "pageTitle": "採用情報",
+  "pageTitleEn": "RECRUIT",
+  "icon": "🌿",
+  "breadcrumbLabel": "採用情報",
+  "heading": "私たちと一緒に、\n洞爺湖で働いてみませんか？",
+  "description": [
+    "当館ではホテルスタッフを随時募集しております。",
+    "湖畔の景色とお客様の笑顔に囲まれながら、一緒に働く仲間をお待ちしております。"
+  ],
+
+  "workLife": {
+    "heading": "洞爺湖温泉、湖畔のホテルで働く",
+    "description": "遊覧船乗り場の目の前に建つ、客室39室のホテルです。スタッフ16名が力を合わせ、笑顔を第一にお客様をお迎えしています。シニア世代や外国人スタッフ、UIJターンでの入社実績もあり、幅広い方が活躍中です。",
+    "points": [
+      "遊覧船乗り場前という好立地｜通勤は車で15分ほど",
+      "スタッフ16名の少人数体制でチームワーク重視",
+      "シニア世代・未経験の方も歓迎（丁寧に指導します）",
+      "外国人雇用実績あり／UIJターン歓迎",
+      "単身用の寮あり（寮費 5,300円〜8,300円）",
+      "制服貸与あり（部署ごとに白衣・作務衣・着物など）"
+    ],
+    "photos": [
+      { "src": "/assets/photos/recruit1.png", "alt": "洞爺湖温泉に建つホテルグランドトーヤ" }
+    ]
+  },
+
+  "positionsHeading": "募集中の職種",
+  "positionsDescription": "現在、以下の職種でスタッフを募集しています。未経験の方も安心してご応募ください。",
+  "positions": [
+    {
+      "status": "open",
+      "icon": "chef-hat",
+      "image": { "src": "/assets/photos/recruit3.png", "alt": "厨房で作業するスタッフ" },
+      "title": "厨房スタッフ",
+      "employmentType": "正社員",
+      "recruitCount": 2,
+      "summary": "館内厨房での炊飯・食器洗浄・盛付けなど、調理をサポートするお仕事です。未経験の方も歓迎します。",
+      "duties": [
+        "炊飯・食器洗浄作業",
+        "調理の盛付け作業",
+        "調理場の清掃・その他雑務全般"
+      ],
+      "salaryType": "月給",
+      "salaryRoughLabel": "月給18万円台〜",
+      "workingHours": "5:30〜21:00の間で実働7.5時間程度（シフト制）",
+      "holidays": "シフト制・週休二日｜年間休日87日",
+      "tags": ["経験不問", "シニア世代歓迎", "制服貸与", "駅から車で15分"]
+    },
+    {
+      "status": "open",
+      "icon": "bed-double",
+      "image": { "src": "/assets/photos/recruit2.png", "alt": "客室を整えるスタッフ" },
+      "title": "客室係",
+      "employmentType": "正社員",
+      "recruitCount": 2,
+      "summary": "客室のご案内やお料理の配膳・片付け、客室清掃を行うお仕事です。5〜7名のチームで協力しながら、未経験の方にも丁寧にお教えします。",
+      "duties": [
+        "客室へのご案内",
+        "お料理の配膳・お片付け",
+        "客室清掃"
+      ],
+      "salaryType": "月給",
+      "salaryRoughLabel": "月給18万円台〜",
+      "workingHours": "7:00〜21:00の間で実働7.5時間程度（シフト制）",
+      "holidays": "シフト制・週休二日｜年間休日87日",
+      "tags": ["未経験歓迎", "シニア世代歓迎", "着物・作務衣を貸与", "駅から車で15分"]
+    },
+    {
+      "status": "open",
+      "icon": "concierge-bell",
+      "image": { "src": "/assets/photos/recruit4.png", "alt": "フロントで接客するスタッフ" },
+      "title": "フロントスタッフ",
+      "employmentType": "パート",
+      "recruitCount": 1,
+      "summary": "チェックアウト後からチェックイン前の時間帯にフロント業務を担当します。接客・電話応対・簡単なパソコン入力が中心で、勤務日数や時間はご相談いただけます。",
+      "duties": [
+        "フロントでの接客対応",
+        "電話応対",
+        "簡単なパソコン入力"
+      ],
+      "salaryType": "時給",
+      "salaryRoughLabel": "時給1,100円〜",
+      "workingHours": "10:00〜14:00（週3〜4日、日数は相談可）",
+      "holidays": "週休二日制",
+      "tags": ["経験不問", "時間相談可", "駅から車で15分"]
+    }
+  ],
+
+  "processHeading": "採用までの流れ",
+  "processDescription": "ご応募からご入社まで、以下の流れで進みます。",
+  "process": [
+    {
+      "title": "エントリー",
+      "description": "メールまたはお電話でお気軽にご連絡ください。履歴書（写真貼付）をご送付いただきます。"
+    },
+    {
+      "title": "書類選考",
+      "description": "ご送付いただいた履歴書をもとに書類選考を行います。"
+    },
+    {
+      "title": "面接",
+      "description": "面接は基本的に1回、随時実施しています。日程はご相談の上で決定します。"
+    },
+    {
+      "title": "結果のご連絡",
+      "description": "面接後7日以内を目安に、電話・郵送・メールなどでご連絡いたします。"
+    },
+    {
+      "title": "ご入社",
+      "description": "入社後は先輩スタッフが業務内容を丁寧にお教えしますので、未経験の方もご安心ください。"
+    }
+  ],
+
+  "benefitsHeading": "待遇・福利厚生",
+  "benefits": [
+    { "icon": "shield-check", "label": "社会保険完備（雇用・労災・健康・厚生年金）" },
+    { "icon": "home", "label": "単身寮あり" },
+    { "icon": "car", "label": "マイカー通勤OK・駐車場あり" },
+    { "icon": "shirt", "label": "制服貸与" },
+    { "icon": "globe", "label": "外国人雇用実績あり／UIJターン歓迎" },
+    { "icon": "sparkles", "label": "シニア世代活躍中" }
+  ],
+
+  "emailAddress": "info@grandtoya.com",
+  "emailLabel": "メールで問い合わせる",
+  "tel": "0142752288",
+  "telLabel": "電話で問い合わせる"
+}

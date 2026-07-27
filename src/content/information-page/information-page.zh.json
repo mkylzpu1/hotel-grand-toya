@@ -1,0 +1,16 @@
+{
+  "pageTitle": "各協定福利厚生のご案内",
+  "pageTitleEn": "INFORMATION",
+  "icon": "福",
+  "breadcrumbLabel": "各協定福利厚生のご案内",
+  "welfareSection": {
+    "eyebrow": "INFORMATION",
+    "heading": "各協定福利厚生のご案内",
+    "description": "下記団体の助成券・利用権等がご利用いただけます。",
+    "items": [
+      { "name": "財団法人北海道市町村職員福祉協会（指定宿泊施設利用助成券）" },
+      { "name": "財団法人北海道公立学校教職員互助会（指定施設利用補助券）" },
+      { "name": "財団法人北海道港湾福利厚生協会（契約保養施設利用券）" }
+    ]
+  }
+}

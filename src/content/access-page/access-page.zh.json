@@ -1,0 +1,109 @@
+{
+  "pageTitle": "アクセス",
+  "pageTitleEn": "ACCESS",
+  "icon": "道",
+"quickNav": [
+  { "href": "#section-parking", "label": "地図・お問い合わせ" },
+  { "href": "#section-train", "label": "JRでお越しの方" },
+  { "href": "#section-car", "label": "お車でお越しの方" },
+  { "href": "#section-bus", "label": "高速バスでお越しの方" }
+],
+"byTrain": {
+  "icon": "駅",
+  "eyebrow": "By Train",
+  "heading": "JRでお越しの方",
+  "nearestStation": "JR洞爺駅",
+  "departures": [
+    { "from": "札幌", "boardingStation": "JR札幌駅", "trainName": "JR特急「北斗」", "duration": "約1時間55分" },
+    { "from": "函館", "boardingStation": "JR函館駅", "trainName": "JR特急「北斗」", "duration": "約2時間" },
+    { "from": "室蘭", "boardingStation": "JR室蘭駅", "trainName": "JR特急「北斗」／普通列車", "duration": "約1時間" }
+  ],
+"toHotelOptions": [
+  { "method": "タクシー", "duration": "約10分" },
+  {
+    "method": "路線バス",
+    "line": "道南バス「室蘭洞爺線」",
+    "boarding": "洞爺駅前",
+    "alighting": "洞爺湖温泉",
+    "duration": "約24分（6駅乗車）",
+    "frequency": "予約不要、1時間に1本程度運行",
+    "url": "https://www.donanbus.co.jp/map/toyako_toyakoonsen/"
+  }
+],
+"walkToHotel": {
+  "duration": "約2分",
+  "distance": "170m",
+  "note": "バスをご利用の場合、「洞爺湖温泉」バス停下車後は徒歩でのご案内となります。"
+},
+  "shuttleAvailable": "送迎サービスは行っておりません。上記のタクシーまたは路線バスをご利用ください。",
+  "officialTimetableUrl": "https://www.jrhokkaido.co.jp/"
+},
+"byBus": {
+  "icon": "バス",
+  "eyebrow": "By Highway Bus",
+  "heading": "高速バスなら乗り換えなしで直行",
+  "from": "札幌駅前",
+  "to": "洞爺湖温泉",
+  "duration": "約2時間40分",
+  "frequency": "1日数便",
+  "note": "完全予約制です。乗車日の1ヶ月前から、当日は始発出発の2時間前までに電話またはWeb予約サイトでのご予約が必要です。",
+  "url": "https://www.donanbus.co.jp/map/sap_toyako/"
+},
+"byCar": {
+  "icon": "車",
+  "eyebrow": "By Car",
+  "heading": "お車でお越しの方",
+  "departures": [
+    { "from": "札幌", "ic": "虻田洞爺湖IC", "duration": "約1時間50分" },
+    { "from": "新千歳空港", "ic": "虻田洞爺湖IC", "duration": "約1時間30分" },
+    { "from": "苫小牧", "ic": "虻田洞爺湖IC", "duration": "約1時間15分" },
+    { "from": "函館・八雲方面", "ic": "豊浦IC／伊達IC", "duration": "約2時間〜2時間30分" }
+  ],
+  "fromIc": [
+    { "ic": "虻田洞爺湖IC", "duration": "約5分" },
+    { "ic": "伊達IC", "duration": "約30分" },
+    { "ic": "豊浦IC", "duration": "約40分" }
+  ]
+},
+"map": {
+  "icon": "図",
+  "eyebrow": "Map & Contact",
+  "heading": "地図・お問い合わせ",
+  "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
+  "openMapUrl": "https://maps.google.com/?q=ホテルグランドトーヤ",
+  "routeUrl": "https://www.google.com/maps/dir/?api=1&destination=ホテルグランドトーヤ"
+},
+"contact": {
+  "name": "洞爺湖温泉・湖畔の宿　ホテルグランドトーヤ",
+  "postalCode": "〒049-5721",
+  "address": "北海道虻田郡洞爺湖町洞爺湖温泉144",
+  "tel": "0142-75-2288",
+  "fax": "0142-75-3434",
+  "email": "info@grandtoya.com"
+},
+"parking": {
+  "heading": "駐車場のご案内",
+  "notes": [
+    "ホテル敷地内のほか、道路を挟んだ向かい側にも駐車場をご用意しております。",
+    "ご予約は不要です。ご到着の際はスタッフがご案内いたします。"
+  ]
+},
+"surroundings": {
+  "heading": "周辺交通",
+  "items": [
+    { "label": "コンビニまで", "duration": "徒歩約5分" },
+    { "label": "洞爺湖温泉街まで", "duration": "徒歩約10分" },
+    { "label": "遊覧船乗り場まで", "duration": "徒歩約8分" }
+  ]
+},
+  "faq": {
+    "heading": "よくある質問",
+    "items": [
+      { "question": "冬でも車で行けますか？", "answer": "はい、スタッドレスタイヤの装着など冬季装備があれば通行可能です。積雪時は所要時間に余裕を持ってお越しください。" },
+      { "question": "チェックイン前から駐車できますか？", "answer": "はい、チェックイン前のご到着でも駐車場をご利用いただけます。" },
+      { "question": "タクシーは呼べますか？", "answer": "フロントにてお手配いたします。" },
+      { "question": "最寄り駅から徒歩で行けますか？", "answer": "距離があるため、タクシーまたは路線バスのご利用をおすすめしております。" },
+      { "question": "送迎サービスはありますか？", "answer": "現在、送迎サービスは行っておりません。" }
+    ]
+  }
+}
