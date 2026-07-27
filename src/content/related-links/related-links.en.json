@@ -1,45 +1,45 @@
 {
-  "heading": "あわせてご覧ください",
+  "heading": "You May Also Like",
   "links": [
     {
       "id": "onsen",
-      "label": "温泉",
-      "href": "/ja/onsen/",
+      "label": "Onsen",
+      "href": "/en/onsen/",
       "icon": "湯",
       "image": "/assets/photos/onsen-3.jpg",
-      "imageAlt": "露天風呂"
+      "imageAlt": "Open-air bath"
     },
     {
       "id": "cuisine",
-      "label": "お料理",
-      "href": "/ja/cuisine/",
+      "label": "Dinner",
+      "href": "/en/cuisine/",
       "icon": "膳",
       "image": "/assets/photos/lobby-1.jpg",
-      "imageAlt": "夕食のお料理"
+      "imageAlt": "Dinner course"
     },
     {
       "id": "facilities",
-      "label": "館内施設",
-      "href": "/ja/facilities",
+      "label": "Facilities",
+      "href": "/en/facilities",
       "icon": "館",
       "image": "/assets/photos/facility1.png",
-      "imageAlt": "館内の様子"
+      "imageAlt": "Inside the hotel"
     },
     {
       "id": "rooms",
-      "label": "客室",
-      "href": "/ja/rooms/",
+      "label": "Rooms",
+      "href": "/en/rooms/",
       "icon": "室",
       "image": "/assets/photos/room-washitsu.jpg",
-      "imageAlt": "客室"
+      "imageAlt": "Guest room"
     },
     {
       "id": "reservation",
-      "label": "ご予約",
-      "href": "/ja/reservation/",
+      "label": "Reservations",
+      "href": "/en/reservation/",
       "icon": "予",
       "image": "/assets/photos/reservation.png",
-      "imageAlt": "ご予約"
+      "imageAlt": "Reservations"
     }
   ]
 }

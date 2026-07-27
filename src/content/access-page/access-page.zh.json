@@ -1,95 +1,136 @@
 {
-  "pageTitle": "アクセス",
+  "pageTitle": "交通指南",
   "pageTitleEn": "ACCESS",
   "icon": "道",
   "quickNav": [
-    { "href": "#section-parking", "label": "地図・お問い合わせ" },
-    { "href": "#section-train", "label": "JRでお越しの方" },
-    { "href": "#section-car", "label": "お車でお越しの方" },
-    { "href": "#section-bus", "label": "高速バスでお越しの方" }
+    {
+      "href": "#section-parking",
+      "label": "地图・联系方式"
+    },
+    {
+      "href": "#section-train",
+      "label": "乘坐JR前来"
+    },
+    {
+      "href": "#section-car",
+      "label": "自驾前来"
+    },
+    {
+      "href": "#section-bus",
+      "label": "乘坐高速巴士前来"
+    }
   ],
   "byTrain": {
     "icon": "駅",
     "eyebrow": "By Train",
-    "heading": "JRでお越しの方",
-    "nearestStation": "JR洞爺駅",
+    "heading": "乘坐JR前来",
+    "nearestStation": "JR洞爷站",
     "departures": [
       {
         "from": "札幌",
-        "boardingStation": "JR札幌駅",
+        "boardingStation": "JR札幌站",
         "trainName": "JR特急「北斗」",
-        "duration": "約1時間55分"
+        "duration": "约1小时55分钟"
       },
       {
-        "from": "函館",
-        "boardingStation": "JR函館駅",
+        "from": "函馆",
+        "boardingStation": "JR函馆站",
         "trainName": "JR特急「北斗」",
-        "duration": "約2時間"
+        "duration": "约2小时"
       },
       {
-        "from": "室蘭",
-        "boardingStation": "JR室蘭駅",
-        "trainName": "JR特急「北斗」／普通列車",
-        "duration": "約1時間"
+        "from": "室兰",
+        "boardingStation": "JR室兰站",
+        "trainName": "JR特急「北斗」／普通列车",
+        "duration": "约1小时"
       }
     ],
     "toHotelOptions": [
-      { "method": "タクシー", "duration": "約10分" },
       {
-        "method": "路線バス",
-        "line": "道南バス「室蘭洞爺線」",
-        "boarding": "洞爺駅前",
-        "alighting": "洞爺湖温泉",
-        "duration": "約24分（6駅乗車）",
-        "frequency": "予約不要、1時間に1本程度運行",
+        "method": "出租车",
+        "duration": "约10分钟"
+      },
+      {
+        "method": "路线巴士",
+        "line": "道南巴士「室兰洞爷线」",
+        "boarding": "洞爷站前",
+        "alighting": "洞爷湖温泉",
+        "duration": "约24分钟（乘坐6站）",
+        "frequency": "无需预约，约每小时1班",
         "url": "https://www.donanbus.co.jp/map/toyako_toyakoonsen/"
       }
     ],
     "walkToHotel": {
-      "duration": "約2分",
-      "distance": "170m",
-      "note": "バスをご利用の場合、「洞爺湖温泉」バス停下車後は徒歩でのご案内となります。"
+      "duration": "约2分钟",
+      "distance": "170米",
+      "note": "乘坐巴士时，请在「洞爷湖温泉」站下车后步行前往。"
     },
-    "shuttleAvailable": "送迎サービスは行っておりません。上記のタクシーまたは路線バスをご利用ください。",
+    "shuttleAvailable": "本馆不提供接送服务，请利用上述出租车或路线巴士。",
     "officialTimetableUrl": "https://www.jrhokkaido.co.jp/"
   },
   "byBus": {
     "icon": "バス",
     "eyebrow": "By Highway Bus",
-    "heading": "高速バスなら乗り換えなしで直行",
-    "from": "札幌駅前",
-    "to": "洞爺湖温泉",
-    "duration": "約2時間40分",
-    "frequency": "1日数便",
-    "note": "完全予約制です。乗車日の1ヶ月前から、当日は始発出発の2時間前までに電話またはWeb予約サイトでのご予約が必要です。",
+    "heading": "乘坐高速巴士，无需换乘直达",
+    "from": "札幌站前",
+    "to": "洞爷湖温泉",
+    "duration": "约2小时40分钟",
+    "frequency": "每日数班",
+    "note": "完全预约制。请于乘车日1个月前至当日首班发车前2小时，通过电话或网上预约网站预约。",
     "url": "https://www.donanbus.co.jp/map/sap_toyako/"
   },
   "byCar": {
     "icon": "車",
     "eyebrow": "By Car",
-    "heading": "お車でお越しの方",
+    "heading": "自驾前来",
     "departures": [
-      { "from": "札幌", "ic": "虻田洞爺湖IC", "duration": "約1時間50分" },
-      { "from": "新千歳空港", "ic": "虻田洞爺湖IC", "duration": "約1時間30分" },
-      { "from": "苫小牧", "ic": "虻田洞爺湖IC", "duration": "約1時間15分" },
-      { "from": "函館・八雲方面", "ic": "豊浦IC／伊達IC", "duration": "約2時間〜2時間30分" }
+      {
+        "from": "札幌",
+        "ic": "虻田洞爷湖IC",
+        "duration": "约1小时50分钟"
+      },
+      {
+        "from": "新千岁机场",
+        "ic": "虻田洞爷湖IC",
+        "duration": "约1小时30分钟"
+      },
+      {
+        "from": "苫小牧",
+        "ic": "虻田洞爷湖IC",
+        "duration": "约1小时15分钟"
+      },
+      {
+        "from": "函馆・八云方向",
+        "ic": "丰浦IC／伊达IC",
+        "duration": "约2小时〜2小时30分钟"
+      }
     ],
     "fromIc": [
-      { "ic": "虻田洞爺湖IC", "duration": "約5分" },
-      { "ic": "伊達IC", "duration": "約30分" },
-      { "ic": "豊浦IC", "duration": "約40分" }
+      {
+        "ic": "虻田洞爷湖IC",
+        "duration": "约5分钟"
+      },
+      {
+        "ic": "伊达IC",
+        "duration": "约30分钟"
+      },
+      {
+        "ic": "丰浦IC",
+        "duration": "约40分钟"
+      }
     ]
   },
   "map": {
     "icon": "図",
     "eyebrow": "Map & Contact",
-    "heading": "地図・お問い合わせ",
+    "heading": "地图・联系方式",
     "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
+    "mapTitle": "格兰多洞爷酒店地图",
     "openMapUrl": "https://maps.google.com/?q=ホテルグランドトーヤ",
     "routeUrl": "https://www.google.com/maps/dir/?api=1&destination=ホテルグランドトーヤ"
   },
   "contact": {
-    "name": "洞爺湖温泉・湖畔の宿　ホテルグランドトーヤ",
+    "name": "洞爷湖温泉・湖畔旅馆　格兰多洞爷酒店",
     "postalCode": "〒049-5721",
     "address": "北海道虻田郡洞爺湖町洞爺湖温泉144",
     "tel": "0142-75-2288",
@@ -97,39 +138,51 @@
     "email": "info@grandtoya.com"
   },
   "parking": {
-    "heading": "駐車場のご案内",
+    "heading": "停车场信息",
     "notes": [
-      "ホテル敷地内のほか、道路を挟んだ向かい側にも駐車場をご用意しております。",
-      "ご予約は不要です。ご到着の際はスタッフがご案内いたします。"
+      "除酒店用地内，马路对面也设有停车场。",
+      "无需预约。抵达时会有工作人员为您引导。"
     ]
   },
   "surroundings": {
-    "heading": "周辺交通",
+    "heading": "周边交通",
     "items": [
-      { "label": "コンビニまで", "duration": "徒歩約5分" },
-      { "label": "洞爺湖温泉街まで", "duration": "徒歩約10分" },
-      { "label": "遊覧船乗り場まで", "duration": "徒歩約8分" }
+      {
+        "label": "至便利店",
+        "duration": "步行约5分钟"
+      },
+      {
+        "label": "至洞爷湖温泉街",
+        "duration": "步行约10分钟"
+      },
+      {
+        "label": "至游览船码头",
+        "duration": "步行约8分钟"
+      }
     ]
   },
   "faq": {
-    "heading": "よくある質問",
+    "heading": "常见问题",
     "items": [
       {
-        "question": "冬でも車で行けますか？",
-        "answer": "はい、スタッドレスタイヤの装着など冬季装備があれば通行可能です。積雪時は所要時間に余裕を持ってお越しください。"
+        "question": "冬季也能自驾前来吗？",
+        "answer": "可以，只要装配雪地胎等冬季装备即可通行。积雪时请预留充裕的行车时间。"
       },
       {
-        "question": "チェックイン前から駐車できますか？",
-        "answer": "はい、チェックイン前のご到着でも駐車場をご利用いただけます。"
-      },
-      { "question": "タクシーは呼べますか？", "answer": "フロントにてお手配いたします。" },
-      {
-        "question": "最寄り駅から徒歩で行けますか？",
-        "answer": "距離があるため、タクシーまたは路線バスのご利用をおすすめしております。"
+        "question": "入住前可以停车吗？",
+        "answer": "可以，入住前抵达也可使用停车场。"
       },
       {
-        "question": "送迎サービスはありますか？",
-        "answer": "現在、送迎サービスは行っておりません。"
+        "question": "可以叫出租车吗？",
+        "answer": "可以，前台会为您安排。"
+      },
+      {
+        "question": "可以从最近车站步行前来吗？",
+        "answer": "由于有一定距离，建议乘坐出租车或路线巴士前来。"
+      },
+      {
+        "question": "有接送服务吗？",
+        "answer": "目前不提供接送服务。"
       }
     ]
   }

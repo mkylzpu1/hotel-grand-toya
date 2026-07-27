@@ -1,8 +1,21 @@
 {
-  "pageTitle": "",
-  "pageTitleEn": "",
-  "icon": "",
-  "categoryFilters": [],
-  "allCategoryLabel": "",
-  "emptyLabel": ""
+  "pageTitle": "News",
+  "pageTitleEn": "NEWS",
+  "icon": "報",
+  "categoryFilters": [
+    {
+      "id": "event",
+      "label": "Events"
+    },
+    {
+      "id": "maintenance",
+      "label": "Maintenance"
+    },
+    {
+      "id": "campaign",
+      "label": "Campaigns"
+    }
+  ],
+  "allCategoryLabel": "All",
+  "emptyLabel": "No news found."
 }

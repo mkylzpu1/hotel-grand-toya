@@ -1,135 +1,188 @@
 {
-  "pageTitle": "アクセス",
+  "pageTitle": "Access",
   "pageTitleEn": "ACCESS",
   "icon": "道",
   "quickNav": [
-    { "href": "#section-parking", "label": "地図・お問い合わせ" },
-    { "href": "#section-train", "label": "JRでお越しの方" },
-    { "href": "#section-car", "label": "お車でお越しの方" },
-    { "href": "#section-bus", "label": "高速バスでお越しの方" }
+    {
+      "href": "#section-parking",
+      "label": "Map & Contact"
+    },
+    {
+      "href": "#section-train",
+      "label": "By Train"
+    },
+    {
+      "href": "#section-car",
+      "label": "By Car"
+    },
+    {
+      "href": "#section-bus",
+      "label": "By Highway Bus"
+    }
   ],
   "byTrain": {
     "icon": "駅",
     "eyebrow": "By Train",
-    "heading": "JRでお越しの方",
-    "nearestStation": "JR洞爺駅",
+    "heading": "By Train",
+    "nearestStation": "JR Toya Station",
     "departures": [
       {
-        "from": "札幌",
-        "boardingStation": "JR札幌駅",
-        "trainName": "JR特急「北斗」",
-        "duration": "約1時間55分"
+        "from": "Sapporo",
+        "boardingStation": "JR Sapporo Station",
+        "trainName": "JR Limited Express \"Hokuto\"",
+        "duration": "About 1 hr. 55 min."
       },
       {
-        "from": "函館",
-        "boardingStation": "JR函館駅",
-        "trainName": "JR特急「北斗」",
-        "duration": "約2時間"
+        "from": "Hakodate",
+        "boardingStation": "JR Hakodate Station",
+        "trainName": "JR Limited Express \"Hokuto\"",
+        "duration": "About 2 hrs."
       },
       {
-        "from": "室蘭",
-        "boardingStation": "JR室蘭駅",
-        "trainName": "JR特急「北斗」／普通列車",
-        "duration": "約1時間"
+        "from": "Muroran",
+        "boardingStation": "JR Muroran Station",
+        "trainName": "JR Limited Express \"Hokuto\" / Local train",
+        "duration": "About 1 hr."
       }
     ],
     "toHotelOptions": [
-      { "method": "タクシー", "duration": "約10分" },
       {
-        "method": "路線バス",
-        "line": "道南バス「室蘭洞爺線」",
-        "boarding": "洞爺駅前",
-        "alighting": "洞爺湖温泉",
-        "duration": "約24分（6駅乗車）",
-        "frequency": "予約不要、1時間に1本程度運行",
+        "method": "Taxi",
+        "duration": "About 10 min."
+      },
+      {
+        "method": "Local Bus",
+        "line": "Donan Bus \"Muroran-Toya Line\"",
+        "boarding": "Toya Ekimae",
+        "alighting": "Toyako Onsen",
+        "duration": "About 24 min. (6 stops)",
+        "frequency": "No reservation needed, about 1 bus/hour",
         "url": "https://www.donanbus.co.jp/map/toyako_toyakoonsen/"
       }
     ],
     "walkToHotel": {
-      "duration": "約2分",
+      "duration": "About 2 min.",
       "distance": "170m",
-      "note": "バスをご利用の場合、「洞爺湖温泉」バス停下車後は徒歩でのご案内となります。"
+      "note": "If you take the bus, you will need to walk after getting off at the \"Toyako Onsen\" bus stop."
     },
-    "shuttleAvailable": "送迎サービスは行っておりません。上記のタクシーまたは路線バスをご利用ください。",
+    "shuttleAvailable": "We do not offer a shuttle service. Please use the taxi or local bus options above.",
     "officialTimetableUrl": "https://www.jrhokkaido.co.jp/"
   },
   "byBus": {
     "icon": "バス",
     "eyebrow": "By Highway Bus",
-    "heading": "高速バスなら乗り換えなしで直行",
-    "from": "札幌駅前",
-    "to": "洞爺湖温泉",
-    "duration": "約2時間40分",
-    "frequency": "1日数便",
-    "note": "完全予約制です。乗車日の1ヶ月前から、当日は始発出発の2時間前までに電話またはWeb予約サイトでのご予約が必要です。",
+    "heading": "Direct highway bus, no transfers needed",
+    "from": "Sapporo Ekimae",
+    "to": "Toyako Onsen",
+    "duration": "About 2 hrs. 40 min.",
+    "frequency": "Several times a day",
+    "note": "Reservations required for all seats. Please book by phone or on the website from one month before your travel date, up until 2 hours before the first departure on the day of travel.",
     "url": "https://www.donanbus.co.jp/map/sap_toyako/"
   },
   "byCar": {
     "icon": "車",
     "eyebrow": "By Car",
-    "heading": "お車でお越しの方",
+    "heading": "By Car",
     "departures": [
-      { "from": "札幌", "ic": "虻田洞爺湖IC", "duration": "約1時間50分" },
-      { "from": "新千歳空港", "ic": "虻田洞爺湖IC", "duration": "約1時間30分" },
-      { "from": "苫小牧", "ic": "虻田洞爺湖IC", "duration": "約1時間15分" },
-      { "from": "函館・八雲方面", "ic": "豊浦IC／伊達IC", "duration": "約2時間〜2時間30分" }
+      {
+        "from": "Sapporo",
+        "ic": "Abuta-Toyako IC",
+        "duration": "About 1 hr. 50 min."
+      },
+      {
+        "from": "New Chitose Airport",
+        "ic": "Abuta-Toyako IC",
+        "duration": "About 1 hr. 30 min."
+      },
+      {
+        "from": "Tomakomai",
+        "ic": "Abuta-Toyako IC",
+        "duration": "About 1 hr. 15 min."
+      },
+      {
+        "from": "Hakodate / Yakumo area",
+        "ic": "Toyoura IC / Date IC",
+        "duration": "About 2 hrs.–2 hrs. 30 min."
+      }
     ],
     "fromIc": [
-      { "ic": "虻田洞爺湖IC", "duration": "約5分" },
-      { "ic": "伊達IC", "duration": "約30分" },
-      { "ic": "豊浦IC", "duration": "約40分" }
+      {
+        "ic": "Abuta-Toyako IC",
+        "duration": "About 5 min."
+      },
+      {
+        "ic": "Date IC",
+        "duration": "About 30 min."
+      },
+      {
+        "ic": "Toyoura IC",
+        "duration": "About 40 min."
+      }
     ]
   },
   "map": {
     "icon": "図",
     "eyebrow": "Map & Contact",
-    "heading": "地図・お問い合わせ",
+    "heading": "Map & Contact",
     "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
+    "mapTitle": "Map of Hotel Grand Toya",
     "openMapUrl": "https://maps.google.com/?q=ホテルグランドトーヤ",
     "routeUrl": "https://www.google.com/maps/dir/?api=1&destination=ホテルグランドトーヤ"
   },
   "contact": {
     "name": "洞爺湖温泉・湖畔の宿　ホテルグランドトーヤ",
     "postalCode": "〒049-5721",
-    "address": "北海道虻田郡洞爺湖町洞爺湖温泉144",
+    "address": "144 Toyako Onsen, Toyako-cho, Abuta-gun, Hokkaido",
     "tel": "0142-75-2288",
     "fax": "0142-75-3434",
     "email": "info@grandtoya.com"
   },
   "parking": {
-    "heading": "駐車場のご案内",
+    "heading": "Parking",
     "notes": [
-      "ホテル敷地内のほか、道路を挟んだ向かい側にも駐車場をご用意しております。",
-      "ご予約は不要です。ご到着の際はスタッフがご案内いたします。"
+      "In addition to the hotel grounds, we also have a parking lot across the road.",
+      "No reservation needed. Our staff will guide you upon arrival."
     ]
   },
   "surroundings": {
-    "heading": "周辺交通",
+    "heading": "Nearby",
     "items": [
-      { "label": "コンビニまで", "duration": "徒歩約5分" },
-      { "label": "洞爺湖温泉街まで", "duration": "徒歩約10分" },
-      { "label": "遊覧船乗り場まで", "duration": "徒歩約8分" }
+      {
+        "label": "To convenience store",
+        "duration": "About 5 min. walk"
+      },
+      {
+        "label": "To Lake Toya Onsen town",
+        "duration": "About 10 min. walk"
+      },
+      {
+        "label": "To sightseeing boat pier",
+        "duration": "About 8 min. walk"
+      }
     ]
   },
   "faq": {
-    "heading": "よくある質問",
+    "heading": "FAQ",
     "items": [
       {
-        "question": "冬でも車で行けますか？",
-        "answer": "はい、スタッドレスタイヤの装着など冬季装備があれば通行可能です。積雪時は所要時間に余裕を持ってお越しください。"
+        "question": "Can I drive here in winter?",
+        "answer": "Yes, as long as your car has winter equipment such as studless tires. Please allow extra travel time when there is snow."
       },
       {
-        "question": "チェックイン前から駐車できますか？",
-        "answer": "はい、チェックイン前のご到着でも駐車場をご利用いただけます。"
-      },
-      { "question": "タクシーは呼べますか？", "answer": "フロントにてお手配いたします。" },
-      {
-        "question": "最寄り駅から徒歩で行けますか？",
-        "answer": "距離があるため、タクシーまたは路線バスのご利用をおすすめしております。"
+        "question": "Can I park before check-in?",
+        "answer": "Yes, you may use the parking lot even if you arrive before check-in."
       },
       {
-        "question": "送迎サービスはありますか？",
-        "answer": "現在、送迎サービスは行っておりません。"
+        "question": "Can you call a taxi for me?",
+        "answer": "Yes, our front desk can arrange one for you."
+      },
+      {
+        "question": "Can I walk from the nearest station?",
+        "answer": "As it is some distance away, we recommend using a taxi or local bus."
+      },
+      {
+        "question": "Do you offer a shuttle service?",
+        "answer": "We do not currently offer a shuttle service."
       }
     ]
   }

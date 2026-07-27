@@ -12,16 +12,25 @@
       ]
     },
     "en": {
-      "title": "",
-      "body": []
+      "title": "Notice of Temporary Closure of the Large Public Bath for Maintenance",
+      "body": [
+        "The large public bath will be temporarily closed on the date below for equipment maintenance.",
+        "Date/Time: Tuesday, August 5, 2026, 9:30–13:00 (within the usual cleaning hours)"
+      ]
     },
     "zh": {
-      "title": "",
-      "body": []
+      "title": "大浴场设备检修临时停止使用公告",
+      "body": [
+        "因设备检修，大浴场将于下列时间临时停止使用。",
+        "时间：2026年8月5日（星期二）9:30〜13:00（在通常清扫时间内进行）"
+      ]
     },
     "ko": {
-      "title": "",
-      "body": []
+      "title": "대욕장 설비 점검에 따른 임시 휴장 안내",
+      "body": [
+        "설비 점검을 위해 아래 일정으로 대욕장을 임시 휴장합니다.",
+        "일시: 2026년 8월 5일(화) 9:30〜13:00 (평소 청소 시간 내 실시)"
+      ]
     }
   }
 }

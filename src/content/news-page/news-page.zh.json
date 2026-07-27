@@ -1,8 +1,21 @@
 {
-  "pageTitle": "",
-  "pageTitleEn": "",
-  "icon": "",
-  "categoryFilters": [],
-  "allCategoryLabel": "",
-  "emptyLabel": ""
+  "pageTitle": "最新消息",
+  "pageTitleEn": "NEWS",
+  "icon": "報",
+  "categoryFilters": [
+    {
+      "id": "event",
+      "label": "活动"
+    },
+    {
+      "id": "maintenance",
+      "label": "设施维护"
+    },
+    {
+      "id": "campaign",
+      "label": "优惠活动"
+    }
+  ],
+  "allCategoryLabel": "全部",
+  "emptyLabel": "暂无相关消息。"
 }

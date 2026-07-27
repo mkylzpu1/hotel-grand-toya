@@ -1,20 +1,57 @@
 {
   "primaryNavItems": [
-    { "href": "#rooms", "label": "Rooms", "en": "Rooms", "icon": "室" },
-    { "href": "#onsen", "label": "Onsen", "en": "Onsen", "icon": "湯" },
-    { "href": "#food", "label": "Dinner", "en": "Dinner", "icon": "膳" },
-    { "href": "#facilities", "label": "Facilities", "en": "Facilities", "icon": "館" },
-    { "href": "#access", "label": "Access", "en": "Access", "icon": "道" }
+    {
+      "href": "/en/rooms/",
+      "label": "Rooms",
+      "en": "Rooms",
+      "icon": "室"
+    },
+    {
+      "href": "/en/onsen/",
+      "label": "Onsen",
+      "en": "Onsen",
+      "icon": "湯"
+    },
+    {
+      "href": "/en/cuisine/",
+      "label": "Dinner",
+      "en": "Dinner",
+      "icon": "膳"
+    },
+    {
+      "href": "/en/facilities/",
+      "label": "Facilities",
+      "en": "Facilities",
+      "icon": "館"
+    },
+    {
+      "href": "/en/access/",
+      "label": "Access",
+      "en": "Access",
+      "icon": "道"
+    }
   ],
   "secondaryNavItems": [
-    { "href": "#", "label": "FAQ" },
-    { "href": "#", "label": "Guest Reviews" },
-    { "href": "#", "label": "Careers" },
-    { "href": "#", "label": "Company Information" },
-    { "href": "#", "label": "Privacy Policy" },
-    { "href": "#", "label": "Legal Notice" },
-    { "href": "#", "label": "Terms of Use" },
-    { "href": "#", "label": "Cookie Policy" }
+    {
+      "href": "/en/news/",
+      "label": "News"
+    },
+    {
+      "href": "/en/faq/",
+      "label": "FAQ"
+    },
+    {
+      "href": "/en/recruit/",
+      "label": "Careers"
+    },
+    {
+      "href": "/en/information/",
+      "label": "Information"
+    },
+    {
+      "href": "/en/privacy/",
+      "label": "Privacy Policy"
+    }
   ],
   "reserveCta": "Book Now",
   "phoneAriaLabel": "Call us",

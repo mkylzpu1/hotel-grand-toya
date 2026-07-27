@@ -726,7 +726,7 @@ const recruitJobSchema = z.object({
   recruitCount: z.number(), // 採用人数
   summary: z.string(), // 求職者向けのやさしい仕事紹介文
   duties: z.array(z.string()), // 主な仕事内容（箇条書き）
-  salaryType: z.enum(['月給', '時給']),
+  salaryType: z.string(),
   salaryRoughLabel: z.string(), // ざっくり表示（例: "月給18万円台〜"）
   workingHours: z.string(), // 就業時間の要約
   holidays: z.string(), // 休日・休暇の要約

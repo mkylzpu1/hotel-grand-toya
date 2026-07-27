@@ -1,74 +1,89 @@
 {
-  "pageTitle": "お料理",
+  "pageTitle": "料理",
   "pageTitleEn": "CUISINE",
   "intro": {
     "icon": "膳",
     "eyebrow": "Cuisine",
-    "heading": "北海道の旬を、温泉旅館らしいひとときとともに",
+    "heading": "在温泉旅馆的氛围中，品味北海道的当季美味",
     "description": [
-      "洞爺湖畔で水揚げされる魚介や、道内各地から届く旬の野菜。素材の持ち味を活かした和食会席を、落ち着いた空間でゆっくりとお楽しみいただけます。",
-      "四季折々の食材を取り入れながら、温かい料理は温かいうちに。温泉旅館ならではのお食事の時間をご用意しております。"
+      "洞爷湖畔捕捞的鱼贝类，以及来自北海道各地的时令蔬菜。在静谧的空间里，慢慢品味发挥食材本味的和风会席料理。",
+      "融入四季食材，趁热享用热腾腾的料理——这正是温泉旅馆独有的用餐时光。"
     ]
   },
   "quickNav": [
-    { "href": "#section-dinner", "label": "夕食" },
-    { "href": "#section-breakfast", "label": "朝食" },
-    { "href": "#section-venues", "label": "お食事会場" }
+    {
+      "href": "#section-dinner",
+      "label": "晚餐"
+    },
+    {
+      "href": "#section-breakfast",
+      "label": "早餐"
+    },
+    {
+      "href": "#section-venues",
+      "label": "用餐场所"
+    }
   ],
   "icon": "膳",
   "dinner": {
     "icon": "会",
     "eyebrow": "Kaiseki Dinner",
-    "heading": "夕食",
+    "heading": "晚餐",
     "description": [
-      "夕食は、季節の食材を活かした2種類の会席プランからお選びいただけます。",
-      "どちらのプランも、洞爺湖周辺や道内各地から届く旬の食材を使い、温かい料理は温かいうちにご提供いたします。"
+      "晚餐可从两种运用当季食材的会席套餐中任选其一。",
+      "两种套餐均使用洞爷湖周边及北海道各地的时令食材，趁热为您奉上热腾腾的料理。"
     ],
     "plans": [
       {
         "id": "yosenabe",
-        "name": "寄せ鍋会席膳",
+        "name": "什锦火锅会席膳",
         "nameEn": "Yosenabe Kaiseki",
-        "image": { "src": "/assets/photos/food-night1.jpg", "alt": "寄せ鍋会席" },
+        "image": {
+          "src": "/assets/photos/food-night1.jpg",
+          "alt": "什锦火锅会席"
+        },
         "description": [
-          "魚介と野菜をふんだんに使った寄せ鍋を中心に、旬の味わいをお楽しみいただく会席プランです。",
-          "体の芯から温まる、温泉旅館ならではの冬におすすめのお料理です。"
+          "以大量使用鱼贝与蔬菜的什锦火锅为主角，尽享当季美味的会席套餐。",
+          "从体内暖到全身，是温泉旅馆冬季推荐的招牌料理。"
         ],
         "menuExample": {
-          "heading": "お品書き（例）",
+          "heading": "菜单示例",
           "items": [
-            "先付",
-            "お造り盛り合わせ",
-            "季節の焼物",
-            "寄せ鍋",
-            "食事・止め椀・香の物",
-            "水菓子"
+            "前菜",
+            "刺身拼盘",
+            "季节烧物",
+            "什锦火锅",
+            "米饭・止椀・小菜",
+            "季节甜点"
           ]
         },
-        "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。",
+        "seasonalNote": "菜单内容会因季节与食材采购情况而有所变动。",
         "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045433&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
       },
       {
         "id": "sukiyaki",
-        "name": "おまかせ和食会席膳",
+        "name": "主厨推荐和食会席膳",
         "nameEn": "Omakase Japanese Kaiseki",
-        "image": { "src": "/assets/photos/food-night2.jpg", "alt": "おまかせ和食会席膳" },
+        "image": {
+          "src": "/assets/photos/food-night2.jpg",
+          "alt": "主厨推荐和食会席膳"
+        },
         "description": [
-          "特選豚肩ロースを使用したしゃぶしゃぶを主役に、季節の前菜や焼物と共にお楽しみいただく会席プランです。",
-          "甘辛い割り下と卵の絡む、定番ながら贅沢なひと品をご堪能ください。"
+          "以精选猪肩里脊肉制作的涮涮锅为主角，搭配季节前菜与烧物的会席套餐。",
+          "甜咸交织的酱汁裹上鸡蛋，尽情享受这道经典又奢华的美味。"
         ],
         "menuExample": {
-          "heading": "お品書き（例）",
+          "heading": "菜单示例",
           "items": [
-            "先付",
-            "お造り盛り合わせ",
-            "季節の焼物",
-            "しゃぶしゃぶ",
-            "食事・止め椀・香の物",
-            "水菓子"
+            "前菜",
+            "刺身拼盘",
+            "季节烧物",
+            "涮涮锅",
+            "米饭・止椀・小菜",
+            "季节甜点"
           ]
         },
-        "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。",
+        "seasonalNote": "菜单内容会因季节与食材采购情况而有所变动。",
         "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045415&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
       }
     ]
@@ -76,59 +91,70 @@
   "breakfast": {
     "icon": "朝",
     "eyebrow": "Japanese Breakfast",
-    "heading": "朝食",
+    "heading": "早餐",
     "description": [
-      "朝食は、焼魚や小鉢、炊きたてのご飯を中心とした和朝食を1種類ご用意しております。",
-      "身体にやさしいお料理で、1日の始まりをゆっくりとお迎えください。"
+      "早餐提供一种以烤鱼、小碟菜肴及现煮米饭为主的和风早餐。",
+      "以温和不刺激的料理，悠然开启美好的一天。"
     ],
     "plan": {
-      "name": "和朝食",
+      "name": "和风早餐",
       "nameEn": "Japanese Breakfast",
-      "image": { "src": "/assets/photos/food-morning.png", "alt": "和朝食" },
+      "image": {
+        "src": "/assets/photos/food-morning.png",
+        "alt": "和风早餐"
+      },
       "description": [
-        "焼魚や小鉢、炊きたてのご飯と味噌汁など、身体にやさしい和朝食をご用意しています。",
-        "朝から温かいお食事で、1日の始まりをゆっくりとお迎えください。"
+        "为您准备烤鱼、小碟菜肴、现煮米饭与味噌汤等温和不刺激的和风早餐。",
+        "清晨享用热腾腾的餐食，悠然迎接崭新的一天。"
       ],
-      "seasonalNote": "内容は季節・仕入れ状況により変更となる場合があります。"
+      "seasonalNote": "内容可能因季节与食材采购情况而有所变动。"
     }
   },
   "diningVenues": {
     "icon": "場",
     "eyebrow": "Dining Venues",
-    "heading": "お食事会場",
+    "heading": "用餐场所",
     "inRoom": {
-      "heading": "お部屋食",
-      "image": { "label": "お部屋食", "src": "/assets/photos/image20.png", "alt": "お部屋食" },
+      "heading": "客房内用餐",
+      "image": {
+        "label": "客房内用餐",
+        "src": "/assets/photos/image20.png",
+        "alt": "客房内用餐"
+      },
       "description": [
-        "ご自分のお部屋で、周囲を気にせずゆっくりとお食事をお楽しみいただけます。",
-        "ご家族やご夫婦でのご旅行に、落ち着いた時間をお過ごしいただけます。"
+        "在自己的客房内，不受周围打扰，悠然享用美食。",
+        "为家庭或夫妻旅行提供静谧的用餐时光。"
       ],
-      "note": "人数やグループによっては個室会食場となる場合があります。"
+      "note": "根据人数或团体情况，可能会改为包间用餐。"
     },
     "hall": {
-      "heading": "広間会食場",
-      "image": { "label": "広間会食場", "src": "/assets/photos/image3.png", "alt": "広間会食場" },
+      "heading": "大厅用餐",
+      "image": {
+        "label": "大厅用餐",
+        "src": "/assets/photos/image3.png",
+        "alt": "大厅用餐"
+      },
       "description": [
-        "他のお客様とともに、和風の広間会食場でお食事をお楽しみいただけます。",
-        "温泉旅館らしい雰囲気の中で、夕食・朝食をお召し上がりいただけます。"
+        "与其他客人一起，在和风大厅内享用美食。",
+        "在充满温泉旅馆氛围的空间中，享用晚餐与早餐。"
       ],
-      "note": "夕食・朝食とも、広間会食場で提供するプランがございます。"
+      "note": "部分方案的晚餐与早餐均在大厅提供。"
     },
     "planNote": [
-      "宿泊プランによって、お部屋食または広間会食場でのお食事となります。",
-      "詳しくは各宿泊プランをご確認ください。"
+      "根据住宿方案不同，用餐地点可能为客房内或大厅。",
+      "详情请参阅各住宿方案。"
     ]
   },
   "guestConsiderations": [
     {
       "icon": "配",
-      "heading": "アレルギー対応",
-      "description": "食物アレルギーをお持ちの方は、事前にご相談ください。可能な範囲で対応いたします。"
+      "heading": "过敏应对",
+      "description": "如有食物过敏，请提前告知我们，我们将在能力范围内提供应对。"
     },
     {
       "icon": "子",
-      "heading": "お子様連れ歓迎",
-      "description": "お子様連れのご家族も安心してお過ごしいただけます。お子様用のお食事やお椅子など、事前にご相談ください。"
+      "heading": "欢迎携幼儿入住",
+      "description": "携带幼儿的家庭也可安心入住。如需儿童餐或儿童椅，请提前告知我们。"
     }
   ]
 }

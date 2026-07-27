@@ -1,5 +1,5 @@
 {
-  "pageTitle": "客室",
+  "pageTitle": "Rooms",
   "pageTitleEn": "ROOMS",
   "intro": {
     "icon": "室"
@@ -7,28 +7,28 @@
   "quickNav": [
     {
       "href": "#section-japanese",
-      "label": "和室"
+      "label": "Japanese-style"
     },
     {
       "href": "#section-western",
-      "label": "洋室"
+      "label": "Western-style"
     },
     {
       "href": "#section-amenities",
-      "label": "アメニティ"
+      "label": "Amenities"
     }
   ],
   "basicInfoLabels": {
-    "size": "広さ",
-    "capacity": "定員",
-    "view": "眺望",
-    "bedding": "ベッド／布団",
-    "smoking": "喫煙可否"
+    "size": "Size",
+    "capacity": "Capacity",
+    "view": "View",
+    "bedding": "Bed / Futon",
+    "smoking": "Smoking"
   },
   "amenitiesIcon": "設",
   "amenitiesEyebrow": "Amenities",
-  "amenitiesHeading": "無料設備・アメニティ",
-  "detailCtaText": "この客室を予約する",
+  "amenitiesHeading": "Free Facilities & Amenities",
+  "detailCtaText": "Book This Room",
   "commonAmenities": [
     {
       "key": "wifi",
@@ -36,60 +36,60 @@
     },
     {
       "key": "tv",
-      "label": "テレビ"
+      "label": "TV"
     },
     {
       "key": "phone",
-      "label": "電話"
+      "label": "Phone"
     },
     {
       "key": "aircon",
-      "label": "冷暖房"
+      "label": "Air Conditioning"
     },
     {
       "key": "humidifier",
-      "label": "加湿機能付空気清浄機"
+      "label": "Humidifying Air Purifier"
     },
     {
       "key": "fridge",
-      "label": "冷蔵庫",
-      "note": "中身は有料です"
+      "label": "Refrigerator",
+      "note": "Contents are charged separately"
     },
     {
       "key": "unitbath",
-      "label": "ユニットバス",
-      "note": "洋室のみ"
+      "label": "Unit Bath",
+      "note": "Western-style rooms only"
     },
     {
       "key": "washlet",
-      "label": "洗浄機付トイレ"
+      "label": "Washlet Toilet"
     },
     {
       "key": "dryer",
-      "label": "ドライヤー"
+      "label": "Hair Dryer"
     },
     {
       "key": "loungewear",
-      "label": "館内着"
+      "label": "Loungewear"
     },
     {
       "key": "bathtowel",
-      "label": "バスタオル"
+      "label": "Bath Towel"
     },
     {
       "key": "towel",
-      "label": "タオル"
+      "label": "Towel"
     },
     {
       "key": "toothbrush",
-      "label": "歯ブラシ"
+      "label": "Toothbrush"
     }
   ],
   "firstFloorNotice": {
-    "heading": "1階客室のご注意",
+    "heading": "Notes on First-Floor Rooms",
     "items": [
-      "遊覧船運航時間帯は大型バスが停車する場合があります。",
-      "客室小窓はマジックミラー仕様です。"
+      "Large tour buses may park nearby during sightseeing boat operating hours.",
+      "The small guest room windows use one-way mirror glass."
     ]
   },
   "sections": [
@@ -100,118 +100,129 @@
           "id": "japanese-lakeview",
           "icon": "和",
           "eyebrow": "Japanese-style Room",
-          "name": "和室",
+          "name": "Japanese-style Room",
           "description": [
-            "寛ぎの和室。畳のぬくもりと洞爺湖の景色に包まれながら、ゆったりとした時間をお過ごしいただけます。",
-            "1階、または2階以上のフロアからお選びいただけ、ご予算やお好みの眺望に合わせてご案内いたします。",
-            "※内観は一例です。実際の客室と異なる場合がございます。"
+            "A relaxing Japanese-style room. Unwind surrounded by the warmth of tatami and views of Lake Toya.",
+            "Choose from the first floor or higher floors, based on your budget and preferred view.",
+            "*Interior photos are for illustration only and may differ from the actual room."
           ],
           "image": {
-            "label": "客室全体",
+            "label": "Room overview",
             "src": "/assets/photos/lounge-2.jpg",
-            "alt": "湖側和室"
+            "alt": "Lakeside Japanese-style room"
           },
           "size": "26㎡",
-          "capacity": "1〜4名",
-          "bedding": "布団（ご人数に応じてご用意）",
-          "view": "洞爺湖ビュー / 横向きレイクビュー",
-          "smoking": "禁煙",
+          "capacity": "1-4 guests",
+          "bedding": "Futon (prepared based on number of guests)",
+          "view": "Lake Toya view / angled lake view",
+          "smoking": "Non-smoking",
           "floors": [
             {
-              "label": "1階客室",
-              "reservationName": "【1階】湖に面した和室8畳",
+              "label": "1st Floor Room",
+              "reservationName": "[1F] Japanese-style room facing the lake, 8 tatami mats",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017392&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爺湖ビュー", "花火鑑賞可能（4/28〜10/31）"],
+              "badges": [
+                "Lake Toya view",
+                "Fireworks viewable (4/28-10/31)"
+              ],
               "images": [
                 {
-                  "label": "客室全体",
+                  "label": "Room overview",
                   "src": "/assets/photos/room-1st-1.png"
                 },
                 {
-                  "label": "客室全体",
+                  "label": "Room overview",
                   "src": "/assets/photos/image2.png"
                 }
               ],
               "description": [
-                "湖側に面した1階の客室で、2階客室よりリーズナブルにご利用いただけます。",
-                "1階のため、景観やロングラン花火はやや見えづらい場合がございます。あらかじめご了承ください。"
+                "A first-floor room facing the lake, offered at a more affordable rate than upper-floor rooms.",
+                "As it is on the first floor, the view and long-run fireworks may be somewhat obstructed. Thank you for your understanding."
               ],
               "isFirstFloor": true
             },
             {
-              "label": "2階以上の客室",
-              "reservationName": "湖に面した和室8畳",
+              "label": "2nd Floor & Above",
+              "reservationName": "Japanese-style room facing the lake, 8 tatami mats",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爺湖ビュー", "中島・羊蹄山を望む", "花火鑑賞可能（4/28〜10/31）"],
+              "badges": [
+                "Lake Toya view",
+                "View of Nakajima Island & Mt. Yotei",
+                "Fireworks viewable (4/28-10/31)"
+              ],
               "images": [
                 {
-                  "label": "客室全体",
+                  "label": "Room overview",
                   "src": "/assets/photos/hero-lake.jpg",
-                  "alt": "湖側和室（スタンダード）"
+                  "alt": "Lakeside Japanese-style room (standard)"
                 },
                 {
-                  "label": "窓からの景色",
+                  "label": "View from window",
                   "src": "/assets/photos/image2.png",
-                  "alt": "客室からの眺め"
+                  "alt": "View from the room"
                 }
               ],
               "description": [
-                "2階以上のフロアから洞爺湖・中島・羊蹄山を望む、当館のスタンダードな和室です。",
-                "4月末から10月末まで開催される洞爺湖ロングラン花火大会も、お客室からゆっくりとご鑑賞いただけます。"
+                "Our standard Japanese-style room, on the 2nd floor or above, with views of Lake Toya, Nakajima Island, and Mt. Yotei.",
+                "You can also enjoy the Lake Toya Long-Run Fireworks Festival (held late April to late October) at your leisure from your room."
               ]
             },
             {
-              "label": "2階客室（デスク付）",
-              "reservationName": "【デスク付】湖に面した和室8畳",
+              "label": "2nd Floor Room (with Desk)",
+              "reservationName": "[With Desk] Japanese-style room facing the lake, 8 tatami mats",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017403&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
               "badges": [
-                "洞爺湖ビュー",
-                "中島・羊蹄山を望む",
-                "花火鑑賞可能（4/28〜10/31）",
-                "デスクワーク"
+                "Lake Toya view",
+                "View of Nakajima Island & Mt. Yotei",
+                "Fireworks viewable (4/28-10/31)",
+                "Desk workspace"
               ],
               "images": [
                 {
-                  "label": "窓からの景色",
+                  "label": "View from window",
                   "src": "/assets/photos/facility-4.jpg",
-                  "alt": "客室からの眺め"
+                  "alt": "View from the room"
                 },
                 {
-                  "label": "夜景・花火",
+                  "label": "Night view / fireworks",
                   "src": "/assets/photos/image17.jpg",
-                  "alt": "夜景・花火"
+                  "alt": "Night view / fireworks"
                 },
                 {
-                  "label": "客室全体",
+                  "label": "Room overview",
                   "src": "/assets/photos/hero-lake.jpg",
-                  "alt": "湖側和室（スタンダード）"
+                  "alt": "Lakeside Japanese-style room (standard)"
                 }
               ],
               "description": [
-                "窓際にデスクを設置した和室で、湖を眺めながら快適にお過ごしいただけます。",
-                "ワーケーションやテレワーク、読書などにご利用いただきたい方におすすめの客室です。"
+                "A Japanese-style room with a desk by the window, so you can work comfortably with a lake view.",
+                "Recommended for workation, remote work, reading, or similar uses."
               ]
             },
             {
-              "label": "窓辺レイクビュー和室",
-              "reservationName": "窓辺レイクビュー和室",
+              "label": "Window-side Lake-view Japanese-style Room",
+              "reservationName": "Window-side lake-view Japanese-style room",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017390&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["横向きレイクビュー", "窓辺から湖を望む", "花火鑑賞可能"],
+              "badges": [
+                "Angled lake view",
+                "Lake view from the window",
+                "Fireworks viewable"
+              ],
               "images": [
                 {
-                  "label": "客室全体",
+                  "label": "Room overview",
                   "src": "/assets/photos/facility-1.jpg",
-                  "alt": "湖側和室（スタンダード）"
+                  "alt": "Lakeside Japanese-style room (standard)"
                 },
                 {
-                  "label": "夜景・花火",
+                  "label": "Night view / fireworks",
                   "src": "/assets/photos/image2.png",
-                  "alt": "夜景・花火"
+                  "alt": "Night view / fireworks"
                 }
               ],
               "description": [
-                "湖に対して横向きに配置された客室で、窓辺から洞爺湖を望むことができます。",
-                "正面のレイクビュータイプとは異なる角度から、ロングラン花火をお楽しみいただけます。"
+                "A room positioned at an angle to the lake, with a lake view from the window.",
+                "Enjoy the Long-Run Fireworks Festival from a different angle than the front-facing lake-view rooms."
               ]
             }
           ]
@@ -225,64 +236,71 @@
           "id": "western-lakeview",
           "icon": "洋",
           "eyebrow": "Western-style Room",
-          "name": "洋室",
+          "name": "Western-style Room",
           "description": [
-            "畳での就寝に慣れていない方や、ベッドでのご滞在をお好みの方には洋室がおすすめです。",
-            "1階、または2階以上のフロアからお選びいただけます。"
+            "For guests who prefer not to sleep on tatami, or who prefer beds, our Western-style rooms are recommended.",
+            "Choose from the first floor or higher floors."
           ],
           "image": {
-            "label": "客室全体",
+            "label": "Room overview",
             "src": "/assets/photos/facility-3.jpg",
-            "alt": "湖側洋室（スタンダード）"
+            "alt": "Lakeside Western-style room (standard)"
           },
           "size": "26㎡",
-          "capacity": "1〜2名",
-          "bedding": "ツインベッド",
-          "view": "洞爺湖ビュー",
-          "smoking": "禁煙",
+          "capacity": "1-2 guests",
+          "bedding": "Twin beds",
+          "view": "Lake Toya view",
+          "smoking": "Non-smoking",
           "floors": [
             {
-              "label": "1階客室",
-              "reservationName": "【1階】湖に面した洋室ツイン",
+              "label": "1st Floor Room",
+              "reservationName": "[1F] Western-style twin room facing the lake",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017389&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爺湖ビュー", "花火鑑賞可能（4/28〜10/31）"],
+              "badges": [
+                "Lake Toya view",
+                "Fireworks viewable (4/28-10/31)"
+              ],
               "images": [
                 {
-                  "label": "客室全体",
+                  "label": "Room overview",
                   "src": "/assets/photos/room-1st-1.png"
                 },
                 {
-                  "label": "窓からの景色",
+                  "label": "View from window",
                   "src": "/assets/photos/image2.png",
-                  "alt": "客室からの眺め"
+                  "alt": "View from the room"
                 }
               ],
               "description": [
-                "湖側に面した1階の洋室で、価格を抑えながらベッドタイプをご利用いただけます。",
-                "1階のため、景観にはやや制限がございます。あらかじめご了承ください。"
+                "A first-floor Western-style room facing the lake, letting you enjoy a bed at a more affordable price.",
+                "As it is on the first floor, the view is somewhat limited. Thank you for your understanding."
               ],
               "isFirstFloor": true
             },
             {
-              "label": "2階以上の客室",
-              "reservationName": "湖に面した洋室ツイン",
+              "label": "2nd Floor & Above",
+              "reservationName": "Western-style twin room facing the lake",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017388&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爺湖ビュー", "中島・羊蹄山を望む", "花火鑑賞可能（4/28〜10/31）"],
+              "badges": [
+                "Lake Toya view",
+                "View of Nakajima Island & Mt. Yotei",
+                "Fireworks viewable (4/28-10/31)"
+              ],
               "images": [
                 {
-                  "label": "客室全体",
+                  "label": "Room overview",
                   "src": "/assets/photos/hero-lake.jpg",
-                  "alt": "湖側和室（スタンダード）"
+                  "alt": "Lakeside Japanese-style room (standard)"
                 },
                 {
-                  "label": "窓からの景色",
+                  "label": "View from window",
                   "src": "/assets/photos/image2.png",
-                  "alt": "客室からの眺め"
+                  "alt": "View from the room"
                 }
               ],
               "description": [
-                "ベッドタイプをご希望のお客様向けの洋室で、洞爺湖・中島・羊蹄山を望むことができます。",
-                "和室同様、ロングラン花火大会をお部屋からご覧いただけます。"
+                "A Western-style room for guests who prefer a bed, with views of Lake Toya, Nakajima Island, and Mt. Yotei.",
+                "Just like the Japanese-style rooms, you can watch the Long-Run Fireworks Festival from your room."
               ]
             }
           ]

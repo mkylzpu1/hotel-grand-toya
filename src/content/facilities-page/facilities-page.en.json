@@ -1,442 +1,533 @@
 {
-  "pageTitle": "館内施設・周辺観光",
+  "pageTitle": "Facilities & Sightseeing",
   "pageTitleEn": "FACILITIES & SIGHTSEEING",
   "intro": {
     "icon": "館",
     "eyebrow": "Facilities & Sightseeing",
-    "heading": "ホテルでの過ごし方",
+    "heading": "Ways to Enjoy the Hotel",
     "description": [
-      "ホテルグランドトーヤでの滞在をより快適にする館内施設・サービス・周辺観光スポットをご紹介します。",
-      "館内でゆったり過ごしたい方も、洞爺湖周辺のアクティビティを楽しみたい方も、それぞれの旅のスタイルに合わせてご利用いただけます。",
-      "海外からお越しのお客様にも安心してお過ごしいただけるよう、多言語でのご案内にも対応しております。"
+      "Here are the in-house facilities, services, and nearby sightseeing spots that make your stay at Hotel Grand Toya more comfortable.",
+      "Whether you'd like to relax at the hotel or enjoy activities around Lake Toya, there's something for every travel style.",
+      "We also offer multilingual support so that guests visiting from overseas can feel at ease."
     ]
   },
   "quickNav": [
-    { "href": "#section-facilities", "label": "館内施設" },
-    { "href": "#section-services", "label": "館内サービス" },
-    { "href": "#section-activities", "label": "周辺観光" }
+    {
+      "href": "#section-facilities",
+      "label": "In-house Facilities"
+    },
+    {
+      "href": "#section-services",
+      "label": "In-house Services"
+    },
+    {
+      "href": "#section-activities",
+      "label": "Nearby Sightseeing"
+    }
   ],
   "icon": "館",
   "facilitiesSection": {
     "icon": "設",
     "eyebrow": "Facilities",
-    "heading": "館内施設",
+    "heading": "In-house Facilities",
     "items": [
       {
         "id": "lobby",
-        "name": "ロビー",
-        "image": { "label": "ロビー", "src": "/assets/photos/facility2.png", "alt": "ロビー" },
-        "description": ["多言語対応可能なスタッフが、ご滞在をサポートいたします。"],
-        "hours": "24時間"
+        "name": "Lobby",
+        "image": {
+          "label": "Lobby",
+          "src": "/assets/photos/facility2.png",
+          "alt": "Lobby"
+        },
+        "description": [
+          "Our multilingual staff are here to support your stay."
+        ],
+        "hours": "24 hours"
       },
       {
         "id": "shop",
-        "name": "売店",
-        "image": { "label": "売店", "src": "/assets/photos/facility1.png", "alt": "売店" },
-        "description": ["地元の銘菓やお土産、日用品などを取り揃えております。"],
-        "hours": "8:00〜21:00",
-        "payment": "現金・クレジットカード"
+        "name": "Gift Shop",
+        "image": {
+          "label": "Gift shop",
+          "src": "/assets/photos/facility1.png",
+          "alt": "Gift shop"
+        },
+        "description": [
+          "We carry local specialty sweets, souvenirs, and everyday necessities."
+        ],
+        "hours": "8:00-21:00",
+        "payment": "Cash / Credit card"
       },
       {
         "id": "cafe-space",
-        "name": "喫茶スペース",
+        "name": "Café Space",
         "image": {
-          "label": "喫茶スペース",
+          "label": "Café space",
           "src": "/assets/photos/facility3.png",
-          "alt": "喫茶スペース"
+          "alt": "Café space"
         },
         "description": [
-          "コーヒーやソフトドリンクなどの喫茶メニューをご用意しております。ご到着後や湯上がりのひとときに、ゆったりとお過ごしください。"
+          "We offer coffee and soft drinks. Relax here after arrival or after a bath."
         ],
-        "hours": "10:00〜17:00"
+        "hours": "10:00-17:00"
       }
     ]
   },
   "servicesSection": {
     "icon": "泊",
     "eyebrow": "Services",
-    "heading": "館内サービス",
+    "heading": "In-house Services",
     "items": [
       {
         "id": "room-service",
-        "name": "ルームサービス",
-        "image": { "label": "ルームサービス" },
-        "description": ["お飲み物や軽食を、お部屋でお楽しみいただけます。"],
-        "hours": "18:00〜22:00",
-        "reservationMethod": "客室備え付けの電話にてご注文ください。",
-        "notes": ["ラストオーダーは21:30です。"]
+        "name": "Room Service",
+        "image": {
+          "label": "Room service"
+        },
+        "description": [
+          "Enjoy drinks and light snacks in your room."
+        ],
+        "hours": "18:00-22:00",
+        "reservationMethod": "Please order using the phone in your room.",
+        "notes": [
+          "Last order is at 21:30."
+        ]
       },
       {
         "id": "massage",
-        "name": "マッサージ",
+        "name": "Massage",
         "image": {
-          "label": "マッサージ",
-          "alt": "マッサージ",
+          "label": "Massage",
+          "alt": "Massage",
           "src": "/assets/photos/facility-service1.png"
         },
-        "description": ["旅の疲れを癒す、マッサージサービスをご用意しております。"],
-        "fee": "3,300円〜",
-        "plans": ["30分コース 3,300円", "60分コース 6,000円"],
-        "receptionHours": "15:00〜22:00",
-        "reservationMethod": "フロントまでお問い合わせください。",
+        "description": [
+          "We offer a massage service to soothe the fatigue of travel."
+        ],
+        "fee": "From ¥3,300",
+        "plans": [
+          "30-min course ¥3,300",
+          "60-min course ¥6,000"
+        ],
+        "receptionHours": "15:00-22:00",
+        "reservationMethod": "Please inquire at the front desk.",
         "isFeatured": true
       },
       {
         "id": "mahjong",
-        "name": "麻雀",
-        "image": { "label": "麻雀" },
-        "description": ["ご家族・ご友人との旅の時間に、麻雀卓の貸し出しを行っております。"],
-        "fee": "1,100円（卓貸し・時間無制限）",
-        "hours": "10:00〜22:00",
-        "reservationMethod": "フロントまでお問い合わせください。"
+        "name": "Mahjong",
+        "image": {
+          "label": "Mahjong"
+        },
+        "description": [
+          "We rent out mahjong tables for time spent with family or friends."
+        ],
+        "fee": "¥1,100 (table rental, no time limit)",
+        "hours": "10:00-22:00",
+        "reservationMethod": "Please inquire at the front desk."
       },
       {
         "id": "go-shogi",
-        "name": "囲碁・将棋",
-        "image": { "label": "囲碁・将棋" },
-        "description": ["囲碁・将棋盤の貸し出しを行っております。"],
-        "fee": "550円（時間無制限）",
-        "reservationMethod": "フロントにてお貸し出しいたします。"
+        "name": "Go / Shogi",
+        "image": {
+          "label": "Go / Shogi"
+        },
+        "description": [
+          "We rent out Go and Shogi boards."
+        ],
+        "fee": "¥550 (no time limit)",
+        "reservationMethod": "Available for rent at the front desk."
       },
       {
         "id": "laundry",
-        "name": "洗濯機・乾燥機",
-        "image": { "label": "洗濯機・乾燥機" },
+        "name": "Washer / Dryer",
+        "image": {
+          "label": "Washer / Dryer"
+        },
         "description": [
-          "長期のご滞在にも便利な、コイン式の洗濯機・乾燥機を館内にご用意しております。"
+          "Coin-operated washers and dryers are available, convenient for longer stays."
         ],
-        "fee": "洗濯：300円／乾燥：300円（30分）",
-        "hours": "6:00〜23:00",
-        "location": "1階ランドリーコーナー"
+        "fee": "Wash: ¥300 / Dry: ¥300 (30 min.)",
+        "hours": "6:00-23:00",
+        "location": "1st floor laundry corner"
       },
       {
         "id": "wifi",
         "name": "Wi-Fi",
-        "image": { "label": "Wi-Fi" },
-        "description": ["館内・客室ともに無料でWi-Fiをご利用いただけます。"],
-        "fee": "無料",
-        "hours": "24時間"
+        "image": {
+          "label": "Wi-Fi"
+        },
+        "description": [
+          "Free Wi-Fi is available throughout the hotel and in all guest rooms."
+        ],
+        "fee": "Free",
+        "hours": "24 hours"
       }
     ]
   },
   "activitiesSection": {
     "icon": "観",
     "eyebrow": "Sightseeing",
-    "heading": "周辺観光",
-    "partnerHeading": "特におすすめ・提携アクティビティ",
-    "otherHeading": "その他の周辺観光",
-    "allCategoryLabel": "すべて",
+    "heading": "Nearby Sightseeing",
+    "partnerHeading": "Especially Recommended / Partner Activities",
+    "otherHeading": "Other Nearby Sightseeing",
+    "allCategoryLabel": "All",
     "categoryFilters": [
-      { "id": "family", "label": "ご家族 / お子様" },
-      { "id": "view", "label": "絶景" },
-      { "id": "active", "label": "アクティブに体験" },
-      { "id": "learn", "label": "自然散策" }
+      {
+        "id": "family",
+        "label": "Family / Kids"
+      },
+      {
+        "id": "view",
+        "label": "Scenic Views"
+      },
+      {
+        "id": "active",
+        "label": "Active Experiences"
+      },
+      {
+        "id": "learn",
+        "label": "Nature Walks"
+      }
     ],
     "items": [
       {
         "id": "cruise",
-        "name": "洞爺湖遊覧船",
-        "shopName": "洞爺湖汽船",
+        "name": "Lake Toya Sightseeing Cruise",
+        "shopName": "Toyako Kisen",
         "image": {
-          "label": "洞爺湖遊覧船",
+          "label": "Lake Toya sightseeing cruise",
           "src": "/assets/photos/facility-out8.png",
-          "alt": "洞爺湖遊覧船"
+          "alt": "Lake Toya sightseeing cruise"
         },
         "description": [
-          "洞爺湖を巡る遊覧船で、湖上から四季折々の美しい景色を楽しめます。中島に上陸し、自然豊かな散策や森林浴を満喫することもできます。",
-          "春から秋にかけてはロングラン花火大会にあわせた花火鑑賞船も運航され、湖上ならではの特別な景色を楽しめます。"
+          "Enjoy the beautiful seasonal scenery of Lake Toya from a sightseeing boat. You can also land on Nakajima Island for a nature walk or forest bathing.",
+          "From spring through autumn, special fireworks-viewing cruises operate to coincide with the Long-Run Fireworks Festival, offering a unique view from the water."
         ],
-        "location": "北海道虻田郡洞爺湖町洞爺湖温泉",
-        "accessFromHotel": "徒歩約5分",
+        "location": "Toyako Onsen, Toyako-cho, Abuta-gun, Hokkaido",
+        "accessFromHotel": "About 5 min. walk",
         "officialSite": "https://www.toyakokisen.com/",
         "isPartner": true,
-        "partnerBadgeLabel": "プランでお得に体験",
+        "partnerBadgeLabel": "Special value with our plans",
         "includedInPlans": [
           {
-            "name": "花火観賞船プラン",
+            "name": "Fireworks Viewing Cruise Plan",
             "href": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045419&ci=20250713&co=20250714&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
           },
           {
-            "name": "洞爺湖中島巡り遊覧船プラン",
+            "name": "Lake Toya Nakajima Island Cruise Plan",
             "href": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045428&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
           }
         ]
       },
       {
         "id": "fireworks",
-        "name": "洞爺湖ロングラン花火大会",
+        "name": "Lake Toya Long-Run Fireworks Festival",
         "image": {
-          "label": "洞爺湖ロングラン花火大会",
+          "label": "Lake Toya Long-Run Fireworks Festival",
           "src": "/assets/photos/facility-out4.png",
-          "alt": "洞爺湖ロングラン花火大会"
+          "alt": "Lake Toya Long-Run Fireworks Festival"
         },
         "description": [
-          "春から秋まで毎晩開催される、洞爺湖を代表する花火大会です。ホテルから湖畔まで徒歩ですぐなので、夕食後に気軽に夜の散策と花火鑑賞を楽しめます。",
-          "湖上を移動しながら約20分間打ち上げられる全国でも珍しい花火大会。客室や湖畔、遊覧船など、それぞれ異なる景色で楽しめるのも洞爺湖ならではの魅力です。"
+          "A signature fireworks festival held every night from spring to autumn. The lakeshore is just a short walk from the hotel, so you can casually enjoy an evening stroll and fireworks after dinner.",
+          "A rare festival nationwide, with fireworks launched over about 20 minutes while moving across the lake. You can enjoy it from a variety of vantage points — your room, the lakeshore, or a sightseeing boat — a special charm unique to Lake Toya."
         ],
-        "location": "洞爺湖温泉湖畔",
-        "accessFromHotel": "徒歩約3分",
+        "location": "Toyako Onsen lakeshore",
+        "accessFromHotel": "About 3 min. walk",
         "officialSite": "https://www.laketoya.com/",
         "isPartner": true
       },
       {
         "id": "noboribetsu-marine-park",
-        "name": "登別マリンパークニクス",
-        "shopName": "登別マリンパークニクス",
+        "name": "Noboribetsu Marine Park Nixe",
+        "shopName": "Noboribetsu Marine Park Nixe",
         "image": {
-          "label": "登別マリンパークニクス",
+          "label": "Noboribetsu Marine Park Nixe",
           "src": "/assets/photos/facility-out11.png",
-          "alt": "登別マリンパークニクス"
+          "alt": "Noboribetsu Marine Park Nixe"
         },
         "description": [
-          "デンマークの古城をモチーフにした水族館で、海の生きものたちとのふれあいを満喫できます。ホテルから少し足を延ばして楽しめる人気のお出かけスポットです。",
-          "人気のペンギンパレードやイルカ・アシカのショー、大水槽など見どころが充実。ご家族はもちろん、カップルやご友人同士でも一日ゆっくり楽しめます。"
+          "An aquarium modeled after a Danish castle, where you can get up close with sea creatures. A popular day-trip spot just a bit further from the hotel.",
+          "Highlights include the popular penguin parade, dolphin and sea lion shows, and a large tank. A great full-day outing for families, couples, and friends alike."
         ],
-        "location": "北海道登別市登別東町1丁目22",
-        "accessFromHotel": "車約40分",
+        "location": "1-22 Noboribetsu-Higashimachi, Noboribetsu, Hokkaido",
+        "accessFromHotel": "About 40 min. by car",
         "officialSite": "https://www.nixe.co.jp/",
         "isPartner": true,
-        "partnerBadgeLabel": "プランでお得に体験",
+        "partnerBadgeLabel": "Special value with our plans",
         "includedInPlans": [
           {
-            "name": "登別マリンパークニクスの入園券付きプラン",
+            "name": "Plan with Noboribetsu Marine Park Nixe admission ticket",
             "href": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045429&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
           }
         ]
       },
       {
         "id": "onsen-street",
-        "name": "洞爺湖温泉街散策",
+        "name": "Strolling Toyako Onsen Town",
         "image": {
-          "label": "洞爺湖温泉街散策",
+          "label": "Strolling Toyako Onsen town",
           "src": "/assets/photos/facility-out5.png",
-          "alt": "洞爺湖温泉街散策"
+          "alt": "Strolling Toyako Onsen town"
         },
         "description": [
-          "ホテルから徒歩ですぐの温泉街には、お土産店やカフェ、飲食店、足湯などが点在しています。気軽に散策しながら、洞爺湖ならではの街歩きを楽しめます。",
-          "夕方には湖畔を散歩したり、花火大会の時間にあわせて歩いたりと、宿泊ならではのゆったりとした時間を過ごせるのも魅力です。"
+          "Just a short walk from the hotel, the onsen town is dotted with souvenir shops, cafes, restaurants, and foot baths. Enjoy a casual stroll unique to Lake Toya.",
+          "Take an evening walk along the lakeshore, or time your walk with the fireworks festival — the leisurely pace is one of the perks of staying overnight."
         ],
-        "location": "北海道虻田郡洞爺湖町洞爺湖温泉",
-        "accessFromHotel": "徒歩約1分",
+        "location": "Toyako Onsen, Toyako-cho, Abuta-gun, Hokkaido",
+        "accessFromHotel": "About 1 min. walk",
         "officialSite": "https://www.laketoya.com/",
-        "categories": ["learn", "family"]
+        "categories": [
+          "learn",
+          "family"
+        ]
       },
       {
         "id": "illumination-tunnel",
-        "name": "イルミネーショントンネル",
+        "name": "Illumination Tunnel",
         "image": {
-          "label": "イルミネーショントンネル",
+          "label": "Illumination Tunnel",
           "src": "/assets/photos/facility-out19.png",
-          "alt": "イルミネーショントンネル"
+          "alt": "Illumination Tunnel"
         },
         "description": [
-          "洞爺湖温泉街を幻想的な光で彩る冬の人気スポットです。色とりどりのイルミネーションに包まれながら、ゆったりと夜の散策を楽しめます。",
-          "温泉街の散策や夕食後のお出かけにもぴったり。写真映えするスポットとしても人気があります。"
+          "A popular winter spot that lights up Toyako Onsen town with a magical glow. Enjoy a leisurely evening stroll surrounded by colorful illuminations.",
+          "Perfect for a walk through the onsen town or an outing after dinner. It's also a popular spot for photos."
         ],
-        "location": "北海道虻田郡洞爺湖町洞爺湖温泉",
-        "accessFromHotel": "徒歩約3分",
+        "location": "Toyako Onsen, Toyako-cho, Abuta-gun, Hokkaido",
+        "accessFromHotel": "About 3 min. walk",
         "officialSite": "https://www.laketoya.com/",
-        "categories": ["view"]
+        "categories": [
+          "view"
+        ]
       },
       {
         "id": "canoe-sup",
-        "name": "洞爺湖カヌー・SUP体験",
-        "shopName": "洞爺ガイドセンター",
+        "name": "Lake Toya Canoe & SUP Experience",
+        "shopName": "Toya Guide Center",
         "image": {
-          "label": "洞爺湖カヌー・SUP体験",
+          "label": "Lake Toya canoe & SUP experience",
           "src": "/assets/photos/facility-out1.png",
-          "alt": "洞爺湖カヌー・SUP体験"
+          "alt": "Lake Toya canoe & SUP experience"
         },
         "description": [
-          "透明度の高い洞爺湖で、カヌーやSUPならではの水上散策を楽しめます。湖面に近い目線から眺める景色は、遊覧船とはまた違った魅力があります。",
-          "初心者向けのガイド付きプランもあり、初めての方でも安心。朝の静かな湖や夕暮れ時など、時間帯によって異なる洞爺湖の表情を体感できます。"
+          "Enjoy a paddle across the clear waters of Lake Toya by canoe or SUP. The view from close to the water's surface has a charm all its own, different from a sightseeing boat.",
+          "Beginner-friendly guided plans are available, so first-timers can feel at ease. Experience Lake Toya's changing moods, from a quiet morning to a golden sunset."
         ],
-        "location": "洞爺湖温泉周辺",
-        "accessFromHotel": "徒歩約5分",
+        "location": "Around Toyako Onsen",
+        "accessFromHotel": "About 5 min. walk",
         "officialSite": "https://toya-guide.com/",
-        "categories": ["active"]
+        "categories": [
+          "active"
+        ]
       },
       {
         "id": "cherry-blossoms",
-        "name": "洞爺湖の桜",
+        "name": "Lake Toya Cherry Blossoms",
         "image": {
-          "label": "洞爺湖の桜",
+          "label": "Lake Toya cherry blossoms",
           "src": "/assets/photos/facility-out17.png",
-          "alt": "洞爺湖の桜"
+          "alt": "Lake Toya cherry blossoms"
         },
         "description": [
-          "春になると湖畔や周辺道路を桜が彩り、洞爺湖ならではの美しい春景色を楽しめます。湖と桜が織りなす景色は、この季節だけの特別な絶景です。",
-          "湖畔をゆっくり散策したり、ドライブを楽しんだりと、春の北海道を満喫できる人気スポットです。"
+          "In spring, cherry blossoms line the lakeshore and surrounding roads, creating a beautiful spring scene unique to Lake Toya. The combination of lake and cherry blossoms is a special view found only during this season.",
+          "A popular spot to enjoy Hokkaido in spring, whether strolling along the lakeshore or taking a scenic drive."
         ],
-        "location": "北海道虻田郡洞爺湖町洞爺湖温泉周辺",
-        "accessFromHotel": "徒歩約5分",
+        "location": "Around Toyako Onsen, Toyako-cho, Abuta-gun, Hokkaido",
+        "accessFromHotel": "About 5 min. walk",
         "officialSite": "https://www.laketoya.com/",
-        "categories": ["view", "family"]
+        "categories": [
+          "view",
+          "family"
+        ]
       },
       {
         "id": "rental-cycle",
-        "name": "レンタサイクル",
-        "shopName": "レンタサイクル高柳商会",
+        "name": "Bicycle Rental",
+        "shopName": "Rental Cycle Takayanagi Shokai",
         "image": {
-          "label": "レンタサイクル",
+          "label": "Bicycle rental",
           "src": "/assets/photos/facility-out2.png",
-          "alt": "レンタサイクル"
+          "alt": "Bicycle rental"
         },
         "description": [
-          "レンタサイクルを利用すれば、洞爺湖湖畔や温泉街を自分のペースで巡ることができます。徒歩では少し遠い景色やスポットにも気軽に足を延ばせます。",
-          "湖畔の風を感じながら走るサイクリングは、季節ごとに異なる自然を満喫できる人気の楽しみ方。写真撮影やカフェ巡りにもおすすめです。"
+          "With a rental bicycle, you can explore the Lake Toya lakeshore and onsen town at your own pace, easily reaching spots that are a bit far to walk to.",
+          "Cycling along the lakeshore breeze is a popular way to enjoy the changing scenery through the seasons — great for photography and café-hopping too."
         ],
-        "location": "洞爺湖温泉街",
-        "accessFromHotel": "徒歩約5分",
+        "location": "Toyako Onsen town",
+        "accessFromHotel": "About 5 min. walk",
         "officialSite": "https://www.laketoya.com/",
-        "categories": ["active"]
+        "categories": [
+          "active"
+        ]
       },
       {
         "id": "silo-observatory",
-        "name": "サイロ展望台",
+        "name": "Silo Observatory",
         "image": {
-          "label": "サイロ展望台",
+          "label": "Silo Observatory",
           "src": "/assets/photos/facility-out12.png",
-          "alt": "サイロ展望台"
+          "alt": "Silo Observatory"
         },
         "description": [
-          "洞爺湖、中島、有珠山、昭和新山を一望できる、洞爺湖を代表する絶景スポットです。晴れた日には羊蹄山まで見渡せることもあり、旅の記念写真にも人気です。",
-          "展望台では名物のプリンやソフトクリームを味わえるほか、夏季はスカイクルージング、冬季はスノーモービルなど季節限定のアクティビティも楽しめます。"
+          "A signature scenic spot with sweeping views of Lake Toya, Nakajima Island, Mt. Usu, and Showa-Shinzan. On clear days you can even see Mt. Yotei — a popular spot for travel photos.",
+          "The observatory serves its famous pudding and soft-serve ice cream, plus seasonal activities such as sky cruising in summer and snowmobiling in winter."
         ],
-        "location": "北海道虻田郡洞爺湖町成香3-5",
-        "accessFromHotel": "車約15分",
+        "location": "3-5 Narika, Toyako-cho, Abuta-gun, Hokkaido",
+        "accessFromHotel": "About 15 min. by car",
         "officialSite": "https://toyako.biz/",
-        "categories": ["view", "family"]
+        "categories": [
+          "view",
+          "family"
+        ]
       },
       {
         "id": "usuzan-ropeway",
-        "name": "有珠山ロープウェイ",
-        "shopName": "有珠山ロープウェイ",
+        "name": "Mt. Usu Ropeway",
+        "shopName": "Mt. Usu Ropeway",
         "image": {
-          "label": "有珠山ロープウェイ",
+          "label": "Mt. Usu Ropeway",
           "src": "/assets/photos/facility-out9.png",
-          "alt": "有珠山ロープウェイ"
+          "alt": "Mt. Usu Ropeway"
         },
         "description": [
-          "昭和新山の麓から山頂へ約6分で到着するロープウェイです。眼下には洞爺湖や昭和新山、遠くには噴火湾まで広がる雄大な景色を一望できます。",
-          "山頂には展望台や散策路が整備されており、有珠山の火山活動が生み出したダイナミックな地形を間近で体感できます。四季折々で異なる景色を楽しめる人気スポットです。"
+          "A ropeway that takes you from the base of Showa-Shinzan to the summit in about 6 minutes. Enjoy sweeping views of Lake Toya, Showa-Shinzan, and even Funka Bay in the distance.",
+          "The summit has an observation deck and walking paths where you can experience up close the dynamic terrain shaped by Mt. Usu's volcanic activity — a popular spot with different views each season."
         ],
-        "location": "北海道有珠郡壮瞥町昭和新山184-5",
-        "accessFromHotel": "車約10分",
+        "location": "184-5 Showa-Shinzan, Sobetsu-cho, Usu-gun, Hokkaido",
+        "accessFromHotel": "About 10 min. by car",
         "officialSite": "https://usuzan.hokkaido.jp/",
-        "categories": ["view"]
+        "categories": [
+          "view"
+        ]
       },
       {
         "id": "showa-shinzan",
-        "name": "昭和新山",
+        "name": "Showa-Shinzan",
         "image": {
-          "label": "昭和新山",
+          "label": "Showa-Shinzan",
           "src": "/assets/photos/facility-out6.png",
-          "alt": "昭和新山"
+          "alt": "Showa-Shinzan"
         },
         "description": [
-          "1943年の噴火によって誕生した、今もなお迫力ある姿を残す活火山です。赤褐色の山肌は間近で見ると圧倒される迫力があります。",
-          "有珠山ロープウェイや熊牧場にも近く、周辺観光とあわせて立ち寄りやすいスポットです。洞爺湖ならではの火山の歴史や自然の力を感じられます。"
+          "An active volcano born from a 1943 eruption that still shows its striking form today. Its reddish-brown slopes are overwhelming to see up close.",
+          "It's also near the Mt. Usu Ropeway and the bear ranch, making it easy to combine with other sightseeing. Feel the volcanic history and natural power unique to Lake Toya."
         ],
-        "location": "北海道有珠郡壮瞥町昭和新山",
-        "accessFromHotel": "車約10分",
+        "location": "Showa-Shinzan, Sobetsu-cho, Usu-gun, Hokkaido",
+        "accessFromHotel": "About 10 min. by car",
         "officialSite": "https://usuzan.hokkaido.jp/",
-        "categories": ["view", "learn"]
+        "categories": [
+          "view",
+          "learn"
+        ]
       },
       {
         "id": "sunflower-field",
-        "name": "洞爺湖ひまわり畑",
+        "name": "Lake Toya Sunflower Field",
         "image": {
-          "label": "洞爺湖ひまわり畑",
+          "label": "Lake Toya sunflower field",
           "src": "/assets/photos/facility-out18.png",
-          "alt": "洞爺湖ひまわり畑"
+          "alt": "Lake Toya sunflower field"
         },
         "description": [
-          "夏になると一面に咲き誇るひまわりが、青空と洞爺湖の景色を鮮やかに彩ります。見渡す限りの黄色い花畑は、思わず写真を撮りたくなる人気スポットです。",
-          "夏だけの特別な景色を楽しめる季節限定スポット。ドライブや湖畔散策とあわせて訪れるのもおすすめです。"
+          "In summer, a field of blooming sunflowers vividly colors the blue sky and lake scenery. A sea of yellow flowers as far as the eye can see, and a popular spot for photos.",
+          "A seasonal spot offering scenery unique to summer. Also recommended alongside a drive or a walk along the lakeshore."
         ],
-        "location": "北海道虻田郡洞爺湖町周辺",
-        "accessFromHotel": "車約10分",
+        "location": "Around Toyako-cho, Abuta-gun, Hokkaido",
+        "accessFromHotel": "About 10 min. by car",
         "officialSite": "https://www.laketoya.com/",
-        "categories": ["view", "family"]
+        "categories": [
+          "view",
+          "family"
+        ]
       },
       {
         "id": "geopark-walk",
-        "name": "火山・ジオパーク散策",
+        "name": "Volcano & Geopark Walk",
         "image": {
-          "label": "火山・ジオパーク散策",
+          "label": "Volcano & Geopark walk",
           "src": "/assets/photos/facility-out14.png",
-          "alt": "火山・ジオパーク散策"
+          "alt": "Volcano & Geopark walk"
         },
         "description": [
-          "洞爺湖有珠山ジオパークでは、西山山麓火口散策路や金比羅火口災害遺構散策路などを歩きながら、有珠山噴火の痕跡や大地の変化を間近で見ることができます。",
-          "隆起した道路や火口、被災した建物など、自然の力と復興の歩みを感じられる貴重なスポットです。洞爺湖ビジターセンターとあわせて訪れると、火山の歴史や防災についてより深く学べます。"
+          "At the Toya-Usu Geopark, you can walk trails such as the Nishiyama Crater Walk and the Konpirayama Crater Disaster Remains Walk, and see up close the traces of Mt. Usu's eruptions and the changing land.",
+          "Uplifted roads, craters, and damaged buildings offer a valuable look at the power of nature and the process of recovery. Combined with the Lake Toya Visitor Center, you can learn even more about volcanic history and disaster preparedness."
         ],
-        "location": "北海道虻田郡洞爺湖町洞爺湖温泉周辺",
-        "accessFromHotel": "車約5分",
+        "location": "Around Toyako Onsen, Toyako-cho, Abuta-gun, Hokkaido",
+        "accessFromHotel": "About 5 min. by car",
         "officialSite": "https://www.laketoya.com/",
-        "categories": ["learn"]
+        "categories": [
+          "learn"
+        ]
       },
       {
         "id": "bear-ranch",
-        "name": "昭和新山熊牧場",
-        "shopName": "昭和新山熊牧場",
+        "name": "Showa-Shinzan Bear Ranch",
+        "shopName": "Showa-Shinzan Bear Ranch",
         "image": {
-          "label": "昭和新山熊牧場",
+          "label": "Showa-Shinzan Bear Ranch",
           "src": "/assets/photos/facility-out13.png",
-          "alt": "昭和新山熊牧場"
+          "alt": "Showa-Shinzan Bear Ranch"
         },
         "description": [
-          "間近で見るヒグマの迫力は圧巻。北海道ならではの大自然を感じられる人気スポットで、大人も子どもも夢中になれる体験が待っています。",
-          "エサやり体験では、おやつをもらおうと芸をするようなしぐさを見せてくれることも。運が良ければ愛らしい子グマにも出会え、旅の思い出に残るひとときを過ごせます。"
+          "Seeing brown bears up close is truly impressive. A popular spot to experience Hokkaido's great outdoors, offering an experience that captivates both adults and children.",
+          "During the feeding experience, the bears sometimes show off tricks hoping for a treat. If you're lucky, you may even meet an adorable bear cub for a memorable moment on your trip."
         ],
-        "location": "北海道有珠郡壮瞥町昭和新山183",
-        "accessFromHotel": "車約10分",
+        "location": "183 Showa-Shinzan, Sobetsu-cho, Usu-gun, Hokkaido",
+        "accessFromHotel": "About 10 min. by car",
         "officialSite": "https://kumakuma.co.jp/",
-        "categories": ["family"]
+        "categories": [
+          "family"
+        ]
       },
       {
         "id": "laketoya-ranch",
-        "name": "レイクトーヤランチ",
-        "shopName": "レイクトーヤランチ",
+        "name": "Lake Toya Ranch",
+        "shopName": "Lake Toya Ranch",
         "image": {
-          "label": "レイクトーヤランチ",
+          "label": "Lake Toya Ranch",
           "src": "/assets/photos/facility-out15.png",
-          "alt": "レイクトーヤランチ"
+          "alt": "Lake Toya Ranch"
         },
         "description": [
-          "北海道の雄大な自然に囲まれたロケーションで乗馬体験を楽しめます。初めての方でも安心して参加できるコースが用意されています。",
-          "馬とふれあいながら、ゆったりとした時間を過ごせる人気のアクティビティ。北海道らしい景色の中で特別な思い出を作れます。"
+          "Enjoy a horseback riding experience surrounded by Hokkaido's grand nature. Courses are available for first-timers to join with peace of mind.",
+          "A popular activity for spending relaxed time with the horses. Create special memories amid scenery that feels distinctly Hokkaido."
         ],
-        "location": "北海道虻田郡洞爺湖町月浦44",
-        "accessFromHotel": "車約10分",
+        "location": "44 Tsukiura, Toyako-cho, Abuta-gun, Hokkaido",
+        "accessFromHotel": "About 10 min. by car",
         "officialSite": "https://www.laketoya-ranch.com/",
-        "categories": ["family", "active"]
+        "categories": [
+          "family",
+          "active"
+        ]
       },
       {
         "id": "lakehill-farm",
-        "name": "レークヒル・ファーム",
+        "name": "Lake Hill Farm",
         "image": {
-          "label": "レークヒル・ファーム",
+          "label": "Lake Hill Farm",
           "src": "/assets/photos/facility-out16.png",
-          "alt": "レークヒル・ファーム"
+          "alt": "Lake Hill Farm"
         },
         "description": [
-          "広大な牧場で動物たちとふれあったり、無料で借りられるボールやバドミントンなどで遊んだりと、ご家族やカップルでゆったり過ごせる人気スポットです。時間を忘れてのんびり楽しめるのも魅力です。",
-          "牧場自慢のジェラートはもちろん、焼きたてピザや地ビールも絶品。北海道らしい景色を眺めながら味わう食事は、旅のひとときをさらに豊かにしてくれます。"
+          "A popular spot where families and couples can spend relaxed time interacting with animals on a spacious farm, or playing with free-to-borrow balls and badminton sets. It's easy to lose track of time here.",
+          "Enjoy the farm's famous gelato, along with freshly baked pizza and local craft beer. A meal with Hokkaido's scenery makes the trip even richer."
         ],
-        "location": "北海道虻田郡洞爺湖町花和127",
-        "accessFromHotel": "車約15分",
+        "location": "127 Hanawa, Toyako-cho, Abuta-gun, Hokkaido",
+        "accessFromHotel": "About 15 min. by car",
         "officialSite": "https://lake-hill.com/",
-        "categories": ["family", "active"]
+        "categories": [
+          "family",
+          "active"
+        ]
       }
     ]
   },
   "usageNotice": {
-    "heading": "ご利用にあたって",
+    "heading": "Please Note",
     "items": [
-      "館内サービス・周辺アクティビティは、季節・天候・営業状況により内容が変更となる場合があります。",
-      "詳しくはフロントまでお気軽にお問い合わせください。"
+      "In-house services and nearby activities may change depending on the season, weather, or operating conditions.",
+      "Please feel free to ask at the front desk for details."
     ]
   }
 }

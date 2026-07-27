@@ -3,13 +3,15 @@
   "sectionId": "rooms",
   "icon": "室",
   "eyebrow": "Rooms",
-  "titleLines": ["A variety of rooms to suit every style of travel."],
+  "titleLines": [
+    "A variety of rooms to suit every style of travel."
+  ],
   "description": [
     "Alongside Japanese- and Western-style rooms, we also offer large banquet halls for bigger groups.",
     "From solo travelers, couples, and families to school trips, sports training camps, and group tours, we accommodate every kind of stay."
   ],
   "linkText": "About Our Rooms",
-  "linkHref": "#",
+  "linkHref": "/en/rooms/",
   "tallImagePosition": "left",
   "images": [
     {
@@ -17,7 +19,10 @@
       "alt": "Japanese-style room",
       "caption": "Japanese-style room"
     },
-    { "src": "/assets/photos/facility-4.jpg", "alt": "View from a guest room" },
+    {
+      "src": "/assets/photos/facility-4.jpg",
+      "alt": "View from a guest room"
+    },
     {
       "src": "/assets/photos/facility-3.jpg",
       "alt": "Hotel exterior at dusk",

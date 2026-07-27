@@ -3,17 +3,31 @@
   "sectionId": "onsen",
   "icon": "湯",
   "eyebrow": "Onsen",
-  "titleLines": ["원천 흐름식 온천에서,", "몸과 마음을 느긋하게."],
+  "titleLines": [
+    "원천 흐름식 온천에서,",
+    "몸과 마음을 느긋하게."
+  ],
   "description": [
     "보온성이 뛰어난 원천 흐름식 천연 온천.",
     "뜨거운 물, 미지근한 물, 체온 정도의 물 3종류의 욕조에서 원하는 온도를 즐기실 수 있습니다. 숙박객은 물론 당일치기 입욕도 가능합니다."
   ],
   "linkText": "온천 안내",
-  "linkHref": "#",
+  "linkHref": "/ko/onsen/",
   "tallImagePosition": "right",
   "images": [
-    { "src": "/assets/photos/room-2.jpg", "alt": "대욕장", "caption": "대욕장" },
-    { "src": "/assets/photos/image9.png", "alt": "노천탕(야경)" },
-    { "src": "/assets/photos/onsen-3.jpg", "alt": "노천탕", "caption": "노천탕" }
+    {
+      "src": "/assets/photos/room-2.jpg",
+      "alt": "대욕장",
+      "caption": "대욕장"
+    },
+    {
+      "src": "/assets/photos/image9.png",
+      "alt": "노천탕(야경)"
+    },
+    {
+      "src": "/assets/photos/onsen-3.jpg",
+      "alt": "노천탕",
+      "caption": "노천탕"
+    }
   ]
 }

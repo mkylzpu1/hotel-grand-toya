@@ -1,69 +1,69 @@
 {
-  "pageTitle": "ご宿泊・日帰り入浴",
+  "pageTitle": "Stay & Day-trip Onsen",
   "pageTitleEn": "STAY & DAY-TRIP ONSEN",
   "icon": "泉",
   "quickNav": [
     {
       "href": "#facilities",
-      "label": "温泉施設のご紹介"
+      "label": "Onsen Facilities"
     },
     {
       "href": "#quality",
-      "label": "泉質・効能"
+      "label": "Water Quality & Benefits"
     },
     {
       "href": "#useage",
-      "label": "ご利用案内"
+      "label": "Usage Guide"
     }
   ],
   "quality": {
     "icon": "泉",
     "eyebrow": "Onsen Quality",
-    "heading": "泉質・効能",
+    "heading": "Water Quality & Benefits",
     "items": [
       {
-        "label": "泉質",
-        "value": "ナトリウム・カルシウムー塩化物温泉（弱食塩温泉）"
+        "label": "Water Quality",
+        "value": "Sodium-calcium chloride spring (mild salt spring)"
       },
       {
-        "label": "効能",
-        "value": "神経痛、筋肉痛、関節痛、冷え性、病後回復期、きりきず、やけど、慢性皮膚病など。胃腸病や慢性筋肉リウマチにも効用があるとされています。"
+        "label": "Benefits",
+        "value": "Said to help with neuralgia, muscle pain, joint pain, poor circulation, recovery from illness, cuts, burns, chronic skin conditions, and more, as well as gastrointestinal issues and chronic muscular rheumatism."
       },
       {
-        "label": "温泉の特徴",
-        "value": "すべすべとした肌ざわりが特長。保温効果が高く、湯冷めしにくいため、高齢の方やご家族連れにもおすすめです。"
+        "label": "Onsen Characteristics",
+        "value": "Known for its smooth feel on the skin. High heat-retention means you stay warm long after bathing, making it a good choice for elderly guests and families."
       },
       {
-        "label": "源泉情報",
-        "value": "源泉かけ流し。支笏洞爺国立公園「洞爺湖」のほとり、洞爺湖温泉街に湧く源泉を使用しています。"
+        "label": "Source Information",
+        "value": "Continuously fed with fresh spring water (kakenagashi), drawn from a source welling up in Toyako Onsen town on the shore of Lake Toya within Shikotsu-Toya National Park."
       }
     ]
   },
   "facilities": {
     "icon": "湯",
     "eyebrow": "Facilities",
-    "heading": "温泉施設のご紹介",
+    "heading": "Onsen Facilities",
     "items": [
       {
-        "name": "大浴場",
+        "name": "Large Public Bath",
         "image": "/assets/photos/room-2.jpg",
-        "imageAlt": "大浴場",
-        "description": "源泉かけ流しの大浴場には、男女とも「熱めの浴槽」「温めの浴槽」「人肌の浴槽」と湯温の異なる3つの浴槽をご用意。その日の体調やお好みに合わせて、ゆっくりと湯浴みをお楽しみください。",
-        "hours": "13:00〜翌9:30（23:00〜23:30、9:30〜13:00は清掃のためご利用いただけません）"
+        "imageAlt": "Large public bath",
+        "description": "Our large public bath, fed continuously with fresh spring water, has three tubs of different temperatures for both men and women — hot, warm, and skin-temperature. Take your time and choose the one that suits how you feel that day.",
+        "hours": "13:00–9:30 the next day (closed 23:00–23:30 and 9:30–13:00 for cleaning)"
       },
       {
-        "name": "泡風呂",
+        "name": "Bubble Bath",
         "image": "/assets/photos/image9.png",
-        "imageAlt": "泡風呂",
-        "description": "気泡が心地よい泡風呂をご用意。温泉とあわせてご利用いただくことで、より深いリラックスをお楽しみいただけます。",
-        "hours": "13:00〜23:00"
+        "imageAlt": "Bubble bath",
+        "description": "Enjoy our soothing bubble bath. Pair it with the onsen for an even deeper level of relaxation.",
+        "hours": "13:00–23:00"
       },
       {
-        "name": "露天風呂",
+        "name": "Open-air Bath",
         "image": "/assets/photos/onsen-3.jpg",
-        "imageAlt": "露天風呂",
-        "description": "湖畔の風を感じながら入る露天風呂。日中は洞爺湖と山々の景色を、夜は静かな湯けむりと星空をお楽しみいただけます。",
-        "hours": "13:00〜23:00（安全管理のため）"
+        "imageAlt": "Open-air bath",
+        "description": "Soak in our open-air bath while feeling the breeze off the lake. Enjoy views of Lake Toya and the surrounding mountains by day, and quiet steam under the starry sky by night.",
+        "hours": "13:00–23:00 (for safety management)"
       }
     ]
   },
@@ -71,19 +71,19 @@
     "id": "stay",
     "icon": "宿",
     "eyebrow": "For Overnight Guests",
-    "heading": "宿泊のお客様",
+    "heading": "For Overnight Guests",
     "items": [
       {
-        "label": "利用時間",
-        "value": "大浴場 13:00〜翌9:30（23:00〜23:30、9:30〜13:00は清掃のため休止）／露天風呂 13:00〜23:00"
+        "label": "Hours",
+        "value": "Large public bath: 13:00–9:30 the next day (closed 23:00–23:30 and 9:30–13:00 for cleaning) / Open-air bath: 13:00–23:00"
       },
       {
-        "label": "アメニティ",
-        "value": "バスタオル・フェイスタオルは客室にご用意しております。シャンプー・リンス・ボディソープ・化粧水は浴室にご用意しております。館内着（浴衣）でのご移動も可能です。"
+        "label": "Amenities",
+        "value": "Bath and face towels are provided in your room. Shampoo, conditioner, body soap, and lotion are provided in the bathing area. You may move around the hotel in your yukata."
       },
       {
-        "label": "利用上の注意",
-        "value": "刺青・タトゥーのある方、飲酒直後の方のご入浴はご遠慮いただいております。のぼせ防止のため、こまめな水分補給をおすすめします。"
+        "label": "Usage Notes",
+        "value": "Guests with tattoos, or who have recently consumed alcohol, are asked to refrain from bathing. To prevent overheating, we recommend staying hydrated."
       }
     ],
     "notes": []
@@ -92,35 +92,37 @@
     "id": "dayuse",
     "icon": "湯",
     "eyebrow": "For Day-trip Bathing",
-    "heading": "日帰り入浴のお客様",
+    "heading": "For Day-trip Bathing Guests",
     "items": [
       {
-        "label": "入浴料金",
-        "value": "大人 600円／子供（3歳以上〜小学生） 300円"
+        "label": "Bathing Fee",
+        "value": "Adults ¥600 / Children (age 3 to elementary school) ¥300"
       },
       {
-        "label": "受付時間",
-        "value": "13:00〜20:00（最終受付）"
+        "label": "Reception Hours",
+        "value": "13:00–20:00 (last entry)"
       },
       {
-        "label": "利用時間",
-        "value": "13:00〜21:00"
+        "label": "Usage Hours",
+        "value": "13:00–21:00"
       },
       {
-        "label": "利用上の注意",
-        "value": "刺青・タトゥーのある方、飲酒直後の方のご入浴はご遠慮いただいております。混雑時や特別日は、日帰り入浴をお断りさせていただく場合がございます。あらかじめご了承ください。"
+        "label": "Usage Notes",
+        "value": "Guests with tattoos, or who have recently consumed alcohol, are asked to refrain from bathing. We may decline day-trip bathing during busy periods or on special days — thank you for your understanding."
       }
     ],
     "rentals": [
       {
-        "label": "バスタオル",
-        "value": "300円"
+        "label": "Bath Towel",
+        "value": "¥300"
       },
       {
-        "label": "フェイスタオル",
-        "value": "100円"
+        "label": "Face Towel",
+        "value": "¥100"
       }
     ],
-    "notes": ["シャンプー・リンス・ボディソープ・ドライヤーは無料で完備しております。"]
+    "notes": [
+      "Shampoo, conditioner, body soap, and hair dryers are provided free of charge."
+    ]
   }
 }

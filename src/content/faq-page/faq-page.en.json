@@ -1,194 +1,194 @@
 {
-  "pageTitle": "よくあるご質問",
+  "pageTitle": "FAQ",
   "pageTitleEn": "FAQ",
   "icon": "問",
   "qaSection": {
     "icon": "問",
     "eyebrow": "FAQ",
-    "heading": "よくあるご質問"
+    "heading": "Frequently Asked Questions"
   },
   "categories": [
     {
       "id": "checkin",
       "icon": "宿",
-      "label": "宿泊・チェックイン",
+      "label": "Stay & Check-in",
       "items": [
         {
-          "question": "チェックインは何時からですか？",
-          "answer": "チェックインは14:00〜18:00でございます。"
+          "question": "What time does check-in start?",
+          "answer": "Check-in is from 14:00 to 18:00."
         },
         {
-          "question": "チェックアウトは何時ですか？",
-          "answer": "チェックアウトは10:00でございます。"
+          "question": "What time is check-out?",
+          "answer": "Check-out is at 10:00."
         },
         {
-          "question": "早めにチェックインすることはできますか？",
-          "answer": "お部屋の準備が整い次第、可能な範囲でご案内いたします。確実なご希望がある場合は、事前にご連絡ください。"
+          "question": "Can I check in early?",
+          "answer": "We will guide you as soon as your room is ready, where possible. If you have a specific request, please contact us in advance."
         },
         {
-          "question": "予約内容の変更やキャンセルはできますか？",
-          "answer": "ご予約いただいた経路（お電話・予約サイト等）に応じてお手続き方法が異なります。詳しくはお電話にてお問い合わせください。"
+          "question": "Can I change or cancel my reservation?",
+          "answer": "The procedure depends on how you booked (phone, booking site, etc.). Please call us for details."
         },
         {
-          "question": "支払い方法を教えてください。",
-          "answer": "現金・クレジットカード（主要各社）にご対応しております。詳細はご予約時の確認事項もあわせてご覧ください。"
+          "question": "What payment methods do you accept?",
+          "answer": "We accept cash and major credit cards. Please also check the confirmation details at the time of booking."
         }
       ]
     },
     {
       "id": "room",
       "icon": "室",
-      "label": "客室",
+      "label": "Guest Rooms",
       "items": [
         {
-          "question": "部屋からは洞爺湖を見ることができますか？",
-          "answer": "お部屋タイプにより湖側・山側がございます。湖の眺望をご希望の場合は、ご予約時にお申し付けください。"
+          "question": "Can I see Lake Toya from my room?",
+          "answer": "Depending on room type, rooms face either the lake or the mountains. If you'd like a lake view, please request it at the time of booking."
         },
         {
-          "question": "禁煙ルームはありますか？",
-          "answer": "申し訳ございませんが、禁煙ルームのご用意はございません。館内に喫煙所はございませんが、ホテル出口を出て左側に喫煙スペースをご用意しております。"
+          "question": "Do you have non-smoking rooms?",
+          "answer": "We're sorry, but we do not have non-smoking rooms. There is no smoking area inside the hotel, but a smoking space is available to the left as you exit the hotel."
         },
         {
-          "question": "アメニティは何が用意されていますか？",
-          "answer": "歯ブラシ・タオル・パジャマ・ドライヤー等、基本的な宿泊アメニティをご用意しております。詳細は客室ページをご確認ください。"
+          "question": "What amenities are provided?",
+          "answer": "We provide basic amenities such as toothbrushes, towels, pajamas, and a hair dryer. Please check the rooms page for details."
         },
         {
-          "question": "Wi-Fiは利用できますか？",
-          "answer": "館内・客室ともに無料でWi-Fiをご利用いただけます。"
+          "question": "Is Wi-Fi available?",
+          "answer": "Free Wi-Fi is available throughout the hotel and in all guest rooms."
         },
         {
-          "question": "冷蔵庫はありますか？",
-          "answer": "全客室に冷蔵庫をご用意しております。"
+          "question": "Do rooms have a refrigerator?",
+          "answer": "Yes, all guest rooms have a refrigerator."
         }
       ]
     },
     {
       "id": "onsen",
       "icon": "湯",
-      "label": "温泉",
+      "label": "Onsen",
       "items": [
         {
-          "question": "温泉の営業時間を教えてください。",
-          "answer": "【ご宿泊のお客様】大浴場は13:00〜翌9:30（23:00〜23:30、9:30〜13:00は清掃のため休止）、露天風呂は13:00〜23:00までご利用いただけます。"
+          "question": "What are the onsen hours?",
+          "answer": "[For overnight guests] The large public bath is open 13:00–9:30 the next day (closed 23:00–23:30 and 9:30–13:00 for cleaning); the open-air bath is open 13:00–23:00."
         },
         {
-          "question": "貸切風呂はありますか？",
-          "answer": "申し訳ございませんが、貸切風呂はございません。"
+          "question": "Do you have a private bath?",
+          "answer": "We're sorry, but we do not have a private bath."
         },
         {
-          "question": "サウナはありますか？",
-          "answer": "申し訳ございませんが、サウナはございません。"
+          "question": "Do you have a sauna?",
+          "answer": "We're sorry, but we do not have a sauna."
         },
         {
-          "question": "タトゥー・入れ墨がある場合、入浴できますか？",
-          "answer": "刺青・タトゥーのある方のご入浴はご遠慮いただいております。"
+          "question": "Can I bathe if I have tattoos?",
+          "answer": "We ask guests with tattoos to refrain from bathing."
         },
         {
-          "question": "日帰り入浴は可能ですか？",
-          "answer": "はい、ご利用いただけます。受付時間は13:00〜20:00（最終受付）、ご利用時間は13:00〜21:00です。入浴料金は大人600円、子供（3歳以上〜小学生）300円です。混雑時や特別日はご利用をお断りする場合がございますので、あらかじめご了承ください。"
+          "question": "Can I use the onsen as a day-trip visitor?",
+          "answer": "Yes. Reception hours are 13:00–20:00 (last entry), and usage hours are 13:00–21:00. Bathing fees are ¥600 for adults and ¥300 for children (age 3 to elementary school). We may decline day-trip bathing during busy periods or on special days — thank you for your understanding."
         },
         {
-          "question": "日帰り入浴にタオルはありますか？",
-          "answer": "レンタルをご用意しております。バスタオル300円、フェイスタオル100円です。シャンプー・リンス・ボディソープ・ドライヤーは無料でご利用いただけます。"
+          "question": "Are towels available for day-trip bathing?",
+          "answer": "Rentals are available: bath towel ¥300, face towel ¥100. Shampoo, conditioner, body soap, and hair dryers are free to use."
         }
       ]
     },
     {
       "id": "meal",
       "icon": "食",
-      "label": "お食事",
+      "label": "Meals",
       "items": [
         {
-          "question": "夕食・朝食の時間を教えてください。",
-          "answer": "ご夕食は18:00より広間会食場にて「おまかせ和食会席膳」をご用意しております（最終開始時間19:00）。ご朝食は広間会食場にて和朝食をご提供いたします。19:00を過ぎますとご夕食はご提供できません。また、その場合もご宿泊料金の変更・返金はございません。"
+          "question": "What time are dinner and breakfast served?",
+          "answer": "Dinner is served from 18:00 in the banquet hall (\"Omakase Japanese Kaiseki Course,\" last seating 19:00). Breakfast is a Japanese-style set served in the banquet hall. We cannot serve dinner after 19:00, and there is no change or refund to your accommodation fee in that case."
         },
         {
-          "question": "食物アレルギーがある場合、対応可能ですか？",
-          "answer": "可能な範囲で対応いたします。ご予約時、または3日前までにお電話にてお知らせください。"
+          "question": "Can you accommodate food allergies?",
+          "answer": "We will accommodate where possible. Please let us know at the time of booking, or by phone at least 3 days in advance."
         },
         {
-          "question": "部屋食は可能ですか？",
-          "answer": "はい、一部プランにてご利用いただけます。詳しくはご予約ページよりご確認ください。"
+          "question": "Is in-room dining available?",
+          "answer": "Yes, for some plans. Please check our reservation page for details."
         },
         {
-          "question": "食事なしプランはありますか？",
-          "answer": "はい、ご用意しております。詳しくはご予約ページよりご確認ください。"
+          "question": "Do you offer plans without meals?",
+          "answer": "Yes, we do. Please check our reservation page for details."
         },
         {
-          "question": "夕食付きプランで到着が遅くなる場合はどうすればよいですか？",
-          "answer": "到着時間が遅れる場合は、お手数ですが事前にホテルまでご連絡ください。"
+          "question": "What should I do if I'll arrive late on a dinner-included plan?",
+          "answer": "If you expect to arrive late, please contact the hotel in advance."
         }
       ]
     },
     {
       "id": "family",
       "icon": "家",
-      "label": "お子様・ファミリー",
+      "label": "Children & Families",
       "items": [
         {
-          "question": "子供料金はありますか？",
-          "answer": "年齢・お食事の有無に応じて料金が異なります。詳しくはご予約時の料金表をご確認ください。"
+          "question": "Is there a children's rate?",
+          "answer": "Rates vary depending on age and whether meals are included. Please check the rate table at the time of booking."
         },
         {
-          "question": "ベビーベッドの貸し出しはありますか？",
-          "answer": "台数に限りがございますので、ご予約時にご相談ください。"
+          "question": "Do you have baby cribs available?",
+          "answer": "We have a limited number, so please ask at the time of booking."
         }
       ]
     },
     {
       "id": "access",
       "icon": "道",
-      "label": "アクセス・駐車場",
+      "label": "Access & Parking",
       "items": [
         {
-          "question": "駐車場はありますか？",
-          "answer": "無料駐車場をご用意しております。ホテルにご到着されましたら、スタッフがお迎えし、ご案内いたします。"
+          "question": "Is parking available?",
+          "answer": "We offer free parking. Our staff will meet and guide you upon your arrival at the hotel."
         },
         {
-          "question": "送迎サービスはありますか？",
-          "answer": "現在、送迎サービスは行っておりません。最寄り駅からはタクシーまたは路線バスをご利用ください。"
+          "question": "Do you offer a shuttle service?",
+          "answer": "We do not currently offer a shuttle service. Please use a taxi or local bus from the nearest station."
         },
         {
-          "question": "最寄り駅からの所要時間はどれくらいですか？",
-          "answer": "JR洞爺駅からタクシーで約10分です。詳しくはアクセスページをご覧ください。"
+          "question": "How long does it take from the nearest station?",
+          "answer": "About 10 minutes by taxi from JR Toya Station. Please see the access page for details."
         },
         {
-          "question": "タクシーは呼べますか？",
-          "answer": "はい、フロントにてタクシーのお手配を承っております。お気軽にお申し付けください。"
+          "question": "Can you call a taxi for me?",
+          "answer": "Yes, our front desk can arrange a taxi for you. Please feel free to ask."
         }
       ]
     },
     {
       "id": "other",
       "icon": "他",
-      "label": "その他",
+      "label": "Other",
       "items": [
         {
-          "question": "館内で使えるコンビニはありますか？",
-          "answer": "館内にはございませんが、徒歩約5分の場所にコンビニがございます。"
+          "question": "Is there a convenience store I can use?",
+          "answer": "There isn't one inside the hotel, but there is a convenience store about a 5-minute walk away."
         },
         {
-          "question": "飲み物の持ち込みはできますか？",
-          "answer": "お飲み物は客室へお持ち込みいただけます。"
+          "question": "Can I bring my own drinks?",
+          "answer": "Yes, you're welcome to bring drinks into your room."
         },
         {
-          "question": "喫煙場所はありますか？",
-          "answer": "館内に喫煙所はございません。ホテル出口を出て左側に喫煙スペースをご用意しておりますので、そちらをご利用ください。"
+          "question": "Is there a smoking area?",
+          "answer": "There is no smoking area inside the hotel. Please use the smoking space to the left as you exit the hotel."
         },
         {
-          "question": "カラオケ・卓球・館内バーはありますか？",
-          "answer": "カラオケは団体のお客様限定で、広間をご利用いただけます。卓球・館内バーはございません。"
+          "question": "Do you have karaoke, table tennis, or a bar?",
+          "answer": "Karaoke in the banquet hall is available for group guests only. We do not have table tennis or a bar."
         },
         {
-          "question": "ペットは同伴できますか？",
-          "answer": "恐れ入りますが、ペットの同伴はご遠慮いただいております。"
+          "question": "Can I bring a pet?",
+          "answer": "We're sorry, but pets are not permitted."
         }
       ]
     }
   ],
   "contact": {
     "tel": "0142-75-2288",
-    "telNote": "受付時間 9:00〜18:00",
+    "telNote": "Reception hours: 9:00–18:00",
     "email": "info@example.com"
   }
 }
