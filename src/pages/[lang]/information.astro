@@ -1,0 +1,80 @@
+---
+import PageTemplate from '../../layouts/PageTemplate.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import { type Locale } from '../../content/config';
+import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
+import { ExternalLink } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  return getLocalizedStaticPaths('information-page');
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
+  await getPageContext(lang, 'information-page', 'information');
+const page = pageEntry.data;
+
+const quickNav = [
+  { id: 'section-welfare', label: page.welfareSection.heading },
+  { id: 'section-links', label: page.linksSection.heading },
+];
+---
+
+<PageTemplate
+  lang={lang}
+  title={`${page.pageTitle}｜${siteEntry.data.title}`}
+  description={siteEntry.data.description}
+  navigation={navigationEntry.data}
+  site={siteEntry.data}
+  langLinks={langLinks}
+  heroIcon={page.icon}
+  pageTitle={page.pageTitle}
+  pageTitleEn={page.pageTitleEn}
+  quickNav={quickNav}
+  quickNavLabel="ページ内ナビゲーション"
+  currentPageId="information"
+  relatedLinksHeading={relatedLinksData.heading}
+  relatedLinks={relatedLinksData.links}
+  relatedLinksBackground="none"
+>
+  {/* 福利厚生 */}
+  <section id="section-welfare" class="scroll-mt-6 mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
+    <SectionEyebrow icon="🎫" eyebrow={page.welfareSection.eyebrow} heading={page.welfareSection.heading} />
+    <p class="mt-6 max-w-[640px] text-[0.9rem] leading-[1.9] text-[#55524C]">
+      {page.welfareSection.description}
+    </p>
+    <ul class="mt-8 max-w-[720px] space-y-3">
+      {page.welfareSection.items.map((item) => (
+        <li class="flex gap-3 border border-[#D8D7D2] bg-white px-6 py-4 text-[0.88rem] leading-relaxed text-[#1E1C1A]">
+          <span class="mt-[7px] h-[3px] w-[3px] shrink-0 rounded-full bg-[#A24730]" />
+          {item.name}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {/* リンク */}
+  <section id="section-links" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+    <div class="mx-auto max-w-[1320px] px-10">
+      <SectionEyebrow icon="🔗" eyebrow={page.linksSection.eyebrow} heading={page.linksSection.heading} />
+      <p class="mt-6 max-w-[640px] text-[0.9rem] leading-[1.9] text-[#55524C]">
+        {page.linksSection.description}
+      </p>
+      <ul class="mt-8 grid max-w-[900px] grid-cols-1 gap-x-8 sm:grid-cols-2">
+        {page.linksSection.items.map((link) => (
+          <li class="border-b border-[#EDEBE6]">
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center justify-between py-3 text-[0.88rem] text-[#1E1C1A] transition-colors hover:text-[#A24730]"
+            >
+              {link.label}
+              <ExternalLink size={13} strokeWidth={2} class="ml-2 shrink-0 text-[#8A8781] transition-colors group-hover:text-[#A24730]" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</PageTemplate>

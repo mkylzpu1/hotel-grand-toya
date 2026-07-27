@@ -687,6 +687,141 @@ const newsPage = defineCollection({
   }),
 });
 
+/* ---------------------------------------------------------
+ * 1. プライバシーポリシー
+ * ------------------------------------------------------- */
+const privacySection = z.object({
+  id: z.string(), // 目次のアンカーID (例: "sec-1")
+  heading: z.string(), // 例: "1．個人情報保護方針"
+  intro: z.string().optional(), // 箇条書きの前に置く導入文
+  paragraphs: z.array(z.string()).optional(), // 通常の段落
+  list: z.array(z.string()).optional(), // 箇条書き
+});
+
+const privacyPage = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    icon: z.string(),
+    breadcrumbLabel: z.string(),
+    intro: z.object({
+      eyebrow: z.string(),
+      heading: z.string(),
+    }),
+    sections: z.array(privacySection),
+  }),
+});
+
+/* ---------------------------------------------------------
+ * 2. 関連情報(福利厚生 + リンク)
+ * ------------------------------------------------------- */
+const welfareProgram = z.object({
+  name: z.string(),
+});
+
+const externalLink = z.object({
+  label: z.string(),
+  href: z.string(),
+});
+
+const informationPage = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    icon: z.string(),
+    breadcrumbLabel: z.string(),
+    welfareSection: z.object({
+      eyebrow: z.string(),
+      heading: z.string(),
+      description: z.string(),
+      items: z.array(welfareProgram),
+    }),
+    linksSection: z.object({
+      eyebrow: z.string(),
+      heading: z.string(),
+      description: z.string(),
+      items: z.array(externalLink),
+    }),
+  }),
+});
+
+/* ---------------------------------------------------------
+ * 3. 採用情報
+ * ------------------------------------------------------- */
+const recruitJobSchema = z.object({
+  status: z.enum(['open', 'closed']).default('open'), // 募集中 / 終了
+  icon: z.enum(['chef-hat', 'bed-double', 'concierge-bell']), // 写真が無い場合に出すアイコンのキー
+  image: z
+    .object({
+      src: z.string(),  // 例: "/images/recruit/kitchen-staff.jpg"
+      alt: z.string(),
+    })
+    .optional(),                          // 写真がある場合はこちらを優先表示
+  title: z.string(),                      // 職種名（例: 厨房スタッフ）
+  employmentType: z.string(),             // 正社員 / パート 等
+  recruitCount: z.number(),               // 採用人数
+  summary: z.string(),                    // 求職者向けのやさしい仕事紹介文
+  duties: z.array(z.string()),            // 主な仕事内容（箇条書き）
+  salaryType: z.enum(['月給', '時給']),
+  salaryRoughLabel: z.string(),           // ざっくり表示（例: "月給18万円台〜"）
+  workingHours: z.string(),               // 就業時間の要約
+  holidays: z.string(),                   // 休日・休暇の要約
+  tags: z.array(z.string()),              // "未経験歓迎" 等のバッジ
+});
+
+const recruitProcessStepSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+});
+
+const recruitBenefitSchema = z.object({
+  icon: z.enum(['shield-check', 'home', 'car', 'shirt', 'globe', 'sparkles']), // lucideアイコンキー
+  label: z.string(),
+});
+
+const recruitPage = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    icon: z.string(),
+    breadcrumbLabel: z.string(),
+    heading: z.string(), // 改行込みの見出し
+    description: z.array(z.string()),
+    emailAddress: z.string(),
+    tel: z.string(),
+    telLabel: z.string(),
+    emailLabel: z.string(),
+
+    // --- ここから追加 ---
+    workLife: z.object({
+      heading: z.string(),
+      description: z.string(),
+      points: z.array(z.string()),       // 職場の特徴を箇条書きで
+      photos: z.array(
+        z.object({
+          src: z.string(),               // 例: "/images/recruit/kitchen.jpg"
+          alt: z.string(),
+        })
+      ),
+    }),
+
+    positionsHeading: z.string(),
+    positionsDescription: z.string(),
+    positions: z.array(recruitJobSchema), // 募集職種。増減はこの配列を編集するだけ
+
+    processHeading: z.string(),
+    processDescription: z.string(),
+    process: z.array(recruitProcessStepSchema), // 採用までの流れ（STEP表示）
+
+    benefitsHeading: z.string(),
+    benefits: z.array(recruitBenefitSchema),
+    // --- ここまで追加 ---
+  }),
+});
+
 export const collections = {
   site,
   navigation,
@@ -701,4 +836,7 @@ export const collections = {
   'faq-page': faqPage,
   'related-links': relatedLinksCollection,
   'news-page': newsPage,
+  'privacy-page': privacyPage,
+  'information-page': informationPage,
+  'recruit-page': recruitPage,
 };

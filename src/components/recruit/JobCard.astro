@@ -1,0 +1,117 @@
+---
+import {
+  ChefHat,
+  BedDouble,
+  ConciergeBell,
+  JapaneseYen,
+  Clock,
+  CalendarDays,
+  Users,
+} from 'lucide-astro';
+
+interface Props {
+  icon: 'chef-hat' | 'bed-double' | 'concierge-bell';
+  image?: { src: string; alt: string };
+  title: string;
+  employmentType: string;
+  recruitCount: number;
+  summary: string;
+  duties: string[];
+  salaryType: '月給' | '時給';
+  salaryRoughLabel: string;
+  workingHours: string;
+  holidays: string;
+  tags: string[];
+}
+
+const {
+  icon,
+  image,
+  title,
+  employmentType,
+  recruitCount,
+  summary,
+  duties,
+  salaryRoughLabel,
+  workingHours,
+  holidays,
+  tags,
+} = Astro.props as Props;
+
+// アイコンキー → lucideコンポーネントの対応表
+const iconMap = {
+  'chef-hat': ChefHat,
+  'bed-double': BedDouble,
+  'concierge-bell': ConciergeBell,
+};
+const IconComp = iconMap[icon] ?? ChefHat;
+---
+
+<div class="job-card border border-[#D8D7D2] bg-white">
+  <!-- 写真エリア（写真が無い場合はアイコンにフォールバック） -->
+  <div class="relative h-60 overflow-hidden bg-[#F5F3EE]">
+    {image?.src ? (
+      <img src={image.src} alt={image.alt} class="h-full w-full object-cover" loading="lazy" />
+    ) : (
+      <div class="flex h-full items-center justify-center">
+        <span class="flex h-14 w-14 items-center justify-center rounded-full border border-[#C7C5BF] bg-white">
+          <IconComp size={24} strokeWidth={1.6} class="text-[#A24730]" />
+        </span>
+      </div>
+    )}
+    <span class="absolute right-3 top-3 rounded-full bg-white px-3 py-1 text-[0.7rem] font-medium text-[#1E1C1A]">
+      {employmentType}
+    </span>
+  </div>
+
+  <div class="px-6 py-6">
+    <!-- タイトル -->
+    <div class="mb-3 flex items-center gap-2.5">
+      <span class="h-[16px] w-[2.5px] shrink-0 bg-[#A24730]"></span>
+      <h3 class="font-serif text-[1.05rem] font-semibold tracking-[0.01em] text-[#1E1C1A]">
+        {title}
+      </h3>
+    </div>
+
+    <!-- タグ -->
+    <div class="mb-4 flex flex-wrap gap-1.5">
+      {tags.map((tag) => (
+        <span class="rounded-full bg-[#F7EAE5] px-2.5 py-1 text-[0.68rem] font-medium text-[#A24730]">
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <p class="mb-4 text-[0.84rem] leading-[1.85] text-[#55524C]">{summary}</p>
+
+    <ul class="space-y-1.5">
+      {duties.map((duty) => (
+        <li class="flex gap-2 text-[0.8rem] leading-[1.7] text-[#55524C]">
+          <span class="mt-[0.55em] h-[3px] w-[3px] shrink-0 rounded-full bg-[#A24730]" />
+          {duty}
+        </li>
+      ))}
+    </ul>
+
+    <!-- 詳細情報（アイコン+ラベル） -->
+    <div class="mt-4 flex flex-col gap-1.5 border-t border-[#EDEBE6] pt-4 text-[0.78rem] text-[#55524C]">
+      <span class="flex items-center gap-1.5">
+        <JapaneseYen size={13} strokeWidth={2} class="shrink-0 text-[#8A8781]" />
+        {salaryRoughLabel}
+        <span class="text-[0.7rem] text-[#8A8781]">（目安）</span>
+      </span>
+      <span class="flex items-center gap-1.5">
+        <Clock size={13} strokeWidth={2} class="shrink-0 text-[#8A8781]" />
+        {workingHours}
+      </span>
+      <span class="flex items-center gap-1.5">
+        <CalendarDays size={13} strokeWidth={2} class="shrink-0 text-[#8A8781]" />
+        {holidays}
+      </span>
+      <span class="flex items-center gap-1.5">
+        <Users size={13} strokeWidth={2} class="shrink-0 text-[#8A8781]" />
+        採用人数 {recruitCount}名
+      </span>
+    </div>
+  </div>
+</div>

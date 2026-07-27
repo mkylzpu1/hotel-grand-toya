@@ -1,0 +1,64 @@
+---
+import PageTemplate from '../../layouts/PageTemplate.astro';
+import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import { type Locale } from '../../content/config';
+import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
+
+export async function getStaticPaths() {
+  return getLocalizedStaticPaths('privacy-page');
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
+  await getPageContext(lang, 'privacy-page', 'privacy');
+const page = pageEntry.data;
+
+---
+
+<PageTemplate
+  lang={lang}
+  title={`${page.pageTitle}｜${siteEntry.data.title}`}
+  description={siteEntry.data.description}
+  navigation={navigationEntry.data}
+  site={siteEntry.data}
+  langLinks={langLinks}
+  heroIcon={page.icon}
+  pageTitle={page.pageTitle}
+  pageTitleEn={page.pageTitleEn}
+  quickNavLabel="目次"
+  currentPageId="privacy"
+  relatedLinksHeading={relatedLinksData.heading}
+  relatedLinks={relatedLinksData.links}
+  relatedLinksBackground='none'
+>
+  <section class="relative bg-[#FAFAFA] mx-auto px-10 py-[88px] lg:py-[108px]">
+    <div class="mx-auto max-w-[1320px] px-10">
+      <SectionEyebrow icon={page.icon} eyebrow={page.intro.eyebrow} heading={page.intro.heading} />
+
+      <div class="mt-10 max-w-[720px]">
+        {page.sections.map((section) => (
+          <div id={section.id} class="scroll-mt-24 border-b border-[#D8D7D2] py-8 first:pt-0 last:border-0">
+            <h4 class="font-serif text-[1.05rem] font-semibold text-[#1E1C1A]">{section.heading}</h4>
+
+            {section.paragraphs?.map((p) => (
+              <p class="mt-3 text-[0.88rem] leading-[1.9] text-[#55524C]">{p}</p>
+            ))}
+
+            {section.intro && <p class="mt-3 text-[0.88rem] leading-[1.9] text-[#55524C]">{section.intro}</p>}
+
+            {section.list && (
+              <ul class="mt-4 space-y-3">
+                {section.list.map((item) => (
+                  <li class="flex gap-3 text-[0.88rem] leading-[1.9] text-[#55524C]">
+                    <span class="mt-[9px] h-[3px] w-[3px] shrink-0 rounded-full bg-[#A24730]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageTemplate>
