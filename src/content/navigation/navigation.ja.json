@@ -41,28 +41,16 @@
       "label": "よくあるご質問"
     },
     {
-      "href": "#",
+      "href": "/ja/recruit/",
       "label": "採用情報"
     },
     {
-      "href": "#",
-      "label": "会社情報"
+      "href": "/ja/information/",
+      "label": "各協定福利厚生のご案内"
     },
     {
-      "href": "#",
+      "href": "/ja/privacy/",
       "label": "プライバシーポリシー"
-    },
-    {
-      "href": "#",
-      "label": "特定商取引法に基づく表記"
-    },
-    {
-      "href": "#",
-      "label": "利用規約"
-    },
-    {
-      "href": "#",
-      "label": "Cookieポリシー"
     }
   ],
   "reserveCta": "ご予約はこちら",

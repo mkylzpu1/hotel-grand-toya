@@ -714,15 +714,10 @@ const privacyPage = defineCollection({
 });
 
 /* ---------------------------------------------------------
- * 2. 関連情報(福利厚生 + リンク)
+ * 2. 関連情報(福利厚生)
  * ------------------------------------------------------- */
 const welfareProgram = z.object({
   name: z.string(),
-});
-
-const externalLink = z.object({
-  label: z.string(),
-  href: z.string(),
 });
 
 const informationPage = defineCollection({
@@ -737,12 +732,6 @@ const informationPage = defineCollection({
       heading: z.string(),
       description: z.string(),
       items: z.array(welfareProgram),
-    }),
-    linksSection: z.object({
-      eyebrow: z.string(),
-      heading: z.string(),
-      description: z.string(),
-      items: z.array(externalLink),
     }),
   }),
 });

@@ -42,6 +42,7 @@ interface Props {
   relatedLinksHeading: string;
   relatedLinks: RelatedLink[];
   relatedLinksBackground?: 'white' | 'none';
+  showRelatedLinks?: 'true' | 'false';
 }
 const {
   lang,
@@ -60,6 +61,7 @@ const {
   relatedLinksHeading,
   relatedLinks,
   relatedLinksBackground = 'white',
+  showRelatedLinks = 'true',
 } = Astro.props;
 // quickNav が渡されていなければ表示しようがないので実質非表示にする
 const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
@@ -109,12 +111,14 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
     <slot />
     <!-- ▲ ここまで ▲ -->
     <!-- 関連ページへの導線（全ページ共通） -->
-    <RelatedLinks
-      heading={relatedLinksHeading}
-      links={relatedLinks}
-      currentPageId={currentPageId}
-      background={relatedLinksBackground}
-    />
+    {showRelatedLinks === 'true' && (
+      <RelatedLinks
+        heading={relatedLinksHeading}
+        links={relatedLinks}
+        currentPageId={currentPageId}
+        background={relatedLinksBackground}
+      />
+    )}
   </main>
 
 <!-- 検索結果からの遷移時に、該当箇所をハイライトする -->
