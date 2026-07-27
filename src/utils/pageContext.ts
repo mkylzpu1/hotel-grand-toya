@@ -16,7 +16,7 @@ const LANG_LABELS: Record<Locale, string> = {
  */
 export async function getLocalizedStaticPaths(collectionName: CollectionKey) {
   const entries = await getCollection(collectionName);
-  return entries.map((entry) => ({ params: { lang: localeFromId(entry.id) } }));
+  return entries.map((entry: { id: string }) => ({ params: { lang: localeFromId(entry.id) } }));
 }
 
 /**
@@ -41,7 +41,9 @@ export async function getPageContext<C extends CollectionKey>(
   const relatedLinksData = await getRelatedLinksData(lang, reservationUrl);
 
   const availableEntries = await getCollection(collectionName);
-  const availableLocales = new Set(availableEntries.map((entry) => localeFromId(entry.id)));
+  const availableLocales = new Set(
+    availableEntries.map((entry: { id: string }) => localeFromId(entry.id)),
+  );
   const langLinks = locales
     .filter((code) => availableLocales.has(code))
     .map((code) => ({

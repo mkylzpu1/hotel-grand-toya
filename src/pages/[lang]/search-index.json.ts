@@ -22,7 +22,10 @@ function excerpt(lines: string[] | string, max = 90): string {
   return text.slice(0, max);
 }
 
-function findByLang<T extends { id: string }>(entries: T[], lang: Locale): T | undefined {
+function findByLang<T extends { id: string; data: unknown }>(
+  entries: T[],
+  lang: Locale,
+): T | undefined {
   return entries.find((e) => localeFromId(e.id) === lang);
 }
 
