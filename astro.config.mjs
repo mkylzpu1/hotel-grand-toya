@@ -5,6 +5,7 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://mkylzpu1.github.io',
+  base: '/hotel-grand-toya',
   integrations: [react(), tailwind()],
   i18n: {
     defaultLocale: 'ja',
