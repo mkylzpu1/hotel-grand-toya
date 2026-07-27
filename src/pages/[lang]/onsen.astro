@@ -10,8 +10,11 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: Locale };
 
-const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
-  await getPageContext(lang, 'onsen-page', 'onsen');
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
+  lang,
+  'onsen-page',
+  'onsen',
+);
 
 const page = pageEntry.data;
 ---
@@ -45,12 +48,18 @@ const page = pageEntry.data;
           page.facilities.items.map((facility) => (
             <article>
               <div class="mb-5 aspect-[4/5] overflow-hidden">
-                <img src={facility.image} alt={facility.imageAlt} class="h-full w-full object-cover" />
+                <img
+                  src={facility.image}
+                  alt={facility.imageAlt}
+                  class="h-full w-full object-cover"
+                />
               </div>
               <h3 class="mb-2.5 font-serif text-[1.15rem] font-semibold text-[#1E1C1A]">
                 {facility.name}
               </h3>
-              <p class="mb-3.5 text-[0.88rem] leading-[1.9] text-[#55524C]">{facility.description}</p>
+              <p class="mb-3.5 text-[0.88rem] leading-[1.9] text-[#55524C]">
+                {facility.description}
+              </p>
               <p class="text-[0.78rem] tracking-[0.04em] text-[#8A8781]">
                 <span class="text-[#29415C]">ご利用時間</span> {facility.hours}
               </p>
@@ -62,9 +71,13 @@ const page = pageEntry.data;
   </section>
 
   <!-- 泉質・効能 -->
-  <section id="quality" class="relative bg-[#FAFAFA] mx-auto px-10 py-[88px] lg:py-[108px]">
+  <section id="quality" class="relative mx-auto bg-[#FAFAFA] px-10 py-[88px] lg:py-[108px]">
     <div class="mx-auto max-w-[1320px] px-10">
-      <SectionEyebrow icon={page.quality.icon} eyebrow={page.quality.eyebrow} heading={page.quality.heading} />
+      <SectionEyebrow
+        icon={page.quality.icon}
+        eyebrow={page.quality.eyebrow}
+        heading={page.quality.heading}
+      />
       <dl class="mt-12 grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-2">
         {
           page.quality.items.map((item) => (
@@ -90,7 +103,12 @@ const page = pageEntry.data;
     <div class="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
       <!-- 宿泊 -->
       <div id={page.stay.id} class="scroll-mt-6 border border-[#a1a19e] p-9 lg:p-11">
-        <SectionEyebrow icon={page.stay.icon} eyebrow={page.stay.eyebrow} heading={page.stay.heading} compact />
+        <SectionEyebrow
+          icon={page.stay.icon}
+          eyebrow={page.stay.eyebrow}
+          heading={page.stay.heading}
+          compact
+        />
         <dl class="mt-8 space-y-6">
           {
             page.stay.items.map((item) => (

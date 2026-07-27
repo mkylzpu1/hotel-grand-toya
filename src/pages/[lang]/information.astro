@@ -9,8 +9,11 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params as { lang: Locale };
-const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
-  await getPageContext(lang, 'information-page', 'information');
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
+  lang,
+  'information-page',
+  'information',
+);
 const page = pageEntry.data;
 ---
 
@@ -32,18 +35,27 @@ const page = pageEntry.data;
   showRelatedLinks="false"
 >
   {/* 福利厚生 */}
-  <section id="section-welfare" class="scroll-mt-6 mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
-    <SectionEyebrow icon={page.icon} eyebrow={page.welfareSection.eyebrow} heading={page.welfareSection.heading} />
+  <section
+    id="section-welfare"
+    class="mx-auto max-w-[1320px] scroll-mt-6 px-10 py-[88px] lg:py-[108px]"
+  >
+    <SectionEyebrow
+      icon={page.icon}
+      eyebrow={page.welfareSection.eyebrow}
+      heading={page.welfareSection.heading}
+    />
     <p class="mt-6 max-w-[640px] text-[0.9rem] leading-[1.9] text-[#55524C]">
       {page.welfareSection.description}
     </p>
     <ul class="mt-8 max-w-[720px] space-y-3">
-      {page.welfareSection.items.map((item) => (
-        <li class="flex gap-3 border border-[#D8D7D2] bg-white px-6 py-4 text-[0.88rem] leading-relaxed text-[#1E1C1A]">
-          <span class="mt-[7px] h-[3px] w-[3px] shrink-0 rounded-full bg-[#A24730]" />
-          {item.name}
-        </li>
-      ))}
+      {
+        page.welfareSection.items.map((item) => (
+          <li class="flex gap-3 border border-[#D8D7D2] bg-white px-6 py-4 text-[0.88rem] leading-relaxed text-[#1E1C1A]">
+            <span class="mt-[7px] h-[3px] w-[3px] shrink-0 rounded-full bg-[#A24730]" />
+            {item.name}
+          </li>
+        ))
+      }
     </ul>
   </section>
 </PageTemplate>

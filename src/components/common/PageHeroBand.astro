@@ -11,10 +11,12 @@ interface Props {
 const { icon, pageTitle, pageTitleEn, homeHref } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-[#16283A] pb-14 pt-[132px] text-white lg:pb-[68px] lg:pt-[136px]">
+<section
+  class="relative overflow-hidden bg-[#16283A] pb-14 pt-[132px] text-white lg:pb-[68px] lg:pt-[136px]"
+>
   <span
     aria-hidden="true"
-    class="pointer-events-none absolute -right-6 -top-16 select-none font-serif text-[220px] leading-none text-white/[0.05] lg:-right-4 lg:-top-34 lg:text-[300px]"
+    class="lg:-top-34 pointer-events-none absolute -right-6 -top-16 select-none font-serif text-[220px] leading-none text-white/[0.05] lg:-right-4 lg:text-[300px]"
   >
     {icon}
   </span>
@@ -32,7 +34,9 @@ const { icon, pageTitle, pageTitleEn, homeHref } = Astro.props;
     <p class="mb-4 text-[0.78rem] font-medium tracking-[0.2em] text-white/60">
       {pageTitleEn}
     </p>
-    <h1 class="font-serif text-[clamp(1.9rem,1.5rem+1.6vw,2.6rem)] font-semibold tracking-[0.06em] text-white">
+    <h1
+      class="font-serif text-[clamp(1.9rem,1.5rem+1.6vw,2.6rem)] font-semibold tracking-[0.06em] text-white"
+    >
       {pageTitle}
     </h1>
   </div>

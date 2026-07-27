@@ -5,15 +5,7 @@ const baseUrl = 'http://localhost:4321';
 const lang = 'ja';
 
 // サイト内の主要ページを列挙(実際のルートに合わせて調整)
-const pages = [
-  '',
-  'rooms',
-  'onsen',
-  'cuisine',
-  'facilities',
-  'access',
-  'faq',
-];
+const pages = ['', 'rooms', 'onsen', 'cuisine', 'facilities', 'access', 'faq'];
 
 const outDir = 'screenshots';
 fs.mkdirSync(outDir, { recursive: true });

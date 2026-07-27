@@ -31,7 +31,9 @@ if (!siteEntry || !navigationEntry || !heroEntry || !accessEntry) {
   throw new Error(`Missing content for locale "${lang}". Check src/content/*/*.${lang}.json`);
 }
 
-const sections = sectionEntries.sort((a, b) => a.data.order - b.data.order).map((entry) => entry.data);
+const sections = sectionEntries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => entry.data);
 
 const langLinks = locales.map((code) => ({
   code,

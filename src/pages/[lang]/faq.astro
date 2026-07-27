@@ -10,8 +10,11 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: Locale };
 
-const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
-  await getPageContext(lang, 'faq-page', 'faq');
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
+  lang,
+  'faq-page',
+  'faq',
+);
 
 const page = pageEntry.data;
 ---
@@ -32,23 +35,27 @@ const page = pageEntry.data;
   relatedLinks={relatedLinksData.links}
   relatedLinksBackground="none"
 >
+  <!-- Q&A一覧 -->
+  <section class="bg-white/95 py-[88px] lg:py-[108px]">
+    <div class="mx-auto max-w-[840px] px-6 sm:px-10">
+      <!-- セクション見出し -->
+      <div class="mb-10 max-w-[760px]">
+        <SectionEyebrow
+          icon={page.qaSection.icon}
+          eyebrow={page.qaSection.eyebrow}
+          heading={page.qaSection.heading}
+        />
+      </div>
 
-    <!-- Q&A一覧 -->
-    <section class="py-[88px] lg:py-[108px] bg-white/95">
-      <div class="mx-auto max-w-[840px] px-6 sm:px-10">
-        <!-- セクション見出し -->
-        <div class="mb-10 max-w-[760px]">
-          <SectionEyebrow icon={page.qaSection.icon} eyebrow={page.qaSection.eyebrow} heading={page.qaSection.heading} />
-        </div>
-
-        <!-- カテゴリタブ -->
-        <div
-          id="faq-tablist"
-          role="tablist"
-          aria-label="質問カテゴリ"
-          class="mb-14 flex flex-wrap gap-2"
-        >
-          {page.categories.map((cat, i) => (
+      <!-- カテゴリタブ -->
+      <div
+        id="faq-tablist"
+        role="tablist"
+        aria-label="質問カテゴリ"
+        class="mb-14 flex flex-wrap gap-2"
+      >
+        {
+          page.categories.map((cat, i) => (
             <button
               type="button"
               role="tab"
@@ -67,10 +74,12 @@ const page = pageEntry.data;
               <span class="font-serif text-[0.9rem]">{cat.icon}</span>
               {cat.label}
             </button>
-          ))}
-        </div>
+          ))
+        }
+      </div>
 
-        {page.categories.map((cat, i) => (
+      {
+        page.categories.map((cat, i) => (
           <div
             id={`panel-${cat.id}`}
             role="tabpanel"
@@ -89,7 +98,9 @@ const page = pageEntry.data;
                   >
                     <span class="flex-1">
                       <span class="mr-2 font-serif text-[0.9rem] font-bold text-[#A24730]">Q.</span>
-                      <span class="text-[0.92rem] font-medium leading-[1.7] text-[#1E1C1A]">{item.question}</span>
+                      <span class="text-[0.92rem] font-medium leading-[1.7] text-[#1E1C1A]">
+                        {item.question}
+                      </span>
                     </span>
                     <span class="faq-icon mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[0.85rem] text-[#A24730] transition-transform duration-300">
                       ＋
@@ -99,7 +110,9 @@ const page = pageEntry.data;
                     <div class="faq-answer-inner overflow-hidden">
                       <div class="flex items-start gap-4 pb-6 pl-0 pr-11">
                         <span class="font-serif text-[0.9rem] font-bold text-[#29415C]">A.</span>
-                        <p class="flex-1 text-[0.86rem] leading-[1.9] text-[#55524C]">{item.answer}</p>
+                        <p class="flex-1 text-[0.86rem] leading-[1.9] text-[#55524C]">
+                          {item.answer}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -107,46 +120,57 @@ const page = pageEntry.data;
               ))}
             </div>
           </div>
-        ))}
+        ))
+      }
 
-<!-- 問い合わせ先 -->
-        <div class="mt-20 border border-[#D8D7D2] bg-[#FAFAFA] px-8 py-12 sm:px-14">
-          <p class="mb-8 text-center text-[0.82rem] tracking-[0.04em] text-[#8A8781]">
-            ご不明な点がございましたら、お気軽にお問い合わせください
-          </p>
-          <div class="mx-auto grid max-w-[560px] grid-cols-1 gap-6 sm:grid-cols-2">
-            <!-- 電話 -->
-            <a
-              href={`tel:${page.contact.tel.replace(/-/g, '')}`}
-              class="group flex flex-col items-center gap-3 border border-[#D8D7D2] bg-white px-6 py-8 text-center transition-shadow hover:shadow-[0_4px_16px_rgba(30,28,26,0.06)]"
+      <!-- 問い合わせ先 -->
+      <div class="mt-20 border border-[#D8D7D2] bg-[#FAFAFA] px-8 py-12 sm:px-14">
+        <p class="mb-8 text-center text-[0.82rem] tracking-[0.04em] text-[#8A8781]">
+          ご不明な点がございましたら、お気軽にお問い合わせください
+        </p>
+        <div class="mx-auto grid max-w-[560px] grid-cols-1 gap-6 sm:grid-cols-2">
+          <!-- 電話 -->
+          <a
+            href={`tel:${page.contact.tel.replace(/-/g, '')}`}
+            class="group flex flex-col items-center gap-3 border border-[#D8D7D2] bg-white px-6 py-8 text-center transition-shadow hover:shadow-[0_4px_16px_rgba(30,28,26,0.06)]"
+          >
+            <span
+              class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[1rem] text-[#A24730]"
             >
-              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#A24730] text-[1rem] text-[#A24730]">
-                ☎
-              </span>
-              <span class="font-serif text-[1.25rem] font-semibold tracking-[0.02em] text-[#1E1C1A] transition-colors group-hover:text-[#A24730]">
-                {page.contact.tel}
-              </span>
-              {page.contact.telNote && (
+              ☎
+            </span>
+            <span
+              class="font-serif text-[1.25rem] font-semibold tracking-[0.02em] text-[#1E1C1A] transition-colors group-hover:text-[#A24730]"
+            >
+              {page.contact.tel}
+            </span>
+            {
+              page.contact.telNote && (
                 <span class="text-[0.74rem] text-[#8A8781]">{page.contact.telNote}</span>
-              )}
-            </a>
-            <!-- メール -->
-            <a
-              href={`mailto:${page.contact.email}`}
-              class="group flex flex-col items-center gap-3 border border-[#D8D7D2] bg-white px-6 py-8 text-center transition-shadow hover:shadow-[0_4px_16px_rgba(30,28,26,0.06)]"
+              )
+            }
+          </a>
+          <!-- メール -->
+          <a
+            href={`mailto:${page.contact.email}`}
+            class="group flex flex-col items-center gap-3 border border-[#D8D7D2] bg-white px-6 py-8 text-center transition-shadow hover:shadow-[0_4px_16px_rgba(30,28,26,0.06)]"
+          >
+            <span
+              class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#29415C] text-[1rem] text-[#29415C]"
             >
-              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#29415C] text-[1rem] text-[#29415C]">
-                ✉
-              </span>
-              <span class="break-all font-serif text-[0.98rem] font-semibold tracking-[0.02em] text-[#1E1C1A] transition-colors group-hover:text-[#29415C]">
-                {page.contact.email}
-              </span>
-              <span class="text-[0.74rem] text-[#8A8781]">メールでのお問い合わせ</span>
-            </a>
-          </div>
+              ✉
+            </span>
+            <span
+              class="break-all font-serif text-[0.98rem] font-semibold tracking-[0.02em] text-[#1E1C1A] transition-colors group-hover:text-[#29415C]"
+            >
+              {page.contact.email}
+            </span>
+            <span class="text-[0.74rem] text-[#8A8781]">メールでのお問い合わせ</span>
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 </PageTemplate>
 
 <style>
@@ -164,10 +188,10 @@ const page = pageEntry.data;
   }
 
   /* 選択中タブは hover しても色が変わらないよう固定する */
-  .faq-tab[aria-selected="true"]:hover {
-    background-color: #A24730;
+  .faq-tab[aria-selected='true']:hover {
+    background-color: #a24730;
     color: #ffffff;
-    border-color: #A24730;
+    border-color: #a24730;
   }
 </style>
 
@@ -227,7 +251,9 @@ const page = pageEntry.data;
     if (opened) {
       // タブ切り替え後、パネル自体までスクロール
       requestAnimationFrame(() => {
-        document.getElementById(`panel-${hash}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document
+          .getElementById(`panel-${hash}`)
+          ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     }
   }

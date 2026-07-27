@@ -41,13 +41,13 @@ Decap CMSの [i18n機能](https://decapcms.org/docs/i18n/)（`structure: multipl
 
 コレクション一覧:
 
-| CMS上の名称 | 内容 | 実体パス |
-| --- | --- | --- |
-| サイト設定 | サイトタイトル・住所・電話・フッター文言 | `src/content/site/site.{locale}.json` |
-| ナビゲーション | ヘッダー・ドロワーのメニュー項目 | `src/content/navigation/navigation.{locale}.json` |
-| ヒーローセクション | トップのファーストビュー | `src/content/hero/hero.{locale}.json` |
-| トップページ セクション | コンセプト・客室・温泉・お料理・館内（5項目、フォルダコレクション） | `src/content/top-sections/{slug}.{locale}.json` |
-| アクセスセクション | アクセス・周辺観光 | `src/content/access/access.{locale}.json` |
+| CMS上の名称             | 内容                                                                | 実体パス                                          |
+| ----------------------- | ------------------------------------------------------------------- | ------------------------------------------------- |
+| サイト設定              | サイトタイトル・住所・電話・フッター文言                            | `src/content/site/site.{locale}.json`             |
+| ナビゲーション          | ヘッダー・ドロワーのメニュー項目                                    | `src/content/navigation/navigation.{locale}.json` |
+| ヒーローセクション      | トップのファーストビュー                                            | `src/content/hero/hero.{locale}.json`             |
+| トップページ セクション | コンセプト・客室・温泉・お料理・館内（5項目、フォルダコレクション） | `src/content/top-sections/{slug}.{locale}.json`   |
+| アクセスセクション      | アクセス・周辺観光                                                  | `src/content/access/access.{locale}.json`         |
 
 画像パスやリンク先URL、アイコン文字など「言語に依存しない項目」は `i18n: duplicate` を指定し、CMS上では各言語で同じ値が複製されます（誤って言語ごとにバラバラの画像・リンクにならないようにするためです）。
 

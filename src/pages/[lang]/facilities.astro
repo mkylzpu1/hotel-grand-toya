@@ -10,8 +10,11 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params as { lang: Locale };
-const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
-  await getPageContext(lang, 'facilities-page', 'facilities');
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
+  lang,
+  'facilities-page',
+  'facilities',
+);
 const page = pageEntry.data;
 
 // 未確定項目のフォールバック表示
@@ -46,336 +49,471 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
   relatedLinks={relatedLinksData.links}
   relatedLinksBackground="none"
 >
-    <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
-      <SectionEyebrow icon={page.intro.icon} eyebrow={page.intro.eyebrow} heading={page.intro.heading} />
-      <div class="mt-8 max-w-[640px]">
-        {page.intro.description.map((line) => (
+  <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
+    <SectionEyebrow
+      icon={page.intro.icon}
+      eyebrow={page.intro.eyebrow}
+      heading={page.intro.heading}
+    />
+    <div class="mt-8 max-w-[640px]">
+      {
+        page.intro.description.map((line) => (
           <p class="mb-4 text-[0.94rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
-        ))}
+        ))
+      }
+    </div>
+  </section>
+
+  {/* 館内施設 */}
+  <section id="section-facilities" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+    <div class="mx-auto max-w-[1320px] px-10">
+      <div class="mb-14 max-w-[760px]">
+        <SectionEyebrow
+          icon={page.facilitiesSection.icon}
+          eyebrow={page.facilitiesSection.eyebrow}
+          heading={page.facilitiesSection.heading}
+        />
       </div>
-    </section>
-
-{/* 館内施設 */}
-<section id="section-facilities" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
-  <div class="mx-auto max-w-[1320px] px-10">
-    <div class="mb-14 max-w-[760px]">
-      <SectionEyebrow icon={page.facilitiesSection.icon} eyebrow={page.facilitiesSection.eyebrow} heading={page.facilitiesSection.heading} />
-    </div>
-    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-      {page.facilitiesSection.items.map((item) => (
-        <div id={item.id} class="scroll-mt-24 border border-[#D8D7D2] bg-white">
-          <div class="aspect-[4/3] overflow-hidden bg-[#EFEDE8]">
-            <img src={item.image?.src} alt={item.image?.alt ?? item.name} class="h-full w-full object-cover" loading="lazy" />
-          </div>
-          <div class="px-6 py-6">
-            <div class="mb-2 flex items-center gap-2">
-              <span class="h-[16px] w-[2.5px] shrink-0 bg-[#A24730]"></span>
-              <h4 class="font-serif text-[1.05rem] font-semibold text-[#1E1C1A]">{item.name}</h4>
-            </div>
-            {item.description.map((line) => (
-              <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">{line}</p>
-            ))}
-            <div class="mt-3 flex flex-col gap-1.5 border-t border-[#EDEBE6] pt-3 text-[0.78rem] text-[#8A8781]">
-              {(item.hours || item.location) && (
-                <div class="flex justify-between gap-2"><dt>営業時間</dt><dd class="text-right text-[#1E1C1A]">{withFallback(item.hours ?? item.location)}</dd></div>
-              )}
-              {item.fee && <div class="flex justify-between gap-2"><dt>料金</dt><dd class="text-right text-[#1E1C1A]">{item.fee}</dd></div>}
-              {item.payment && <div class="flex justify-between gap-2"><dt>支払方法</dt><dd class="text-right text-[#1E1C1A]">{item.payment}</dd></div>}
-              {item.languages && (
-                <div class="flex justify-between gap-2"><dt>対応言語</dt><dd class="text-right text-[#1E1C1A]">{item.languages.join('／')}</dd></div>
-              )}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-{/* 館内サービス */}
-<section id="section-services" class="scroll-mt-6 py-[88px] lg:py-[108px]">
-  <div class="mx-auto max-w-[1320px] px-10">
-    <div class="mb-14 max-w-[760px]">
-      <SectionEyebrow icon={page.servicesSection.icon} eyebrow={page.servicesSection.eyebrow} heading={page.servicesSection.heading} />
-    </div>
-
-    {/* メインカード（マッサージ）：周辺アクティビティの提携カードに準拠 */}
-    {page.servicesSection.items.filter((item) => item.isFeatured).map((item) => (
-      <div id={item.id} class="mb-14 scroll-mt-24 grid grid-cols-1 overflow-hidden border-2 border-[#A24730] bg-white sm:grid-cols-2">
-        <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8] sm:aspect-auto">
-          <img src={item.image?.src} alt={item.image?.alt ?? item.name} class="h-full w-full object-cover" loading="lazy" />
-        </div>
-        <div class="flex flex-col px-7 py-8">
-          <div class="mb-2.5 flex items-center gap-3">
-            <span class="h-[20px] w-[3px] shrink-0 bg-[#A24730]"></span>
-            <h4 class="font-serif text-[1.2rem] font-semibold text-[#1E1C1A]">{item.name}</h4>
-          </div>
-          {item.description.map((line) => (
-            <p class="mb-2 text-[0.88rem] leading-[1.85] text-[#55524C] last:mb-0">{line}</p>
-          ))}
-          <dl class="mt-5 space-y-1.5 text-[0.78rem] text-[#8A8781]">
-            <div class="flex justify-between gap-2"><dt>料金</dt><dd class="text-right text-[#1E1C1A]">{item.fee}</dd></div>
-            {item.plans && <div class="flex justify-between gap-2"><dt>コース</dt><dd class="text-right text-[#1E1C1A]">{item.plans.join('／')}</dd></div>}
-            <div class="flex justify-between gap-2"><dt>受付時間</dt><dd class="text-right text-[#1E1C1A]">{item.receptionHours}</dd></div>
-            <div class="flex justify-between gap-2"><dt>予約方法</dt><dd class="text-right text-[#1E1C1A]">{item.reservationMethod}</dd></div>
-          </dl>
-        </div>
-      </div>
-    ))}
-
-{/* その他の館内サービス（リスト） */}
-<div class="max-w-[720px] border-t border-[#D8D7D2]">
-  {page.servicesSection.items.filter((item) => !item.isFeatured).map((item) => (
-    <div id={item.id} class="scroll-mt-24 flex flex-wrap items-start justify-between gap-x-6 gap-y-1 border-b border-[#D8D7D2] px-1 py-4">
-      <div class="min-w-[200px] flex-1">
-        <div class="flex items-center gap-2.5">
-          <span class="h-[14px] w-[2.5px] shrink-0 bg-[#A24730]"></span>
-          <h5 class="font-serif text-[0.92rem] font-semibold text-[#1E1C1A]">{item.name}</h5>
-        </div>
-        <p class="mt-1.5 pl-[15px] text-[0.8rem] text-[#8A8781]">{item.description[0]}</p>
-      </div>
-      <div class="shrink-0 text-right text-[0.78rem] text-[#8A8781]">
-        <p class="text-[#1E1C1A]">{item.fee ?? item.hours}</p>
-        {item.reservationMethod && <p class="mt-0.5">{item.reservationMethod}</p>}
-      </div>
-    </div>
-  ))}
-</div>
-  </div>
-</section>
-
-{/* 周辺アクティビティ */}
-<section id="section-activities" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
-  <div class="mx-auto max-w-[1320px] px-10">
-    <div class="mb-14 max-w-[760px]">
-      <SectionEyebrow icon={page.activitiesSection.icon} eyebrow={page.activitiesSection.eyebrow} heading={page.activitiesSection.heading} />
-    </div>
-
-    {/* 提携アクティビティ（先頭・横長カード） */}
-    {partnerActivities.length > 0 && (
-      <div class="mb-14">
-        <p class="mb-4 text-[0.78rem] font-medium tracking-[0.06em] text-[#A24730]">
-          {page.activitiesSection.partnerHeading}
-        </p>
-        <div class="space-y-6">
-          {partnerActivities.map((item) => (
-            <div id={item.id} class="scroll-mt-24 grid grid-cols-1 overflow-hidden border-2 border-[#A24730] bg-white lg:grid-cols-[1.1fr_1.4fr]">
-              <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8] lg:aspect-auto">
-                {item.image?.src ? (
-                  <img src={item.image.src} alt={item.image.alt ?? item.image.label} class="h-full w-full object-cover" loading="lazy" />
-                ) : (
-                  <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-[#A8A5A0]">
-                    <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF] font-serif text-[1.1rem]">
-                      {page.activitiesSection.icon}
-                    </span>
-                    <span class="text-[0.7rem] tracking-[0.06em]">{item.name}</span>
-                  </div>
-                )}
-                <span class="absolute left-3 top-3 flex items-center gap-1.5 bg-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-white">
-                  <Star size={13} strokeWidth={2} />
-                  {item.partnerBadgeLabel ?? 'おすすめ'}
-                </span>
-                {item.accessFromHotel && (
-                  <span class="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A]">
-                    {getAccessIcon(item.accessFromHotel) === 'walk' && <Footprints size={13} strokeWidth={2} />}
-                    {getAccessIcon(item.accessFromHotel) === 'car' && <Car size={13} strokeWidth={2} />}
-                    {item.accessFromHotel}
-                  </span>
-                )}
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          page.facilitiesSection.items.map((item) => (
+            <div id={item.id} class="scroll-mt-24 border border-[#D8D7D2] bg-white">
+              <div class="aspect-[4/3] overflow-hidden bg-[#EFEDE8]">
+                <img
+                  src={item.image?.src}
+                  alt={item.image?.alt ?? item.name}
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                />
               </div>
-              <div class="flex flex-col px-7 py-8 lg:px-9">
-                <div class="mb-2.5 flex items-center gap-3">
-                  <span class="h-[20px] w-[3px] shrink-0 bg-[#A24730]"></span>
-                  <h4 class="font-serif text-[1.2rem] font-semibold tracking-[0.01em] text-[#1E1C1A]">
+              <div class="px-6 py-6">
+                <div class="mb-2 flex items-center gap-2">
+                  <span class="h-[16px] w-[2.5px] shrink-0 bg-[#A24730]" />
+                  <h4 class="font-serif text-[1.05rem] font-semibold text-[#1E1C1A]">
                     {item.name}
                   </h4>
+                </div>
+                {item.description.map((line) => (
+                  <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">{line}</p>
+                ))}
+                <div class="mt-3 flex flex-col gap-1.5 border-t border-[#EDEBE6] pt-3 text-[0.78rem] text-[#8A8781]">
+                  {(item.hours || item.location) && (
+                    <div class="flex justify-between gap-2">
+                      <dt>営業時間</dt>
+                      <dd class="text-right text-[#1E1C1A]">
+                        {withFallback(item.hours ?? item.location)}
+                      </dd>
+                    </div>
+                  )}
+                  {item.fee && (
+                    <div class="flex justify-between gap-2">
+                      <dt>料金</dt>
+                      <dd class="text-right text-[#1E1C1A]">{item.fee}</dd>
+                    </div>
+                  )}
+                  {item.payment && (
+                    <div class="flex justify-between gap-2">
+                      <dt>支払方法</dt>
+                      <dd class="text-right text-[#1E1C1A]">{item.payment}</dd>
+                    </div>
+                  )}
+                  {item.languages && (
+                    <div class="flex justify-between gap-2">
+                      <dt>対応言語</dt>
+                      <dd class="text-right text-[#1E1C1A]">{item.languages.join('／')}</dd>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* 館内サービス */}
+  <section id="section-services" class="scroll-mt-6 py-[88px] lg:py-[108px]">
+    <div class="mx-auto max-w-[1320px] px-10">
+      <div class="mb-14 max-w-[760px]">
+        <SectionEyebrow
+          icon={page.servicesSection.icon}
+          eyebrow={page.servicesSection.eyebrow}
+          heading={page.servicesSection.heading}
+        />
+      </div>
+
+      {/* メインカード（マッサージ）：周辺アクティビティの提携カードに準拠 */}
+      {
+        page.servicesSection.items
+          .filter((item) => item.isFeatured)
+          .map((item) => (
+            <div
+              id={item.id}
+              class="mb-14 grid scroll-mt-24 grid-cols-1 overflow-hidden border-2 border-[#A24730] bg-white sm:grid-cols-2"
+            >
+              <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8] sm:aspect-auto">
+                <img
+                  src={item.image?.src}
+                  alt={item.image?.alt ?? item.name}
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div class="flex flex-col px-7 py-8">
+                <div class="mb-2.5 flex items-center gap-3">
+                  <span class="h-[20px] w-[3px] shrink-0 bg-[#A24730]" />
+                  <h4 class="font-serif text-[1.2rem] font-semibold text-[#1E1C1A]">{item.name}</h4>
                 </div>
                 {item.description.map((line) => (
                   <p class="mb-2 text-[0.88rem] leading-[1.85] text-[#55524C] last:mb-0">{line}</p>
                 ))}
-                {item.includedInPlans && item.includedInPlans.length > 0 && (
-                  <div class="mt-5">
-                    <p class="mb-2.5 text-[0.72rem] tracking-[0.02em] text-[#8A8781]">この体験が含まれるプラン</p>
-                    <div class="flex flex-wrap gap-2">
-                      {item.includedInPlans.map((plan) => (
-                        <a
-                          href={plan.href}
-                          class="inline-flex items-center gap-1.5 rounded-full border border-[#D8D7D2] bg-[#FAFAFA] px-3 py-1.5 text-[0.76rem] font-medium text-[#1E1C1A] transition-colors hover:border-[#A24730] hover:text-[#A24730]"
-                        >
-                          <Ticket size={13} strokeWidth={2} class="text-[#A24730]" />
-                          {plan.name}
-                        </a>
-                      ))}
+                <dl class="mt-5 space-y-1.5 text-[0.78rem] text-[#8A8781]">
+                  <div class="flex justify-between gap-2">
+                    <>
+                      <dt>料金</dt>
+                      <dd class="text-right text-[#1E1C1A]">{item.fee}</dd>
+                    </>
+                  </div>
+                  {item.plans && (
+                    <div class="flex justify-between gap-2">
+                      <dt>コース</dt>
+                      <dd class="text-right text-[#1E1C1A]">{item.plans.join('／')}</dd>
                     </div>
-                  </div>
-                )}
-                <div class="mt-auto flex flex-col gap-1.5 pt-6 text-[0.78rem] text-[#8A8781]">
-                  {item.shopName && (
-                    <span class="flex items-center gap-1.5">
-                      <Store size={14} strokeWidth={2} />
-                      {item.shopName}
-                    </span>
                   )}
-                  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-                    {item.location && (
-                      <span class="flex items-center gap-1.5">
-                        <MapPin size={14} strokeWidth={2} />
-                        {item.location}
-                      </span>
-                    )}
-                    {item.location && item.officialSite && <span class="text-[#C7C5BF]">　</span>}
-                    {item.officialSite && (
-                      <a
-                        href={item.officialSite}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-3 py-1 text-[0.74rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
-                      >
-                        公式サイトを見る
-                        <ExternalLink size={12} strokeWidth={2} class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                      </a>
-                    )}
+                  <div class="flex justify-between gap-2">
+                    <>
+                      <dt>受付時間</dt>
+                      <dd class="text-right text-[#1E1C1A]">{item.receptionHours}</dd>
+                    </>
                   </div>
-                </div>
+                  <div class="flex justify-between gap-2">
+                    <>
+                      <dt>予約方法</dt>
+                      <dd class="text-right text-[#1E1C1A]">{item.reservationMethod}</dd>
+                    </>
+                  </div>
+                </dl>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-    )}
+          ))
+      }
 
-    {/* その他のアクティビティ（カテゴリタブ + グリッド） */}
-    {otherActivities.length > 0 && (
-      <div>
-        {partnerActivities.length > 0 && (
-          <p class="mb-5 text-[0.78rem] font-medium tracking-[0.06em] text-[#8A8781]">
-            {page.activitiesSection.otherHeading}
-          </p>
-        )}
-
-        {/* カテゴリフィルタタブ */}
-        <div id="activity-tablist" class="mb-8 flex flex-wrap gap-2">
-          <button
-            type="button"
-            data-activity-category="all"
-            class="activity-tab rounded-full border px-4 py-2 text-[0.78rem] font-medium transition-colors border-[#A24730] bg-[#A24730] text-white"
-          >
-            {page.activitiesSection.allCategoryLabel}
-          </button>
-          {page.activitiesSection.categoryFilters.map((cat) => (
-            <button
-              type="button"
-              data-activity-category={cat.id}
-              class="activity-tab rounded-full border px-4 py-2 text-[0.78rem] font-medium transition-colors border-[#D8D7D2] bg-white text-[#55524C]"
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        <div id="activity-grid" class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {otherActivities.map((item) => (
-            <div id={item.id} class="activity-card scroll-mt-24 border border-[#D8D7D2] bg-white" data-categories={(item.categories ?? []).join(',')}>
-              <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8]">
-                {item.image?.src ? (
-                  <img src={item.image.src} alt={item.image.alt ?? item.image.label} class="h-full w-full object-cover" loading="lazy" />
-                ) : (
-                  <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-[#A8A5A0]">
-                    <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF] font-serif text-[1.1rem]">
-                      {page.activitiesSection.icon}
-                    </span>
-                    <span class="text-[0.7rem] tracking-[0.06em]">{item.name}</span>
+      {/* その他の館内サービス（リスト） */}
+      <div class="max-w-[720px] border-t border-[#D8D7D2]">
+        {
+          page.servicesSection.items
+            .filter((item) => !item.isFeatured)
+            .map((item) => (
+              <div
+                id={item.id}
+                class="flex scroll-mt-24 flex-wrap items-start justify-between gap-x-6 gap-y-1 border-b border-[#D8D7D2] px-1 py-4"
+              >
+                <div class="min-w-[200px] flex-1">
+                  <div class="flex items-center gap-2.5">
+                    <span class="h-[14px] w-[2.5px] shrink-0 bg-[#A24730]" />
+                    <h5 class="font-serif text-[0.92rem] font-semibold text-[#1E1C1A]">
+                      {item.name}
+                    </h5>
                   </div>
-                )}
-                {item.accessFromHotel && (
-                  <span class="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A]">
-                    {getAccessIcon(item.accessFromHotel) === 'walk' && <Footprints size={13} strokeWidth={2} />}
-                    {getAccessIcon(item.accessFromHotel) === 'car' && <Car size={13} strokeWidth={2} />}
-                    {item.accessFromHotel}
-                  </span>
-                )}
-              </div>
-              <div class="px-6 py-6">
-                <div class="mb-2 flex items-center gap-2.5">
-                  <span class="h-[16px] w-[2.5px] shrink-0 bg-[#A24730]"></span>
-                  <h4 class="font-serif text-[1.05rem] font-semibold tracking-[0.01em] text-[#1E1C1A]">
-                    {item.name}
-                  </h4>
+                  <p class="mt-1.5 pl-[15px] text-[0.8rem] text-[#8A8781]">{item.description[0]}</p>
                 </div>
-                {item.categories && item.categories.length > 0 && (
-                  <div class="mb-3 flex flex-wrap gap-1.5">
-                    {item.categories.map((catId) => {
-                      const cat = page.activitiesSection.categoryFilters.find((c) => c.id === catId);
-                      return cat ? (
-                        <span class="rounded-full bg-[#F7EAE5] px-2.5 py-1 text-[0.68rem] font-medium text-[#A24730]">
-                          {cat.label}
+                <div class="shrink-0 text-right text-[0.78rem] text-[#8A8781]">
+                  <p class="text-[#1E1C1A]">{item.fee ?? item.hours}</p>
+                  {item.reservationMethod && <p class="mt-0.5">{item.reservationMethod}</p>}
+                </div>
+              </div>
+            ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* 周辺アクティビティ */}
+  <section id="section-activities" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+    <div class="mx-auto max-w-[1320px] px-10">
+      <div class="mb-14 max-w-[760px]">
+        <SectionEyebrow
+          icon={page.activitiesSection.icon}
+          eyebrow={page.activitiesSection.eyebrow}
+          heading={page.activitiesSection.heading}
+        />
+      </div>
+
+      {/* 提携アクティビティ（先頭・横長カード） */}
+      {
+        partnerActivities.length > 0 && (
+          <div class="mb-14">
+            <p class="mb-4 text-[0.78rem] font-medium tracking-[0.06em] text-[#A24730]">
+              {page.activitiesSection.partnerHeading}
+            </p>
+            <div class="space-y-6">
+              {partnerActivities.map((item) => (
+                <div
+                  id={item.id}
+                  class="grid scroll-mt-24 grid-cols-1 overflow-hidden border-2 border-[#A24730] bg-white lg:grid-cols-[1.1fr_1.4fr]"
+                >
+                  <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8] lg:aspect-auto">
+                    {item.image?.src ? (
+                      <img
+                        src={item.image.src}
+                        alt={item.image.alt ?? item.image.label}
+                        class="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-[#A8A5A0]">
+                        <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF] font-serif text-[1.1rem]">
+                          {page.activitiesSection.icon}
                         </span>
-                      ) : null;
-                    })}
-                  </div>
-                )}
-                {item.description.map((line) => (
-                  <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">{line}</p>
-                ))}
-                {item.includedInPlans && item.includedInPlans.length > 0 && (
-                  <div class="mt-3">
-                    <p class="mb-2 text-[0.7rem] text-[#8A8781]">含まれるプラン</p>
-                    <div class="flex flex-wrap gap-1.5">
-                      {item.includedInPlans.map((plan) => (
-                        <a
-                          href={plan.href}
-                          class="inline-flex items-center gap-1 rounded-full border border-[#D8D7D2] px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A] transition-colors hover:border-[#A24730] hover:text-[#A24730]"
-                        >
-                          <Ticket size={11} strokeWidth={2} class="text-[#A24730]" />
-                          {plan.name}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                <div class="mt-3 flex flex-col gap-1.5 border-t border-[#EDEBE6] pt-3 text-[0.78rem] text-[#8A8781]">
-                  {item.shopName && (
-                    <span class="flex items-center gap-1.5">
-                      <Store size={13} strokeWidth={2} />
-                      {item.shopName}
+                        <span class="text-[0.7rem] tracking-[0.06em]">{item.name}</span>
+                      </div>
+                    )}
+                    <span class="absolute left-3 top-3 flex items-center gap-1.5 bg-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-white">
+                      <Star size={13} strokeWidth={2} />
+                      {item.partnerBadgeLabel ?? 'おすすめ'}
                     </span>
-                  )}
-                  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-                    {item.location && (
-                      <span class="flex items-center gap-1.5">
-                        <MapPin size={13} strokeWidth={2} />
-                        {item.location}
+                    {item.accessFromHotel && (
+                      <span class="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A]">
+                        {getAccessIcon(item.accessFromHotel) === 'walk' && (
+                          <Footprints size={13} strokeWidth={2} />
+                        )}
+                        {getAccessIcon(item.accessFromHotel) === 'car' && (
+                          <Car size={13} strokeWidth={2} />
+                        )}
+                        {item.accessFromHotel}
                       </span>
                     )}
-                    {item.location && item.officialSite && <span class="text-[#C7C5BF]">　</span>}
-                    {item.officialSite && (
-                      <a
-                        href={item.officialSite}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
-                      >
-                        公式サイト
-                        <ExternalLink size={11} strokeWidth={2} class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                      </a>
+                  </div>
+                  <div class="flex flex-col px-7 py-8 lg:px-9">
+                    <div class="mb-2.5 flex items-center gap-3">
+                      <span class="h-[20px] w-[3px] shrink-0 bg-[#A24730]" />
+                      <h4 class="font-serif text-[1.2rem] font-semibold tracking-[0.01em] text-[#1E1C1A]">
+                        {item.name}
+                      </h4>
+                    </div>
+                    {item.description.map((line) => (
+                      <p class="mb-2 text-[0.88rem] leading-[1.85] text-[#55524C] last:mb-0">
+                        {line}
+                      </p>
+                    ))}
+                    {item.includedInPlans && item.includedInPlans.length > 0 && (
+                      <div class="mt-5">
+                        <p class="mb-2.5 text-[0.72rem] tracking-[0.02em] text-[#8A8781]">
+                          この体験が含まれるプラン
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                          {item.includedInPlans.map((plan) => (
+                            <a
+                              href={plan.href}
+                              class="inline-flex items-center gap-1.5 rounded-full border border-[#D8D7D2] bg-[#FAFAFA] px-3 py-1.5 text-[0.76rem] font-medium text-[#1E1C1A] transition-colors hover:border-[#A24730] hover:text-[#A24730]"
+                            >
+                              <Ticket size={13} strokeWidth={2} class="text-[#A24730]" />
+                              {plan.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    <div class="mt-auto flex flex-col gap-1.5 pt-6 text-[0.78rem] text-[#8A8781]">
+                      {item.shopName && (
+                        <span class="flex items-center gap-1.5">
+                          <Store size={14} strokeWidth={2} />
+                          {item.shopName}
+                        </span>
+                      )}
+                      <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                        {item.location && (
+                          <span class="flex items-center gap-1.5">
+                            <MapPin size={14} strokeWidth={2} />
+                            {item.location}
+                          </span>
+                        )}
+                        {item.location && item.officialSite && (
+                          <span class="text-[#C7C5BF]">　</span>
+                        )}
+                        {item.officialSite && (
+                          <a
+                            href={item.officialSite}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-3 py-1 text-[0.74rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
+                          >
+                            公式サイトを見る
+                            <ExternalLink
+                              size={12}
+                              strokeWidth={2}
+                              class="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                            />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      {/* その他のアクティビティ（カテゴリタブ + グリッド） */}
+      {
+        otherActivities.length > 0 && (
+          <div>
+            {partnerActivities.length > 0 && (
+              <p class="mb-5 text-[0.78rem] font-medium tracking-[0.06em] text-[#8A8781]">
+                {page.activitiesSection.otherHeading}
+              </p>
+            )}
+
+            {/* カテゴリフィルタタブ */}
+            <div id="activity-tablist" class="mb-8 flex flex-wrap gap-2">
+              <button
+                type="button"
+                data-activity-category="all"
+                class="activity-tab rounded-full border border-[#A24730] bg-[#A24730] px-4 py-2 text-[0.78rem] font-medium text-white transition-colors"
+              >
+                {page.activitiesSection.allCategoryLabel}
+              </button>
+              {page.activitiesSection.categoryFilters.map((cat) => (
+                <button
+                  type="button"
+                  data-activity-category={cat.id}
+                  class="activity-tab rounded-full border border-[#D8D7D2] bg-white px-4 py-2 text-[0.78rem] font-medium text-[#55524C] transition-colors"
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+
+            <div id="activity-grid" class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {otherActivities.map((item) => (
+                <div
+                  id={item.id}
+                  class="activity-card scroll-mt-24 border border-[#D8D7D2] bg-white"
+                  data-categories={(item.categories ?? []).join(',')}
+                >
+                  <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8]">
+                    {item.image?.src ? (
+                      <img
+                        src={item.image.src}
+                        alt={item.image.alt ?? item.image.label}
+                        class="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-[#A8A5A0]">
+                        <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF] font-serif text-[1.1rem]">
+                          {page.activitiesSection.icon}
+                        </span>
+                        <span class="text-[0.7rem] tracking-[0.06em]">{item.name}</span>
+                      </div>
+                    )}
+                    {item.accessFromHotel && (
+                      <span class="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A]">
+                        {getAccessIcon(item.accessFromHotel) === 'walk' && (
+                          <Footprints size={13} strokeWidth={2} />
+                        )}
+                        {getAccessIcon(item.accessFromHotel) === 'car' && (
+                          <Car size={13} strokeWidth={2} />
+                        )}
+                        {item.accessFromHotel}
+                      </span>
+                    )}
+                  </div>
+                  <div class="px-6 py-6">
+                    <div class="mb-2 flex items-center gap-2.5">
+                      <span class="h-[16px] w-[2.5px] shrink-0 bg-[#A24730]" />
+                      <h4 class="font-serif text-[1.05rem] font-semibold tracking-[0.01em] text-[#1E1C1A]">
+                        {item.name}
+                      </h4>
+                    </div>
+                    {item.categories && item.categories.length > 0 && (
+                      <div class="mb-3 flex flex-wrap gap-1.5">
+                        {item.categories.map((catId) => {
+                          const cat = page.activitiesSection.categoryFilters.find(
+                            (c) => c.id === catId,
+                          );
+                          return cat ? (
+                            <span class="rounded-full bg-[#F7EAE5] px-2.5 py-1 text-[0.68rem] font-medium text-[#A24730]">
+                              {cat.label}
+                            </span>
+                          ) : null;
+                        })}
+                      </div>
+                    )}
+                    {item.description.map((line) => (
+                      <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">
+                        {line}
+                      </p>
+                    ))}
+                    {item.includedInPlans && item.includedInPlans.length > 0 && (
+                      <div class="mt-3">
+                        <p class="mb-2 text-[0.7rem] text-[#8A8781]">含まれるプラン</p>
+                        <div class="flex flex-wrap gap-1.5">
+                          {item.includedInPlans.map((plan) => (
+                            <a
+                              href={plan.href}
+                              class="inline-flex items-center gap-1 rounded-full border border-[#D8D7D2] px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A] transition-colors hover:border-[#A24730] hover:text-[#A24730]"
+                            >
+                              <Ticket size={11} strokeWidth={2} class="text-[#A24730]" />
+                              {plan.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    <div class="mt-3 flex flex-col gap-1.5 border-t border-[#EDEBE6] pt-3 text-[0.78rem] text-[#8A8781]">
+                      {item.shopName && (
+                        <span class="flex items-center gap-1.5">
+                          <Store size={13} strokeWidth={2} />
+                          {item.shopName}
+                        </span>
+                      )}
+                      <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                        {item.location && (
+                          <span class="flex items-center gap-1.5">
+                            <MapPin size={13} strokeWidth={2} />
+                            {item.location}
+                          </span>
+                        )}
+                        {item.location && item.officialSite && (
+                          <span class="text-[#C7C5BF]">　</span>
+                        )}
+                        {item.officialSite && (
+                          <a
+                            href={item.officialSite}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
+                          >
+                            公式サイト
+                            <ExternalLink
+                              size={11}
+                              strokeWidth={2}
+                              class="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                            />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                    {item.notes && item.notes.length > 0 && (
+                      <ul class="mt-3 space-y-1">
+                        {item.notes.map((note) => (
+                          <li class="text-[0.72rem] leading-[1.6] text-[#8A8781]">※ {note}</li>
+                        ))}
+                      </ul>
                     )}
                   </div>
                 </div>
-                {item.notes && item.notes.length > 0 && (
-                  <ul class="mt-3 space-y-1">
-                    {item.notes.map((note) => (
-                      <li class="text-[0.72rem] leading-[1.6] text-[#8A8781]">※ {note}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-    )}
-  </div>
-</section>
+          </div>
+        )
+      }
+    </div>
+  </section>
 </PageTemplate>
 
 <style>
@@ -383,8 +521,13 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
     animation: search-flash 2s ease-out;
   }
   @keyframes search-flash {
-    0%, 40% { box-shadow: 0 0 0 3px #A24730; }
-    100% { box-shadow: 0 0 0 3px transparent; }
+    0%,
+    40% {
+      box-shadow: 0 0 0 3px #a24730;
+    }
+    100% {
+      box-shadow: 0 0 0 3px transparent;
+    }
   }
 </style>
 
@@ -393,8 +536,21 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
   const activityTabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.activity-tab'));
   const activityCards = Array.from(document.querySelectorAll<HTMLElement>('.activity-card'));
 
-  const ACTIVE_CLASSES = ['border-[#A24730]', 'bg-[#A24730]', 'text-white', 'hover:bg-[#8A3B27]', 'hover:border-[#8A3B27]'];
-  const INACTIVE_CLASSES = ['border-[#D8D7D2]', 'bg-white', 'text-[#55524C]', 'hover:border-[#A24730]', 'hover:text-[#A24730]', 'hover:bg-[#F7EAE5]'];
+  const ACTIVE_CLASSES = [
+    'border-[#A24730]',
+    'bg-[#A24730]',
+    'text-white',
+    'hover:bg-[#8A3B27]',
+    'hover:border-[#8A3B27]',
+  ];
+  const INACTIVE_CLASSES = [
+    'border-[#D8D7D2]',
+    'bg-white',
+    'text-[#55524C]',
+    'hover:border-[#A24730]',
+    'hover:text-[#A24730]',
+    'hover:bg-[#F7EAE5]',
+  ];
 
   function setTabState(tab: HTMLButtonElement, active: boolean) {
     tab.classList.remove(...ACTIVE_CLASSES, ...INACTIVE_CLASSES);

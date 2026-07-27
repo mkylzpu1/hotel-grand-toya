@@ -9,18 +9,21 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params as { lang: Locale };
-const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
-  await getPageContext(lang, 'news-page', 'news');
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
+  lang,
+  'news-page',
+  'news',
+);
 const page = pageEntry.data;
 
 // 日付降順に並べ替え
 const posts = [...page.posts].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 const categoryIdMap: Record<string, string> = {
-  'お知らせ': 'other',
-  'イベント': 'event',
-  'メンテナンス': 'maintenance',
-  'キャンペーン': 'campaign',
+  お知らせ: 'other',
+  イベント: 'event',
+  メンテナンス: 'maintenance',
+  キャンペーン: 'campaign',
 };
 ---
 
@@ -70,7 +73,7 @@ const categoryIdMap: Record<string, string> = {
         posts.map((post) => (
           <article
             id={post.id}
-            class="news-item scroll-mt-24 flex flex-col gap-2 py-7 sm:flex-row sm:items-baseline sm:gap-8"
+            class="news-item flex scroll-mt-24 flex-col gap-2 py-7 sm:flex-row sm:items-baseline sm:gap-8"
             data-category={categoryIdMap[post.category] ?? 'other'}
           >
             <div class="flex shrink-0 items-center gap-4 sm:w-[180px]">
@@ -94,7 +97,11 @@ const categoryIdMap: Record<string, string> = {
     </div>
 
     <!-- 「お知らせはありません」表示：記事が0件の時／絞り込み結果が0件の時の両方で使う -->
-    <p id="news-empty" class="hidden py-10 text-center text-[0.9rem] text-[#8A8781]" data-news-empty>
+    <p
+      id="news-empty"
+      class="hidden py-10 text-center text-[0.9rem] text-[#8A8781]"
+      data-news-empty
+    >
       {page.emptyLabel}
     </p>
   </section>
@@ -179,8 +186,13 @@ const categoryIdMap: Record<string, string> = {
       animation: search-flash 2s ease-out;
     }
     @keyframes search-flash {
-      0%, 40% { box-shadow: 0 0 0 3px #A24730; }
-      100% { box-shadow: 0 0 0 3px transparent; }
+      0%,
+      40% {
+        box-shadow: 0 0 0 3px #a24730;
+      }
+      100% {
+        box-shadow: 0 0 0 3px transparent;
+      }
     }
   </style>
 </PageTemplate>

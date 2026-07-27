@@ -10,8 +10,11 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: Locale };
 
-const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
-  await getPageContext(lang, 'access-page', 'access');
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
+  lang,
+  'access-page',
+  'access',
+);
 
 const page = pageEntry.data;
 ---
@@ -33,304 +36,393 @@ const page = pageEntry.data;
   relatedLinks={relatedLinksData.links}
   relatedLinksBackground="none"
 >
+  <!-- マップ・お問い合わせ -->
+  <section id="section-parking" class="scroll-mt-6 py-[88px] lg:py-[108px]">
+    <div class="mx-auto max-w-[1320px] px-10">
+      <div class="mb-10 max-w-[760px]">
+        <SectionEyebrow
+          icon={page.map.icon}
+          eyebrow={page.map.eyebrow}
+          heading={page.map.heading}
+        />
+      </div>
 
-<!-- マップ・お問い合わせ -->
-<section id="section-parking" class="scroll-mt-6 py-[88px] lg:py-[108px]">
-  <div class="mx-auto max-w-[1320px] px-10">
-    <div class="mb-10 max-w-[760px]">
-      <SectionEyebrow icon={page.map.icon} eyebrow={page.map.eyebrow} heading={page.map.heading} />
+      <div class="mb-10 aspect-[16/9] w-full overflow-hidden bg-[#D8D7D2]">
+        {
+          page.map.embedUrl ? (
+            <iframe
+              src={page.map.embedUrl}
+              class="h-full w-full border-0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            />
+          ) : (
+            <div class="flex h-full w-full items-center justify-center text-[0.8rem] text-[#8A8781]">
+              地図を準備中です
+            </div>
+          )
+        }
+      </div>
+
+      <div
+        class="mb-14 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex gap-3">
+          {
+            page.map.openMapUrl && (
+              <a
+                href={page.map.openMapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="border border-[#A24730] px-5 py-2.5 text-[0.82rem] text-[#A24730]"
+              >
+                Googleマップで開く
+              </a>
+            )
+          }
+          {
+            page.map.routeUrl && (
+              <a
+                href={page.map.routeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-[#A24730] px-5 py-2.5 text-[0.82rem] text-white"
+              >
+                ルート案内
+              </a>
+            )
+          }
+        </div>
+      </div>
+
+      <!-- ホテル基本情報 -->
+      <div class="mb-14 max-w-[620px] border-y border-[#C7C5BF] py-6">
+        <p class="mb-4 font-serif text-[1rem] font-semibold text-[#1E1C1A]">{page.contact.name}</p>
+        <div class="space-y-3">
+          <div class="flex items-baseline gap-4">
+            <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">住所</span>
+            <span class="text-[0.88rem] text-[#1E1C1A]"
+              >{page.contact.postalCode} {page.contact.address}</span
+            >
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">電話</span>
+            <a
+              href={`tel:${page.contact.tel.replace(/-/g, '')}`}
+              class="text-[0.88rem] text-[#1E1C1A] hover:text-[#A24730]"
+            >
+              {page.contact.tel}
+            </a>
+          </div>
+          {
+            page.contact.fax && (
+              <div class="flex items-baseline gap-4">
+                <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">FAX</span>
+                <span class="text-[0.88rem] text-[#1E1C1A]">{page.contact.fax}</span>
+              </div>
+            )
+          }
+          <div class="flex items-baseline gap-4">
+            <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">お問合せ</span>
+            <a
+              href={`mailto:${page.contact.email}`}
+              class="text-[0.88rem] text-[#A24730] underline"
+            >
+              {page.contact.email}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 周辺交通 -->
+      <h3 class="mb-6 font-serif text-[1.15rem] font-semibold text-[#1E1C1A]">
+        {page.surroundings.heading}
+      </h3>
+      <ul class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {
+          page.surroundings.items.map((item) => (
+            <li class="flex items-center justify-between border border-[#C7C5BF] bg-white px-5 py-4">
+              <span class="text-[0.86rem] text-[#55524C]">{item.label}</span>
+              <span class="font-serif font-semibold text-[#A24730]">{item.duration}</span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
+  </section>
 
-    <div class="mb-10 aspect-[16/9] w-full overflow-hidden bg-[#D8D7D2]">
+  <!-- JR・お車でお越しの方（統合） -->
+  <section class="scroll-mt-6 bg-[#FAFAFA] py-[64px] lg:py-[80px]">
+    <div class="mx-auto max-w-[1320px] px-10">
+      <div
+        class="grid grid-cols-1 divide-y divide-[#C7C5BF] lg:grid-cols-2 lg:divide-x lg:divide-y-0 lg:divide-[#C7C5BF]"
+      >
+        <!-- ============ JRでお越しの方 ============ -->
+        <div id="section-train" class="scroll-mt-6 pb-14 lg:pb-0 lg:pr-14">
+          <div class="mb-8 max-w-[760px]">
+            <SectionEyebrow
+              icon={page.byTrain.icon}
+              eyebrow={page.byTrain.eyebrow}
+              heading={page.byTrain.heading}
+            />
+          </div>
+
+          <!-- STEP1：出発地→洞爺駅 -->
+          <div class="mb-3 flex items-center gap-3">
+            <span
+              class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#A24730] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white"
+            >
+              STEP 1
+            </span>
+            <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
+              {page.byTrain.nearestStation}まで
+            </p>
+          </div>
+          <div class="mb-10 divide-y divide-[#A24730]/20 border-y border-[#A24730]/25">
+            {
+              page.byTrain.departures.map((d) => (
+                <div class="flex items-baseline gap-4 py-2.5">
+                  <div class="min-w-0 flex-1">
+                    <span class="mr-2 font-serif text-[0.94rem] font-semibold text-[#1E1C1A]">
+                      {d.from}
+                    </span>
+                    <span class="text-[0.78rem] text-[#8A8781]">
+                      {d.boardingStation}・{d.trainName}
+                    </span>
+                  </div>
+                  <p class="w-[7.5em] shrink-0 whitespace-nowrap text-right font-serif text-[0.94rem] font-semibold text-[#A24730]">
+                    {d.duration}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- STEP2：洞爺駅からのアクセス -->
+          <div class="mb-3 flex items-center gap-3">
+            <span
+              class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#A24730] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white"
+            >
+              STEP 2
+            </span>
+            <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
+              {page.byTrain.nearestStation}からのアクセス
+            </p>
+          </div>
+          <div class="mb-10 divide-y divide-[#A24730]/20 border-y border-[#A24730]/25">
+            {
+              page.byTrain.toHotelOptions.map((opt) => (
+                <div class="py-3">
+                  <div class="flex items-baseline gap-4">
+                    <p class="min-w-0 flex-1 text-[0.86rem] font-medium text-[#1E1C1A]">
+                      {opt.method}
+                    </p>
+                    <p class="w-[7.5em] shrink-0 whitespace-nowrap text-right font-serif text-[0.98rem] font-semibold text-[#A24730]">
+                      {opt.duration}
+                    </p>
+                  </div>
+                  {opt.line && (
+                    <p class="mt-0.5 text-[0.78rem] text-[#55524C]">
+                      {opt.line}
+                      {opt.boarding && `（${opt.boarding}→${opt.alighting}）`}
+                    </p>
+                  )}
+                  {opt.frequency && (
+                    <p class="mt-0.5 text-[0.74rem] text-[#8A8781]">{opt.frequency}</p>
+                  )}
+                  {opt.note && <p class="mt-0.5 text-[0.74rem] text-[#8A8781]">※ {opt.note}</p>}
+                  {opt.url && (
+                    <a
+                      href={opt.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="mt-1 inline-block text-[0.74rem] text-[#A24730] underline"
+                    >
+                      路線・時刻表を見る
+                    </a>
+                  )}
+                </div>
+              ))
+            }
+          </div>
+
+          {
+            page.byTrain.walkToHotel && (
+              <>
+                {/* STEP3：バス停→ホテル（徒歩） */}
+                <div class="mb-3 flex items-center gap-3">
+                  <span class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#A24730] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white">
+                    STEP 3
+                  </span>
+                  <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
+                    バス停からホテルまで
+                    <span class="ml-1 text-[0.74rem] font-normal text-[#8A8781]">
+                      （バスご利用の場合）
+                    </span>
+                  </p>
+                </div>
+                <div class="mb-8 border-y border-[#A24730]/25 py-3">
+                  <div class="flex items-baseline gap-4">
+                    <p class="min-w-0 flex-1 text-[0.86rem] font-medium text-[#1E1C1A]">徒歩</p>
+                    <p class="w-[7.5em] shrink-0 whitespace-nowrap text-right font-serif text-[0.98rem] font-semibold text-[#A24730]">
+                      {page.byTrain.walkToHotel.duration}
+                    </p>
+                  </div>
+                  {page.byTrain.walkToHotel.distance && (
+                    <p class="mt-0.5 text-[0.78rem] text-[#55524C]">
+                      {page.byTrain.walkToHotel.distance}
+                    </p>
+                  )}
+                  {page.byTrain.walkToHotel.note && (
+                    <p class="mt-0.5 text-[0.74rem] text-[#8A8781]">
+                      ※ {page.byTrain.walkToHotel.note}
+                    </p>
+                  )}
+                </div>
+              </>
+            )
+          }
+
+          {
+            page.byTrain.shuttleAvailable && (
+              <p class="mb-2 text-[0.8rem] text-[#55524C]">{page.byTrain.shuttleAvailable}</p>
+            )
+          }
+          {
+            page.byTrain.officialTimetableUrl && (
+              <a
+                href={page.byTrain.officialTimetableUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block text-[0.78rem] text-[#A24730] underline"
+              >
+                JR時刻表を見る（外部サイト）
+              </a>
+            )
+          }
+        </div>
+
+        <!-- ============ お車でお越しの方 ============ -->
+        <div id="section-car" class="scroll-mt-6 pt-14 lg:pl-14 lg:pt-0">
+          <div class="mb-8 max-w-[760px]">
+            <SectionEyebrow
+              icon={page.byCar.icon}
+              eyebrow={page.byCar.eyebrow}
+              heading={page.byCar.heading}
+            />
+          </div>
+
+          <!-- STEP1：出発地→最寄IC -->
+          <div class="mb-3 flex items-center gap-3">
+            <span
+              class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#29415C] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white"
+            >
+              STEP 1
+            </span>
+            <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
+              最寄ICまで
+            </p>
+          </div>
+          <div class="mb-10 divide-y divide-[#29415C]/20 border-y border-[#29415C]/25">
+            {
+              page.byCar.departures.map((d) => (
+                <div class="flex items-baseline gap-4 py-2.5">
+                  <div class="min-w-0 flex-1">
+                    <span class="mr-2 font-serif text-[0.94rem] font-semibold text-[#1E1C1A]">
+                      {d.from}
+                    </span>
+                    <span class="text-[0.78rem] text-[#8A8781]">{d.ic}</span>
+                  </div>
+                  <p class="w-[9.5em] shrink-0 whitespace-nowrap text-right font-serif text-[0.94rem] font-semibold text-[#29415C]">
+                    {d.duration}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- STEP2：ICからホテルまで -->
+          <div class="mb-3 flex items-center gap-3">
+            <span
+              class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#29415C] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white"
+            >
+              STEP 2
+            </span>
+            <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
+              ICからホテルまで
+            </p>
+          </div>
+          <div class="mb-10 divide-y divide-[#29415C]/20 border-y border-[#29415C]/25">
+            {
+              page.byCar.fromIc.map((ic) => (
+                <div class="flex items-baseline gap-4 py-2.5">
+                  <p class="min-w-0 flex-1 text-[0.86rem] font-medium text-[#1E1C1A]">{ic.ic}</p>
+                  <p class="w-[7.5em] shrink-0 whitespace-nowrap text-right font-serif text-[0.94rem] font-semibold text-[#29415C]">
+                    {ic.duration}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- 駐車場のご案内 -->
+          <div class="border-y border-[#29415C]/25 py-3">
+            <p class="mb-2 text-[0.78rem] font-medium tracking-[0.06em] text-[#29415C]">
+              {page.parking.heading}
+            </p>
+            {
+              page.parking.notes.map((line) => (
+                <p class="mb-1.5 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">※ {line}</p>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 高速バス（直行・乗り換えなし） ============ -->
       {
-        page.map.embedUrl ? (
-          <iframe
-            src={page.map.embedUrl}
-            class="h-full w-full border-0"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          />
-        ) : (
-          <div class="flex h-full w-full items-center justify-center text-[0.8rem] text-[#8A8781]">
-            地図を準備中です
+        page.byBus && (
+          <div
+            id="section-bus"
+            class="mt-14 scroll-mt-6 border border-[#A24730]/30 bg-[#FAF6F3] px-8 py-7 lg:px-10"
+          >
+            <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p class="mb-2 font-serif text-[0.72rem] tracking-[0.1em] text-[#A24730]">
+                  {page.byBus.eyebrow}
+                </p>
+                <p class="font-serif text-[1.05rem] font-semibold text-[#1E1C1A]">
+                  {page.byBus.heading}
+                </p>
+                <p class="mt-1 text-[0.84rem] text-[#55524C]">
+                  {page.byBus.from} → {page.byBus.to}（乗り換えなし・直行）
+                </p>
+                {page.byBus.frequency && (
+                  <p class="mt-1 text-[0.76rem] text-[#8A8781]">{page.byBus.frequency}</p>
+                )}
+                {page.byBus.note && (
+                  <p class="mt-1 text-[0.76rem] text-[#8A8781]">※ {page.byBus.note}</p>
+                )}
+              </div>
+              <div class="flex shrink-0 items-center gap-6">
+                <p class="font-serif text-[1.6rem] font-semibold text-[#A24730]">
+                  {page.byBus.duration}
+                </p>
+                {page.byBus.url && (
+                  <a
+                    href={page.byBus.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="whitespace-nowrap border border-[#A24730] px-4 py-2 text-[0.78rem] text-[#A24730]"
+                  >
+                    時刻表を見る
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
         )
       }
     </div>
-
-    <div class="mb-14 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <div class="flex gap-3">
-        {
-          page.map.openMapUrl && (
-            <a
-              href={page.map.openMapUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="border border-[#A24730] px-5 py-2.5 text-[0.82rem] text-[#A24730]"
-            >
-              Googleマップで開く
-            </a>
-          )
-        }
-        {
-          page.map.routeUrl && (
-            <a
-              href={page.map.routeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-[#A24730] px-5 py-2.5 text-[0.82rem] text-white"
-            >
-              ルート案内
-            </a>
-          )
-        }
-      </div>
-    </div>
-
-    <!-- ホテル基本情報 -->
-    <div class="mb-14 max-w-[620px] border-y border-[#C7C5BF] py-6">
-      <p class="mb-4 font-serif text-[1rem] font-semibold text-[#1E1C1A]">{page.contact.name}</p>
-      <div class="space-y-3">
-        <div class="flex items-baseline gap-4">
-          <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">住所</span>
-          <span class="text-[0.88rem] text-[#1E1C1A]">{page.contact.postalCode} {page.contact.address}</span>
-        </div>
-        <div class="flex items-baseline gap-4">
-          <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">電話</span>
-          <a href={`tel:${page.contact.tel.replace(/-/g, '')}`} class="text-[0.88rem] text-[#1E1C1A] hover:text-[#A24730]">
-            {page.contact.tel}
-          </a>
-        </div>
-        {page.contact.fax && (
-          <div class="flex items-baseline gap-4">
-            <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">FAX</span>
-            <span class="text-[0.88rem] text-[#1E1C1A]">{page.contact.fax}</span>
-          </div>
-        )}
-        <div class="flex items-baseline gap-4">
-          <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">お問合せ</span>
-          <a href={`mailto:${page.contact.email}`} class="text-[0.88rem] text-[#A24730] underline">
-            {page.contact.email}
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 周辺交通 -->
-    <h3 class="mb-6 font-serif text-[1.15rem] font-semibold text-[#1E1C1A]">{page.surroundings.heading}</h3>
-    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-      {
-        page.surroundings.items.map((item) => (
-          <li class="flex items-center justify-between border border-[#C7C5BF] bg-white px-5 py-4">
-            <span class="text-[0.86rem] text-[#55524C]">{item.label}</span>
-            <span class="font-serif font-semibold text-[#A24730]">{item.duration}</span>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-</section>
-
-<!-- JR・お車でお越しの方（統合） -->
-<section class="scroll-mt-6 py-[64px] bg-[#FAFAFA] lg:py-[80px]">
-  <div class="mx-auto max-w-[1320px] px-10">
-    <div class="grid grid-cols-1 divide-y divide-[#C7C5BF] lg:grid-cols-2 lg:divide-x lg:divide-y-0 lg:divide-[#C7C5BF]">
-
-      <!-- ============ JRでお越しの方 ============ -->
-      <div id="section-train" class="scroll-mt-6 pb-14 lg:pb-0 lg:pr-14">
-        <div class="mb-8 max-w-[760px]">
-          <SectionEyebrow icon={page.byTrain.icon} eyebrow={page.byTrain.eyebrow} heading={page.byTrain.heading} />
-        </div>
-
-        <!-- STEP1：出発地→洞爺駅 -->
-        <div class="mb-3 flex items-center gap-3">
-          <span class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#A24730] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white">
-            STEP 1
-          </span>
-          <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
-            {page.byTrain.nearestStation}まで
-          </p>
-        </div>
-        <div class="mb-10 divide-y divide-[#A24730]/20 border-y border-[#A24730]/25">
-          {page.byTrain.departures.map((d) => (
-            <div class="flex items-baseline gap-4 py-2.5">
-              <div class="min-w-0 flex-1">
-                <span class="mr-2 font-serif text-[0.94rem] font-semibold text-[#1E1C1A]">{d.from}</span>
-                <span class="text-[0.78rem] text-[#8A8781]">{d.boardingStation}・{d.trainName}</span>
-              </div>
-              <p class="w-[7.5em] shrink-0 whitespace-nowrap text-right font-serif text-[0.94rem] font-semibold text-[#A24730]">
-                {d.duration}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <!-- STEP2：洞爺駅からのアクセス -->
-        <div class="mb-3 flex items-center gap-3">
-          <span class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#A24730] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white">
-            STEP 2
-          </span>
-          <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
-            {page.byTrain.nearestStation}からのアクセス
-          </p>
-        </div>
-        <div class="mb-10 divide-y divide-[#A24730]/20 border-y border-[#A24730]/25">
-          {page.byTrain.toHotelOptions.map((opt) => (
-            <div class="py-3">
-              <div class="flex items-baseline gap-4">
-                <p class="min-w-0 flex-1 text-[0.86rem] font-medium text-[#1E1C1A]">{opt.method}</p>
-                <p class="w-[7.5em] shrink-0 whitespace-nowrap text-right font-serif text-[0.98rem] font-semibold text-[#A24730]">
-                  {opt.duration}
-                </p>
-              </div>
-              {opt.line && (
-                <p class="mt-0.5 text-[0.78rem] text-[#55524C]">
-                  {opt.line}{opt.boarding && `（${opt.boarding}→${opt.alighting}）`}
-                </p>
-              )}
-              {opt.frequency && <p class="mt-0.5 text-[0.74rem] text-[#8A8781]">{opt.frequency}</p>}
-              {opt.note && <p class="mt-0.5 text-[0.74rem] text-[#8A8781]">※ {opt.note}</p>}
-              {opt.url && (
-                <a href={opt.url} target="_blank" rel="noopener noreferrer" class="mt-1 inline-block text-[0.74rem] text-[#A24730] underline">
-                  路線・時刻表を見る
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {page.byTrain.walkToHotel && (
-          <>
-            <!-- STEP3：バス停→ホテル（徒歩） -->
-            <div class="mb-3 flex items-center gap-3">
-              <span class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#A24730] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white">
-                STEP 3
-              </span>
-              <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
-                バス停からホテルまで
-                <span class="ml-1 text-[0.74rem] font-normal text-[#8A8781]">（バスご利用の場合）</span>
-              </p>
-            </div>
-            <div class="mb-8 border-y border-[#A24730]/25 py-3">
-              <div class="flex items-baseline gap-4">
-                <p class="min-w-0 flex-1 text-[0.86rem] font-medium text-[#1E1C1A]">徒歩</p>
-                <p class="w-[7.5em] shrink-0 whitespace-nowrap text-right font-serif text-[0.98rem] font-semibold text-[#A24730]">
-                  {page.byTrain.walkToHotel.duration}
-                </p>
-              </div>
-              {page.byTrain.walkToHotel.distance && (
-                <p class="mt-0.5 text-[0.78rem] text-[#55524C]">{page.byTrain.walkToHotel.distance}</p>
-              )}
-              {page.byTrain.walkToHotel.note && (
-                <p class="mt-0.5 text-[0.74rem] text-[#8A8781]">※ {page.byTrain.walkToHotel.note}</p>
-              )}
-            </div>
-          </>
-        )}
-
-        {page.byTrain.shuttleAvailable && (
-          <p class="mb-2 text-[0.8rem] text-[#55524C]">{page.byTrain.shuttleAvailable}</p>
-        )}
-        {page.byTrain.officialTimetableUrl && (
-          <a href={page.byTrain.officialTimetableUrl} target="_blank" rel="noopener noreferrer" class="inline-block text-[0.78rem] text-[#A24730] underline">
-            JR時刻表を見る（外部サイト）
-          </a>
-        )}
-      </div>
-
-      <!-- ============ お車でお越しの方 ============ -->
-      <div id="section-car" class="scroll-mt-6 pt-14 lg:pt-0 lg:pl-14">
-        <div class="mb-8 max-w-[760px]">
-          <SectionEyebrow icon={page.byCar.icon} eyebrow={page.byCar.eyebrow} heading={page.byCar.heading} />
-        </div>
-
-        <!-- STEP1：出発地→最寄IC -->
-        <div class="mb-3 flex items-center gap-3">
-          <span class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#29415C] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white">
-            STEP 1
-          </span>
-          <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
-            最寄ICまで
-          </p>
-        </div>
-        <div class="mb-10 divide-y divide-[#29415C]/20 border-y border-[#29415C]/25">
-          {page.byCar.departures.map((d) => (
-            <div class="flex items-baseline gap-4 py-2.5">
-              <div class="min-w-0 flex-1">
-                <span class="mr-2 font-serif text-[0.94rem] font-semibold text-[#1E1C1A]">{d.from}</span>
-                <span class="text-[0.78rem] text-[#8A8781]">{d.ic}</span>
-              </div>
-              <p class="w-[9.5em] shrink-0 whitespace-nowrap text-right font-serif text-[0.94rem] font-semibold text-[#29415C]">
-                {d.duration}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <!-- STEP2：ICからホテルまで -->
-        <div class="mb-3 flex items-center gap-3">
-          <span class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#29415C] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white">
-            STEP 2
-          </span>
-          <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
-            ICからホテルまで
-          </p>
-        </div>
-        <div class="mb-10 divide-y divide-[#29415C]/20 border-y border-[#29415C]/25">
-          {page.byCar.fromIc.map((ic) => (
-            <div class="flex items-baseline gap-4 py-2.5">
-              <p class="min-w-0 flex-1 text-[0.86rem] font-medium text-[#1E1C1A]">{ic.ic}</p>
-              <p class="w-[7.5em] shrink-0 whitespace-nowrap text-right font-serif text-[0.94rem] font-semibold text-[#29415C]">
-                {ic.duration}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <!-- 駐車場のご案内 -->
-        <div class="border-y border-[#29415C]/25 py-3">
-          <p class="mb-2 text-[0.78rem] font-medium tracking-[0.06em] text-[#29415C]">{page.parking.heading}</p>
-          {page.parking.notes.map((line) => (
-            <p class="mb-1.5 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">※ {line}</p>
-          ))}
-        </div>
-      </div>
-
-    </div>
-
-<!-- ============ 高速バス（直行・乗り換えなし） ============ -->
-{page.byBus && (
-  <div id="section-bus" class="scroll-mt-6 mt-14 border border-[#A24730]/30 bg-[#FAF6F3] px-8 py-7 lg:px-10">
-    <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-      <div>
-        <p class="mb-2 font-serif text-[0.72rem] tracking-[0.1em] text-[#A24730]">{page.byBus.eyebrow}</p>
-        <p class="font-serif text-[1.05rem] font-semibold text-[#1E1C1A]">{page.byBus.heading}</p>
-        <p class="mt-1 text-[0.84rem] text-[#55524C]">
-          {page.byBus.from} → {page.byBus.to}（乗り換えなし・直行）
-        </p>
-        {page.byBus.frequency && (
-          <p class="mt-1 text-[0.76rem] text-[#8A8781]">{page.byBus.frequency}</p>
-        )}
-        {page.byBus.note && (
-          <p class="mt-1 text-[0.76rem] text-[#8A8781]">※ {page.byBus.note}</p>
-        )}
-      </div>
-      <div class="flex shrink-0 items-center gap-6">
-        <p class="font-serif text-[1.6rem] font-semibold text-[#A24730]">{page.byBus.duration}</p>
-        {page.byBus.url && (
-          <a
-            href={page.byBus.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="whitespace-nowrap border border-[#A24730] px-4 py-2 text-[0.78rem] text-[#A24730]"
-          >
-            時刻表を見る
-          </a>
-        )}
-      </div>
-    </div>
-  </div>
-)}
-  </div>
-</section>
+  </section>
 </PageTemplate>

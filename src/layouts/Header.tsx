@@ -43,13 +43,7 @@ interface HeaderProps {
  * 常時表示は現在の言語のみ。クリック/Enterで展開し、Escapeまたは外側クリックで閉じる。
  * 4言語以上に増えても横幅を消費しないため、ヘッダーの主要ナビと衝突しない。
  */
-function LanguageDropdown({
-  langLinks,
-  label,
-}: {
-  langLinks: LangLink[];
-  label: string;
-}) {
+function LanguageDropdown({ langLinks, label }: { langLinks: LangLink[]; label: string }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const firstItemRef = useRef<HTMLAnchorElement>(null);
@@ -210,7 +204,14 @@ export default function Header({
             aria-label={searchOpenLabel}
             className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/60 backdrop-blur-sm transition-colors hover:border-[#A24730] hover:text-[#A24730]"
           >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.3-4.3" />
             </svg>

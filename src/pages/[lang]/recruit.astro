@@ -2,24 +2,18 @@
 import PageTemplate from '../../layouts/PageTemplate.astro';
 import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
-import {
-  Mail,
-  Phone,
-  ShieldCheck,
-  Home,
-  Car,
-  Shirt,
-  Globe,
-  Sparkles,
-} from 'lucide-astro';
+import { Mail, Phone, ShieldCheck, Home, Car, Shirt, Globe, Sparkles } from 'lucide-astro';
 import JobCard from '../../components/recruit/JobCard.astro';
 
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('recruit-page');
 }
 const { lang } = Astro.params as { lang: Locale };
-const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
-  await getPageContext(lang, 'recruit-page', 'recruit');
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
+  lang,
+  'recruit-page',
+  'recruit',
+);
 const page = pageEntry.data;
 const headingLines = page.heading.split('\n');
 
@@ -52,38 +46,45 @@ const benefitIconMap = {
   relatedLinks={relatedLinksData.links}
   showRelatedLinks="false"
 >
-
   <!-- 働く環境 -->
   <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
     <div class="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
       <div>
         <p class="text-[0.72rem] tracking-[0.22em] text-[#A24730]">WORK LIFE</p>
-        <h2 class="mt-3 font-serif text-[1.4rem] leading-snug tracking-[0.02em] text-[#1E1C1A] lg:text-[1.7rem]">
+        <h2
+          class="mt-3 font-serif text-[1.4rem] leading-snug tracking-[0.02em] text-[#1E1C1A] lg:text-[1.7rem]"
+        >
           {page.workLife.heading}
         </h2>
         <p class="mt-5 text-[0.9rem] leading-[1.95] text-[#55524C]">
           {page.workLife.description}
         </p>
         <ul class="mt-8 space-y-3">
-          {page.workLife.points.map((point) => (
-            <li class="flex gap-3 text-[0.85rem] leading-[1.8] text-[#1E1C1A]">
-              <span class="mt-[0.55em] h-[5px] w-[5px] shrink-0 rounded-full bg-[#A24730]" />
-              {point}
-            </li>
-          ))}
+          {
+            page.workLife.points.map((point) => (
+              <li class="flex gap-3 text-[0.85rem] leading-[1.8] text-[#1E1C1A]">
+                <span class="mt-[0.55em] h-[5px] w-[5px] shrink-0 rounded-full bg-[#A24730]" />
+                {point}
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <!-- ホテル写真 -->
       <div>
-        {page.workLife.photos.slice(0, 1).map((photo) => (
-          <img
-            src={photo.src}
-            alt={photo.alt}
-            class="h-[320px] w-full object-cover lg:h-[420px]"
-            loading="lazy"
-          />
-        ))}
+        {
+          page.workLife.photos
+            .slice(0, 1)
+            .map((photo) => (
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                class="h-[320px] w-full object-cover lg:h-[420px]"
+                loading="lazy"
+              />
+            ))
+        }
       </div>
     </div>
   </section>
@@ -93,7 +94,9 @@ const benefitIconMap = {
     <div class="mx-auto max-w-[1320px]">
       <div class="text-center">
         <p class="text-[0.72rem] tracking-[0.22em] text-[#A24730]">POSITIONS</p>
-        <h2 class="mt-3 font-serif text-[1.4rem] leading-snug tracking-[0.02em] text-[#1E1C1A] lg:text-[1.7rem]">
+        <h2
+          class="mt-3 font-serif text-[1.4rem] leading-snug tracking-[0.02em] text-[#1E1C1A] lg:text-[1.7rem]"
+        >
           {page.positionsHeading}
         </h2>
         <p class="mx-auto mt-4 max-w-[640px] text-[0.9rem] leading-[1.9] text-[#55524C]">
@@ -101,17 +104,19 @@ const benefitIconMap = {
         </p>
       </div>
 
-      {openPositions.length > 0 ? (
-        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {openPositions.map((position) => (
-            <JobCard {...position} />
-          ))}
-        </div>
-      ) : (
-        <p class="mt-14 text-center text-[0.88rem] text-[#8A8780]">
-          現在、募集中の職種はございません。
-        </p>
-      )}
+      {
+        openPositions.length > 0 ? (
+          <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {openPositions.map((position) => (
+              <JobCard {...position} />
+            ))}
+          </div>
+        ) : (
+          <p class="mt-14 text-center text-[0.88rem] text-[#8A8780]">
+            現在、募集中の職種はございません。
+          </p>
+        )
+      }
     </div>
   </section>
 
@@ -119,7 +124,9 @@ const benefitIconMap = {
   <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
     <div class="mx-auto max-w-[760px]">
       <p class="text-[0.72rem] tracking-[0.22em] text-[#A24730]">PROCESS</p>
-      <h2 class="mt-3 font-serif text-[1.4rem] leading-snug tracking-[0.02em] text-[#1E1C1A] lg:text-[1.7rem]">
+      <h2
+        class="mt-3 font-serif text-[1.4rem] leading-snug tracking-[0.02em] text-[#1E1C1A] lg:text-[1.7rem]"
+      >
         {page.processHeading}
       </h2>
       <p class="mt-4 text-[0.9rem] leading-[1.9] text-[#55524C]">
@@ -127,46 +134,50 @@ const benefitIconMap = {
       </p>
 
       <div class="mt-10 divide-y divide-[#A24730]/20 border-y border-[#A24730]/25">
-        {page.process.map((step, i) => (
-          <div class="flex items-start gap-5 py-6">
-            <span class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#A24730] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white">
-              STEP {i + 1}
-            </span>
-            <div>
-              <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
-                {step.title}
-              </p>
-              <p class="mt-1 text-[0.84rem] leading-[1.8] text-[#55524C]">
-                {step.description}
-              </p>
+        {
+          page.process.map((step, i) => (
+            <div class="flex items-start gap-5 py-6">
+              <span class="inline-flex h-6 shrink-0 items-center rounded-full bg-[#A24730] px-3 font-serif text-[0.7rem] font-bold tracking-[0.08em] text-white">
+                STEP {i + 1}
+              </span>
+              <div>
+                <p class="font-serif text-[1rem] font-semibold tracking-[0.02em] text-[#1E1C1A]">
+                  {step.title}
+                </p>
+                <p class="mt-1 text-[0.84rem] leading-[1.8] text-[#55524C]">{step.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>
 
   <!-- 待遇・福利厚生 -->
-  <section class="bg-[#FAFAFA] mx-auto px-10 py-[88px] lg:py-[108px]">
+  <section class="mx-auto bg-[#FAFAFA] px-10 py-[88px] lg:py-[108px]">
     <div class="mx-auto max-w-[1320px]">
       <div class="text-center">
         <p class="text-[0.72rem] tracking-[0.22em] text-[#A24730]">BENEFITS</p>
-        <h2 class="mt-3 font-serif text-[1.4rem] leading-snug tracking-[0.02em] text-[#1E1C1A] lg:text-[1.7rem]">
+        <h2
+          class="mt-3 font-serif text-[1.4rem] leading-snug tracking-[0.02em] text-[#1E1C1A] lg:text-[1.7rem]"
+        >
           {page.benefitsHeading}
         </h2>
       </div>
       <div class="mx-auto mt-14 grid max-w-[900px] grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
-        {page.benefits.map((benefit) => {
-          const IconComp = benefitIconMap[benefit.icon] ?? Sparkles;
-          return (
-            <div class="flex flex-col items-center gap-3 text-center">
-              <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF]">
-                <IconComp size={20} strokeWidth={1.6} class="text-[#A24730]" />
-              </span>
-              <p class="text-[0.8rem] leading-[1.7] text-[#55524C]">{benefit.label}</p>
-            </div>
-          );
-        })}
+        {
+          page.benefits.map((benefit) => {
+            const IconComp = benefitIconMap[benefit.icon] ?? Sparkles;
+            return (
+              <div class="flex flex-col items-center gap-3 text-center">
+                <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF]">
+                  <IconComp size={20} strokeWidth={1.6} class="text-[#A24730]" />
+                </span>
+                <p class="text-[0.8rem] leading-[1.7] text-[#55524C]">{benefit.label}</p>
+              </div>
+            );
+          })
+        }
       </div>
     </div>
   </section>
@@ -174,17 +185,23 @@ const benefitIconMap = {
   <!-- 「私たちと一緒に、洞爺湖で働いてみませんか？」を再掲してお問い合わせへ誘導 -->
   <section class="relative mx-auto px-10 py-[88px] lg:py-[108px]">
     <div class="mx-auto max-w-[1320px] px-10 text-center">
-      <h2 class="font-serif text-[1.5rem] leading-snug tracking-[0.02em] text-[#1E1C1A] lg:text-[1.9rem]">
-        {headingLines.map((line, i) => (
-          <>
-            {line}
-            {i < headingLines.length - 1 && <br />}
-          </>
-        ))}
+      <h2
+        class="font-serif text-[1.5rem] leading-snug tracking-[0.02em] text-[#1E1C1A] lg:text-[1.9rem]"
+      >
+        {
+          headingLines.map((line, i) => (
+            <>
+              {line}
+              {i < headingLines.length - 1 && <br />}
+            </>
+          ))
+        }
       </h2>
-      {page.description.map((line) => (
-        <p class="mt-4 text-[0.94rem] leading-[1.9] text-[#55524C]">{line}</p>
-      ))}
+      {
+        page.description.map((line) => (
+          <p class="mt-4 text-[0.94rem] leading-[1.9] text-[#55524C]">{line}</p>
+        ))
+      }
       <div class="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
         <a
           href={`mailto:${page.emailAddress}`}

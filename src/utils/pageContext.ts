@@ -25,7 +25,7 @@ export async function getLocalizedStaticPaths(collectionName: CollectionKey) {
 export async function getPageContext<C extends CollectionKey>(
   lang: Locale,
   collectionName: C,
-  pathPrefix: string // 例: 'rooms', 'faq'
+  pathPrefix: string, // 例: 'rooms', 'faq'
 ) {
   const [siteEntry, navigationEntry, pageEntry] = await Promise.all([
     getEntry('site', `site.${lang}`),

@@ -20,39 +20,77 @@ const ICON_MAP: Record<string, any> = {
 
 const LucideIcon = ICON_MAP[iconKey];
 ---
+
 <span class="amenity-icon" aria-hidden="true">
-  {LucideIcon ? (
-    <LucideIcon size={22} stroke-width={1.6} />
-  ) : iconKey === 'dryer' ? (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3.5 7.5c0-2 1.6-3.2 3.6-2.7 1.6.4 2.4 1.7 3.6 1.7 2 0 3-2 5.3-1.4 2.2.6 3.5 3 2.6 5.4-.6 1.6-2.2 2.3-2.2 3.8 0 1.8 1.7 1.9 1.7 3.7" />
-      <circle cx="7.2" cy="16" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  ) : iconKey === 'bathtowel' ? (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="4" y="4.5" width="12" height="15" rx="1.5" />
-      <path d="M4 9.5h12" />
-      <path d="M16 8.5c2 0 3.5 1.3 3.5 3v6c0 1-.7 1.5-1.5 1.5H16" />
-    </svg>
-  ) : iconKey === 'towel' ? (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="4" y="3.5" width="16" height="17" rx="1" />
-      <path d="M4 8.5h16" />
-      <path d="M4 13.5h16" />
-    </svg>
-  ) : iconKey === 'toothbrush' ? (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M4 20 15 9" />
-      <path d="M13 7l4-4 4 4-4 4z" />
-      <path d="M15 9l2 2" />
-      <path d="M13.5 10.5l2 2" />
-    </svg>
-  ) : (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="8.5" />
-      <path d="M12 8v4.5l3 2" />
-    </svg>
-  )}
+  {
+    LucideIcon ? (
+      <LucideIcon size={22} stroke-width={1.6} />
+    ) : iconKey === 'dryer' ? (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3.5 7.5c0-2 1.6-3.2 3.6-2.7 1.6.4 2.4 1.7 3.6 1.7 2 0 3-2 5.3-1.4 2.2.6 3.5 3 2.6 5.4-.6 1.6-2.2 2.3-2.2 3.8 0 1.8 1.7 1.9 1.7 3.7" />
+        <circle cx="7.2" cy="16" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    ) : iconKey === 'bathtowel' ? (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="4" y="4.5" width="12" height="15" rx="1.5" />
+        <path d="M4 9.5h12" />
+        <path d="M16 8.5c2 0 3.5 1.3 3.5 3v6c0 1-.7 1.5-1.5 1.5H16" />
+      </svg>
+    ) : iconKey === 'towel' ? (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="4" y="3.5" width="16" height="17" rx="1" />
+        <path d="M4 8.5h16" />
+        <path d="M4 13.5h16" />
+      </svg>
+    ) : iconKey === 'toothbrush' ? (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M4 20 15 9" />
+        <path d="M13 7l4-4 4 4-4 4z" />
+        <path d="M15 9l2 2" />
+        <path d="M13.5 10.5l2 2" />
+      </svg>
+    ) : (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M12 8v4.5l3 2" />
+      </svg>
+    )
+  }
 </span>
 <style>
   .amenity-icon {

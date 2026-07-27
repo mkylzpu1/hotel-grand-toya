@@ -22,19 +22,13 @@ interface FooterProps {
   logoAlt: string;
 }
 
-const HOTEL_ADDRESS = "〒049-5721 北海道虻田郡洞爺湖町洞爺湖温泉144";
-const HOTEL_TEL = "0142-75-2288";
-const HOTEL_FAX = "0142-75-3434";
-const HOTEL_EMAIL = "info@grandtoya.com";
-const RESERVATION_URL = "https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000002996"; // 実際の予約URLに置き換えてください
+const HOTEL_ADDRESS = '〒049-5721 北海道虻田郡洞爺湖町洞爺湖温泉144';
+const HOTEL_TEL = '0142-75-2288';
+const HOTEL_FAX = '0142-75-3434';
+const HOTEL_EMAIL = 'info@grandtoya.com';
+const RESERVATION_URL = 'https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000002996'; // 実際の予約URLに置き換えてください
 
-export default function Footer({
-  guideLinks,
-  infoLinks,
-  copy,
-  logoSrc,
-  logoAlt,
-}: FooterProps) {
+export default function Footer({ guideLinks, infoLinks, copy, logoSrc, logoAlt }: FooterProps) {
   return (
     <>
       <footer className="border-t-[3px] border-[#A24730] bg-[#16283A] text-white">

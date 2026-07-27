@@ -11,8 +11,11 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params as { lang: Locale };
 
-const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
-  await getPageContext(lang, 'cuisine-page', 'cuisine');
+const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
+  lang,
+  'cuisine-page',
+  'cuisine',
+);
 
 const page = pageEntry.data;
 ---
@@ -34,96 +37,135 @@ const page = pageEntry.data;
   relatedLinks={relatedLinksData.links}
   relatedLinksBackground="none"
 >
-    {/* リード */}
-    <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
-      <SectionEyebrow icon={page.intro.icon} eyebrow={page.intro.eyebrow} heading={page.intro.heading} />
-      <div class="mt-8 max-w-[640px]">
-        {page.intro.description.map((line) => (
+  {/* リード */}
+  <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
+    <SectionEyebrow
+      icon={page.intro.icon}
+      eyebrow={page.intro.eyebrow}
+      heading={page.intro.heading}
+    />
+    <div class="mt-8 max-w-[640px]">
+      {
+        page.intro.description.map((line) => (
           <p class="mb-4 text-[0.94rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
-        ))}
-      </div>
-    </section>
-
-{/* 夕食：会席プラン（複数展開可） */}
-    <section id="section-dinner" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
-      <div class="mx-auto max-w-[1320px] px-10">
-        <div class="mb-8 max-w-[760px]">
-          <SectionEyebrow icon={page.dinner.icon} eyebrow={page.dinner.eyebrow} heading={page.dinner.heading} />
-        </div>
-        <div class="mb-14 max-w-[760px]">
-          {page.dinner.description.map((line) => (
-            <p class="mb-3 text-[0.9rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
-          ))}
-        </div>
-
-<div class="space-y-16 lg:space-y-20">
-  {page.dinner.plans.map((plan) => (
-    <div id={plan.id ? `plan-${plan.id}` : undefined} class="scroll-mt-6 border-t border-[#D8D7D2] pt-14 first:border-t-0 first:pt-0">
-      <CuisinePlanBlock
-        name={plan.name}
-        nameEn={plan.nameEn}
-        image={plan.image}
-        description={plan.description}
-        menuExample={plan.menuExample}
-        seasonalNote={plan.seasonalNote}
-        reservationHref={plan.reservationHref}
-      />
+        ))
+      }
     </div>
-  ))}
-</div>
-      </div>
-    </section>
+  </section>
 
-    {/* 朝食：和朝食（単一プラン。夕食と同じレイアウトを流用） */}
-    <section id="section-breakfast" class="scroll-mt-6 py-[88px] lg:py-[108px]">
-      <div class="mx-auto max-w-[1320px] px-10">
-        <div class="mb-8 max-w-[760px]">
-          <SectionEyebrow icon={page.breakfast.icon} eyebrow={page.breakfast.eyebrow} heading={page.breakfast.heading} />
-        </div>
-        <div class="mb-14 max-w-[760px]">
-          {page.breakfast.description.map((line) => (
-            <p class="mb-3 text-[0.9rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
-          ))}
-        </div>
-
-        <CuisinePlanBlock
-          name={page.breakfast.plan.name}
-          nameEn={page.breakfast.plan.nameEn}
-          image={page.breakfast.plan.image}
-          description={page.breakfast.plan.description}
-          seasonalNote={page.breakfast.plan.seasonalNote}
+  {/* 夕食：会席プラン（複数展開可） */}
+  <section id="section-dinner" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+    <div class="mx-auto max-w-[1320px] px-10">
+      <div class="mb-8 max-w-[760px]">
+        <SectionEyebrow
+          icon={page.dinner.icon}
+          eyebrow={page.dinner.eyebrow}
+          heading={page.dinner.heading}
         />
       </div>
-    </section>
+      <div class="mb-14 max-w-[760px]">
+        {
+          page.dinner.description.map((line) => (
+            <p class="mb-3 text-[0.9rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+          ))
+        }
+      </div>
 
-    {/* お食事会場 */}
-    <section id="section-venues" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
-      <div class="mx-auto max-w-[1320px] px-10">
-        <div class="mb-14 max-w-[760px]">
-          <SectionEyebrow icon={page.diningVenues.icon} eyebrow={page.diningVenues.eyebrow} heading={page.diningVenues.heading} />
-        </div>
-        <div class="mb-14 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-          {[page.diningVenues.inRoom, page.diningVenues.hall].map((venue) => (
+      <div class="space-y-16 lg:space-y-20">
+        {
+          page.dinner.plans.map((plan) => (
+            <div
+              id={plan.id ? `plan-${plan.id}` : undefined}
+              class="scroll-mt-6 border-t border-[#D8D7D2] pt-14 first:border-t-0 first:pt-0"
+            >
+              <CuisinePlanBlock
+                name={plan.name}
+                nameEn={plan.nameEn}
+                image={plan.image}
+                description={plan.description}
+                menuExample={plan.menuExample}
+                seasonalNote={plan.seasonalNote}
+                reservationHref={plan.reservationHref}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* 朝食：和朝食（単一プラン。夕食と同じレイアウトを流用） */}
+  <section id="section-breakfast" class="scroll-mt-6 py-[88px] lg:py-[108px]">
+    <div class="mx-auto max-w-[1320px] px-10">
+      <div class="mb-8 max-w-[760px]">
+        <SectionEyebrow
+          icon={page.breakfast.icon}
+          eyebrow={page.breakfast.eyebrow}
+          heading={page.breakfast.heading}
+        />
+      </div>
+      <div class="mb-14 max-w-[760px]">
+        {
+          page.breakfast.description.map((line) => (
+            <p class="mb-3 text-[0.9rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
+          ))
+        }
+      </div>
+
+      <CuisinePlanBlock
+        name={page.breakfast.plan.name}
+        nameEn={page.breakfast.plan.nameEn}
+        image={page.breakfast.plan.image}
+        description={page.breakfast.plan.description}
+        seasonalNote={page.breakfast.plan.seasonalNote}
+      />
+    </div>
+  </section>
+
+  {/* お食事会場 */}
+  <section id="section-venues" class="scroll-mt-6 bg-[#FAFAFA] py-[88px] lg:py-[108px]">
+    <div class="mx-auto max-w-[1320px] px-10">
+      <div class="mb-14 max-w-[760px]">
+        <SectionEyebrow
+          icon={page.diningVenues.icon}
+          eyebrow={page.diningVenues.eyebrow}
+          heading={page.diningVenues.heading}
+        />
+      </div>
+      <div class="mb-14 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+        {
+          [page.diningVenues.inRoom, page.diningVenues.hall].map((venue) => (
             <div>
               <div class="mb-6 aspect-[4/3] overflow-hidden">
-                <img src={venue.image.src} alt={venue.image.alt} class="h-full w-full object-cover" loading="lazy" />
+                <img
+                  src={venue.image.src}
+                  alt={venue.image.alt}
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                />
               </div>
-              <h4 class="mb-3 font-serif text-[1.05rem] font-semibold text-[#1E1C1A]">{venue.heading}</h4>
+              <h4 class="mb-3 font-serif text-[1.05rem] font-semibold text-[#1E1C1A]">
+                {venue.heading}
+              </h4>
               {venue.description.map((line) => (
                 <p class="mb-2 text-[0.88rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
               ))}
               <p class="mt-3 text-[0.76rem] text-[#8A8781]">※ {venue.note}</p>
             </div>
-          ))}
-        </div>
-        <div class="mb-16 border border-[#D8D7D2] bg-white p-6">
-          {page.diningVenues.planNote.map((line) => (
+          ))
+        }
+      </div>
+      <div class="mb-16 border border-[#D8D7D2] bg-white p-6">
+        {
+          page.diningVenues.planNote.map((line) => (
             <p class="text-[0.86rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
-          ))}
-        </div>
-        {/* アレルギー対応・お子様連れ対応 */}
-        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {page.guestConsiderations.map((item) => (
+          ))
+        }
+      </div>
+      {/* アレルギー対応・お子様連れ対応 */}
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        {
+          page.guestConsiderations.map((item) => (
             <div class="flex items-start gap-4 border border-[#D8D7D2] bg-white p-6">
               <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#29415C] font-serif text-[#29415C]">
                 {item.icon}
@@ -133,8 +175,9 @@ const page = pageEntry.data;
                 <p class="text-[0.84rem] leading-[1.8] text-[#55524C]">{item.description}</p>
               </div>
             </div>
-          ))}
-        </div>
+          ))
+        }
       </div>
-    </section>
+    </div>
+  </section>
 </PageTemplate>
