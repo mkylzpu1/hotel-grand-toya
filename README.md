@@ -79,7 +79,7 @@ npm run cms
 npm run dev
 ```
 
-その後 http://localhost:4321/admin/ にアクセスすると、ローカルのGitリポジトリに直接コミットする形でCMSを試せます（本番投入前の動作確認用。本番のGitHub backend認証とは別物です）。
+その後 http://localhost:4321/admin/index.html# にアクセスすると、ローカルのGitリポジトリに直接コミットする形でCMSを試せます（本番投入前の動作確認用。本番のGitHub backend認証とは別物です）。
 
 ## 構成
 

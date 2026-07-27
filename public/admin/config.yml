@@ -5,7 +5,6 @@ backend:
 
 # Astroのビルド確認用（実運用時はNetlifyや他のホスティングのプレビューURLに変更）
 local_backend: true
-
 publish_mode: editorial_workflow
 
 media_folder: 'public/assets/photos'
@@ -176,11 +175,14 @@ collections:
               - { label: '補足（所要時間など）', name: note, widget: string }
           - { label: '「周辺観光はこちら」リンク文言', name: sceneryLinkText, widget: string }
 
+  # ── お知らせページ ───────────────────────
   - name: "news-page"
     label: "お知らせページ"
     files:
-      - file: "src/content/news-page/news-page.{{locale}}.json"
+      - name: "news-page"
+        file: "src/content/news-page/news-page.{{locale}}.json"
         label: "お知らせ"
+        i18n: true
         fields:
           - { label: "ページタイトル", name: "pageTitle", widget: "string" }
           - { label: "ページタイトル(英語表記)", name: "pageTitleEn", widget: "string" }
@@ -199,6 +201,7 @@ collections:
             widget: "list"
             summary: "{{fields.date}} - {{fields.title}}"
             fields:
+              - { label: "アンカーID（英数字とハイフンのみ。例: 2026-summer-campaign）", name: "id", widget: "string", required: false }
               - { label: "公開日", name: "date", widget: "date", date_format: "YYYY-MM-DD" }
               - label: "カテゴリ"
                 name: "category"
