@@ -87,10 +87,7 @@
   ],
   "firstFloorNotice": {
     "heading": "1楼客房注意事项",
-    "items": [
-      "游览船运营时段可能有大型巴士停靠。",
-      "客房小窗为单向玻璃。"
-    ]
+    "items": ["游览船运营时段可能有大型巴士停靠。", "客房小窗为单向玻璃。"]
   },
   "sections": [
     {
@@ -121,10 +118,7 @@
               "label": "1楼客房",
               "reservationName": "【1楼】面湖和室8叠",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017392&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": [
-                "洞爷湖景观",
-                "可观赏花火（4/28〜10/31）"
-              ],
+              "badges": ["洞爷湖景观", "可观赏花火（4/28〜10/31）"],
               "images": [
                 {
                   "label": "客房全景",
@@ -145,11 +139,7 @@
               "label": "2楼以上客房",
               "reservationName": "面湖和室8叠",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": [
-                "洞爷湖景观",
-                "可眺望中岛・羊蹄山",
-                "可观赏花火（4/28〜10/31）"
-              ],
+              "badges": ["洞爷湖景观", "可眺望中岛・羊蹄山", "可观赏花火（4/28〜10/31）"],
               "images": [
                 {
                   "label": "客房全景",
@@ -171,12 +161,7 @@
               "label": "2楼客房（配书桌）",
               "reservationName": "【配书桌】面湖和室8叠",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017403&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": [
-                "洞爷湖景观",
-                "可眺望中岛・羊蹄山",
-                "可观赏花火（4/28〜10/31）",
-                "可办公"
-              ],
+              "badges": ["洞爷湖景观", "可眺望中岛・羊蹄山", "可观赏花火（4/28〜10/31）", "可办公"],
               "images": [
                 {
                   "label": "窗外景色",
@@ -203,11 +188,7 @@
               "label": "窗边湖景和室",
               "reservationName": "窗边湖景和室",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017390&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": [
-                "侧向湖景",
-                "窗边眺望湖景",
-                "可观赏花火"
-              ],
+              "badges": ["侧向湖景", "窗边眺望湖景", "可观赏花火"],
               "images": [
                 {
                   "label": "客房全景",
@@ -256,10 +237,7 @@
               "label": "1楼客房",
               "reservationName": "【1楼】面湖洋室双床房",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017389&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": [
-                "洞爷湖景观",
-                "可观赏花火（4/28〜10/31）"
-              ],
+              "badges": ["洞爷湖景观", "可观赏花火（4/28〜10/31）"],
               "images": [
                 {
                   "label": "客房全景",
@@ -281,11 +259,7 @@
               "label": "2楼以上客房",
               "reservationName": "面湖洋室双床房",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017388&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": [
-                "洞爷湖景观",
-                "可眺望中岛・羊蹄山",
-                "可观赏花火（4/28〜10/31）"
-              ],
+              "badges": ["洞爷湖景观", "可眺望中岛・羊蹄山", "可观赏花火（4/28〜10/31）"],
               "images": [
                 {
                   "label": "客房全景",

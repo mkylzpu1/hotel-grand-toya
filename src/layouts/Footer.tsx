@@ -103,23 +103,6 @@ export default function Footer({ guideLinks, infoLinks, copy, logoSrc, logoAlt }
           <p>{copy.copyright}</p>
         </div>
       </footer>
-
-      <div className="fixed bottom-0 left-0 right-0 z-[200] hidden grid-cols-[1fr_1.6fr] border-t border-[#D8D7D2] bg-[#FAFAFA] max-[760px]:grid">
-        <a
-          href={`tel:${HOTEL_TEL}`}
-          className="flex items-center justify-center px-2 py-4 text-[0.82rem] font-medium tracking-[0.05em] text-[#1E1C1A]"
-        >
-          {copy.mobileTelLabel}
-        </a>
-        <a
-          href={RESERVATION_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center bg-[#A24730] px-2 py-4 text-[0.82rem] font-medium tracking-[0.05em] text-white"
-        >
-          {copy.mobileReserveLabel}
-        </a>
-      </div>
     </>
   );
 }

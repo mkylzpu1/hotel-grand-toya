@@ -39,9 +39,7 @@
           "src": "/assets/photos/facility2.png",
           "alt": "로비"
         },
-        "description": [
-          "다국어 응대가 가능한 스태프가 고객님의 체류를 지원해 드립니다."
-        ],
+        "description": ["다국어 응대가 가능한 스태프가 고객님의 체류를 지원해 드립니다."],
         "hours": "24시간"
       },
       {
@@ -52,9 +50,7 @@
           "src": "/assets/photos/facility1.png",
           "alt": "매점"
         },
-        "description": [
-          "지역 명과와 기념품, 생활용품 등을 갖추고 있습니다."
-        ],
+        "description": ["지역 명과와 기념품, 생활용품 등을 갖추고 있습니다."],
         "hours": "8:00〜21:00",
         "payment": "현금・신용카드"
       },
@@ -84,14 +80,10 @@
         "image": {
           "label": "룸서비스"
         },
-        "description": [
-          "음료나 간단한 식사를 객실에서 즐기실 수 있습니다."
-        ],
+        "description": ["음료나 간단한 식사를 객실에서 즐기실 수 있습니다."],
         "hours": "18:00〜22:00",
         "reservationMethod": "객실에 비치된 전화로 주문해 주세요.",
-        "notes": [
-          "라스트 오더는 21:30입니다."
-        ]
+        "notes": ["라스트 오더는 21:30입니다."]
       },
       {
         "id": "massage",
@@ -101,14 +93,9 @@
           "alt": "마사지",
           "src": "/assets/photos/facility-service1.png"
         },
-        "description": [
-          "여행의 피로를 풀어주는 마사지 서비스를 준비하고 있습니다."
-        ],
+        "description": ["여행의 피로를 풀어주는 마사지 서비스를 준비하고 있습니다."],
         "fee": "3,300엔〜",
-        "plans": [
-          "30분 코스 3,300엔",
-          "60분 코스 6,000엔"
-        ],
+        "plans": ["30분 코스 3,300엔", "60분 코스 6,000엔"],
         "receptionHours": "15:00〜22:00",
         "reservationMethod": "프런트로 문의해 주세요.",
         "isFeatured": true
@@ -119,9 +106,7 @@
         "image": {
           "label": "마작"
         },
-        "description": [
-          "가족・친구와의 여행 시간에 마작 테이블을 대여해 드립니다."
-        ],
+        "description": ["가족・친구와의 여행 시간에 마작 테이블을 대여해 드립니다."],
         "fee": "1,100엔（테이블 대여・시간 무제한）",
         "hours": "10:00〜22:00",
         "reservationMethod": "프런트로 문의해 주세요."
@@ -132,9 +117,7 @@
         "image": {
           "label": "바둑・쇼기"
         },
-        "description": [
-          "바둑・쇼기판을 대여해 드립니다."
-        ],
+        "description": ["바둑・쇼기판을 대여해 드립니다."],
         "fee": "550엔（시간 무제한）",
         "reservationMethod": "프런트에서 대여해 드립니다."
       },
@@ -157,9 +140,7 @@
         "image": {
           "label": "Wi-Fi"
         },
-        "description": [
-          "館内・객실 모두 무료로 Wi-Fi를 이용하실 수 있습니다."
-        ],
+        "description": ["館内・객실 모두 무료로 Wi-Fi를 이용하실 수 있습니다."],
         "fee": "무료",
         "hours": "24시간"
       }
@@ -277,10 +258,7 @@
         "location": "홋카이도 아부타군 도야코초 도야코 온천",
         "accessFromHotel": "도보 약 1분",
         "officialSite": "https://www.laketoya.com/",
-        "categories": [
-          "learn",
-          "family"
-        ]
+        "categories": ["learn", "family"]
       },
       {
         "id": "illumination-tunnel",
@@ -297,9 +275,7 @@
         "location": "홋카이도 아부타군 도야코초 도야코 온천",
         "accessFromHotel": "도보 약 3분",
         "officialSite": "https://www.laketoya.com/",
-        "categories": [
-          "view"
-        ]
+        "categories": ["view"]
       },
       {
         "id": "canoe-sup",
@@ -317,9 +293,7 @@
         "location": "도야코 온천 주변",
         "accessFromHotel": "도보 약 5분",
         "officialSite": "https://toya-guide.com/",
-        "categories": [
-          "active"
-        ]
+        "categories": ["active"]
       },
       {
         "id": "cherry-blossoms",
@@ -336,10 +310,7 @@
         "location": "홋카이도 아부타군 도야코초 도야코 온천 주변",
         "accessFromHotel": "도보 약 5분",
         "officialSite": "https://www.laketoya.com/",
-        "categories": [
-          "view",
-          "family"
-        ]
+        "categories": ["view", "family"]
       },
       {
         "id": "rental-cycle",
@@ -357,9 +328,7 @@
         "location": "도야코 온천 거리",
         "accessFromHotel": "도보 약 5분",
         "officialSite": "https://www.laketoya.com/",
-        "categories": [
-          "active"
-        ]
+        "categories": ["active"]
       },
       {
         "id": "silo-observatory",
@@ -376,10 +345,7 @@
         "location": "홋카이도 아부타군 도야코초 나리카 3-5",
         "accessFromHotel": "차로 약 15분",
         "officialSite": "https://toyako.biz/",
-        "categories": [
-          "view",
-          "family"
-        ]
+        "categories": ["view", "family"]
       },
       {
         "id": "usuzan-ropeway",
@@ -397,9 +363,7 @@
         "location": "홋카이도 우스군 소베쓰초 쇼와신잔 184-5",
         "accessFromHotel": "차로 약 10분",
         "officialSite": "https://usuzan.hokkaido.jp/",
-        "categories": [
-          "view"
-        ]
+        "categories": ["view"]
       },
       {
         "id": "showa-shinzan",
@@ -416,10 +380,7 @@
         "location": "홋카이도 우스군 소베쓰초 쇼와신잔",
         "accessFromHotel": "차로 약 10분",
         "officialSite": "https://usuzan.hokkaido.jp/",
-        "categories": [
-          "view",
-          "learn"
-        ]
+        "categories": ["view", "learn"]
       },
       {
         "id": "sunflower-field",
@@ -436,10 +397,7 @@
         "location": "홋카이도 아부타군 도야코초 주변",
         "accessFromHotel": "차로 약 10분",
         "officialSite": "https://www.laketoya.com/",
-        "categories": [
-          "view",
-          "family"
-        ]
+        "categories": ["view", "family"]
       },
       {
         "id": "geopark-walk",
@@ -456,9 +414,7 @@
         "location": "홋카이도 아부타군 도야코초 도야코 온천 주변",
         "accessFromHotel": "차로 약 5분",
         "officialSite": "https://www.laketoya.com/",
-        "categories": [
-          "learn"
-        ]
+        "categories": ["learn"]
       },
       {
         "id": "bear-ranch",
@@ -476,9 +432,7 @@
         "location": "홋카이도 우스군 소베쓰초 쇼와신잔 183",
         "accessFromHotel": "차로 약 10분",
         "officialSite": "https://kumakuma.co.jp/",
-        "categories": [
-          "family"
-        ]
+        "categories": ["family"]
       },
       {
         "id": "laketoya-ranch",
@@ -496,10 +450,7 @@
         "location": "홋카이도 아부타군 도야코초 쓰키우라 44",
         "accessFromHotel": "차로 약 10분",
         "officialSite": "https://www.laketoya-ranch.com/",
-        "categories": [
-          "family",
-          "active"
-        ]
+        "categories": ["family", "active"]
       },
       {
         "id": "lakehill-farm",
@@ -516,10 +467,7 @@
         "location": "홋카이도 아부타군 도야코초 하나와 127",
         "accessFromHotel": "차로 약 15분",
         "officialSite": "https://lake-hill.com/",
-        "categories": [
-          "family",
-          "active"
-        ]
+        "categories": ["family", "active"]
       }
     ]
   },

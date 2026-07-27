@@ -57,5 +57,10 @@
   "phoneAriaLabel": "電話をかける",
   "menuOpenLabel": "メニューを開く",
   "menuCloseLabel": "メニューを閉じる",
-  "siteInfoHeading": "SITE INFORMATION"
+  "siteInfoHeading": "SITE INFORMATION",
+  "langSwitcherLabel": "言語を選択",
+  "bottomNavSearchLabel": "検索",
+  "bottomNavTelLabel": "電話",
+  "bottomNavReserveLabel": "予約",
+  "bottomNavMenuLabel": "メニュー"
 }

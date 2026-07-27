@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import SearchOverlay from '../components/common/SearchOverlay'; // パスは実際の配置に合わせて調整してください
-import {asset} from './../utils/asset';
+import SearchOverlay from '../components/common/SearchOverlay';
+import { asset } from './../utils/asset';
 
 interface PrimaryNavItem {
   href: string;
@@ -32,28 +32,25 @@ interface HeaderProps {
   navAriaLabel: string;
   drawerNavAriaLabel: string;
   langLinks: LangLink[];
-  langSwitcherLabel: string; // 例: "言語を選択" — ドロップダウンの aria-label 用
+  langSwitcherLabel: string;
   searchIndexUrl: string;
   searchPlaceholder: string;
   searchOpenLabel: string;
   searchNoResultsLabel: string;
+  bottomNavSearchLabel?: string;
+  bottomNavTelLabel?: string;
+  bottomNavReserveLabel?: string;
+  bottomNavMenuLabel?: string;
 }
 
-/**
- * 言語切替ドロップダウン(案A)
- * 常時表示は現在の言語のみ。クリック/Enterで展開し、Escapeまたは外側クリックで閉じる。
- * 4言語以上に増えても横幅を消費しないため、ヘッダーの主要ナビと衝突しない。
- */
 function LanguageDropdown({ langLinks, label }: { langLinks: LangLink[]; label: string }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const firstItemRef = useRef<HTMLAnchorElement>(null);
   const active = langLinks.find((l) => l.active) ?? langLinks[0];
-
   useEffect(() => {
     if (!open) return;
     firstItemRef.current?.focus();
-
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false);
     };
@@ -69,7 +66,6 @@ function LanguageDropdown({ langLinks, label }: { langLinks: LangLink[]; label: 
       document.removeEventListener('mousedown', onClickOutside);
     };
   }, [open]);
-
   return (
     <div ref={rootRef} className="relative">
       <button
@@ -107,7 +103,6 @@ function LanguageDropdown({ langLinks, label }: { langLinks: LangLink[]; label: 
           <path d="m6 9 6 6 6-6" />
         </svg>
       </button>
-
       {open && (
         <div
           role="listbox"
@@ -156,6 +151,10 @@ export default function Header({
   searchPlaceholder,
   searchOpenLabel,
   searchNoResultsLabel,
+  bottomNavSearchLabel = '検索',
+  bottomNavTelLabel = '電話',
+  bottomNavReserveLabel = '予約',
+  bottomNavMenuLabel = 'メニュー',
 }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -170,7 +169,7 @@ export default function Header({
 
   return (
     <header
-      className="absolute left-0 top-0 z-20 w-full px-8 py-7 lg:px-12 lg:py-9 lg:pr-28"
+      className="absolute left-0 top-0 z-20 w-full px-8 py-7 lg:px-12 lg:py-9 lg:pr-40"
       id="site-header"
     >
       <div className="flex items-center">
@@ -199,30 +198,32 @@ export default function Header({
           ))}
         </nav>
         <div className="ml-auto hidden items-center gap-3 lg:flex">
-          {/* 検索アイコン */}
-          <button
-            onClick={() => setIsSearchOpen(true)}
-            aria-label={searchOpenLabel}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/60 backdrop-blur-sm transition-colors hover:border-[#A24730] hover:text-[#A24730]"
-          >
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.3-4.3" />
-            </svg>
-          </button>
-          {/* 言語切替(案A: ドロップダウン) */}
           <LanguageDropdown langLinks={langLinks} label={langSwitcherLabel} />
         </div>
       </div>
+
+      {/* PC: 固定検索ボタン。常時オレンジ、ハンバーガーのすぐ左に寄せる */}
       <button
-        className="group fixed right-6 top-6 z-[999] flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-[#16283A]/70 backdrop-blur-md transition-colors hover:bg-[#16283A]/90 lg:right-9 lg:top-9"
+        onClick={() => setIsSearchOpen(true)}
+        aria-label={searchOpenLabel}
+        className="fixed right-24 top-9 z-[999] hidden h-12 w-12 items-center justify-center rounded-full border border-[#A24730] text-[#A24730] backdrop-blur-md transition-colors hover:bg-[#A24730] hover:text-white lg:flex"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+      </button>
+
+      {/* ハンバーガー: PCのみ表示。スマホはボトムナビの「メニュー」に統合したため非表示 */}
+      <button
+        className="group fixed right-9 top-9 z-[999] hidden h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-[#16283A]/70 backdrop-blur-md transition-colors hover:bg-[#16283A]/90 lg:flex"
         id="nav-toggle"
         aria-label={isOpen ? menuCloseLabel : menuOpenLabel}
         aria-expanded={isOpen}
@@ -231,30 +232,23 @@ export default function Header({
       >
         <span className="relative flex h-4 w-[22px] flex-col items-center justify-center">
           <span
-            className={`absolute h-[1.5px] w-full origin-center rounded-full bg-white transition-all duration-300 ease-out ${
-              isOpen ? 'rotate-45' : '-translate-y-[6px]'
-            }`}
+            className={`absolute h-[1.5px] w-full origin-center rounded-full bg-white transition-all duration-300 ease-out ${isOpen ? 'rotate-45' : '-translate-y-[6px]'}`}
           />
           <span
-            className={`absolute h-[1.5px] rounded-full bg-white transition-all duration-200 ease-out ${
-              isOpen ? 'w-0 opacity-0' : 'w-full opacity-100'
-            }`}
+            className={`absolute h-[1.5px] rounded-full bg-white transition-all duration-200 ease-out ${isOpen ? 'w-0 opacity-0' : 'w-full opacity-100'}`}
           />
           <span
-            className={`absolute h-[1.5px] w-full origin-center rounded-full bg-white transition-all duration-300 ease-out ${
-              isOpen ? '-rotate-45' : 'translate-y-[6px]'
-            }`}
+            className={`absolute h-[1.5px] w-full origin-center rounded-full bg-white transition-all duration-300 ease-out ${isOpen ? '-rotate-45' : 'translate-y-[6px]'}`}
           />
         </span>
       </button>
+
       <div
-        className={`fixed inset-0 z-[900] bg-[#0F1A26]/60 backdrop-blur-sm transition-opacity duration-300 ${
-          isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
-        }`}
+        className={`fixed inset-0 z-[900] bg-[#0F1A26]/60 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
         onClick={closeNav}
         aria-hidden="true"
       />
-      {/* ドロワー */}
+
       <nav
         id="site-nav"
         className={`fixed right-0 top-0 z-[950] flex h-full w-[88%] max-w-[340px] flex-col overflow-hidden bg-[#16283A] shadow-2xl transition-transform duration-500 ease-out sm:max-w-[400px] lg:max-w-[460px] ${
@@ -284,9 +278,7 @@ export default function Header({
             </span>
           </button>
         </div>
-        {/* スクロール領域: 万一入りきらない画面サイズでも崩れないための保険 */}
         <div className="relative flex flex-1 flex-col overflow-y-auto px-7 pt-5 lg:px-10">
-          {/* 主要コンテンツナビ */}
           <ul className="flex flex-col">
             {primaryNavItems.map((item, i) => (
               <li
@@ -321,7 +313,6 @@ export default function Header({
               </li>
             ))}
           </ul>
-          {/* 予約・電話CTA */}
           <div className="my-5 flex items-center gap-3">
             <a
               href={reservationUrl}
@@ -349,7 +340,6 @@ export default function Header({
               </svg>
             </a>
           </div>
-          {/* 利用規約・会社情報などの副次ナビ */}
           <div className="border-t border-white/[0.08] pb-6 pt-5">
             <span className="mb-3 block text-[9px] font-medium tracking-[0.2em] text-white/30">
               {siteInfoHeading}
@@ -369,7 +359,6 @@ export default function Header({
             </ul>
           </div>
         </div>
-        {/* フッター: 言語切替(モバイルのみ、ドロワーは横幅に余裕があるため従来通りインライン表示) */}
         <div className="relative flex items-center justify-between border-t border-white/[0.08] px-7 py-4 lg:hidden lg:px-10">
           <div className="flex items-center gap-2.5 text-[11px] font-medium tracking-[0.12em] text-white/60">
             {langLinks.map((lang, i) => (
@@ -377,9 +366,7 @@ export default function Header({
                 {i > 0 && <span className="mx-1.5 h-2.5 w-px bg-white/20" />}
                 <a
                   href={asset(lang.href)}
-                  className={`transition-colors ${
-                    lang.active ? 'text-[#E8A87C]' : 'hover:text-white'
-                  }`}
+                  className={`transition-colors ${lang.active ? 'text-[#E8A87C]' : 'hover:text-white'}`}
                 >
                   {lang.label}
                 </a>
@@ -388,6 +375,90 @@ export default function Header({
           </div>
         </div>
       </nav>
+
+      {/* スマホ: 固定ボトムナビバー（検索・電話・予約・メニュー） */}
+      <div
+        className="fixed inset-x-0 bottom-0 z-[400] flex items-stretch justify-around border-t border-white/10 bg-[#16283A]/95 backdrop-blur-md lg:hidden"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+      >
+        <button
+          onClick={() => setIsSearchOpen(true)}
+          aria-label={searchOpenLabel}
+          className="flex flex-1 flex-col items-center gap-1 py-2.5 text-white/60 transition-colors active:text-[#E8A87C]"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+          <span className="text-[9px] tracking-[0.05em]">{bottomNavSearchLabel}</span>
+        </button>
+
+        <a
+          href={`tel:${tel}`}
+          aria-label={phoneAriaLabel}
+          className="flex flex-1 flex-col items-center gap-1 py-2.5 text-white/60 transition-colors active:text-[#E8A87C]"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          <span className="text-[9px] tracking-[0.05em]">{bottomNavTelLabel}</span>
+        </a>
+
+        <a
+          href={reservationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-1 flex-col items-center gap-1 py-2.5 text-[#E8A87C]"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          <span className="text-[9px] tracking-[0.05em]">{bottomNavReserveLabel}</span>
+        </a>
+
+        <button
+          onClick={() => setIsOpen((prev) => !prev)}
+          aria-label={isOpen ? menuCloseLabel : menuOpenLabel}
+          aria-expanded={isOpen}
+          aria-controls="site-nav"
+          className="flex flex-1 flex-col items-center gap-1 py-2.5 text-white/60 transition-colors active:text-[#E8A87C]"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <span className="text-[9px] tracking-[0.05em]">{bottomNavMenuLabel}</span>
+        </button>
+      </div>
+
       <SearchOverlay
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}

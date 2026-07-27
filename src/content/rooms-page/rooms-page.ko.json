@@ -121,10 +121,7 @@
               "label": "1층 객실",
               "reservationName": "【1층】호수에 면한 일본식 객실 8조",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017392&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": [
-                "도야코 뷰",
-                "불꽃놀이 감상 가능（4/28〜10/31）"
-              ],
+              "badges": ["도야코 뷰", "불꽃놀이 감상 가능（4/28〜10/31）"],
               "images": [
                 {
                   "label": "객실 전경",
@@ -203,11 +200,7 @@
               "label": "창가 레이크뷰 일본식 객실",
               "reservationName": "창가 레이크뷰 일본식 객실",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017390&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": [
-                "측면 레이크뷰",
-                "창가에서 호수 조망",
-                "불꽃놀이 감상 가능"
-              ],
+              "badges": ["측면 레이크뷰", "창가에서 호수 조망", "불꽃놀이 감상 가능"],
               "images": [
                 {
                   "label": "객실 전경",
@@ -256,10 +249,7 @@
               "label": "1층 객실",
               "reservationName": "【1층】호수에 면한 서양식 트윈룸",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017389&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": [
-                "도야코 뷰",
-                "불꽃놀이 감상 가능（4/28〜10/31）"
-              ],
+              "badges": ["도야코 뷰", "불꽃놀이 감상 가능（4/28〜10/31）"],
               "images": [
                 {
                   "label": "객실 전경",

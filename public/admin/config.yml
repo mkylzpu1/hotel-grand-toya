@@ -47,6 +47,16 @@ collections:
       - { label: 'メニューを開くaria-label', name: menuOpenLabel, widget: string, i18n: true }
       - { label: 'メニューを閉じるaria-label', name: menuCloseLabel, widget: string, i18n: true }
       - { label: '「SITE INFORMATION」見出し', name: siteInfoHeading, widget: string, i18n: true }
+      - { label: '言語切替ボタンaria-label', name: langSwitcherLabel, widget: string, i18n: true }
+      - label: 'スマホ版ボトムナビ'
+        name: bottomNav
+        widget: object
+        i18n: true
+        fields:
+          - { label: '検索ラベル', name: bottomNavSearchLabel, widget: string }
+          - { label: '電話ラベル', name: bottomNavTelLabel, widget: string }
+          - { label: '予約ラベル', name: bottomNavReserveLabel, widget: string }
+          - { label: 'メニューラベル', name: bottomNavMenuLabel, widget: string }
   # ── 関連リンク集(各ページ末尾の「関連ページ」ブロック) ─────
   - name: 'related-links'
     label: '01 サイト共通｜関連リンク'

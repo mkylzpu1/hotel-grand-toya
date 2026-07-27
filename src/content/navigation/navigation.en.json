@@ -57,5 +57,10 @@
   "phoneAriaLabel": "Call us",
   "menuOpenLabel": "Open menu",
   "menuCloseLabel": "Close menu",
-  "siteInfoHeading": "SITE INFORMATION"
+  "siteInfoHeading": "SITE INFORMATION",
+  "langSwitcherLabel": "Select language",
+  "bottomNavSearchLabel": "Search",
+  "bottomNavTelLabel": "Call",
+  "bottomNavReserveLabel": "Book",
+  "bottomNavMenuLabel": "Menu"
 }

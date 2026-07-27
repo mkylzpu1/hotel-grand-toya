@@ -57,5 +57,10 @@
   "phoneAriaLabel": "拨打电话",
   "menuOpenLabel": "打开菜单",
   "menuCloseLabel": "关闭菜单",
-  "siteInfoHeading": "网站信息"
+  "siteInfoHeading": "网站信息",
+  "langSwitcherLabel": "选择语言",
+  "bottomNavSearchLabel": "搜索",
+  "bottomNavTelLabel": "致电",
+  "bottomNavReserveLabel": "预订",
+  "bottomNavMenuLabel": "菜单"
 }

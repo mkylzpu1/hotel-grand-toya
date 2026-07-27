@@ -1,5 +1,5 @@
 import ArrowLink from '../ui/ArrowLink';
-import {asset} from '../../utils/asset';
+import { asset } from '../../utils/asset';
 interface SceneryItem {
   img: string;
   title: string;

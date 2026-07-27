@@ -5,7 +5,6 @@ import Footer from './Footer';
 import { locales, type Locale } from '../content/config';
 import type { LangLink, NavigationContent, SiteContent } from '../types/site';
 import bgTexture from '../../public/assets/textures/bg_v4_2x.jpg';
-
 interface Props {
   lang: Locale;
   title: string;
@@ -18,6 +17,7 @@ const { lang, title, description, navigation, site, langLinks } = Astro.props;
 const logoAlt = 'ホテルグランドトーヤのロゴ';
 const navAriaLabel = 'グローバルナビゲーション';
 const drawerNavAriaLabel = 'ドロワーナビゲーション';
+const langSwitcherLabel = '言語を選択';
 const searchOpenLabel = 'サイト内検索を開く';
 const searchPlaceholder = '客室名やキーワードで検索';
 const searchNoResultsLabel = '該当する情報が見つかりませんでした';
@@ -60,12 +60,19 @@ const searchNoResultsLabel = '該当する情報が見つかりませんでし�
       navAriaLabel={navAriaLabel}
       drawerNavAriaLabel={drawerNavAriaLabel}
       langLinks={langLinks}
+      langSwitcherLabel={langSwitcherLabel}
       searchIndexUrl={`${import.meta.env.BASE_URL}${lang}/search-index.json`}
       searchOpenLabel={searchOpenLabel}
       searchPlaceholder={searchPlaceholder}
       searchNoResultsLabel={searchNoResultsLabel}
+      bottomNavSearchLabel={navigation.bottomNavSearchLabel}
+      bottomNavTelLabel={navigation.bottomNavTelLabel}
+      bottomNavReserveLabel={navigation.bottomNavReserveLabel}
+      bottomNavMenuLabel={navigation.bottomNavMenuLabel}
     />
-    <slot />
+    <main class="pb-16 lg:pb-0">
+      <slot />
+    </main>
     <Footer
       guideLinks={navigation.primaryNavItems}
       infoLinks={navigation.secondaryNavItems}

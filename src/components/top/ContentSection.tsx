@@ -1,6 +1,6 @@
 import type { SectionData } from '../../types/section';
 import ArrowLink from '../ui/ArrowLink';
-import {asset} from '../../utils/asset';
+import { asset } from '../../utils/asset';
 
 export default function ContentSection({
   sectionId,

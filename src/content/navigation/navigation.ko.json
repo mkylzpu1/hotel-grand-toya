@@ -57,5 +57,10 @@
   "phoneAriaLabel": "전화 걸기",
   "menuOpenLabel": "메뉴 열기",
   "menuCloseLabel": "메뉴 닫기",
-  "siteInfoHeading": "SITE INFORMATION"
+  "siteInfoHeading": "SITE INFORMATION",
+  "langSwitcherLabel": "언어 선택",
+  "bottomNavSearchLabel": "검색",
+  "bottomNavTelLabel": "전화",
+  "bottomNavReserveLabel": "예약",
+  "bottomNavMenuLabel": "메뉴"
 }

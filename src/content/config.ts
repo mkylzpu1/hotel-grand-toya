@@ -48,7 +48,6 @@ const site = defineCollection({
   }),
 });
 
-// ヘッダー/ドロワーのナビゲーション
 const navigation = defineCollection({
   type: 'data',
   schema: z.object({
@@ -71,6 +70,11 @@ const navigation = defineCollection({
     menuOpenLabel: z.string(),
     menuCloseLabel: z.string(),
     siteInfoHeading: z.string(),
+    langSwitcherLabel: z.string(),
+    bottomNavSearchLabel: z.string(),
+    bottomNavTelLabel: z.string(),
+    bottomNavReserveLabel: z.string(),
+    bottomNavMenuLabel: z.string(),
   }),
 });
 

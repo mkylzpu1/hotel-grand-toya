@@ -93,20 +93,12 @@
       "employmentType": "Part-time",
       "recruitCount": 1,
       "summary": "This role covers front desk duties during the hours between check-out and check-in. Mainly guest service, phone handling, and basic data entry — days and hours are negotiable.",
-      "duties": [
-        "Front desk guest service",
-        "Phone handling",
-        "Basic data entry"
-      ],
+      "duties": ["Front desk guest service", "Phone handling", "Basic data entry"],
       "salaryType": "Hourly wage",
       "salaryRoughLabel": "From ¥1,100/hour",
       "workingHours": "10:00–14:00 (3-4 days/week, days negotiable)",
       "holidays": "Two days off per week",
-      "tags": [
-        "No experience required",
-        "Flexible hours",
-        "15 min. by car from the station"
-      ]
+      "tags": ["No experience required", "Flexible hours", "15 min. by car from the station"]
     }
   ],
   "processHeading": "Hiring Process",
