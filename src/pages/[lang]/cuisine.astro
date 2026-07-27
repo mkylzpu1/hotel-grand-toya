@@ -76,7 +76,7 @@ const page = pageEntry.data;
           page.dinner.plans.map((plan) => (
             <div
               id={plan.id ? `plan-${plan.id}` : undefined}
-              class="scroll-mt-6 border-t border-[#D8D7D2] pt-14 first:border-t-0 first:pt-0"
+              class="scroll-mt-6 border-t border-[#D8D7D2] pt-14"
             >
               <CuisinePlanBlock
                 name={plan.name}
@@ -111,14 +111,15 @@ const page = pageEntry.data;
           ))
         }
       </div>
-
-      <CuisinePlanBlock
-        name={page.breakfast.plan.name}
-        nameEn={page.breakfast.plan.nameEn}
-        image={page.breakfast.plan.image}
-        description={page.breakfast.plan.description}
-        seasonalNote={page.breakfast.plan.seasonalNote}
-      />
+      <div class="scroll-mt-6 border-t border-[#b7b6b3] pt-14">
+        <CuisinePlanBlock
+          name={page.breakfast.plan.name}
+          nameEn={page.breakfast.plan.nameEn}
+          image={page.breakfast.plan.image}
+          description={page.breakfast.plan.description}
+          seasonalNote={page.breakfast.plan.seasonalNote}
+        />
+      </div>
     </div>
   </section>
 
