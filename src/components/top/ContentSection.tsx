@@ -1,5 +1,6 @@
 import type { SectionData } from '../../types/section';
 import ArrowLink from '../ui/ArrowLink';
+import {asset} from '../../utils/asset';
 
 export default function ContentSection({
   sectionId,
@@ -58,7 +59,7 @@ export default function ContentSection({
             ))}
           </p>
 
-          {linkText && <ArrowLink href={linkHref}>{linkText}</ArrowLink>}
+          {linkText && <ArrowLink href={asset(linkHref)}>{linkText}</ArrowLink>}
         </div>
 
         {/* 画像カラム */}
