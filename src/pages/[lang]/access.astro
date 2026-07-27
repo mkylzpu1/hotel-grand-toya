@@ -31,6 +31,7 @@ const page = pageEntry.data;
   currentPageId="access"
   relatedLinksHeading={relatedLinksData.heading}
   relatedLinks={relatedLinksData.links}
+  relatedLinksBackground="none"
 >
 
 <!-- マップ・お問い合わせ -->
@@ -330,26 +331,6 @@ const page = pageEntry.data;
     </div>
   </div>
 )}
-  </div>
-</section>
-
-<!-- よくある質問 -->
-<section class="py-[88px] lg:py-[108px]">
-  <div class="mx-auto max-w-[1320px] px-10">
-    <h2 class="mb-10 font-serif text-[1.4rem] font-semibold text-[#1E1C1A]">{page.faq.heading}</h2>
-    <div class="divide-y divide-[#C7C5BF] border-t border-b border-[#C7C5BF]">
-      {
-        page.faq.items.map((item) => (
-          <details class="group py-5">
-            <summary class="flex cursor-pointer list-none items-center justify-between text-[0.92rem] font-medium text-[#1E1C1A]">
-              {item.question}
-              <span class="text-[#A24730] transition-transform group-open:rotate-45">＋</span>
-            </summary>
-            <p class="mt-3 text-[0.86rem] leading-[1.9] text-[#55524C]">{item.answer}</p>
-          </details>
-        ))
-      }
-    </div>
   </div>
 </section>
 </PageTemplate>
