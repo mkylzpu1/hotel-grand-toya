@@ -3,15 +3,19 @@ import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
+
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('news-page');
 }
+
 const { lang } = Astro.params as { lang: Locale };
 const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
   await getPageContext(lang, 'news-page', 'news');
 const page = pageEntry.data;
+
 // 日付降順に並べ替え
 const posts = [...page.posts].sort((a, b) => (a.date < b.date ? 1 : -1));
+
 const categoryIdMap: Record<string, string> = {
   'お知らせ': 'other',
   'イベント': 'event',
@@ -19,6 +23,7 @@ const categoryIdMap: Record<string, string> = {
   'キャンペーン': 'campaign',
 };
 ---
+
 <PageTemplate
   lang={lang}
   title={`${page.pageTitle}｜${siteEntry.data.title}`}
@@ -36,6 +41,7 @@ const categoryIdMap: Record<string, string> = {
 >
   <section class="mx-auto max-w-[1000px] px-10 py-[88px] lg:py-[108px]">
     <SectionEyebrow icon={page.icon} eyebrow="News" heading={page.pageTitle} />
+
     <!-- カテゴリフィルター -->
     <div class="mb-12 mt-10 flex flex-wrap gap-3" data-news-filters>
       <button
@@ -57,12 +63,14 @@ const categoryIdMap: Record<string, string> = {
         ))
       }
     </div>
-<!-- 一覧 -->
+
+    <!-- 一覧 -->
     <div class="space-y-0 divide-y divide-[#D8D7D2] border-t border-[#D8D7D2]" data-news-list>
       {
         posts.map((post) => (
           <article
-            class="news-item flex flex-col gap-2 py-7 sm:flex-row sm:items-baseline sm:gap-8"
+            id={post.id}
+            class="news-item scroll-mt-24 flex flex-col gap-2 py-7 sm:flex-row sm:items-baseline sm:gap-8"
             data-category={categoryIdMap[post.category] ?? 'other'}
           >
             <div class="flex shrink-0 items-center gap-4 sm:w-[180px]">
@@ -84,12 +92,14 @@ const categoryIdMap: Record<string, string> = {
         ))
       }
     </div>
+
     <!-- 「お知らせはありません」表示：記事が0件の時／絞り込み結果が0件の時の両方で使う -->
     <p id="news-empty" class="hidden py-10 text-center text-[0.9rem] text-[#8A8781]" data-news-empty>
       {page.emptyLabel}
     </p>
   </section>
-<script is:inline>
+
+  <script is:inline>
     (function () {
       const buttons = document.querySelectorAll('.news-filter-btn');
       const items = document.querySelectorAll('.news-item');
@@ -105,28 +115,57 @@ const categoryIdMap: Record<string, string> = {
         }
       }
 
+      function applyFilter(filter) {
+        buttons.forEach((b) => {
+          const active = b.getAttribute('data-filter') === filter;
+          b.classList.toggle('is-active', active);
+          b.classList.toggle('bg-[#A24730]', active);
+          b.classList.toggle('text-white', active);
+          b.classList.toggle('border-[#A24730]', active);
+          b.classList.toggle('bg-white', !active);
+          b.classList.toggle('text-[#55524C]', !active);
+          b.classList.toggle('border-[#D8D7D2]', !active);
+        });
+        items.forEach((item) => {
+          const category = item.getAttribute('data-category');
+          const show = filter === 'all' || filter === category;
+          item.style.display = show ? '' : 'none';
+        });
+        updateEmptyState(filter);
+      }
+
       buttons.forEach((btn) => {
         btn.addEventListener('click', () => {
-          const filter = btn.getAttribute('data-filter');
-          buttons.forEach((b) => {
-            b.classList.remove('is-active', 'bg-[#A24730]', 'text-white', 'border-[#A24730]');
-            b.classList.add('bg-white', 'text-[#55524C]', 'border-[#D8D7D2]');
-          });
-          btn.classList.remove('bg-white', 'text-[#55524C]', 'border-[#D8D7D2]');
-          btn.classList.add('is-active', 'bg-[#A24730]', 'text-white', 'border-[#A24730]');
-          items.forEach((item) => {
-            const category = item.getAttribute('data-category');
-            const show = filter === 'all' || filter === category;
-            item.style.display = show ? '' : 'none';
-          });
-          updateEmptyState(filter);
+          applyFilter(btn.getAttribute('data-filter'));
         });
       });
 
+      // --- 検索結果からの遷移: ハッシュ一致記事へスクロール＆一瞬ハイライト ---
+      function flashHashTarget() {
+        const hash = decodeURIComponent(location.hash.replace(/^#/, ''));
+        if (!hash) return;
+        const target = document.getElementById(hash);
+        if (!target) return;
+
+        // 現在のフィルターで隠れている場合は「すべて」に戻す
+        if (target.style.display === 'none') {
+          applyFilter('all');
+        }
+
+        requestAnimationFrame(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.add('search-highlight');
+          setTimeout(() => target.classList.remove('search-highlight'), 2000);
+        });
+      }
+
       // 初期表示（記事が0件の場合にも対応）
       updateEmptyState('all');
+      flashHashTarget();
+      window.addEventListener('hashchange', flashHashTarget);
     })();
   </script>
+
   <style>
     /* 選択中のタブは hover しても背景色と文字色を固定する
        （hover:text-[#A24730] とぶつかって文字が見えなくなるのを防止） */
@@ -134,6 +173,14 @@ const categoryIdMap: Record<string, string> = {
       background-color: #a24730;
       border-color: #a24730;
       color: #ffffff;
+    }
+
+    .search-highlight {
+      animation: search-flash 2s ease-out;
+    }
+    @keyframes search-flash {
+      0%, 40% { box-shadow: 0 0 0 3px #A24730; }
+      100% { box-shadow: 0 0 0 3px transparent; }
     }
   </style>
 </PageTemplate>

@@ -5,17 +5,15 @@ import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
 import { Footprints, Car, Star, Ticket, MapPin, ExternalLink, Store } from 'lucide-astro';
 
-
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('facilities-page');
 }
 
 const { lang } = Astro.params as { lang: Locale };
-
 const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } =
   await getPageContext(lang, 'facilities-page', 'facilities');
-
 const page = pageEntry.data;
+
 // 未確定項目のフォールバック表示
 const FALLBACK = 'フロントまでお問い合わせください';
 const withFallback = (value?: string) => value || FALLBACK;
@@ -48,7 +46,6 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
   relatedLinks={relatedLinksData.links}
   relatedLinksBackground="none"
 >
-
     <section class="mx-auto max-w-[1320px] px-10 py-[88px] lg:py-[108px]">
       <SectionEyebrow icon={page.intro.icon} eyebrow={page.intro.eyebrow} heading={page.intro.heading} />
       <div class="mt-8 max-w-[640px]">
@@ -66,7 +63,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
     </div>
     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
       {page.facilitiesSection.items.map((item) => (
-        <div class="border border-[#D8D7D2] bg-white">
+        <div id={item.id} class="scroll-mt-24 border border-[#D8D7D2] bg-white">
           <div class="aspect-[4/3] overflow-hidden bg-[#EFEDE8]">
             <img src={item.image?.src} alt={item.image?.alt ?? item.name} class="h-full w-full object-cover" loading="lazy" />
           </div>
@@ -104,7 +101,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
 
     {/* メインカード（マッサージ）：周辺アクティビティの提携カードに準拠 */}
     {page.servicesSection.items.filter((item) => item.isFeatured).map((item) => (
-      <div class="mb-14 grid grid-cols-1 overflow-hidden border-2 border-[#A24730] bg-white sm:grid-cols-2">
+      <div id={item.id} class="mb-14 scroll-mt-24 grid grid-cols-1 overflow-hidden border-2 border-[#A24730] bg-white sm:grid-cols-2">
         <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8] sm:aspect-auto">
           <img src={item.image?.src} alt={item.image?.alt ?? item.name} class="h-full w-full object-cover" loading="lazy" />
         </div>
@@ -129,7 +126,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
 {/* その他の館内サービス（リスト） */}
 <div class="max-w-[720px] border-t border-[#D8D7D2]">
   {page.servicesSection.items.filter((item) => !item.isFeatured).map((item) => (
-    <div class="flex flex-wrap items-start justify-between gap-x-6 gap-y-1 border-b border-[#D8D7D2] px-1 py-4">
+    <div id={item.id} class="scroll-mt-24 flex flex-wrap items-start justify-between gap-x-6 gap-y-1 border-b border-[#D8D7D2] px-1 py-4">
       <div class="min-w-[200px] flex-1">
         <div class="flex items-center gap-2.5">
           <span class="h-[14px] w-[2.5px] shrink-0 bg-[#A24730]"></span>
@@ -153,6 +150,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
     <div class="mb-14 max-w-[760px]">
       <SectionEyebrow icon={page.activitiesSection.icon} eyebrow={page.activitiesSection.eyebrow} heading={page.activitiesSection.heading} />
     </div>
+
     {/* 提携アクティビティ（先頭・横長カード） */}
     {partnerActivities.length > 0 && (
       <div class="mb-14">
@@ -161,7 +159,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
         </p>
         <div class="space-y-6">
           {partnerActivities.map((item) => (
-            <div class="grid grid-cols-1 overflow-hidden border-2 border-[#A24730] bg-white lg:grid-cols-[1.1fr_1.4fr]">
+            <div id={item.id} class="scroll-mt-24 grid grid-cols-1 overflow-hidden border-2 border-[#A24730] bg-white lg:grid-cols-[1.1fr_1.4fr]">
               <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8] lg:aspect-auto">
                 {item.image?.src ? (
                   <img src={item.image.src} alt={item.image.alt ?? item.image.label} class="h-full w-full object-cover" loading="lazy" />
@@ -186,12 +184,12 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                 )}
               </div>
               <div class="flex flex-col px-7 py-8 lg:px-9">
-<div class="mb-2.5 flex items-center gap-3">
-  <span class="h-[20px] w-[3px] shrink-0 bg-[#A24730]"></span>
-  <h4 class="font-serif text-[1.2rem] font-semibold tracking-[0.01em] text-[#1E1C1A]">
-    {item.name}
-  </h4>
-</div>
+                <div class="mb-2.5 flex items-center gap-3">
+                  <span class="h-[20px] w-[3px] shrink-0 bg-[#A24730]"></span>
+                  <h4 class="font-serif text-[1.2rem] font-semibold tracking-[0.01em] text-[#1E1C1A]">
+                    {item.name}
+                  </h4>
+                </div>
                 {item.description.map((line) => (
                   <p class="mb-2 text-[0.88rem] leading-[1.85] text-[#55524C] last:mb-0">{line}</p>
                 ))}
@@ -226,17 +224,17 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                       </span>
                     )}
                     {item.location && item.officialSite && <span class="text-[#C7C5BF]">　</span>}
-{item.officialSite && (
-  <a
-    href={item.officialSite}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-3 py-1 text-[0.74rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
-  >
-    公式サイトを見る
-    <ExternalLink size={12} strokeWidth={2} class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-  </a>
-)}
+                    {item.officialSite && (
+                      <a
+                        href={item.officialSite}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-3 py-1 text-[0.74rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
+                      >
+                        公式サイトを見る
+                        <ExternalLink size={12} strokeWidth={2} class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -245,6 +243,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
         </div>
       </div>
     )}
+
     {/* その他のアクティビティ（カテゴリタブ + グリッド） */}
     {otherActivities.length > 0 && (
       <div>
@@ -253,28 +252,30 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
             {page.activitiesSection.otherHeading}
           </p>
         )}
+
         {/* カテゴリフィルタタブ */}
-<div id="activity-tablist" class="mb-8 flex flex-wrap gap-2">
-  <button
-    type="button"
-    data-activity-category="all"
-    class="activity-tab rounded-full border px-4 py-2 text-[0.78rem] font-medium transition-colors border-[#A24730] bg-[#A24730] text-white"
-  >
-    {page.activitiesSection.allCategoryLabel}
-  </button>
-  {page.activitiesSection.categoryFilters.map((cat) => (
-    <button
-      type="button"
-      data-activity-category={cat.id}
-      class="activity-tab rounded-full border px-4 py-2 text-[0.78rem] font-medium transition-colors border-[#D8D7D2] bg-white text-[#55524C]"
-    >
-      {cat.label}
-    </button>
-  ))}
-</div>
+        <div id="activity-tablist" class="mb-8 flex flex-wrap gap-2">
+          <button
+            type="button"
+            data-activity-category="all"
+            class="activity-tab rounded-full border px-4 py-2 text-[0.78rem] font-medium transition-colors border-[#A24730] bg-[#A24730] text-white"
+          >
+            {page.activitiesSection.allCategoryLabel}
+          </button>
+          {page.activitiesSection.categoryFilters.map((cat) => (
+            <button
+              type="button"
+              data-activity-category={cat.id}
+              class="activity-tab rounded-full border px-4 py-2 text-[0.78rem] font-medium transition-colors border-[#D8D7D2] bg-white text-[#55524C]"
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
         <div id="activity-grid" class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {otherActivities.map((item) => (
-            <div class="activity-card border border-[#D8D7D2] bg-white" data-categories={(item.categories ?? []).join(',')}>
+            <div id={item.id} class="activity-card scroll-mt-24 border border-[#D8D7D2] bg-white" data-categories={(item.categories ?? []).join(',')}>
               <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8]">
                 {item.image?.src ? (
                   <img src={item.image.src} alt={item.image.alt ?? item.image.label} class="h-full w-full object-cover" loading="lazy" />
@@ -295,22 +296,22 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                 )}
               </div>
               <div class="px-6 py-6">
-<div class="mb-2 flex items-center gap-2.5">
-  <span class="h-[16px] w-[2.5px] shrink-0 bg-[#A24730]"></span>
-  <h4 class="font-serif text-[1.05rem] font-semibold tracking-[0.01em] text-[#1E1C1A]">
-    {item.name}
-  </h4>
-</div>
+                <div class="mb-2 flex items-center gap-2.5">
+                  <span class="h-[16px] w-[2.5px] shrink-0 bg-[#A24730]"></span>
+                  <h4 class="font-serif text-[1.05rem] font-semibold tracking-[0.01em] text-[#1E1C1A]">
+                    {item.name}
+                  </h4>
+                </div>
                 {item.categories && item.categories.length > 0 && (
                   <div class="mb-3 flex flex-wrap gap-1.5">
-  {item.categories.map((catId) => {
-  const cat = page.activitiesSection.categoryFilters.find((c) => c.id === catId);
-  return cat ? (
-    <span class="rounded-full bg-[#F7EAE5] px-2.5 py-1 text-[0.68rem] font-medium text-[#A24730]">
-      {cat.label}
-    </span>
-  ) : null;
-})}
+                    {item.categories.map((catId) => {
+                      const cat = page.activitiesSection.categoryFilters.find((c) => c.id === catId);
+                      return cat ? (
+                        <span class="rounded-full bg-[#F7EAE5] px-2.5 py-1 text-[0.68rem] font-medium text-[#A24730]">
+                          {cat.label}
+                        </span>
+                      ) : null;
+                    })}
                   </div>
                 )}
                 {item.description.map((line) => (
@@ -347,17 +348,17 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                       </span>
                     )}
                     {item.location && item.officialSite && <span class="text-[#C7C5BF]">　</span>}
-{item.officialSite && (
-<a
-    href={item.officialSite}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
-  >
-    公式サイト
-    <ExternalLink size={11} strokeWidth={2} class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-  </a>
-)}
+                    {item.officialSite && (
+                      <a
+                        href={item.officialSite}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
+                      >
+                        公式サイト
+                        <ExternalLink size={11} strokeWidth={2} class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </a>
+                    )}
                   </div>
                 </div>
                 {item.notes && item.notes.length > 0 && (
@@ -376,6 +377,16 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
   </div>
 </section>
 </PageTemplate>
+
+<style>
+  .search-highlight {
+    animation: search-flash 2s ease-out;
+  }
+  @keyframes search-flash {
+    0%, 40% { box-shadow: 0 0 0 3px #A24730; }
+    100% { box-shadow: 0 0 0 3px transparent; }
+  }
+</style>
 
 <script>
   const activityTablist = document.getElementById('activity-tablist');
@@ -403,4 +414,19 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
       card.style.display = show ? '' : 'none';
     });
   });
+
+  // --- 検索結果からの遷移: ハッシュ一致要素へスクロール＆一瞬ハイライト ---
+  function flashHashTarget() {
+    const hash = decodeURIComponent(location.hash.replace(/^#/, ''));
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (!target) return;
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.classList.add('search-highlight');
+      setTimeout(() => target.classList.remove('search-highlight'), 2000);
+    });
+  }
+  flashHashTarget();
+  window.addEventListener('hashchange', flashHashTarget);
 </script>

@@ -172,14 +172,14 @@ const page = pageEntry.data;
 </style>
 
 <script>
-  // カテゴリタブ切り替え
   const tablist = document.getElementById('faq-tablist');
   const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.faq-tab'));
   const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-category-panel]'));
-  tablist?.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.faq-tab');
-    if (!btn) return;
-    const target = btn.dataset['category'];
+
+  // --- タブ切り替え（クリック・hash両方から呼べるよう関数化） ---
+  function activateTab(target: string, { scroll = true }: { scroll?: boolean } = {}) {
+    const tab = tabs.find((t) => t.dataset['category'] === target);
+    if (!tab) return false;
     tabs.forEach((t) => {
       const active = t.dataset['category'] === target;
       t.setAttribute('aria-selected', String(active));
@@ -193,11 +193,24 @@ const page = pageEntry.data;
     panels.forEach((p) => {
       p.hidden = p.dataset['categoryPanel'] !== target;
     });
-    // モバイルでタブ位置が画面外にならないよう軽くスクロール
-    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    if (scroll) {
+      tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+    return true;
+  }
+
+  tablist?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.faq-tab');
+    if (!btn) return;
+    activateTab(btn.dataset['category']!);
   });
 
-  // アコーディオン開閉
+  // --- アコーディオン開閉 ---
+  function openFaqItem(item: HTMLElement) {
+    const question = item.querySelector<HTMLButtonElement>('.faq-question');
+    item.classList.add('is-open');
+    question?.setAttribute('aria-expanded', 'true');
+  }
   document.querySelectorAll<HTMLElement>('.faq-item').forEach((item) => {
     const question = item.querySelector<HTMLButtonElement>('.faq-question');
     question?.addEventListener('click', () => {
@@ -205,4 +218,44 @@ const page = pageEntry.data;
       question.setAttribute('aria-expanded', String(isOpen));
     });
   });
+
+  // --- 検索結果からの遷移: #カテゴリID を見てタブを開く ---
+  function applyHashNavigation() {
+    const hash = decodeURIComponent(location.hash.replace(/^#/, ''));
+    if (!hash) return;
+    const opened = activateTab(hash, { scroll: false });
+    if (opened) {
+      // タブ切り替え後、パネル自体までスクロール
+      requestAnimationFrame(() => {
+        document.getElementById(`panel-${hash}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }
+
+  // --- 検索結果からの遷移: ?highlight=キーワード で該当質問を開いてハイライト ---
+  function applyHighlight() {
+    const params = new URLSearchParams(location.search);
+    const term = params.get('highlight')?.trim().toLowerCase();
+    if (!term) return;
+
+    for (const item of document.querySelectorAll<HTMLElement>('.faq-item')) {
+      const text = item.textContent?.toLowerCase() ?? '';
+      if (!text.includes(term)) continue;
+
+      // このFAQ項目が属するカテゴリタブを開く
+      const panel = item.closest<HTMLElement>('[data-category-panel]');
+      const category = panel?.dataset['categoryPanel'];
+      if (category) activateTab(category, { scroll: false });
+
+      openFaqItem(item);
+      requestAnimationFrame(() => {
+        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+      break; // 最初に一致した項目のみ開く
+    }
+  }
+
+  applyHashNavigation();
+  applyHighlight();
+  window.addEventListener('hashchange', applyHashNavigation);
 </script>

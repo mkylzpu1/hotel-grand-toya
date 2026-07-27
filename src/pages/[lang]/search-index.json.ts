@@ -293,7 +293,7 @@ export const GET: APIRoute = async ({ params }) => {
       entries.push({
         title: post.title,
         excerpt: excerpt(post.body),
-        url: `/${lang}/news/`,
+        url: post.id ? `/${lang}/news/#${post.id}` : `/${lang}/news/`,
         category: page.pageTitle,
       });
     }
