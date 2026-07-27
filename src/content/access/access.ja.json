@@ -22,7 +22,11 @@
       "title": "洞爺湖ロングラン花火大会",
       "note": "湖畔から観覧できます"
     },
-    { "img": "/assets/photos/hero-lake-sub.jpg", "title": "洞爺湖遊覧船", "note": "乗り場まで徒歩約8分" }
+    {
+      "img": "/assets/photos/hero-lake-sub.jpg",
+      "title": "洞爺湖遊覧船",
+      "note": "乗り場まで徒歩約8分"
+    }
   ],
   "sceneryLinkText": "周辺観光はこちら"
 }

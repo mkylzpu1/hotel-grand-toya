@@ -2,19 +2,21 @@
   "pageTitle": "客室",
   "pageTitleEn": "ROOMS",
   "intro": {
-    "icon": "室",
-    "eyebrow": "Rooms",
-    "heading": "旅のかたちに合わせて選ぶ、洞爺湖の客室",
-    "description": [
-      "湖面を渡る風の色は清らかで優しく無色透明。緑の山々を映す美しい水鏡は、安らぎを伝えてくれる澄んだ青です。",
-      "当館では、眺望やベッドタイプ、階数の異なる6タイプの客室をご用意しております。まずは一覧で全体像を比較のうえ、気になる客室の詳細へお進みください。"
-    ]
+    "icon": "室"
   },
-  "icon": "室",
   "quickNav": [
-    { "href": "#section-japanese", "label": "和室" },
-    { "href": "#section-western", "label": "洋室" },
-    { "href": "#section-amenities", "label": "アメニティ" }
+    {
+      "href": "#section-japanese",
+      "label": "和室"
+    },
+    {
+      "href": "#section-western",
+      "label": "洋室"
+    },
+    {
+      "href": "#section-amenities",
+      "label": "アメニティ"
+    }
   ],
   "basicInfoLabels": {
     "size": "広さ",
@@ -28,19 +30,60 @@
   "amenitiesHeading": "無料設備・アメニティ",
   "detailCtaText": "この客室を予約する",
   "commonAmenities": [
-    { "key": "wifi", "label": "Wi-Fi" },
-    { "key": "tv", "label": "テレビ" },
-    { "key": "phone", "label": "電話" },
-    { "key": "aircon", "label": "冷暖房" },
-    { "key": "humidifier", "label": "加湿機能付空気清浄機" },
-    { "key": "fridge", "label": "冷蔵庫", "note": "中身は有料です" },
-    { "key": "unitbath", "label": "ユニットバス", "note": "洋室のみ" },
-    { "key": "washlet", "label": "洗浄機付トイレ" },
-    { "key": "dryer", "label": "ドライヤー" },
-    { "key": "loungewear", "label": "館内着" },
-    { "key": "bathtowel", "label": "バスタオル" },
-    { "key": "towel", "label": "タオル" },
-    { "key": "toothbrush", "label": "歯ブラシ" }
+    {
+      "key": "wifi",
+      "label": "Wi-Fi"
+    },
+    {
+      "key": "tv",
+      "label": "テレビ"
+    },
+    {
+      "key": "phone",
+      "label": "電話"
+    },
+    {
+      "key": "aircon",
+      "label": "冷暖房"
+    },
+    {
+      "key": "humidifier",
+      "label": "加湿機能付空気清浄機"
+    },
+    {
+      "key": "fridge",
+      "label": "冷蔵庫",
+      "note": "中身は有料です"
+    },
+    {
+      "key": "unitbath",
+      "label": "ユニットバス",
+      "note": "洋室のみ"
+    },
+    {
+      "key": "washlet",
+      "label": "洗浄機付トイレ"
+    },
+    {
+      "key": "dryer",
+      "label": "ドライヤー"
+    },
+    {
+      "key": "loungewear",
+      "label": "館内着"
+    },
+    {
+      "key": "bathtowel",
+      "label": "バスタオル"
+    },
+    {
+      "key": "towel",
+      "label": "タオル"
+    },
+    {
+      "key": "toothbrush",
+      "label": "歯ブラシ"
+    }
   ],
   "firstFloorNotice": {
     "heading": "1階客室のご注意",
@@ -52,15 +95,6 @@
   "sections": [
     {
       "id": "japanese",
-      "navLabel": "和室",
-      "icon": "和",
-      "eyebrow": "Japanese-style Room",
-      "heading": "和室",
-      "catchcopy": "畳のぬくもりと洞爺湖の景色に包まれる、寛ぎの和室。",
-      "intro": [
-        "畳のぬくもりと洞爺湖の景色に包まれながら、ゆったりとした時間をお過ごしいただけます。",
-        "ご旅行のスタイルに合わせて、眺望や設備の異なる和室タイプをご用意しております。"
-      ],
       "rooms": [
         {
           "id": "japanese-lakeview",
@@ -72,7 +106,11 @@
             "1階、または2階以上のフロアからお選びいただけ、ご予算やお好みの眺望に合わせてご案内いたします。",
             "※内観は一例です。実際の客室と異なる場合がございます。"
           ],
-          "image": { "label": "客室全体", "src": "/assets/photos/lounge-2.jpg", "alt": "湖側和室" },
+          "image": {
+            "label": "客室全体",
+            "src": "/assets/photos/lounge-2.jpg",
+            "alt": "湖側和室"
+          },
           "size": "26㎡",
           "capacity": "1〜4名",
           "bedding": "布団（ご人数に応じてご用意）",
@@ -85,8 +123,14 @@
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017392&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
               "badges": ["洞爺湖ビュー", "花火鑑賞可能（4/28〜10/31）"],
               "images": [
-                { "label": "客室全体", "src": "/assets/photos/room-1st-1.png" },
-                { "label": "客室全体", "src": "/assets/photos/image2.png" }
+                {
+                  "label": "客室全体",
+                  "src": "/assets/photos/room-1st-1.png"
+                },
+                {
+                  "label": "客室全体",
+                  "src": "/assets/photos/image2.png"
+                }
               ],
               "description": [
                 "湖側に面した1階の客室で、2階客室よりリーズナブルにご利用いただけます。",
@@ -100,8 +144,16 @@
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
               "badges": ["洞爺湖ビュー", "中島・羊蹄山を望む", "花火鑑賞可能（4/28〜10/31）"],
               "images": [
-                { "label": "客室全体", "src": "/assets/photos/hero-lake.jpg", "alt": "湖側和室（スタンダード）" },
-                { "label": "窓からの景色", "src": "/assets/photos/image2.png", "alt": "客室からの眺め" }
+                {
+                  "label": "客室全体",
+                  "src": "/assets/photos/hero-lake.jpg",
+                  "alt": "湖側和室（スタンダード）"
+                },
+                {
+                  "label": "窓からの景色",
+                  "src": "/assets/photos/image2.png",
+                  "alt": "客室からの眺め"
+                }
               ],
               "description": [
                 "2階以上のフロアから洞爺湖・中島・羊蹄山を望む、当館のスタンダードな和室です。",
@@ -112,11 +164,28 @@
               "label": "2階客室（デスク付）",
               "reservationName": "【デスク付】湖に面した和室8畳",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017403&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爺湖ビュー", "中島・羊蹄山を望む", "花火鑑賞可能（4/28〜10/31）", "デスクワーク"],
+              "badges": [
+                "洞爺湖ビュー",
+                "中島・羊蹄山を望む",
+                "花火鑑賞可能（4/28〜10/31）",
+                "デスクワーク"
+              ],
               "images": [
-                { "label": "窓からの景色", "src": "/assets/photos/facility-4.jpg", "alt": "客室からの眺め" },
-                { "label": "夜景・花火", "src": "/assets/photos/image17.jpg", "alt": "夜景・花火" },
-                { "label": "客室全体", "src": "/assets/photos/hero-lake.jpg", "alt": "湖側和室（スタンダード）" }
+                {
+                  "label": "窓からの景色",
+                  "src": "/assets/photos/facility-4.jpg",
+                  "alt": "客室からの眺め"
+                },
+                {
+                  "label": "夜景・花火",
+                  "src": "/assets/photos/image17.jpg",
+                  "alt": "夜景・花火"
+                },
+                {
+                  "label": "客室全体",
+                  "src": "/assets/photos/hero-lake.jpg",
+                  "alt": "湖側和室（スタンダード）"
+                }
               ],
               "description": [
                 "窓際にデスクを設置した和室で、湖を眺めながら快適にお過ごしいただけます。",
@@ -129,8 +198,16 @@
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017390&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
               "badges": ["横向きレイクビュー", "窓辺から湖を望む", "花火鑑賞可能"],
               "images": [
-                { "label": "客室全体", "src": "/assets/photos/facility-1.jpg", "alt": "湖側和室（スタンダード）" },
-                { "label": "夜景・花火", "src": "/assets/photos/image2.png", "alt": "夜景・花火" }
+                {
+                  "label": "客室全体",
+                  "src": "/assets/photos/facility-1.jpg",
+                  "alt": "湖側和室（スタンダード）"
+                },
+                {
+                  "label": "夜景・花火",
+                  "src": "/assets/photos/image2.png",
+                  "alt": "夜景・花火"
+                }
               ],
               "description": [
                 "湖に対して横向きに配置された客室で、窓辺から洞爺湖を望むことができます。",
@@ -143,15 +220,6 @@
     },
     {
       "id": "western",
-      "navLabel": "洋室",
-      "icon": "洋",
-      "eyebrow": "Western-style Room",
-      "heading": "洋室",
-      "catchcopy": "ベッドでくつろぐ、シンプルで機能的な洋室。",
-      "intro": [
-        "畳での就寝に慣れていない方や、ベッドでのご滞在をお好みの方には洋室がおすすめです。",
-        "湖側の眺望をお楽しみいただけるツインルームを、2階以上・1階の2タイプでご用意しております。"
-      ],
       "rooms": [
         {
           "id": "western-lakeview",
@@ -162,7 +230,11 @@
             "畳での就寝に慣れていない方や、ベッドでのご滞在をお好みの方には洋室がおすすめです。",
             "1階、または2階以上のフロアからお選びいただけます。"
           ],
-          "image": { "label": "客室全体", "src": "/assets/photos/facility-3.jpg", "alt": "湖側洋室（スタンダード）" },
+          "image": {
+            "label": "客室全体",
+            "src": "/assets/photos/facility-3.jpg",
+            "alt": "湖側洋室（スタンダード）"
+          },
           "size": "26㎡",
           "capacity": "1〜2名",
           "bedding": "ツインベッド",
@@ -175,8 +247,15 @@
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017389&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
               "badges": ["洞爺湖ビュー", "花火鑑賞可能（4/28〜10/31）"],
               "images": [
-                { "label": "客室全体", "src": "/assets/photos/room-1st-1.png" },
-                { "label": "窓からの景色", "src": "/assets/photos/image2.png", "alt": "客室からの眺め" }
+                {
+                  "label": "客室全体",
+                  "src": "/assets/photos/room-1st-1.png"
+                },
+                {
+                  "label": "窓からの景色",
+                  "src": "/assets/photos/image2.png",
+                  "alt": "客室からの眺め"
+                }
               ],
               "description": [
                 "湖側に面した1階の洋室で、価格を抑えながらベッドタイプをご利用いただけます。",
@@ -190,8 +269,16 @@
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017388&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
               "badges": ["洞爺湖ビュー", "中島・羊蹄山を望む", "花火鑑賞可能（4/28〜10/31）"],
               "images": [
-                { "label": "客室全体", "src": "/assets/photos/hero-lake.jpg", "alt": "湖側和室（スタンダード）" },
-                { "label": "窓からの景色", "src": "/assets/photos/image2.png", "alt": "客室からの眺め" }
+                {
+                  "label": "客室全体",
+                  "src": "/assets/photos/hero-lake.jpg",
+                  "alt": "湖側和室（スタンダード）"
+                },
+                {
+                  "label": "窓からの景色",
+                  "src": "/assets/photos/image2.png",
+                  "alt": "客室からの眺め"
+                }
               ],
               "description": [
                 "ベッドタイプをご希望のお客様向けの洋室で、洞爺湖・中島・羊蹄山を望むことができます。",
@@ -202,14 +289,5 @@
         }
       ]
     }
-  ],
-  "related": {
-    "heading": "あわせてご覧ください",
-    "links": [
-      { "label": "温泉", "href": "/ja/onsen/", "icon": "湯", "image": "/assets/photos/onsen-3.jpg", "imageAlt": "露天風呂" },
-      { "label": "お料理", "href": "/ja/#food", "icon": "膳", "image": "/assets/photos/lobby-1.jpg", "imageAlt": "夕食のお料理" },
-      { "label": "館内施設", "href": "/ja/#facilities", "icon": "館", "image": "/assets/photos/image1.png", "imageAlt": "館内の様子" },
-      { "label": "ご宿泊予約", "href": "#", "icon": "予", "image": "/assets/photos/image3.png", "imageAlt": "和室客室" }
-    ]
-  }
+  ]
 }

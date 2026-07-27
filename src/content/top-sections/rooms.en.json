@@ -12,8 +12,16 @@
   "linkHref": "#",
   "tallImagePosition": "left",
   "images": [
-    { "src": "/assets/photos/image3.png", "alt": "Japanese-style room", "caption": "Japanese-style room" },
+    {
+      "src": "/assets/photos/image3.png",
+      "alt": "Japanese-style room",
+      "caption": "Japanese-style room"
+    },
     { "src": "/assets/photos/facility-4.jpg", "alt": "View from a guest room" },
-    { "src": "/assets/photos/facility-3.jpg", "alt": "Hotel exterior at dusk", "caption": "Hotel exterior" }
+    {
+      "src": "/assets/photos/facility-3.jpg",
+      "alt": "Hotel exterior at dusk",
+      "caption": "Hotel exterior"
+    }
   ]
 }

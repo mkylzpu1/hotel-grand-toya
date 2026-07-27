@@ -16,13 +16,21 @@
   "sceneryHeading": "사계절 도야코를 즐길 수 있는 입지",
   "sceneryDescription": "호텔 그랜드 토야는 도야코 호반에 위치해, 봄의 벚꽃, 여름의 롱런 불꽃축제와 해바라기밭, 가을의 단풍, 겨울의 일루미네이션 등 계절마다의 명소로의 이동이 편리합니다.",
   "sceneryItems": [
-    { "img": "/assets/photos/garden-2.jpg", "title": "해바라기밭", "note": "호텔에서 차로 약 15분" },
+    {
+      "img": "/assets/photos/garden-2.jpg",
+      "title": "해바라기밭",
+      "note": "호텔에서 차로 약 15분"
+    },
     {
       "img": "/assets/photos/image2.png",
       "title": "도야코 롱런 불꽃축제",
       "note": "호반에서 관람 가능"
     },
-    { "img": "/assets/photos/hero-lake-sub.jpg", "title": "도야코 유람선", "note": "선착장까지 도보 약 8분" }
+    {
+      "img": "/assets/photos/hero-lake-sub.jpg",
+      "title": "도야코 유람선",
+      "note": "선착장까지 도보 약 8분"
+    }
   ],
   "sceneryLinkText": "주변 관광 보기"
 }

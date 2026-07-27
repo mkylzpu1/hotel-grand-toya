@@ -2,11 +2,19 @@
   "pageTitle": "お知らせ",
   "pageTitleEn": "NEWS",
   "icon": "報",
-  "breadcrumbLabel": "お知らせ",
   "categoryFilters": [
-    { "id": "event", "label": "イベント" },
-    { "id": "maintenance", "label": "メンテナンス" },
-    { "id": "campaign", "label": "キャンペーン" }
+    {
+      "id": "event",
+      "label": "イベント"
+    },
+    {
+      "id": "maintenance",
+      "label": "メンテナンス"
+    },
+    {
+      "id": "campaign",
+      "label": "キャンペーン"
+    }
   ],
   "allCategoryLabel": "すべて",
   "emptyLabel": "該当するお知らせはありません",

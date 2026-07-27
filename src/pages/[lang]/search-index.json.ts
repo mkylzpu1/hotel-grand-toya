@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getCollection, type CollectionEntry, type CollectionKey } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { locales, localeFromId, type Locale } from '../../content/config';
 
 export const prerender = true;
@@ -22,10 +22,7 @@ function excerpt(lines: string[] | string, max = 90): string {
   return text.slice(0, max);
 }
 
-function findByLang<C extends CollectionKey>(
-  entries: CollectionEntry<C>[],
-  lang: Locale,
-): CollectionEntry<C> | undefined {
+function findByLang<T extends { id: string }>(entries: T[], lang: Locale): T | undefined {
   return entries.find((e) => localeFromId(e.id) === lang);
 }
 

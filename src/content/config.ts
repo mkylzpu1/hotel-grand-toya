@@ -53,13 +53,13 @@ const navigation = defineCollection({
         label: z.string(),
         en: z.string(),
         icon: z.string(),
-      })
+      }),
     ),
     secondaryNavItems: z.array(
       z.object({
         href: z.string(),
         label: z.string(),
-      })
+      }),
     ),
     reserveCta: z.string(),
     phoneAriaLabel: z.string(),
@@ -78,8 +78,6 @@ const hero = defineCollection({
     eyebrow: z.string(),
     titleLines: z.array(z.string()),
     description: z.string(),
-    ctaLabel: z.string(),
-    ctaHref: z.string(),
   }),
 });
 
@@ -114,7 +112,7 @@ const access = defineCollection({
       z.object({
         label: z.string(),
         value: z.string(),
-      })
+      }),
     ),
     note: z.string(),
     detailLinkText: z.string(),
@@ -127,7 +125,7 @@ const access = defineCollection({
         img: z.string(),
         title: z.string(),
         note: z.string(),
-      })
+      }),
     ),
     sceneryLinkText: z.string(),
   }),
@@ -149,7 +147,7 @@ const onsenPage = defineCollection({
       z.object({
         href: z.string(),
         label: z.string(),
-      })
+      }),
     ),
     icon: z.string(), // PageHeroBand用（leadセクション削除に伴い、ページ直下に移動）
     quality: z.object({
@@ -169,7 +167,7 @@ const onsenPage = defineCollection({
           imageAlt: z.string(),
           description: z.string(),
           hours: z.string(),
-        })
+        }),
       ),
     }),
     stay: z.object({
@@ -187,25 +185,11 @@ const onsenPage = defineCollection({
       heading: z.string(),
       items: z.array(labeledItem),
       notes: z.array(z.string()).optional(),
-      ctaText: z.string(),
-      ctaHref: z.string(),
       rentals: z.array(
         z.object({
           label: z.string(),
           value: z.string(),
-        })
-      ),
-    }),
-    related: z.object({
-      heading: z.string(),
-      links: z.array(
-        z.object({
-          label: z.string(),
-          href: z.string(),
-          icon: z.string(),
-          image: z.string(),
-          imageAlt: z.string(),
-        })
+        }),
       ),
     }),
   }),
@@ -231,17 +215,13 @@ const roomsPage = defineCollection({
     pageTitleEn: z.string(),
     intro: z.object({
       icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      description: z.array(z.string()),
     }),
-    icon: z.string(),
     // ページ内アンカーナビ。「和室」「洋室」の2リンクのみ。
     quickNav: z.array(
       z.object({
         href: z.string(),
         label: z.string(),
-      })
+      }),
     ),
     basicInfoLabels: z.object({
       size: z.string(),
@@ -265,12 +245,6 @@ const roomsPage = defineCollection({
     sections: z.array(
       z.object({
         id: z.string(),
-        navLabel: z.string(),
-        icon: z.string(),
-        eyebrow: z.string(),
-        heading: z.string(),
-        catchcopy: z.string(),
-        intro: z.array(z.string()),
         rooms: z.array(
           z.object({
             id: z.string(),
@@ -293,27 +267,14 @@ const roomsPage = defineCollection({
                 images: z.array(roomGalleryItem).max(3),
                 description: z.array(z.string()),
                 isFirstFloor: z.boolean().optional(),
-              })
+              }),
             ),
-          })
+          }),
         ),
-      })
+      }),
     ),
-    related: z.object({
-      heading: z.string(),
-      links: z.array(
-        z.object({
-          label: z.string(),
-          href: z.string(),
-          icon: z.string(),
-          image: z.string(),
-          imageAlt: z.string(),
-        })
-      ),
-    }),
   }),
 });
-
 
 const cuisinePlanItem = z.object({
   id: z.string().optional(), // dinner.plans では必須運用、breakfast では省略可
@@ -346,9 +307,7 @@ const cuisinePage = defineCollection({
       description: z.array(z.string()),
     }),
     icon: z.string(),
-    quickNav: z.array(
-      z.object({ href: z.string(), label: z.string() })
-    ),
+    quickNav: z.array(z.object({ href: z.string(), label: z.string() })),
     dinner: z.object({
       icon: z.string(),
       eyebrow: z.string(),
@@ -386,8 +345,8 @@ const cuisinePage = defineCollection({
         icon: z.string(),
         heading: z.string(),
         description: z.string(),
-      })
-    )
+      }),
+    ),
   }),
 });
 
@@ -447,12 +406,14 @@ const activityItem = z.object({
   notes: z.array(z.string()).optional(),
   isPartner: z.boolean().optional(),
   partnerBadgeLabel: z.string().optional(),
-  includedInPlans: z.array(
-    z.object({
-      name: z.string(),
-      href: z.string(),
-    })
-  ).optional(),
+  includedInPlans: z
+    .array(
+      z.object({
+        name: z.string(),
+        href: z.string(),
+      }),
+    )
+    .optional(),
   categories: z.array(z.string()).optional(), // 複数カテゴリに属してよい
 });
 
@@ -487,9 +448,7 @@ const facilitiesPage = defineCollection({
       heading: z.string(),
       partnerHeading: z.string(),
       otherHeading: z.string(),
-      categoryFilters: z.array(
-        z.object({ id: z.string(), label: z.string() })
-      ),
+      categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
       allCategoryLabel: z.string(), // 例: "すべて"
       items: z.array(activityItem),
     }),
@@ -511,100 +470,104 @@ const accessPage = defineCollection({
       z.object({
         href: z.string(),
         label: z.string(),
-      })
+      }),
     ),
 
-byTrain: z.object({
-  icon: z.string(),
-  eyebrow: z.string(),
-  heading: z.string(),
-  nearestStation: z.string(),
-  departures: z.array(
-    z.object({
-      from: z.string(),
-      boardingStation: z.string(),
-      trainName: z.string(),
-      duration: z.string(),
-    })
-  ),
-  // 洞爺駅からホテルまでの手段（タクシー・路線バス・直行バス等）をすべてここに並べる
-toHotelOptions: z.array(
-  z.object({
-    method: z.string(),
-    line: z.string().optional(),
-    boarding: z.string().optional(),
-    alighting: z.string().optional(),
-    duration: z.string(),
-    frequency: z.string().optional(), // 追加：運行頻度・予約要否
-    note: z.string().optional(),
-    url: z.string().optional(), // 追加：バス会社の路線ページへのリンク
-  })
-),
-  walkToHotel: z.object({
-    duration: z.string(),
-    distance: z.string().optional(),
-    note: z.string().optional(),
-  }).optional(),
-  shuttleAvailable: z.string().optional(),
-  officialTimetableUrl: z.string().optional(),
-}),
+    byTrain: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      nearestStation: z.string(),
+      departures: z.array(
+        z.object({
+          from: z.string(),
+          boardingStation: z.string(),
+          trainName: z.string(),
+          duration: z.string(),
+        }),
+      ),
+      // 洞爺駅からホテルまでの手段（タクシー・路線バス・直行バス等）をすべてここに並べる
+      toHotelOptions: z.array(
+        z.object({
+          method: z.string(),
+          line: z.string().optional(),
+          boarding: z.string().optional(),
+          alighting: z.string().optional(),
+          duration: z.string(),
+          frequency: z.string().optional(), // 追加：運行頻度・予約要否
+          note: z.string().optional(),
+          url: z.string().optional(), // 追加：バス会社の路線ページへのリンク
+        }),
+      ),
+      walkToHotel: z
+        .object({
+          duration: z.string(),
+          distance: z.string().optional(),
+          note: z.string().optional(),
+        })
+        .optional(),
+      shuttleAvailable: z.string().optional(),
+      officialTimetableUrl: z.string().optional(),
+    }),
 
-byCar: z.object({
-  icon: z.string(),
-  eyebrow: z.string(),
-  heading: z.string(),
-  // 各出発地→最寄ICまでの区間
-  departures: z.array(
-    z.object({
-      from: z.string(),
-      ic: z.string(),
-      duration: z.string(),
-    })
-  ),
-  // ICからホテルまでは共通なので1箇所にまとめる
-  fromIc: z.array(
-    z.object({
-      ic: z.string(),
-      duration: z.string(),
-    })
-  ),
-}),
-byBus: z.object({
-  icon: z.string(),
-  eyebrow: z.string(),
-  heading: z.string(),
-  from: z.string(),
-  to: z.string(),
-  duration: z.string(),
-  frequency: z.string().optional(),
-  note: z.string().optional(),
-  url: z.string().optional(),
-}).optional(),
+    byCar: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      // 各出発地→最寄ICまでの区間
+      departures: z.array(
+        z.object({
+          from: z.string(),
+          ic: z.string(),
+          duration: z.string(),
+        }),
+      ),
+      // ICからホテルまでは共通なので1箇所にまとめる
+      fromIc: z.array(
+        z.object({
+          ic: z.string(),
+          duration: z.string(),
+        }),
+      ),
+    }),
+    byBus: z
+      .object({
+        icon: z.string(),
+        eyebrow: z.string(),
+        heading: z.string(),
+        from: z.string(),
+        to: z.string(),
+        duration: z.string(),
+        frequency: z.string().optional(),
+        note: z.string().optional(),
+        url: z.string().optional(),
+      })
+      .optional(),
 
-map: z.object({
-  icon: z.string(),
-  eyebrow: z.string(),
-  heading: z.string(),
-  embedUrl: z.string(),
-  openMapUrl: z.string(),
-  routeUrl: z.string(),
-}),
-contact: z.object({
-  name: z.string(),
-  postalCode: z.string(),
-  address: z.string(),
-  tel: z.string(),
-  fax: z.string().optional(),
-  email: z.string(),
-}),
-parking: z.object({
-  heading: z.string(),
-  notes: z.array(z.string()),
-}),
-surroundings: z.object({
-  heading: z.string(),
-  items: z.array(z.object({ label: z.string(), duration: z.string() })),
-}),
+    map: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      embedUrl: z.string(),
+      openMapUrl: z.string(),
+      routeUrl: z.string(),
+    }),
+    contact: z.object({
+      name: z.string(),
+      postalCode: z.string(),
+      address: z.string(),
+      tel: z.string(),
+      fax: z.string().optional(),
+      email: z.string(),
+    }),
+    parking: z.object({
+      heading: z.string(),
+      notes: z.array(z.string()),
+    }),
+    surroundings: z.object({
+      heading: z.string(),
+      items: z.array(z.object({ label: z.string(), duration: z.string() })),
+    }),
     faq: z.object({
       heading: z.string(),
       items: z.array(z.object({ question: z.string(), answer: z.string() })),
@@ -618,7 +581,6 @@ const faqPage = defineCollection({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
     icon: z.string(),
-    breadcrumbLabel: z.string(), // パンくず末尾の表示名（通常はpageTitleと同じ）
     categories: z.array(
       z.object({
         id: z.string(), // タブ切替用のスラッグ（例: "checkin"）
@@ -628,15 +590,15 @@ const faqPage = defineCollection({
           z.object({
             question: z.string(),
             answer: z.string(),
-          })
+          }),
         ),
-      })
+      }),
     ),
     qaSection: z.object({
-  icon: z.string(),
-  eyebrow: z.string(),
-  heading: z.string(),
-}),
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+    }),
     contact: z.object({
       tel: z.string(),
       telNote: z.string().optional(), // 例：受付時間
@@ -657,7 +619,7 @@ const relatedLinksCollection = defineCollection({
         imageAlt: z.string(),
         icon: z.string(),
         label: z.string(),
-      })
+      }),
     ),
   }),
 });
@@ -677,10 +639,7 @@ const newsPage = defineCollection({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
     icon: z.string(),
-    breadcrumbLabel: z.string(),
-    categoryFilters: z.array(
-      z.object({ id: z.string(), label: z.string() })
-    ),
+    categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
     allCategoryLabel: z.string(),
     emptyLabel: z.string(),
     posts: z.array(newsPost), // ← 投稿はここに配列で
@@ -704,7 +663,6 @@ const privacyPage = defineCollection({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
     icon: z.string(),
-    breadcrumbLabel: z.string(),
     intro: z.object({
       eyebrow: z.string(),
       heading: z.string(),
@@ -726,7 +684,6 @@ const informationPage = defineCollection({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
     icon: z.string(),
-    breadcrumbLabel: z.string(),
     welfareSection: z.object({
       eyebrow: z.string(),
       heading: z.string(),
@@ -744,20 +701,20 @@ const recruitJobSchema = z.object({
   icon: z.enum(['chef-hat', 'bed-double', 'concierge-bell']), // 写真が無い場合に出すアイコンのキー
   image: z
     .object({
-      src: z.string(),  // 例: "/images/recruit/kitchen-staff.jpg"
+      src: z.string(), // 例: "/images/recruit/kitchen-staff.jpg"
       alt: z.string(),
     })
-    .optional(),                          // 写真がある場合はこちらを優先表示
-  title: z.string(),                      // 職種名（例: 厨房スタッフ）
-  employmentType: z.string(),             // 正社員 / パート 等
-  recruitCount: z.number(),               // 採用人数
-  summary: z.string(),                    // 求職者向けのやさしい仕事紹介文
-  duties: z.array(z.string()),            // 主な仕事内容（箇条書き）
+    .optional(), // 写真がある場合はこちらを優先表示
+  title: z.string(), // 職種名（例: 厨房スタッフ）
+  employmentType: z.string(), // 正社員 / パート 等
+  recruitCount: z.number(), // 採用人数
+  summary: z.string(), // 求職者向けのやさしい仕事紹介文
+  duties: z.array(z.string()), // 主な仕事内容（箇条書き）
   salaryType: z.enum(['月給', '時給']),
-  salaryRoughLabel: z.string(),           // ざっくり表示（例: "月給18万円台〜"）
-  workingHours: z.string(),               // 就業時間の要約
-  holidays: z.string(),                   // 休日・休暇の要約
-  tags: z.array(z.string()),              // "未経験歓迎" 等のバッジ
+  salaryRoughLabel: z.string(), // ざっくり表示（例: "月給18万円台〜"）
+  workingHours: z.string(), // 就業時間の要約
+  holidays: z.string(), // 休日・休暇の要約
+  tags: z.array(z.string()), // "未経験歓迎" 等のバッジ
 });
 
 const recruitProcessStepSchema = z.object({
@@ -776,7 +733,6 @@ const recruitPage = defineCollection({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
     icon: z.string(),
-    breadcrumbLabel: z.string(),
     heading: z.string(), // 改行込みの見出し
     description: z.array(z.string()),
     emailAddress: z.string(),
@@ -788,12 +744,12 @@ const recruitPage = defineCollection({
     workLife: z.object({
       heading: z.string(),
       description: z.string(),
-      points: z.array(z.string()),       // 職場の特徴を箇条書きで
+      points: z.array(z.string()), // 職場の特徴を箇条書きで
       photos: z.array(
         z.object({
-          src: z.string(),               // 例: "/images/recruit/kitchen.jpg"
+          src: z.string(), // 例: "/images/recruit/kitchen.jpg"
           alt: z.string(),
-        })
+        }),
       ),
     }),
 

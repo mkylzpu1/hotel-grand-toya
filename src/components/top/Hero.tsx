@@ -4,17 +4,9 @@ interface HeroProps {
   eyebrow: string;
   titleLines: string[];
   description: string;
-  ctaLabel: string;
-  ctaHref: string;
 }
 
-export default function Hero({
-  image,
-  imageAlt,
-  eyebrow,
-  titleLines,
-  description,
-}: HeroProps) {
+export default function Hero({ image, imageAlt, eyebrow, titleLines, description }: HeroProps) {
   return (
     <div className="relative m-[28px] overflow-hidden rounded-[28px]">
       <section className="relative h-[calc(100vh-56px)] max-h-[920px] min-h-[560px] max-[760px]:h-[84vh]">

@@ -2,11 +2,6 @@
   "image": "/assets/photos/image10.png",
   "imageAlt": "洞爺湖の湖畔からの眺め",
   "eyebrow": "洞爺湖温泉",
-  "titleLines": [
-    "湖畔に、",
-    "いちばん近い時間を。"
-  ],
-  "description": "源泉かけ流しの湯と、洞爺湖を望む客室で過ごす静かなひととき。",
-  "ctaLabel": "ご予約はこちら",
-  "ctaHref": "https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000002996"
+  "titleLines": ["湖畔に、", "いちばん近い時間を。"],
+  "description": "源泉かけ流しの湯と、洞爺湖を望む客室で過ごす静かなひととき。"
 }

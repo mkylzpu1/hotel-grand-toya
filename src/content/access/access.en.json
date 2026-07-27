@@ -16,13 +16,21 @@
   "sceneryHeading": "A location to enjoy Lake Toya through every season",
   "sceneryDescription": "Hotel Grand Toya sits right on the shore of Lake Toya, making it easy to reach seasonal highlights — cherry blossoms in spring, the Long-Run Fireworks Festival and sunflower fields in summer, autumn foliage, and winter illuminations.",
   "sceneryItems": [
-    { "img": "/assets/photos/garden-2.jpg", "title": "Sunflower Fields", "note": "About 15 min. by car from the hotel" },
+    {
+      "img": "/assets/photos/garden-2.jpg",
+      "title": "Sunflower Fields",
+      "note": "About 15 min. by car from the hotel"
+    },
     {
       "img": "/assets/photos/image2.png",
       "title": "Lake Toya Long-Run Fireworks Festival",
       "note": "Viewable from the lakeshore"
     },
-    { "img": "/assets/photos/hero-lake-sub.jpg", "title": "Lake Toya Sightseeing Cruise", "note": "About 8 min. walk to the pier" }
+    {
+      "img": "/assets/photos/hero-lake-sub.jpg",
+      "title": "Lake Toya Sightseeing Cruise",
+      "note": "About 8 min. walk to the pier"
+    }
   ],
   "sceneryLinkText": "Explore the Area"
 }

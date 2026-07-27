@@ -22,7 +22,11 @@
       "title": "洞爷湖长期烟花大会",
       "note": "可在湖畔观赏"
     },
-    { "img": "/assets/photos/hero-lake-sub.jpg", "title": "洞爷湖游览船", "note": "步行至码头约8分钟" }
+    {
+      "img": "/assets/photos/hero-lake-sub.jpg",
+      "title": "洞爷湖游览船",
+      "note": "步行至码头约8分钟"
+    }
   ],
   "sceneryLinkText": "查看周边观光"
 }

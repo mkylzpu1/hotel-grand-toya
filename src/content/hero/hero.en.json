@@ -2,11 +2,6 @@
   "image": "/assets/photos/image10.png",
   "imageAlt": "View from the shore of Lake Toya",
   "eyebrow": "Lake Toya Onsen",
-  "titleLines": [
-    "The closest you can be",
-    "to the lake."
-  ],
-  "description": "A quiet stay with natural hot spring baths and rooms overlooking Lake Toya.",
-  "ctaLabel": "Book Now",
-  "ctaHref": "https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000002996"
+  "titleLines": ["The closest you can be", "to the lake."],
+  "description": "A quiet stay with natural hot spring baths and rooms overlooking Lake Toya."
 }

@@ -2,11 +2,6 @@
   "image": "/assets/photos/image10.png",
   "imageAlt": "도야코 호반에서 바라본 풍경",
   "eyebrow": "도야코 온천",
-  "titleLines": [
-    "호반에서, ",
-    "가장 가까운 시간을."
-  ],
-  "description": "원천 흐름식 온천과 도야코가 보이는 객실에서 보내는 조용한 한때.",
-  "ctaLabel": "지금 예약하기",
-  "ctaHref": "https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000002996"
+  "titleLines": ["호반에서, ", "가장 가까운 시간을."],
+  "description": "원천 흐름식 온천과 도야코가 보이는 객실에서 보내는 조용한 한때."
 }

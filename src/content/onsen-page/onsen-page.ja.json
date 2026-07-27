@@ -3,9 +3,18 @@
   "pageTitleEn": "STAY & DAY-TRIP ONSEN",
   "icon": "泉",
   "quickNav": [
-    { "href": "#facilities", "label": "温泉施設のご紹介" },
-    { "href": "#quality", "label": "泉質・効能" },
-    { "href": "#useage", "label": "ご利用案内" }
+    {
+      "href": "#facilities",
+      "label": "温泉施設のご紹介"
+    },
+    {
+      "href": "#quality",
+      "label": "泉質・効能"
+    },
+    {
+      "href": "#useage",
+      "label": "ご利用案内"
+    }
   ],
   "quality": {
     "icon": "泉",
@@ -103,44 +112,15 @@
       }
     ],
     "rentals": [
-      { "label": "バスタオル", "value": "300円" },
-      { "label": "フェイスタオル", "value": "100円" }
-    ],
-    "notes": ["シャンプー・リンス・ボディソープ・ドライヤーは無料で完備しております。"],
-    "ctaText": "日帰り入浴のご予約・お問い合わせ",
-    "ctaHref": "#"
-  },
-  "related": {
-    "heading": "あわせてご覧ください",
-    "links": [
       {
-        "label": "客室",
-        "href": "/ja/rooms/",
-        "icon": "室",
-        "image": "/assets/photos/image3.png",
-        "imageAlt": "和室客室"
+        "label": "バスタオル",
+        "value": "300円"
       },
       {
-        "label": "お料理",
-        "href": "/ja/#food",
-        "icon": "膳",
-        "image": "/assets/photos/lobby-1.jpg",
-        "imageAlt": "夕食のお料理"
-      },
-      {
-        "label": "館内施設",
-        "href": "/ja/#facilities",
-        "icon": "館",
-        "image": "/assets/photos/image1.png",
-        "imageAlt": "館内の様子"
-      },
-      {
-        "label": "ご宿泊予約",
-        "href": "#",
-        "icon": "予",
-        "image": "/assets/photos/onsen-3.jpg",
-        "imageAlt": "露天風呂"
+        "label": "フェイスタオル",
+        "value": "100円"
       }
-    ]
+    ],
+    "notes": ["シャンプー・リンス・ボディソープ・ドライヤーは無料で完備しております。"]
   }
 }
