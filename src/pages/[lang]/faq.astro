@@ -162,6 +162,13 @@ const page = pageEntry.data;
   .faq-item.is-open .faq-icon {
     transform: rotate(45deg);
   }
+
+  /* 選択中タブは hover しても色が変わらないよう固定する */
+  .faq-tab[aria-selected="true"]:hover {
+    background-color: #A24730;
+    color: #ffffff;
+    border-color: #A24730;
+  }
 </style>
 
 <script>
