@@ -5,6 +5,7 @@ import PageHeroBand from '../components/common/PageHeroBand.astro';
 import RelatedLinks from '../components/common/RelatedLinks.astro';
 import type { Locale } from '../content/config';
 import type { LangLink, NavigationContent, RelatedLink, SiteContent } from '../types/site';
+import {asset} from '../utils/asset';
 
 interface QuickNavItem {
   href: string;
@@ -65,7 +66,7 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
       icon={heroIcon}
       pageTitle={pageTitle}
       pageTitleEn={pageTitleEn}
-      homeHref={`/${lang}/`}
+      homeHref={asset(`/${lang}/`)}
     />
     <!-- ページ内アンカーナビ（全ページ共通・フラグで表示切替） -->
     {
