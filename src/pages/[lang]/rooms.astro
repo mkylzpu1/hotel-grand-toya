@@ -43,7 +43,7 @@ const page = pageEntry.data;
         id={`section-${section.id}`}
         class={`scroll-mt-6 py-[88px] lg:py-[108px] ${sectionIndex % 2 === 1 ? 'bg-[#FAFAFA]' : ''}`}
       >
-        <div class="mx-auto max-w-[1320px] px-10">
+        <div class="mx-auto max-w-[1320px] px-5 lg:px-10">
           {/* 選べる客室タイプ（見出しは旧・和室セクションのSectionEyebrowを流用） */}
           <div class="space-y-[88px] lg:space-y-[108px]">
             {section.rooms.map((room) => (
@@ -219,7 +219,7 @@ const page = pageEntry.data;
 
   <!-- 共通アメニティ（和室・洋室で共通。ページ下部に1回だけ掲載） -->
   <section id="section-amenities" class="scroll-mt-6 py-[88px] lg:py-[108px]">
-    <div class="mx-auto max-w-[1320px] px-10">
+    <div class="mx-auto max-w-[1320px] px-5 lg:px-10">
       <div class="mb-14 max-w-[760px]">
         <SectionEyebrow
           icon={page.amenitiesIcon}
