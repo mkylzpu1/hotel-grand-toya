@@ -1442,14 +1442,17 @@ collections:
           - label: '英語（未入力なら日本語を表示）'
             name: en
             widget: object
+            required: false
             fields: *newsTranslationFields
           - label: '中国語（未入力なら日本語を表示）'
             name: zh
             widget: object
+            required: false
             fields: *newsTranslationFields
           - label: '韓国語（未入力なら日本語を表示）'
             name: ko
             widget: object
+            required: false
             fields: *newsTranslationFields
   # ── プライバシーポリシーページ ───────────────────────
   - name: 'privacy-page'
