@@ -20,6 +20,8 @@ collections:
   # ── ヘッダー / ドロワーナビゲーション ───────────────────────
   - name: navigation
     label: '01 サイト共通｜ヘッダー・ナビゲーション'
+    label_singular: 'ヘッダー・ナビゲーション'
+    description: 'ヘッダーのメニュー・検索窓・ドロワーメニューの文言です。ページごとの本文はここには含まれません。'
     folder: 'src/content/navigation'
     create: false
     i18n: true
@@ -31,6 +33,8 @@ collections:
         name: primaryNavItems
         widget: list
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
           - { label: 'リンク先 (#rooms など。言語共通)', name: href, widget: string }
           - { label: '表示ラベル', name: label, widget: string }
@@ -40,6 +44,8 @@ collections:
         name: secondaryNavItems
         widget: list
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
           - { label: 'リンク先', name: href, widget: string }
           - { label: '表示ラベル', name: label, widget: string }
@@ -73,22 +79,27 @@ collections:
           - { label: '電話ラベル', name: telLabel, widget: string }
           - { label: '予約ラベル', name: reserveLabel, widget: string }
           - { label: 'メニューラベル', name: menuLabel, widget: string }
+
   # ── 関連リンク集(各ページ末尾の「関連ページ」ブロック) ─────
   - name: 'related-links'
     label: '01 サイト共通｜関連リンク'
+    label_singular: '関連リンクグループ'
+    description: '各ページ下部の「あわせてご覧ください」ブロックです。'
     folder: 'src/content/related-links'
     create: true
     slug: '{{slug}}'
     i18n: true
     extension: json
     format: json
-    summary: '関連リンク'
+    summary: '見出し: {{fields.heading}}'
     fields:
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: 'リンク一覧'
         name: 'links'
         widget: 'list'
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
           - { label: '識別ID(言語共通・rooms/onsen等)', name: 'id', widget: 'string' }
           - { label: 'リンク先', name: 'href', widget: 'string' }
@@ -96,15 +107,18 @@ collections:
           - { label: '代替テキスト(alt)', name: 'imageAlt', widget: 'string' }
           - { label: 'アイコン', name: 'icon', widget: 'string' }
           - { label: '表示ラベル', name: 'label', widget: 'string' }
+
   # ── サイト全体設定・フッター文言 ───────────────────────
   - name: site
     label: '01 サイト共通｜基本情報・フッター'
+    label_singular: 'サイト基本情報'
+    description: 'サイトタイトル・住所・電話番号・フッター文言など、全ページ共通の情報です。'
     folder: 'src/content/site'
     create: false
     i18n: true
     extension: json
     format: json
-    summary: '基本情報・フッター'
+    summary: '{{fields.name}}'
     fields:
       - { label: 'サイトタイトル (metaタイトル)', name: title, widget: string, i18n: true }
       - { label: 'サイト説明文 (meta description)', name: description, widget: text, i18n: true }
@@ -148,15 +162,18 @@ collections:
               widget: string,
               i18n: true,
             }
+
   # ── ヒーローセクション ───────────────────────
   - name: hero
-    label: '02 トップページ｜ヒーロー部分'
+    label: '02 トップページ｜ヒーロー'
+    label_singular: 'ヒーローセクション'
+    description: 'トップページ最上部の大きな画像・キャッチコピーです。'
     folder: 'src/content/hero'
     create: false
     i18n: true
     extension: json
     format: json
-    summary: 'ヒーロー部分'
+    summary: '{{fields.eyebrow}}'
     fields:
       - { label: '背景画像（言語共通）', name: image, widget: image, i18n: duplicate }
       - { label: '画像の代替テキスト (alt)', name: imageAlt, widget: string, i18n: true }
@@ -167,9 +184,12 @@ collections:
         i18n: true
         field: { label: '行', name: line, widget: string }
       - { label: '説明文', name: description, widget: text, i18n: true }
+
   # ── トップページ コンテンツセクション（客室・温泉・お料理・館内・コンセプト）──
   - name: top_sections
     label: '02 トップページ｜各紹介セクション'
+    label_singular: '紹介セクション'
+    description: 'トップページ中段の「客室」「温泉」「お料理」「館内施設」等の紹介ブロックです。'
     folder: 'src/content/top-sections'
     create: true
     slug: '{{slug}}'
@@ -234,6 +254,8 @@ collections:
         widget: list
         i18n: true
         required: false
+        summary: '{{alt}}'
+        collapsed: true
         fields:
           - { label: '画像（言語共通）', name: src, widget: image }
           - { label: '代替テキスト (alt)', name: alt, widget: string }
@@ -244,9 +266,12 @@ collections:
               required: false,
             }
           - { label: 'キャプション', name: caption, widget: string, required: false }
-  # ── アクセス・周辺観光セクション ───────────────────────
+
+  # ── アクセス・周辺観光セクション（トップページ下部） ───────────────────────
   - name: access
     label: '02 トップページ｜アクセス・周辺観光'
+    label_singular: 'トップページ アクセス欄'
+    description: 'トップページ最下部の簡易アクセス案内です。詳細版は「07 アクセスページ」で編集します。'
     folder: 'src/content/access'
     create: false
     i18n: true
@@ -262,6 +287,8 @@ collections:
         name: accessList
         widget: list
         i18n: true
+        summary: '{{label}}：{{value}}'
+        collapsed: true
         fields:
           - { label: '手段（例: お車）', name: label, widget: string }
           - { label: '説明（例: 札幌市街から約2時間）', name: value, widget: string }
@@ -280,6 +307,8 @@ collections:
         name: sceneryItems
         widget: list
         i18n: true
+        summary: '{{title}}'
+        collapsed: true
         fields:
           - { label: '画像（言語共通）', name: img, widget: image }
           - { label: 'タイトル', name: title, widget: string }
@@ -290,9 +319,12 @@ collections:
           widget: string,
           i18n: true,
         }
+
   # ── 客室ページ ───────────────────────
   - name: 'rooms-page'
     label: '03 客室ページ'
+    label_singular: '客室ページ'
+    description: '/rooms/ ページの内容です。「和室セクション」「洋室セクション」の中に、客室タイプごとの説明とフロア別プランが入れ子になっています。'
     folder: 'src/content/rooms-page'
     create: false
     i18n: true
@@ -317,6 +349,8 @@ collections:
         name: 'quickNav'
         widget: 'list'
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
           - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
           - { label: '表示ラベル', name: 'label', widget: 'string' }
@@ -348,6 +382,8 @@ collections:
         name: 'commonAmenities'
         widget: 'list'
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
           - { label: 'キー(言語共通)', name: 'key', widget: 'string' }
           - { label: '表示名', name: 'label', widget: 'string' }
@@ -366,15 +402,14 @@ collections:
       - label: '客室セクション(和室・洋室)'
         name: 'sections'
         widget: 'list'
-        # 客室名・説明・画像・設備値など、この配下すべてを丸ごと1言語につき1エントリとして
-        # 個別に編集できるようにする（Decapの仕様上、list内の子フィールドごとの
-        # i18n: duplicate / i18n: true 指定は無視されるため、リスト単位で指定する）
         i18n: true
+        summary: '{{id}}'
         fields:
-          - { label: 'アンカーID(言語共通)', name: 'id', widget: 'string' }
+          - { label: 'アンカーID(言語共通・例: japanese / western)', name: 'id', widget: 'string' }
           - label: '客室一覧'
             name: 'rooms'
             widget: 'list'
+            summary: '{{name}}（定員{{capacity}}）'
             fields:
               - { label: 'アンカーID(言語共通)', name: 'id', widget: 'string' }
               - { label: 'アイコン', name: 'icon', widget: 'string' }
@@ -400,6 +435,7 @@ collections:
                 name: 'floors'
                 widget: 'list'
                 summary: '{{label}}'
+                collapsed: true
                 fields:
                   - { label: 'ラベル', name: 'label', widget: 'string' }
                   - { label: '予約サイト表示名', name: 'reservationName', widget: 'string' }
@@ -418,6 +454,7 @@ collections:
                     name: 'images'
                     widget: 'list'
                     max: 3
+                    summary: '{{label}}'
                     fields:
                       - { label: 'ラベル', name: 'label', widget: 'string' }
                       - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false }
@@ -438,9 +475,12 @@ collections:
                       required: false,
                       default: false,
                     }
-  # ── ご宿泊・日帰り入浴ページ ───────────────────────
+
+  # ── 温泉ページ ───────────────────────
   - name: 'onsen-page'
-    label: '04 ご宿泊・日帰り入浴'
+    label: '04 温泉ページ'
+    label_singular: '温泉ページ'
+    description: '/onsen/ ページの内容です。「泉質・効能」「温泉施設紹介」「宿泊/日帰り利用案内」で構成されます。'
     folder: 'src/content/onsen-page'
     create: false
     i18n: true
@@ -461,6 +501,8 @@ collections:
         name: 'quickNav'
         widget: 'list'
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
           - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
           - { label: '表示ラベル', name: 'label', widget: 'string' }
@@ -476,6 +518,8 @@ collections:
             name: 'items'
             widget: 'list'
             i18n: true
+            summary: '{{label}}'
+            collapsed: true
             fields:
               - { label: 'ラベル', name: 'label', widget: 'string' }
               - { label: '値', name: 'value', widget: 'string' }
@@ -492,6 +536,8 @@ collections:
             name: 'items'
             widget: 'list'
             i18n: true
+            summary: '{{name}}'
+            collapsed: true
             fields:
               - { label: '名称', name: 'name', widget: 'string' }
               - { label: '画像(言語共通)', name: 'image', widget: 'image' }
@@ -511,6 +557,8 @@ collections:
             name: 'items'
             widget: 'list'
             i18n: true
+            summary: '{{label}}'
+            collapsed: true
             fields:
               - { label: 'ラベル', name: 'label', widget: 'string' }
               - { label: '値', name: 'value', widget: 'string' }
@@ -533,6 +581,8 @@ collections:
             name: 'items'
             widget: 'list'
             i18n: true
+            summary: '{{label}}'
+            collapsed: true
             fields:
               - { label: 'ラベル', name: 'label', widget: 'string' }
               - { label: '値', name: 'value', widget: 'string' }
@@ -547,12 +597,17 @@ collections:
             name: 'rentals'
             widget: 'list'
             i18n: true
+            summary: '{{label}}'
+            collapsed: true
             fields:
               - { label: 'ラベル', name: 'label', widget: 'string' }
               - { label: '値', name: 'value', widget: 'string' }
+
   # ── お料理ページ ───────────────────────
   - name: 'cuisine-page'
     label: '05 お料理ページ'
+    label_singular: 'お料理ページ'
+    description: '/cuisine/ ページの内容です。「夕食プラン」「朝食」「お食事会場」で構成されます。'
     folder: 'src/content/cuisine-page'
     create: false
     i18n: true
@@ -585,6 +640,8 @@ collections:
         name: 'quickNav'
         widget: 'list'
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
           - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
           - { label: '表示ラベル', name: 'label', widget: 'string' }
@@ -605,6 +662,7 @@ collections:
             name: 'plans'
             widget: 'list'
             i18n: true
+            summary: '{{name}}'
             fields: &cuisinePlanFields
               - {
                   label: 'プランID(言語共通)',
@@ -752,13 +810,18 @@ collections:
         name: 'guestConsiderations'
         widget: 'list'
         i18n: true
+        summary: '{{heading}}'
+        collapsed: true
         fields:
           - { label: 'アイコン', name: 'icon', widget: 'string' }
           - { label: '見出し', name: 'heading', widget: 'string' }
           - { label: '説明', name: 'description', widget: 'string' }
-  # ── 館内施設・周辺観光ページ ───────────────────────
+
+  # ── 館内施設ページ ───────────────────────
   - name: 'facilities-page'
-    label: '06 館内施設・周辺観光ページ'
+    label: '06 館内施設ページ'
+    label_singular: '館内施設ページ'
+    description: '/facilities/ ページの内容です。「館内施設」「館内サービス」「周辺観光」の3ブロックで構成されます。'
     folder: 'src/content/facilities-page'
     create: false
     i18n: true
@@ -791,6 +854,8 @@ collections:
         name: 'quickNav'
         widget: 'list'
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
           - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
           - { label: '表示ラベル', name: 'label', widget: 'string' }
@@ -816,6 +881,8 @@ collections:
             name: 'items'
             widget: 'list'
             i18n: true
+            summary: '{{name}}'
+            collapsed: true
             fields:
               - { label: '施設ID(言語共通)', name: 'id', widget: 'string' }
               - { label: '名称', name: 'name', widget: 'string' }
@@ -869,6 +936,8 @@ collections:
             name: 'items'
             widget: 'list'
             i18n: true
+            summary: '{{name}}'
+            collapsed: true
             fields:
               - { label: 'サービスID(言語共通)', name: 'id', widget: 'string' }
               - { label: '名称', name: 'name', widget: 'string' }
@@ -928,6 +997,8 @@ collections:
             name: 'categoryFilters'
             widget: 'list'
             i18n: true
+            summary: '{{label}}'
+            collapsed: true
             fields:
               - { label: 'ID', name: 'id', widget: 'string' }
               - { label: '表示名', name: 'label', widget: 'string' }
@@ -966,7 +1037,8 @@ collections:
             name: 'items'
             widget: 'list'
             i18n: true
-            summary: '{{name}}（{{location}}）'
+            summary: '{{name}}（{{accessFromHotel}}）'
+            collapsed: true
             fields:
               - { label: 'ID(言語共通)', name: 'id', widget: 'string' }
               - { label: '名称', name: 'name', widget: 'string' }
@@ -1025,6 +1097,7 @@ collections:
                 name: 'includedInPlans'
                 widget: 'list'
                 required: false
+                summary: '{{name}}'
                 fields:
                   - { label: 'プラン名', name: 'name', widget: 'string' }
                   - { label: 'リンク先', name: 'href', widget: 'string' }
@@ -1044,9 +1117,12 @@ collections:
             widget: 'list'
             i18n: true
             field: { label: '項目', name: 'item', widget: 'string' }
+
   # ── アクセスページ(詳細版) ───────────────────────
   - name: 'access-page'
     label: '07 アクセスページ'
+    label_singular: 'アクセスページ'
+    description: '/access/ ページの内容です。「地図・問い合わせ」「JR/車/バスでのアクセス」で構成されます。'
     folder: 'src/content/access-page'
     create: false
     i18n: true
@@ -1066,6 +1142,8 @@ collections:
         name: 'quickNav'
         widget: 'list'
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
           - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
           - { label: '表示ラベル', name: 'label', widget: 'string' }
@@ -1138,7 +1216,8 @@ collections:
             name: 'departures'
             widget: 'list'
             i18n: true
-            summary: '{{from}} → {{ic}}（{{duration}}）'
+            summary: '{{from}} → {{boardingStation}}（{{duration}}）'
+            collapsed: true
             fields:
               - { label: '出発地', name: 'from', widget: 'string' }
               - { label: '乗車駅', name: 'boardingStation', widget: 'string' }
@@ -1148,6 +1227,8 @@ collections:
             name: 'toHotelOptions'
             widget: 'list'
             i18n: true
+            summary: '{{method}}（{{duration}}）'
+            collapsed: true
             fields:
               - { label: '手段', name: 'method', widget: 'string' }
               - { label: '路線名', name: 'line', widget: 'string', required: false }
@@ -1222,6 +1303,8 @@ collections:
             name: 'departures'
             widget: 'list'
             i18n: true
+            summary: '{{from}} → {{ic}}（{{duration}}）'
+            collapsed: true
             fields:
               - { label: '出発地', name: 'from', widget: 'string' }
               - { label: 'インターチェンジ', name: 'ic', widget: 'string' }
@@ -1230,6 +1313,8 @@ collections:
             name: 'fromIc'
             widget: 'list'
             i18n: true
+            summary: '{{ic}}（{{duration}}）'
+            collapsed: true
             fields:
               - { label: 'インターチェンジ', name: 'ic', widget: 'string' }
               - { label: '所要時間', name: 'duration', widget: 'string' }
@@ -1318,12 +1403,17 @@ collections:
             name: 'items'
             widget: 'list'
             i18n: true
+            summary: '{{label}}（{{duration}}）'
+            collapsed: true
             fields:
               - { label: '名称', name: 'label', widget: 'string' }
               - { label: '所要時間', name: 'duration', widget: 'string' }
+
   # ── よくある質問ページ ───────────────────────
   - name: 'faq-page'
     label: '08 よくある質問ページ'
+    label_singular: 'FAQページ'
+    description: '/faq/ ページの内容です。カテゴリタブごとにQ&Aが並びます。'
     folder: 'src/content/faq-page'
     create: false
     i18n: true
@@ -1343,6 +1433,7 @@ collections:
         name: 'categories'
         widget: 'list'
         i18n: true
+        summary: '{{label}}'
         fields:
           - { label: 'ID(言語共通)', name: 'id', widget: 'string' }
           - { label: 'アイコン', name: 'icon', widget: 'string' }
@@ -1350,6 +1441,8 @@ collections:
           - label: 'Q&A項目'
             name: 'items'
             widget: 'list'
+            summary: '{{question}}'
+            collapsed: true
             fields:
               - { label: '質問', name: 'question', widget: 'string' }
               - { label: '回答', name: 'answer', widget: 'text' }
@@ -1375,9 +1468,12 @@ collections:
               i18n: true,
             }
           - { label: 'メールアドレス', name: 'email', widget: 'string', i18n: duplicate }
+
   # ── お知らせページ ───────────────────────
   - name: 'news-page'
     label: '09 お知らせ｜ページ設定'
+    label_singular: 'お知らせページ設定'
+    description: '/news/ ページのカテゴリタブ文言などの共通設定です。個別記事は「09 お知らせ｜投稿一覧」で編集します。'
     folder: 'src/content/news-page'
     create: false
     i18n: true
@@ -1406,14 +1502,19 @@ collections:
         name: 'categoryFilters'
         widget: 'list'
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
           - { label: 'ID', name: 'id', widget: 'string' }
           - { label: '表示名', name: 'label', widget: 'string' }
+
   # ── お知らせ投稿 ───────────────────────
   # (このコレクションは各言語をtranslationsオブジェクト内で個別管理しているため
   #  i18n: false のままで問題ありません。変更不要)
   - name: news
     label: '09 お知らせ｜投稿一覧'
+    label_singular: 'お知らせ記事'
+    description: '個別のお知らせ記事です。1件につき日本語〜韓国語まで1ファイルにまとまっています。'
     folder: 'src/content/news'
     create: true
     slug: '{{fields.slug}}'
@@ -1484,9 +1585,12 @@ collections:
             widget: object
             required: false
             fields: *newsTranslationFieldsOptional
+
   # ── プライバシーポリシーページ ───────────────────────
   - name: 'privacy-page'
     label: '10 その他｜プライバシーポリシー'
+    label_singular: 'プライバシーポリシーページ'
+    description: '/privacy/ ページの内容です。セクションごとの見出し・本文・箇条書きで構成されます。'
     folder: 'src/content/privacy-page'
     create: false
     i18n: true
@@ -1513,6 +1617,8 @@ collections:
         name: 'sections'
         widget: 'list'
         i18n: true
+        summary: '{{heading}}'
+        collapsed: true
         fields:
           - { label: '目次アンカーID(言語共通)', name: 'id', widget: 'string' }
           - { label: '見出し', name: 'heading', widget: 'string' }
@@ -1527,9 +1633,12 @@ collections:
             widget: 'list'
             required: false
             field: { label: '項目', name: 'item', widget: 'string' }
+
   # ── 関連情報ページ(福利厚生) ───────────────────────
   - name: 'information-page'
     label: '10 その他｜福利厚生'
+    label_singular: '福利厚生ページ'
+    description: '/information/ ページの内容です。提携団体の補助券・利用権の一覧です。'
     folder: 'src/content/information-page'
     create: false
     i18n: true
@@ -1557,11 +1666,16 @@ collections:
             name: 'items'
             widget: 'list'
             i18n: true
+            summary: '{{name}}'
+            collapsed: true
             fields:
               - { label: '制度名', name: 'name', widget: 'string' }
+
   # ── 採用情報ページ ───────────────────────
   - name: 'recruit-page'
     label: '10 その他｜採用情報'
+    label_singular: '採用情報ページ'
+    description: '/recruit/ ページの内容です。「働く環境」「募集職種」「採用フロー」「福利厚生」で構成されます。'
     folder: 'src/content/recruit-page'
     create: false
     i18n: true
@@ -1603,6 +1717,8 @@ collections:
             name: 'photos'
             widget: 'list'
             i18n: true
+            summary: '{{alt}}'
+            collapsed: true
             fields:
               - { label: '画像(言語共通)', name: 'src', widget: 'image' }
               - { label: '代替テキスト(alt)', name: 'alt', widget: 'string' }
@@ -1622,6 +1738,8 @@ collections:
         name: 'positions'
         widget: 'list'
         i18n: true
+        summary: '{{title}}（{{employmentType}}・{{status}}）'
+        collapsed: true
         fields:
           - label: '募集状況'
             name: 'status'
@@ -1680,6 +1798,8 @@ collections:
         name: 'process'
         widget: 'list'
         i18n: true
+        summary: '{{title}}'
+        collapsed: true
         fields:
           - { label: 'タイトル', name: 'title', widget: 'string' }
           - { label: '説明', name: 'description', widget: 'text' }
@@ -1688,6 +1808,8 @@ collections:
         name: 'benefits'
         widget: 'list'
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
           - label: 'アイコン'
             name: 'icon'
