@@ -1530,7 +1530,13 @@ collections:
               - { label: '代替テキスト(alt)', name: 'alt', widget: 'string' }
           - { label: '職種名', name: 'title', widget: 'string' }
           - { label: '雇用形態', name: 'employmentType', widget: 'string' }
-          - { label: '採用人数', name: 'recruitCount', widget: 'number' }
+          - { label: '採用人数(数字)', name: 'recruitCount', widget: 'number' }
+          - {
+              label: '採用人数表示文言(「{count}」が数字に置換されます 例：「採用人数 {count}名」)',
+              name: 'recruitCountLabel',
+              widget: 'string',
+              i18n: true,
+            }
           - { label: '仕事紹介文', name: 'summary', widget: 'text' }
           - label: '主な仕事内容'
             name: 'duties'

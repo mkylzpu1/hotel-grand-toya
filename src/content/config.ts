@@ -740,6 +740,7 @@ const recruitJobSchema = z.object({
   title: z.string(), // 職種名（例: 厨房スタッフ）
   employmentType: z.string(), // 正社員 / パート 等
   recruitCount: z.number(), // 採用人数
+  recruitCountLabel: z.string(), // 「採用人数 {count}名」のようなテンプレート文言。{count}が数値に置換される
   summary: z.string(), // 求職者向けのやさしい仕事紹介文
   duties: z.array(z.string()), // 主な仕事内容（箇条書き）
   salaryType: z.string(),

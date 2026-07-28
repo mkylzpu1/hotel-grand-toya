@@ -8,13 +8,13 @@ import {
   CalendarDays,
   Users,
 } from 'lucide-astro';
-
 interface Props {
   icon: 'chef-hat' | 'bed-double' | 'concierge-bell';
   image?: { src: string; alt: string };
   title: string;
   employmentType: string;
   recruitCount: number;
+  recruitCountLabel: string; // 「採用人数 {count}名」のようなテンプレート文言
   summary: string;
   duties: string[];
   salaryType: '月給' | '時給';
@@ -23,13 +23,13 @@ interface Props {
   holidays: string;
   tags: string[];
 }
-
 const {
   icon,
   image,
   title,
   employmentType,
   recruitCount,
+  recruitCountLabel,
   summary,
   duties,
   salaryRoughLabel,
@@ -37,7 +37,6 @@ const {
   holidays,
   tags,
 } = Astro.props as Props;
-
 // アイコンキー → lucideコンポーネントの対応表
 const iconMap = {
   'chef-hat': ChefHat,
@@ -45,6 +44,7 @@ const iconMap = {
   'concierge-bell': ConciergeBell,
 };
 const IconComp = iconMap[icon] ?? ChefHat;
+const recruitCountText = recruitCountLabel.replace('{count}', String(recruitCount));
 ---
 
 <div class="job-card border border-[#D8D7D2] bg-white">
@@ -67,7 +67,6 @@ const IconComp = iconMap[icon] ?? ChefHat;
       {employmentType}
     </span>
   </div>
-
   <div class="px-6 py-6">
     <!-- タイトル -->
     <div class="mb-3 flex items-center gap-2.5">
@@ -76,7 +75,6 @@ const IconComp = iconMap[icon] ?? ChefHat;
         {title}
       </h3>
     </div>
-
     <!-- タグ -->
     <div class="mb-4 flex flex-wrap gap-1.5">
       {
@@ -87,9 +85,7 @@ const IconComp = iconMap[icon] ?? ChefHat;
         ))
       }
     </div>
-
     <p class="mb-4 text-[0.84rem] leading-[1.85] text-[#55524C]">{summary}</p>
-
     <ul class="space-y-1.5">
       {
         duties.map((duty) => (
@@ -100,7 +96,6 @@ const IconComp = iconMap[icon] ?? ChefHat;
         ))
       }
     </ul>
-
     <!-- 詳細情報（アイコン+ラベル） -->
     <div
       class="mt-4 flex flex-col gap-1.5 border-t border-[#EDEBE6] pt-4 text-[0.78rem] text-[#55524C]"
@@ -108,7 +103,6 @@ const IconComp = iconMap[icon] ?? ChefHat;
       <span class="flex items-center gap-1.5">
         <JapaneseYen size={13} strokeWidth={2} class="shrink-0 text-[#8A8781]" />
         {salaryRoughLabel}
-        <span class="text-[0.7rem] text-[#8A8781]">（目安）</span>
       </span>
       <span class="flex items-center gap-1.5">
         <Clock size={13} strokeWidth={2} class="shrink-0 text-[#8A8781]" />
@@ -120,7 +114,7 @@ const IconComp = iconMap[icon] ?? ChefHat;
       </span>
       <span class="flex items-center gap-1.5">
         <Users size={13} strokeWidth={2} class="shrink-0 text-[#8A8781]" />
-        採用人数 {recruitCount}名
+        {recruitCountText}
       </span>
     </div>
   </div>

@@ -38,6 +38,7 @@
       "title": "Kitchen Staff",
       "employmentType": "Full-time",
       "recruitCount": 2,
+      "recruitCountLabel": "Positions available: {count}",
       "summary": "This role supports cooking tasks such as rice preparation, dishwashing, and plating in the hotel kitchen. No experience necessary.",
       "duties": [
         "Rice preparation and dishwashing",
@@ -65,6 +66,7 @@
       "title": "Guest Room Attendant",
       "employmentType": "Full-time",
       "recruitCount": 2,
+      "recruitCountLabel": "Positions available: {count}",
       "summary": "This role covers guiding guests to their rooms, serving and clearing meals, and cleaning guest rooms. You'll work as part of a 5-7 person team, and those with no experience will be carefully trained.",
       "duties": [
         "Guiding guests to their rooms",
@@ -92,6 +94,7 @@
       "title": "Front Desk Staff",
       "employmentType": "Part-time",
       "recruitCount": 1,
+      "recruitCountLabel": "Positions available: {count}",
       "summary": "This role covers front desk duties during the hours between check-out and check-in. Mainly guest service, phone handling, and basic data entry — days and hours are negotiable.",
       "duties": ["Front desk guest service", "Phone handling", "Basic data entry"],
       "salaryType": "Hourly wage",
