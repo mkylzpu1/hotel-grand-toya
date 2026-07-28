@@ -1,0 +1,14 @@
+{
+  "date": "2026-07-28",
+  "isImportant": true,
+  "slug": " fireworks-202607282113",
+  "category": "メンテナンス",
+  "translations": {
+    "ja": {
+      "title": "テストです",
+      "body": [
+        "これはテストです"
+      ]
+    }
+  }
+}
