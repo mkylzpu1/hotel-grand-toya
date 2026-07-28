@@ -950,7 +950,7 @@ collections:
             widget: 'list'
             i18n: true
             field: { label: '項目', name: 'item', widget: 'string' }
-  # ── アクセスページ(詳細版) ───────────────────────
+# ── アクセスページ(詳細版) ───────────────────────
   - name: 'access-page'
     label: '07 アクセスページ'
     folder: 'src/content/access-page'
@@ -983,6 +983,62 @@ collections:
           - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
           - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
           - { label: '最寄駅', name: 'nearestStation', widget: 'string', i18n: true }
+          - { label: 'STEP1バッジ文言', name: 'step1Badge', widget: 'string', i18n: true }
+          - { label: 'STEP2バッジ文言', name: 'step2Badge', widget: 'string', i18n: true }
+          - {
+              label: 'STEP3バッジ文言',
+              name: 'step3Badge',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
+          - {
+              label: '最寄駅見出しの接尾語(例：「まで」)',
+              name: 'toStationSuffix',
+              widget: 'string',
+              i18n: true,
+            }
+          - {
+              label: '最寄駅見出しの接尾語(例：「からのアクセス」)',
+              name: 'fromStationAccessSuffix',
+              widget: 'string',
+              i18n: true,
+            }
+          - {
+              label: 'STEP3見出し(例：「バス停からホテルまで」)',
+              name: 'step3Heading',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
+          - {
+              label: 'STEP3補足文言(例：「（バスご利用の場合）」)',
+              name: 'step3SubLabel',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
+          - {
+              label: '「徒歩」ラベル',
+              name: 'walkLabel',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
+          - {
+              label: '路線・時刻表リンクの文言',
+              name: 'linkLabel',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
+          - {
+              label: '公式時刻表リンクの文言',
+              name: 'officialTimetableLabel',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
           - label: '出発地からの所要時間'
             name: 'departures'
             widget: 'list'
@@ -1012,6 +1068,12 @@ collections:
               - {
                   label: 'リンク先(バス会社の路線ページ等)',
                   name: 'url',
+                  widget: 'string',
+                  required: false,
+                }
+              - {
+                  label: 'リンク文言(個別に上書きしたい場合)',
+                  name: 'linkLabel',
                   widget: 'string',
                   required: false,
                 }
@@ -1046,6 +1108,20 @@ collections:
           - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
           - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
           - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
+          - { label: 'STEP1バッジ文言', name: 'step1Badge', widget: 'string', i18n: true }
+          - { label: 'STEP2バッジ文言', name: 'step2Badge', widget: 'string', i18n: true }
+          - {
+              label: 'STEP1見出し(例：「最寄ICまで」)',
+              name: 'step1Heading',
+              widget: 'string',
+              i18n: true,
+            }
+          - {
+              label: 'STEP2見出し(例：「ICからホテルまで」)',
+              name: 'step2Heading',
+              widget: 'string',
+              i18n: true,
+            }
           - label: '出発地から最寄ICまで'
             name: 'departures'
             widget: 'list'
@@ -1076,6 +1152,20 @@ collections:
           - { label: '運行頻度', name: 'frequency', widget: 'string', required: false, i18n: true }
           - { label: '補足', name: 'note', widget: 'string', required: false, i18n: true }
           - { label: 'リンク先', name: 'url', widget: 'string', required: false, i18n: duplicate }
+          - {
+              label: '「乗り換えなし・直行」文言',
+              name: 'connectionLabel',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
+          - {
+              label: '「時刻表を見る」文言',
+              name: 'timetableLabel',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
       - label: '地図'
         name: 'map'
         widget: 'object'
@@ -1097,6 +1187,15 @@ collections:
               i18n: duplicate,
             }
           - { label: '経路検索URL(言語共通)', name: 'routeUrl', widget: 'string', i18n: duplicate }
+          - {
+              label: '地図未設定時の表示文言',
+              name: 'noMapText',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
+          - { label: '「Googleマップで開く」文言', name: 'openMapLabel', widget: 'string', i18n: true }
+          - { label: '「ルート案内」文言', name: 'routeLabel', widget: 'string', i18n: true }
       - label: 'お問い合わせ先'
         name: 'contact'
         widget: 'object'
@@ -1108,6 +1207,16 @@ collections:
           - { label: '電話番号', name: 'tel', widget: 'string', i18n: duplicate }
           - { label: 'FAX番号', name: 'fax', widget: 'string', required: false, i18n: duplicate }
           - { label: 'メールアドレス', name: 'email', widget: 'string', i18n: duplicate }
+          - { label: '「住所」ラベル', name: 'addressLabel', widget: 'string', i18n: true }
+          - { label: '「電話」ラベル', name: 'telLabel', widget: 'string', i18n: true }
+          - {
+              label: '「FAX」ラベル',
+              name: 'faxLabel',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
+          - { label: '「お問合せ」ラベル', name: 'contactLabel', widget: 'string', i18n: true }
       - label: '駐車場'
         name: 'parking'
         widget: 'object'
@@ -1132,19 +1241,6 @@ collections:
             fields:
               - { label: '名称', name: 'label', widget: 'string' }
               - { label: '所要時間', name: 'duration', widget: 'string' }
-      - label: 'よくある質問'
-        name: 'faq'
-        widget: 'object'
-        i18n: true
-        fields:
-          - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-          - label: '項目'
-            name: 'items'
-            widget: 'list'
-            i18n: true
-            fields:
-              - { label: '質問', name: 'question', widget: 'string' }
-              - { label: '回答', name: 'answer', widget: 'text' }
   # ── よくある質問ページ ───────────────────────
   - name: 'faq-page'
     label: '08 よくある質問ページ'

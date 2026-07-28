@@ -13,6 +13,16 @@
     "eyebrow": "By Train",
     "heading": "JRでお越しの方",
     "nearestStation": "JR洞爺駅",
+    "step1Badge": "STEP 1",
+    "step2Badge": "STEP 2",
+    "step3Badge": "STEP 3",
+    "toStationSuffix": "まで",
+    "fromStationAccessSuffix": "からのアクセス",
+    "step3Heading": "バス停からホテルまで",
+    "step3SubLabel": "（バスご利用の場合）",
+    "walkLabel": "徒歩",
+    "linkLabel": "路線・時刻表を見る",
+    "officialTimetableLabel": "JR時刻表を見る（外部サイト）",
     "departures": [
       {
         "from": "札幌",
@@ -62,12 +72,18 @@
     "duration": "約2時間40分",
     "frequency": "1日数便",
     "note": "完全予約制です。乗車日の1ヶ月前から、当日は始発出発の2時間前までに電話またはWeb予約サイトでのご予約が必要です。",
-    "url": "https://www.donanbus.co.jp/map/sap_toyako/"
+    "url": "https://www.donanbus.co.jp/map/sap_toyako/",
+    "connectionLabel": "乗り換えなし・直行",
+    "timetableLabel": "時刻表を見る"
   },
   "byCar": {
     "icon": "車",
     "eyebrow": "By Car",
     "heading": "お車でお越しの方",
+    "step1Badge": "STEP 1",
+    "step2Badge": "STEP 2",
+    "step1Heading": "最寄ICまで",
+    "step2Heading": "ICからホテルまで",
     "departures": [
       { "from": "札幌", "ic": "虻田洞爺湖IC", "duration": "約1時間50分" },
       { "from": "新千歳空港", "ic": "虻田洞爺湖IC", "duration": "約1時間30分" },
@@ -86,7 +102,10 @@
     "heading": "地図・お問い合わせ",
     "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
     "openMapUrl": "https://maps.google.com/?q=ホテルグランドトーヤ",
-    "routeUrl": "https://www.google.com/maps/dir/?api=1&destination=ホテルグランドトーヤ"
+    "routeUrl": "https://www.google.com/maps/dir/?api=1&destination=ホテルグランドトーヤ",
+    "noMapText": "地図を準備中です",
+    "openMapLabel": "Googleマップで開く",
+    "routeLabel": "ルート案内"
   },
   "contact": {
     "name": "洞爺湖温泉・湖畔の宿　ホテルグランドトーヤ",
@@ -94,7 +113,11 @@
     "address": "北海道虻田郡洞爺湖町洞爺湖温泉144",
     "tel": "0142-75-2288",
     "fax": "0142-75-3434",
-    "email": "info@grandtoya.com"
+    "email": "info@grandtoya.com",
+    "addressLabel": "住所",
+    "telLabel": "電話",
+    "faxLabel": "FAX",
+    "contactLabel": "お問合せ"
   },
   "parking": {
     "heading": "駐車場のご案内",
@@ -109,28 +132,6 @@
       { "label": "コンビニまで", "duration": "徒歩約5分" },
       { "label": "洞爺湖温泉街まで", "duration": "徒歩約10分" },
       { "label": "遊覧船乗り場まで", "duration": "徒歩約8分" }
-    ]
-  },
-  "faq": {
-    "heading": "よくある質問",
-    "items": [
-      {
-        "question": "冬でも車で行けますか？",
-        "answer": "はい、スタッドレスタイヤの装着など冬季装備があれば通行可能です。積雪時は所要時間に余裕を持ってお越しください。"
-      },
-      {
-        "question": "チェックイン前から駐車できますか？",
-        "answer": "はい、チェックイン前のご到着でも駐車場をご利用いただけます。"
-      },
-      { "question": "タクシーは呼べますか？", "answer": "フロントにてお手配いたします。" },
-      {
-        "question": "最寄り駅から徒歩で行けますか？",
-        "answer": "距離があるため、タクシーまたは路線バスのご利用をおすすめしております。"
-      },
-      {
-        "question": "送迎サービスはありますか？",
-        "answer": "現在、送迎サービスは行っておりません。"
-      }
     ]
   }
 }

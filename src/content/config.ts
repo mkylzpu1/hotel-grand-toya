@@ -476,19 +476,27 @@ const accessPage = defineCollection({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
     icon: z.string(),
-    // ページ内アンカーナビ。「和室」「洋室」の2リンクのみ。
     quickNav: z.array(
       z.object({
         href: z.string(),
         label: z.string(),
       }),
     ),
-
     byTrain: z.object({
       icon: z.string(),
       eyebrow: z.string(),
       heading: z.string(),
       nearestStation: z.string(),
+      step1Badge: z.string(),
+      step2Badge: z.string(),
+      step3Badge: z.string().optional(),
+      toStationSuffix: z.string(), // 「まで」
+      fromStationAccessSuffix: z.string(), // 「からのアクセス」
+      step3Heading: z.string().optional(), // 「バス停からホテルまで」
+      step3SubLabel: z.string().optional(), // 「（バスご利用の場合）」
+      walkLabel: z.string().optional(), // 「徒歩」
+      linkLabel: z.string().optional(), // 「路線・時刻表を見る」（各optionでも上書き可）
+      officialTimetableLabel: z.string().optional(), // 「JR時刻表を見る（外部サイト）」
       departures: z.array(
         z.object({
           from: z.string(),
@@ -497,7 +505,6 @@ const accessPage = defineCollection({
           duration: z.string(),
         }),
       ),
-      // 洞爺駅からホテルまでの手段（タクシー・路線バス・直行バス等）をすべてここに並べる
       toHotelOptions: z.array(
         z.object({
           method: z.string(),
@@ -505,9 +512,10 @@ const accessPage = defineCollection({
           boarding: z.string().optional(),
           alighting: z.string().optional(),
           duration: z.string(),
-          frequency: z.string().optional(), // 追加：運行頻度・予約要否
+          frequency: z.string().optional(),
           note: z.string().optional(),
-          url: z.string().optional(), // 追加：バス会社の路線ページへのリンク
+          url: z.string().optional(),
+          linkLabel: z.string().optional(), // 個別リンク文言を上書きしたい場合
         }),
       ),
       walkToHotel: z
@@ -520,12 +528,14 @@ const accessPage = defineCollection({
       shuttleAvailable: z.string().optional(),
       officialTimetableUrl: z.string().optional(),
     }),
-
     byCar: z.object({
       icon: z.string(),
       eyebrow: z.string(),
       heading: z.string(),
-      // 各出発地→最寄ICまでの区間
+      step1Badge: z.string(),
+      step2Badge: z.string(),
+      step1Heading: z.string(), // 「最寄ICまで」
+      step2Heading: z.string(), // 「ICからホテルまで」
       departures: z.array(
         z.object({
           from: z.string(),
@@ -533,7 +543,6 @@ const accessPage = defineCollection({
           duration: z.string(),
         }),
       ),
-      // ICからホテルまでは共通なので1箇所にまとめる
       fromIc: z.array(
         z.object({
           ic: z.string(),
@@ -552,9 +561,10 @@ const accessPage = defineCollection({
         frequency: z.string().optional(),
         note: z.string().optional(),
         url: z.string().optional(),
+        connectionLabel: z.string().optional(), // 「乗り換えなし・直行」
+        timetableLabel: z.string().optional(), // 「時刻表を見る」
       })
       .optional(),
-
     map: z.object({
       icon: z.string(),
       eyebrow: z.string(),
@@ -562,6 +572,9 @@ const accessPage = defineCollection({
       embedUrl: z.string(),
       openMapUrl: z.string(),
       routeUrl: z.string(),
+      noMapText: z.string().optional(), // 「地図を準備中です」
+      openMapLabel: z.string(), // 「Googleマップで開く」
+      routeLabel: z.string(), // 「ルート案内」
     }),
     contact: z.object({
       name: z.string(),
@@ -570,6 +583,10 @@ const accessPage = defineCollection({
       tel: z.string(),
       fax: z.string().optional(),
       email: z.string(),
+      addressLabel: z.string(), // 「住所」
+      telLabel: z.string(), // 「電話」
+      faxLabel: z.string().optional(), // 「FAX」
+      contactLabel: z.string(), // 「お問合せ」
     }),
     parking: z.object({
       heading: z.string(),
@@ -578,10 +595,6 @@ const accessPage = defineCollection({
     surroundings: z.object({
       heading: z.string(),
       items: z.array(z.object({ label: z.string(), duration: z.string() })),
-    }),
-    faq: z.object({
-      heading: z.string(),
-      items: z.array(z.object({ question: z.string(), answer: z.string() })),
     }),
   }),
 });

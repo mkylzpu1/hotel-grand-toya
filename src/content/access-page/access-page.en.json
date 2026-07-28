@@ -3,28 +3,26 @@
   "pageTitleEn": "ACCESS",
   "icon": "道",
   "quickNav": [
-    {
-      "href": "#section-parking",
-      "label": "Map & Contact"
-    },
-    {
-      "href": "#section-train",
-      "label": "By Train"
-    },
-    {
-      "href": "#section-car",
-      "label": "By Car"
-    },
-    {
-      "href": "#section-bus",
-      "label": "By Highway Bus"
-    }
+    { "href": "#section-parking", "label": "Map & Contact" },
+    { "href": "#section-train", "label": "By Train" },
+    { "href": "#section-car", "label": "By Car" },
+    { "href": "#section-bus", "label": "By Highway Bus" }
   ],
   "byTrain": {
     "icon": "駅",
     "eyebrow": "By Train",
     "heading": "By Train",
     "nearestStation": "JR Toya Station",
+    "step1Badge": "STEP 1",
+    "step2Badge": "STEP 2",
+    "step3Badge": "STEP 3",
+    "toStationSuffix": " Access",
+    "fromStationAccessSuffix": " to the Hotel",
+    "step3Heading": "From Bus Stop to Hotel",
+    "step3SubLabel": " (If Taking the Bus)",
+    "walkLabel": "On Foot",
+    "linkLabel": "View Route & Timetable",
+    "officialTimetableLabel": "View JR Timetable (External Site)",
     "departures": [
       {
         "from": "Sapporo",
@@ -77,12 +75,17 @@
     "duration": "About 2 hrs. 40 min.",
     "frequency": "Several times a day",
     "note": "Reservations required for all seats. Please book by phone or on the website from one month before your travel date, up until 2 hours before the first departure on the day of travel.",
-    "url": "https://www.donanbus.co.jp/map/sap_toyako/"
+    "url": "https://www.donanbus.co.jp/map/sap_toyako/",
+    "timetableLabel": "View Timetable"
   },
   "byCar": {
     "icon": "車",
     "eyebrow": "By Car",
     "heading": "By Car",
+    "step1Badge": "STEP 1",
+    "step2Badge": "STEP 2",
+    "step1Heading": "To the Nearest Interchange",
+    "step2Heading": "From the Interchange to the Hotel",
     "departures": [
       {
         "from": "Sapporo",
@@ -125,65 +128,37 @@
     "eyebrow": "Map & Contact",
     "heading": "Map & Contact",
     "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
-    "mapTitle": "Map of Hotel Grand Toya",
     "openMapUrl": "https://maps.google.com/?q=ホテルグランドトーヤ",
-    "routeUrl": "https://www.google.com/maps/dir/?api=1&destination=ホテルグランドトーヤ"
+    "routeUrl": "https://www.google.com/maps/dir/?api=1&destination=ホテルグランドトーヤ",
+    "noMapText": "Map coming soon",
+    "openMapLabel": "Open in Google Maps",
+    "routeLabel": "Get Directions"
   },
   "contact": {
-    "name": "洞爺湖温泉・湖畔の宿　ホテルグランドトーヤ",
+    "name": "Toyako Onsen Lakeside Inn Hotel Grand Toya",
     "postalCode": "〒049-5721",
     "address": "144 Toyako Onsen, Toyako-cho, Abuta-gun, Hokkaido",
     "tel": "0142-75-2288",
     "fax": "0142-75-3434",
-    "email": "info@grandtoya.com"
+    "email": "info@grandtoya.com",
+    "addressLabel": "Address",
+    "telLabel": "Phone",
+    "faxLabel": "FAX",
+    "contactLabel": "Contact"
   },
   "parking": {
-    "heading": "Parking",
+    "heading": "Parking Information",
     "notes": [
-      "In addition to the hotel grounds, we also have a parking lot across the road.",
-      "No reservation needed. Our staff will guide you upon arrival."
+      "In addition to the on-site parking lot, we also have parking available across the street.",
+      "No reservation is required. Our staff will assist you upon arrival."
     ]
   },
   "surroundings": {
-    "heading": "Nearby",
+    "heading": "Nearby Access",
     "items": [
-      {
-        "label": "To convenience store",
-        "duration": "About 5 min. walk"
-      },
-      {
-        "label": "To Lake Toya Onsen town",
-        "duration": "About 10 min. walk"
-      },
-      {
-        "label": "To sightseeing boat pier",
-        "duration": "About 8 min. walk"
-      }
-    ]
-  },
-  "faq": {
-    "heading": "FAQ",
-    "items": [
-      {
-        "question": "Can I drive here in winter?",
-        "answer": "Yes, as long as your car has winter equipment such as studless tires. Please allow extra travel time when there is snow."
-      },
-      {
-        "question": "Can I park before check-in?",
-        "answer": "Yes, you may use the parking lot even if you arrive before check-in."
-      },
-      {
-        "question": "Can you call a taxi for me?",
-        "answer": "Yes, our front desk can arrange one for you."
-      },
-      {
-        "question": "Can I walk from the nearest station?",
-        "answer": "As it is some distance away, we recommend using a taxi or local bus."
-      },
-      {
-        "question": "Do you offer a shuttle service?",
-        "answer": "We do not currently offer a shuttle service."
-      }
+      { "label": "To Convenience Store", "duration": "Approx. 5 min walk" },
+      { "label": "To Toyako Onsen Town", "duration": "Approx. 10 min walk" },
+      { "label": "To Sightseeing Boat Pier", "duration": "Approx. 8 min walk" }
     ]
   }
 }
