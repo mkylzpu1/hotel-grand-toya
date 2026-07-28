@@ -5,13 +5,12 @@ interface SceneryItem {
   title: string;
   note: string;
 }
-
 interface AccessListItem {
   label: string;
   value: string;
 }
-
 interface AccessProps {
+  lang: string;
   heroImage: string;
   heroImageAlt: string;
   eyebrow: string;
@@ -26,8 +25,8 @@ interface AccessProps {
   sceneryItems: SceneryItem[];
   sceneryLinkText: string;
 }
-
 export default function Access({
+  lang,
   heroImage,
   heroImageAlt,
   eyebrow,
@@ -44,7 +43,6 @@ export default function Access({
 }: AccessProps) {
   // シームレスな無限スクロールのためにリストを複製
   const sceneryLoop: SceneryItem[] = [...sceneryItems, ...sceneryItems];
-
   return (
     <section
       className="relative mx-auto max-w-[1320px] px-10 pb-[108px] before:absolute before:left-0 before:right-0 before:top-0 before:h-px before:bg-[#D8D7D2] before:content-[''] after:absolute after:-top-px after:left-1/2 after:h-[3px] after:w-11 after:-translate-x-1/2 after:bg-[#A24730] after:content-['']"
@@ -57,12 +55,10 @@ export default function Access({
           to { transform: translateX(calc(-50% - 14px)); }
         }
       `}</style>
-
       {/* Hero image (full-bleed) */}
       <div className="mb-20 ml-[calc(50%-50vw)] h-[52vh] min-h-[340px] w-screen overflow-hidden">
         <img src={heroImage} alt={heroImageAlt} className="block h-full w-full object-cover" />
       </div>
-
       {/* Heading */}
       <div className="mb-[72px] text-center">
         <p className="mb-[18px] flex items-center justify-center gap-2.5 text-[0.74rem] font-medium tracking-[0.14em] text-[#29415C]">
@@ -78,7 +74,6 @@ export default function Access({
           {heading}
         </h2>
       </div>
-
       {/* Access info + map */}
       <div className="mb-[110px] grid grid-cols-1 items-start gap-[72px] lg:grid-cols-[1.2fr_1fr]">
         <div>
@@ -90,7 +85,7 @@ export default function Access({
             ))}
           </ul>
           <p className="my-5 mb-[30px] text-[0.78rem] text-[#8A8781]">{note}</p>
-          <ArrowLink href={asset('/ja/access/')}>{detailLinkText}</ArrowLink>
+          <ArrowLink href={asset(`/${lang}/access/`)}>{detailLinkText}</ArrowLink>
         </div>
         <div className="h-[360px] border-[0.5px] border-[#29415C]">
           <iframe
@@ -103,7 +98,6 @@ export default function Access({
           />
         </div>
       </div>
-
       {/* Scenery lead + marquee gallery */}
       <div className="text-center">
         <h3 className="mb-5 text-[1.7rem] font-medium">{sceneryHeading}</h3>
@@ -133,9 +127,8 @@ export default function Access({
           </div>
         </div>
       </div>
-
       <div className="mt-[70px] text-center">
-        <ArrowLink href={asset('/ja/facilities/')}>{sceneryLinkText}</ArrowLink>
+        <ArrowLink href={asset(`/${lang}/facilities/`)}>{sceneryLinkText}</ArrowLink>
       </div>
     </section>
   );

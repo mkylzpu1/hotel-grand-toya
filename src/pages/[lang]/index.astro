@@ -54,6 +54,6 @@ const langLinks = locales.map((code) => ({
   <main id="top">
     <Hero client:load {...heroEntry.data} />
     {sections.map((section) => <ContentSection {...section} />)}
-    <Access {...accessEntry.data} />
+    <Access lang={lang} {...accessEntry.data} />
   </main>
 </Layout>
