@@ -4,6 +4,10 @@
   "icon": "報",
   "categoryFilters": [
     {
+      "id": "other",
+      "label": "お知らせ"
+    },
+    {
       "id": "event",
       "label": "イベント"
     },
@@ -17,5 +21,6 @@
     }
   ],
   "allCategoryLabel": "すべて",
-  "emptyLabel": "該当するお知らせはありません"
+  "emptyLabel": "該当するお知らせはありません",
+  "importantLabel": "重要"
 }

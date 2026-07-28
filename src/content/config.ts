@@ -681,6 +681,7 @@ const newsPage = defineCollection({
     categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
     allCategoryLabel: z.string(),
     emptyLabel: z.string(),
+    importantLabel: z.string(),
   }),
 });
 

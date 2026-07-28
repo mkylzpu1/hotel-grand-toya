@@ -4,6 +4,10 @@
   "icon": "報",
   "categoryFilters": [
     {
+      "id": "other",
+      "label": "最新消息"
+    },
+    {
       "id": "event",
       "label": "活动"
     },
@@ -17,5 +21,6 @@
     }
   ],
   "allCategoryLabel": "全部",
-  "emptyLabel": "暂无相关消息。"
+  "emptyLabel": "暂无相关消息。",
+  "importantLabel": "重要"
 }

@@ -29,10 +29,15 @@ const posts = newsEntries
   .map((entry) => {
     const translated = entry.data.translations[lang];
     const fallback = entry.data.translations.ja;
+    const categoryId = categoryIdMap[entry.data.category] ?? 'other';
+    const categoryLabel =
+      page.categoryFilters.find((c) => c.id === categoryId)?.label ?? entry.data.category;
     return {
       id: entry.data.slug ?? entry.id,
       date: entry.data.date,
       category: entry.data.category,
+      categoryId,
+      categoryLabel,
       isImportant: entry.data.isImportant,
       title: translated.title || fallback.title,
       body: translated.body.length > 0 ? translated.body : fallback.body,
@@ -90,17 +95,19 @@ const posts = newsEntries
           <article
             id={post.id}
             class="news-item flex scroll-mt-24 flex-col gap-2 py-7 sm:flex-row sm:items-baseline sm:gap-8"
-            data-category={categoryIdMap[post.category] ?? 'other'}
+            data-category={post.categoryId}
           >
             <div class="flex shrink-0 items-center gap-4 sm:w-[180px]">
               <time class="text-[0.82rem] tracking-[0.04em] text-[#8A8781]">{post.date}</time>
               <span class="rounded-[2px] border border-[#A24730]/40 px-2.5 py-1 text-[0.72rem] tracking-[0.03em] text-[#A24730]">
-                {post.category}
+                {post.categoryLabel}
               </span>
             </div>
             <div class="flex-1">
               <h3 class="mb-2 font-serif text-[1.02rem] font-semibold text-[#1E1C1A]">
-                {post.isImportant && <span class="mr-2 text-[#A24730]">【重要】</span>}
+                {post.isImportant && (
+                  <span class="mr-2 text-[#A24730]">【{page.importantLabel}】</span>
+                )}
                 {post.title}
               </h3>
               {post.body.map((line) => (
@@ -149,11 +156,13 @@ const posts = newsEntries
           b.classList.toggle('text-[#55524C]', !active);
           b.classList.toggle('border-[#D8D7D2]', !active);
         });
+
         items.forEach((item) => {
           const category = item.getAttribute('data-category');
           const show = filter === 'all' || filter === category;
           item.style.display = show ? '' : 'none';
         });
+
         updateEmptyState(filter);
       }
 
@@ -167,6 +176,7 @@ const posts = newsEntries
       function flashHashTarget() {
         const hash = decodeURIComponent(location.hash.replace(/^#/, ''));
         if (!hash) return;
+
         const target = document.getElementById(hash);
         if (!target) return;
 
@@ -197,7 +207,6 @@ const posts = newsEntries
       border-color: #a24730;
       color: #ffffff;
     }
-
     .search-highlight {
       animation: search-flash 2s ease-out;
     }

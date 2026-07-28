@@ -1379,6 +1379,13 @@ collections:
       - { label: 'アイコン(1文字)', name: 'icon', widget: 'string', i18n: duplicate }
       - { label: '「すべて」ラベル', name: 'allCategoryLabel', widget: 'string', i18n: true }
       - { label: '該当なし文言', name: 'emptyLabel', widget: 'string', i18n: true }
+      - {
+          label: '重要ラベル',
+          name: 'importantLabel',
+          widget: 'string',
+          i18n: true,
+          default: '【重要】',
+        }
       - label: 'カテゴリフィルター'
         name: 'categoryFilters'
         widget: 'list'

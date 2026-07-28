@@ -4,6 +4,10 @@
   "icon": "報",
   "categoryFilters": [
     {
+      "id": "other",
+      "label": "News"
+    },
+    {
       "id": "event",
       "label": "Events"
     },
@@ -17,5 +21,6 @@
     }
   ],
   "allCategoryLabel": "All",
-  "emptyLabel": "No news found."
+  "emptyLabel": "No news found.",
+  "importantLabel": "Important"
 }
