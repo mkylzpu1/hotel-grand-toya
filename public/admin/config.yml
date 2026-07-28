@@ -1413,7 +1413,7 @@ collections:
           widget: string,
           hint: '例: fireworks-2026。同じIDは使わないでください。',
         }
-      - { label: '公開日', name: date, widget: date, date_format: 'YYYY-MM-DD', default: '{{now}}' }
+      - { label: '公開日', name: date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, default: '{{now}}' }
       - label: 'カテゴリ'
         name: category
         widget: select
