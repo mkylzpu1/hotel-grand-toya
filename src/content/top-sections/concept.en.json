@@ -1,20 +1,27 @@
 {
-  "order": 1,
-  "icon": "心",
-  "eyebrow": "Concept",
-  "titleLines": ["On the shore of Lake Toya,", "a time for your heart to unwind."],
-  "description": [
-    "Hotel Grand Toya is a hot spring inn standing on the shore of Lake Toya.",
-    "After enjoying a stroll along the lake and nearby sights, relax and ease your fatigue in our natural hot spring. We offer an unpretentious, comfortable stay."
-  ],
   "centerText": true,
-  "showDivider": false,
+  "titleLines": [
+    "On the shore of Lake Toya,",
+    "a time for your heart to unwind."
+  ],
+  "eyebrow": "Concept",
+  "order": 1,
   "images": [
-    { "src": "/assets/photos/image12.jpg", "alt": "Hotel lobby", "className": "h-full" },
+    {
+      "src": "/assets/photos/image12.jpg",
+      "alt": "Hotel lobby",
+      "className": "h-full"
+    },
     {
       "src": "/assets/photos/image2.png",
       "alt": "Fireworks over Lake Toya",
       "className": "h-[74%] self-end mt-0 lg:mt-[70px]"
     }
+  ],
+  "icon": "心",
+  "showDivider": false,
+  "description": [
+    "Hotel Grand Toya is a hot spring inn standing on the shore of Lake Toya.",
+    "After enjoying a stroll along the lake and nearby sights, relax and ease your fatigue in our natural hot spring. We offer an unpretentious, comfortable stay."
   ]
 }
