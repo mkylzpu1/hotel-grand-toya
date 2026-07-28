@@ -39,8 +39,8 @@ const posts = newsEntries
       categoryId,
       categoryLabel,
       isImportant: entry.data.isImportant,
-      title: translated.title || fallback.title,
-      body: translated.body.length > 0 ? translated.body : fallback.body,
+      title: translated?.title || fallback.title,
+      body: translated?.body && translated.body.length > 0 ? translated.body : fallback.body,
     };
   })
   .filter((post) => post.title)
