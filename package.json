@@ -11,10 +11,9 @@
     "astro": "astro",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "format:content": "prettier --write \"src/content/**/*.json\"",
     "lint": "eslint . --ext .ts,.tsx,.astro",
     "lint:fix": "eslint . --ext .ts,.tsx,.astro --fix",
-    "quality": "npm run format && npm run lint:fix && npm run format:content",
+    "quality": "npm run format && npm run lint:fix",
     "cms": "npx decap-server"
   },
   "dependencies": {
