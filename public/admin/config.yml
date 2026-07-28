@@ -81,6 +81,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.heading}}'
     fields:
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: 'リンク一覧'
@@ -102,6 +103,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.name}}'
     fields:
       - { label: 'サイトタイトル (metaタイトル)', name: title, widget: string, i18n: true }
       - { label: 'サイト説明文 (meta description)', name: description, widget: text, i18n: true }
@@ -153,6 +155,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.eyebrow}}'
     fields:
       - { label: '背景画像（言語共通）', name: image, widget: image, i18n: duplicate }
       - { label: '画像の代替テキスト (alt)', name: imageAlt, widget: string, i18n: true }
@@ -172,6 +175,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.order}}. {{fields.eyebrow}}'
     fields:
       - {
           label: '表示順（数字が小さいほど上に表示）',
@@ -247,6 +251,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.heading}}'
     fields:
       - { label: 'ヒーロー画像（言語共通）', name: heroImage, widget: image, i18n: duplicate }
       - { label: '画像の代替テキスト (alt)', name: heroImageAlt, widget: string, i18n: true }
@@ -292,6 +297,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.pageTitle}}'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
@@ -438,6 +444,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.pageTitle}}'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
@@ -549,6 +556,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.pageTitle}}'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
@@ -754,6 +762,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.pageTitle}}'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
@@ -1040,6 +1049,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.pageTitle}}'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
@@ -1315,6 +1325,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.pageTitle}}'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
@@ -1368,6 +1379,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.pageTitle}}'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
@@ -1413,7 +1425,14 @@ collections:
           widget: string,
           hint: '例: fireworks-2026。同じIDは使わないでください。',
         }
-      - { label: '公開日', name: date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, default: '{{now}}' }
+      - {
+          label: '公開日',
+          name: date,
+          widget: datetime,
+          date_format: 'YYYY-MM-DD',
+          time_format: false,
+          default: '{{now}}',
+        }
       - label: 'カテゴリ'
         name: category
         widget: select
@@ -1469,6 +1488,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.pageTitle}}'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
@@ -1511,6 +1531,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.pageTitle}}'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
@@ -1542,6 +1563,7 @@ collections:
     i18n: true
     extension: json
     format: json
+    summary: '{{fields.pageTitle}}'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
