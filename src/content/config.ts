@@ -33,8 +33,18 @@ const site = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    address: z.string(),
+    name: z.string(), // 施設名（フル）
+    postalCode: z.string(),
+    address: z.string(), // 郵便番号を含まない住所本体
     tel: z.string(),
+    fax: z.string(),
+    email: z.string(),
+    contactLabels: z.object({
+      address: z.string(),
+      tel: z.string(),
+      fax: z.string(),
+      contact: z.string(),
+    }),
     reservationUrl: z.string(),
     reservationLabel: z.string().optional(),
     footer: z.object({
@@ -48,7 +58,6 @@ const site = defineCollection({
     }),
   }),
 });
-
 const navigation = defineCollection({
   type: 'data',
   schema: z.object({
@@ -575,18 +584,6 @@ const accessPage = defineCollection({
       noMapText: z.string().optional(), // 「地図を準備中です」
       openMapLabel: z.string(), // 「Googleマップで開く」
       routeLabel: z.string(), // 「ルート案内」
-    }),
-    contact: z.object({
-      name: z.string(),
-      postalCode: z.string(),
-      address: z.string(),
-      tel: z.string(),
-      fax: z.string().optional(),
-      email: z.string(),
-      addressLabel: z.string(), // 「住所」
-      telLabel: z.string(), // 「電話」
-      faxLabel: z.string().optional(), // 「FAX」
-      contactLabel: z.string(), // 「お問合せ」
     }),
     parking: z.object({
       heading: z.string(),

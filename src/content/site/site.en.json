@@ -1,15 +1,25 @@
 {
-  "title": "Hotel Grand Toya | Lake Toya Onsen Resort Hotel",
-  "description": "The closest you can be to Lake Toya. Unwind in a natural hot spring and lake-view rooms for a quiet stay. Official website of Hotel Grand Toya.",
-  "address": "XXXX, Toyako-cho, Abuta-gun, Hokkaido 049-XXXX, Japan",
-  "tel": "+81-142-XX-XXXX",
+  "title": "Hotel Grand Toya｜Toyako Onsen Lakeside Resort",
+  "description": "The closest time to Lake Toya's shore. Spend quiet moments in a natural hot spring and rooms overlooking the lake. Official site of Hotel Grand Toya.",
+  "postalCode": "〒049-5721",
+  "address": "144 Toyako Onsen, Toyako-cho, Abuta-gun, Hokkaido",
+  "name": "Toyako Onsen Lakeside Inn Hotel Grand Toya",
+  "tel": "0142-75-2288",
+  "fax": "0142-75-3434",
+  "email": "info@grandtoya.com",
+  "contactLabels": {
+    "address": "Address",
+    "tel": "Phone",
+    "fax": "FAX",
+    "contact": "Contact"
+  },
   "reservationUrl": "https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000002996",
   "reservationLabel": "Book Now",
   "footer": {
     "guideHeading": "Guide",
     "infoHeading": "Site Information",
     "reservationHeading": "Reservations",
-    "reservationExternalText": "Book on our reservation site",
+    "reservationExternalText": "Go to Booking Site",
     "copyright": "© 2026 Hotel Grand Toya",
     "mobileTelLabel": "Call",
     "mobileReserveLabel": "Book Now"

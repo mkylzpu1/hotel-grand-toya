@@ -1,15 +1,25 @@
 {
   "title": "格兰多洞爷酒店｜洞爷湖温泉・湖畔度假酒店",
-  "description": "在洞爷湖畔，享受最贴近湖水的时光。源泉放流温泉与可眺望湖景的客房，为您带来宁静的住宿体验。格兰多洞爷酒店官方网站。",
-  "address": "日本北海道虻田郡洞爷湖町XXXX 邮编049-XXXX",
-  "tel": "+81-142-XX-XXXX",
+  "description": "在洞爷湖畔，度过最贴近湖水的时光。源泉放流的温泉与可眺望湖景的客房，静谧的片刻。格兰多洞爷酒店官方网站。",
+  "postalCode": "〒049-5721",
+  "address": "北海道虻田郡洞爷湖町洞爷湖温泉144",
+  "name": "洞爷湖温泉・湖畔旅馆 格兰多洞爷酒店",
+  "tel": "0142-75-2288",
+  "fax": "0142-75-3434",
+  "email": "info@grandtoya.com",
+  "contactLabels": {
+    "address": "地址",
+    "tel": "电话",
+    "fax": "传真",
+    "contact": "咨询"
+  },
   "reservationUrl": "https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000002996",
   "reservationLabel": "立即预订",
   "footer": {
-    "guideHeading": "住宿指南",
+    "guideHeading": "使用指南",
     "infoHeading": "网站信息",
     "reservationHeading": "预订",
-    "reservationExternalText": "前往外部预订网站",
+    "reservationExternalText": "前往预订网站",
     "copyright": "© 2026 Hotel Grand Toya",
     "mobileTelLabel": "电话",
     "mobileReserveLabel": "立即预订"

@@ -14,6 +14,7 @@ const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = a
 );
 const page = pageEntry.data;
 ---
+
 <PageTemplate
   lang={lang}
   title={`${page.pageTitle}｜${siteEntry.data.title}`}
@@ -90,38 +91,48 @@ const page = pageEntry.data;
       </div>
       <!-- ホテル基本情報 -->
       <div class="mb-14 max-w-[620px] border-y border-[#C7C5BF] py-6">
-        <p class="mb-4 font-serif text-[1rem] font-semibold text-[#1E1C1A]">{page.contact.name}</p>
+        <p class="mb-4 font-serif text-[1rem] font-semibold text-[#1E1C1A]">
+          {siteEntry.data.name}
+        </p>
         <div class="space-y-3">
           <div class="flex items-baseline gap-4">
-            <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">{page.contact.addressLabel}</span>
+            <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]"
+              >{siteEntry.data.contactLabels.address}</span
+            >
             <span class="text-[0.88rem] text-[#1E1C1A]"
-              >{page.contact.postalCode} {page.contact.address}</span
+              >{siteEntry.data.postalCode} {siteEntry.data.address}</span
             >
           </div>
           <div class="flex items-baseline gap-4">
-            <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">{page.contact.telLabel}</span>
+            <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]"
+              >{siteEntry.data.contactLabels.tel}</span
+            >
             <a
-              href={`tel:${page.contact.tel.replace(/-/g, '')}`}
+              href={`tel:${siteEntry.data.tel.replace(/-/g, '')}`}
               class="text-[0.88rem] text-[#1E1C1A] hover:text-[#A24730]"
             >
-              {page.contact.tel}
+              {siteEntry.data.tel}
             </a>
           </div>
           {
-            page.contact.fax && (
+            siteEntry.data.fax && (
               <div class="flex items-baseline gap-4">
-                <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">{page.contact.faxLabel}</span>
-                <span class="text-[0.88rem] text-[#1E1C1A]">{page.contact.fax}</span>
+                <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">
+                  {siteEntry.data.contactLabels.fax}
+                </span>
+                <span class="text-[0.88rem] text-[#1E1C1A]">{siteEntry.data.fax}</span>
               </div>
             )
           }
           <div class="flex items-baseline gap-4">
-            <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]">{page.contact.contactLabel}</span>
+            <span class="w-[4.5em] shrink-0 text-[0.74rem] text-[#8A8781]"
+              >{siteEntry.data.contactLabels.contact}</span
+            >
             <a
-              href={`mailto:${page.contact.email}`}
+              href={`mailto:${siteEntry.data.email}`}
               class="text-[0.88rem] text-[#A24730] underline"
             >
-              {page.contact.email}
+              {siteEntry.data.email}
             </a>
           </div>
         </div>
@@ -251,7 +262,9 @@ const page = pageEntry.data;
                 </div>
                 <div class="mb-8 border-y border-[#A24730]/25 py-3">
                   <div class="flex items-baseline gap-4">
-                    <p class="min-w-0 flex-1 text-[0.86rem] font-medium text-[#1E1C1A]">{page.byTrain.walkLabel}</p>
+                    <p class="min-w-0 flex-1 text-[0.86rem] font-medium text-[#1E1C1A]">
+                      {page.byTrain.walkLabel}
+                    </p>
                     <p class="w-[7.5em] shrink-0 whitespace-nowrap text-right font-serif text-[0.98rem] font-semibold text-[#A24730]">
                       {page.byTrain.walkToHotel.duration}
                     </p>

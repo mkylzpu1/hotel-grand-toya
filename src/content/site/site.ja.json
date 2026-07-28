@@ -1,8 +1,18 @@
 {
   "title": "ホテルグランドトーヤ｜洞爺湖温泉・湖畔のリゾートホテル",
   "description": "洞爺湖の湖畔に、いちばん近い時間を。源泉かけ流しの温泉と湖を望む客室で過ごす、静かなひととき。ホテルグランドトーヤ公式サイトです。",
-  "address": "〒049-XXXX 北海道虻田郡洞爺湖町XXXX",
-  "tel": "0142-XX-XXXX",
+  "postalCode": "〒049-5721",
+  "address": "北海道虻田郡洞爺湖町洞爺湖温泉144",
+  "name": "洞爺湖温泉・湖畔の宿　ホテルグランドトーヤ",
+  "tel": "0142-75-2288",
+  "fax": "0142-75-3434",
+  "email": "info@grandtoya.com",
+  "contactLabels": {
+    "address": "住所",
+    "tel": "電話",
+    "fax": "FAX",
+    "contact": "お問合せ"
+  },
   "reservationUrl": "https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000002996",
   "reservationLabel": "ご予約はこちら",
   "footer": {

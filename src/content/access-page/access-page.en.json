@@ -134,18 +134,6 @@
     "openMapLabel": "Open in Google Maps",
     "routeLabel": "Get Directions"
   },
-  "contact": {
-    "name": "Toyako Onsen Lakeside Inn Hotel Grand Toya",
-    "postalCode": "〒049-5721",
-    "address": "144 Toyako Onsen, Toyako-cho, Abuta-gun, Hokkaido",
-    "tel": "0142-75-2288",
-    "fax": "0142-75-3434",
-    "email": "info@grandtoya.com",
-    "addressLabel": "Address",
-    "telLabel": "Phone",
-    "faxLabel": "FAX",
-    "contactLabel": "Contact"
-  },
   "parking": {
     "heading": "Parking Information",
     "notes": [

@@ -1,4 +1,5 @@
 import { asset } from './../utils/asset';
+
 interface NavLink {
   href: string;
   label: string;
@@ -18,18 +19,27 @@ interface FooterProps {
   copy: FooterCopy;
   logoSrc: string;
   address: string;
+  postalCode: string;
   tel: string;
+  fax: string;
+  email: string;
   reservationUrl: string;
   logoAlt: string;
 }
 
-const HOTEL_ADDRESS = '〒049-5721 北海道虻田郡洞爺湖町洞爺湖温泉144';
-const HOTEL_TEL = '0142-75-2288';
-const HOTEL_FAX = '0142-75-3434';
-const HOTEL_EMAIL = 'info@grandtoya.com';
-const RESERVATION_URL = 'https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000002996'; // 実際の予約URLに置き換えてください
-
-export default function Footer({ guideLinks, infoLinks, copy, logoSrc, logoAlt }: FooterProps) {
+export default function Footer({
+  guideLinks,
+  infoLinks,
+  copy,
+  logoSrc,
+  address,
+  postalCode,
+  tel,
+  fax,
+  email,
+  reservationUrl,
+  logoAlt,
+}: FooterProps) {
   return (
     <>
       <footer className="border-t-[3px] border-[#A24730] bg-[#16283A] text-white">
@@ -39,16 +49,15 @@ export default function Footer({ guideLinks, infoLinks, copy, logoSrc, logoAlt }
               <img src={logoSrc} alt={logoAlt} className="h-9 w-auto" />
             </div>
             <p className="mt-5 text-[0.8rem] leading-[2.1] opacity-60">
-              {HOTEL_ADDRESS}
+              {postalCode} {address}
               <br />
-              TEL: {HOTEL_TEL}
+              TEL: {tel}
               <br />
-              FAX: {HOTEL_FAX}
+              FAX: {fax}
               <br />
-              MAIL: {HOTEL_EMAIL}
+              MAIL: {email}
             </p>
           </div>
-
           <div className="mt-0 flex flex-col gap-3.5">
             <h4 className="mb-5 text-[0.72rem] font-normal tracking-[0.16em] opacity-50">
               {copy.guideHeading}
@@ -63,8 +72,6 @@ export default function Footer({ guideLinks, infoLinks, copy, logoSrc, logoAlt }
               </a>
             ))}
           </div>
-
-          {/* lg:mt-9 を削除してズレを解消 */}
           <div className="mt-0 flex flex-col gap-3.5">
             <h4 className="mb-5 text-[0.72rem] font-normal tracking-[0.16em] opacity-50">
               {copy.infoHeading}
@@ -79,26 +86,23 @@ export default function Footer({ guideLinks, infoLinks, copy, logoSrc, logoAlt }
               </a>
             ))}
           </div>
-
           <div className="mt-0 flex flex-col gap-3.5">
             <h4 className="mb-5 text-[0.72rem] font-normal tracking-[0.16em] opacity-50">
               {copy.reservationHeading}
             </h4>
-
             <a
-              href={RESERVATION_URL}
+              href={reservationUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[0.82rem] opacity-80 hover:opacity-100"
             >
               {copy.reservationExternalText}
             </a>
-            <a href={`tel:${HOTEL_TEL}`} className="text-[0.82rem] opacity-80 hover:opacity-100">
-              {HOTEL_TEL}
+            <a href={`tel:${tel}`} className="text-[0.82rem] opacity-80 hover:opacity-100">
+              {tel}
             </a>
           </div>
         </div>
-
         <div className="py-6 text-center text-[0.72rem] tracking-[0.05em] opacity-40">
           <p>{copy.copyright}</p>
         </div>

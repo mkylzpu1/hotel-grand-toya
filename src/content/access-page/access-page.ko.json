@@ -88,7 +88,11 @@
       { "from": "삿포로", "ic": "아부타도야코IC", "duration": "약 1시간 50분" },
       { "from": "신치토세공항", "ic": "아부타도야코IC", "duration": "약 1시간 30분" },
       { "from": "도마코마이", "ic": "아부타도야코IC", "duration": "약 1시간 15분" },
-      { "from": "하코다테・야쿠모 방면", "ic": "도요우라IC／다테IC", "duration": "약 2시간～2시간 30분" }
+      {
+        "from": "하코다테・야쿠모 방면",
+        "ic": "도요우라IC／다테IC",
+        "duration": "약 2시간～2시간 30분"
+      }
     ],
     "fromIc": [
       { "ic": "아부타도야코IC", "duration": "약 5분" },
@@ -106,18 +110,6 @@
     "noMapText": "지도를 준비 중입니다",
     "openMapLabel": "Google 지도에서 열기",
     "routeLabel": "길찾기"
-  },
-  "contact": {
-    "name": "도야코 온천・호반의 숙소 호텔 그랜드 도야",
-    "postalCode": "〒049-5721",
-    "address": "홋카이도 아부타군 도야코초 도야코온천 144",
-    "tel": "0142-75-2288",
-    "fax": "0142-75-3434",
-    "email": "info@grandtoya.com",
-    "addressLabel": "주소",
-    "telLabel": "전화",
-    "faxLabel": "FAX",
-    "contactLabel": "문의"
   },
   "parking": {
     "heading": "주차장 안내",

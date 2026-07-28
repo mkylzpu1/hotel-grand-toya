@@ -107,18 +107,6 @@
     "openMapLabel": "Googleマップで開く",
     "routeLabel": "ルート案内"
   },
-  "contact": {
-    "name": "洞爺湖温泉・湖畔の宿　ホテルグランドトーヤ",
-    "postalCode": "〒049-5721",
-    "address": "北海道虻田郡洞爺湖町洞爺湖温泉144",
-    "tel": "0142-75-2288",
-    "fax": "0142-75-3434",
-    "email": "info@grandtoya.com",
-    "addressLabel": "住所",
-    "telLabel": "電話",
-    "faxLabel": "FAX",
-    "contactLabel": "お問合せ"
-  },
   "parking": {
     "heading": "駐車場のご案内",
     "notes": [

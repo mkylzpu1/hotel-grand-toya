@@ -107,24 +107,9 @@
     "openMapLabel": "在Google地图中打开",
     "routeLabel": "查看路线"
   },
-  "contact": {
-    "name": "洞爷湖温泉・湖畔旅馆 格兰多洞爷酒店",
-    "postalCode": "〒049-5721",
-    "address": "北海道虻田郡洞爷湖町洞爷湖温泉144",
-    "tel": "0142-75-2288",
-    "fax": "0142-75-3434",
-    "email": "info@grandtoya.com",
-    "addressLabel": "地址",
-    "telLabel": "电话",
-    "faxLabel": "传真",
-    "contactLabel": "咨询"
-  },
   "parking": {
     "heading": "停车场信息",
-    "notes": [
-      "除酒店内停车场外，马路对面也设有停车场。",
-      "无需预约，抵达时会有工作人员为您引导。"
-    ]
+    "notes": ["除酒店内停车场外，马路对面也设有停车场。", "无需预约，抵达时会有工作人员为您引导。"]
   },
   "surroundings": {
     "heading": "周边交通",

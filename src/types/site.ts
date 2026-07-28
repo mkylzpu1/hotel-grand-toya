@@ -15,12 +15,21 @@ export interface NavigationContent {
   menuOpenLabel: string;
   menuCloseLabel: string;
   siteInfoHeading: string;
+  bottomNavSearchLabel: string;
+  bottomNavTelLabel: string;
+  bottomNavReserveLabel: string;
+  bottomNavMenuLabel: string;
 }
-
 export interface SiteContent {
+  title: string;
+  description: string;
   address: string;
+  postalCode: string;
   tel: string;
+  fax: string;
+  email: string;
   reservationUrl: string;
+  reservationLabel: string;
   footer: {
     guideHeading: string;
     infoHeading: string;
@@ -30,6 +39,7 @@ export interface SiteContent {
     mobileTelLabel: string;
     mobileReserveLabel: string;
   };
+  // ...既存の他フィールド
 }
 
 export interface RelatedLink {
