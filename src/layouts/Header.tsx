@@ -182,7 +182,7 @@ export default function Header({
       className="absolute left-0 top-0 z-20 w-full px-8 py-7 lg:px-12 lg:py-9 lg:pr-40"
       id="site-header"
     >
-      <div className="flex items-center">
+      <div className="flex items-center justify-center lg:justify-start">
         <a href={asset(`/${lang}/`)} className="flex-none">
           <img
             src={`${import.meta.env.BASE_URL}assets/photos/ttl.png`}

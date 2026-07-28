@@ -158,7 +158,14 @@ export default function SearchOverlay({
             aria-label={clearButtonLabel}
             className="flex h-8 w-8 shrink-0 items-center justify-center text-[#1E1C1A] sm:hidden"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+            >
               <path d="m15 18-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
