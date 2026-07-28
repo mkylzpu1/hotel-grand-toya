@@ -1,0 +1,21 @@
+{
+  "date": "{{now}}",
+  "isImportant": true,
+  "slug": "fireworks-2026077281657",
+  "category": "メンテナンス",
+  "translations": {
+    "ja": {
+      "title": "テスト投稿",
+      "body": [
+        "管理画面からテスト投稿をしています",
+        "これは２段落目です"
+      ]
+    },
+    "en": {
+      "title": "test post",
+      "body": [
+        "this is an article for testing"
+      ]
+    }
+  }
+}
