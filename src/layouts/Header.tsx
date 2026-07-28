@@ -19,6 +19,7 @@ interface LangLink {
   active: boolean;
 }
 interface HeaderProps {
+  lang: string;
   primaryNavItems: PrimaryNavItem[];
   secondaryNavItems: SecondaryNavItem[];
   reserveCta: string;
@@ -133,6 +134,7 @@ function LanguageDropdown({ langLinks, label }: { langLinks: LangLink[]; label: 
 }
 
 export default function Header({
+  lang,
   primaryNavItems,
   secondaryNavItems,
   reserveCta,
@@ -173,7 +175,7 @@ export default function Header({
       id="site-header"
     >
       <div className="flex items-center">
-        <a href={`${import.meta.env.BASE_URL}`} className="flex-none">
+        <a href={asset(`/${lang}/`)} className="flex-none">
           <img
             src={`${import.meta.env.BASE_URL}assets/photos/ttl.png`}
             alt={logoAlt}
