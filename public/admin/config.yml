@@ -1432,7 +1432,7 @@ collections:
           - label: '日本語'
             name: ja
             widget: object
-            fields: &newsTranslationFields
+            fields: &newsTranslationFieldsRequired
               - { label: 'タイトル', name: title, widget: string }
               - label: '本文'
                 name: body
@@ -1443,17 +1443,24 @@ collections:
             name: en
             widget: object
             required: false
-            fields: *newsTranslationFields
+            fields: &newsTranslationFieldsOptional
+              - { label: 'タイトル', name: title, widget: string, required: false }
+              - label: '本文'
+                name: body
+                widget: list
+                required: false
+                hint: '1行＝1段落として表示されます。未入力なら日本語を表示します。'
+                field: { label: '段落', name: paragraph, widget: text, required: false }
           - label: '中国語（未入力なら日本語を表示）'
             name: zh
             widget: object
             required: false
-            fields: *newsTranslationFields
+            fields: *newsTranslationFieldsOptional
           - label: '韓国語（未入力なら日本語を表示）'
             name: ko
             widget: object
             required: false
-            fields: *newsTranslationFields
+            fields: *newsTranslationFieldsOptional
   # ── プライバシーポリシーページ ───────────────────────
   - name: 'privacy-page'
     label: '10 その他｜プライバシーポリシー'
