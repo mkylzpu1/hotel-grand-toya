@@ -5,6 +5,7 @@ import Footer from './Footer';
 import { locales, type Locale } from '../content/config';
 import type { LangLink, NavigationContent, SiteContent } from '../types/site';
 import bgTexture from '../../public/assets/textures/bg_v4_2x.jpg';
+
 interface Props {
   lang: Locale;
   title: string;
@@ -12,8 +13,23 @@ interface Props {
   navigation: NavigationContent;
   site: SiteContent;
   langLinks: LangLink[];
+  ogImage?: string;
 }
-const { lang, title, description, navigation, site, langLinks } = Astro.props;
+
+const { lang, title, description, navigation, site, langLinks, ogImage } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const resolvedOgImage = new URL(
+  ogImage ?? `${import.meta.env.BASE_URL}assets/photos/ogp.jpg`,
+  Astro.site ?? Astro.url.origin,
+);
+
+const ogLocaleMap: Record<Locale, string> = {
+  ja: 'ja_JP',
+  en: 'en_US',
+  zh: 'zh_CN',
+  ko: 'ko_KR',
+};
 ---
 
 <!doctype html>
@@ -24,6 +40,55 @@ const { lang, title, description, navigation, site, langLinks } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href={`${import.meta.env.BASE_URL}assets/favicon/favicon.ico`}
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href={`${import.meta.env.BASE_URL}assets/favicon/favicon-16x16.png`}
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href={`${import.meta.env.BASE_URL}assets/favicon/favicon-32x32.png`}
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href={`${import.meta.env.BASE_URL}assets/favicon/favicon-48x48.png`}
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href={`${import.meta.env.BASE_URL}assets/favicon/apple-touch-icon.png`}
+    />
+    <link rel="manifest" href={`${import.meta.env.BASE_URL}assets/favicon/site.webmanifest`} />
+    <meta name="theme-color" content="#12172D" />
+
+    <!-- OGP -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={site.title} />
+    <meta property="og:locale" content={ogLocaleMap[lang]} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={resolvedOgImage} />
+
     {
       locales.map((l) => {
         const link = langLinks.find((ll) => ll.code === l);
