@@ -82,10 +82,24 @@ const navigation = defineCollection({
     menuCloseLabel: z.string(),
     siteInfoHeading: z.string(),
     langSwitcherLabel: z.string(),
-    bottomNavSearchLabel: z.string(),
-    bottomNavTelLabel: z.string(),
-    bottomNavReserveLabel: z.string(),
-    bottomNavMenuLabel: z.string(),
+    navAriaLabel: z.string(),
+    drawerNavAriaLabel: z.string(),
+    logoAlt: z.string(),
+    search: z.object({
+      openLabel: z.string(), // 「サイト内検索を開く」
+      placeholder: z.string(), // 「客室名やキーワードで検索」
+      noResultsLabel: z.string(), // 「該当する情報が見つかりませんでした」
+      emptyStateLabel: z.string(), // 「客室・温泉・お料理・館内施設などを検索できます」
+      navigateHintLabel: z.string(), // 「移動」
+      openHintLabel: z.string(), // 「開く」
+      clearButtonLabel: z.string(), // 「検索語をクリア」
+    }),
+    bottomNav: z.object({
+      searchLabel: z.string(),
+      telLabel: z.string(),
+      reserveLabel: z.string(),
+      menuLabel: z.string(),
+    }),
   }),
 });
 

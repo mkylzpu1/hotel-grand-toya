@@ -59,8 +59,22 @@
   "menuCloseLabel": "Close menu",
   "siteInfoHeading": "SITE INFORMATION",
   "langSwitcherLabel": "Select language",
-  "bottomNavSearchLabel": "Search",
-  "bottomNavTelLabel": "Call",
-  "bottomNavReserveLabel": "Book",
-  "bottomNavMenuLabel": "Menu"
+  "navAriaLabel": "Global navigation",
+  "drawerNavAriaLabel": "Drawer navigation",
+  "logoAlt": "Hotel Grand Toya logo",
+  "search": {
+    "openLabel": "Open site search",
+    "placeholder": "Search by room name or keyword",
+    "noResultsLabel": "No matching information found",
+    "emptyStateLabel": "You can search for rooms, onsen, cuisine, facilities, etc.",
+    "navigateHintLabel": "Navigate",
+    "openHintLabel": "Open",
+    "clearButtonLabel": "Clear search terms"
+  },
+  "bottomNav": {
+    "searchLabel": "Search",
+    "telLabel": "Call",
+    "reserveLabel": "Book",
+    "menuLabel": "Menu"
+  }
 }

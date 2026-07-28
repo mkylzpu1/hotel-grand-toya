@@ -59,8 +59,22 @@
   "menuCloseLabel": "メニューを閉じる",
   "siteInfoHeading": "SITE INFORMATION",
   "langSwitcherLabel": "言語を選択",
-  "bottomNavSearchLabel": "検索",
-  "bottomNavTelLabel": "電話",
-  "bottomNavReserveLabel": "予約",
-  "bottomNavMenuLabel": "メニュー"
+  "navAriaLabel": "グローバルナビゲーション",
+  "drawerNavAriaLabel": "ドロワーナビゲーション",
+  "logoAlt": "ホテルグランドトーヤのロゴ",
+  "search": {
+    "openLabel": "サイト内検索を開く",
+    "placeholder": "客室名やキーワードで検索",
+    "noResultsLabel": "該当する情報が見つかりませんでした",
+    "emptyStateLabel": "客室・温泉・お料理・館内施設などを検索できます",
+    "navigateHintLabel": "移動",
+    "openHintLabel": "開く",
+    "clearButtonLabel": "検索語をクリア"
+  },
+  "bottomNav": {
+    "searchLabel": "検索",
+    "telLabel": "電話",
+    "reserveLabel": "予約",
+    "menuLabel": "メニュー"
+  }
 }

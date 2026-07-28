@@ -15,10 +15,28 @@ export interface NavigationContent {
   menuOpenLabel: string;
   menuCloseLabel: string;
   siteInfoHeading: string;
-  bottomNavSearchLabel: string;
-  bottomNavTelLabel: string;
-  bottomNavReserveLabel: string;
-  bottomNavMenuLabel: string;
+  navAriaLabel: string;
+  drawerNavAriaLabel: string;
+  langSwitcherLabel: string;
+  logoAlt: string;
+  search: SearchContent;
+  bottomNav: BottomNavContent;
+}
+export interface SearchContent {
+  openLabel: string;
+  placeholder: string;
+  noResultsLabel: string;
+  emptyStateLabel: string;
+  navigateHintLabel: string;
+  openHintLabel: string;
+  clearButtonLabel: string;
+}
+
+export interface BottomNavContent {
+  searchLabel: string;
+  telLabel: string;
+  reserveLabel: string;
+  menuLabel: string;
 }
 export interface SiteContent {
   title: string;

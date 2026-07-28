@@ -14,13 +14,6 @@ interface Props {
   langLinks: LangLink[];
 }
 const { lang, title, description, navigation, site, langLinks } = Astro.props;
-const logoAlt = 'ホテルグランドトーヤのロゴ';
-const navAriaLabel = 'グローバルナビゲーション';
-const drawerNavAriaLabel = 'ドロワーナビゲーション';
-const langSwitcherLabel = '言語を選択';
-const searchOpenLabel = 'サイト内検索を開く';
-const searchPlaceholder = '客室名やキーワードで検索';
-const searchNoResultsLabel = '該当する情報が見つかりませんでした';
 ---
 
 <!doctype html>
@@ -57,19 +50,23 @@ const searchNoResultsLabel = '該当する情報が見つかりませんでし�
       siteInfoHeading={navigation.siteInfoHeading}
       reservationUrl={site.reservationUrl}
       tel={site.tel}
-      logoAlt={logoAlt}
-      navAriaLabel={navAriaLabel}
-      drawerNavAriaLabel={drawerNavAriaLabel}
+      logoAlt={navigation.logoAlt}
+      navAriaLabel={navigation.navAriaLabel}
+      drawerNavAriaLabel={navigation.drawerNavAriaLabel}
       langLinks={langLinks}
-      langSwitcherLabel={langSwitcherLabel}
+      langSwitcherLabel={navigation.langSwitcherLabel}
       searchIndexUrl={`${import.meta.env.BASE_URL}${lang}/search-index.json`}
-      searchOpenLabel={searchOpenLabel}
-      searchPlaceholder={searchPlaceholder}
-      searchNoResultsLabel={searchNoResultsLabel}
-      bottomNavSearchLabel={navigation.bottomNavSearchLabel}
-      bottomNavTelLabel={navigation.bottomNavTelLabel}
-      bottomNavReserveLabel={navigation.bottomNavReserveLabel}
-      bottomNavMenuLabel={navigation.bottomNavMenuLabel}
+      searchOpenLabel={navigation.search.openLabel}
+      searchPlaceholder={navigation.search.placeholder}
+      searchNoResultsLabel={navigation.search.noResultsLabel}
+      searchEmptyStateLabel={navigation.search.emptyStateLabel}
+      searchNavigateHintLabel={navigation.search.navigateHintLabel}
+      searchOpenHintLabel={navigation.search.openHintLabel}
+      searchClearButtonLabel={navigation.search.clearButtonLabel}
+      bottomNavSearchLabel={navigation.bottomNav.searchLabel}
+      bottomNavTelLabel={navigation.bottomNav.telLabel}
+      bottomNavReserveLabel={navigation.bottomNav.reserveLabel}
+      bottomNavMenuLabel={navigation.bottomNav.menuLabel}
     />
     <main class="pb-16 lg:pb-0">
       <slot />
@@ -79,12 +76,11 @@ const searchNoResultsLabel = '該当する情報が見つかりませんでし�
       infoLinks={navigation.secondaryNavItems}
       copy={site.footer}
       address={site.address}
-      postalCode={site.postalCode}
       tel={site.tel}
       fax={site.fax}
       email={site.email}
       reservationUrl={site.reservationUrl}
-      logoAlt="Hotel Grand Toya"
+      logoAlt={navigation.logoAlt}
       logoSrc={`${import.meta.env.BASE_URL}assets/photos/ttl.png`}
     />
   </body>

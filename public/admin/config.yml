@@ -48,15 +48,30 @@ collections:
       - { label: 'メニューを閉じるaria-label', name: menuCloseLabel, widget: string, i18n: true }
       - { label: '「SITE INFORMATION」見出し', name: siteInfoHeading, widget: string, i18n: true }
       - { label: '言語切替ボタンaria-label', name: langSwitcherLabel, widget: string, i18n: true }
+      - { label: 'グローバルナビのaria-label', name: navAriaLabel, widget: string, i18n: true }
+      - { label: 'ドロワーナビのaria-label', name: drawerNavAriaLabel, widget: string, i18n: true }
+      - { label: 'ロゴ画像のalt', name: logoAlt, widget: string, i18n: true }
+      - label: 'サイト内検索'
+        name: search
+        widget: object
+        i18n: true
+        fields:
+          - { label: '検索を開くボタンのaria-label', name: openLabel, widget: string }
+          - { label: '検索窓のプレースホルダー', name: placeholder, widget: string }
+          - { label: '「該当なし」の文言', name: noResultsLabel, widget: string }
+          - { label: '検索前の案内文言', name: emptyStateLabel, widget: string }
+          - { label: 'キーボードヒント「移動」', name: navigateHintLabel, widget: string }
+          - { label: 'キーボードヒント「開く」', name: openHintLabel, widget: string }
+          - { label: '検索語クリアボタンのaria-label', name: clearButtonLabel, widget: string }
       - label: 'スマホ版ボトムナビ'
         name: bottomNav
         widget: object
         i18n: true
         fields:
-          - { label: '検索ラベル', name: bottomNavSearchLabel, widget: string }
-          - { label: '電話ラベル', name: bottomNavTelLabel, widget: string }
-          - { label: '予約ラベル', name: bottomNavReserveLabel, widget: string }
-          - { label: 'メニューラベル', name: bottomNavMenuLabel, widget: string }
+          - { label: '検索ラベル', name: searchLabel, widget: string }
+          - { label: '電話ラベル', name: telLabel, widget: string }
+          - { label: '予約ラベル', name: reserveLabel, widget: string }
+          - { label: 'メニューラベル', name: menuLabel, widget: string }
   # ── 関連リンク集(各ページ末尾の「関連ページ」ブロック) ─────
   - name: 'related-links'
     label: '01 サイト共通｜関連リンク'

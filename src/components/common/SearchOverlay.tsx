@@ -1,38 +1,40 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Fuse from 'fuse.js';
-
 interface SearchEntry {
   title: string;
   excerpt: string;
   url: string;
   category: string;
 }
-
 interface SearchOverlayProps {
   isOpen: boolean;
   onClose: () => void;
   searchIndexUrl: string;
   placeholder: string;
   noResultsLabel: string;
+  emptyStateLabel: string;
+  navigateHintLabel: string;
+  openHintLabel: string;
+  clearButtonLabel: string;
 }
-
 function withHighlight(url: string, term: string): string {
   if (!term.trim()) return url;
-
   const hashIndex = url.indexOf('#');
   const hash = hashIndex !== -1 ? url.slice(hashIndex) : '';
   const base = hashIndex !== -1 ? url.slice(0, hashIndex) : url;
-
   const separator = base.includes('?') ? '&' : '?';
   return `${base}${separator}highlight=${encodeURIComponent(term.trim())}${hash}`;
 }
-
 export default function SearchOverlay({
   isOpen,
   onClose,
   searchIndexUrl,
   placeholder,
   noResultsLabel,
+  emptyStateLabel,
+  navigateHintLabel,
+  openHintLabel,
+  clearButtonLabel,
 }: SearchOverlayProps) {
   const [query, setQuery] = useState('');
   const [fuse, setFuse] = useState<Fuse<SearchEntry> | null>(null);
@@ -40,15 +42,11 @@ export default function SearchOverlay({
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const isComposingRef = useRef(false);
-
   useEffect(() => {
     if (!isOpen || fuse || !searchIndexUrl) return undefined;
-
     let isCancelled = false;
-
     async function loadIndex() {
       setIsLoading(true);
-
       try {
         const response = await fetch(searchIndexUrl);
         const data = (await response.json()) as SearchEntry[];
@@ -69,38 +67,30 @@ export default function SearchOverlay({
         if (!isCancelled) setIsLoading(false);
       }
     }
-
     void loadIndex();
-
     return () => {
       isCancelled = true;
     };
   }, [isOpen, fuse, searchIndexUrl]);
-
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       const t = setTimeout(() => inputRef.current?.focus(), 50);
       return () => clearTimeout(t);
     }
-
     document.body.style.overflow = '';
     return undefined;
   }, [isOpen]);
-
   const results = query.trim() && fuse ? fuse.search(query).slice(0, 8) : [];
-
   const handleClose = useCallback(() => {
     setQuery('');
     setActiveIndex(0);
     onClose();
   }, [onClose]);
-
   const handleQueryChange = (value: string) => {
     setQuery(value);
     setActiveIndex(0);
   };
-
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -116,7 +106,6 @@ export default function SearchOverlay({
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [handleClose, results.length]);
-
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== 'Enter') return;
     if (isComposingRef.current || e.keyCode === 229) return;
@@ -124,9 +113,7 @@ export default function SearchOverlay({
       window.location.href = withHighlight(results[activeIndex].item.url, query);
     }
   };
-
   if (!isOpen) return null;
-
   return (
     <div
       className="fixed inset-0 z-[1000] flex items-start justify-center bg-[#1E1C1A]/50 px-6 pt-[10vh] backdrop-blur-[2px]"
@@ -168,7 +155,7 @@ export default function SearchOverlay({
           {query && (
             <button
               onClick={() => handleQueryChange('')}
-              aria-label="clear"
+              aria-label={clearButtonLabel}
               className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[#8A8781] transition-colors hover:bg-[#F0EFEA] hover:text-[#1E1C1A]"
             >
               <span className="relative block h-3 w-3">
@@ -178,7 +165,6 @@ export default function SearchOverlay({
             </button>
           )}
         </div>
-
         <div className="relative max-h-[54vh] overflow-y-auto">
           {isLoading && (
             <div className="flex items-center justify-center gap-2 px-7 py-12 text-[13px] tracking-[0.1em] text-[#8A8781]">
@@ -187,7 +173,6 @@ export default function SearchOverlay({
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#A24730] [animation-delay:0.3s]" />
             </div>
           )}
-
           {!isLoading && query.trim() && results.length === 0 && (
             <div className="flex flex-col items-center gap-3 px-7 py-16 text-center">
               <span className="font-serif text-[15px] tracking-[0.04em] text-[#8A8781]">
@@ -195,7 +180,6 @@ export default function SearchOverlay({
               </span>
             </div>
           )}
-
           {!isLoading && results.length > 0 && (
             <ul className="divide-y divide-[#EFEEEA] py-1">
               {results.map((r, i) => (
@@ -233,25 +217,21 @@ export default function SearchOverlay({
               ))}
             </ul>
           )}
-
           {!isLoading && !query.trim() && (
             <div className="flex flex-col items-center gap-2 px-7 py-16 text-center">
-              <p className="text-[13.5px] tracking-[0.04em] text-[#8A8781]">
-                客室・温泉・お料理・館内施設などを検索できます
-              </p>
+              <p className="text-[13.5px] tracking-[0.04em] text-[#8A8781]">{emptyStateLabel}</p>
             </div>
           )}
         </div>
-
         {results.length > 0 && (
           <div className="flex items-center justify-end gap-5 border-t border-[#D8D7D2] bg-[#FAFAFA] px-7 py-3 text-[11px] tracking-[0.06em] text-[#8A8781]">
             <span className="flex items-center gap-1.5">
               <kbd className="rounded-[2px] border border-[#D8D7D2] bg-white px-1.5 py-0.5">↑↓</kbd>
-              移動
+              {navigateHintLabel}
             </span>
             <span className="flex items-center gap-1.5">
               <kbd className="rounded-[2px] border border-[#D8D7D2] bg-white px-1.5 py-0.5">↵</kbd>
-              開く
+              {openHintLabel}
             </span>
           </div>
         )}

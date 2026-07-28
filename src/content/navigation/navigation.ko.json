@@ -59,8 +59,22 @@
   "menuCloseLabel": "메뉴 닫기",
   "siteInfoHeading": "SITE INFORMATION",
   "langSwitcherLabel": "언어 선택",
-  "bottomNavSearchLabel": "검색",
-  "bottomNavTelLabel": "전화",
-  "bottomNavReserveLabel": "예약",
-  "bottomNavMenuLabel": "메뉴"
+  "navAriaLabel": "글로벌 내비게이션",
+  "drawerNavAriaLabel": "드로어 내비게이션",
+  "logoAlt": "호텔 그랜드 토야 로고",
+  "search": {
+    "openLabel": "사이트 내 검색 열기",
+    "placeholder": "객실명이나 키워드로 검색",
+    "noResultsLabel": "해당하는 정보를 찾을 수 없습니다",
+    "emptyStateLabel": "객실, 온천, 식사, 시설 등 검색 가능",
+    "navigateHintLabel": "이동",
+    "openHintLabel": "열기",
+    "clearButtonLabel": "검색어 지우기"
+  },
+  "bottomNav": {
+    "searchLabel": "검색",
+    "telLabel": "전화",
+    "reserveLabel": "예약",
+    "menuLabel": "메뉴"
+  }
 }

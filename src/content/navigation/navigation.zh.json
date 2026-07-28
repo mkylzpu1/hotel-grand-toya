@@ -59,8 +59,22 @@
   "menuCloseLabel": "关闭菜单",
   "siteInfoHeading": "网站信息",
   "langSwitcherLabel": "选择语言",
-  "bottomNavSearchLabel": "搜索",
-  "bottomNavTelLabel": "致电",
-  "bottomNavReserveLabel": "预订",
-  "bottomNavMenuLabel": "菜单"
+  "navAriaLabel": "全局导航",
+  "drawerNavAriaLabel": "抽屉导航",
+  "logoAlt": "Grand Toya Hotel的标志",
+  "search": {
+    "openLabel": "打开站内搜索",
+    "placeholder": "按客房名或关键词搜索",
+    "noResultsLabel": "未找到相关信息",
+    "emptyStateLabel": "可搜索客房、温泉、餐饮、馆内设施等",
+    "navigateHintLabel": "导航",
+    "openHintLabel": "打开",
+    "clearButtonLabel": "清除搜索词"
+  },
+  "bottomNav": {
+    "searchLabel": "搜索",
+    "telLabel": "致电",
+    "reserveLabel": "预订",
+    "menuLabel": "菜单"
+  }
 }

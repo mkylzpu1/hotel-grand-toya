@@ -38,6 +38,10 @@ interface HeaderProps {
   searchPlaceholder: string;
   searchOpenLabel: string;
   searchNoResultsLabel: string;
+  searchEmptyStateLabel: string;
+  searchNavigateHintLabel: string;
+  searchOpenHintLabel: string;
+  searchClearButtonLabel: string;
   bottomNavSearchLabel?: string;
   bottomNavTelLabel?: string;
   bottomNavReserveLabel?: string;
@@ -153,6 +157,10 @@ export default function Header({
   searchPlaceholder,
   searchOpenLabel,
   searchNoResultsLabel,
+  searchEmptyStateLabel,
+  searchNavigateHintLabel,
+  searchOpenHintLabel,
+  searchClearButtonLabel,
   bottomNavSearchLabel = '検索',
   bottomNavTelLabel = '電話',
   bottomNavReserveLabel = '予約',
@@ -467,6 +475,10 @@ export default function Header({
         searchIndexUrl={searchIndexUrl}
         placeholder={searchPlaceholder}
         noResultsLabel={searchNoResultsLabel}
+        emptyStateLabel={searchEmptyStateLabel}
+        navigateHintLabel={searchNavigateHintLabel}
+        openHintLabel={searchOpenHintLabel}
+        clearButtonLabel={searchClearButtonLabel}
       />
     </header>
   );

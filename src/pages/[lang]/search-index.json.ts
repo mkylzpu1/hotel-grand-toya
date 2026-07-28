@@ -249,15 +249,6 @@ export const GET: APIRoute = async ({ params }) => {
         category: page.pageTitle,
       });
     }
-    // アクセスページ内のFAQ
-    for (const qa of page.faq.items) {
-      entries.push({
-        title: qa.question,
-        excerpt: excerpt(qa.answer),
-        url: `/${lang}/access/`,
-        category: page.pageTitle,
-      });
-    }
   }
 
   // --- FAQページ ---
