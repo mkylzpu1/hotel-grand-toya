@@ -36,6 +36,7 @@ const site = defineCollection({
     address: z.string(),
     tel: z.string(),
     reservationUrl: z.string(),
+    reservationLabel: z.string().optional(),
     footer: z.object({
       guideHeading: z.string(),
       infoHeading: z.string(),

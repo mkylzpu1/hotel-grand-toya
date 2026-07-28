@@ -93,6 +93,7 @@ collections:
       - { label: '住所', name: address, widget: string, i18n: duplicate }
       - { label: '電話番号', name: tel, widget: string, i18n: duplicate }
       - { label: '予約サイトURL', name: reservationUrl, widget: string, i18n: duplicate }
+      - { label: '予約ボタン文言', name: reservationLabel, widget: string, i18n: true }
       - label: 'フッター文言'
         name: footer
         widget: object

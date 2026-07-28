@@ -27,6 +27,7 @@ interface Props {
   currentPageId: string;
   relatedLinksHeading: string;
   relatedLinks: RelatedLink[];
+  reservationLabel?: string;
   relatedLinksBackground?: 'white' | 'none';
   showRelatedLinks?: 'true' | 'false';
 }
@@ -48,6 +49,7 @@ const {
   relatedLinks,
   relatedLinksBackground = 'white',
   showRelatedLinks = 'true',
+  reservationLabel,
 } = Astro.props;
 const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
 ---
@@ -68,7 +70,6 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
       pageTitleEn={pageTitleEn}
       homeHref={asset(`/${lang}/`)}
     />
-    <!-- ページ内アンカーナビ（全ページ共通・フラグで表示切替） -->
     <!-- ページ内アンカーナビ（全ページ共通・フラグで表示切替） -->
     {
       shouldShowQuickNav && (
@@ -108,6 +109,7 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
           links={relatedLinks}
           currentPageId={currentPageId}
           background={relatedLinksBackground}
+          reservationLabel={reservationLabel}
         />
       )
     }
