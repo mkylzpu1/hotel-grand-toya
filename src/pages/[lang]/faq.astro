@@ -127,12 +127,12 @@ const page = pageEntry.data;
       <!-- 問い合わせ先 -->
       <div class="mt-20 border border-[#D8D7D2] bg-[#FAFAFA] px-8 py-12 sm:px-14">
         <p class="mb-8 text-center text-[0.82rem] tracking-[0.04em] text-[#8A8781]">
-          ご不明な点がございましたら、お気軽にお問い合わせください
+          {page.contact.leadText}
         </p>
         <div class="mx-auto grid max-w-[560px] grid-cols-1 gap-6 sm:grid-cols-2">
           <!-- 電話 -->
           <a
-            href={`tel:${page.contact.tel.replace(/-/g, '')}`}
+            href={`tel:${siteEntry.data.tel.replace(/-/g, '')}`}
             class="group flex flex-col items-center gap-3 border border-[#D8D7D2] bg-white px-6 py-8 text-center transition-shadow hover:shadow-[0_4px_16px_rgba(30,28,26,0.06)]"
           >
             <span
@@ -143,17 +143,17 @@ const page = pageEntry.data;
             <span
               class="font-serif text-[1.25rem] font-semibold tracking-[0.02em] text-[#1E1C1A] transition-colors group-hover:text-[#A24730]"
             >
-              {page.contact.tel}
+              {siteEntry.data.tel}
             </span>
             {
-              page.contact.telNote && (
-                <span class="text-[0.74rem] text-[#8A8781]">{page.contact.telNote}</span>
+              siteEntry.data.businessHours && (
+                <span class="text-[0.74rem] text-[#8A8781]">{siteEntry.data.businessHours}</span>
               )
             }
           </a>
           <!-- メール -->
           <a
-            href={`mailto:${page.contact.email}`}
+            href={`mailto:${siteEntry.data.email}`}
             class="group flex flex-col items-center gap-3 border border-[#D8D7D2] bg-white px-6 py-8 text-center transition-shadow hover:shadow-[0_4px_16px_rgba(30,28,26,0.06)]"
           >
             <span
@@ -164,9 +164,9 @@ const page = pageEntry.data;
             <span
               class="break-all font-serif text-[0.98rem] font-semibold tracking-[0.02em] text-[#1E1C1A] transition-colors group-hover:text-[#29415C]"
             >
-              {page.contact.email}
+              {siteEntry.data.email}
             </span>
-            <span class="text-[0.74rem] text-[#8A8781]">メールでのお問い合わせ</span>
+            <span class="text-[0.74rem] text-[#8A8781]">{page.contact.emailNote}</span>
           </a>
         </div>
       </div>

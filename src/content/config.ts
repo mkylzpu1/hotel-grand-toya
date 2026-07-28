@@ -39,6 +39,7 @@ const site = defineCollection({
     tel: z.string(),
     fax: z.string(),
     email: z.string(),
+    businessHours: z.string(), // 電話受付時間など
     contactLabels: z.object({
       address: z.string(),
       tel: z.string(),
@@ -621,9 +622,8 @@ const faqPage = defineCollection({
       heading: z.string(),
     }),
     contact: z.object({
-      tel: z.string(),
-      telNote: z.string().optional(), // 例：受付時間
-      email: z.string(), // 追加
+      leadText: z.string(), // 「ご不明な点がございましたら、お気軽にお問い合わせください」
+      emailNote: z.string(), // 「メールでのお問い合わせ」
     }),
   }),
 });

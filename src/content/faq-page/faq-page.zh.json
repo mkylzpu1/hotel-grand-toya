@@ -187,8 +187,7 @@
     }
   ],
   "contact": {
-    "tel": "0142-75-2288",
-    "telNote": "受理时间 9:00〜18:00",
-    "email": "info@example.com"
+    "leadText": "如有任何疑问，请随时与我们联系。",
+    "emailNote": "通过电子邮件联系我们"
   }
 }

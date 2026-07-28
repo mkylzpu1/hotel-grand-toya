@@ -187,8 +187,7 @@
     }
   ],
   "contact": {
-    "tel": "0142-75-2288",
-    "telNote": "접수 시간 9:00〜18:00",
-    "email": "info@example.com"
+    "leadText": "궁금한 점이 있으시면 언제든지 문의해 주세요.",
+    "emailNote": "이메일로 문의하기"
   }
 }

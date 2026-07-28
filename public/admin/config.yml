@@ -96,6 +96,7 @@ collections:
       - { label: '電話番号', name: tel, widget: string, i18n: duplicate }
       - { label: 'FAX番号', name: fax, widget: string, i18n: duplicate }
       - { label: 'メールアドレス', name: email, widget: string, i18n: duplicate }
+      - { label: '電話受付時間', name: businessHours, widget: string, required: false, i18n: true }
       - label: '連絡先ラベル'
         name: contactLabels
         widget: object

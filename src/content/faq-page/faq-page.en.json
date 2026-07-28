@@ -187,8 +187,7 @@
     }
   ],
   "contact": {
-    "tel": "0142-75-2288",
-    "telNote": "Reception hours: 9:00–18:00",
-    "email": "info@example.com"
+    "leadText": "If you have any questions, please feel free to contact us.",
+    "emailNote": "Contact us by email"
   }
 }
