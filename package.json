@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build:preview-css": "tailwindcss -i ./src/styles/preview-entry.css -o ./public/admin/preview.css",
+    "build": "npm run build:preview-css && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
