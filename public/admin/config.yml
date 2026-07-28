@@ -1,3 +1,4 @@
+locale: 'ja'
 backend:
   name: github
   repo: mkylzpu1/hotel-grand-toya # TODO: リポジトリ名に置き換えてください（例: hotel-grand-toya/website）
@@ -81,7 +82,7 @@ collections:
     i18n: true
     extension: json
     format: json
-    summary: '{{fields.heading}}'
+    summary: '関連リンク'
     fields:
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: 'リンク一覧'
@@ -103,7 +104,7 @@ collections:
     i18n: true
     extension: json
     format: json
-    summary: '{{fields.name}}'
+    summary: '基本情報・フッター'
     fields:
       - { label: 'サイトタイトル (metaタイトル)', name: title, widget: string, i18n: true }
       - { label: 'サイト説明文 (meta description)', name: description, widget: text, i18n: true }
@@ -149,13 +150,13 @@ collections:
             }
   # ── ヒーローセクション ───────────────────────
   - name: hero
-    label: '02 トップページ｜ヒーロー'
+    label: '02 トップページ｜ヒーロー部分'
     folder: 'src/content/hero'
     create: false
     i18n: true
     extension: json
     format: json
-    summary: '{{fields.eyebrow}}'
+    summary: 'ヒーロー部分'
     fields:
       - { label: '背景画像（言語共通）', name: image, widget: image, i18n: duplicate }
       - { label: '画像の代替テキスト (alt)', name: imageAlt, widget: string, i18n: true }
@@ -398,6 +399,7 @@ collections:
               - label: 'フロア(部屋タイプ)'
                 name: 'floors'
                 widget: 'list'
+                summary: '{{label}}'
                 fields:
                   - { label: 'ラベル', name: 'label', widget: 'string' }
                   - { label: '予約サイト表示名', name: 'reservationName', widget: 'string' }
@@ -436,9 +438,9 @@ collections:
                       required: false,
                       default: false,
                     }
-  # ── 温泉ページ ───────────────────────
+  # ── ご宿泊・日帰り入浴ページ ───────────────────────
   - name: 'onsen-page'
-    label: '04 温泉ページ'
+    label: '04 ご宿泊・日帰り入浴'
     folder: 'src/content/onsen-page'
     create: false
     i18n: true
@@ -754,9 +756,9 @@ collections:
           - { label: 'アイコン', name: 'icon', widget: 'string' }
           - { label: '見出し', name: 'heading', widget: 'string' }
           - { label: '説明', name: 'description', widget: 'string' }
-  # ── 館内施設ページ ───────────────────────
+  # ── 館内施設・周辺観光ページ ───────────────────────
   - name: 'facilities-page'
-    label: '06 館内施設ページ'
+    label: '06 館内施設・周辺観光ページ'
     folder: 'src/content/facilities-page'
     create: false
     i18n: true
@@ -964,6 +966,7 @@ collections:
             name: 'items'
             widget: 'list'
             i18n: true
+            summary: '{{name}}（{{location}}）'
             fields:
               - { label: 'ID(言語共通)', name: 'id', widget: 'string' }
               - { label: '名称', name: 'name', widget: 'string' }
@@ -1135,6 +1138,7 @@ collections:
             name: 'departures'
             widget: 'list'
             i18n: true
+            summary: '{{from}} → {{ic}}（{{duration}}）'
             fields:
               - { label: '出発地', name: 'from', widget: 'string' }
               - { label: '乗車駅', name: 'boardingStation', widget: 'string' }
