@@ -362,7 +362,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
           </div>
         )
       }
-      {/* その他のアクティビティ（カテゴリタブ + グリッド） */}
+      {/* その他のアクティビティ（カテゴリタブ + グリッド/アコーディオン） */}
       {
         otherActivities.length > 0 && (
           <div>
@@ -390,7 +390,12 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                 </button>
               ))}
             </div>
-            <div id="activity-grid" class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+            {/* PC版：グリッドカード（lg以上のみ表示） */}
+            <div
+              id="activity-grid-desktop"
+              class="hidden grid-cols-1 gap-8 sm:grid-cols-2 lg:grid lg:grid-cols-3"
+            >
               {otherActivities.map((item) => (
                 <div
                   id={item.id}
@@ -512,6 +517,129 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                     )}
                   </div>
                 </div>
+              ))}
+            </div>
+            {/* モバイル版：アコーディオン（lg未満のみ表示） */}
+            <div
+              id="activity-list-mobile"
+              class="divide-y divide-[#D8D7D2] border-y border-[#D8D7D2] lg:hidden"
+            >
+              {otherActivities.map((item) => (
+                <details
+                  id={item.id}
+                  class="activity-card group scroll-mt-24 bg-white"
+                  data-categories={(item.categories ?? []).join(',')}
+                >
+                  <summary class="flex cursor-pointer items-start gap-3 px-4 py-3 [&::-webkit-details-marker]:hidden [&::marker]:content-none">
+                    <div class="h-12 w-12 shrink-0 overflow-hidden rounded bg-[#EFEDE8]">
+                      {item.image?.src ? (
+                        <img
+                          src={item.image.src}
+                          alt={item.image.alt ?? item.image.label}
+                          class="h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div class="flex h-full w-full items-center justify-center font-serif text-[0.9rem] text-[#A8A5A0]">
+                          {page.activitiesSection.icon}
+                        </div>
+                      )}
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <p class="truncate font-serif text-[0.94rem] font-semibold text-[#1E1C1A]">
+                        {item.name}
+                      </p>
+                      {item.accessFromHotel && (
+                        <div class="mt-1 flex flex-wrap gap-1">
+                          <span class="flex items-center gap-1 whitespace-nowrap rounded-full bg-[#F5F4F0] px-2 py-0.5 text-[0.66rem] font-medium text-[#55524C]">
+                            {getAccessIcon(item.accessFromHotel) === 'walk' && (
+                              <Footprints size={11} strokeWidth={2} />
+                            )}
+                            {getAccessIcon(item.accessFromHotel) === 'car' && (
+                              <Car size={11} strokeWidth={2} />
+                            )}
+                            {item.accessFromHotel}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <svg
+                      class="mt-1 h-4 w-4 shrink-0 text-[#8A8781] transition-transform group-open:rotate-180"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    >
+                      <path d="M5 7.5l5 5 5-5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </summary>
+                  <div class="px-4 pb-5 pl-[68px]">
+                    {item.description.map((line) => (
+                      <p class="mb-2 text-[0.84rem] leading-[1.8] text-[#55524C] last:mb-0">
+                        {line}
+                      </p>
+                    ))}
+                    {item.includedInPlans && item.includedInPlans.length > 0 && (
+                      <div class="mt-3">
+                        <p class="mb-2 text-[0.7rem] text-[#8A8781]">
+                          {page.activitiesSection.includedInPlansHeadingShort}
+                        </p>
+                        <div class="flex flex-wrap gap-1.5">
+                          {item.includedInPlans.map((plan) => (
+                            <a
+                              href={plan.href}
+                              class="inline-flex items-center gap-1 rounded-full border border-[#D8D7D2] px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A] transition-colors hover:border-[#A24730] hover:text-[#A24730]"
+                            >
+                              <Ticket size={11} strokeWidth={2} class="text-[#A24730]" />
+                              {plan.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    <div class="mt-3 flex flex-col gap-1.5 border-t border-[#EDEBE6] pt-3 text-[0.78rem] text-[#8A8781]">
+                      {item.shopName && (
+                        <span class="flex items-center gap-1.5">
+                          <Store size={13} strokeWidth={2} />
+                          {item.shopName}
+                        </span>
+                      )}
+                      <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                        {item.location && (
+                          <span class="flex items-center gap-1.5">
+                            <MapPin size={13} strokeWidth={2} />
+                            {item.location}
+                          </span>
+                        )}
+                        {item.location && item.officialSite && (
+                          <span class="text-[#C7C5BF]">　</span>
+                        )}
+                        {item.officialSite && (
+                          <a
+                            href={item.officialSite}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="group/link inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
+                          >
+                            {page.activitiesSection.officialSiteLinkLabelShort}
+                            <ExternalLink
+                              size={11}
+                              strokeWidth={2}
+                              class="transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                            />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                    {item.notes && item.notes.length > 0 && (
+                      <ul class="mt-3 space-y-1">
+                        {item.notes.map((note) => (
+                          <li class="text-[0.72rem] leading-[1.6] text-[#8A8781]">※ {note}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </details>
               ))}
             </div>
           </div>
