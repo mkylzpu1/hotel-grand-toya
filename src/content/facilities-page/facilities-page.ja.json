@@ -21,6 +21,11 @@
     "icon": "設",
     "eyebrow": "Facilities",
     "heading": "館内施設",
+    "hoursLabel": "営業時間",
+    "feeLabel": "料金",
+    "paymentLabel": "支払方法",
+    "languagesLabel": "対応言語",
+    "contactFallbackLabel": "フロントまでお問い合わせください",
     "items": [
       {
         "id": "lobby",
@@ -56,6 +61,11 @@
     "icon": "泊",
     "eyebrow": "Services",
     "heading": "館内サービス",
+    "feeLabel": "料金",
+    "plansLabel": "コース",
+    "receptionHoursLabel": "受付時間",
+    "reservationMethodLabel": "予約方法",
+    "hoursLabel": "利用時間",
     "items": [
       {
         "id": "room-service",
@@ -130,6 +140,11 @@
     "partnerHeading": "特におすすめ・提携アクティビティ",
     "otherHeading": "その他の周辺観光",
     "allCategoryLabel": "すべて",
+    "partnerBadgeDefaultLabel": "おすすめ",
+    "includedInPlansHeading": "この体験が含まれるプラン",
+    "includedInPlansHeadingShort": "含まれるプラン",
+    "officialSiteLinkLabel": "公式サイトを見る",
+    "officialSiteLinkLabelShort": "公式サイト",
     "categoryFilters": [
       { "id": "family", "label": "ご家族 / お子様" },
       { "id": "view", "label": "絶景" },

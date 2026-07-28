@@ -30,6 +30,11 @@
     "icon": "設",
     "eyebrow": "Facilities",
     "heading": "In-house Facilities",
+    "hoursLabel": "Hours",
+    "feeLabel": "Fee",
+    "paymentLabel": "Payment",
+    "languagesLabel": "Languages",
+    "contactFallbackLabel": "Contact",
     "items": [
       {
         "id": "lobby",
@@ -73,6 +78,11 @@
     "icon": "泊",
     "eyebrow": "Services",
     "heading": "In-house Services",
+    "feeLabel": "Fee",
+    "plansLabel": "Plans",
+    "receptionHoursLabel": "Reception Hours",
+    "reservationMethodLabel": "Reservation Method",
+    "hoursLabel": "Hours",
     "items": [
       {
         "id": "room-service",
@@ -157,6 +167,11 @@
     "partnerHeading": "Especially Recommended / Partner Activities",
     "otherHeading": "Other Nearby Sightseeing",
     "allCategoryLabel": "All",
+    "partnerBadgeDefaultLabel": "Special value with our plans",
+    "includedInPlansHeading": "Included in Plans",
+    "includedInPlansHeadingShort": "Plans",
+    "officialSiteLinkLabel": "Official Site",
+    "officialSiteLinkLabelShort": "Official Site",
     "categoryFilters": [
       {
         "id": "family",

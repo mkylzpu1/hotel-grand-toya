@@ -30,6 +30,11 @@
     "icon": "設",
     "eyebrow": "Facilities",
     "heading": "館内 시설",
+    "hoursLabel": "사용 시간",
+    "feeLabel": "요금",
+    "paymentLabel": "결제 방법",
+    "languagesLabel": "언어",
+    "contactFallbackLabel": "문의처",
     "items": [
       {
         "id": "lobby",
@@ -73,6 +78,11 @@
     "icon": "泊",
     "eyebrow": "Services",
     "heading": "館内 서비스",
+    "feeLabel": "요금",
+    "plansLabel": "플랜",
+    "receptionHoursLabel": "접수 시간",
+    "reservationMethodLabel": "예약 방법",
+    "hoursLabel": "시간",
     "items": [
       {
         "id": "room-service",
@@ -157,6 +167,11 @@
     "partnerHeading": "특별 추천・제휴 액티비티",
     "otherHeading": "기타 주변 관광",
     "allCategoryLabel": "전체",
+    "partnerBadgeDefaultLabel": "플랜으로 알뜰하게 체험",
+    "includedInPlansHeading": "플랜 포함",
+    "includedInPlansHeadingShort": "플랜",
+    "officialSiteLinkLabel": "공식 사이트",
+    "officialSiteLinkLabelShort": "공식 사이트",
     "categoryFilters": [
       {
         "id": "family",

@@ -399,7 +399,6 @@ const facilityItem = z.object({
   languages: z.array(z.string()).optional(),
   staffSupport: z.string().optional(),
 });
-
 const serviceItem = z.object({
   id: z.string(),
   name: z.string(),
@@ -417,7 +416,6 @@ const serviceItem = z.object({
   isFeatured: z.boolean().optional(),
   icon: z.string().optional(), // サービス一覧ページのアイコン表示用
 });
-
 const activityItem = z.object({
   id: z.string(),
   name: z.string(),
@@ -452,7 +450,6 @@ const activityItem = z.object({
     .optional(),
   categories: z.array(z.string()).optional(), // 複数カテゴリに属してよい
 });
-
 const facilitiesPage = defineCollection({
   type: 'data',
   schema: z.object({
@@ -470,12 +467,22 @@ const facilitiesPage = defineCollection({
       icon: z.string(),
       eyebrow: z.string(),
       heading: z.string(),
+      hoursLabel: z.string(), // 「営業時間」
+      feeLabel: z.string(), // 「料金」
+      paymentLabel: z.string(), // 「支払方法」
+      languagesLabel: z.string(), // 「対応言語」
+      contactFallbackLabel: z.string(), // 未確定項目時のフォールバック文言
       items: z.array(facilityItem),
     }),
     servicesSection: z.object({
       icon: z.string(),
       eyebrow: z.string(),
       heading: z.string(),
+      feeLabel: z.string(), // 「料金」
+      plansLabel: z.string(), // 「コース」
+      receptionHoursLabel: z.string(), // 「受付時間」
+      reservationMethodLabel: z.string(), // 「予約方法」
+      hoursLabel: z.string(), // 「利用時間」(バッジ用)
       items: z.array(serviceItem),
     }),
     activitiesSection: z.object({
@@ -486,6 +493,11 @@ const facilitiesPage = defineCollection({
       otherHeading: z.string(),
       categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
       allCategoryLabel: z.string(), // 例: "すべて"
+      partnerBadgeDefaultLabel: z.string(), // 「おすすめ」(itemごとの上書き未設定時)
+      includedInPlansHeading: z.string(), // 「この体験が含まれるプラン」
+      includedInPlansHeadingShort: z.string(), // 「含まれるプラン」
+      officialSiteLinkLabel: z.string(), // 「公式サイトを見る」
+      officialSiteLinkLabelShort: z.string(), // 「公式サイト」
       items: z.array(activityItem),
     }),
     usageNotice: z.object({

@@ -30,6 +30,11 @@
     "icon": "設",
     "eyebrow": "Facilities",
     "heading": "馆内设施",
+    "hoursLabel": "使用时间",
+    "feeLabel": "费用",
+    "paymentLabel": "支付方式",
+    "languagesLabel": "语言",
+    "contactFallbackLabel": "联系方式",
     "items": [
       {
         "id": "lobby",
@@ -71,6 +76,11 @@
     "icon": "泊",
     "eyebrow": "Services",
     "heading": "馆内服务",
+    "feeLabel": "费用",
+    "plansLabel": "套餐",
+    "receptionHoursLabel": "接待时间",
+    "reservationMethodLabel": "预约方式",
+    "hoursLabel": "使用时间",
     "items": [
       {
         "id": "room-service",
@@ -153,6 +163,11 @@
     "partnerHeading": "特别推荐・合作活动",
     "otherHeading": "其他周边观光",
     "allCategoryLabel": "全部",
+    "partnerBadgeDefaultLabel": "住宿方案超值体验",
+    "includedInPlansHeading": "包含在住宿方案中",
+    "includedInPlansHeadingShort": "住宿方案",
+    "officialSiteLinkLabel": "官方网站",
+    "officialSiteLinkLabelShort": "官网",
     "categoryFilters": [
       {
         "id": "family",
