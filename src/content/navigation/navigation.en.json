@@ -8,8 +8,8 @@
     },
     {
       "href": "/en/onsen/",
-      "label": "Onsen",
-      "en": "Onsen",
+      "label": "Stay & Day-trip Onsen",
+      "en": "Stay & Day-trip Onsen",
       "icon": "湯"
     },
     {
@@ -20,8 +20,8 @@
     },
     {
       "href": "/en/facilities/",
-      "label": "Facilities",
-      "en": "Facilities",
+      "label": "Facilities & Sightseeing",
+      "en": "Facilities & Sightseeing",
       "icon": "館"
     },
     {
@@ -46,7 +46,7 @@
     },
     {
       "href": "/en/information/",
-      "label": "Information"
+      "label": "Partner Benefits"
     },
     {
       "href": "/en/privacy/",

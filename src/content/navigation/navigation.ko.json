@@ -8,8 +8,8 @@
     },
     {
       "href": "/ko/onsen/",
-      "label": "온천",
-      "en": "Onsen",
+      "label": "숙박·일일 온천",
+      "en": "Stay & Day-trip Onsen",
       "icon": "湯"
     },
     {
@@ -20,8 +20,8 @@
     },
     {
       "href": "/ko/facilities/",
-      "label": "시설 안내",
-      "en": "Facilities",
+      "label": "시설·주변 관광",
+      "en": "Facilities & Sightseeing",
       "icon": "館"
     },
     {
@@ -46,7 +46,7 @@
     },
     {
       "href": "/ko/information/",
-      "label": "제휴 단체 이용 안내"
+      "label": "관련 단체 혜택 안내"
     },
     {
       "href": "/ko/privacy/",
