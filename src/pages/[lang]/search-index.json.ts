@@ -275,11 +275,13 @@ export const GET: APIRoute = async ({ params }) => {
     for (const post of newsEntries) {
       const translated = post.data.translations[lang];
       const fallback = post.data.translations.ja;
-      const title = translated.title || fallback.title;
+      const title = translated?.title || fallback.title;
       if (!title) continue;
       entries.push({
         title,
-        excerpt: excerpt(translated.body.length > 0 ? translated.body : fallback.body),
+        excerpt: excerpt(
+          translated?.body && translated.body.length > 0 ? translated.body : fallback.body,
+        ),
         url: `/${lang}/news/#${post.data.slug ?? post.id}`,
         category: page.pageTitle,
       });
