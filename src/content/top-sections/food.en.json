@@ -13,12 +13,12 @@
   "centerText": true,
   "images": [
     {
-      "src": "/assets/photos/lobby-1.jpg",
+      "src": "/assets/photos/food-night1.jpg",
       "alt": "Dinner course",
       "className": "h-full"
     },
     {
-      "src": "/assets/photos/lobby-2.jpg",
+      "src": "/assets/photos/food-night2.jpg",
       "alt": "A dish from our menu",
       "className": "h-[78%] self-end mb-0 lg:mb-14"
     }

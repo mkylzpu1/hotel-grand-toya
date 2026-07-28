@@ -12,15 +12,15 @@
   "tallImagePosition": "right",
   "images": [
     {
-      "src": "/assets/photos/room2.png",
+      "src": "/assets/photos/facility2.png",
       "alt": "客房眺望的景色"
     },
     {
-      "src": "/assets/photos/image1.png",
+      "src": "/assets/photos/facility3.png",
       "alt": "馆内景象"
     },
     {
-      "src": "/assets/photos/reservation.png",
+      "src": "/assets/photos/facility1.png",
       "alt": "客房眺望的景色"
     }
   ]
