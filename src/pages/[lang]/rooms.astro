@@ -3,7 +3,7 @@ import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
-import AmenityIcon from '../../components/rooms/AmenityIcon.astro';
+import AmenityIcon from '../../components/common/AmenityIcon.astro';
 
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('rooms-page');

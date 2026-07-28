@@ -88,7 +88,8 @@
         "description": ["ご家族・ご友人との旅の時間に、麻雀卓の貸し出しを行っております。"],
         "fee": "1,100円（卓貸し・時間無制限）",
         "hours": "10:00〜22:00",
-        "reservationMethod": "フロントまでお問い合わせください。"
+        "reservationMethod": "フロントまでお問い合わせください。",
+        "icon": "mahjong"
       },
       {
         "id": "go-shogi",
@@ -96,7 +97,8 @@
         "image": { "label": "囲碁・将棋" },
         "description": ["囲碁・将棋盤の貸し出しを行っております。"],
         "fee": "550円（時間無制限）",
-        "reservationMethod": "フロントにてお貸し出しいたします。"
+        "reservationMethod": "フロントにてお貸し出しいたします。",
+        "icon": "goshogi"
       },
       {
         "id": "laundry",
@@ -107,7 +109,8 @@
         ],
         "fee": "洗濯：300円／乾燥：300円（30分）",
         "hours": "6:00〜23:00",
-        "location": "1階ランドリーコーナー"
+        "location": "1階ランドリーコーナー",
+        "icon": "washer"
       },
       {
         "id": "wifi",
@@ -115,7 +118,8 @@
         "image": { "label": "Wi-Fi" },
         "description": ["館内・客室ともに無料でWi-Fiをご利用いただけます。"],
         "fee": "無料",
-        "hours": "24時間"
+        "hours": "24時間",
+        "icon": "wifi"
       }
     ]
   },

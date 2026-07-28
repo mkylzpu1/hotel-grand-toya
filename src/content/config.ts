@@ -389,6 +389,7 @@ const serviceItem = z.object({
   cancellationPolicy: z.string().optional(),
   notes: z.array(z.string()).optional(),
   isFeatured: z.boolean().optional(),
+  icon: z.string().optional(), // サービス一覧ページのアイコン表示用
 });
 
 const activityItem = z.object({

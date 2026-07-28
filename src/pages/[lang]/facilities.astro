@@ -4,6 +4,7 @@ import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
 import { Footprints, Car, Star, Ticket, MapPin, ExternalLink, Store } from 'lucide-astro';
+import AmenityIcon from '../../components/common/AmenityIcon.astro';
 
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('facilities-page');
@@ -49,7 +50,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
   relatedLinks={relatedLinksData.links}
   relatedLinksBackground="none"
 >
-  <section class="mx-auto max-w-[1320px] px-5 lg:px-10 py-[88px] lg:py-[108px]">
+  <section class="mx-auto max-w-[1320px] px-5 py-[88px] lg:px-10 lg:py-[108px]">
     <SectionEyebrow
       icon={page.intro.icon}
       eyebrow={page.intro.eyebrow}
@@ -142,7 +143,6 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
           heading={page.servicesSection.heading}
         />
       </div>
-
       {/* メインカード（マッサージ）：周辺アクティビティの提携カードに準拠 */}
       {
         page.servicesSection.items
@@ -150,7 +150,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
           .map((item) => (
             <div
               id={item.id}
-              class="mb-14 grid scroll-mt-24 grid-cols-1 overflow-hidden border-2 border-[#A24730] bg-white sm:grid-cols-2"
+              class="mb-14 grid scroll-mt-24 grid-cols-1 overflow-hidden border-2 border-[#A24730] bg-[#FAFAFA] sm:grid-cols-2"
             >
               <div class="relative aspect-[4/3] overflow-hidden bg-[#EFEDE8] sm:aspect-auto">
                 <img
@@ -168,59 +168,74 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                 {item.description.map((line) => (
                   <p class="mb-2 text-[0.88rem] leading-[1.85] text-[#55524C] last:mb-0">{line}</p>
                 ))}
-                <dl class="mt-5 space-y-1.5 text-[0.78rem] text-[#8A8781]">
-                  <div class="flex justify-between gap-2">
-                    <>
-                      <dt>料金</dt>
-                      <dd class="text-right text-[#1E1C1A]">{item.fee}</dd>
-                    </>
+                <dl class="mt-5 space-y-2.5 text-[0.78rem] text-[#8A8781]">
+                  <div class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
+                    <dt class="shrink-0 sm:w-24">料金</dt>
+                    <dd class="text-[#1E1C1A] sm:flex-1 sm:text-right">{item.fee}</dd>
                   </div>
                   {item.plans && (
-                    <div class="flex justify-between gap-2">
-                      <dt>コース</dt>
-                      <dd class="text-right text-[#1E1C1A]">{item.plans.join('／')}</dd>
+                    <div class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
+                      <dt class="shrink-0 sm:w-24">コース</dt>
+                      <dd class="text-[#1E1C1A] sm:flex-1 sm:text-right">
+                        {item.plans.join('／')}
+                      </dd>
                     </div>
                   )}
-                  <div class="flex justify-between gap-2">
-                    <>
-                      <dt>受付時間</dt>
-                      <dd class="text-right text-[#1E1C1A]">{item.receptionHours}</dd>
-                    </>
+                  <div class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
+                    <dt class="shrink-0 sm:w-24">受付時間</dt>
+                    <dd class="text-[#1E1C1A] sm:flex-1 sm:text-right">{item.receptionHours}</dd>
                   </div>
-                  <div class="flex justify-between gap-2">
-                    <>
-                      <dt>予約方法</dt>
-                      <dd class="text-right text-[#1E1C1A]">{item.reservationMethod}</dd>
-                    </>
+                  <div class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
+                    <dt class="shrink-0 sm:w-24">予約方法</dt>
+                    <dd class="text-[#1E1C1A] sm:flex-1 sm:text-right">{item.reservationMethod}</dd>
                   </div>
                 </dl>
               </div>
             </div>
           ))
       }
-
       {/* その他の館内サービス（リスト） */}
-      <div class="max-w-[720px] border-t border-[#D8D7D2]">
+      <div class="border-l border-t border-[#D8D7D2] lg:grid lg:grid-cols-3">
         {
           page.servicesSection.items
             .filter((item) => !item.isFeatured)
             .map((item) => (
               <div
                 id={item.id}
-                class="flex scroll-mt-24 flex-wrap items-start justify-between gap-x-6 gap-y-1 border-b border-[#D8D7D2] px-1 py-4"
+                class="scroll-mt-24 border-b border-r border-[#D8D7D2] bg-[#FAFAFA] px-4 py-4 lg:px-5 lg:py-[18px]"
               >
-                <div class="min-w-[200px] flex-1">
-                  <div class="flex items-center gap-2.5">
-                    <span class="h-[14px] w-[2.5px] shrink-0 bg-[#A24730]" />
-                    <h5 class="font-serif text-[0.92rem] font-semibold text-[#1E1C1A]">
+                <div class="flex items-center gap-2.5 lg:gap-3">
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-[1.5px] border-[#A24730] lg:h-[38px] lg:w-[38px]">
+                    <AmenityIcon
+                      iconKey={item.icon}
+                      class="h-4 w-4 text-[#A24730] lg:h-[17px] lg:w-[17px]"
+                    />
+                  </span>
+                  <div class="flex-1">
+                    <p class="font-serif text-[0.94rem] font-medium text-[#1E1C1A] lg:text-[1rem]">
                       {item.name}
-                    </h5>
+                    </p>
+                    <p class="mt-0.5 text-[0.78rem] leading-[1.6] text-[#8A8781] lg:mt-1 lg:text-[0.81rem] lg:leading-[1.7]">
+                      {item.description[0]}
+                    </p>
                   </div>
-                  <p class="mt-1.5 pl-[15px] text-[0.8rem] text-[#8A8781]">{item.description[0]}</p>
                 </div>
-                <div class="shrink-0 text-right text-[0.78rem] text-[#8A8781]">
-                  <p class="text-[#1E1C1A]">{item.fee ?? item.hours}</p>
-                  {item.reservationMethod && <p class="mt-0.5">{item.reservationMethod}</p>}
+                <div class="flex flex-wrap gap-1.5 pl-[46px] pt-2.5 lg:pl-[50px] lg:pt-3">
+                  {item.fee && (
+                    <span class="rounded-full bg-[#FAECE7] px-2.5 py-1 text-[0.69rem] text-[#712B13] lg:text-[0.72rem]">
+                      料金 {item.fee}
+                    </span>
+                  )}
+                  {item.hours && (
+                    <span class="rounded-full bg-[#FAECE7] px-2.5 py-1 text-[0.69rem] text-[#712B13] lg:text-[0.72rem]">
+                      利用時間 {item.hours}
+                    </span>
+                  )}
+                  {item.reservationMethod && (
+                    <span class="rounded-full bg-[#F1EFE8] px-2.5 py-1 text-[0.69rem] text-[#444441] lg:text-[0.72rem]">
+                      {item.reservationMethod}
+                    </span>
+                  )}
                 </div>
               </div>
             ))

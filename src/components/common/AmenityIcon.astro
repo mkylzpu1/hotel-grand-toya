@@ -1,5 +1,18 @@
 ---
-import { Wifi, Tv, Phone, Refrigerator, AirVent, Wind, Toilet, Bath, Shirt } from 'lucide-astro';
+import {
+  Wifi,
+  Tv,
+  Phone,
+  Refrigerator,
+  AirVent,
+  Wind,
+  Toilet,
+  Bath,
+  Shirt,
+  Gamepad2,
+  WashingMachine,
+  Grid3x3,
+} from 'lucide-astro';
 
 interface Props {
   iconKey: string;
@@ -16,6 +29,9 @@ const ICON_MAP: Record<string, any> = {
   washlet: Toilet,
   unitbath: Bath,
   yukata: Shirt,
+  mahjong: Gamepad2,
+  washer: WashingMachine,
+  goshogi: Grid3x3,
 };
 
 const LucideIcon = ICON_MAP[iconKey];

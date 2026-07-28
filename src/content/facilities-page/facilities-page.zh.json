@@ -107,7 +107,8 @@
         "description": ["提供麻将桌租借服务，适合与家人・朋友共度旅途时光。"],
         "fee": "1,100日元（租桌费・不限时间）",
         "hours": "10:00〜22:00",
-        "reservationMethod": "请联系前台咨询。"
+        "reservationMethod": "请联系前台咨询。",
+        "icon": "mahjong"
       },
       {
         "id": "go-shogi",
@@ -117,7 +118,8 @@
         },
         "description": ["提供围棋・将棋棋盘租借服务。"],
         "fee": "550日元（不限时间）",
-        "reservationMethod": "请至前台租借。"
+        "reservationMethod": "请至前台租借。",
+        "icon": "goshogi"
       },
       {
         "id": "laundry",
@@ -128,7 +130,8 @@
         "description": ["馆内备有投币式洗衣机・烘干机，方便长期住宿使用。"],
         "fee": "洗涤：300日元／烘干：300日元（30分钟）",
         "hours": "6:00〜23:00",
-        "location": "1楼洗衣角"
+        "location": "1楼洗衣角",
+        "icon": "washer"
       },
       {
         "id": "wifi",
@@ -138,7 +141,8 @@
         },
         "description": ["馆内及客房内均可免费使用Wi-Fi。"],
         "fee": "免费",
-        "hours": "24小时"
+        "hours": "24小时",
+        "icon": "wifi"
       }
     ]
   },

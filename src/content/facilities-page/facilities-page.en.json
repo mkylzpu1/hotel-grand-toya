@@ -109,7 +109,8 @@
         "description": ["We rent out mahjong tables for time spent with family or friends."],
         "fee": "¥1,100 (table rental, no time limit)",
         "hours": "10:00-22:00",
-        "reservationMethod": "Please inquire at the front desk."
+        "reservationMethod": "Please inquire at the front desk.",
+        "icon": "mahjong"
       },
       {
         "id": "go-shogi",
@@ -119,7 +120,8 @@
         },
         "description": ["We rent out Go and Shogi boards."],
         "fee": "¥550 (no time limit)",
-        "reservationMethod": "Available for rent at the front desk."
+        "reservationMethod": "Available for rent at the front desk.",
+        "icon": "goshogi"
       },
       {
         "id": "laundry",
@@ -132,7 +134,8 @@
         ],
         "fee": "Wash: ¥300 / Dry: ¥300 (30 min.)",
         "hours": "6:00-23:00",
-        "location": "1st floor laundry corner"
+        "location": "1st floor laundry corner",
+        "icon": "washer"
       },
       {
         "id": "wifi",
@@ -142,7 +145,8 @@
         },
         "description": ["Free Wi-Fi is available throughout the hotel and in all guest rooms."],
         "fee": "Free",
-        "hours": "24 hours"
+        "hours": "24 hours",
+        "icon": "wifi"
       }
     ]
   },
