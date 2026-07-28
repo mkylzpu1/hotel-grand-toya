@@ -698,10 +698,10 @@ const news = defineCollection({
     category: z.enum(['お知らせ', 'イベント', 'メンテナンス', 'キャンペーン']),
     isImportant: z.boolean().optional(),
     translations: z.object({
-      ja: newsTranslation,
-      en: newsTranslation,
-      zh: newsTranslation,
-      ko: newsTranslation,
+      ja: newsTranslation.optional(),
+      en: newsTranslation.optional(),
+      zh: newsTranslation.optional(),
+      ko: newsTranslation.optional(),
     }),
   }),
 });
