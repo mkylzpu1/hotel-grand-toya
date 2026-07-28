@@ -1,34 +1,10 @@
 {
   "pageTitle": "客室",
-  "pageTitleEn": "ROOMS",
-  "intro": {
-    "icon": "室"
-  },
-  "quickNav": [
-    {
-      "href": "#section-japanese",
-      "label": "和室"
-    },
-    {
-      "href": "#section-western",
-      "label": "洋室"
-    },
-    {
-      "href": "#section-amenities",
-      "label": "アメニティ"
-    }
-  ],
-  "basicInfoLabels": {
-    "size": "広さ",
-    "capacity": "定員",
-    "view": "眺望",
-    "bedding": "ベッド／布団",
-    "smoking": "喫煙可否"
-  },
-  "amenitiesIcon": "設",
-  "amenitiesEyebrow": "Amenities",
   "amenitiesHeading": "無料設備・アメニティ",
   "detailCtaText": "この客室を予約する",
+  "intro": {
+    "icon": "部"
+  },
   "commonAmenities": [
     {
       "key": "wifi",
@@ -85,43 +61,22 @@
       "label": "歯ブラシ"
     }
   ],
-  "firstFloorNotice": {
-    "heading": "1階客室のご注意",
-    "items": [
-      "遊覧船運航時間帯は大型バスが停車する場合があります。",
-      "客室小窓はマジックミラー仕様です。"
-    ]
-  },
   "sections": [
     {
       "id": "japanese",
       "rooms": [
         {
-          "id": "japanese-lakeview",
-          "icon": "和",
-          "eyebrow": "Japanese-style Room",
-          "name": "和室",
-          "description": [
-            "寛ぎの和室。畳のぬくもりと洞爺湖の景色に包まれながら、ゆったりとした時間をお過ごしいただけます。",
-            "1階、または2階以上のフロアからお選びいただけ、ご予算やお好みの眺望に合わせてご案内いたします。",
-            "※内観は一例です。実際の客室と異なる場合がございます。"
-          ],
-          "image": {
-            "label": "客室全体",
-            "src": "/assets/photos/lounge-2.jpg",
-            "alt": "湖側和室"
-          },
           "size": "26㎡",
-          "capacity": "1〜4名",
-          "bedding": "布団（ご人数に応じてご用意）",
           "view": "洞爺湖ビュー / 横向きレイクビュー",
-          "smoking": "禁煙",
           "floors": [
             {
               "label": "1階客室",
               "reservationName": "【1階】湖に面した和室8畳",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017392&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爺湖ビュー", "花火鑑賞可能（4/28〜10/31）"],
+              "badges": [
+                "洞爺湖ビュー",
+                "花火鑑賞可能（4/28〜10/31）"
+              ],
               "images": [
                 {
                   "label": "客室全体",
@@ -142,7 +97,11 @@
               "label": "2階以上の客室",
               "reservationName": "湖に面した和室8畳",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爺湖ビュー", "中島・羊蹄山を望む", "花火鑑賞可能（4/28〜10/31）"],
+              "badges": [
+                "洞爺湖ビュー",
+                "中島・羊蹄山を望む",
+                "花火鑑賞可能（4/28〜10/31）"
+              ],
               "images": [
                 {
                   "label": "客室全体",
@@ -196,7 +155,11 @@
               "label": "窓辺レイクビュー和室",
               "reservationName": "窓辺レイクビュー和室",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017390&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["横向きレイクビュー", "窓辺から湖を望む", "花火鑑賞可能"],
+              "badges": [
+                "横向きレイクビュー",
+                "窓辺から湖を望む",
+                "花火鑑賞可能"
+              ],
               "images": [
                 {
                   "label": "客室全体",
@@ -214,7 +177,24 @@
                 "正面のレイクビュータイプとは異なる角度から、ロングラン花火をお楽しみいただけます。"
               ]
             }
-          ]
+          ],
+          "eyebrow": "Japanese-style Room",
+          "name": "和室",
+          "smoking": "禁煙",
+          "icon": "和",
+          "capacity": "1〜4名",
+          "id": "japanese-lakeview",
+          "image": {
+            "label": "客室全体",
+            "src": "/assets/photos/lounge-2.jpg",
+            "alt": "湖側和室"
+          },
+          "description": [
+            "寛ぎの和室。畳のぬくもりと洞爺湖の景色に包まれながら、ゆったりとした時間をお過ごしいただけます。",
+            "1階、または2階以上のフロアからお選びいただけ、ご予算やお好みの眺望に合わせてご案内いたします。",
+            "※内観は一例です。実際の客室と異なる場合がございます。"
+          ],
+          "bedding": "布団（ご人数に応じてご用意）"
         }
       ]
     },
@@ -222,30 +202,17 @@
       "id": "western",
       "rooms": [
         {
-          "id": "western-lakeview",
-          "icon": "洋",
-          "eyebrow": "Western-style Room",
-          "name": "洋室",
-          "description": [
-            "畳での就寝に慣れていない方や、ベッドでのご滞在をお好みの方には洋室がおすすめです。",
-            "1階、または2階以上のフロアからお選びいただけます。"
-          ],
-          "image": {
-            "label": "客室全体",
-            "src": "/assets/photos/facility-3.jpg",
-            "alt": "湖側洋室（スタンダード）"
-          },
           "size": "26㎡",
-          "capacity": "1〜2名",
-          "bedding": "ツインベッド",
           "view": "洞爺湖ビュー",
-          "smoking": "禁煙",
           "floors": [
             {
               "label": "1階客室",
               "reservationName": "【1階】湖に面した洋室ツイン",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017389&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爺湖ビュー", "花火鑑賞可能（4/28〜10/31）"],
+              "badges": [
+                "洞爺湖ビュー",
+                "花火鑑賞可能（4/28〜10/31）"
+              ],
               "images": [
                 {
                   "label": "客室全体",
@@ -267,7 +234,11 @@
               "label": "2階以上の客室",
               "reservationName": "湖に面した洋室ツイン",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017388&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爺湖ビュー", "中島・羊蹄山を望む", "花火鑑賞可能（4/28〜10/31）"],
+              "badges": [
+                "洞爺湖ビュー",
+                "中島・羊蹄山を望む",
+                "花火鑑賞可能（4/28〜10/31）"
+              ],
               "images": [
                 {
                   "label": "客室全体",
@@ -285,9 +256,56 @@
                 "和室同様、ロングラン花火大会をお部屋からご覧いただけます。"
               ]
             }
-          ]
+          ],
+          "eyebrow": "Western-style Room",
+          "name": "洋室",
+          "smoking": "禁煙",
+          "icon": "洋",
+          "capacity": "1〜2名",
+          "id": "western-lakeview",
+          "image": {
+            "label": "客室全体",
+            "src": "/assets/photos/facility-3.jpg",
+            "alt": "湖側洋室（スタンダード）"
+          },
+          "description": [
+            "畳での就寝に慣れていない方や、ベッドでのご滞在をお好みの方には洋室がおすすめです。",
+            "1階、または2階以上のフロアからお選びいただけます。"
+          ],
+          "bedding": "ツインベッド"
         }
       ]
     }
-  ]
+  ],
+  "amenitiesIcon": "設",
+  "amenitiesEyebrow": "Amenities",
+  "pageTitleEn": "ROOMS",
+  "firstFloorNotice": {
+    "heading": "1階客室のご注意",
+    "items": [
+      "遊覧船運航時間帯は大型バスが停車する場合があります。",
+      "客室小窓はマジックミラー仕様です。"
+    ]
+  },
+  "quickNav": [
+    {
+      "href": "#section-japanese",
+      "label": "和室"
+    },
+    {
+      "href": "#section-western",
+      "label": "洋室"
+    },
+    {
+      "href": "#section-amenities",
+      "label": "アメニティ"
+    }
+  ],
+  "basicInfoLabels": {
+    "size": "広さ",
+    "capacity": "定員",
+    "view": "眺望",
+    "bedding": "ベッド／布団",
+    "smoking": "喫煙可否"
+  }
 }
