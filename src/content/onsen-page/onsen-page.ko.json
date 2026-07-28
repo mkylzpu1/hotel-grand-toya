@@ -2,6 +2,7 @@
   "pageTitle": "숙박・일일 온천",
   "pageTitleEn": "STAY & DAY-TRIP ONSEN",
   "icon": "泉",
+  "usageHeading": "이용 안내",
   "quickNav": [
     {
       "href": "#facilities",
@@ -43,6 +44,7 @@
     "icon": "湯",
     "eyebrow": "Facilities",
     "heading": "온천 시설 소개",
+    "hoursLabel": "이용 시간",
     "items": [
       {
         "name": "대욕장",
@@ -111,6 +113,7 @@
         "value": "문신・타투가 있으신 분, 음주 직후이신 분은 입욕을 삼가주시기 바랍니다. 혼잡 시나 특별한 날에는 일일 온천 이용을 제한할 수 있으니 양해 부탁드립니다."
       }
     ],
+    "rentalsLabel": "대여 품목・요금",
     "rentals": [
       {
         "label": "목욕타월",

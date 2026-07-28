@@ -2,6 +2,7 @@
   "pageTitle": "住宿・日归入浴",
   "pageTitleEn": "STAY & DAY-TRIP ONSEN",
   "icon": "泉",
+  "usageHeading": "使用须知",
   "quickNav": [
     {
       "href": "#facilities",
@@ -43,6 +44,7 @@
     "icon": "湯",
     "eyebrow": "Facilities",
     "heading": "温泉设施介绍",
+    "hoursLabel": "使用时间",
     "items": [
       {
         "name": "大浴场",
@@ -111,6 +113,7 @@
         "value": "有纹身・刺青者及刚饮酒者请勿入浴。拥挤时段或特殊日期可能会谢绝日归入浴，敬请谅解。"
       }
     ],
+    "rentalsLabel": "租赁物品・费用",
     "rentals": [
       {
         "label": "浴巾",

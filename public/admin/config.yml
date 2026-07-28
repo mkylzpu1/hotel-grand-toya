@@ -447,6 +447,7 @@ collections:
           i18n: duplicate,
         }
       - { label: 'アイコン(1文字)', name: 'icon', widget: 'string', i18n: duplicate }
+      - { label: '見出し(利用案内セクション)', name: 'usageHeading', widget: 'string', i18n: true }
       - label: 'ページ内アンカーナビ'
         name: 'quickNav'
         widget: 'list'
@@ -477,6 +478,7 @@ collections:
           - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
           - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
           - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
+          - { label: '利用時間ラベル', name: 'hoursLabel', widget: 'string', i18n: true }
           - label: '施設一覧'
             name: 'items'
             widget: 'list'
@@ -531,6 +533,7 @@ collections:
             i18n: true
             required: false
             field: { label: '項目', name: 'note', widget: 'string' }
+          - { label: 'レンタル品見出し', name: 'rentalsLabel', widget: 'string', i18n: true }
           - label: 'レンタル用品'
             name: 'rentals'
             widget: 'list'

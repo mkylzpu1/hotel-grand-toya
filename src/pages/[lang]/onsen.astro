@@ -3,19 +3,15 @@ import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
-
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('onsen-page');
 }
-
 const { lang } = Astro.params as { lang: Locale };
-
 const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
   lang,
   'onsen-page',
   'onsen',
 );
-
 const page = pageEntry.data;
 ---
 
@@ -62,7 +58,7 @@ const page = pageEntry.data;
                 {facility.description}
               </p>
               <p class="text-[0.78rem] tracking-[0.04em] text-[#8A8781]">
-                <span class="text-[#29415C]">ご利用時間</span> {facility.hours}
+                <span class="text-[#29415C]">{page.facilities.hoursLabel}</span> {facility.hours}
               </p>
             </article>
           ))
@@ -70,7 +66,6 @@ const page = pageEntry.data;
       </div>
     </div>
   </section>
-
   <!-- 泉質・効能 -->
   <section id="quality" class="relative mx-auto bg-[#FAFAFA] px-5 py-[88px] lg:px-10 lg:py-[108px]">
     <div class="mx-auto max-w-[1320px]">
@@ -93,12 +88,11 @@ const page = pageEntry.data;
       </dl>
     </div>
   </section>
-
   <!-- 利用案内：宿泊 / 日帰り -->
   <section id="useage" class="mx-auto max-w-[1320px] px-5 py-[88px] lg:px-10 lg:py-[108px]">
     <div class="mb-14 text-center">
       <h2 class="font-serif text-[clamp(1.5rem,1.2rem+1.1vw,2.05rem)] font-semibold text-[#1E1C1A]">
-        ご利用案内
+        {page.usageHeading}
       </h2>
     </div>
     <div class="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-16">
@@ -146,7 +140,7 @@ const page = pageEntry.data;
             page.dayUse.rentals && page.dayUse.rentals.length > 0 && (
               <div class="border-t border-[#cdcdca] pt-4">
                 <dt class="mb-1.5 text-[0.78rem] font-medium tracking-[0.1em] text-[#29415C]">
-                  レンタル品・料金
+                  {page.dayUse.rentalsLabel}
                 </dt>
                 <dd class="m-0">
                   <div class="space-y-2">
@@ -172,6 +166,5 @@ const page = pageEntry.data;
       </div>
     </div>
   </section>
-
   <!-- ▲ ここまで温泉ページ固有のコンテンツ ▲ -->
 </PageTemplate>

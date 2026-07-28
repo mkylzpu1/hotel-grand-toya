@@ -176,14 +176,14 @@ const onsenPage = defineCollection({
   schema: z.object({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
-    // ページ内アンカーナビ。「和室」「洋室」の2リンクのみ。
     quickNav: z.array(
       z.object({
         href: z.string(),
         label: z.string(),
       }),
     ),
-    icon: z.string(), // PageHeroBand用（leadセクション削除に伴い、ページ直下に移動）
+    icon: z.string(),
+    usageHeading: z.string(), // ★追加: 「ご利用案内」
     quality: z.object({
       icon: z.string(),
       eyebrow: z.string(),
@@ -194,6 +194,7 @@ const onsenPage = defineCollection({
       icon: z.string(),
       eyebrow: z.string(),
       heading: z.string(),
+      hoursLabel: z.string(), // ★追加: 「ご利用時間」
       items: z.array(
         z.object({
           name: z.string(),
@@ -219,6 +220,7 @@ const onsenPage = defineCollection({
       heading: z.string(),
       items: z.array(labeledItem),
       notes: z.array(z.string()).optional(),
+      rentalsLabel: z.string(), // ★追加: 「レンタル品・料金」
       rentals: z.array(
         z.object({
           label: z.string(),
@@ -228,7 +230,6 @@ const onsenPage = defineCollection({
     }),
   }),
 });
-
 // 客室ページ（客室タイプ一覧＋各客室の詳細情報。比較検討〜予約導線を担う）
 const roomAmenity = z.object({
   key: z.string(),

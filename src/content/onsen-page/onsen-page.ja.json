@@ -2,6 +2,7 @@
   "pageTitle": "ご宿泊・日帰り入浴",
   "pageTitleEn": "STAY & DAY-TRIP ONSEN",
   "icon": "泉",
+  "usageHeading": "ご利用案内",
   "quickNav": [
     {
       "href": "#facilities",
@@ -43,6 +44,7 @@
     "icon": "湯",
     "eyebrow": "Facilities",
     "heading": "温泉施設のご紹介",
+    "hoursLabel": "ご利用時間",
     "items": [
       {
         "name": "大浴場",
@@ -111,6 +113,7 @@
         "value": "刺青・タトゥーのある方、飲酒直後の方のご入浴はご遠慮いただいております。混雑時や特別日は、日帰り入浴をお断りさせていただく場合がございます。あらかじめご了承ください。"
       }
     ],
+    "rentalsLabel": "レンタル品・料金",
     "rentals": [
       {
         "label": "バスタオル",
