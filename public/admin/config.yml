@@ -5,7 +5,7 @@ backend:
   branch: main
   base_url: https://dlb8r9uzp9.execute-api.ap-northeast-1.amazonaws.com
 # Astroのビルド確認用（実運用時はNetlifyや他のホスティングのプレビューURLに変更）
-local_backend: true
+# local_backend: true
 publish_mode: editorial_workflow
 media_folder: 'public/assets/photos'
 public_folder: '/hotel-grand-toya/assets/photos'
