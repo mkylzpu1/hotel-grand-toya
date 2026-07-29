@@ -1,9 +1,6 @@
 {
   "centerText": true,
-  "titleLines": [
-    "도야코 호반에서,",
-    "마음이 풀어지는 시간을."
-  ],
+  "titleLines": ["도야코 호반에서,", "마음이 풀어지는 시간을."],
   "eyebrow": "Concept",
   "order": 1,
   "images": [

@@ -2,7 +2,7 @@
 import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import { getCollection } from 'astro:content';
-import { type Locale } from '../../content/config';
+import { localeFromId, type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
 
 export async function getStaticPaths() {
@@ -24,26 +24,24 @@ const categoryIdMap: Record<string, string> = {
   キャンペーン: 'campaign',
 };
 
-const newsEntries = await getCollection('news');
+// 変更点: translationsオブジェクトを読むのではなく、そのlangのファイルだけを取得する
+const newsEntries = await getCollection('news', (entry) => localeFromId(entry.id) === lang);
 const posts = newsEntries
   .map((entry) => {
-    const translated = entry.data.translations[lang];
-    const fallback = entry.data.translations.ja;
     const categoryId = categoryIdMap[entry.data.category] ?? 'other';
     const categoryLabel =
       page.categoryFilters.find((c) => c.id === categoryId)?.label ?? entry.data.category;
     return {
-      id: entry.data.slug ?? entry.id,
+      id: entry.data.slug ?? entry.id.split('.')[0],
       date: entry.data.date,
       category: entry.data.category,
       categoryId,
       categoryLabel,
       isImportant: entry.data.isImportant,
-      title: translated?.title || fallback.title,
-      body: translated?.body && translated.body.length > 0 ? translated.body : fallback.body,
+      title: entry.data.title,
+      body: entry.data.body,
     };
   })
-  .filter((post) => post.title)
   .sort((a, b) => (a.date < b.date ? 1 : -1));
 ---
 

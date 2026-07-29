@@ -685,11 +685,6 @@ const newsPage = defineCollection({
   }),
 });
 
-const newsTranslation = z.object({
-  title: z.string(),
-  body: z.array(z.string()),
-});
-
 const news = defineCollection({
   type: 'data',
   schema: z.object({
@@ -697,12 +692,8 @@ const news = defineCollection({
     date: z.string(),
     category: z.enum(['お知らせ', 'イベント', 'メンテナンス', 'キャンペーン']),
     isImportant: z.boolean().optional(),
-    translations: z.object({
-      ja: newsTranslation.optional(),
-      en: newsTranslation.optional(),
-      zh: newsTranslation.optional(),
-      ko: newsTranslation.optional(),
-    }),
+    title: z.string(),
+    body: z.array(z.string()),
   }),
 });
 

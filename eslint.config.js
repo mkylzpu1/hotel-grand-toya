@@ -40,6 +40,6 @@ export default [
 
   // 無視対象
   {
-    ignores: ['dist/**', '.astro/**', 'node_modules/**', 'src/env.d.ts', 'docs/**'],
+    ignores: ['dist/**', '.astro/**', 'node_modules/**', 'src/env.d.ts', 'docs/**', '**/*.json'],
   },
 ];

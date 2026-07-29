@@ -271,18 +271,13 @@ export const GET: APIRoute = async ({ params }) => {
   const newsPageEntry = findByLang(await getCollection('news-page'), lang);
   if (newsPageEntry) {
     const page = newsPageEntry.data;
-    const newsEntries = await getCollection('news');
+    const newsEntries = await getCollection('news', (entry) => localeFromId(entry.id) === lang);
     for (const post of newsEntries) {
-      const translated = post.data.translations[lang];
-      const fallback = post.data.translations.ja;
-      const title = translated?.title || fallback.title;
-      if (!title) continue;
+      if (!post.data.title) continue;
       entries.push({
-        title,
-        excerpt: excerpt(
-          translated?.body && translated.body.length > 0 ? translated.body : fallback.body,
-        ),
-        url: `/${lang}/news/#${post.data.slug ?? post.id}`,
+        title: post.data.title,
+        excerpt: excerpt(post.data.body),
+        url: `/${lang}/news/#${post.data.slug ?? post.id.split('.')[0]}`,
         category: page.pageTitle,
       });
     }

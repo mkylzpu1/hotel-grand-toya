@@ -14,12 +14,43 @@ const TARGET_LOCALES = [
 
 // 翻訳しないキー名（URL・ID・アイコン文字・数値系など）
 const SKIP_KEYS = new Set([
-  'href', 'url', 'src', 'icon', 'id', 'slug', 'key', 'code', 'className',
-  'place_id', 'email', 'tel', 'fax', 'postalCode', 'reservationUrl',
-  'reservationHref', 'embedUrl', 'openMapUrl', 'routeUrl', 'officialSite',
-  'officialTimetableUrl', 'mapEmbedUrl', 'order', 'recruitCount', 'sectionId',
-  'showDivider', 'centerText', 'tallImagePosition', 'isFirstFloor', 'isPartner',
-  'isFeatured', 'isImportant', 'date', 'status', 'salaryType', 'employmentType',
+  'href',
+  'url',
+  'src',
+  'icon',
+  'id',
+  'slug',
+  'key',
+  'code',
+  'className',
+  'place_id',
+  'email',
+  'tel',
+  'fax',
+  'postalCode',
+  'reservationUrl',
+  'reservationHref',
+  'embedUrl',
+  'openMapUrl',
+  'routeUrl',
+  'officialSite',
+  'officialTimetableUrl',
+  'mapEmbedUrl',
+  'order',
+  'recruitCount',
+  'sectionId',
+  'showDivider',
+  'centerText',
+  'tallImagePosition',
+  'isFirstFloor',
+  'isPartner',
+  'isFeatured',
+  'isImportant',
+  'date',
+  'status',
+  'salaryType',
+  'employmentType',
+  'category', // ← 追加：enum固定値のため翻訳対象外
 ]);
 
 function shouldTranslate(key, value) {
@@ -75,10 +106,7 @@ function setAtPath(obj, pathArr, value, referenceObj) {
 async function translateText(text, pair) {
   if (!text.trim()) return '';
   const url =
-    'https://api.mymemory.translated.net/get?q=' +
-    encodeURIComponent(text) +
-    '&langpair=' +
-    pair;
+    'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text) + '&langpair=' + pair;
   const res = await fetch(url);
   const data = await res.json();
   const t = data?.responseData?.translatedText;
@@ -98,7 +126,10 @@ function readJsonSafe(file) {
 
 function getOldJaContent(file, baseRef) {
   try {
-    const out = execSync(`git show ${baseRef}:${file}`, { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] });
+    const out = execSync(`git show ${baseRef}:${file}`, {
+      encoding: 'utf8',
+      stdio: ['pipe', 'pipe', 'ignore'],
+    });
     return JSON.parse(out);
   } catch {
     return {}; // 新規ファイル
@@ -156,7 +187,9 @@ async function main() {
         try {
           const translated = await translateText(value, pair);
           setAtPath(targetContent, p, translated);
-          console.log(`  [${code}] ${p.join('.')}: "${value.slice(0, 20)}..." -> "${translated.slice(0, 20)}..."`);
+          console.log(
+            `  [${code}] ${p.join('.')}: "${value.slice(0, 20)}..." -> "${translated.slice(0, 20)}..."`,
+          );
         } catch (err) {
           console.warn(`  [${code}] 翻訳失敗（スキップ）: ${err.message}`);
         }
