@@ -41,6 +41,11 @@ const ogLocaleMap: Record<Locale, string> = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(`${import.meta.env.BASE_URL}en/`, Astro.site ?? Astro.url.origin)}
+    />
 
     <!-- Favicon -->
     <link
