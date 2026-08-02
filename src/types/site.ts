@@ -11,6 +11,7 @@ export interface NavigationContent {
   primaryNavItems: { href: string; label: string; en: string; icon: string }[];
   secondaryNavItems: { href: string; label: string }[];
   reserveCta: string;
+  reserveNoteLabel: string;
   phoneAriaLabel: string;
   menuOpenLabel: string;
   menuCloseLabel: string;
@@ -53,6 +54,7 @@ export interface SiteContent {
     infoHeading: string;
     reservationHeading: string;
     reservationExternalText: string;
+    reservationExternalNote: string;
     copyright: string;
     mobileTelLabel: string;
     mobileReserveLabel: string;

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import SearchOverlay from '../components/common/SearchOverlay';
+import { ExternalLink, Phone } from 'lucide-react';
 import { asset } from './../utils/asset';
 
 interface PrimaryNavItem {
@@ -23,6 +24,7 @@ interface HeaderProps {
   primaryNavItems: PrimaryNavItem[];
   secondaryNavItems: SecondaryNavItem[];
   reserveCta: string;
+  reserveNoteLabel: string;
   phoneAriaLabel: string;
   menuOpenLabel: string;
   menuCloseLabel: string;
@@ -142,6 +144,7 @@ export default function Header({
   primaryNavItems,
   secondaryNavItems,
   reserveCta,
+  reserveNoteLabel,
   phoneAriaLabel,
   menuOpenLabel,
   menuCloseLabel,
@@ -323,32 +326,29 @@ export default function Header({
               </li>
             ))}
           </ul>
-          <div className="my-5 flex items-center gap-3">
-            <a
-              href={reservationUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeNav}
-              className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#A24730] py-3 text-[12px] font-medium tracking-[0.12em] text-white transition-colors hover:bg-[#8A3B27]"
-            >
-              {reserveCta}
-            </a>
-            <a
-              href={`tel:${tel}`}
-              className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors hover:border-[#A24730] hover:text-[#A24730]"
-              aria-label={phoneAriaLabel}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
+<div className="my-5 flex flex-col gap-2">
+            <div className="flex items-center gap-3">
+<a
+                href={reservationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeNav}
+                className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#A24730] py-3 text-[12px] font-medium tracking-[0.12em] text-white transition-colors hover:bg-[#8A3B27]"
               >
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-            </a>
+                {reserveCta}
+                <ExternalLink size={13} strokeWidth={2.2} aria-hidden="true" />
+              </a>
+<a
+                href={`tel:${tel}`}
+                className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors hover:border-[#A24730] hover:text-[#A24730]"
+                aria-label={phoneAriaLabel}
+              >
+                <Phone size={16} strokeWidth={2} />
+              </a>
+            </div>
+            <p className="text-center text-[10px] tracking-[0.04em] text-white/40">
+              {reserveNoteLabel}
+            </p>
           </div>
           <div className="border-t border-white/[0.08] pb-6 pt-5">
             <span className="mb-3 block text-[9px] font-medium tracking-[0.2em] text-white/30">
@@ -427,24 +427,31 @@ export default function Header({
           </svg>
           <span className="text-[9px] tracking-[0.05em]">{bottomNavTelLabel}</span>
         </a>
-
-        <a
-          href={reservationUrl}
+<a
+href={reservationUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="flex flex-1 flex-col items-center gap-1 py-2.5 text-[#E8A87C]"
         >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg>
+          <span className="relative inline-flex">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <path d="M16 2v4M8 2v4M3 10h18" />
+            </svg>
+            <ExternalLink
+              size={10}
+              strokeWidth={2.5}
+              className="absolute -right-1.5 -top-1"
+              aria-hidden="true"
+            />
+          </span>
           <span className="text-[9px] tracking-[0.05em]">{bottomNavReserveLabel}</span>
         </a>
 

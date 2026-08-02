@@ -54,6 +54,7 @@
     }
   ],
   "reserveCta": "立即预订",
+  "reserveNoteLabel": "※将跳转至外部预订网站",
   "phoneAriaLabel": "拨打电话",
   "menuOpenLabel": "打开菜单",
   "menuCloseLabel": "关闭菜单",

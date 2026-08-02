@@ -1,3 +1,4 @@
+import { ExternalLink } from 'lucide-react';
 import { asset } from './../utils/asset';
 
 interface NavLink {
@@ -9,6 +10,7 @@ interface FooterCopy {
   infoHeading: string;
   reservationHeading: string;
   reservationExternalText: string;
+  reservationExternalNote: string;
   copyright: string;
   mobileTelLabel: string;
   mobileReserveLabel: string;
@@ -86,18 +88,20 @@ export default function Footer({
               </a>
             ))}
           </div>
-          <div className="mt-0 flex flex-col gap-3.5">
+<div className="mt-0 flex flex-col gap-3.5">
             <h4 className="mb-5 text-[0.72rem] font-normal tracking-[0.16em] opacity-50">
               {copy.reservationHeading}
             </h4>
-            <a
+<a
               href={reservationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[0.82rem] opacity-80 hover:opacity-100"
+              className="flex items-center gap-1.5 text-[0.82rem] opacity-80 hover:opacity-100"
             >
               {copy.reservationExternalText}
+              <ExternalLink size={12} strokeWidth={2.2} aria-hidden="true" />
             </a>
+            <p className="text-[0.7rem] opacity-40">{copy.reservationExternalNote}</p>
             <a href={`tel:${tel}`} className="text-[0.82rem] opacity-80 hover:opacity-100">
               {tel}
             </a>

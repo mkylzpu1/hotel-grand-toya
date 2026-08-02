@@ -21,6 +21,7 @@
     "infoHeading": "Site Information",
     "reservationHeading": "Reservations",
     "reservationExternalText": "Go to Booking Site",
+    "reservationExternalNote": "Opens an external booking site",
     "copyright": "© 2026 Hotel Grand Toya",
     "mobileTelLabel": "Call",
     "mobileReserveLabel": "Book Now"

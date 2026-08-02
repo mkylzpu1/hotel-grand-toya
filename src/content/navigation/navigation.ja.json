@@ -54,6 +54,7 @@
     }
   ],
   "reserveCta": "ご予約はこちら",
+  "reserveNoteLabel": "※外部予約サイトに移動します",
   "phoneAriaLabel": "電話をかける",
   "menuOpenLabel": "メニューを開く",
   "menuCloseLabel": "メニューを閉じる",

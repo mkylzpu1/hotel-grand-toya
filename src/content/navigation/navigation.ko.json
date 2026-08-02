@@ -54,6 +54,7 @@
     }
   ],
   "reserveCta": "지금 예약하기",
+  "reserveNoteLabel": "※외부 예약 사이트로 이동합니다",
   "phoneAriaLabel": "전화 걸기",
   "menuOpenLabel": "메뉴 열기",
   "menuCloseLabel": "메뉴 닫기",

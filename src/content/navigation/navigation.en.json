@@ -54,6 +54,7 @@
     }
   ],
   "reserveCta": "Book Now",
+  "reserveNoteLabel": "Opens an external booking site",
   "phoneAriaLabel": "Call us",
   "menuOpenLabel": "Open menu",
   "menuCloseLabel": "Close menu",

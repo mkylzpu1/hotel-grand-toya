@@ -50,6 +50,12 @@ collections:
           - { label: 'リンク先', name: href, widget: string }
           - { label: '表示ラベル', name: label, widget: string }
       - { label: '予約CTAボタン文言', name: reserveCta, widget: string, i18n: true }
+      - {
+        label: '予約ボタン下の注記（例：※外部予約サイトに移動します）',
+        name: reserveNoteLabel,
+        widget: string,
+        i18n: true,
+      }
       - { label: '電話ボタンaria-label', name: phoneAriaLabel, widget: string, i18n: true }
       - { label: 'メニューを開くaria-label', name: menuOpenLabel, widget: string, i18n: true }
       - { label: 'メニューを閉じるaria-label', name: menuCloseLabel, widget: string, i18n: true }
@@ -154,6 +160,12 @@ collections:
               widget: string,
               i18n: true,
             }
+          - {
+            label: '予約リンク下の注記（例：※外部の予約サイトに移動します）',
+            name: reservationExternalNote,
+            widget: string,
+            i18n: true,
+          }
           - { label: 'コピーライト', name: copyright, widget: string, i18n: duplicate }
           - { label: 'モバイル用「電話」ラベル', name: mobileTelLabel, widget: string, i18n: true }
           - {
