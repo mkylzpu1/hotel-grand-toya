@@ -7,15 +7,15 @@
     },
     {
       "label": "JR",
-      "value": "从JR洞爷站乘坐当地巴士约25分钟*没有穿梭巴士"
+      "value": "从JR洞爺站乘坐接送巴士约20分钟"
     },
     {
       "label": "高速巴士",
-      "value": "距离札幌约2小时40分钟车程"
+      "value": "从札幌约2小时30分钟"
     },
     {
       "label": "新千岁机场",
-      "value": "开车约2小时"
+      "value": "乘坐机场接驳巴士约2小时"
     }
   ],
   "heading": "交通与周边观光",
@@ -24,7 +24,7 @@
   "eyebrow": "交通指南",
   "sceneryItems": [
     {
-      "img": "/hotel-grand-toya/assets/photos/facility-out18.png",
+      "img": "/assets/photos/garden-2.jpg",
       "title": "向日葵花田",
       "note": "从酒店驱车约15分钟"
     },
