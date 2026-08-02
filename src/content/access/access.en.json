@@ -7,15 +7,15 @@
     },
     {
       "label": "By Train",
-      "value": "About 20 min. by shuttle bus from JR Toya Station"
+      "value": "About 25 minutes by local bus from JR Toya Station * There is no shuttle bus"
     },
     {
       "label": "By Highway Bus",
-      "value": "About 2 hours 30 min. from Sapporo"
+      "value": "About 2 hours and 40 minutes from Sapporo"
     },
     {
       "label": "New Chitose Airport",
-      "value": "About 2 hours by airport limousine bus"
+      "value": "About 2 hours by car"
     }
   ],
   "heading": "Access & Sightseeing",
@@ -24,7 +24,7 @@
   "eyebrow": "Access",
   "sceneryItems": [
     {
-      "img": "/assets/photos/garden-2.jpg",
+      "img": "/hotel-grand-toya/assets/photos/facility-out18.png",
       "title": "Sunflower Fields",
       "note": "About 15 min. by car from the hotel"
     },
