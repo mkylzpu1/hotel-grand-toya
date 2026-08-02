@@ -1,22 +1,33 @@
 {
   "heroImage": "/assets/photos/image12.jpg",
-  "heroImageAlt": "ホテルグランドトーヤ周辺",
-  "eyebrow": "Access",
-  "heading": "アクセス・周辺観光",
   "accessList": [
-    { "label": "お車", "value": "札幌市街から約2時間" },
-    { "label": "JR", "value": "JR洞爺駅より送迎バス約20分" },
-    { "label": "高速バス", "value": "札幌から約2時間30分" },
-    { "label": "新千歳空港", "value": "空港連絡バスで約2時間" }
+    {
+      "label": "お車",
+      "value": "札幌市街から約2時間"
+    },
+    {
+      "label": "JR",
+      "value": "JR洞爺駅より路線バス約25分　※送迎バスはございません"
+    },
+    {
+      "label": "高速バス",
+      "value": "札幌から約2時間40分"
+    },
+    {
+      "label": "新千歳空港",
+      "value": "お車で約2時間"
+    }
   ],
-  "note": "冬季は積雪・路面凍結のため、お車でお越しの際は冬用タイヤをご準備ください。",
-  "detailLinkText": "詳細はこちら",
-  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
-  "mapTitle": "ホテルグランドトーヤ地図",
-  "sceneryHeading": "四季折々の洞爺湖を楽しめる立地",
+  "heading": "アクセス・周辺観光",
+  "heroImageAlt": "ホテルグランドトーヤ周辺",
   "sceneryDescription": "ホテルグランドトーヤは洞爺湖畔に位置し、 春の桜、夏のロングラン花火大会やひまわり畑、 秋の紅葉、冬のイルミネーションなど、 季節ごとの見どころへのアクセスにも便利です。",
+  "eyebrow": "Access",
   "sceneryItems": [
-    { "img": "/assets/photos/garden-2.jpg", "title": "ひまわり畑", "note": "ホテルから車で約15分" },
+    {
+      "img": "/hotel-grand-toya/assets/photos/facility-out18.png",
+      "title": "ひまわり畑",
+      "note": "ホテルから車で約15分"
+    },
     {
       "img": "/assets/photos/image2.png",
       "title": "洞爺湖ロングラン花火大会",
@@ -28,5 +39,10 @@
       "note": "乗り場まで徒歩約8分"
     }
   ],
-  "sceneryLinkText": "周辺観光はこちら"
+  "sceneryHeading": "四季折々の洞爺湖を楽しめる立地",
+  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
+  "note": "冬季は積雪・路面凍結のため、お車でお越しの際は冬用タイヤをご準備ください。",
+  "detailLinkText": "詳細はこちら",
+  "sceneryLinkText": "周辺観光はこちら",
+  "mapTitle": "ホテルグランドトーヤ地図"
 }
