@@ -1,20 +1,27 @@
 {
   "heroImage": "/assets/photos/image12.jpg",
-  "heroImageAlt": "호텔 그랜드 토야 주변",
-  "eyebrow": "Access",
-  "heading": "오시는 길・주변 관광",
   "accessList": [
-    { "label": "자동차", "value": "삿포로 시내에서 약 2시간" },
-    { "label": "JR", "value": "JR 도야역에서 셔틀버스로 약 20분" },
-    { "label": "고속버스", "value": "삿포로에서 약 2시간 30분" },
-    { "label": "신치토세 공항", "value": "공항 리무진 버스로 약 2시간" }
+    {
+      "label": "자동차",
+      "value": "삿포로 시내에서 약 2시간"
+    },
+    {
+      "label": "JR",
+      "value": "JR 도야역에서 셔틀버스로 약 20분"
+    },
+    {
+      "label": "고속버스",
+      "value": "삿포로에서 약 2시간 30분"
+    },
+    {
+      "label": "신치토세 공항",
+      "value": "공항 리무진 버스로 약 2시간"
+    }
   ],
-  "note": "겨울철에는 적설・노면 결빙이 있으므로, 자동차로 오실 경우 겨울용 타이어를 준비해 주세요.",
-  "detailLinkText": "자세히 보기",
-  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
-  "mapTitle": "호텔 그랜드 토야 지도",
-  "sceneryHeading": "사계절 도야코를 즐길 수 있는 입지",
+  "heading": "오시는 길・주변 관광",
+  "heroImageAlt": "호텔 그랜드 토야 주변",
   "sceneryDescription": "호텔 그랜드 토야는 도야코 호반에 위치해, 봄의 벚꽃, 여름의 롱런 불꽃축제와 해바라기밭, 가을의 단풍, 겨울의 일루미네이션 등 계절마다의 명소로의 이동이 편리합니다.",
+  "eyebrow": "Access",
   "sceneryItems": [
     {
       "img": "/assets/photos/garden-2.jpg",
@@ -32,5 +39,10 @@
       "note": "선착장까지 도보 약 8분"
     }
   ],
-  "sceneryLinkText": "주변 관광 보기"
+  "sceneryHeading": "사계절 도야코를 즐길 수 있는 입지",
+  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
+  "note": "겨울철에는 적설・노면 결빙이 있으므로, 자동차로 오실 경우 겨울용 타이어를 준비해 주세요.",
+  "detailLinkText": "자세히 보기",
+  "sceneryLinkText": "주변 관광 보기",
+  "mapTitle": "호텔 그랜드 토야 지도"
 }
