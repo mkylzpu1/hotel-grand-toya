@@ -2,7 +2,7 @@ name: Auto-translate ja content
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
     paths:
       - 'src/content/**/*.ja.json'
