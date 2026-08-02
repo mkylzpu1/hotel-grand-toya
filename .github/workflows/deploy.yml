@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Translate and Deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -15,16 +15,60 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  translate:
+    if: "!contains(github.event.head_commit.message, '[skip translate]')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Detect changed ja.json files
+        id: changed
+        run: |
+          FILES=$(git diff --name-only HEAD~1 HEAD -- 'src/content/**/*.ja.json' | tr '\n' ' ')
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+
+      - name: Translate
+        if: steps.changed.outputs.files != ''
+        env:
+          BASE_REF: HEAD~1
+        run: node scripts/translate-content.mjs ${{ steps.changed.outputs.files }}
+
+      - name: Commit translated files
+        run: |
+          git config user.name "translate-bot"
+          git config user.email "translate-bot@users.noreply.github.com"
+          git add 'src/content/**/*.en.json' 'src/content/**/*.zh.json' 'src/content/**/*.ko.json'
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: auto-translate ja -> en/zh/ko [skip translate]"
+            git push origin HEAD:main
+          else
+            echo "翻訳による変更なし"
+          fi
+
+  build:
+    needs: translate
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+
       - run: npm ci
       - run: npm run build
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
