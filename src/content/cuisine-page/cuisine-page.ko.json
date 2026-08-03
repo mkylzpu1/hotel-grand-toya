@@ -61,7 +61,7 @@
           ]
         },
         "seasonalNote": "메뉴는 계절 및 식재료 수급 상황에 따라 변경될 수 있습니다.",
-        "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045433&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+        "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045433&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
       },
       {
         "id": "sukiyaki",
@@ -88,7 +88,7 @@
           ]
         },
         "seasonalNote": "메뉴는 계절 및 식재료 수급 상황에 따라 변경될 수 있습니다.",
-        "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045415&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+        "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045415&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
       }
     ]
   },

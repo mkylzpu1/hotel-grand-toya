@@ -11,9 +11,18 @@
     ]
   },
   "quickNav": [
-    { "href": "#section-dinner", "label": "夕食" },
-    { "href": "#section-breakfast", "label": "朝食" },
-    { "href": "#section-venues", "label": "お食事会場" }
+    {
+      "href": "#section-dinner",
+      "label": "夕食"
+    },
+    {
+      "href": "#section-breakfast",
+      "label": "朝食"
+    },
+    {
+      "href": "#section-venues",
+      "label": "お食事会場"
+    }
   ],
   "icon": "膳",
   "dinner": {
@@ -25,13 +34,16 @@
       "どちらのプランも、洞爺湖周辺や道内各地から届く旬の食材を使い、温かい料理は温かいうちにご提供いたします。"
     ],
     "comparisonNote": "お魚やお野菜の旨みを鍋で楽しみたい方は「寄せ鍋会席」、お肉料理をしっかり楽しみたい方は「おまかせ和食会席（しゃぶしゃぶ）」がおすすめです。ご予約時にお好きな方をお選びいただけます。",
-"recommendedForLabel": "こんな方に：",
+    "recommendedForLabel": "こんな方に：",
     "plans": [
       {
         "id": "yosenabe",
         "name": "寄せ鍋会席膳",
         "nameEn": "Yosenabe Kaiseki",
-        "image": { "src": "/assets/photos/food-night1.jpg", "alt": "寄せ鍋会席" },
+        "image": {
+          "src": "/assets/photos/food-night1.jpg",
+          "alt": "寄せ鍋会席"
+        },
         "description": [
           "魚介と野菜をふんだんに使った寄せ鍋を中心に、旬の味わいをお楽しみいただく会席プランです。",
           "体の芯から温まる、温泉旅館ならではの冬におすすめのお料理です。"
@@ -49,13 +61,16 @@
           ]
         },
         "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。",
-        "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045433&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+        "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045433&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
       },
       {
         "id": "sukiyaki",
         "name": "おまかせ和食会席膳",
         "nameEn": "Omakase Japanese Kaiseki",
-        "image": { "src": "/assets/photos/food-night2.jpg", "alt": "おまかせ和食会席膳" },
+        "image": {
+          "src": "/assets/photos/food-night2.jpg",
+          "alt": "おまかせ和食会席膳"
+        },
         "description": [
           "特選豚肩ロースを使用したしゃぶしゃぶを主役に、季節の前菜や焼物と共にお楽しみいただく会席プランです。",
           "甘辛い割り下と卵の絡む、定番ながら贅沢なひと品をご堪能ください。"
@@ -73,7 +88,7 @@
           ]
         },
         "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。",
-        "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045415&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+        "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045415&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
       }
     ]
   },
@@ -88,7 +103,10 @@
     "plan": {
       "name": "和朝食",
       "nameEn": "Japanese Breakfast",
-      "image": { "src": "/assets/photos/food-morning.png", "alt": "和朝食" },
+      "image": {
+        "src": "/assets/photos/food-morning.png",
+        "alt": "和朝食"
+      },
       "description": [
         "焼魚や小鉢、炊きたてのご飯と味噌汁など、身体にやさしい和朝食をご用意しています。",
         "朝から温かいお食事で、1日の始まりをゆっくりとお迎えください。"
@@ -102,7 +120,11 @@
     "heading": "お食事会場",
     "inRoom": {
       "heading": "お部屋食",
-      "image": { "label": "お部屋食", "src": "/assets/photos/image20.png", "alt": "お部屋食" },
+      "image": {
+        "label": "お部屋食",
+        "src": "/assets/photos/image20.png",
+        "alt": "お部屋食"
+      },
       "description": [
         "ご自分のお部屋で、周囲を気にせずゆっくりとお食事をお楽しみいただけます。",
         "ご家族やご夫婦でのご旅行に、落ち着いた時間をお過ごしいただけます。"
@@ -111,7 +133,11 @@
     },
     "hall": {
       "heading": "広間会食場",
-      "image": { "label": "広間会食場", "src": "/assets/photos/image3.png", "alt": "広間会食場" },
+      "image": {
+        "label": "広間会食場",
+        "src": "/assets/photos/image3.png",
+        "alt": "広間会食場"
+      },
       "description": [
         "他のお客様とともに、和風の広間会食場でお食事をお楽しみいただけます。",
         "温泉旅館らしい雰囲気の中で、夕食・朝食をお召し上がりいただけます。"
