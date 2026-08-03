@@ -207,6 +207,7 @@ const onsenPage = defineCollection({
           hours: z.string(),
         }),
       ),
+      notes: z.array(z.string()).optional(),
     }),
     stay: z.object({
       id: z.string(),

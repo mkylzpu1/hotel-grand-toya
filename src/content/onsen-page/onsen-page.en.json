@@ -67,7 +67,8 @@
         "description": "Soak in our open-air bath while feeling the breeze off the lake. Enjoy views of Lake Toya and the surrounding mountains by day, and quiet steam under the starry sky by night.",
         "hours": "13:00–23:00 (for safety management)"
       }
-    ]
+    ],
+    "notes": ["Private baths and saunas are not available."]
   },
   "stay": {
     "id": "stay",

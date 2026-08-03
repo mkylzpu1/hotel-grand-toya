@@ -584,6 +584,12 @@ collections:
               - { label: '代替テキスト(alt)', name: 'imageAlt', widget: 'string' }
               - { label: '説明', name: 'description', widget: 'text' }
               - { label: '利用時間', name: 'hours', widget: 'string' }
+          - label: '施設に関する注記(貸切風呂・サウナなし等)'
+            name: 'notes'
+            widget: 'list'
+            i18n: true
+            required: false
+            field: { label: '項目', name: 'note', widget: 'string' }
       - label: '宿泊者向け案内'
         name: 'stay'
         widget: 'object'
