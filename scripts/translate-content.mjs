@@ -1,6 +1,17 @@
 #!/usr/bin/env node
 // 変更されたja.jsonの「差分部分」だけを検出し、en/zh/koに機械翻訳を反映するスクリプト
 // 手動で書き換えた既存の翻訳（差分に入らない部分）は上書きしません。
+//
+// 追加仕様（画像パスの強制複製）:
+// Decap CMSは widget: list に i18n: true を指定すると、その配下フィールドの
+// i18n: duplicate 指定を無視してしまう既知の制限がある
+// (公式ドキュメント: "List widgets only support i18n: true. i18n configuration
+// on sub fields is ignored.")。そのため、リスト内の画像フィールド（例:
+// access.sceneryItems[].img、facilities-page の各 items[].image.src など）が
+// 他言語タブでも編集可能になり、意図せず ja と値がズレることがある。
+// この対策として、値が画像ファイルパスに見える場合はキー名を問わず「翻訳」ではなく
+// 「jaの値をそのまま複製」する。CMS側の設定ミスではなく、CMS本体の制限を
+// スクリプト側で補うための処理。
 
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -55,6 +66,13 @@ const SKIP_KEYS = new Set([
   'category', // ← 追加：enum固定値のため翻訳対象外
 ]);
 
+// 画像ファイルパスかどうかを判定する（キー名ではなく値そのもので判定する）。
+// この判定に一致した文字列は、キー名が何であれ「複製対象」として扱う。
+function isImagePath(value) {
+  if (typeof value !== 'string') return false;
+  return /\.(jpe?g|png|gif|webp|svg|avif)(\?.*)?$/i.test(value.trim());
+}
+
 function shouldTranslate(key, value) {
   if (typeof value !== 'string') return false;
   if (SKIP_KEYS.has(key)) return false;
@@ -63,43 +81,51 @@ function shouldTranslate(key, value) {
   if (/url/i.test(key) || /href$/i.test(key)) return false;
   if (/^https?:\/\//.test(value)) return false;
   if (/^\d+$/.test(value)) return false;
-  // 値そのものが画像ファイルパスっぽければ、キー名(img/image/src等)に関係なくスキップ
-  // (access.sceneryItems.img, onsen-page facilities.items.image など、
-  //  "src" 以外の名前で画像パスを持つフィールド対策)
-  if (/\.(jpe?g|png|gif|webp|svg|avif)(\?.*)?$/i.test(value.trim())) return false;
+  // 画像ファイルパスは翻訳せず、複製対象として別途処理する（isImagePathに委譲）
+  if (isImagePath(value)) return false;
   if (value.trim().length <= 1) return false; // アイコン用の1文字漢字など
   return true;
 }
 
-// oldとnewを比較し、変更/追加されたリーフのパスと値を集める
-function diffLeaves(oldObj, newObj, prefix = []) {
-  const results = [];
-  if (Array.isArray(newObj)) {
-    newObj.forEach((item, i) => {
-      const oldItem = Array.isArray(oldObj) ? oldObj[i] : undefined;
-      results.push(...diffLeaves(oldItem, item, [...prefix, i]));
-    });
-  } else if (newObj && typeof newObj === 'object') {
-    for (const key of Object.keys(newObj)) {
-      const oldVal = oldObj && typeof oldObj === 'object' ? oldObj[key] : undefined;
-      results.push(...diffLeaves(oldVal, newObj[key], [...prefix, key]));
-    }
-  } else if (typeof newObj === 'string') {
-    if (newObj !== oldObj) {
-      const lastKey = prefix[prefix.length - 1];
-      if (shouldTranslate(typeof lastKey === 'string' ? lastKey : '', newObj)) {
-        results.push({ path: prefix, value: newObj });
+// oldとnewを比較し、変更/追加されたリーフを「翻訳対象」と「複製対象(画像パス)」に分けて集める
+function collectDiffs(oldObj, newObj, prefix = []) {
+  const translate = [];
+  const duplicate = [];
+
+  function walk(oldNode, newNode, currentPath) {
+    if (Array.isArray(newNode)) {
+      newNode.forEach((item, i) => {
+        const oldItem = Array.isArray(oldNode) ? oldNode[i] : undefined;
+        walk(oldItem, item, [...currentPath, i]);
+      });
+    } else if (newNode && typeof newNode === 'object') {
+      for (const key of Object.keys(newNode)) {
+        const oldVal = oldNode && typeof oldNode === 'object' ? oldNode[key] : undefined;
+        walk(oldVal, newNode[key], [...currentPath, key]);
+      }
+    } else if (typeof newNode === 'string') {
+      if (newNode !== oldNode) {
+        if (isImagePath(newNode)) {
+          duplicate.push({ path: currentPath, value: newNode });
+          return;
+        }
+        const lastKey = currentPath[currentPath.length - 1];
+        if (shouldTranslate(typeof lastKey === 'string' ? lastKey : '', newNode)) {
+          translate.push({ path: currentPath, value: newNode });
+        }
       }
     }
   }
-  return results;
+
+  walk(oldObj, newObj, prefix);
+  return { translate, duplicate };
 }
 
 function getAtPath(obj, pathArr) {
   return pathArr.reduce((o, k) => (o == null ? undefined : o[k]), obj);
 }
 
-function setAtPath(obj, pathArr, value, referenceObj) {
+function setAtPath(obj, pathArr, value) {
   let cur = obj;
   for (let i = 0; i < pathArr.length - 1; i++) {
     const key = pathArr[i];
@@ -159,13 +185,14 @@ async function main() {
 
     const newJa = readJsonSafe(jaFile);
     const oldJa = getOldJaContent(jaFile, baseRef);
-    const diffs = diffLeaves(oldJa, newJa);
+    const { translate: diffs, duplicate: dupDiffs } = collectDiffs(oldJa, newJa);
 
-    if (diffs.length === 0) {
-      console.log('翻訳対象の変更なし');
+    if (diffs.length === 0 && dupDiffs.length === 0) {
+      console.log('翻訳・複製対象の変更なし');
       continue;
     }
-    console.log(`${diffs.length}件の変更を検出`);
+    if (diffs.length > 0) console.log(`${diffs.length}件の翻訳対象の変更を検出`);
+    if (dupDiffs.length > 0) console.log(`${dupDiffs.length}件の画像パス変更を検出（複製対象）`);
 
     for (const { code, pair } of TARGET_LOCALES) {
       const targetFile = jaFile.replace(/\.ja\.json$/, `.${code}.json`);
@@ -182,11 +209,11 @@ async function main() {
       })();
       const targetContent = readJsonSafe(targetFile);
 
+      // --- 翻訳対象（従来どおり。手入力済みの場合はスキップする） ---
       for (const { path: p, value } of diffs) {
         const oldTargetValue = getAtPath(oldTarget, p);
         const newTargetValue = getAtPath(targetContent, p);
 
-        // ★ここが追加ポイント★
         // 対象言語側の同じ箇所が「このコミットで既に変わっている」＝人力で入力済みとみなしてスキップ
         if (newTargetValue !== oldTargetValue) {
           console.log(`  [${code}] ${p.join('.')}: 手入力済みとみなしスキップ`);
@@ -201,6 +228,18 @@ async function main() {
           );
         } catch (err) {
           console.warn(`  [${code}] 翻訳失敗（スキップ）: ${err.message}`);
+        }
+      }
+
+      // --- 複製対象（画像パス。CMS上で他言語タブから書き換えられていても、
+      //     jaの値で強制的に上書きして「言語共通」の状態に復元する） ---
+      for (const { path: p, value } of dupDiffs) {
+        const before = getAtPath(targetContent, p);
+        setAtPath(targetContent, p, value);
+        if (before !== value) {
+          console.log(`  [${code}] ${p.join('.')}: 画像パスを複製 -> "${value}"（元: "${before}"）`);
+        } else {
+          console.log(`  [${code}] ${p.join('.')}: 画像パスは既に一致`);
         }
       }
 
