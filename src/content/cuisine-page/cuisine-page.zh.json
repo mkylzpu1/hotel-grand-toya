@@ -51,7 +51,14 @@
         "recommendedFor": "希望享用以海鲜和蔬菜为主的轻食的客人",
         "menuExample": {
           "heading": "菜单示例",
-          "items": ["前菜", "刺身拼盘", "季节烧物", "什锦火锅", "米饭・止椀・小菜", "季节甜点"]
+          "items": [
+            "前菜",
+            "刺身拼盘",
+            "季节烧物",
+            "什锦火锅",
+            "米饭・止椀・小菜",
+            "季节甜点"
+          ]
         },
         "seasonalNote": "菜单内容会因季节与食材采购情况而有所变动。",
         "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045433&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
@@ -71,7 +78,14 @@
         "recommendedFor": "希望享用以肉类为主的丰盛餐点的客人",
         "menuExample": {
           "heading": "菜单示例",
-          "items": ["前菜", "刺身拼盘", "季节烧物", "涮涮锅", "米饭・止椀・小菜", "季节甜点"]
+          "items": [
+            "前菜",
+            "刺身拼盘",
+            "季节烧物",
+            "涮涮锅",
+            "米饭・止椀・小菜",
+            "季节甜点"
+          ]
         },
         "seasonalNote": "菜单内容会因季节与食材采购情况而有所变动。",
         "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045415&ci=20260726&co=20260727&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
@@ -130,7 +144,10 @@
       ],
       "note": "部分方案的晚餐与早餐均在大厅提供。"
     },
-    "planNote": ["根据住宿方案不同，用餐地点可能为客房内或大厅。", "详情请参阅各住宿方案。"]
+    "planNote": [
+      "根据住宿方案不同，用餐地点可能为客房内或大厅。",
+      "详情请参阅各住宿方案。"
+    ]
   },
   "guestConsiderations": [
     {
