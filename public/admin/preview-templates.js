@@ -40,6 +40,10 @@
     panel: '#FAFAFA',
   };
 
+  // ★追加: このAstroサイトのbase path（astro.config側のbase設定と合わせる）
+  // public_folder は base を含まない値のままにしておき、プレビュー表示専用にここで補う。
+  var BASE_PATH = '/hotel-grand-toya';
+
   function Eyebrow(icon, eyebrow, heading) {
     return h(
       'div',
@@ -118,6 +122,7 @@
     );
   }
 
+  // ★修正: public_folder が base path を含まないため、プレビュー表示時にここで補う
   function ImgTag(getAsset, src, alt, style) {
     if (!src) return null;
     var resolved = src;
@@ -125,6 +130,14 @@
       var asset = getAsset(src);
       if (asset) resolved = asset.toString();
     } catch (e) {}
+    if (
+      resolved &&
+      resolved.indexOf('http') !== 0 &&
+      resolved.indexOf('data:') !== 0 &&
+      resolved.indexOf(BASE_PATH) !== 0
+    ) {
+      resolved = BASE_PATH + resolved;
+    }
     return h('img', {
       src: resolved,
       alt: alt || '',
@@ -172,6 +185,32 @@
     );
   }
 
+  // ★追加: ページ内アンカーナビのプレビュー表示（複数コレクションで共通利用）
+  function QuickNavBadges(quickNav) {
+    var items = arr(quickNav);
+    if (items.length === 0) return null;
+    return h(
+      'div',
+      { style: { display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' } },
+      items.map(function (item, i) {
+        return h(
+          'span',
+          {
+            key: i,
+            style: {
+              fontSize: '0.76rem',
+              border: '1px solid ' + COLOR.line,
+              borderRadius: '20px',
+              padding: '4px 12px',
+              color: COLOR.ink,
+            },
+          },
+          get(item, 'label'),
+        );
+      }),
+    );
+  }
+
   function LabelValueRow(label, value, key) {
     return h(
       'div',
@@ -209,8 +248,6 @@
   }
 
   // 複数の子要素を可変長引数でそのまま h() に渡す
-  // （以前は Wrapper(children) が1引数しか受け取らず、Wrapper(A, B, C, ...) の
-  //   B以降が全て黙って捨てられていたため「タイトルしか出ない」原因になっていた）
   function Wrapper() {
     var children = Array.prototype.slice.call(arguments);
     return h.apply(
@@ -552,8 +589,21 @@
         var data = this.props.entry.get('data');
         var getAsset = this.props.getAsset;
         var sections = arr(data.get('sections'));
+        var quickNav = arr(data.get('quickNav'));
+        var stayNotice = data.get('stayNotice');
+        var firstFloorNotice = data.get('firstFloorNotice');
+        var commonAmenities = arr(data.get('commonAmenities'));
+        var importantNotice = data.get('importantNotice');
+        var priceNote = data.get('priceNote');
+        var amenitiesEyebrow = data.get('amenitiesEyebrow');
+        var amenitiesHeading = data.get('amenitiesHeading');
+
         return Wrapper(
           PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
+
+          // ★追加: ページ内アンカーナビ
+          QuickNavBadges(quickNav),
+
           sections.map(function (section, si) {
             var rooms = arr(get(section, 'rooms'));
             return h(
@@ -561,6 +611,7 @@
               { key: si, style: { marginBottom: '36px' } },
               rooms.map(function (room, ri) {
                 var floors = arr(get(room, 'floors'));
+                var basicInfo = arr(get(room, 'basicInfo'));
                 return Card(
                   [
                     Eyebrow(get(room, 'icon'), get(room, 'eyebrow'), get(room, 'name')),
@@ -577,27 +628,44 @@
                       ),
                     ),
                     Lines(get(room, 'description')),
-                    h(
-                      'div',
-                      {
-                        key: 'basic',
-                        style: {
-                          display: 'flex',
-                          flexWrap: 'wrap',
-                          gap: '10px',
-                          margin: '10px 0',
-                          fontSize: '0.78rem',
-                          color: COLOR.inkFaint,
+                    // ★追加: 基本情報（広さ・定員・ベッド／布団・眺望・喫煙可否 など）
+                    basicInfo.length > 0 &&
+                      h(
+                        'div',
+                        {
+                          key: 'basicInfo',
+                          style: {
+                            margin: '10px 0',
+                            fontSize: '0.78rem',
+                            color: COLOR.inkFaint,
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: '10px',
+                          },
                         },
-                      },
-                      [
-                        get(room, 'size') && h('span', { key: 's' }, '広さ: ' + get(room, 'size')),
-                        h('span', { key: 'c' }, '定員: ' + get(room, 'capacity')),
-                        h('span', { key: 'b' }, '寝具: ' + get(room, 'bedding')),
-                        h('span', { key: 'v' }, '眺望: ' + get(room, 'view')),
-                        h('span', { key: 'sm' }, '喫煙: ' + get(room, 'smoking')),
-                      ],
-                    ),
+                        basicInfo.map(function (bi, bii) {
+                          return h(
+                            'span',
+                            { key: bii },
+                            get(bi, 'label') + ': ' + get(bi, 'value'),
+                          );
+                        }),
+                      ),
+                    // ★追加: 料金パネル（priceLabel / priceFrom）
+                    get(room, 'priceFrom') &&
+                      h(
+                        'p',
+                        {
+                          key: 'price',
+                          style: {
+                            fontWeight: 600,
+                            color: COLOR.bengara,
+                            marginBottom: '10px',
+                            fontSize: '0.9rem',
+                          },
+                        },
+                        (get(room, 'priceLabel') || '') + ' ' + get(room, 'priceFrom'),
+                      ),
                     h(
                       'div',
                       { key: 'floors' },
@@ -665,6 +733,28 @@
                             }),
                           ),
                           Lines(get(floor, 'description')),
+                          // ★追加: 1階客室の注意書き（isFirstFloorのフロアにのみ表示）
+                          get(floor, 'isFirstFloor') &&
+                            firstFloorNotice &&
+                            h(
+                              'div',
+                              {
+                                style: {
+                                  marginTop: '8px',
+                                  background: COLOR.panel,
+                                  padding: '10px',
+                                  fontSize: '0.76rem',
+                                },
+                              },
+                              h(
+                                'p',
+                                { style: { fontWeight: 600, marginBottom: '4px' } },
+                                get(firstFloorNotice, 'heading'),
+                              ),
+                              arr(get(firstFloorNotice, 'items')).map(function (it, ii) {
+                                return h('p', { key: ii }, '※ ' + it);
+                              }),
+                            ),
                         );
                       }),
                     ),
@@ -674,14 +764,72 @@
               }),
             );
           }),
+
+          // ★追加: 無料設備・アメニティ（共通設備一覧）
+          commonAmenities.length > 0 &&
+            h(
+              'div',
+              { style: { marginTop: '24px', marginBottom: '24px' } },
+              Eyebrow(get(data.get('intro'), 'icon'), amenitiesEyebrow, amenitiesHeading),
+              h(
+                'div',
+                { style: { display: 'flex', flexWrap: 'wrap', gap: '8px' } },
+                commonAmenities.map(function (a, i) {
+                  return h(
+                    'span',
+                    {
+                      key: i,
+                      style: {
+                        fontSize: '0.78rem',
+                        border: '1px solid ' + COLOR.line,
+                        borderRadius: '20px',
+                        padding: '4px 12px',
+                        color: COLOR.ink,
+                      },
+                    },
+                    get(a, 'label') + (get(a, 'note') ? '（' + get(a, 'note') + '）' : ''),
+                  );
+                }),
+              ),
+            ),
+
+          // ★追加: ご滞在案内（チェックイン・チェックアウト・支払い・キャンセル規定）
+          stayNotice &&
+            h(
+              'div',
+              {
+                style: {
+                  marginBottom: '16px',
+                  fontSize: '0.84rem',
+                  color: COLOR.inkSoft,
+                  borderTop: '1px solid ' + COLOR.line,
+                  paddingTop: '12px',
+                },
+              },
+              h('p', { key: 'ci' }, get(stayNotice, 'checkInLabel') + ': ' + get(stayNotice, 'checkInValue')),
+              h('p', { key: 'co' }, get(stayNotice, 'checkOutLabel') + ': ' + get(stayNotice, 'checkOutValue')),
+              h('p', { key: 'pay' }, get(stayNotice, 'paymentLabel') + ': ' + get(stayNotice, 'paymentValue')),
+              h(
+                'p',
+                { key: 'cancel' },
+                get(stayNotice, 'cancellationLabel') + ': ' + get(stayNotice, 'cancellationValue'),
+              ),
+            ),
+
+          // ★追加: 料金に関する注記・重要なご案内
+          priceNote &&
+            h('p', { style: { fontSize: '0.76rem', color: COLOR.inkFaint, marginBottom: '8px' } }, '※ ' + priceNote),
+          importantNotice &&
+            h('p', { style: { fontSize: '0.82rem', color: COLOR.bengara } }, '※ ' + importantNotice),
         );
       },
     }),
   );
 
   // ---------- cuisine-page ----------
-  function CuisinePlanCard(getAsset, plan, key) {
+  function CuisinePlanCard(getAsset, plan, key, recommendedForLabel) {
     var menuExample = get(plan, 'menuExample');
+    var recommendedFor = get(plan, 'recommendedFor');
     return Card(
       [
         h(
@@ -703,6 +851,24 @@
           { key: 'img', style: { height: '150px', overflow: 'hidden', marginBottom: '10px' } },
           ImgTag(getAsset, get(get(plan, 'image'), 'src'), get(get(plan, 'image'), 'alt')),
         ),
+        // ★追加: おすすめの対象
+        recommendedFor &&
+          h(
+            'p',
+            {
+              key: 'rec',
+              style: {
+                fontSize: '0.78rem',
+                color: COLOR.bengara,
+                marginBottom: '8px',
+                background: '#F7EAE5',
+                display: 'inline-block',
+                padding: '2px 10px',
+                borderRadius: '10px',
+              },
+            },
+            (recommendedForLabel || '') + recommendedFor,
+          ),
         Lines(get(plan, 'description')),
         menuExample &&
           h(
@@ -746,8 +912,16 @@
         var dinner = data.get('dinner');
         var breakfast = data.get('breakfast');
         var diningVenues = data.get('diningVenues');
+        var quickNav = arr(data.get('quickNav'));
+        var guestConsiderations = arr(data.get('guestConsiderations'));
+        var recommendedForLabel = get(dinner, 'recommendedForLabel');
+
         return Wrapper(
           PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
+
+          // ★追加: ページ内アンカーナビ
+          QuickNavBadges(quickNav),
+
           Eyebrow(
             get(data.get('intro'), 'icon'),
             get(data.get('intro'), 'eyebrow'),
@@ -766,11 +940,11 @@
               },
             },
             arr(get(dinner, 'plans')).map(function (p, i) {
-              return CuisinePlanCard(getAsset, p, i);
+              return CuisinePlanCard(getAsset, p, i, recommendedForLabel);
             }),
           ),
           Eyebrow(get(breakfast, 'icon'), get(breakfast, 'eyebrow'), get(breakfast, 'heading')),
-          CuisinePlanCard(getAsset, get(breakfast, 'plan'), 'bf'),
+          CuisinePlanCard(getAsset, get(breakfast, 'plan'), 'bf', recommendedForLabel),
           Eyebrow(
             get(diningVenues, 'icon'),
             get(diningVenues, 'eyebrow'),
@@ -796,11 +970,59 @@
                     get(v, 'heading'),
                   ),
                   Lines(get(v, 'description')),
+                  // ★追加: 注意書き（note）
+                  get(v, 'note') &&
+                    h(
+                      'p',
+                      { key: 'note', style: { fontSize: '0.74rem', color: COLOR.inkFaint, marginTop: '6px' } },
+                      '※ ' + get(v, 'note'),
+                    ),
                 ],
                 { key: i },
               );
             }),
           ),
+
+          // ★追加: プランに関する注意書き（planNote）
+          arr(get(diningVenues, 'planNote')).length > 0 &&
+            h(
+              'div',
+              { style: { marginTop: '16px', marginBottom: '16px', fontSize: '0.82rem', color: COLOR.inkSoft } },
+              arr(get(diningVenues, 'planNote')).map(function (line, i) {
+                return h('p', { key: i }, line);
+              }),
+            ),
+
+          // ★追加: ご利用にあたっての注意事項（アレルギー対応・お子様連れ等）
+          guestConsiderations.length > 0 &&
+            h(
+              'div',
+              {
+                style: {
+                  marginTop: '24px',
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '12px',
+                },
+              },
+              guestConsiderations.map(function (item, i) {
+                return Card(
+                  [
+                    h(
+                      'p',
+                      { key: 'h', style: { fontWeight: 600, color: COLOR.ink } },
+                      get(item, 'icon') + ' ' + get(item, 'heading'),
+                    ),
+                    h(
+                      'p',
+                      { key: 'd', style: { fontSize: '0.82rem', color: COLOR.inkSoft } },
+                      get(item, 'description'),
+                    ),
+                  ],
+                  { key: i },
+                );
+              }),
+            ),
         );
       },
     }),
@@ -816,8 +1038,15 @@
         var facilitiesSection = data.get('facilitiesSection');
         var servicesSection = data.get('servicesSection');
         var activitiesSection = data.get('activitiesSection');
+        var quickNav = arr(data.get('quickNav'));
+        var usageNotice = data.get('usageNotice');
+
         return Wrapper(
           PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
+
+          // ★追加: ページ内アンカーナビ
+          QuickNavBadges(quickNav),
+
           Eyebrow(
             get(data.get('intro'), 'icon'),
             get(data.get('intro'), 'eyebrow'),
@@ -861,6 +1090,42 @@
                     get(item, 'name'),
                   ),
                   Lines(get(item, 'description')),
+                  // ★追加: 利用時間・料金・支払方法・対応言語
+                  h(
+                    'div',
+                    {
+                      key: 'meta',
+                      style: { marginTop: '6px', fontSize: '0.72rem', color: COLOR.inkFaint },
+                    },
+                    [
+                      get(item, 'hours') &&
+                        h(
+                          'p',
+                          { key: 'h' },
+                          get(facilitiesSection, 'hoursLabel') + ': ' + get(item, 'hours'),
+                        ),
+                      get(item, 'fee') &&
+                        h(
+                          'p',
+                          { key: 'f' },
+                          get(facilitiesSection, 'feeLabel') + ': ' + get(item, 'fee'),
+                        ),
+                      get(item, 'payment') &&
+                        h(
+                          'p',
+                          { key: 'p' },
+                          get(facilitiesSection, 'paymentLabel') + ': ' + get(item, 'payment'),
+                        ),
+                      arr(get(item, 'languages')).length > 0 &&
+                        h(
+                          'p',
+                          { key: 'l' },
+                          get(facilitiesSection, 'languagesLabel') +
+                            ': ' +
+                            arr(get(item, 'languages')).join('／'),
+                        ),
+                    ],
+                  ),
                 ],
                 { key: i },
               );
@@ -876,10 +1141,62 @@
             'div',
             { style: { marginBottom: '28px' } },
             arr(get(servicesSection, 'items')).map(function (item, i) {
-              return LabelValueRow(
-                get(item, 'name'),
-                (get(item, 'fee') || '') + ' / ' + (get(item, 'hours') || ''),
-                i,
+              return Card(
+                [
+                  h(
+                    'p',
+                    { key: 'n', style: { fontWeight: 600, color: COLOR.ink, marginBottom: '4px' } },
+                    get(item, 'name') + (get(item, 'isFeatured') ? '（おすすめ）' : ''),
+                  ),
+                  Lines(get(item, 'description')),
+                  // ★追加: 料金・コース・利用時間・受付時間・予約方法・場所
+                  h(
+                    'div',
+                    {
+                      key: 'meta',
+                      style: { marginTop: '6px', fontSize: '0.76rem', color: COLOR.inkFaint },
+                    },
+                    [
+                      get(item, 'fee') &&
+                        h('p', { key: 'fee' }, get(servicesSection, 'feeLabel') + ': ' + get(item, 'fee')),
+                      arr(get(item, 'plans')).length > 0 &&
+                        h(
+                          'p',
+                          { key: 'plans' },
+                          get(servicesSection, 'plansLabel') + ': ' + arr(get(item, 'plans')).join('／'),
+                        ),
+                      get(item, 'hours') &&
+                        h('p', { key: 'hours' }, get(servicesSection, 'hoursLabel') + ': ' + get(item, 'hours')),
+                      get(item, 'receptionHours') &&
+                        h(
+                          'p',
+                          { key: 'rh' },
+                          get(servicesSection, 'receptionHoursLabel') + ': ' + get(item, 'receptionHours'),
+                        ),
+                      get(item, 'reservationMethod') &&
+                        h(
+                          'p',
+                          { key: 'rm' },
+                          get(servicesSection, 'reservationMethodLabel') + ': ' + get(item, 'reservationMethod'),
+                        ),
+                      get(item, 'location') && h('p', { key: 'loc' }, '場所: ' + get(item, 'location')),
+                    ],
+                  ),
+                  // ★追加: 注意事項
+                  arr(get(item, 'notes')).length > 0 &&
+                    h(
+                      'ul',
+                      { key: 'notes', style: { marginTop: '6px', paddingLeft: '16px' } },
+                      arr(get(item, 'notes')).map(function (note, ni) {
+                        return h(
+                          'li',
+                          { key: ni, style: { fontSize: '0.72rem', color: COLOR.inkFaint } },
+                          '※ ' + note,
+                        );
+                      }),
+                    ),
+                ],
+                { key: i },
               );
             }),
           ),
@@ -893,6 +1210,8 @@
             'div',
             { style: { display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' } },
             arr(get(activitiesSection, 'items')).map(function (item, i) {
+              var plans = arr(get(item, 'includedInPlans'));
+              var categories = toJS(get(item, 'categories')) || [];
               return Card(
                 [
                   h(
@@ -912,20 +1231,105 @@
                     { key: 'n', style: { fontWeight: 600, color: COLOR.ink } },
                     get(item, 'name') + (get(item, 'isPartner') ? '（提携）' : ''),
                   ),
+                  // ★追加: 店舗名
+                  get(item, 'shopName') &&
+                    h(
+                      'p',
+                      { key: 'shop', style: { fontSize: '0.74rem', color: COLOR.inkFaint } },
+                      get(item, 'shopName'),
+                    ),
                   h(
                     'p',
                     {
                       key: 'a',
                       style: { fontSize: '0.74rem', color: COLOR.inkFaint, marginBottom: '4px' },
                     },
-                    get(item, 'accessFromHotel'),
+                    [get(item, 'location'), get(item, 'accessFromHotel')].filter(Boolean).join(' / '),
                   ),
                   Lines(get(item, 'description')),
+                  // ★追加: カテゴリタグ
+                  categories.length > 0 &&
+                    h(
+                      'div',
+                      {
+                        key: 'cats',
+                        style: { display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '6px' },
+                      },
+                      categories.map(function (catId, ci) {
+                        return h(
+                          'span',
+                          {
+                            key: ci,
+                            style: {
+                              fontSize: '0.68rem',
+                              background: '#F7EAE5',
+                              color: COLOR.bengara,
+                              borderRadius: '10px',
+                              padding: '2px 8px',
+                            },
+                          },
+                          catId,
+                        );
+                      }),
+                    ),
+                  // ★追加: 対象プラン（includedInPlans）
+                  plans.length > 0 &&
+                    h(
+                      'div',
+                      { key: 'plans', style: { marginTop: '6px' } },
+                      h(
+                        'p',
+                        { style: { fontSize: '0.7rem', color: COLOR.inkFaint } },
+                        get(activitiesSection, 'includedInPlansHeadingShort'),
+                      ),
+                      plans.map(function (plan, pi) {
+                        return h(
+                          'p',
+                          { key: pi, style: { fontSize: '0.74rem', color: COLOR.ink } },
+                          '・' + get(plan, 'name'),
+                        );
+                      }),
+                    ),
+                  // ★追加: 公式サイト
+                  get(item, 'officialSite') &&
+                    h(
+                      'p',
+                      { key: 'os', style: { fontSize: '0.72rem', color: COLOR.bengara, marginTop: '6px' } },
+                      get(activitiesSection, 'officialSiteLinkLabelShort') + ': ' + get(item, 'officialSite'),
+                    ),
+                  // ★追加: 注意事項
+                  arr(get(item, 'notes')).length > 0 &&
+                    h(
+                      'ul',
+                      { key: 'notes', style: { marginTop: '6px', paddingLeft: '16px' } },
+                      arr(get(item, 'notes')).map(function (note, ni) {
+                        return h(
+                          'li',
+                          { key: ni, style: { fontSize: '0.7rem', color: COLOR.inkFaint } },
+                          '※ ' + note,
+                        );
+                      }),
+                    ),
                 ],
                 { key: i },
               );
             }),
           ),
+
+          // ★追加: 利用上の注意
+          usageNotice &&
+            h(
+              'div',
+              { style: { marginTop: '28px', borderTop: '1px solid ' + COLOR.line, paddingTop: '16px' } },
+              h(
+                'p',
+                { style: { fontWeight: 600, color: COLOR.indigo, marginBottom: '6px' } },
+                get(usageNotice, 'heading'),
+              ),
+              arr(get(usageNotice, 'items')).map(function (note, i) {
+                return h('p', { key: i, style: { fontSize: '0.82rem', color: COLOR.inkSoft } }, '※ ' + note);
+              }),
+            ),
         );
       },
     }),
@@ -1218,6 +1622,8 @@
         var positions = arr(data.get('positions'));
         var process = arr(data.get('process'));
         var benefits = arr(data.get('benefits'));
+        var photos = arr(get(workLife, 'photos'));
+
         return Wrapper(
           PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
           h(
@@ -1248,7 +1654,7 @@
           ),
           h(
             'ul',
-            { style: { paddingLeft: '18px', marginBottom: '24px' } },
+            { style: { paddingLeft: '18px', marginBottom: '16px' } },
             arr(get(workLife, 'points')).map(function (p, i) {
               return h(
                 'li',
@@ -1260,6 +1666,20 @@
               );
             }),
           ),
+
+          // ★追加: 働く環境紹介の写真
+          photos.length > 0 &&
+            h(
+              'div',
+              { style: { display: 'flex', gap: '10px', marginBottom: '24px', flexWrap: 'wrap' } },
+              photos.map(function (photo, i) {
+                return h(
+                  'div',
+                  { key: i, style: { width: '160px', height: '110px', overflow: 'hidden' } },
+                  ImgTag(getAsset, get(photo, 'src'), get(photo, 'alt')),
+                );
+              }),
+            ),
 
           h(
             'h3',
@@ -1405,6 +1825,22 @@
                 get(b, 'label'),
               );
             }),
+          ),
+
+          // ★追加: 連絡先（メール・電話）
+          h(
+            'div',
+            {
+              style: {
+                marginTop: '24px',
+                borderTop: '1px solid ' + COLOR.line,
+                paddingTop: '16px',
+                fontSize: '0.84rem',
+                color: COLOR.ink,
+              },
+            },
+            h('p', { key: 'email' }, data.get('emailLabel') + ': ' + data.get('emailAddress')),
+            h('p', { key: 'tel' }, data.get('telLabel') + ': ' + data.get('tel')),
           ),
         );
       },
