@@ -68,7 +68,9 @@
         "hours": "13:00–23:00 (for safety management)"
       }
     ],
-    "notes": ["Private baths and saunas are not available."]
+    "notes": [
+      "Private baths and saunas are not available."
+    ]
   },
   "stay": {
     "id": "stay",
@@ -125,6 +127,8 @@
         "value": "¥100"
       }
     ],
-    "notes": ["Shampoo, conditioner, body soap, and hair dryers are provided free of charge."]
+    "notes": [
+      "Shampoo, conditioner, body soap, and hair dryers are provided free of charge."
+    ]
   }
 }
