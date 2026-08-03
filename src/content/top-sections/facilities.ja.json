@@ -1,14 +1,13 @@
 {
-  "order": 5,
   "sectionId": "facilities",
-  "icon": "館",
-  "eyebrow": "Facilities",
-  "titleLines": ["館内でも、", "快適なひとときを。"],
-  "description": [
-    "ロビーや売店、喫茶スペースなどの館内施設に加え、多国籍スタッフによる多言語でのご案内にも対応。初めて洞爺湖を訪れる方や海外からのお客様にも、安心してお過ごしいただけます。"
-  ],
-  "linkText": "館内施設・サービスを見る",
   "linkHref": "/ja/facilities",
+  "linkText": "館内施設・サービスを見る",
+  "titleLines": [
+    "館内でも、",
+    "快適なひとときを。"
+  ],
+  "eyebrow": "Facilities",
+  "order": 5,
   "tallImagePosition": "right",
   "images": [
     {
@@ -23,5 +22,9 @@
       "src": "/assets/photos/facility1.png",
       "alt": "客室からの眺め"
     }
+  ],
+  "icon": "館",
+  "description": [
+    "ロビーや売店、喫茶スペースをはじめ、ご滞在を快適にする館内設備をご用意しています。無料Wi-Fiや駐車場などの設備も充実し、多言語対応スタッフが国内外のお客様をサポート。観光の合間も、安心してお過ごしいただけます。"
   ]
 }
