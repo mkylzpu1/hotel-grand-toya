@@ -1,19 +1,14 @@
 {
-  "order": 2,
   "sectionId": "rooms",
-  "icon": "室",
-  "eyebrow": "客房",
+  "linkHref": "/zh/rooms/",
+  "linkText": "客房介绍",
   "titleLines": [
     "多种多样的客房，",
     "满足不同的旅行方式。"
   ],
-  "description": [
-    "除和室、洋室外，还设有可容纳多人使用的大宴会厅。",
-    "无论是单人出行、夫妻或家庭旅行，还是学校修学旅行、运动集训、团体旅游，我们都能提供相应的住宿方案。"
-  ],
+  "eyebrow": "客房",
   "priceHighlight": "1晚2餐 15,000日元起／人（参考价）",
-  "linkText": "客房介绍",
-  "linkHref": "/zh/rooms/",
+  "order": 2,
   "tallImagePosition": "left",
   "images": [
     {
@@ -30,5 +25,10 @@
       "alt": "酒店外观（黄昏）",
       "caption": "酒店外观"
     }
+  ],
+  "icon": "室",
+  "description": [
+    "除和室、洋室外，还设有可容纳多人使用的大宴会厅。",
+    "无论是单人出行、夫妻或家庭旅行，还是学校修学旅行、运动集训、团体旅游，我们都能提供相应的住宿方案。"
   ]
 }

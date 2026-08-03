@@ -1,18 +1,13 @@
 {
-  "order": 2,
   "sectionId": "rooms",
-  "icon": "室",
-  "eyebrow": "Rooms",
+  "linkHref": "/ko/rooms/",
+  "linkText": "객실 안내",
   "titleLines": [
     "여행 스타일에 맞춰 선택하는, 다양한 객실."
   ],
-  "description": [
-    "일본식・서양식 객실은 물론, 많은 인원이 이용할 수 있는 대연회장도 마련되어 있습니다.",
-    "혼자 떠나는 여행부터 부부・가족 여행, 수학여행, 스포츠 합숙, 단체 여행까지 다양한 숙박에 대응합니다."
-  ],
+  "eyebrow": "Rooms",
   "priceHighlight": "1박 2식 15,000엔대〜／인（참고 요금）",
-  "linkText": "객실 안내",
-  "linkHref": "/ko/rooms/",
+  "order": 2,
   "tallImagePosition": "left",
   "images": [
     {
@@ -29,5 +24,10 @@
       "alt": "호텔 외관(석양)",
       "caption": "호텔 외관"
     }
+  ],
+  "icon": "室",
+  "description": [
+    "일본식・서양식 객실은 물론, 많은 인원이 이용할 수 있는 대연회장도 마련되어 있습니다.",
+    "혼자 떠나는 여행부터 부부・가족 여행, 수학여행, 스포츠 합숙, 단체 여행까지 다양한 숙박에 대응합니다."
   ]
 }
