@@ -394,6 +394,13 @@ collections:
           required: false,
           i18n: true,
         }
+      - {
+          label: '重要なご案内(禁煙ルームなし等・予約前に必ず伝える事項)',
+          name: 'importantNotice',
+          widget: 'text',
+          required: false,
+          i18n: true,
+        }
       - label: '共通設備一覧'
         name: 'commonAmenities'
         widget: 'list'

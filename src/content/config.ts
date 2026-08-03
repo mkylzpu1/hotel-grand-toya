@@ -255,6 +255,7 @@ const roomsPage = defineCollection({
       icon: z.string(),
     }),
     priceNote: z.string().optional(),
+    importantNotice: z.string().optional(),
     // ページ内アンカーナビ。「和室」「洋室」の2リンクのみ。
     quickNav: z.array(
       z.object({
