@@ -290,7 +290,7 @@ collections:
         summary: '{{alt}}'
         collapsed: true
         fields:
-          - { label: '画像（言語共通）', name: src, widget: image }
+          - { label: '画像（言語共通）', name: src, widget: image, i18n: duplicate }
           - { label: '代替テキスト (alt)', name: alt, widget: string }
           - {
               label: 'CSSクラス（デザイン調整用・通常は編集不要）',
@@ -344,7 +344,7 @@ collections:
         summary: '{{title}}'
         collapsed: true
         fields:
-          - { label: '画像（言語共通）', name: img, widget: image }
+          - { label: '画像（言語共通）', name: img, widget: image, i18n: duplicate }
           - { label: 'タイトル', name: title, widget: string }
           - { label: '補足（所要時間など）', name: note, widget: string }
       - {
@@ -475,7 +475,7 @@ collections:
                 widget: 'object'
                 fields:
                   - { label: 'ラベル', name: 'label', widget: 'string' }
-                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false }
+                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false, i18n: duplicate }
                   - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
               - label: '基本情報（自由に項目を追加・削除できます）'
                 name: 'basicInfo'
@@ -525,7 +525,7 @@ collections:
                     summary: '{{label}}'
                     fields:
                       - { label: 'ラベル', name: 'label', widget: 'string' }
-                      - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false }
+                      - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false, i18n: duplicate }
                       - {
                           label: '代替テキスト(alt)',
                           name: 'alt',
@@ -994,7 +994,7 @@ collections:
                 required: false
                 fields:
                   - { label: 'ラベル', name: 'label', widget: 'string' }
-                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false }
+                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false, i18n: duplicate }
                   - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
               - label: '説明文(改行ごとに1項目)'
                 name: 'description'
@@ -1049,7 +1049,7 @@ collections:
                 required: false
                 fields:
                   - { label: 'ラベル', name: 'label', widget: 'string' }
-                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false }
+                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false, i18n: duplicate }
                   - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
               - label: '説明文(改行ごとに1項目)'
                 name: 'description'
@@ -1151,7 +1151,7 @@ collections:
                 required: false
                 fields:
                   - { label: 'ラベル', name: 'label', widget: 'string' }
-                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false }
+                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false, i18n: duplicate }
                   - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
               - label: '説明文(改行ごとに1項目)'
                 name: 'description'
