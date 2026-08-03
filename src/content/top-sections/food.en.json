@@ -1,16 +1,14 @@
 {
-  "order": 4,
   "sectionId": "food",
-  "icon": "膳",
-  "eyebrow": "Dinner",
-  "titleLines": ["Savor the flavors of Hokkaido,", "at a leisurely pace."],
-  "description": [
-    "Enjoy a kaiseki course for dinner and a traditional Japanese breakfast in the morning.",
-    "We offer stay plans that include both dinner and breakfast. Let our hot spring and cuisine give you a truly relaxing time."
-  ],
-  "linkText": "About Our Cuisine",
-  "linkHref": "/en/cuisine",
   "centerText": true,
+  "linkHref": "/en/cuisine",
+  "linkText": "About Our Cuisine",
+  "titleLines": [
+    "Savor the flavors of Hokkaido,",
+    "at a leisurely pace."
+  ],
+  "eyebrow": "Dinner",
+  "order": 4,
   "images": [
     {
       "src": "/assets/photos/food-night1.jpg",
@@ -22,5 +20,10 @@
       "alt": "A dish from our menu",
       "className": "h-[78%] self-end mb-0 lg:mb-14"
     }
+  ],
+  "icon": "膳",
+  "description": [
+    "Enjoy a kaiseki course for dinner and a traditional Japanese breakfast in the morning.",
+    "We offer stay plans that include both dinner and breakfast. Let our hot spring and cuisine give you a truly relaxing time."
   ]
 }
