@@ -90,7 +90,7 @@ export default function Access({
             <span aria-hidden="true">※</span>
             {shuttleNote}
           </p>
-          <p className="mt-4 mb-[30px] flex items-start gap-2 border-l-2 border-[#A24730] bg-[#FAF6F0] px-3 py-2.5 text-[0.78rem] leading-[1.7] text-[#712B13]">
+          <p className="mb-[30px] mt-4 flex items-start gap-2 border-l-2 border-[#A24730] bg-[#FAF6F0] px-3 py-2.5 text-[0.78rem] leading-[1.7] text-[#712B13]">
             <span aria-hidden="true">※</span>
             {note}
           </p>

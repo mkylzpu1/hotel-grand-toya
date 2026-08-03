@@ -11,6 +11,8 @@ export default function ContentSection({
   priceHighlight,
   linkText,
   linkHref = '#',
+  secondaryLinkText,
+  secondaryLinkHref,
   centerText = false,
   showDivider = true,
   tallImagePosition = 'right',
@@ -64,7 +66,12 @@ export default function ContentSection({
               {priceHighlight}
             </p>
           )}
-          {linkText && <ArrowLink href={asset(linkHref)}>{linkText}</ArrowLink>}
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {linkText && <ArrowLink href={asset(linkHref)}>{linkText}</ArrowLink>}
+            {secondaryLinkText && secondaryLinkHref && (
+              <ArrowLink href={asset(secondaryLinkHref)}>{secondaryLinkText}</ArrowLink>
+            )}
+          </div>
         </div>
 
         {/* 画像カラム */}

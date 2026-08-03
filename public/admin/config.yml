@@ -247,6 +247,20 @@ collections:
       - { label: 'リンク文言', name: linkText, widget: string, required: false, i18n: true }
       - { label: 'リンク先', name: linkHref, widget: string, required: false, i18n: duplicate }
       - {
+          label: '2つ目のリンク文言（例：日帰り入浴）',
+          name: secondaryLinkText,
+          widget: string,
+          required: false,
+          i18n: true,
+        } # ← 追加
+      - {
+          label: '2つ目のリンク先',
+          name: secondaryLinkHref,
+          widget: string,
+          required: false,
+          i18n: duplicate,
+        } # ← 追加
+      - {
           label: 'テキストを中央揃えにする',
           name: centerText,
           widget: boolean,

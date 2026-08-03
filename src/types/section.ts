@@ -15,6 +15,8 @@ export interface SectionData {
   priceHighlight?: string;
   linkText?: string;
   linkHref?: string;
+  secondaryLinkText?: string;
+  secondaryLinkHref?: string;
   centerText?: boolean;
   showDivider?: boolean;
   tallImagePosition?: 'left' | 'right';

@@ -8,8 +8,10 @@
     "保温性に優れた源泉かけ流しの天然温泉。",
     "熱め・ぬるめ・人肌の3つの浴槽で、お好みの湯加減をお楽しみいただけます。宿泊はもちろん、日帰り入浴でもご利用いただけます。"
   ],
-  "linkText": "温泉のご案内",
-  "linkHref": "/ja/onsen/",
+  "linkText": "ご宿泊のお客様はこちら",
+  "linkHref": "/ja/onsen/#stay",
+  "secondaryLinkText": "日帰り入浴はこちら",
+  "secondaryLinkHref": "/ja/onsen/#dayuse",
   "tallImagePosition": "right",
   "images": [
     { "src": "/assets/photos/room-2.jpg", "alt": "大浴場", "caption": "大浴場" },

@@ -130,6 +130,8 @@ const topSections = defineCollection({
     priceHighlight: z.string().optional(),
     linkText: z.string().optional(),
     linkHref: z.string().optional(),
+    secondaryLinkText: z.string().optional(),
+    secondaryLinkHref: z.string().optional(),
     centerText: z.boolean().optional(),
     showDivider: z.boolean().optional(),
     tallImagePosition: z.enum(['left', 'right']).optional(),
