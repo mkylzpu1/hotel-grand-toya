@@ -354,6 +354,11 @@
           ),
           h(
             'p',
+            { style: { fontSize: '0.78rem', color: COLOR.inkFaint, marginBottom: '8px' } },
+            data.get('shuttleNote'),
+          ),
+          h(
+            'p',
             { style: { fontSize: '0.78rem', color: COLOR.inkFaint, marginBottom: '24px' } },
             data.get('note'),
           ),
@@ -555,6 +560,18 @@
               );
             }),
           ),
+          arr(get(facilities, 'notes')).length > 0 &&
+            h(
+              'div',
+              { style: { marginBottom: '32px' } },
+              arr(get(facilities, 'notes')).map(function (note, i) {
+                return h(
+                  'p',
+                  { key: i, style: { fontSize: '0.78rem', color: COLOR.inkFaint } },
+                  '※ ' + note,
+                );
+              }),
+            ),
           h('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' } }, [
             h(
               'div',
@@ -806,9 +823,21 @@
                   paddingTop: '12px',
                 },
               },
-              h('p', { key: 'ci' }, get(stayNotice, 'checkInLabel') + ': ' + get(stayNotice, 'checkInValue')),
-              h('p', { key: 'co' }, get(stayNotice, 'checkOutLabel') + ': ' + get(stayNotice, 'checkOutValue')),
-              h('p', { key: 'pay' }, get(stayNotice, 'paymentLabel') + ': ' + get(stayNotice, 'paymentValue')),
+              h(
+                'p',
+                { key: 'ci' },
+                get(stayNotice, 'checkInLabel') + ': ' + get(stayNotice, 'checkInValue'),
+              ),
+              h(
+                'p',
+                { key: 'co' },
+                get(stayNotice, 'checkOutLabel') + ': ' + get(stayNotice, 'checkOutValue'),
+              ),
+              h(
+                'p',
+                { key: 'pay' },
+                get(stayNotice, 'paymentLabel') + ': ' + get(stayNotice, 'paymentValue'),
+              ),
               h(
                 'p',
                 { key: 'cancel' },
@@ -818,9 +847,17 @@
 
           // ★追加: 料金に関する注記・重要なご案内
           priceNote &&
-            h('p', { style: { fontSize: '0.76rem', color: COLOR.inkFaint, marginBottom: '8px' } }, '※ ' + priceNote),
+            h(
+              'p',
+              { style: { fontSize: '0.76rem', color: COLOR.inkFaint, marginBottom: '8px' } },
+              '※ ' + priceNote,
+            ),
           importantNotice &&
-            h('p', { style: { fontSize: '0.82rem', color: COLOR.bengara } }, '※ ' + importantNotice),
+            h(
+              'p',
+              { style: { fontSize: '0.82rem', color: COLOR.bengara } },
+              '※ ' + importantNotice,
+            ),
         );
       },
     }),
@@ -974,7 +1011,10 @@
                   get(v, 'note') &&
                     h(
                       'p',
-                      { key: 'note', style: { fontSize: '0.74rem', color: COLOR.inkFaint, marginTop: '6px' } },
+                      {
+                        key: 'note',
+                        style: { fontSize: '0.74rem', color: COLOR.inkFaint, marginTop: '6px' },
+                      },
                       '※ ' + get(v, 'note'),
                     ),
                 ],
@@ -987,7 +1027,14 @@
           arr(get(diningVenues, 'planNote')).length > 0 &&
             h(
               'div',
-              { style: { marginTop: '16px', marginBottom: '16px', fontSize: '0.82rem', color: COLOR.inkSoft } },
+              {
+                style: {
+                  marginTop: '16px',
+                  marginBottom: '16px',
+                  fontSize: '0.82rem',
+                  color: COLOR.inkSoft,
+                },
+              },
               arr(get(diningVenues, 'planNote')).map(function (line, i) {
                 return h('p', { key: i }, line);
               }),
@@ -1158,28 +1205,43 @@
                     },
                     [
                       get(item, 'fee') &&
-                        h('p', { key: 'fee' }, get(servicesSection, 'feeLabel') + ': ' + get(item, 'fee')),
+                        h(
+                          'p',
+                          { key: 'fee' },
+                          get(servicesSection, 'feeLabel') + ': ' + get(item, 'fee'),
+                        ),
                       arr(get(item, 'plans')).length > 0 &&
                         h(
                           'p',
                           { key: 'plans' },
-                          get(servicesSection, 'plansLabel') + ': ' + arr(get(item, 'plans')).join('／'),
+                          get(servicesSection, 'plansLabel') +
+                            ': ' +
+                            arr(get(item, 'plans')).join('／'),
                         ),
                       get(item, 'hours') &&
-                        h('p', { key: 'hours' }, get(servicesSection, 'hoursLabel') + ': ' + get(item, 'hours')),
+                        h(
+                          'p',
+                          { key: 'hours' },
+                          get(servicesSection, 'hoursLabel') + ': ' + get(item, 'hours'),
+                        ),
                       get(item, 'receptionHours') &&
                         h(
                           'p',
                           { key: 'rh' },
-                          get(servicesSection, 'receptionHoursLabel') + ': ' + get(item, 'receptionHours'),
+                          get(servicesSection, 'receptionHoursLabel') +
+                            ': ' +
+                            get(item, 'receptionHours'),
                         ),
                       get(item, 'reservationMethod') &&
                         h(
                           'p',
                           { key: 'rm' },
-                          get(servicesSection, 'reservationMethodLabel') + ': ' + get(item, 'reservationMethod'),
+                          get(servicesSection, 'reservationMethodLabel') +
+                            ': ' +
+                            get(item, 'reservationMethod'),
                         ),
-                      get(item, 'location') && h('p', { key: 'loc' }, '場所: ' + get(item, 'location')),
+                      get(item, 'location') &&
+                        h('p', { key: 'loc' }, '場所: ' + get(item, 'location')),
                     ],
                   ),
                   // ★追加: 注意事項
@@ -1244,7 +1306,9 @@
                       key: 'a',
                       style: { fontSize: '0.74rem', color: COLOR.inkFaint, marginBottom: '4px' },
                     },
-                    [get(item, 'location'), get(item, 'accessFromHotel')].filter(Boolean).join(' / '),
+                    [get(item, 'location'), get(item, 'accessFromHotel')]
+                      .filter(Boolean)
+                      .join(' / '),
                   ),
                   Lines(get(item, 'description')),
                   // ★追加: カテゴリタグ
@@ -1294,8 +1358,13 @@
                   get(item, 'officialSite') &&
                     h(
                       'p',
-                      { key: 'os', style: { fontSize: '0.72rem', color: COLOR.bengara, marginTop: '6px' } },
-                      get(activitiesSection, 'officialSiteLinkLabelShort') + ': ' + get(item, 'officialSite'),
+                      {
+                        key: 'os',
+                        style: { fontSize: '0.72rem', color: COLOR.bengara, marginTop: '6px' },
+                      },
+                      get(activitiesSection, 'officialSiteLinkLabelShort') +
+                        ': ' +
+                        get(item, 'officialSite'),
                     ),
                   // ★追加: 注意事項
                   arr(get(item, 'notes')).length > 0 &&
@@ -1320,14 +1389,24 @@
           usageNotice &&
             h(
               'div',
-              { style: { marginTop: '28px', borderTop: '1px solid ' + COLOR.line, paddingTop: '16px' } },
+              {
+                style: {
+                  marginTop: '28px',
+                  borderTop: '1px solid ' + COLOR.line,
+                  paddingTop: '16px',
+                },
+              },
               h(
                 'p',
                 { style: { fontWeight: 600, color: COLOR.indigo, marginBottom: '6px' } },
                 get(usageNotice, 'heading'),
               ),
               arr(get(usageNotice, 'items')).map(function (note, i) {
-                return h('p', { key: i, style: { fontSize: '0.82rem', color: COLOR.inkSoft } }, '※ ' + note);
+                return h(
+                  'p',
+                  { key: i, style: { fontSize: '0.82rem', color: COLOR.inkSoft } },
+                  '※ ' + note,
+                );
               }),
             ),
         );
