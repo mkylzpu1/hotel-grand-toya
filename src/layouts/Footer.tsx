@@ -88,11 +88,11 @@ export default function Footer({
               </a>
             ))}
           </div>
-<div className="mt-0 flex flex-col gap-3.5">
+          <div className="mt-0 flex flex-col gap-3.5">
             <h4 className="mb-5 text-[0.72rem] font-normal tracking-[0.16em] opacity-50">
               {copy.reservationHeading}
             </h4>
-<a
+            <a
               href={reservationUrl}
               target="_blank"
               rel="noopener noreferrer"

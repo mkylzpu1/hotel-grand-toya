@@ -326,9 +326,9 @@ export default function Header({
               </li>
             ))}
           </ul>
-<div className="my-5 flex flex-col gap-2">
+          <div className="my-5 flex flex-col gap-2">
             <div className="flex items-center gap-3">
-<a
+              <a
                 href={reservationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -338,7 +338,7 @@ export default function Header({
                 {reserveCta}
                 <ExternalLink size={13} strokeWidth={2.2} aria-hidden="true" />
               </a>
-<a
+              <a
                 href={`tel:${tel}`}
                 className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors hover:border-[#A24730] hover:text-[#A24730]"
                 aria-label={phoneAriaLabel}
@@ -427,8 +427,8 @@ export default function Header({
           </svg>
           <span className="text-[9px] tracking-[0.05em]">{bottomNavTelLabel}</span>
         </a>
-<a
-href={reservationUrl}
+        <a
+          href={reservationUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="flex flex-1 flex-col items-center gap-1 py-2.5 text-[#E8A87C]"

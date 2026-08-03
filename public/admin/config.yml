@@ -51,11 +51,11 @@ collections:
           - { label: '表示ラベル', name: label, widget: string }
       - { label: '予約CTAボタン文言', name: reserveCta, widget: string, i18n: true }
       - {
-        label: '予約ボタン下の注記（例：※外部予約サイトに移動します）',
-        name: reserveNoteLabel,
-        widget: string,
-        i18n: true,
-      }
+          label: '予約ボタン下の注記（例：※外部予約サイトに移動します）',
+          name: reserveNoteLabel,
+          widget: string,
+          i18n: true,
+        }
       - { label: '電話ボタンaria-label', name: phoneAriaLabel, widget: string, i18n: true }
       - { label: 'メニューを開くaria-label', name: menuOpenLabel, widget: string, i18n: true }
       - { label: 'メニューを閉じるaria-label', name: menuCloseLabel, widget: string, i18n: true }
@@ -161,11 +161,11 @@ collections:
               i18n: true,
             }
           - {
-            label: '予約リンク下の注記（例：※外部の予約サイトに移動します）',
-            name: reservationExternalNote,
-            widget: string,
-            i18n: true,
-          }
+              label: '予約リンク下の注記（例：※外部の予約サイトに移動します）',
+              name: reservationExternalNote,
+              widget: string,
+              i18n: true,
+            }
           - { label: 'コピーライト', name: copyright, widget: string, i18n: duplicate }
           - { label: 'モバイル用「電話」ラベル', name: mobileTelLabel, widget: string, i18n: true }
           - {
@@ -390,6 +390,13 @@ collections:
         }
       - { label: '設備セクション 見出し', name: 'amenitiesHeading', widget: 'string', i18n: true }
       - { label: '詳細CTAボタン文言', name: 'detailCtaText', widget: 'string', i18n: true }
+      - {
+          label: '料金目安に関する注記(季節変動の説明など)',
+          name: 'priceNote',
+          widget: 'text',
+          required: false,
+          i18n: true,
+        }
       - label: '共通設備一覧'
         name: 'commonAmenities'
         widget: 'list'
@@ -443,6 +450,19 @@ collections:
               - { label: '寝具', name: 'bedding', widget: 'string' }
               - { label: '眺望', name: 'view', widget: 'string' }
               - { label: '喫煙', name: 'smoking', widget: 'string' }
+              - {
+                  label: '料金パネルのラベル(例: 「1泊2食付・お一人様」)',
+                  name: 'priceLabel',
+                  widget: 'string',
+                  required: false,
+                }
+              - {
+                  label: '料金目安(例: 「15,000円台〜」。単位まで含めて入力)',
+                  name: 'priceFrom',
+                  widget: 'string',
+                  required: false,
+                  hint: '実際の料金と異なる場合があるため、目安である旨が伝わる書き方にしてください。',
+                }
               - label: 'フロア(部屋タイプ)'
                 name: 'floors'
                 widget: 'list'

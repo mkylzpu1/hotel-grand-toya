@@ -68,6 +68,8 @@
         {
           "size": "26㎡",
           "view": "Lake Toya view / angled lake view",
+          "priceLabel": "1 night with 2 meals from",
+          "priceFrom": "15,000 yen per person (varies by season)",
           "floors": [
             {
               "label": "1st Floor Room",
@@ -197,6 +199,8 @@
         {
           "size": "26㎡",
           "view": "Lake Toya view",
+          "priceLabel": "1 night with 2 meals from",
+          "priceFrom": "16,000 yen per person (varies by season)",
           "floors": [
             {
               "label": "1st Floor Room",
@@ -297,5 +301,6 @@
     "view": "View",
     "bedding": "Bed / Futon",
     "smoking": "Smoking"
-  }
+  },
+  "priceNote": "The displayed price is a guideline for one person per room, including two meals. Prices may vary depending on the season (busy or off-peak) and plan. Please check the reservation page for accurate pricing and availability."
 }

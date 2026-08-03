@@ -125,6 +125,26 @@ const page = pageEntry.data;
                         </tr>
                       </tbody>
                     </table>
+                    {room.priceFrom && (
+                      <div class="mt-4 border border-[#A24730]/[0.18] bg-[#FAF6F3] px-4 py-3.5">
+                        <div class="mb-2 flex items-center gap-2">
+                          <span class="flex h-4 w-4 shrink-0 -rotate-3 items-center justify-center rounded-[1px] border-[1.5px] border-[#A24730] font-serif text-[0.55rem] font-bold leading-none text-[#A24730]">
+                            泊
+                          </span>
+                          <span class="text-[0.66rem] font-medium tracking-[0.12em] text-[#A24730]">
+                            {room.priceLabel}
+                          </span>
+                        </div>
+                        <p class="font-serif text-[1.55rem] font-semibold tracking-[0.02em] text-[#7E3623]">
+                          {room.priceFrom}
+                        </p>
+                        {page.priceNote && (
+                          <p class="text-[0.72rem] leading-[1.8] tracking-[0.02em] text-[#8A8781]">
+                            ※ {page.priceNote}
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
                 {/* フロアごとのサブセクション：可変グリッド写真（1〜3枚）＋右側に説明。フロア情報が無ければ非表示 */}
