@@ -8,7 +8,7 @@ backend:
 # local_backend: true
 publish_mode: editorial_workflow
 media_folder: 'public/assets/photos'
-public_folder: '/assets/photos'
+public_folder: '/hotel-grand-toya/assets/photos'
 # サイト全体の多言語設定。
 # structure: multiple_files -> 1言語につき1ファイルを生成（例: hero.ja.json, hero.en.json）
 # Astro Content Collections（src/content/**/*.{locale}.json）とそのまま対応する構成。
