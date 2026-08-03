@@ -1,6 +1,9 @@
 {
   "centerText": true,
-  "titleLines": ["On the shore of Lake Toya,", "a time for your heart to unwind."],
+  "titleLines": [
+    "On the shore of Lake Toya,",
+    "a time for your heart to unwind."
+  ],
   "eyebrow": "Concept",
   "order": 1,
   "images": [
