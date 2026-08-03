@@ -325,6 +325,16 @@
       "客房小窗为单向玻璃。"
     ]
   },
+  "stayNotice": {
+    "checkInLabel": "入住时间",
+    "checkInValue": "14:00〜18:00",
+    "checkOutLabel": "退房时间",
+    "checkOutValue": "10:00",
+    "paymentLabel": "支付方式",
+    "paymentValue": "现金・信用卡（主要各社）",
+    "cancellationLabel": "取消规定",
+    "cancellationValue": "根据预订方案不同而有所差异。请查看预订网站的确认事项。"
+  },
   "quickNav": [
     {
       "href": "#section-japanese",

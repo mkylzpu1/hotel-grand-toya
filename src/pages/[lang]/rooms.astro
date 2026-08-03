@@ -213,6 +213,24 @@ const page = pageEntry.data;
       </section>
     ))
   }
+  <!-- チェックイン/アウト・支払い・キャンセル規定の案内バー -->
+  <section class="border-b border-[#D8D7D2] bg-[#FAF6F0] px-5 py-8 lg:px-10">
+    <div class="mx-auto grid max-w-[1320px] grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4">
+      {
+        [
+          { label: page.stayNotice.checkInLabel, value: page.stayNotice.checkInValue },
+          { label: page.stayNotice.checkOutLabel, value: page.stayNotice.checkOutValue },
+          { label: page.stayNotice.paymentLabel, value: page.stayNotice.paymentValue },
+          { label: page.stayNotice.cancellationLabel, value: page.stayNotice.cancellationValue },
+        ].map((item) => (
+          <div>
+            <p class="mb-1 text-[0.72rem] tracking-[0.08em] text-[#A24730]">{item.label}</p>
+            <p class="text-[0.88rem] leading-[1.6] text-[#1E1C1A]">{item.value}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 
   <!-- 共通アメニティ（和室・洋室で共通。ページ下部に1回だけ掲載） -->
   <section id="section-amenities" class="scroll-mt-6 py-[88px] lg:py-[108px]">

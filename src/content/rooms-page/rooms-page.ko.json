@@ -325,6 +325,16 @@
       "객실의 작은 창문은 매직미러 사양입니다."
     ]
   },
+  "stayNotice": {
+    "checkInLabel": "체크인",
+    "checkInValue": "14:00〜18:00",
+    "checkOutLabel": "체크아웃",
+    "checkOutValue": "10:00",
+    "paymentLabel": "결제",
+    "paymentValue": "현금・신용카드（주요 카드사）",
+    "cancellationLabel": "취소 규정",
+    "cancellationValue": "예약 플랜에 따라 다릅니다. 예약 사이트의 확인 사항을 참고해 주세요."
+  },
   "quickNav": [
     {
       "href": "#section-japanese",

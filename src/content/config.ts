@@ -257,6 +257,16 @@ const roomsPage = defineCollection({
     }),
     priceNote: z.string().optional(),
     importantNotice: z.string().optional(),
+    stayNotice: z.object({
+      checkInLabel: z.string(),
+      checkInValue: z.string(),
+      checkOutLabel: z.string(),
+      checkOutValue: z.string(),
+      paymentLabel: z.string(),
+      paymentValue: z.string(),
+      cancellationLabel: z.string(),
+      cancellationValue: z.string(),
+    }),
     // ページ内アンカーナビ。「和室」「洋室」の2リンクのみ。
     quickNav: z.array(
       z.object({

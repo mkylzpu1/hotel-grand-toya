@@ -325,6 +325,16 @@
       "客室小窓はマジックミラー仕様です。"
     ]
   },
+  "stayNotice": {
+    "checkInLabel": "チェックイン",
+    "checkInValue": "14:00〜18:00",
+    "checkOutLabel": "チェックアウト",
+    "checkOutValue": "10:00",
+    "paymentLabel": "お支払い",
+    "paymentValue": "現金・クレジットカード（主要各社）",
+    "cancellationLabel": "キャンセル規定",
+    "cancellationValue": "ご予約プランにより異なります。予約サイトの確認事項をご覧ください。"
+  },
   "quickNav": [
     {
       "href": "#section-japanese",

@@ -422,6 +422,19 @@ collections:
             widget: 'list'
             i18n: true
             field: { label: '項目', name: 'item', widget: 'string' }
+      - label: 'ご滞在案内（チェックイン等）'
+        name: stayNotice
+        widget: object
+        i18n: true
+        fields:
+          - { label: 'チェックインラベル', name: checkInLabel, widget: string }
+          - { label: 'チェックイン時間', name: checkInValue, widget: string }
+          - { label: 'チェックアウトラベル', name: checkOutLabel, widget: string }
+          - { label: 'チェックアウト時間', name: checkOutValue, widget: string }
+          - { label: '支払いラベル', name: paymentLabel, widget: string }
+          - { label: '支払い方法', name: paymentValue, widget: string }
+          - { label: 'キャンセル規定ラベル', name: cancellationLabel, widget: string }
+          - { label: 'キャンセル規定', name: cancellationValue, widget: string }
       - label: '客室セクション(和室・洋室)'
         name: 'sections'
         widget: 'list'
