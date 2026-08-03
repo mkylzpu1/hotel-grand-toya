@@ -1,14 +1,13 @@
 {
-  "order": 5,
   "sectionId": "facilities",
-  "icon": "館",
-  "eyebrow": "Facilities",
-  "titleLines": ["A comfortable time,", "throughout the hotel."],
-  "description": [
-    "Alongside a lobby, gift shop, and café space, our multinational staff can assist you in multiple languages. First-time visitors to Lake Toya and guests from abroad can relax with peace of mind."
-  ],
-  "linkText": "See Our Facilities & Services",
   "linkHref": "/en/facilities",
+  "linkText": "See Our Facilities & Services",
+  "titleLines": [
+    "A comfortable time,",
+    "throughout the hotel."
+  ],
+  "eyebrow": "Facilities",
+  "order": 5,
   "tallImagePosition": "right",
   "images": [
     {
@@ -23,5 +22,9 @@
       "src": "/assets/photos/facility1.png",
       "alt": "View from a guest room"
     }
+  ],
+  "icon": "館",
+  "description": [
+    "Alongside a lobby, gift shop, and café space, our multinational staff can assist you in multiple languages. First-time visitors to Lake Toya and guests from abroad can relax with peace of mind."
   ]
 }
