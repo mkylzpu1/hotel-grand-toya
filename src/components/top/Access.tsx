@@ -17,6 +17,7 @@ interface AccessProps {
   heading: string;
   accessList: AccessListItem[];
   note: string;
+  shuttleNote: string;
   detailLinkText: string;
   mapEmbedUrl: string;
   mapTitle: string;
@@ -33,6 +34,7 @@ export default function Access({
   heading,
   accessList,
   note,
+  shuttleNote,
   detailLinkText,
   mapEmbedUrl,
   mapTitle,
@@ -84,7 +86,14 @@ export default function Access({
               </li>
             ))}
           </ul>
-          <p className="my-5 mb-[30px] text-[0.78rem] text-[#8A8781]">{note}</p>
+          <p className="mt-4 flex items-start gap-2 border-l-2 border-[#A24730] bg-[#FAF6F0] px-3 py-2.5 text-[0.78rem] leading-[1.7] text-[#712B13]">
+            <span aria-hidden="true">※</span>
+            {shuttleNote}
+          </p>
+          <p className="mt-4 mb-[30px] flex items-start gap-2 border-l-2 border-[#A24730] bg-[#FAF6F0] px-3 py-2.5 text-[0.78rem] leading-[1.7] text-[#712B13]">
+            <span aria-hidden="true">※</span>
+            {note}
+          </p>
           <ArrowLink href={asset(`/${lang}/access/`)}>{detailLinkText}</ArrowLink>
         </div>
         <div className="h-[360px] border-[0.5px] border-[#29415C]">

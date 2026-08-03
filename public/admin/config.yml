@@ -312,6 +312,7 @@ collections:
           - { label: '手段（例: お車）', name: label, widget: string }
           - { label: '説明（例: 札幌市街から約2時間）', name: value, widget: string }
       - { label: '注意書き（冬季の積雪など）', name: note, widget: text, i18n: true }
+      - { label: '送迎に関する注意書き', name: shuttleNote, widget: text, i18n: true }
       - { label: '「詳細はこちら」リンク文言', name: detailLinkText, widget: string, i18n: true }
       - {
           label: 'Googleマップ埋め込みURL（言語共通）',

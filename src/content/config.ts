@@ -152,6 +152,7 @@ const access = defineCollection({
       }),
     ),
     note: z.string(),
+    shuttleNote: z.string(),
     detailLinkText: z.string(),
     mapEmbedUrl: z.string(),
     mapTitle: z.string(),
