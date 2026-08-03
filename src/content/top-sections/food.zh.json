@@ -1,16 +1,14 @@
 {
-  "order": 4,
   "sectionId": "food",
-  "icon": "膳",
-  "eyebrow": "餐饮",
-  "titleLines": ["细细品味，", "北海道的美味。"],
-  "description": [
-    "晚餐为会席料理，早餐提供日式早餐。",
-    "我们提供含晚餐、早餐的住宿方案。在温泉与美食之中，尽享悠闲时光。"
-  ],
-  "linkText": "美食介绍",
-  "linkHref": "/zh/cuisine",
   "centerText": true,
+  "linkHref": "/zh/cuisine",
+  "linkText": "美食介绍",
+  "titleLines": [
+    "细细品味，",
+    "北海道的美味。"
+  ],
+  "eyebrow": "餐饮",
+  "order": 4,
   "images": [
     {
       "src": "/assets/photos/food-night1.jpg",
@@ -22,5 +20,10 @@
       "alt": "料理一品",
       "className": "h-[78%] self-end mb-0 lg:mb-14"
     }
+  ],
+  "icon": "膳",
+  "description": [
+    "晚餐为会席料理，早餐提供日式早餐。",
+    "我们提供含晚餐、早餐的住宿方案。在温泉与美食之中，尽享悠闲时光。"
   ]
 }
