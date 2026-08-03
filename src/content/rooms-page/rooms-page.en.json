@@ -66,21 +66,15 @@
       "id": "japanese",
       "rooms": [
         {
-          "basicInfo": [
-            { "label": "Size", "value": "26㎡" },
-            { "label": "Capacity", "value": "1-4 guests" },
-            { "label": "Bed / Futon", "value": "Futon (prepared based on number of guests)" },
-            { "label": "View", "value": "Lake Toya view / angled lake view" },
-            { "label": "Smoking", "value": "Non-smoking" }
-          ],
-          "priceLabel": "1 night with 2 meals from",
-          "priceFrom": "15,000 yen per person (varies by season)",
           "floors": [
             {
               "label": "1st Floor Room",
               "reservationName": "[1F] Japanese-style room facing the lake, 8 tatami mats",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017392&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["Lake Toya view", "Fireworks viewable (4/28-10/31)"],
+              "badges": [
+                "Lake Toya view",
+                "Fireworks viewable (4/28-10/31)"
+              ],
               "images": [
                 {
                   "label": "Room overview",
@@ -159,7 +153,11 @@
               "label": "Window-side Lake-view Japanese-style Room",
               "reservationName": "Window-side lake-view Japanese-style room",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017390&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["Angled lake view", "Lake view from the window", "Fireworks viewable"],
+              "badges": [
+                "Angled lake view",
+                "Lake view from the window",
+                "Fireworks viewable"
+              ],
               "images": [
                 {
                   "label": "Room overview",
@@ -180,6 +178,8 @@
           ],
           "eyebrow": "Japanese-style Room",
           "name": "Japanese-style Room",
+          "priceLabel": "1 night with 2 meals from",
+          "priceFrom": "15,000 yen per person (varies by season)",
           "icon": "和",
           "id": "japanese-lakeview",
           "image": {
@@ -187,6 +187,28 @@
             "src": "/assets/photos/lounge-2.jpg",
             "alt": "Lakeside Japanese-style room"
           },
+          "basicInfo": [
+            {
+              "label": "Size",
+              "value": "26㎡"
+            },
+            {
+              "label": "Capacity",
+              "value": "1-4 guests"
+            },
+            {
+              "label": "Bed / Futon",
+              "value": "Futon (prepared based on number of guests)"
+            },
+            {
+              "label": "View",
+              "value": "Lake Toya view / angled lake view"
+            },
+            {
+              "label": "Smoking",
+              "value": "Non-smoking"
+            }
+          ],
           "description": [
             "A relaxing Japanese-style room. Unwind surrounded by the warmth of tatami and views of Lake Toya.",
             "Choose from the first floor or higher floors, based on your budget and preferred view.",
@@ -199,21 +221,15 @@
       "id": "western",
       "rooms": [
         {
-          "basicInfo": [
-            { "label": "Size", "value": "26㎡" },
-            { "label": "Capacity", "value": "1-2 guests" },
-            { "label": "Bed / Futon", "value": "Twin beds" },
-            { "label": "View", "value": "Lake Toya view" },
-            { "label": "Smoking", "value": "Non-smoking" }
-          ],
-          "priceLabel": "1 night with 2 meals from",
-          "priceFrom": "16,000 yen per person (varies by season)",
           "floors": [
             {
               "label": "1st Floor Room",
               "reservationName": "[1F] Western-style twin room facing the lake",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017389&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["Lake Toya view", "Fireworks viewable (4/28-10/31)"],
+              "badges": [
+                "Lake Toya view",
+                "Fireworks viewable (4/28-10/31)"
+              ],
               "images": [
                 {
                   "label": "Room overview",
@@ -260,6 +276,8 @@
           ],
           "eyebrow": "Western-style Room",
           "name": "Western-style Room",
+          "priceLabel": "1 night with 2 meals from",
+          "priceFrom": "16,000 yen per person (varies by season)",
           "icon": "洋",
           "id": "western-lakeview",
           "image": {
@@ -267,6 +285,28 @@
             "src": "/assets/photos/facility-3.jpg",
             "alt": "Lakeside Western-style room (standard)"
           },
+          "basicInfo": [
+            {
+              "label": "Size",
+              "value": "26㎡"
+            },
+            {
+              "label": "Capacity",
+              "value": "1-2 guests"
+            },
+            {
+              "label": "Bed / Futon",
+              "value": "Twin beds"
+            },
+            {
+              "label": "View",
+              "value": "Lake Toya view"
+            },
+            {
+              "label": "Smoking",
+              "value": "Non-smoking"
+            }
+          ],
           "description": [
             "For guests who prefer not to sleep on tatami, or who prefer beds, our Western-style rooms are recommended.",
             "Choose from the first floor or higher floors."
@@ -299,12 +339,12 @@
       "label": "Amenities"
     }
   ],
+  "priceNote": "The displayed price is a guideline for one person per room, including two meals. Prices may vary depending on the season (busy or off-peak) and plan. Please check the reservation page for accurate pricing and availability.",
   "basicInfoLabels": {
     "size": "Size",
     "capacity": "Capacity",
     "view": "View",
     "bedding": "Bed / Futon",
     "smoking": "Smoking"
-  },
-  "priceNote": "The displayed price is a guideline for one person per room, including two meals. Prices may vary depending on the season (busy or off-peak) and plan. Please check the reservation page for accurate pricing and availability."
+  }
 }

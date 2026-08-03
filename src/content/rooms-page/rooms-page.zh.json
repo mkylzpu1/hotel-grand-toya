@@ -66,21 +66,15 @@
       "id": "japanese",
       "rooms": [
         {
-          "basicInfo": [
-            { "label": "面积", "value": "26㎡" },
-            { "label": "定员", "value": "1〜4名" },
-            { "label": "床铺／被褥", "value": "被褥（依人数准备）" },
-            { "label": "景观", "value": "洞爷湖景观 / 侧向湖景" },
-            { "label": "吸烟规定", "value": "禁烟" }
-          ],
-          "priceLabel": "1晚含2餐起",
-          "priceFrom": "15,000日元台〜（每人，视季节而定）",
           "floors": [
             {
               "label": "1楼客房",
               "reservationName": "【1楼】面湖和室8叠",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017392&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爷湖景观", "可观赏花火（4/28〜10/31）"],
+              "badges": [
+                "洞爷湖景观",
+                "可观赏花火（4/28〜10/31）"
+              ],
               "images": [
                 {
                   "label": "客房全景",
@@ -101,7 +95,11 @@
               "label": "2楼以上客房",
               "reservationName": "面湖和室8叠",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爷湖景观", "可眺望中岛・羊蹄山", "可观赏花火（4/28〜10/31）"],
+              "badges": [
+                "洞爷湖景观",
+                "可眺望中岛・羊蹄山",
+                "可观赏花火（4/28〜10/31）"
+              ],
               "images": [
                 {
                   "label": "客房全景",
@@ -123,7 +121,12 @@
               "label": "2楼客房（配书桌）",
               "reservationName": "【配书桌】面湖和室8叠",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017403&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爷湖景观", "可眺望中岛・羊蹄山", "可观赏花火（4/28〜10/31）", "可办公"],
+              "badges": [
+                "洞爷湖景观",
+                "可眺望中岛・羊蹄山",
+                "可观赏花火（4/28〜10/31）",
+                "可办公"
+              ],
               "images": [
                 {
                   "label": "窗外景色",
@@ -150,7 +153,11 @@
               "label": "窗边湖景和室",
               "reservationName": "窗边湖景和室",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017390&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["侧向湖景", "窗边眺望湖景", "可观赏花火"],
+              "badges": [
+                "侧向湖景",
+                "窗边眺望湖景",
+                "可观赏花火"
+              ],
               "images": [
                 {
                   "label": "客房全景",
@@ -171,6 +178,8 @@
           ],
           "eyebrow": "Japanese-style Room",
           "name": "和室",
+          "priceLabel": "1晚含2餐起",
+          "priceFrom": "15,000日元台〜（每人，视季节而定）",
           "icon": "和",
           "id": "japanese-lakeview",
           "image": {
@@ -178,6 +187,28 @@
             "src": "/assets/photos/lounge-2.jpg",
             "alt": "湖景和室"
           },
+          "basicInfo": [
+            {
+              "label": "面积",
+              "value": "26㎡"
+            },
+            {
+              "label": "定员",
+              "value": "1〜4名"
+            },
+            {
+              "label": "床铺／被褥",
+              "value": "被褥（依人数准备）"
+            },
+            {
+              "label": "景观",
+              "value": "洞爷湖景观 / 侧向湖景"
+            },
+            {
+              "label": "吸烟规定",
+              "value": "禁烟"
+            }
+          ],
           "description": [
             "惬意的和室。在榻榻米的温暖与洞爷湖的美景中，尽享悠然时光。",
             "可选择1楼或2楼以上楼层，我们会根据您的预算与喜好的景观为您安排。",
@@ -190,21 +221,15 @@
       "id": "western",
       "rooms": [
         {
-          "basicInfo": [
-            { "label": "面积", "value": "26㎡" },
-            { "label": "定员", "value": "1〜2名" },
-            { "label": "床铺／被褥", "value": "双床" },
-            { "label": "景观", "value": "洞爷湖景观" },
-            { "label": "吸烟规定", "value": "禁烟" }
-          ],
-          "priceLabel": "1晚含2餐起",
-          "priceFrom": "16,000日元台〜（每人，视季节而定）",
           "floors": [
             {
               "label": "1楼客房",
               "reservationName": "【1楼】面湖洋室双床房",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017389&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爷湖景观", "可观赏花火（4/28〜10/31）"],
+              "badges": [
+                "洞爷湖景观",
+                "可观赏花火（4/28〜10/31）"
+              ],
               "images": [
                 {
                   "label": "客房全景",
@@ -226,7 +251,11 @@
               "label": "2楼以上客房",
               "reservationName": "面湖洋室双床房",
               "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017388&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&ci=20260726&co=20260727&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
-              "badges": ["洞爷湖景观", "可眺望中岛・羊蹄山", "可观赏花火（4/28〜10/31）"],
+              "badges": [
+                "洞爷湖景观",
+                "可眺望中岛・羊蹄山",
+                "可观赏花火（4/28〜10/31）"
+              ],
               "images": [
                 {
                   "label": "客房全景",
@@ -247,6 +276,8 @@
           ],
           "eyebrow": "Western-style Room",
           "name": "洋室",
+          "priceLabel": "1晚含2餐起",
+          "priceFrom": "16,000日元台〜（每人，视季节而定）",
           "icon": "洋",
           "id": "western-lakeview",
           "image": {
@@ -254,6 +285,28 @@
             "src": "/assets/photos/facility-3.jpg",
             "alt": "湖景洋室（标准型）"
           },
+          "basicInfo": [
+            {
+              "label": "面积",
+              "value": "26㎡"
+            },
+            {
+              "label": "定员",
+              "value": "1〜2名"
+            },
+            {
+              "label": "床铺／被褥",
+              "value": "双床"
+            },
+            {
+              "label": "景观",
+              "value": "洞爷湖景观"
+            },
+            {
+              "label": "吸烟规定",
+              "value": "禁烟"
+            }
+          ],
           "description": [
             "对于不习惯睡榻榻米、或偏好床铺住宿的客人，推荐入住洋室。",
             "可选择1楼或2楼以上楼层。"
@@ -267,7 +320,10 @@
   "pageTitleEn": "ROOMS",
   "firstFloorNotice": {
     "heading": "1楼客房注意事项",
-    "items": ["游览船运营时段可能有大型巴士停靠。", "客房小窗为单向玻璃。"]
+    "items": [
+      "游览船运营时段可能有大型巴士停靠。",
+      "客房小窗为单向玻璃。"
+    ]
   },
   "quickNav": [
     {
@@ -283,12 +339,12 @@
       "label": "备品"
     }
   ],
+  "priceNote": "显示价格为每人每晚含两餐的参考价格。根据季节（旺季或淡季）及方案可能有所变动。请在预订页面确认准确价格及空房情况。",
   "basicInfoLabels": {
     "size": "面积",
     "capacity": "定员",
     "view": "景观",
     "bedding": "床铺／被褥",
     "smoking": "吸烟规定"
-  },
-  "priceNote": "显示价格为每人每晚含两餐的参考价格。根据季节（旺季或淡季）及方案可能有所变动。请在预订页面确认准确价格及空房情况。"
+  }
 }
