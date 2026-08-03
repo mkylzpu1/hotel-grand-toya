@@ -32,7 +32,7 @@ export default function Hero({ image, imageAlt, eyebrow, titleLines, description
               </span>
             ))}
           </h1>
-          <p className="mb-[38px] max-w-[34ch] text-[0.94rem] font-normal tracking-[0.02em] opacity-90">
+          <p className="mb-[38px] max-w-[50ch] text-[0.94rem] font-normal tracking-[0.02em] opacity-90">
             {description}
           </p>
         </div>
