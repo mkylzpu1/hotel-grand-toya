@@ -337,6 +337,7 @@ const cuisinePlanItem = z.object({
     alt: z.string(),
   }),
   description: z.array(z.string()),
+  recommendedFor: z.string().optional(),
   menuExample: z
     .object({
       heading: z.string(),
@@ -365,6 +366,8 @@ const cuisinePage = defineCollection({
       eyebrow: z.string(),
       heading: z.string(),
       description: z.array(z.string()),
+      comparisonNote: z.string().optional(),
+      recommendedForLabel: z.string().optional(),
       plans: z.array(cuisinePlanItem),
     }),
     breakfast: z.object({

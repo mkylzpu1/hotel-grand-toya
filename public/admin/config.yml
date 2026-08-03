@@ -732,6 +732,21 @@ collections:
             widget: 'list'
             i18n: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
+          - {
+              label: 'プラン比較のご案内文',
+              name: 'comparisonNote',
+              widget: 'text',
+              required: false,
+              i18n: true,
+            }
+          - {
+              label: '「おすすめ対象」ラベル文言（例：「こんな方に：」）',
+              name: 'recommendedForLabel',
+              widget: 'string',
+              required: false,
+              i18n: true,
+              hint: 'プランカードに表示される、おすすめ対象の見出し部分です。空欄の場合はおすすめ表示自体が出ません。',
+            }
           - label: 'プラン一覧'
             name: 'plans'
             widget: 'list'
@@ -765,6 +780,13 @@ collections:
                 widget: 'list'
                 i18n: true
                 field: { label: '段落', name: 'paragraph', widget: 'text' }
+              - {
+                  label: 'おすすめの対象（例：肉料理が好きな方に）',
+                  name: recommendedFor,
+                  widget: string,
+                  required: false,
+                  i18n: true,
+                }
               - label: 'メニュー例'
                 name: 'menuExample'
                 widget: 'object'

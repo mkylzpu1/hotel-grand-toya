@@ -5,12 +5,23 @@ interface Props {
   nameEn?: string;
   image: { src: string; alt: string };
   description: string[];
+  recommendedFor?: string;
+  recommendedForLabel?: string;
   menuExample?: { heading: string; items: string[] };
   seasonalNote: string;
   reservationHref?: string;
 }
-const { name, nameEn, image, description, menuExample, seasonalNote, reservationHref } =
-  Astro.props;
+const {
+  name,
+  nameEn,
+  image,
+  description,
+  recommendedFor,
+  recommendedForLabel,
+  menuExample,
+  seasonalNote,
+  reservationHref,
+} = Astro.props;
 ---
 
 <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
@@ -25,6 +36,14 @@ const { name, nameEn, image, description, menuExample, seasonalNote, reservation
         )
       }
       <h3 class="font-serif text-[1.2rem] font-semibold text-[#1E1C1A]">{name}</h3>
+      {
+        recommendedFor && recommendedForLabel && (
+          <p class="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#F7EAE5] px-3 py-1 text-[0.74rem] font-medium text-[#A24730]">
+            {recommendedForLabel}
+            {recommendedFor}
+          </p>
+        )
+      }
     </div>
     {
       description.map((line) => (

@@ -33,6 +33,8 @@
       "For dinner, choose from two kaiseki course plans featuring seasonal ingredients.",
       "Both plans use seasonal ingredients from around Lake Toya and across Hokkaido, with hot dishes served hot."
     ],
+    "comparisonNote": "If you'd like to enjoy the flavors of seafood and vegetables in a hot pot, we recommend the Yosenabe Kaiseki Course. If you prefer a heartier, meat-centered meal, try the Chef's Choice Japanese Kaiseki Course (shabu-shabu). You can choose your preferred plan when booking.",
+"recommendedForLabel": "Recommended for: ",
     "plans": [
       {
         "id": "yosenabe",
@@ -46,6 +48,7 @@
           "A kaiseki course centered on a hot pot generously filled with seafood and vegetables, showcasing seasonal flavors.",
           "A dish that warms you from the core — a winter favorite that only an onsen ryokan can offer."
         ],
+        "recommendedFor": "Those who want a lighter meal centered on seafood and vegetables",
         "menuExample": {
           "heading": "Sample Menu",
           "items": [
@@ -72,6 +75,7 @@
           "A kaiseki course centered on shabu-shabu made with select pork shoulder loin, served with seasonal appetizers and grilled dishes.",
           "Enjoy this classic yet indulgent dish, with its sweet-savory dipping sauce and egg."
         ],
+        "recommendedFor": "Those who want a hearty, meat-centered meal",
         "menuExample": {
           "heading": "Sample Menu",
           "items": [
