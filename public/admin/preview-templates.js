@@ -134,6 +134,7 @@
       resolved &&
       resolved.indexOf('http') !== 0 &&
       resolved.indexOf('data:') !== 0 &&
+      resolved.indexOf('blob:') !== 0 &&
       resolved.indexOf(BASE_PATH) !== 0
     ) {
       resolved = BASE_PATH + resolved;
