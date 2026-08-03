@@ -261,13 +261,6 @@ const roomsPage = defineCollection({
         label: z.string(),
       }),
     ),
-    basicInfoLabels: z.object({
-      size: z.string(),
-      capacity: z.string(),
-      view: z.string(),
-      bedding: z.string(),
-      smoking: z.string(),
-    }),
     amenitiesIcon: z.string(),
     amenitiesEyebrow: z.string(),
     amenitiesHeading: z.string(),
@@ -291,11 +284,14 @@ const roomsPage = defineCollection({
             name: z.string(),
             description: z.array(z.string()),
             image: roomGalleryItem,
-            size: z.string().optional(),
-            capacity: z.string(),
-            bedding: z.string(),
-            view: z.string(),
-            smoking: z.string(),
+            basicInfo: z
+              .array(
+                z.object({
+                  label: z.string(), // 例: 「広さ」「Wi-Fi」「駐車場」
+                  value: z.string(), // 例: 「26㎡」「無料」「近隣に有り」
+                }),
+              )
+              .optional(),
             priceLabel: z.string().optional(),
             priceFrom: z.string().optional(),
             floors: z.array(

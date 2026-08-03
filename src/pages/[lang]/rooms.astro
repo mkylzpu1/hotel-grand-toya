@@ -76,53 +76,17 @@ const page = pageEntry.data;
                   <div>
                     <table class="w-full border-t border-[#D8D7D2] text-[0.86rem]">
                       <tbody>
-                        {room.size && (
+                        {room.basicInfo?.map((item) => (
                           <tr class="border-b border-[#D8D7D2]">
                             <th
                               scope="row"
                               class="w-[35%] py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]"
                             >
-                              {page.basicInfoLabels.size}
+                              {item.label}
                             </th>
-                            <td class="py-3.5 text-[#1E1C1A]">{room.size}</td>
+                            <td class="py-3.5 text-[#1E1C1A]">{item.value}</td>
                           </tr>
-                        )}
-                        <tr class="border-b border-[#D8D7D2]">
-                          <th
-                            scope="row"
-                            class="w-[35%] py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]"
-                          >
-                            {page.basicInfoLabels.capacity}
-                          </th>
-                          <td class="py-3.5 text-[#1E1C1A]">{room.capacity}</td>
-                        </tr>
-                        <tr class="border-b border-[#D8D7D2]">
-                          <th
-                            scope="row"
-                            class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]"
-                          >
-                            {page.basicInfoLabels.bedding}
-                          </th>
-                          <td class="py-3.5 text-[#1E1C1A]">{room.bedding}</td>
-                        </tr>
-                        <tr class="border-b border-[#D8D7D2]">
-                          <th
-                            scope="row"
-                            class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]"
-                          >
-                            {page.basicInfoLabels.view}
-                          </th>
-                          <td class="py-3.5 text-[#1E1C1A]">{room.view}</td>
-                        </tr>
-                        <tr class="border-b border-[#D8D7D2]">
-                          <th
-                            scope="row"
-                            class="py-3.5 pr-4 text-left font-medium tracking-[0.04em] text-[#8A8781]"
-                          >
-                            {page.basicInfoLabels.smoking}
-                          </th>
-                          <td class="py-3.5 text-[#1E1C1A]">{room.smoking}</td>
-                        </tr>
+                        ))}
                       </tbody>
                     </table>
                     {room.priceFrom && (

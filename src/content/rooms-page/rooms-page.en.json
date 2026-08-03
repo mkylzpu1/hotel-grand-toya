@@ -66,8 +66,13 @@
       "id": "japanese",
       "rooms": [
         {
-          "size": "26㎡",
-          "view": "Lake Toya view / angled lake view",
+          "basicInfo": [
+            { "label": "Size", "value": "26㎡" },
+            { "label": "Capacity", "value": "1-4 guests" },
+            { "label": "Bed / Futon", "value": "Futon (prepared based on number of guests)" },
+            { "label": "View", "value": "Lake Toya view / angled lake view" },
+            { "label": "Smoking", "value": "Non-smoking" }
+          ],
           "priceLabel": "1 night with 2 meals from",
           "priceFrom": "15,000 yen per person (varies by season)",
           "floors": [
@@ -175,9 +180,7 @@
           ],
           "eyebrow": "Japanese-style Room",
           "name": "Japanese-style Room",
-          "smoking": "Non-smoking",
           "icon": "和",
-          "capacity": "1-4 guests",
           "id": "japanese-lakeview",
           "image": {
             "label": "Room overview",
@@ -188,8 +191,7 @@
             "A relaxing Japanese-style room. Unwind surrounded by the warmth of tatami and views of Lake Toya.",
             "Choose from the first floor or higher floors, based on your budget and preferred view.",
             "*Interior photos are for illustration only and may differ from the actual room."
-          ],
-          "bedding": "Futon (prepared based on number of guests)"
+          ]
         }
       ]
     },
@@ -197,8 +199,13 @@
       "id": "western",
       "rooms": [
         {
-          "size": "26㎡",
-          "view": "Lake Toya view",
+          "basicInfo": [
+            { "label": "Size", "value": "26㎡" },
+            { "label": "Capacity", "value": "1-2 guests" },
+            { "label": "Bed / Futon", "value": "Twin beds" },
+            { "label": "View", "value": "Lake Toya view" },
+            { "label": "Smoking", "value": "Non-smoking" }
+          ],
           "priceLabel": "1 night with 2 meals from",
           "priceFrom": "16,000 yen per person (varies by season)",
           "floors": [
@@ -253,9 +260,7 @@
           ],
           "eyebrow": "Western-style Room",
           "name": "Western-style Room",
-          "smoking": "Non-smoking",
           "icon": "洋",
-          "capacity": "1-2 guests",
           "id": "western-lakeview",
           "image": {
             "label": "Room overview",
@@ -265,8 +270,7 @@
           "description": [
             "For guests who prefer not to sleep on tatami, or who prefer beds, our Western-style rooms are recommended.",
             "Choose from the first floor or higher floors."
-          ],
-          "bedding": "Twin beds"
+          ]
         }
       ]
     }

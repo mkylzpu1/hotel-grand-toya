@@ -66,8 +66,13 @@
       "id": "japanese",
       "rooms": [
         {
-          "size": "26㎡",
-          "view": "도야코 뷰 / 측면 레이크뷰",
+          "basicInfo": [
+            { "label": "면적", "value": "26㎡" },
+            { "label": "정원", "value": "1〜4명" },
+            { "label": "침대／이불", "value": "이불（인원수에 맞춰 준비）" },
+            { "label": "전망", "value": "도야코 뷰 / 측면 레이크뷰" },
+            { "label": "흡연 여부", "value": "금연" }
+          ],
           "priceLabel": "1박 2식 포함・1인 기준",
           "priceFrom": "15,000엔대〜（1인 기준・시즌에 따라 변동）",
           "floors": [
@@ -175,9 +180,7 @@
           ],
           "eyebrow": "Japanese-style Room",
           "name": "일본식 객실",
-          "smoking": "금연",
           "icon": "和",
-          "capacity": "1〜4명",
           "id": "japanese-lakeview",
           "image": {
             "label": "객실 전경",
@@ -188,8 +191,7 @@
             "편안한 일본식 객실. 다다미의 따뜻함과 도야코의 경치에 둘러싸여 느긋한 시간을 보내실 수 있습니다.",
             "1층 또는 2층 이상의 층에서 선택하실 수 있으며, 예산이나 원하시는 전망에 맞춰 안내해 드립니다.",
             "※실내 이미지는 예시이며 실제 객실과 다를 수 있습니다."
-          ],
-          "bedding": "이불（인원수에 맞춰 준비）"
+          ]
         }
       ]
     },
@@ -197,8 +199,13 @@
       "id": "western",
       "rooms": [
         {
-          "size": "26㎡",
-          "view": "도야코 뷰",
+          "basicInfo": [
+            { "label": "면적", "value": "26㎡" },
+            { "label": "정원", "value": "1〜2명" },
+            { "label": "침대／이불", "value": "트윈" },
+            { "label": "전망", "value": "도야코 뷰" },
+            { "label": "흡연 여부", "value": "금연" }
+          ],
           "priceLabel": "1박 2식 포함・1인 기준",
           "priceNote": "요금은 시즌에 따라 변동될 수 있습니다.",
           "floors": [
@@ -253,9 +260,7 @@
           ],
           "eyebrow": "Western-style Room",
           "name": "서양식 객실",
-          "smoking": "금연",
           "icon": "洋",
-          "capacity": "1〜2명",
           "id": "western-lakeview",
           "image": {
             "label": "객실 전경",
@@ -265,8 +270,7 @@
           "description": [
             "다다미에서의 취침이 익숙하지 않으신 분이나 침대 숙박을 선호하시는 분께는 서양식 객실을 추천드립니다.",
             "1층 또는 2층 이상의 층에서 선택하실 수 있습니다."
-          ],
-          "bedding": "트윈 침대"
+          ]
         }
       ]
     }

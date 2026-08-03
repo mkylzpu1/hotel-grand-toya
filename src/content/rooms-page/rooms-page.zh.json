@@ -66,8 +66,13 @@
       "id": "japanese",
       "rooms": [
         {
-          "size": "26㎡",
-          "view": "洞爷湖景观 / 侧向湖景",
+          "basicInfo": [
+            { "label": "面积", "value": "26㎡" },
+            { "label": "定员", "value": "1〜4名" },
+            { "label": "床铺／被褥", "value": "被褥（依人数准备）" },
+            { "label": "景观", "value": "洞爷湖景观 / 侧向湖景" },
+            { "label": "吸烟规定", "value": "禁烟" }
+          ],
           "priceLabel": "1晚含2餐起",
           "priceFrom": "15,000日元台〜（每人，视季节而定）",
           "floors": [
@@ -166,9 +171,7 @@
           ],
           "eyebrow": "Japanese-style Room",
           "name": "和室",
-          "smoking": "禁烟",
           "icon": "和",
-          "capacity": "1〜4名",
           "id": "japanese-lakeview",
           "image": {
             "label": "客房全景",
@@ -179,8 +182,7 @@
             "惬意的和室。在榻榻米的温暖与洞爷湖的美景中，尽享悠然时光。",
             "可选择1楼或2楼以上楼层，我们会根据您的预算与喜好的景观为您安排。",
             "※室内图仅供参考，与实际客房可能有所不同。"
-          ],
-          "bedding": "被褥（依人数准备）"
+          ]
         }
       ]
     },
@@ -188,8 +190,13 @@
       "id": "western",
       "rooms": [
         {
-          "size": "26㎡",
-          "view": "洞爷湖景观",
+          "basicInfo": [
+            { "label": "面积", "value": "26㎡" },
+            { "label": "定员", "value": "1〜2名" },
+            { "label": "床铺／被褥", "value": "双床" },
+            { "label": "景观", "value": "洞爷湖景观" },
+            { "label": "吸烟规定", "value": "禁烟" }
+          ],
           "priceLabel": "1晚含2餐起",
           "priceFrom": "16,000日元台〜（每人，视季节而定）",
           "floors": [
@@ -240,9 +247,7 @@
           ],
           "eyebrow": "Western-style Room",
           "name": "洋室",
-          "smoking": "禁烟",
           "icon": "洋",
-          "capacity": "1〜2名",
           "id": "western-lakeview",
           "image": {
             "label": "客房全景",
@@ -252,8 +257,7 @@
           "description": [
             "对于不习惯睡榻榻米、或偏好床铺住宿的客人，推荐入住洋室。",
             "可选择1楼或2楼以上楼层。"
-          ],
-          "bedding": "双床"
+          ]
         }
       ]
     }

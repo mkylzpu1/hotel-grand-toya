@@ -66,8 +66,13 @@
       "id": "japanese",
       "rooms": [
         {
-          "size": "26㎡",
-          "view": "洞爺湖ビュー / 横向きレイクビュー",
+          "basicInfo": [
+            { "label": "広さ", "value": "26㎡" },
+            { "label": "定員", "value": "1〜4名" },
+            { "label": "ベッド／布団", "value": "布団（ご人数に応じてご用意）" },
+            { "label": "眺望", "value": "洞爺湖ビュー / 横向きレイクビュー" },
+            { "label": "喫煙可否", "value": "禁煙" }
+          ],
           "priceLabel": "1泊2食付・お一人様",
           "priceFrom": "15,000円台〜",
           "floors": [
@@ -171,9 +176,7 @@
           ],
           "eyebrow": "Japanese-style Room",
           "name": "和室",
-          "smoking": "禁煙",
           "icon": "和",
-          "capacity": "1〜4名",
           "id": "japanese-lakeview",
           "image": {
             "label": "客室全体",
@@ -184,8 +187,7 @@
             "寛ぎの和室。畳のぬくもりと洞爺湖の景色に包まれながら、ゆったりとした時間をお過ごしいただけます。",
             "1階、または2階以上のフロアからお選びいただけ、ご予算やお好みの眺望に合わせてご案内いたします。",
             "※内観は一例です。実際の客室と異なる場合がございます。"
-          ],
-          "bedding": "布団（ご人数に応じてご用意）"
+          ]
         }
       ]
     },
@@ -193,8 +195,13 @@
       "id": "western",
       "rooms": [
         {
-          "size": "26㎡",
-          "view": "洞爺湖ビュー",
+          "basicInfo": [
+            { "label": "広さ", "value": "26㎡" },
+            { "label": "定員", "value": "1〜2名" },
+            { "label": "ベッド／布団", "value": "ツインベッド" },
+            { "label": "眺望", "value": "洞爺湖ビュー" },
+            { "label": "喫煙可否", "value": "禁煙" }
+          ],
           "priceLabel": "1泊2食付・お一人様",
           "priceFrom": "16,000円台〜",
           "floors": [
@@ -245,9 +252,7 @@
           ],
           "eyebrow": "Western-style Room",
           "name": "洋室",
-          "smoking": "禁煙",
           "icon": "洋",
-          "capacity": "1〜2名",
           "id": "western-lakeview",
           "image": {
             "label": "客室全体",
@@ -257,8 +262,7 @@
           "description": [
             "畳での就寝に慣れていない方や、ベッドでのご滞在をお好みの方には洋室がおすすめです。",
             "1階、または2階以上のフロアからお選びいただけます。"
-          ],
-          "bedding": "ツインベッド"
+          ]
         }
       ]
     }

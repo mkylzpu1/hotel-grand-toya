@@ -366,16 +366,6 @@ collections:
         fields:
           - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
           - { label: '表示ラベル', name: 'label', widget: 'string' }
-      - label: '基本情報ラベル'
-        name: 'basicInfoLabels'
-        widget: 'object'
-        i18n: true
-        fields:
-          - { label: '広さ', name: 'size', widget: 'string', i18n: true }
-          - { label: '定員', name: 'capacity', widget: 'string', i18n: true }
-          - { label: '眺望', name: 'view', widget: 'string', i18n: true }
-          - { label: '寝具', name: 'bedding', widget: 'string', i18n: true }
-          - { label: '喫煙', name: 'smoking', widget: 'string', i18n: true }
       - {
           label: '設備セクション アイコン',
           name: 'amenitiesIcon',
@@ -445,11 +435,15 @@ collections:
                   - { label: 'ラベル', name: 'label', widget: 'string' }
                   - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false }
                   - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
-              - { label: '広さ', name: 'size', widget: 'string', required: false }
-              - { label: '定員', name: 'capacity', widget: 'string' }
-              - { label: '寝具', name: 'bedding', widget: 'string' }
-              - { label: '眺望', name: 'view', widget: 'string' }
-              - { label: '喫煙', name: 'smoking', widget: 'string' }
+              - label: '基本情報（自由に項目を追加・削除できます）'
+                name: 'basicInfo'
+                widget: 'list'
+                summary: '{{label}}：{{value}}'
+                collapsed: true
+                hint: '「広さ」「定員」以外にも、「Wi-Fi」「駐車場」など好きな項目を追加できます。'
+                fields:
+                  - { label: 'ラベル(例: 広さ)', name: 'label', widget: 'string' }
+                  - { label: '値(例: 26㎡)', name: 'value', widget: 'string' }
               - {
                   label: '料金パネルのラベル(例: 「1泊2食付・お一人様」)',
                   name: 'priceLabel',
