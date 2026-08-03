@@ -2,5 +2,9 @@
   "date": "2026-08-04",
   "isImportant": false,
   "slug": "fireworks-20260804",
-  "category": "イベント"
+  "category": "イベント",
+  "title": "这是一个测试帖子",
+  "body": [
+    "这是作为测试帖子进行的。"
+  ]
 }

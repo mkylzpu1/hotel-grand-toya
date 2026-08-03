@@ -2,5 +2,9 @@
   "date": "2026-08-04",
   "isImportant": false,
   "slug": "fireworks-20260804",
-  "category": "イベント"
+  "category": "イベント",
+  "title": "테스트 포스트입니다.",
+  "body": [
+    "이것은 테스트 포스트로 수행되고 있습니다."
+  ]
 }
