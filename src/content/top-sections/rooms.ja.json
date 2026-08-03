@@ -1,20 +1,33 @@
 {
-  "order": 2,
   "sectionId": "rooms",
-  "icon": "室",
-  "eyebrow": "Rooms",
-  "titleLines": ["旅のスタイルに合わせて選べる、多彩な客室。"],
-  "description": [
-    "洞爺湖を望む和室・洋室をご用意しております。",
-    "朝日にきらめく湖面や夕暮れに染まる景色など、四季折々に表情を変える洞爺湖を眺めながら、ゆったりとしたひとときをお過ごしください。"
-  ],
-  "priceHighlight": "1泊2食付 15,000円台〜（お一人様・目安）",
-  "linkText": "客室のご案内",
   "linkHref": "/ja/rooms/",
+  "linkText": "客室のご案内",
+  "titleLines": [
+    "洞爺湖を望む客室で、四季の景色とともに。"
+  ],
+  "eyebrow": "Rooms",
+  "priceHighlight": "1泊2食付 15,000円台〜（お一人様・目安）",
+  "order": 2,
   "tallImagePosition": "left",
   "images": [
-    { "src": "/assets/photos/image3.png", "alt": "和室客室", "caption": "和室" },
-    { "src": "/assets/photos/facility-4.jpg", "alt": "客室からの眺め" },
-    { "src": "/assets/photos/facility-3.jpg", "alt": "ホテル外観（夕景）", "caption": "ホテル外観" }
+    {
+      "src": "/assets/photos/image3.png",
+      "alt": "和室客室",
+      "caption": "和室"
+    },
+    {
+      "src": "/assets/photos/facility-4.jpg",
+      "alt": "客室からの眺め"
+    },
+    {
+      "src": "/assets/photos/facility-3.jpg",
+      "alt": "ホテル外観（夕景）",
+      "caption": "ホテル外観"
+    }
+  ],
+  "icon": "室",
+  "description": [
+    "洞爺湖を望む和室・洋室をご用意しております。",
+    "客室からは洞爺湖や羊蹄山を望み、四季折々に表情を変える洞爺湖を眺めながら、ゆったりとしたひとときをお過ごしください。"
   ]
 }
