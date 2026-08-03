@@ -17,6 +17,8 @@ const SKIP_KEYS = new Set([
   'href',
   'url',
   'src',
+  'img',
+  'image',
   'icon',
   'id',
   'slug',
@@ -56,8 +58,15 @@ const SKIP_KEYS = new Set([
 function shouldTranslate(key, value) {
   if (typeof value !== 'string') return false;
   if (SKIP_KEYS.has(key)) return false;
+  // キー名に url / href が含まれる場合は個別登録なしで一律スキップ
+  // (linkHref, secondaryLinkHref, reservationUrl など今後追加されるフィールドの対策漏れを防ぐ)
+  if (/url/i.test(key) || /href$/i.test(key)) return false;
   if (/^https?:\/\//.test(value)) return false;
   if (/^\d+$/.test(value)) return false;
+  // 値そのものが画像ファイルパスっぽければ、キー名(img/image/src等)に関係なくスキップ
+  // (access.sceneryItems.img, onsen-page facilities.items.image など、
+  //  "src" 以外の名前で画像パスを持つフィールド対策)
+  if (/\.(jpe?g|png|gif|webp|svg|avif)(\?.*)?$/i.test(value.trim())) return false;
   if (value.trim().length <= 1) return false; // アイコン用の1文字漢字など
   return true;
 }
