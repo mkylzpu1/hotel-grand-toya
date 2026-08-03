@@ -8,6 +8,7 @@ export default function ContentSection({
   eyebrow,
   titleLines = [],
   description = [],
+  priceHighlight,
   linkText,
   linkHref = '#',
   centerText = false,
@@ -58,7 +59,11 @@ export default function ContentSection({
               </span>
             ))}
           </p>
-
+          {priceHighlight && (
+            <p className="mb-[26px] inline-flex items-baseline gap-2 border-l-2 border-[#A24730] pl-3 font-serif text-[0.98rem] font-semibold text-[#7E3623]">
+              {priceHighlight}
+            </p>
+          )}
           {linkText && <ArrowLink href={asset(linkHref)}>{linkText}</ArrowLink>}
         </div>
 

@@ -12,6 +12,7 @@ export interface SectionData {
   eyebrow: string;
   titleLines?: string[];
   description?: string[];
+  priceHighlight?: string;
   linkText?: string;
   linkHref?: string;
   centerText?: boolean;

@@ -237,6 +237,13 @@ collections:
         i18n: true
         required: false
         field: { label: '段落', name: paragraph, widget: text }
+      - {
+          label: '料金の一言（客室セクションのみ使用。例: 「1泊2食付 15,000円台〜」）',
+          name: priceHighlight,
+          widget: string,
+          required: false,
+          i18n: true,
+        }
       - { label: 'リンク文言', name: linkText, widget: string, required: false, i18n: true }
       - { label: 'リンク先', name: linkHref, widget: string, required: false, i18n: duplicate }
       - {

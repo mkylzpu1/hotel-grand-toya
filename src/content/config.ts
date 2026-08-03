@@ -127,6 +127,7 @@ const topSections = defineCollection({
     eyebrow: z.string(),
     titleLines: z.array(z.string()).optional(),
     description: z.array(z.string()).optional(),
+    priceHighlight: z.string().optional(),
     linkText: z.string().optional(),
     linkHref: z.string().optional(),
     centerText: z.boolean().optional(),
