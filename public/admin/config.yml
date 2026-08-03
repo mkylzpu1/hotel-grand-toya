@@ -24,6 +24,7 @@ collections:
     description: 'ヘッダーのメニュー・検索窓・ドロワーメニューの文言です。ページごとの本文はここには含まれません。'
     folder: 'src/content/navigation'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -93,6 +94,7 @@ collections:
     description: '各ページ下部の「あわせてご覧ください」ブロックです。'
     folder: 'src/content/related-links'
     create: true
+    delete: false
     slug: '{{slug}}'
     i18n: true
     extension: json
@@ -121,6 +123,7 @@ collections:
     description: 'サイトタイトル・住所・電話番号・フッター文言など、全ページ共通の情報です。'
     folder: 'src/content/site'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -182,6 +185,7 @@ collections:
     description: 'トップページ最上部の大きな画像・キャッチコピーです。'
     folder: 'src/content/hero'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -204,6 +208,7 @@ collections:
     description: 'トップページ中段の「客室」「温泉」「お料理」「館内施設」等の紹介ブロックです。'
     folder: 'src/content/top-sections'
     create: true
+    delete: false
     slug: '{{slug}}'
     i18n: true
     extension: json
@@ -307,6 +312,7 @@ collections:
     description: 'トップページ最下部の簡易アクセス案内です。詳細版は「07 アクセスページ」で編集します。'
     folder: 'src/content/access'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -361,6 +367,7 @@ collections:
     description: '/rooms/ ページの内容です。「和室セクション」「洋室セクション」の中に、客室タイプごとの説明とフロア別プランが入れ子になっています。'
     folder: 'src/content/rooms-page'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -551,6 +558,7 @@ collections:
     description: '/onsen/ ページの内容です。「泉質・効能」「温泉施設紹介」「宿泊/日帰り利用案内」で構成されます。'
     folder: 'src/content/onsen-page'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -684,6 +692,7 @@ collections:
     description: '/cuisine/ ページの内容です。「夕食プラン」「朝食」「お食事会場」で構成されます。'
     folder: 'src/content/cuisine-page'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -926,6 +935,7 @@ collections:
     description: '/facilities/ ページの内容です。「館内施設」「館内サービス」「周辺観光」の3ブロックで構成されます。'
     folder: 'src/content/facilities-page'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -1227,6 +1237,7 @@ collections:
     description: '/access/ ページの内容です。「地図・問い合わせ」「JR/車/バスでのアクセス」で構成されます。'
     folder: 'src/content/access-page'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -1518,6 +1529,7 @@ collections:
     description: '/faq/ ページの内容です。カテゴリタブごとにQ&Aが並びます。'
     folder: 'src/content/faq-page'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -1578,6 +1590,7 @@ collections:
     description: '/news/ ページのカテゴリタブ文言などの共通設定です。個別記事は「09 お知らせ｜投稿一覧」で編集します。'
     folder: 'src/content/news-page'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -1668,6 +1681,7 @@ collections:
     description: '/privacy/ ページの内容です。セクションごとの見出し・本文・箇条書きで構成されます。'
     folder: 'src/content/privacy-page'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -1716,6 +1730,7 @@ collections:
     description: '/information/ ページの内容です。提携団体の補助券・利用権の一覧です。'
     folder: 'src/content/information-page'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
@@ -1753,6 +1768,7 @@ collections:
     description: '/recruit/ ページの内容です。「働く環境」「募集職種」「採用フロー」「福利厚生」で構成されます。'
     folder: 'src/content/recruit-page'
     create: false
+    delete: false
     i18n: true
     extension: json
     format: json
