@@ -1,6 +1,7 @@
 {
   "pageTitle": "お料理",
   "pageTitleEn": "CUISINE",
+  "reservationLinkLabel": "{name}プランの予約はこちら",
   "intro": {
     "icon": "膳",
     "eyebrow": "Cuisine",

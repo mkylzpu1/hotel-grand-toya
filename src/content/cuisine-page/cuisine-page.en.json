@@ -1,6 +1,7 @@
 {
   "pageTitle": "Cuisine",
   "pageTitleEn": "CUISINE",
+  "reservationLinkLabel": "Reserve the {name} Plan",
   "intro": {
     "icon": "膳",
     "eyebrow": "Cuisine",

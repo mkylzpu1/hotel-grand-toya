@@ -353,6 +353,7 @@ const cuisinePage = defineCollection({
   schema: z.object({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
+    reservationLinkLabel: z.string(),
     intro: z.object({
       icon: z.string(),
       eyebrow: z.string(),

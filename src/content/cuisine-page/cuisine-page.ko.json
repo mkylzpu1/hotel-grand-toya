@@ -1,6 +1,7 @@
 {
   "pageTitle": "요리",
   "pageTitleEn": "CUISINE",
+  "reservationLinkLabel": "{name} 플랜 예약하기",
   "intro": {
     "icon": "膳",
     "eyebrow": "Cuisine",

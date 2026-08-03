@@ -10,6 +10,7 @@ interface Props {
   menuExample?: { heading: string; items: string[] };
   seasonalNote: string;
   reservationHref?: string;
+  reservationLinkLabel?: string;
 }
 const {
   name,
@@ -21,6 +22,7 @@ const {
   menuExample,
   seasonalNote,
   reservationHref,
+  reservationLinkLabel,
 } = Astro.props;
 ---
 
@@ -72,7 +74,7 @@ const {
             href={reservationHref}
             class="group inline-flex items-center gap-2 bg-[#A24730] px-7 py-3.5 text-[0.86rem] font-medium tracking-[0.04em] text-white transition-colors hover:bg-[#8A3B27]"
           >
-            {name}プランの予約はこちら
+          {(reservationLinkLabel ?? '{name}').replace('{name}', name)}
             <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </a>
         </div>

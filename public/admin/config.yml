@@ -696,6 +696,12 @@ collections:
           widget: 'string',
           i18n: duplicate,
         }
+      - {
+          label: 'プラン予約ボタンの文言（{name}の部分が各プラン名に置換されます）',
+          name: 'reservationLinkLabel',
+          widget: 'string',
+          i18n: true,
+        }
       - label: 'イントロ'
         name: 'intro'
         widget: 'object'
