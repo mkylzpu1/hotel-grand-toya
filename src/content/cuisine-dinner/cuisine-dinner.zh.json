@@ -1,0 +1,62 @@
+{
+  "eyebrow": "怀石料理晚餐",
+  "heading": "晚餐",
+  "description": [
+    "晚餐时，您可以选择两种利用时令食材的怀石料理方案。",
+    "两种套餐均使用洞爷湖和北海道各地的时令食材，热菜在温暖时供应。"
+  ],
+  "comparisonNote": "如果您想在火锅中享用鱼类和蔬菜的鲜味，我们推荐「Yose-nabe Kaiseki」，如果您想彻底享用肉类菜肴，我们推荐「Omakase Washoku Kaiseki （ shabu-shabu ）」。预订时，您可以选择自己喜欢的人。",
+  "recommendedForLabel": "致：",
+  "plans": [
+    {
+      "name": "火锅怀石料理",
+      "nameEn": "Yosenabe Kaiseki",
+      "image": {
+        "alt": "辣根怀石料理",
+        "src": "/assets/photos/food-night1.jpg"
+      },
+      "description": [
+        "这是一个怀石料理膳食计划，您可以享受季节的味道，主要是使用大量海鲜和蔬菜的火锅。",
+        "这是冬季推荐的一道从身体核心取暖的菜肴，是温泉日式旅馆独有的。"
+      ],
+      "recommendedFor": "想轻松享用海鲜和蔬菜的人",
+      "menuExample": {
+        "heading": "菜单（示例）",
+        "items": [
+          "分期付款",
+          "什锦生鱼片",
+          "时令烧烤",
+          "锅碗瓢盆",
+          "餐点、配料碗、香碗",
+          "糖果"
+        ]
+      },
+      "seasonalNote": "菜单会根据季节和库存情况而变化。"
+    },
+    {
+      "name": "Omakase日式料理怀石料理",
+      "nameEn": "Omakase日式怀石料理",
+      "image": {
+        "alt": "Omakase日式料理怀石料理",
+        "src": "/assets/photos/food-night2.jpg"
+      },
+      "description": [
+        "这是一种怀石料理套餐，采用特别挑选的猪肩腰肉制成，搭配时令开胃菜和烧烤菜肴。",
+        "请享用经典而奢华的菜肴，与甜辣的菜肴和鸡蛋交织在一起。"
+      ],
+      "recommendedFor": "想彻底享受肉类菜肴的人",
+      "menuExample": {
+        "heading": "菜单（示例）",
+        "items": [
+          "分期付款",
+          "什锦生鱼片",
+          "时令烧烤",
+          "涮涮鍋",
+          "餐点、配料碗、香碗",
+          "糖果"
+        ]
+      },
+      "seasonalNote": "菜单会根据季节和库存情况而变化。"
+    }
+  ]
+}

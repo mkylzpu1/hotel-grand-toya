@@ -1,0 +1,24 @@
+{
+  "pageTitle": "美食",
+  "pageTitleEn": "CUISINE",
+  "reservationLinkLabel": "在此处预订您的{name}套餐",
+  "intro": {
+    "eyebrow": "美食",
+    "heading": "像温泉日式旅馆一样享受北海道季节",
+    "description": [
+      "在洞爷湖岸边捕获的鱼和来自全国各地的季节性蔬菜。您可以在宁静的空间里放松身心，享受利用食材风味的日本美食。",
+      "温暖的菜肴，同时融入时令食材。我们正在准备温泉日式旅馆独有的用餐时间。"
+    ]
+  },
+  "quickNav": [
+    {
+      "label": "晚餐"
+    },
+    {
+      "label": "早餐"
+    },
+    {
+      "label": "餐饮场所"
+    }
+  ]
+}
