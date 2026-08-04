@@ -1,0 +1,20 @@
+{
+  "pageTitle": "住宿・日归入浴",
+  "pageTitleEn": "STAY & DAY-TRIP ONSEN",
+  "icon": "泉",
+  "usageHeading": "使用须知",
+  "quickNav": [
+    {
+      "href": "#facilities",
+      "label": "温泉设施介绍"
+    },
+    {
+      "href": "#quality",
+      "label": "泉质・功效"
+    },
+    {
+      "href": "#useage",
+      "label": "使用须知"
+    }
+  ]
+}

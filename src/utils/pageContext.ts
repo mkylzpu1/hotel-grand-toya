@@ -61,3 +61,43 @@ export async function getPageContext<C extends CollectionKey>(
     langLinks,
   };
 }
+
+export async function getCommonPageContext(lang: Locale) {
+  const [siteEntry, navigationEntry] = await Promise.all([
+    getEntry('site', `site.${lang}`),
+    getEntry('navigation', `navigation.${lang}`),
+  ]);
+
+  if (!siteEntry || !navigationEntry) {
+    throw new Error(`Missing common content for locale "${lang}".`);
+  }
+
+  const { reservationUrl } = siteEntry.data;
+  const relatedLinksData = await getRelatedLinksData(lang, reservationUrl);
+
+  return {
+    siteEntry,
+    navigationEntry,
+    relatedLinksData,
+  };
+}
+
+export async function getLangLinks<C extends CollectionKey>(
+  lang: Locale,
+  collectionName: C,
+  pathPrefix: string,
+) {
+  const availableEntries = await getCollection(collectionName);
+  const availableLocales = new Set(
+    availableEntries.map((entry: { id: string }) => localeFromId(entry.id)),
+  );
+
+  return locales
+    .filter((code) => availableLocales.has(code))
+    .map((code) => ({
+      code,
+      label: LANG_LABELS[code],
+      href: `/${code}/${pathPrefix}/`,
+      active: code === lang,
+    }));
+}

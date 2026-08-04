@@ -173,69 +173,88 @@ const access = defineCollection({
 });
 
 // 温泉ページ（宿泊・日帰り共通の施設紹介 + 利用区分別の案内）
-const labeledItem = z.object({
+// 汎用の label/value ペア → 用途ごとに明示フィールド化
+const labeledValue = z.object({
   label: z.string(),
   value: z.string(),
 });
 
-const onsenPage = defineCollection({
+// ── 04-1 基本設定 ──
+const onsenPageMeta = defineCollection({
   type: 'data',
   schema: z.object({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
-    quickNav: z.array(
+    icon: z.string(),
+    usageHeading: z.string(),
+    quickNav: z.array(z.object({ href: z.string(), label: z.string() })),
+  }),
+});
+
+// ── 04-2 泉質・効能（4項目を明示フィールドに） ──
+const onsenQuality = defineCollection({
+  type: 'data',
+  schema: z.object({
+    icon: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    waterQuality: labeledValue, // 泉質
+    benefits: labeledValue, // 効能
+    characteristics: labeledValue, // 温泉の特徴
+    sourceInfo: labeledValue, // 源泉情報
+  }),
+});
+
+// ── 04-3 温泉施設紹介（可変長なのでlistのまま） ──
+const onsenFacilities = defineCollection({
+  type: 'data',
+  schema: z.object({
+    icon: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    hoursLabel: z.string(),
+    items: z.array(
       z.object({
-        href: z.string(),
-        label: z.string(),
+        name: z.string(),
+        image: imagePath,
+        imageAlt: z.string(),
+        description: z.string(),
+        hours: z.string(),
       }),
     ),
+    notes: z.array(z.string()).optional(),
+  }),
+});
+
+// ── 04-4 宿泊のお客様向け利用案内 ──
+const onsenUsageStay = defineCollection({
+  type: 'data',
+  schema: z.object({
+    id: z.string(),
     icon: z.string(),
-    usageHeading: z.string(), // ★追加: 「ご利用案内」
-    quality: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      items: z.array(labeledItem),
-    }),
-    facilities: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      hoursLabel: z.string(), // ★追加: 「ご利用時間」
-      items: z.array(
-        z.object({
-          name: z.string(),
-          image: imagePath,
-          imageAlt: z.string(),
-          description: z.string(),
-          hours: z.string(),
-        }),
-      ),
-      notes: z.array(z.string()).optional(),
-    }),
-    stay: z.object({
-      id: z.string(),
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      items: z.array(labeledItem),
-      notes: z.array(z.string()).optional(),
-    }),
-    dayUse: z.object({
-      id: z.string(),
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      items: z.array(labeledItem),
-      notes: z.array(z.string()).optional(),
-      rentalsLabel: z.string(), // ★追加: 「レンタル品・料金」
-      rentals: z.array(
-        z.object({
-          label: z.string(),
-          value: z.string(),
-        }),
-      ),
-    }),
+    eyebrow: z.string(),
+    heading: z.string(),
+    hours: labeledValue, // 利用時間
+    amenities: labeledValue, // アメニティ
+    usageNotes: labeledValue, // 利用上の注意
+  }),
+});
+
+// ── 04-5 日帰り入浴のお客様向け利用案内 ──
+const onsenUsageDayuse = defineCollection({
+  type: 'data',
+  schema: z.object({
+    id: z.string(),
+    icon: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    fee: labeledValue, // 入浴料金
+    receptionHours: labeledValue, // 受付時間
+    usageHours: labeledValue, // 利用時間
+    usageNotes: labeledValue, // 利用上の注意
+    rentalsLabel: z.string(),
+    rentals: z.array(labeledValue),
+    notes: z.array(z.string()).optional(),
   }),
 });
 // 客室ページ（客室タイプ一覧＋各客室の詳細情報。比較検討〜予約導線を担う）
@@ -846,7 +865,11 @@ export const collections = {
   hero,
   access,
   'top-sections': topSections,
-  'onsen-page': onsenPage,
+  'onsen-page-meta': onsenPageMeta,
+  'onsen-quality': onsenQuality,
+  'onsen-facilities': onsenFacilities,
+  'onsen-usage-stay': onsenUsageStay,
+  'onsen-usage-dayuse': onsenUsageDayuse,
   'rooms-page': roomsPage,
   rooms: roomTypeItem,
   'cuisine-page': cuisinePage,

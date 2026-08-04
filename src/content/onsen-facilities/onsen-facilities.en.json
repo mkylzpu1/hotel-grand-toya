@@ -1,0 +1,32 @@
+{
+    "icon": "湯",
+    "eyebrow": "Facilities",
+    "heading": "Onsen Facilities",
+    "hoursLabel": "Usage Hours",
+    "items": [
+      {
+        "name": "Large Public Bath",
+        "image": "/assets/photos/room-2.jpg",
+        "imageAlt": "Large public bath",
+        "description": "Our large public bath, fed continuously with fresh spring water, has three tubs of different temperatures for both men and women — hot, warm, and skin-temperature. Take your time and choose the one that suits how you feel that day.",
+        "hours": "13:00–9:30 the next day (closed 23:00–23:30 and 9:30–13:00 for cleaning)"
+      },
+      {
+        "name": "Bubble Bath",
+        "image": "/assets/photos/image9.png",
+        "imageAlt": "Bubble bath",
+        "description": "Enjoy our soothing bubble bath. Pair it with the onsen for an even deeper level of relaxation.",
+        "hours": "13:00–23:00"
+      },
+      {
+        "name": "Open-air Bath",
+        "image": "/assets/photos/onsen-3.jpg",
+        "imageAlt": "Open-air bath",
+        "description": "Soak in our open-air bath while feeling the breeze off the lake. Enjoy views of Lake Toya and the surrounding mountains by day, and quiet steam under the starry sky by night.",
+        "hours": "13:00–23:00 (for safety management)"
+      }
+    ],
+    "notes": [
+      "Private baths and saunas are not available."
+    ]
+  }

@@ -1,0 +1,32 @@
+{
+    "icon": "湯",
+    "eyebrow": "Facilities",
+    "heading": "温泉设施介绍",
+    "hoursLabel": "使用时间",
+    "items": [
+      {
+        "name": "大浴场",
+        "image": "/assets/photos/room-2.jpg",
+        "imageAlt": "大浴场",
+        "description": "源泉放流的大浴场，男女浴池均设有「高温浴池」「温热浴池」「体温浴池」三种不同水温的浴池。请根据当天的身体状况与喜好，慢慢享受泡汤时光。",
+        "hours": "13:00〜次日9:30（23:00〜23:30、9:30〜13:00因清扫暂停使用）"
+      },
+      {
+        "name": "泡泡浴",
+        "image": "/assets/photos/image9.png",
+        "imageAlt": "泡泡浴",
+        "description": "备有令人身心舒畅的泡泡浴。与温泉搭配使用，可享受更深层的放松体验。",
+        "hours": "13:00〜23:00"
+      },
+      {
+        "name": "露天风吕",
+        "image": "/assets/photos/onsen-3.jpg",
+        "imageAlt": "露天风吕",
+        "description": "在露天风吕中感受湖畔的微风。白天可欣赏洞爷湖与群山景色，夜晚则可享受静谧的雾气与星空。",
+        "hours": "13:00〜23:00（因安全管理需要）"
+      }
+    ],
+    "notes": [
+      "不提供包租浴池与桑拿。"
+    ]
+  }

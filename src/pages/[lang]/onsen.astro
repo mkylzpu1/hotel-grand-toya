@@ -1,18 +1,55 @@
 ---
 import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
+import { getEntry } from 'astro:content';
 import { type Locale } from '../../content/config';
-import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
+import {
+  getLocalizedStaticPaths,
+  getCommonPageContext,
+  getLangLinks,
+} from '../../utils/pageContext';
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('onsen-page');
 }
 const { lang } = Astro.params as { lang: Locale };
-const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
-  lang,
-  'onsen-page',
-  'onsen',
-);
-const page = pageEntry.data;
+const [common, langLinks, metaEntry, qualityEntry, facilitiesEntry, stayEntry, dayUseEntry] =
+  await Promise.all([
+    getCommonPageContext(lang),
+    getLangLinks(lang, 'onsen-page-meta', 'onsen'),
+    getEntry('onsen-page-meta', `onsen-page-meta.${lang}`),
+    getEntry('onsen-quality', `onsen-quality.${lang}`),
+    getEntry('onsen-facilities', `onsen-facilities.${lang}`),
+    getEntry('onsen-usage-stay', `onsen-usage-stay.${lang}`),
+    getEntry('onsen-usage-dayuse', `onsen-usage-dayuse.${lang}`),
+  ]);
+const { siteEntry, navigationEntry, relatedLinksData } = common;
+
+const page = {
+  ...metaEntry!.data,
+  facilities: facilitiesEntry!.data,
+  quality: {
+    ...qualityEntry!.data,
+    items: [
+      qualityEntry!.data.waterQuality,
+      qualityEntry!.data.benefits,
+      qualityEntry!.data.characteristics,
+      qualityEntry!.data.sourceInfo,
+    ],
+  },
+  stay: {
+    ...stayEntry!.data,
+    items: [stayEntry!.data.hours, stayEntry!.data.amenities, stayEntry!.data.usageNotes],
+  },
+  dayUse: {
+    ...dayUseEntry!.data,
+    items: [
+      dayUseEntry!.data.fee,
+      dayUseEntry!.data.receptionHours,
+      dayUseEntry!.data.usageHours,
+      dayUseEntry!.data.usageNotes,
+    ],
+  },
+};
 ---
 
 <PageTemplate
