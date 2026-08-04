@@ -1,0 +1,22 @@
+{
+  "icon": "朝",
+  "eyebrow": "Japanese Breakfast",
+  "heading": "朝食",
+  "description": [
+    "朝食は、焼魚や小鉢、炊きたてのご飯を中心とした和朝食を1種類ご用意しております。",
+    "身体にやさしいお料理で、1日の始まりをゆっくりとお迎えください。"
+  ],
+  "plan": {
+    "name": "和朝食",
+    "nameEn": "Japanese Breakfast",
+    "image": {
+      "src": "/assets/photos/food-morning.png",
+      "alt": "和朝食"
+    },
+    "description": [
+      "焼魚や小鉢、炊きたてのご飯と味噌汁など、身体にやさしい和朝食をご用意しています。",
+      "朝から温かいお食事で、1日の始まりをゆっくりとお迎えください。"
+    ],
+    "seasonalNote": "内容は季節・仕入れ状況により変更となる場合があります。"
+  }
+}

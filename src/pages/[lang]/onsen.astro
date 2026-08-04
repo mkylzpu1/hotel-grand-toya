@@ -24,6 +24,14 @@ const [common, langLinks, metaEntry, qualityEntry, facilitiesEntry, stayEntry, d
   ]);
 const { siteEntry, navigationEntry, relatedLinksData } = common;
 
+const dayUseItems = (dayUseEntry!.data.items ??
+  [
+    dayUseEntry!.data.fee,
+    dayUseEntry!.data.receptionHours,
+    dayUseEntry!.data.usageHours,
+    dayUseEntry!.data.usageNotes,
+  ].filter(Boolean)) as Array<{ label: string; value: string }>;
+
 const page = {
   ...metaEntry!.data,
   facilities: facilitiesEntry!.data,
@@ -42,12 +50,9 @@ const page = {
   },
   dayUse: {
     ...dayUseEntry!.data,
-    items: [
-      dayUseEntry!.data.fee,
-      dayUseEntry!.data.receptionHours,
-      dayUseEntry!.data.usageHours,
-      dayUseEntry!.data.usageNotes,
-    ],
+    items: dayUseItems,
+    rentals: dayUseEntry!.data.rentals ?? [],
+    notes: dayUseEntry!.data.notes ?? [],
   },
 };
 ---

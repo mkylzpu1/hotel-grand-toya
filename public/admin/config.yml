@@ -823,17 +823,28 @@ collections:
   - divider: true
 
   # ── お料理ページ ───────────────────────
-  - name: 'cuisine-page'
-    label: '05 お料理ページ'
-    label_singular: 'お料理ページ'
-    description: '/cuisine/ ページの内容です。「夕食プラン」「朝食」「お食事会場」で構成されます。'
-    folder: 'src/content/cuisine-page'
+  - name: お料理
+    icon: 'fork_spoon'
+    label: 'お料理'
+    label_singular: 'お料理'
+    description: 'お料理ページの内容です。'
+    folder: 'src/content'
+    create: false
+    delete: false
+    fields:
+      - { label: 'blank', name: 'blank', widget: 'string' }
+  - name: 'cuisine-page-meta'
+    label: '基本設定'
+    icon: 'arrow_right'
+    label_singular: '基本設定'
+    description: 'ページタイトル・イントロ・ページ内アンカーナビをまとめて管理します。'
+    folder: 'src/content/cuisine-page-meta'
     create: false
     delete: false
     i18n: true
     extension: json
     format: json
-    summary: '{{fields.pageTitle}}'
+    summary: '基本設定'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
@@ -871,191 +882,260 @@ collections:
         fields:
           - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
           - { label: '表示ラベル', name: 'label', widget: 'string' }
-      - label: '夕食セクション'
-        name: 'dinner'
-        widget: 'object'
+
+  - name: 'cuisine-dinner'
+    label: '夕食プラン'
+    icon: 'arrow_right'
+    label_singular: '夕食プラン'
+    description: '夕食プランの見出し・説明・プラン一覧を管理します。'
+    folder: 'src/content/cuisine-dinner'
+    create: false
+    delete: false
+    i18n: true
+    extension: json
+    format: json
+    summary: '夕食概要とプラン一覧'
+    fields:
+      - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
+      - label: '説明文(改行ごとに1項目)'
+        name: 'description'
+        widget: 'list'
         i18n: true
+        field: { label: '段落', name: 'paragraph', widget: 'text' }
+      - {
+          label: 'プラン比較のご案内文',
+          name: 'comparisonNote',
+          widget: 'text',
+          required: false,
+          i18n: true,
+        }
+      - {
+          label: '「おすすめ対象」ラベル文言（例：「こんな方に：」）',
+          name: 'recommendedForLabel',
+          widget: 'string',
+          required: false,
+          i18n: true,
+          hint: 'プランカードに表示される、おすすめ対象の見出し部分です。空欄の場合はおすすめ表示自体が出ません。',
+        }
+      - label: 'プラン一覧'
+        name: 'plans'
+        widget: 'list'
+        i18n: true
+        summary: '{{name}}'
         fields:
-          - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
-          - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-          - label: '説明文(改行ごとに1項目)'
-            name: 'description'
-            widget: 'list'
-            i18n: true
-            field: { label: '段落', name: 'paragraph', widget: 'text' }
           - {
-              label: 'プラン比較のご案内文',
-              name: 'comparisonNote',
-              widget: 'text',
+              label: 'プランID(言語共通)',
+              name: 'id',
+              widget: 'string',
               required: false,
-              i18n: true,
+              i18n: duplicate,
             }
+          - { label: 'プラン名', name: 'name', widget: 'string', i18n: true }
           - {
-              label: '「おすすめ対象」ラベル文言（例：「こんな方に：」）',
-              name: 'recommendedForLabel',
+              label: 'プラン名(英語)',
+              name: 'nameEn',
               widget: 'string',
               required: false,
               i18n: true,
-              hint: 'プランカードに表示される、おすすめ対象の見出し部分です。空欄の場合はおすすめ表示自体が出ません。',
             }
-          - label: 'プラン一覧'
-            name: 'plans'
-            widget: 'list'
+          - label: '画像'
+            name: 'image'
+            widget: 'object'
             i18n: true
-            summary: '{{name}}'
-            fields: &cuisinePlanFields
-              - {
-                  label: 'プランID(言語共通)',
-                  name: 'id',
-                  widget: 'string',
-                  required: false,
-                  i18n: duplicate,
-                }
-              - { label: 'プラン名', name: 'name', widget: 'string', i18n: true }
-              - {
-                  label: 'プラン名(英語)',
-                  name: 'nameEn',
-                  widget: 'string',
-                  required: false,
-                  i18n: true,
-                }
-              - label: '画像'
-                name: 'image'
-                widget: 'object'
-                i18n: true
-                fields:
-                  - { label: '画像(言語共通)', name: 'src', widget: 'image', i18n: duplicate }
-                  - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', i18n: true }
-              - label: '説明文(改行ごとに1項目)'
-                name: 'description'
-                widget: 'list'
-                i18n: true
-                field: { label: '段落', name: 'paragraph', widget: 'text' }
-              - {
-                  label: 'おすすめの対象（例：肉料理が好きな方に）',
-                  name: recommendedFor,
-                  widget: string,
-                  required: false,
-                  i18n: true,
-                }
-              - label: 'メニュー例'
-                name: 'menuExample'
-                widget: 'object'
-                required: false
-                i18n: true
-                fields:
-                  - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-                  - label: '項目'
-                    name: 'items'
-                    widget: 'list'
-                    i18n: true
-                    field: { label: '項目', name: 'item', widget: 'string' }
-              - { label: '季節の注意書き', name: 'seasonalNote', widget: 'string', i18n: true }
-              - {
-                  label: '予約リンク先',
-                  name: 'reservationHref',
-                  widget: 'string',
-                  required: false,
-                  i18n: duplicate,
-                }
-      - label: '朝食セクション'
-        name: 'breakfast'
-        widget: 'object'
-        i18n: true
-        fields:
-          - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
-          - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
+            fields:
+              - { label: '画像(言語共通)', name: 'src', widget: 'image', i18n: duplicate }
+              - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', i18n: true }
           - label: '説明文(改行ごとに1項目)'
             name: 'description'
             widget: 'list'
             i18n: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
-          - label: 'プラン内容'
-            name: 'plan'
+          - {
+              label: 'おすすめの対象（例：肉料理が好きな方に）',
+              name: 'recommendedFor',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
+          - label: 'メニュー例'
+            name: 'menuExample'
             widget: 'object'
+            required: false
             i18n: true
-            fields: *cuisinePlanFields
-      - label: 'お食事処セクション'
-        name: 'diningVenues'
+            fields:
+              - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
+              - label: '項目'
+                name: 'items'
+                widget: 'list'
+                i18n: true
+                field: { label: '項目', name: 'item', widget: 'string' }
+          - { label: '季節の注意書き', name: 'seasonalNote', widget: 'string', i18n: true }
+          - {
+              label: '予約リンク先',
+              name: 'reservationHref',
+              widget: 'string',
+              required: false,
+              i18n: duplicate,
+            }
+
+  - name: 'cuisine-breakfast'
+    label: '朝食プラン'
+    icon: 'arrow_right'
+    label_singular: '朝食プラン'
+    description: '朝食プランの見出し・説明・内容を管理します。'
+    folder: 'src/content/cuisine-breakfast'
+    create: false
+    delete: false
+    i18n: true
+    extension: json
+    format: json
+    summary: '朝食概要とプラン一覧'
+    fields:
+      - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
+      - label: '説明文(改行ごとに1項目)'
+        name: 'description'
+        widget: 'list'
+        i18n: true
+        field: { label: '段落', name: 'paragraph', widget: 'text' }
+      - label: 'プラン内容'
+        name: 'plan'
         widget: 'object'
         i18n: true
         fields:
-          - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
-          - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-          - label: 'お部屋食'
-            name: 'inRoom'
+          - {
+              label: 'プランID(言語共通)',
+              name: 'id',
+              widget: 'string',
+              required: false,
+              i18n: duplicate,
+            }
+          - { label: 'プラン名', name: 'name', widget: 'string', i18n: true }
+          - {
+              label: 'プラン名(英語)',
+              name: 'nameEn',
+              widget: 'string',
+              required: false,
+              i18n: true,
+            }
+          - label: '画像'
+            name: 'image'
             widget: 'object'
             i18n: true
             fields:
-              - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-              - label: '画像'
-                name: 'image'
-                widget: 'object'
-                i18n: true
-                fields:
-                  - { label: 'ラベル', name: 'label', widget: 'string', i18n: true }
-                  - {
-                      label: '画像(言語共通)',
-                      name: 'src',
-                      widget: 'image',
-                      required: false,
-                      i18n: duplicate,
-                    }
-                  - {
-                      label: '代替テキスト(alt)',
-                      name: 'alt',
-                      widget: 'string',
-                      required: false,
-                      i18n: true,
-                    }
-              - label: '説明文(改行ごとに1項目)'
-                name: 'description'
-                widget: 'list'
-                i18n: true
-                field: { label: '段落', name: 'paragraph', widget: 'text' }
-              - { label: '注意書き', name: 'note', widget: 'string', i18n: true }
-          - label: '会場食'
-            name: 'hall'
-            widget: 'object'
-            i18n: true
-            fields:
-              - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-              - label: '画像'
-                name: 'image'
-                widget: 'object'
-                i18n: true
-                fields:
-                  - { label: 'ラベル', name: 'label', widget: 'string', i18n: true }
-                  - {
-                      label: '画像(言語共通)',
-                      name: 'src',
-                      widget: 'image',
-                      required: false,
-                      i18n: duplicate,
-                    }
-                  - {
-                      label: '代替テキスト(alt)',
-                      name: 'alt',
-                      widget: 'string',
-                      required: false,
-                      i18n: true,
-                    }
-              - label: '説明文(改行ごとに1項目)'
-                name: 'description'
-                widget: 'list'
-                i18n: true
-                field: { label: '段落', name: 'paragraph', widget: 'text' }
-              - { label: '注意書き', name: 'note', widget: 'string', i18n: true }
-          - label: 'プランに関する注意書き(改行ごとに1項目)'
-            name: 'planNote'
+              - { label: '画像(言語共通)', name: 'src', widget: 'image', i18n: duplicate }
+              - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', i18n: true }
+          - label: '説明文(改行ごとに1項目)'
+            name: 'description'
             widget: 'list'
             i18n: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
-      - label: 'ご利用にあたっての注意事項'
-        name: 'guestConsiderations'
+          - { label: '季節の注意書き', name: 'seasonalNote', widget: 'string', i18n: true }
+
+  - name: 'cuisine-venues'
+    label: 'お食事会場'
+    icon: 'arrow_right'
+    label_singular: 'お食事会場'
+    description: 'お部屋食・広間会食場・プランに関する注意書きを管理します。'
+    folder: 'src/content/cuisine-venues'
+    create: false
+    delete: false
+    i18n: true
+    extension: json
+    format: json
+    summary: '{{fields.heading}}'
+    fields:
+      - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
+      - label: 'お部屋食'
+        name: 'inRoom'
+        widget: 'object'
+        i18n: true
+        fields:
+          - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
+          - label: '画像'
+            name: 'image'
+            widget: 'object'
+            i18n: true
+            fields:
+              - { label: 'ラベル', name: 'label', widget: 'string', i18n: true }
+              - {
+                  label: '画像(言語共通)',
+                  name: 'src',
+                  widget: 'image',
+                  required: false,
+                  i18n: duplicate,
+                }
+              - {
+                  label: '代替テキスト(alt)',
+                  name: 'alt',
+                  widget: 'string',
+                  required: false,
+                  i18n: true,
+                }
+          - label: '説明文(改行ごとに1項目)'
+            name: 'description'
+            widget: 'list'
+            i18n: true
+            field: { label: '段落', name: 'paragraph', widget: 'text' }
+          - { label: '注意書き', name: 'note', widget: 'string', i18n: true }
+      - label: '会場食'
+        name: 'hall'
+        widget: 'object'
+        i18n: true
+        fields:
+          - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
+          - label: '画像'
+            name: 'image'
+            widget: 'object'
+            i18n: true
+            fields:
+              - { label: 'ラベル', name: 'label', widget: 'string', i18n: true }
+              - {
+                  label: '画像(言語共通)',
+                  name: 'src',
+                  widget: 'image',
+                  required: false,
+                  i18n: duplicate,
+                }
+              - {
+                  label: '代替テキスト(alt)',
+                  name: 'alt',
+                  widget: 'string',
+                  required: false,
+                  i18n: true,
+                }
+          - label: '説明文(改行ごとに1項目)'
+            name: 'description'
+            widget: 'list'
+            i18n: true
+            field: { label: '段落', name: 'paragraph', widget: 'text' }
+          - { label: '注意書き', name: 'note', widget: 'string', i18n: true }
+      - label: 'プランに関する注意書き(改行ごとに1項目)'
+        name: 'planNote'
+        widget: 'list'
+        i18n: true
+        field: { label: '段落', name: 'paragraph', widget: 'text' }
+
+  - name: 'cuisine-guest-considerations'
+    label: 'ご利用にあたっての注意事項'
+    icon: 'arrow_right'
+    label_singular: 'ご利用にあたっての注意事項'
+    description: 'お料理ページ下部の注意事項を管理します。'
+    folder: 'src/content/cuisine-guest-considerations'
+    create: false
+    delete: false
+    i18n: true
+    extension: json
+    format: json
+    summary: 'ご利用にあたっての注意事項'
+    fields:
+      - label: '注意事項一覧'
+        name: 'items'
         widget: 'list'
         i18n: true
         summary: '{{heading}}'
@@ -1064,6 +1144,8 @@ collections:
           - { label: 'アイコン', name: 'icon', widget: 'string' }
           - { label: '見出し', name: 'heading', widget: 'string' }
           - { label: '説明', name: 'description', widget: 'string' }
+
+  - divider: true
 
   # ── 館内施設ページ ───────────────────────
   - name: 'facilities-page'

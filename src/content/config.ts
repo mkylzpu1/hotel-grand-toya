@@ -248,12 +248,13 @@ const onsenUsageDayuse = defineCollection({
     icon: z.string(),
     eyebrow: z.string(),
     heading: z.string(),
-    fee: labeledValue, // 入浴料金
-    receptionHours: labeledValue, // 受付時間
-    usageHours: labeledValue, // 利用時間
-    usageNotes: labeledValue, // 利用上の注意
-    rentalsLabel: z.string(),
-    rentals: z.array(labeledValue),
+    fee: labeledValue.optional(), // 入浴料金
+    receptionHours: labeledValue.optional(), // 受付時間
+    usageHours: labeledValue.optional(), // 利用時間
+    usageNotes: labeledValue.optional(), // 利用上の注意
+    items: z.array(labeledValue).optional(),
+    rentalsLabel: z.string().optional(),
+    rentals: z.array(labeledValue).optional(),
     notes: z.array(z.string()).optional(),
   }),
 });
@@ -367,7 +368,7 @@ const cuisinePlanItem = z.object({
   reservationHref: z.string().optional(),
 });
 
-const cuisinePage = defineCollection({
+const cuisinePageMeta = defineCollection({
   type: 'data',
   schema: z.object({
     pageTitle: z.string(),
@@ -381,41 +382,59 @@ const cuisinePage = defineCollection({
     }),
     icon: z.string(),
     quickNav: z.array(z.object({ href: z.string(), label: z.string() })),
-    dinner: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
+  }),
+});
+
+const cuisineDinnerSection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    icon: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    description: z.array(z.string()),
+    comparisonNote: z.string().optional(),
+    recommendedForLabel: z.string().optional(),
+    plans: z.array(cuisinePlanItem),
+  }),
+});
+
+const cuisineBreakfastSection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    icon: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    description: z.array(z.string()),
+    plan: cuisinePlanItem,
+  }),
+});
+
+const cuisineDiningVenues = defineCollection({
+  type: 'data',
+  schema: z.object({
+    icon: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    inRoom: z.object({
       heading: z.string(),
+      image: roomGalleryItem,
       description: z.array(z.string()),
-      comparisonNote: z.string().optional(),
-      recommendedForLabel: z.string().optional(),
-      plans: z.array(cuisinePlanItem),
+      note: z.string(),
     }),
-    breakfast: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
+    hall: z.object({
       heading: z.string(),
+      image: roomGalleryItem,
       description: z.array(z.string()),
-      plan: cuisinePlanItem,
+      note: z.string(),
     }),
-    diningVenues: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      inRoom: z.object({
-        heading: z.string(),
-        image: roomGalleryItem,
-        description: z.array(z.string()),
-        note: z.string(),
-      }),
-      hall: z.object({
-        heading: z.string(),
-        image: roomGalleryItem,
-        description: z.array(z.string()),
-        note: z.string(),
-      }),
-      planNote: z.array(z.string()),
-    }),
-    guestConsiderations: z.array(
+    planNote: z.array(z.string()),
+  }),
+});
+
+const cuisineGuestConsiderations = defineCollection({
+  type: 'data',
+  schema: z.object({
+    items: z.array(
       z.object({
         icon: z.string(),
         heading: z.string(),
@@ -872,7 +891,11 @@ export const collections = {
   'onsen-usage-dayuse': onsenUsageDayuse,
   'rooms-page': roomsPage,
   rooms: roomTypeItem,
-  'cuisine-page': cuisinePage,
+  'cuisine-page-meta': cuisinePageMeta,
+  'cuisine-dinner': cuisineDinnerSection,
+  'cuisine-breakfast': cuisineBreakfastSection,
+  'cuisine-venues': cuisineDiningVenues,
+  'cuisine-guest-considerations': cuisineGuestConsiderations,
   'facilities-page': facilitiesPage,
   'access-page': accessPage,
   'faq-page': faqPage,

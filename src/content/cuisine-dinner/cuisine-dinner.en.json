@@ -1,0 +1,67 @@
+{
+  "icon": "会",
+  "eyebrow": "Kaiseki Dinner",
+  "heading": "Dinner",
+  "description": [
+    "Dinner offers two seasonal kaiseki plan options.",
+    "Both plans use ingredients from around Lake Toya and Hokkaido, and are served warm so you can enjoy them at their best."
+  ],
+  "comparisonNote": "If you want to enjoy the flavor of seafood and vegetables in a hot pot, we recommend the Yosenabe Kaiseki. If you prefer hearty meat dishes, the Omakase Japanese Kaiseki (shabu-shabu) is a great choice.",
+  "recommendedForLabel": "Recommended for:",
+  "plans": [
+    {
+      "id": "yosenabe",
+      "name": "Yosenabe Kaiseki",
+      "nameEn": "Yosenabe Kaiseki",
+      "image": {
+        "src": "/assets/photos/food-night1.jpg",
+        "alt": "Yosenabe Kaiseki"
+      },
+      "description": [
+        "This plan focuses on a hearty hot pot made with abundant seafood and vegetables.",
+        "It is especially recommended in winter for warming you from the inside out."
+      ],
+      "recommendedFor": "Guests who prefer seafood and vegetable-forward dishes",
+      "menuExample": {
+        "heading": "Sample menu",
+        "items": [
+          "First course",
+          "Assorted seafood",
+          "Seasonal grilled dish",
+          "Hot pot",
+          "Rice and soup",
+          "Dessert"
+        ]
+      },
+      "seasonalNote": "The menu may vary depending on the season and availability.",
+      "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045433&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+    },
+    {
+      "id": "sukiyaki",
+      "name": "Omakase Japanese Kaiseki",
+      "nameEn": "Omakase Japanese Kaiseki",
+      "image": {
+        "src": "/assets/photos/food-night2.jpg",
+        "alt": "Omakase Japanese Kaiseki"
+      },
+      "description": [
+        "This plan centers on shabu-shabu using premium pork shoulder loin, along with seasonal appetizers and grilled dishes.",
+        "Enjoy a rich and indulgent dish with a sweet-savory broth and egg."
+      ],
+      "recommendedFor": "Guests who want to enjoy meat dishes fully",
+      "menuExample": {
+        "heading": "Sample menu",
+        "items": [
+          "First course",
+          "Assorted seafood",
+          "Seasonal grilled dish",
+          "Shabu-shabu",
+          "Rice and soup",
+          "Dessert"
+        ]
+      },
+      "seasonalNote": "The menu may vary depending on the season and availability.",
+      "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045415&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+    }
+  ]
+}

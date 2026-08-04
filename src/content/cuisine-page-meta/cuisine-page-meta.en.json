@@ -1,0 +1,29 @@
+{
+  "pageTitle": "Cuisine",
+  "pageTitleEn": "CUISINE",
+  "reservationLinkLabel": "Reserve the {name} plan here",
+  "intro": {
+    "icon": "膳",
+    "eyebrow": "Cuisine",
+    "heading": "Seasonal flavors of Hokkaido, served with the comfort of a hot spring inn",
+    "description": [
+      "From seafood caught off the shore of Lake Toya to seasonal vegetables from across Hokkaido, enjoy a Japanese kaiseki meal in a calm setting.",
+      "We prepare each dish with care so that warm food is served warm, bringing out the best of the season."
+    ]
+  },
+  "icon": "膳",
+  "quickNav": [
+    {
+      "href": "#section-dinner",
+      "label": "Dinner"
+    },
+    {
+      "href": "#section-breakfast",
+      "label": "Breakfast"
+    },
+    {
+      "href": "#section-venues",
+      "label": "Dining Venues"
+    }
+  ]
+}

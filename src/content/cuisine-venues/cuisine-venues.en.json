@@ -1,0 +1,35 @@
+{
+  "icon": "場",
+  "eyebrow": "Dining Venues",
+  "heading": "Dining Venues",
+  "inRoom": {
+    "heading": "In-room Dining",
+    "image": {
+      "label": "In-room Dining",
+      "src": "/assets/photos/image20.png",
+      "alt": "In-room Dining"
+    },
+    "description": [
+      "Enjoy your meal in the comfort of your own room, without worrying about the surroundings.",
+      "It is ideal for family trips or couples looking for a peaceful moment together."
+    ],
+    "note": "Depending on the number of guests or group size, meals may be served in a private dining room."
+  },
+  "hall": {
+    "heading": "Banquet Hall",
+    "image": {
+      "label": "Banquet Hall",
+      "src": "/assets/photos/image3.png",
+      "alt": "Banquet Hall"
+    },
+    "description": [
+      "Enjoy dinner and breakfast in a traditional banquet hall with other guests.",
+      "The atmosphere reflects the feel of a hot spring inn."
+    ],
+    "note": "Dinner and breakfast are both available in the banquet hall depending on the plan."
+  },
+  "planNote": [
+    "The dining venue depends on the lodging plan.",
+    "Please check each lodging plan for details."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "icon": "配",
+      "heading": "Allergy accommodations",
+      "description": "If you have food allergies, please contact us in advance. We will do our best to accommodate you."
+    },
+    {
+      "icon": "子",
+      "heading": "Families with children are welcome",
+      "description": "Families traveling with children can relax comfortably. Please let us know in advance if you need a child's meal or seating."
+    }
+  ]
+}

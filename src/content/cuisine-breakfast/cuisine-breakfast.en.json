@@ -1,0 +1,22 @@
+{
+  "icon": "朝",
+  "eyebrow": "Japanese Breakfast",
+  "heading": "Breakfast",
+  "description": [
+    "We offer one type of Japanese breakfast featuring grilled fish, small side dishes, and freshly cooked rice.",
+    "Enjoy a calm start to your day with healthy dishes prepared to be both comforting and gentle."
+  ],
+  "plan": {
+    "name": "Japanese Breakfast",
+    "nameEn": "Japanese Breakfast",
+    "image": {
+      "src": "/assets/photos/food-morning.png",
+      "alt": "Japanese Breakfast"
+    },
+    "description": [
+      "We prepare a healthy Japanese breakfast with grilled fish, small side dishes, freshly cooked rice, and miso soup.",
+      "Begin your day slowly with a warm meal that feels soothing from the first bite."
+    ],
+    "seasonalNote": "The contents may change depending on the season and ingredient availability."
+  }
+}

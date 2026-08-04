@@ -1,0 +1,29 @@
+{
+  "pageTitle": "お料理",
+  "pageTitleEn": "CUISINE",
+  "reservationLinkLabel": "{name}プランの予約はこちら",
+  "intro": {
+    "icon": "膳",
+    "eyebrow": "Cuisine",
+    "heading": "北海道の旬を、温泉旅館らしいひとときとともに",
+    "description": [
+      "洞爺湖畔で水揚げされる魚介や、道内各地から届く旬の野菜。素材の持ち味を活かした和食会席を、落ち着いた空間でゆっくりとお楽しみいただけます。",
+      "四季折々の食材を取り入れながら、温かい料理は温かいうちに。温泉旅館ならではのお食事の時間をご用意しております。"
+    ]
+  },
+  "icon": "膳",
+  "quickNav": [
+    {
+      "href": "#section-dinner",
+      "label": "夕食"
+    },
+    {
+      "href": "#section-breakfast",
+      "label": "朝食"
+    },
+    {
+      "href": "#section-venues",
+      "label": "お食事会場"
+    }
+  ]
+}

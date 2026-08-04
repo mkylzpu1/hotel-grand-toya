@@ -1,0 +1,67 @@
+{
+  "icon": "会",
+  "eyebrow": "Kaiseki Dinner",
+  "heading": "夕食",
+  "description": [
+    "夕食は、季節の食材を活かした2種類の会席プランからお選びいただけます。",
+    "どちらのプランも、洞爺湖周辺や道内各地から届く旬の食材を使い、温かい料理は温かいうちにご提供いたします。"
+  ],
+  "comparisonNote": "お魚やお野菜の旨みを鍋で楽しみたい方は「寄せ鍋会席」、お肉料理をしっかり楽しみたい方は「おまかせ和食会席（しゃぶしゃぶ）」がおすすめです。ご予約時にお好きな方をお選びいただけます。",
+  "recommendedForLabel": "こんな方に：",
+  "plans": [
+    {
+      "id": "yosenabe",
+      "name": "寄せ鍋会席膳",
+      "nameEn": "Yosenabe Kaiseki",
+      "image": {
+        "src": "/assets/photos/food-night1.jpg",
+        "alt": "寄せ鍋会席"
+      },
+      "description": [
+        "魚介と野菜をふんだんに使った寄せ鍋を中心に、旬の味わいをお楽しみいただく会席プランです。",
+        "体の芯から温まる、温泉旅館ならではの冬におすすめのお料理です。"
+      ],
+      "recommendedFor": "魚介・野菜を中心に、あっさりと楽しみたい方",
+      "menuExample": {
+        "heading": "お品書き（例）",
+        "items": [
+          "先付",
+          "お造り盛り合わせ",
+          "季節の焼物",
+          "寄せ鍋",
+          "食事・止め椀・香の物",
+          "水菓子"
+        ]
+      },
+      "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。",
+      "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045433&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+    },
+    {
+      "id": "sukiyaki",
+      "name": "おまかせ和食会席膳",
+      "nameEn": "Omakase Japanese Kaiseki",
+      "image": {
+        "src": "/assets/photos/food-night2.jpg",
+        "alt": "おまかせ和食会席膳"
+      },
+      "description": [
+        "特選豚肩ロースを使用したしゃぶしゃぶを主役に、季節の前菜や焼物と共にお楽しみいただく会席プランです。",
+        "甘辛い割り下と卵の絡む、定番ながら贅沢なひと品をご堪能ください。"
+      ],
+      "recommendedFor": "お肉料理をしっかり楽しみたい方",
+      "menuExample": {
+        "heading": "お品書き（例）",
+        "items": [
+          "先付",
+          "お造り盛り合わせ",
+          "季節の焼物",
+          "しゃぶしゃぶ",
+          "食事・止め椀・香の物",
+          "水菓子"
+        ]
+      },
+      "seasonalNote": "お品書きは季節や仕入れ状況により内容が変わります。",
+      "reservationHref": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045415&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+    }
+  ]
+}
