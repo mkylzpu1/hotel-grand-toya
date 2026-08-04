@@ -178,9 +178,22 @@ collections:
               i18n: true,
             }
 
+  - divider: true
+
+  - name: トップページ
+    icon: 'home'
+    label: 'トップページ'
+    label_singular: 'トップページ'
+    description: 'サイトタイトル・住所・電話番号・フッター文言など、全ページ共通の情報です。'
+    folder: 'src/content'
+    create: false
+    delete: false
+    fields:
+      - { label: 'blank', name: 'blank', widget: string }
   # ── ヒーローセクション ───────────────────────
   - name: hero
-    label: '02 トップページ｜ヒーロー'
+    label: '最上部の画像'
+    icon: 'arrow_right'
     label_singular: 'ヒーローセクション'
     description: 'トップページ最上部の大きな画像・キャッチコピーです。'
     folder: 'src/content/hero'
@@ -189,7 +202,7 @@ collections:
     i18n: true
     extension: json
     format: json
-    summary: '{{fields.eyebrow}}'
+    summary: '最上部の画像とキャッチコピー'
     fields:
       - { label: '背景画像（言語共通）', name: image, widget: image, i18n: duplicate }
       - { label: '画像の代替テキスト (alt)', name: imageAlt, widget: string, i18n: true }
@@ -203,7 +216,8 @@ collections:
 
   # ── トップページ コンテンツセクション（客室・温泉・お料理・館内・コンセプト）──
   - name: top_sections
-    label: '02 トップページ｜各紹介セクション'
+    label: '各紹介セクション'
+    icon: 'arrow_right'
     label_singular: '紹介セクション'
     description: 'トップページ中段の「客室」「温泉」「お料理」「館内施設」等の紹介ブロックです。'
     folder: 'src/content/top-sections'
@@ -213,8 +227,14 @@ collections:
     i18n: true
     extension: json
     format: json
-    summary: '{{fields.order}}. {{fields.eyebrow}}'
+    summary: '{{fields.menuLabel}}'
     fields:
+      - {
+          label: '管理画面側の表示ラベル',
+          name: menuLabel,
+          widget: string,
+          i18n: duplicate,
+        }
       - {
           label: '表示順（数字が小さいほど上に表示）',
           name: order,
@@ -307,7 +327,8 @@ collections:
 
   # ── アクセス・周辺観光セクション（トップページ下部） ───────────────────────
   - name: access
-    label: '02 トップページ｜アクセス・周辺観光'
+    label: 'アクセス・周辺観光'
+    icon: 'arrow_right'
     label_singular: 'トップページ アクセス欄'
     description: 'トップページ最下部の簡易アクセス案内です。詳細版は「07 アクセスページ」で編集します。'
     folder: 'src/content/access'
@@ -359,6 +380,7 @@ collections:
           widget: string,
           i18n: true,
         }
+  - divider: true
 
   # ── 客室ページ ───────────────────────
   - name: 'rooms-page'

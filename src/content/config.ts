@@ -121,6 +121,7 @@ const hero = defineCollection({
 const topSections = defineCollection({
   type: 'data',
   schema: z.object({
+    menuLabel: z.string().optional(), // 管理画面側の表示ラベル（セクション一覧での識別用）
     order: z.number(),
     sectionId: z.string().optional(),
     icon: z.string(),

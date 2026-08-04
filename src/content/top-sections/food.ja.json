@@ -1,4 +1,5 @@
 {
+  "menuLabel": "お料理",
   "sectionId": "food",
   "centerText": true,
   "linkHref": "/ja/cuisine",
