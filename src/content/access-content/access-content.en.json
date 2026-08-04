@@ -112,7 +112,8 @@
     "frequency": "Several times a day",
     "note": "Reservations required for all seats. Please book by phone or on the website from one month before your travel date, up until 2 hours before the first departure on the day of travel.",
     "url": "https://www.donanbus.co.jp/map/sap_toyako/",
-    "timetableLabel": "View Timetable"
+    "timetableLabel": "View Timetable",
+    "connectionLabel": "No transfer/non-stop"
   },
   "map": {
     "icon": "図",
