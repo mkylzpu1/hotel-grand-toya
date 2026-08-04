@@ -1,23 +1,39 @@
 {
-    "icon": "泉",
-    "eyebrow": "Onsen Quality",
-    "heading": "Water Quality & Benefits",
-    "items": [
-      {
-        "label": "Water Quality",
-        "value": "Sodium-calcium chloride spring (mild salt spring)"
-      },
-      {
-        "label": "Benefits",
-        "value": "Said to help with neuralgia, muscle pain, joint pain, poor circulation, recovery from illness, cuts, burns, chronic skin conditions, and more, as well as gastrointestinal issues and chronic muscular rheumatism."
-      },
-      {
-        "label": "Onsen Characteristics",
-        "value": "Known for its smooth feel on the skin. High heat-retention means you stay warm long after bathing, making it a good choice for elderly guests and families."
-      },
-      {
-        "label": "Source Information",
-        "value": "Continuously fed with fresh spring water (kakenagashi), drawn from a source welling up in Toyako Onsen town on the shore of Lake Toya within Shikotsu-Toya National Park."
-      }
-    ]
+  "icon": "泉",
+  "eyebrow": "Onsen Quality",
+  "heading": "Water Quality & Benefits",
+  "items": [
+    {
+      "label": "Water Quality",
+      "value": "Sodium-calcium chloride spring (mild salt spring)"
+    },
+    {
+      "label": "Benefits",
+      "value": "Said to help with neuralgia, muscle pain, joint pain, poor circulation, recovery from illness, cuts, burns, chronic skin conditions, and more, as well as gastrointestinal issues and chronic muscular rheumatism."
+    },
+    {
+      "label": "Onsen Characteristics",
+      "value": "Known for its smooth feel on the skin. High heat-retention means you stay warm long after bathing, making it a good choice for elderly guests and families."
+    },
+    {
+      "label": "Source Information",
+      "value": "Continuously fed with fresh spring water (kakenagashi), drawn from a source welling up in Toyako Onsen town on the shore of Lake Toya within Shikotsu-Toya National Park."
+    }
+  ],
+  "waterQuality": {
+    "label": "Spring type",
+    "value": "Sodium calcium chloride hot spring (weak salt hot spring)"
+  },
+  "benefits": {
+    "label": "Efficacy",
+    "value": "Neuralgia, muscle pain, joint pain, cold sensitivity, convalescence, cuts, burns, chronic skin diseases, etc. It is also effective for gastrointestinal diseases and chronic muscle rheumatism."
+  },
+  "characteristics": {
+    "label": "Features of hot springs",
+    "value": "Features slippery skin feel. Since it has a high thermal insulation effect and it is difficult to cool the water, it is recommended for elderly people and families."
+  },
+  "sourceInfo": {
+    "label": "Source Information",
+    "value": "The source spring flows from Lake Toya, on the banks of the Shikotsu Toya National Park \"Lake Toya\", using the source spring that springs up in the Toyako Onsen town."
   }
+}

@@ -1,38 +1,38 @@
 {
-    "id": "dayuse",
-    "icon": "湯",
-    "eyebrow": "For Day-trip Bathing",
-    "heading": "For Day-trip Bathing Guests",
-    "items": [
-      {
-        "label": "Bathing Fee",
-        "value": "Adults ¥600 / Children (age 3 to elementary school) ¥300"
-      },
-      {
-        "label": "Reception Hours",
-        "value": "13:00–20:00 (last entry)"
-      },
-      {
-        "label": "Usage Hours",
-        "value": "13:00–21:00"
-      },
-      {
-        "label": "Usage Notes",
-        "value": "Guests with tattoos, or who have recently consumed alcohol, are asked to refrain from bathing. We may decline day-trip bathing during busy periods or on special days — thank you for your understanding."
-      }
-    ],
-    "rentalsLabel": "Rental Items & Fees",
-    "rentals": [
-      {
-        "label": "Bath Towel",
-        "value": "¥300"
-      },
-      {
-        "label": "Face Towel",
-        "value": "¥100"
-      }
-    ],
-    "notes": [
-      "Shampoo, conditioner, body soap, and hair dryers are provided free of charge."
-    ]
-  }
+  "id": "dayuse",
+  "icon": "湯",
+  "eyebrow": "For Day-trip Bathing",
+  "heading": "For Day-trip Bathing Guests",
+  "items": [
+    {
+      "label": "Bathing Fee",
+      "value": "Adults ¥600 / Children (age 3 to elementary school) ¥300"
+    },
+    {
+      "label": "Reception Hours",
+      "value": "13:00–20:00 (last entry)"
+    },
+    {
+      "label": "Usage Hours",
+      "value": "13:00–21:00"
+    },
+    {
+      "label": "Usage Notes",
+      "value": "Guests with tattoos, or who have recently consumed alcohol, are asked to refrain from bathing. We may decline day-trip bathing during busy periods or on special days — thank you for your understanding."
+    }
+  ],
+  "rentalsLabel": "Rental Items & Fees",
+  "rentals": [
+    {
+      "label": "Bath Towel",
+      "value": "¥300"
+    },
+    {
+      "label": "Face Towel",
+      "value": "¥100"
+    }
+  ],
+  "notes": [
+    "Shampoo, conditioner, body soap, and hair dryers are provided free of charge."
+  ]
+}
