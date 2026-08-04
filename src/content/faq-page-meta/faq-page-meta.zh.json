@@ -1,0 +1,14 @@
+{
+  "pageTitle": "常见问题",
+  "pageTitleEn": "FAQ",
+  "icon": "問",
+  "qaSection": {
+    "icon": "問",
+    "eyebrow": "FAQ",
+    "heading": "常见问题"
+  },
+  "contact": {
+    "leadText": "如有任何疑问，请随时与我们联系。",
+    "emailNote": "通过电子邮件联系我们"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "workLife": {
+    "heading": "Working at a lakeside hotel in Lake Toya Onsen",
+    "description": "A 39-room hotel standing right in front of the sightseeing boat pier. Our 16 staff members work together, putting smiles first as we welcome our guests. We have hired senior staff, staff from overseas, and people relocating from cities to the countryside, and people of all backgrounds are thriving here.",
+    "points": [
+      "Great location right by the sightseeing boat pier — about a 15-minute drive to commute",
+      "Small team of 16 staff with an emphasis on teamwork",
+      "Seniors and those with no experience are welcome (we train carefully)",
+      "Track record of hiring staff from overseas / open to relocation from other regions",
+      "Single-occupancy dormitory available (rent: ¥5,300–¥8,300)",
+      "Uniforms provided (white coats, work jackets, kimono, etc. depending on department)"
+    ],
+    "photos": [
+      {
+        "src": "/assets/photos/recruit1.png",
+        "alt": "Hotel Grand Toya in Lake Toya Onsen"
+      }
+    ]
+  },
+  "positionsHeading": "Current Openings",
+  "positionsDescription": "We are currently hiring for the following positions. Applicants with no experience are welcome to apply.",
+  "positions": [
+    {
+      "status": "open",
+      "icon": "chef-hat",
+      "image": {
+        "src": "/assets/photos/recruit3.png",
+        "alt": "Staff working in the kitchen"
+      },
+      "title": "Kitchen Staff",
+      "employmentType": "Full-time",
+      "recruitCount": 2,
+      "recruitCountLabel": "Positions available: {count}",
+      "summary": "This role supports cooking tasks such as rice preparation, dishwashing, and plating in the hotel kitchen. No experience necessary.",
+      "duties": [
+        "Rice preparation and dishwashing",
+        "Plating dishes",
+        "Kitchen cleaning and other general duties"
+      ],
+      "salaryType": "Monthly salary",
+      "salaryRoughLabel": "From ¥180,000/month",
+      "workingHours": "Approx. 7.5 working hours between 5:30 and 21:00 (shift-based)",
+      "holidays": "Shift-based, two days off per week | 87 days off per year",
+      "tags": [
+        "No experience required",
+        "Seniors welcome",
+        "Uniform provided",
+        "15 min. by car from the station"
+      ]
+    },
+    {
+      "status": "open",
+      "icon": "bed-double",
+      "image": {
+        "src": "/assets/photos/recruit2.png",
+        "alt": "Staff preparing a guest room"
+      },
+      "title": "Guest Room Attendant",
+      "employmentType": "Full-time",
+      "recruitCount": 2,
+      "recruitCountLabel": "Positions available: {count}",
+      "summary": "This role covers guiding guests to their rooms, serving and clearing meals, and cleaning guest rooms. You'll work as part of a 5-7 person team, and those with no experience will be carefully trained.",
+      "duties": [
+        "Guiding guests to their rooms",
+        "Serving and clearing meals",
+        "Cleaning guest rooms"
+      ],
+      "salaryType": "Monthly salary",
+      "salaryRoughLabel": "From ¥180,000/month",
+      "workingHours": "Approx. 7.5 working hours between 7:00 and 21:00 (shift-based)",
+      "holidays": "Shift-based, two days off per week | 87 days off per year",
+      "tags": [
+        "No experience required",
+        "Seniors welcome",
+        "Kimono/work jacket provided",
+        "15 min. by car from the station"
+      ]
+    },
+    {
+      "status": "open",
+      "icon": "concierge-bell",
+      "image": {
+        "src": "/assets/photos/recruit4.png",
+        "alt": "Staff serving guests at the front desk"
+      },
+      "title": "Front Desk Staff",
+      "employmentType": "Part-time",
+      "recruitCount": 1,
+      "recruitCountLabel": "Positions available: {count}",
+      "summary": "This role covers front desk duties during the hours between check-out and check-in. Mainly guest service, phone handling, and basic data entry — days and hours are negotiable.",
+      "duties": [
+        "Front desk guest service",
+        "Phone handling",
+        "Basic data entry"
+      ],
+      "salaryType": "Hourly wage",
+      "salaryRoughLabel": "From ¥1,100/hour",
+      "workingHours": "10:00–14:00 (3-4 days/week, days negotiable)",
+      "holidays": "Two days off per week",
+      "tags": [
+        "No experience required",
+        "Flexible hours",
+        "15 min. by car from the station"
+      ]
+    }
+  ],
+  "processHeading": "Hiring Process",
+  "processDescription": "Here's what happens from application to joining us.",
+  "process": [
+    {
+      "title": "Apply",
+      "description": "Feel free to contact us by email or phone. We'll ask you to send a resume with a photo."
+    },
+    {
+      "title": "Document screening",
+      "description": "We review your resume as part of the initial screening."
+    },
+    {
+      "title": "Interview",
+      "description": "Interviews are usually held once, on a rolling basis. We'll arrange a date together."
+    },
+    {
+      "title": "Result notice",
+      "description": "We'll contact you by phone, mail, or email, usually within 7 days of the interview."
+    },
+    {
+      "title": "Joining us",
+      "description": "After joining, a senior staff member will carefully walk you through your duties, so no experience is needed."
+    }
+  ],
+  "benefitsHeading": "Benefits",
+  "benefits": [
+    {
+      "icon": "shield-check",
+      "label": "Full social insurance (employment, workers' comp, health, pension)"
+    },
+    {
+      "icon": "home",
+      "label": "Single-occupancy dormitory available"
+    },
+    {
+      "icon": "car",
+      "label": "Commuting by car OK, parking available"
+    },
+    {
+      "icon": "shirt",
+      "label": "Uniform provided"
+    },
+    {
+      "icon": "globe",
+      "label": "Track record of hiring staff from overseas / open to relocation from other regions"
+    },
+    {
+      "icon": "sparkles",
+      "label": "Senior staff thriving here"
+    }
+  ]
+}

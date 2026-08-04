@@ -1,0 +1,14 @@
+{
+  "pageTitle": "자주 묻는 질문",
+  "pageTitleEn": "FAQ",
+  "icon": "問",
+  "qaSection": {
+    "icon": "問",
+    "eyebrow": "FAQ",
+    "heading": "자주 묻는 질문"
+  },
+  "contact": {
+    "leadText": "궁금한 점이 있으시면 언제든지 문의해 주세요.",
+    "emailNote": "이메일로 문의하기"
+  }
+}

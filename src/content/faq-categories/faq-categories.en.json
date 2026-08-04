@@ -1,0 +1,181 @@
+{
+  "categories": [
+    {
+      "id": "checkin",
+      "icon": "宿",
+      "label": "Stay & Check-in",
+      "items": [
+        {
+          "question": "What time does check-in start?",
+          "answer": "Check-in is from 14:00 to 18:00."
+        },
+        {
+          "question": "What time is check-out?",
+          "answer": "Check-out is at 10:00."
+        },
+        {
+          "question": "Can I check in early?",
+          "answer": "We will guide you as soon as your room is ready, where possible. If you have a specific request, please contact us in advance."
+        },
+        {
+          "question": "Can I change or cancel my reservation?",
+          "answer": "As a guide, cancellations are free up to 4 days before your stay, 30% of the room rate for 3-2 days before, 50% the day before, and 100% on the day or for a no-show. Policies may vary by date during busy seasons, so please check the exact terms at the time of booking. If you booked through a reservation website, you can change or cancel directly from your booking management page on that site. If you booked by phone, please contact us by phone."
+        },
+        {
+          "question": "What payment methods do you accept?",
+          "answer": "We accept cash and major credit cards. Please also check the confirmation details at the time of booking."
+        }
+      ]
+    },
+    {
+      "id": "room",
+      "icon": "室",
+      "label": "Guest Rooms",
+      "items": [
+        {
+          "question": "Can I see Lake Toya from my room?",
+          "answer": "Depending on room type, rooms face either the lake or the mountains. If you'd like a lake view, please request it at the time of booking."
+        },
+        {
+          "question": "Do you have non-smoking rooms?",
+          "answer": "We're sorry, but we do not have non-smoking rooms. There is no smoking area inside the hotel, but a smoking space is available to the left as you exit the hotel."
+        },
+        {
+          "question": "What amenities are provided?",
+          "answer": "We provide basic amenities such as toothbrushes, towels, pajamas, and a hair dryer. Please check the rooms page for details."
+        },
+        {
+          "question": "Is Wi-Fi available?",
+          "answer": "Free Wi-Fi is available throughout the hotel and in all guest rooms."
+        },
+        {
+          "question": "Do rooms have a refrigerator?",
+          "answer": "Yes, all guest rooms have a refrigerator."
+        }
+      ]
+    },
+    {
+      "id": "onsen",
+      "icon": "湯",
+      "label": "Onsen",
+      "items": [
+        {
+          "question": "What are the onsen hours?",
+          "answer": "[For overnight guests] The large public bath is open 13:00–9:30 the next day (closed 23:00–23:30 and 9:30–13:00 for cleaning); the open-air bath is open 13:00–23:00."
+        },
+        {
+          "question": "Do you have a private bath?",
+          "answer": "We're sorry, but we do not have a private bath."
+        },
+        {
+          "question": "Do you have a sauna?",
+          "answer": "We're sorry, but we do not have a sauna."
+        },
+        {
+          "question": "Can I bathe if I have tattoos?",
+          "answer": "We ask guests with tattoos to refrain from bathing."
+        },
+        {
+          "question": "Can I use the onsen as a day-trip visitor?",
+          "answer": "Yes. Reception hours are 13:00–20:00 (last entry), and usage hours are 13:00–21:00. Bathing fees are ¥600 for adults and ¥300 for children (age 3 to elementary school). We may decline day-trip bathing during busy periods or on special days — thank you for your understanding."
+        },
+        {
+          "question": "Are towels available for day-trip bathing?",
+          "answer": "Rentals are available: bath towel ¥300, face towel ¥100. Shampoo, conditioner, body soap, and hair dryers are free to use."
+        }
+      ]
+    },
+    {
+      "id": "meal",
+      "icon": "食",
+      "label": "Meals",
+      "items": [
+        {
+          "question": "What time are dinner and breakfast served?",
+          "answer": "Dinner is served from 18:00 in the banquet hall (\"Omakase Japanese Kaiseki Course,\" last seating 19:00). Breakfast is a Japanese-style set served in the banquet hall. We cannot serve dinner after 19:00, and there is no change or refund to your accommodation fee in that case."
+        },
+        {
+          "question": "Can you accommodate food allergies?",
+          "answer": "We will accommodate where possible. Please let us know at the time of booking, or by phone at least 3 days in advance."
+        },
+        {
+          "question": "Is in-room dining available?",
+          "answer": "Yes, for some plans. Please check our reservation page for details."
+        },
+        {
+          "question": "Do you offer plans without meals?",
+          "answer": "Yes, we do. Please check our reservation page for details."
+        },
+        {
+          "question": "What should I do if I'll arrive late on a dinner-included plan?",
+          "answer": "If you expect to arrive late, please contact the hotel in advance."
+        }
+      ]
+    },
+    {
+      "id": "family",
+      "icon": "家",
+      "label": "Children & Families",
+      "items": [
+        {
+          "question": "Is there a children's rate?",
+          "answer": "Rates vary depending on age and whether meals are included. Please check the rate table at the time of booking."
+        },
+        {
+          "question": "Do you have baby cribs available?",
+          "answer": "We have a limited number, so please ask at the time of booking."
+        }
+      ]
+    },
+    {
+      "id": "access",
+      "icon": "道",
+      "label": "Access & Parking",
+      "items": [
+        {
+          "question": "Is parking available?",
+          "answer": "We offer free parking. Our staff will meet and guide you upon your arrival at the hotel."
+        },
+        {
+          "question": "Do you offer a shuttle service?",
+          "answer": "We do not currently offer a shuttle service. Please use a taxi or local bus from the nearest station."
+        },
+        {
+          "question": "How long does it take from the nearest station?",
+          "answer": "About 10 minutes by taxi from JR Toya Station. Please see the access page for details."
+        },
+        {
+          "question": "Can you call a taxi for me?",
+          "answer": "Yes, our front desk can arrange a taxi for you. Please feel free to ask."
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "icon": "他",
+      "label": "Other",
+      "items": [
+        {
+          "question": "Is there a convenience store I can use?",
+          "answer": "There isn't one inside the hotel, but there is a convenience store about a 5-minute walk away."
+        },
+        {
+          "question": "Can I bring my own drinks?",
+          "answer": "Yes, you're welcome to bring drinks into your room."
+        },
+        {
+          "question": "Is there a smoking area?",
+          "answer": "There is no smoking area inside the hotel. Please use the smoking space to the left as you exit the hotel."
+        },
+        {
+          "question": "Do you have karaoke, table tennis, or a bar?",
+          "answer": "Karaoke in the banquet hall is available for group guests only. We do not have table tennis or a bar."
+        },
+        {
+          "question": "Can I bring a pet?",
+          "answer": "We're sorry, but pets are not permitted."
+        }
+      ]
+    }
+  ]
+}

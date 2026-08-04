@@ -1,0 +1,52 @@
+{
+  "icon": "設",
+  "eyebrow": "Facilities",
+  "heading": "館内 시설",
+  "hoursLabel": "사용 시간",
+  "feeLabel": "요금",
+  "paymentLabel": "결제 방법",
+  "languagesLabel": "언어",
+  "contactFallbackLabel": "문의처",
+  "items": [
+    {
+      "id": "lobby",
+      "name": "로비",
+      "image": {
+        "label": "로비",
+        "src": "/assets/photos/facility2.png",
+        "alt": "로비"
+      },
+      "description": [
+        "다국어 응대가 가능한 스태프가 고객님의 체류를 지원해 드립니다."
+      ],
+      "hours": "24시간"
+    },
+    {
+      "id": "shop",
+      "name": "매점",
+      "image": {
+        "label": "매점",
+        "src": "/assets/photos/facility1.png",
+        "alt": "매점"
+      },
+      "description": [
+        "지역 명과와 기념품, 생활용품 등을 갖추고 있습니다."
+      ],
+      "hours": "8:00〜21:00",
+      "payment": "현금・신용카드"
+    },
+    {
+      "id": "cafe-space",
+      "name": "카페 공간",
+      "image": {
+        "label": "카페 공간",
+        "src": "/assets/photos/facility3.png",
+        "alt": "카페 공간"
+      },
+      "description": [
+        "커피 및 소프트드링크 등 카페 메뉴를 준비하고 있습니다. 도착 후나 목욕 후 느긋한 시간을 보내보세요."
+      ],
+      "hours": "10:00〜17:00"
+    }
+  ]
+}

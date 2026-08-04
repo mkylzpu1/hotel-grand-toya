@@ -1,0 +1,29 @@
+{
+  "pageTitle": "시설 안내・주변 관광",
+  "pageTitleEn": "FACILITIES & SIGHTSEEING",
+  "intro": {
+    "icon": "館",
+    "eyebrow": "Facilities & Sightseeing",
+    "heading": "호텔에서 보내는 방법",
+    "description": [
+      "호텔 그랜드 토야에서의 체류를 더욱 쾌적하게 만들어 줄 館内 시설・서비스・주변 관광 명소를 소개해 드립니다.",
+      "館内에서 느긋하게 지내고 싶으신 분도, 도야코 주변 액티비티를 즐기고 싶으신 분도 각자의 여행 스타일에 맞춰 이용하실 수 있습니다.",
+      "해외에서 오신 고객님도 안심하고 지내실 수 있도록 다국어 안내도 제공하고 있습니다."
+    ]
+  },
+  "icon": "館",
+  "quickNav": [
+    {
+      "href": "#section-facilities",
+      "label": "館内 시설"
+    },
+    {
+      "href": "#section-services",
+      "label": "館内 서비스"
+    },
+    {
+      "href": "#section-activities",
+      "label": "주변 관광"
+    }
+  ]
+}

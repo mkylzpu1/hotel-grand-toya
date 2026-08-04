@@ -1,0 +1,23 @@
+{
+  "pageTitle": "交通指南",
+  "pageTitleEn": "ACCESS",
+  "icon": "道",
+  "quickNav": [
+    {
+      "href": "#section-parking",
+      "label": "地图・联系方式"
+    },
+    {
+      "href": "#section-train",
+      "label": "乘坐JR前来"
+    },
+    {
+      "href": "#section-car",
+      "label": "自驾前来"
+    },
+    {
+      "href": "#section-bus",
+      "label": "乘坐高速巴士前来"
+    }
+  ]
+}

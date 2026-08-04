@@ -1,0 +1,23 @@
+{
+  "pageTitle": "Access",
+  "pageTitleEn": "ACCESS",
+  "icon": "道",
+  "quickNav": [
+    {
+      "href": "#section-parking",
+      "label": "Map & Contact"
+    },
+    {
+      "href": "#section-train",
+      "label": "By Train"
+    },
+    {
+      "href": "#section-car",
+      "label": "By Car"
+    },
+    {
+      "href": "#section-bus",
+      "label": "By Highway Bus"
+    }
+  ]
+}

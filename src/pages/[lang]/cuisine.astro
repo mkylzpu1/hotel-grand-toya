@@ -7,14 +7,14 @@ import CuisinePlanBlock from '../../components/cuisine/CuisinePlanBlock.astro';
 import { getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
-  return getLocalizedStaticPaths('cuisine-page');
+  return getLocalizedStaticPaths('cuisine-page-meta');
 }
 
 const { lang } = Astro.params as { lang: Locale };
 
 const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
   lang,
-  'cuisine-page',
+  'cuisine-page-meta',
   'cuisine',
 );
 

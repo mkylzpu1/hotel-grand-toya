@@ -1,0 +1,101 @@
+{
+  "icon": "泊",
+  "eyebrow": "Services",
+  "heading": "馆内服务",
+  "feeLabel": "费用",
+  "plansLabel": "套餐",
+  "receptionHoursLabel": "接待时间",
+  "reservationMethodLabel": "预约方式",
+  "hoursLabel": "使用时间",
+  "items": [
+    {
+      "id": "room-service",
+      "name": "客房服务",
+      "image": {
+        "label": "客房服务"
+      },
+      "description": [
+        "可在客房内享用饮品与轻食。"
+      ],
+      "hours": "18:00〜22:00",
+      "reservationMethod": "请使用客房内电话点餐。",
+      "notes": [
+        "最后点餐时间为21:30。"
+      ]
+    },
+    {
+      "id": "massage",
+      "name": "按摩",
+      "image": {
+        "label": "按摩",
+        "alt": "按摩",
+        "src": "/assets/photos/facility-service1.png"
+      },
+      "description": [
+        "提供舒缓旅途疲劳的按摩服务。"
+      ],
+      "fee": "3,300日元起〜",
+      "plans": [
+        "30分钟疗程 3,300日元",
+        "60分钟疗程 6,000日元"
+      ],
+      "receptionHours": "15:00〜22:00",
+      "reservationMethod": "请联系前台咨询。",
+      "isFeatured": true
+    },
+    {
+      "id": "mahjong",
+      "name": "麻将",
+      "image": {
+        "label": "麻将"
+      },
+      "description": [
+        "提供麻将桌租借服务，适合与家人・朋友共度旅途时光。"
+      ],
+      "fee": "1,100日元（租桌费・不限时间）",
+      "hours": "10:00〜22:00",
+      "reservationMethod": "请联系前台咨询。",
+      "icon": "mahjong"
+    },
+    {
+      "id": "go-shogi",
+      "name": "围棋・将棋",
+      "image": {
+        "label": "围棋・将棋"
+      },
+      "description": [
+        "提供围棋・将棋棋盘租借服务。"
+      ],
+      "fee": "550日元（不限时间）",
+      "reservationMethod": "请至前台租借。",
+      "icon": "goshogi"
+    },
+    {
+      "id": "laundry",
+      "name": "洗衣机・烘干机",
+      "image": {
+        "label": "洗衣机・烘干机"
+      },
+      "description": [
+        "馆内备有投币式洗衣机・烘干机，方便长期住宿使用。"
+      ],
+      "fee": "洗涤：300日元／烘干：300日元（30分钟）",
+      "hours": "6:00〜23:00",
+      "location": "1楼洗衣角",
+      "icon": "washer"
+    },
+    {
+      "id": "wifi",
+      "name": "Wi-Fi",
+      "image": {
+        "label": "Wi-Fi"
+      },
+      "description": [
+        "馆内及客房内均可免费使用Wi-Fi。"
+      ],
+      "fee": "免费",
+      "hours": "24小时",
+      "icon": "wifi"
+    }
+  ]
+}

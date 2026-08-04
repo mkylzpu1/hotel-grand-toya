@@ -1,0 +1,14 @@
+{
+  "pageTitle": "FAQ",
+  "pageTitleEn": "FAQ",
+  "icon": "問",
+  "qaSection": {
+    "icon": "問",
+    "eyebrow": "FAQ",
+    "heading": "Frequently Asked Questions"
+  },
+  "contact": {
+    "leadText": "If you have any questions, please feel free to contact us.",
+    "emailNote": "Contact us by email"
+  }
+}

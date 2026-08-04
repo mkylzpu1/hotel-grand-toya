@@ -1,0 +1,52 @@
+{
+  "icon": "設",
+  "eyebrow": "Facilities",
+  "heading": "馆内设施",
+  "hoursLabel": "使用时间",
+  "feeLabel": "费用",
+  "paymentLabel": "支付方式",
+  "languagesLabel": "语言",
+  "contactFallbackLabel": "联系方式",
+  "items": [
+    {
+      "id": "lobby",
+      "name": "大堂",
+      "image": {
+        "label": "大堂",
+        "src": "/assets/photos/facility2.png",
+        "alt": "大堂"
+      },
+      "description": [
+        "会多种语言的工作人员将为您的住宿提供支持。"
+      ],
+      "hours": "24小时"
+    },
+    {
+      "id": "shop",
+      "name": "小卖部",
+      "image": {
+        "label": "小卖部",
+        "src": "/assets/photos/facility1.png",
+        "alt": "小卖部"
+      },
+      "description": [
+        "备有当地特色点心、伴手礼及日用品等。"
+      ],
+      "hours": "8:00〜21:00",
+      "payment": "现金・信用卡"
+    },
+    {
+      "id": "cafe-space",
+      "name": "咖啡休息区",
+      "image": {
+        "label": "咖啡休息区",
+        "src": "/assets/photos/facility3.png",
+        "alt": "咖啡休息区"
+      },
+      "description": [
+        "提供咖啡及各类软饮。抵达后或泡汤后，欢迎在此悠闲小憩。"
+      ],
+      "hours": "10:00〜17:00"
+    }
+  ]
+}

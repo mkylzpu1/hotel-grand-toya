@@ -1,0 +1,23 @@
+{
+  "pageTitle": "오시는 길",
+  "pageTitleEn": "ACCESS",
+  "icon": "道",
+  "quickNav": [
+    {
+      "href": "#section-parking",
+      "label": "지도・문의"
+    },
+    {
+      "href": "#section-train",
+      "label": "JR로 오시는 분"
+    },
+    {
+      "href": "#section-car",
+      "label": "자동차로 오시는 분"
+    },
+    {
+      "href": "#section-bus",
+      "label": "고속버스로 오시는 분"
+    }
+  ]
+}

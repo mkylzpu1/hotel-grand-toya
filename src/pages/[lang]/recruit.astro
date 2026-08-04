@@ -4,6 +4,7 @@ import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
 import { Mail, Phone, ShieldCheck, Home, Car, Shirt, Globe, Sparkles } from 'lucide-astro';
 import JobCard from '../../components/recruit/JobCard.astro';
+import { getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('recruit-page');
@@ -14,7 +15,15 @@ const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = a
   'recruit-page',
   'recruit',
 );
-const page = pageEntry.data;
+const [pageMetaEntry, contentEntry] = await Promise.all([
+  getEntry('recruit-page-meta', `recruit-page-meta.${lang}`),
+  getEntry('recruit-content', `recruit-content.${lang}`),
+]);
+const page = {
+  ...pageEntry.data,
+  ...(pageMetaEntry?.data ?? {}),
+  ...(contentEntry?.data ?? {}),
+};
 const headingLines = page.heading.split('\n');
 
 // 募集終了（status: "closed"）の職種は非表示

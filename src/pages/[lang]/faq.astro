@@ -3,6 +3,7 @@ import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
+import { getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('faq-page');
@@ -16,7 +17,15 @@ const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = a
   'faq',
 );
 
-const page = pageEntry.data;
+const [pageMetaEntry, contentEntry] = await Promise.all([
+  getEntry('faq-page-meta', `faq-page-meta.${lang}`),
+  getEntry('faq-categories', `faq-categories.${lang}`),
+]);
+const page = {
+  ...pageEntry.data,
+  ...(pageMetaEntry?.data ?? {}),
+  ...(contentEntry?.data ?? {}),
+};
 ---
 
 <PageTemplate

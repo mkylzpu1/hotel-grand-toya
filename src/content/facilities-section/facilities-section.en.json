@@ -1,0 +1,52 @@
+{
+  "icon": "設",
+  "eyebrow": "Facilities",
+  "heading": "In-house Facilities",
+  "hoursLabel": "Hours",
+  "feeLabel": "Fee",
+  "paymentLabel": "Payment",
+  "languagesLabel": "Languages",
+  "contactFallbackLabel": "Contact",
+  "items": [
+    {
+      "id": "lobby",
+      "name": "Lobby",
+      "image": {
+        "label": "Lobby",
+        "src": "/assets/photos/facility2.png",
+        "alt": "Lobby"
+      },
+      "description": [
+        "Our multilingual staff are here to support your stay."
+      ],
+      "hours": "24 hours"
+    },
+    {
+      "id": "shop",
+      "name": "Gift Shop",
+      "image": {
+        "label": "Gift shop",
+        "src": "/assets/photos/facility1.png",
+        "alt": "Gift shop"
+      },
+      "description": [
+        "We carry local specialty sweets, souvenirs, and everyday necessities."
+      ],
+      "hours": "8:00-21:00",
+      "payment": "Cash / Credit card"
+    },
+    {
+      "id": "cafe-space",
+      "name": "Café Space",
+      "image": {
+        "label": "Café space",
+        "src": "/assets/photos/facility3.png",
+        "alt": "Café space"
+      },
+      "description": [
+        "We offer coffee and soft drinks. Relax here after arrival or after a bath."
+      ],
+      "hours": "10:00-17:00"
+    }
+  ]
+}

@@ -1,0 +1,525 @@
+{
+  "facilitiesSection": {
+    "icon": "設",
+    "eyebrow": "Facilities",
+    "heading": "館内施設",
+    "hoursLabel": "営業時間",
+    "feeLabel": "料金",
+    "paymentLabel": "支払方法",
+    "languagesLabel": "対応言語",
+    "contactFallbackLabel": "フロントまでお問い合わせください",
+    "items": [
+      {
+        "id": "lobby",
+        "name": "ロビー",
+        "image": {
+          "label": "ロビー",
+          "src": "/assets/photos/facility2.png",
+          "alt": "ロビー"
+        },
+        "description": [
+          "多言語対応可能なスタッフが、ご滞在をサポートいたします。"
+        ],
+        "hours": "24時間"
+      },
+      {
+        "id": "shop",
+        "name": "売店",
+        "image": {
+          "label": "売店",
+          "src": "/assets/photos/facility1.png",
+          "alt": "売店"
+        },
+        "description": [
+          "地元の銘菓やお土産、日用品などを取り揃えております。"
+        ],
+        "hours": "8:00〜21:00",
+        "payment": "現金・クレジットカード"
+      },
+      {
+        "id": "cafe-space",
+        "name": "喫茶スペース",
+        "image": {
+          "label": "喫茶スペース",
+          "src": "/assets/photos/facility3.png",
+          "alt": "喫茶スペース"
+        },
+        "description": [
+          "コーヒーやソフトドリンクなどの喫茶メニューをご用意しております。ご到着後や湯上がりのひとときに、ゆったりとお過ごしください。"
+        ],
+        "hours": "10:00〜17:00"
+      }
+    ]
+  },
+  "servicesSection": {
+    "icon": "泊",
+    "eyebrow": "Services",
+    "heading": "館内サービス",
+    "feeLabel": "料金",
+    "plansLabel": "コース",
+    "receptionHoursLabel": "受付時間",
+    "reservationMethodLabel": "予約方法",
+    "hoursLabel": "利用時間",
+    "items": [
+      {
+        "id": "room-service",
+        "name": "ルームサービス",
+        "image": {
+          "label": "ルームサービス"
+        },
+        "description": [
+          "お飲み物や軽食を、お部屋でお楽しみいただけます。"
+        ],
+        "hours": "18:00〜22:00",
+        "reservationMethod": "客室備え付けの電話にてご注文ください。",
+        "notes": [
+          "ラストオーダーは21:30です。"
+        ]
+      },
+      {
+        "id": "massage",
+        "name": "マッサージ",
+        "image": {
+          "label": "マッサージ",
+          "alt": "マッサージ",
+          "src": "/assets/photos/facility-service1.png"
+        },
+        "description": [
+          "旅の疲れを癒す、マッサージサービスをご用意しております。"
+        ],
+        "fee": "3,300円〜",
+        "plans": [
+          "30分コース 3,300円",
+          "60分コース 6,000円"
+        ],
+        "receptionHours": "15:00〜22:00",
+        "reservationMethod": "フロントまでお問い合わせください。",
+        "isFeatured": true
+      },
+      {
+        "id": "mahjong",
+        "name": "麻雀",
+        "image": {
+          "label": "麻雀"
+        },
+        "description": [
+          "ご家族・ご友人との旅の時間に、麻雀卓の貸し出しを行っております。"
+        ],
+        "fee": "1,100円（卓貸し・時間無制限）",
+        "hours": "10:00〜22:00",
+        "reservationMethod": "フロントまでお問い合わせください。",
+        "icon": "mahjong"
+      },
+      {
+        "id": "go-shogi",
+        "name": "囲碁・将棋",
+        "image": {
+          "label": "囲碁・将棋"
+        },
+        "description": [
+          "囲碁・将棋盤の貸し出しを行っております。"
+        ],
+        "fee": "550円（時間無制限）",
+        "reservationMethod": "フロントにてお貸し出しいたします。",
+        "icon": "goshogi"
+      },
+      {
+        "id": "laundry",
+        "name": "洗濯機・乾燥機",
+        "image": {
+          "label": "洗濯機・乾燥機"
+        },
+        "description": [
+          "長期のご滞在にも便利な、コイン式の洗濯機・乾燥機を館内にご用意しております。"
+        ],
+        "fee": "洗濯：300円／乾燥：300円（30分）",
+        "hours": "6:00〜23:00",
+        "location": "1階ランドリーコーナー",
+        "icon": "washer"
+      },
+      {
+        "id": "wifi",
+        "name": "Wi-Fi",
+        "image": {
+          "label": "Wi-Fi"
+        },
+        "description": [
+          "館内・客室ともに無料でWi-Fiをご利用いただけます。"
+        ],
+        "fee": "無料",
+        "hours": "24時間",
+        "icon": "wifi"
+      }
+    ]
+  },
+  "activitiesSection": {
+    "icon": "観",
+    "eyebrow": "Sightseeing",
+    "heading": "周辺観光",
+    "partnerHeading": "特におすすめ・提携アクティビティ",
+    "otherHeading": "その他の周辺観光",
+    "allCategoryLabel": "すべて",
+    "partnerBadgeDefaultLabel": "おすすめ",
+    "includedInPlansHeading": "この体験が含まれるプラン",
+    "includedInPlansHeadingShort": "含まれるプラン",
+    "officialSiteLinkLabel": "公式サイトを見る",
+    "officialSiteLinkLabelShort": "公式サイト",
+    "categoryFilters": [
+      {
+        "id": "family",
+        "label": "ご家族 / お子様"
+      },
+      {
+        "id": "view",
+        "label": "絶景"
+      },
+      {
+        "id": "active",
+        "label": "アクティブに体験"
+      },
+      {
+        "id": "learn",
+        "label": "自然散策"
+      }
+    ],
+    "items": [
+      {
+        "id": "cruise",
+        "name": "洞爺湖遊覧船",
+        "shopName": "洞爺湖汽船",
+        "image": {
+          "label": "洞爺湖遊覧船",
+          "src": "/assets/photos/facility-out8.png",
+          "alt": "洞爺湖遊覧船"
+        },
+        "description": [
+          "洞爺湖を巡る遊覧船で、湖上から四季折々の美しい景色を楽しめます。中島に上陸し、自然豊かな散策や森林浴を満喫することもできます。",
+          "春から秋にかけてはロングラン花火大会にあわせた花火鑑賞船も運航され、湖上ならではの特別な景色を楽しめます。"
+        ],
+        "location": "北海道虻田郡洞爺湖町洞爺湖温泉",
+        "accessFromHotel": "徒歩約5分",
+        "officialSite": "https://www.toyakokisen.com/",
+        "isPartner": true,
+        "partnerBadgeLabel": "プランでお得に体験",
+        "includedInPlans": [
+          {
+            "name": "花火観賞船プラン",
+            "href": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045419&ci=20250713&co=20250714&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+          },
+          {
+            "name": "洞爺湖中島巡り遊覧船プラン",
+            "href": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045428&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+          }
+        ]
+      },
+      {
+        "id": "fireworks",
+        "name": "洞爺湖ロングラン花火大会",
+        "image": {
+          "label": "洞爺湖ロングラン花火大会",
+          "src": "/assets/photos/facility-out4.png",
+          "alt": "洞爺湖ロングラン花火大会"
+        },
+        "description": [
+          "春から秋まで毎晩開催される、洞爺湖を代表する花火大会です。ホテルから湖畔まで徒歩ですぐなので、夕食後に気軽に夜の散策と花火鑑賞を楽しめます。",
+          "湖上を移動しながら約20分間打ち上げられる全国でも珍しい花火大会。客室や湖畔、遊覧船など、それぞれ異なる景色で楽しめるのも洞爺湖ならではの魅力です。"
+        ],
+        "location": "洞爺湖温泉湖畔",
+        "accessFromHotel": "徒歩約3分",
+        "officialSite": "https://www.laketoya.com/",
+        "isPartner": true
+      },
+      {
+        "id": "noboribetsu-marine-park",
+        "name": "登別マリンパークニクス",
+        "shopName": "登別マリンパークニクス",
+        "image": {
+          "label": "登別マリンパークニクス",
+          "src": "/assets/photos/facility-out11.png",
+          "alt": "登別マリンパークニクス"
+        },
+        "description": [
+          "デンマークの古城をモチーフにした水族館で、海の生きものたちとのふれあいを満喫できます。ホテルから少し足を延ばして楽しめる人気のお出かけスポットです。",
+          "人気のペンギンパレードやイルカ・アシカのショー、大水槽など見どころが充実。ご家族はもちろん、カップルやご友人同士でも一日ゆっくり楽しめます。"
+        ],
+        "location": "北海道登別市登別東町1丁目22",
+        "accessFromHotel": "車約40分",
+        "officialSite": "https://www.nixe.co.jp/",
+        "isPartner": true,
+        "partnerBadgeLabel": "プランでお得に体験",
+        "includedInPlans": [
+          {
+            "name": "登別マリンパークニクスの入園券付きプラン",
+            "href": "https://d-reserve.jp/GSEA002F01400/GSEA002A01?hotelCode=0000002996&pl=PL00045429&rmcd001=RM00017387&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false"
+          }
+        ]
+      },
+      {
+        "id": "onsen-street",
+        "name": "洞爺湖温泉街散策",
+        "image": {
+          "label": "洞爺湖温泉街散策",
+          "src": "/assets/photos/facility-out5.png",
+          "alt": "洞爺湖温泉街散策"
+        },
+        "description": [
+          "ホテルから徒歩ですぐの温泉街には、お土産店やカフェ、飲食店、足湯などが点在しています。気軽に散策しながら、洞爺湖ならではの街歩きを楽しめます。",
+          "夕方には湖畔を散歩したり、花火大会の時間にあわせて歩いたりと、宿泊ならではのゆったりとした時間を過ごせるのも魅力です。"
+        ],
+        "location": "北海道虻田郡洞爺湖町洞爺湖温泉",
+        "accessFromHotel": "徒歩約1分",
+        "officialSite": "https://www.laketoya.com/",
+        "categories": [
+          "learn",
+          "family"
+        ]
+      },
+      {
+        "id": "illumination-tunnel",
+        "name": "イルミネーショントンネル",
+        "image": {
+          "label": "イルミネーショントンネル",
+          "src": "/assets/photos/facility-out19.png",
+          "alt": "イルミネーショントンネル"
+        },
+        "description": [
+          "洞爺湖温泉街を幻想的な光で彩る冬の人気スポットです。色とりどりのイルミネーションに包まれながら、ゆったりと夜の散策を楽しめます。",
+          "温泉街の散策や夕食後のお出かけにもぴったり。写真映えするスポットとしても人気があります。"
+        ],
+        "location": "北海道虻田郡洞爺湖町洞爺湖温泉",
+        "accessFromHotel": "徒歩約3分",
+        "officialSite": "https://www.laketoya.com/",
+        "categories": [
+          "view"
+        ]
+      },
+      {
+        "id": "canoe-sup",
+        "name": "洞爺湖カヌー・SUP体験",
+        "shopName": "洞爺ガイドセンター",
+        "image": {
+          "label": "洞爺湖カヌー・SUP体験",
+          "src": "/assets/photos/facility-out1.png",
+          "alt": "洞爺湖カヌー・SUP体験"
+        },
+        "description": [
+          "透明度の高い洞爺湖で、カヌーやSUPならではの水上散策を楽しめます。湖面に近い目線から眺める景色は、遊覧船とはまた違った魅力があります。",
+          "初心者向けのガイド付きプランもあり、初めての方でも安心。朝の静かな湖や夕暮れ時など、時間帯によって異なる洞爺湖の表情を体感できます。"
+        ],
+        "location": "洞爺湖温泉周辺",
+        "accessFromHotel": "徒歩約5分",
+        "officialSite": "https://toya-guide.com/",
+        "categories": [
+          "active"
+        ]
+      },
+      {
+        "id": "cherry-blossoms",
+        "name": "洞爺湖の桜",
+        "image": {
+          "label": "洞爺湖の桜",
+          "src": "/assets/photos/facility-out17.png",
+          "alt": "洞爺湖の桜"
+        },
+        "description": [
+          "春になると湖畔や周辺道路を桜が彩り、洞爺湖ならではの美しい春景色を楽しめます。湖と桜が織りなす景色は、この季節だけの特別な絶景です。",
+          "湖畔をゆっくり散策したり、ドライブを楽しんだりと、春の北海道を満喫できる人気スポットです。"
+        ],
+        "location": "北海道虻田郡洞爺湖町洞爺湖温泉周辺",
+        "accessFromHotel": "徒歩約5分",
+        "officialSite": "https://www.laketoya.com/",
+        "categories": [
+          "view",
+          "family"
+        ]
+      },
+      {
+        "id": "rental-cycle",
+        "name": "レンタサイクル",
+        "shopName": "レンタサイクル高柳商会",
+        "image": {
+          "label": "レンタサイクル",
+          "src": "/assets/photos/facility-out2.png",
+          "alt": "レンタサイクル"
+        },
+        "description": [
+          "レンタサイクルを利用すれば、洞爺湖湖畔や温泉街を自分のペースで巡ることができます。徒歩では少し遠い景色やスポットにも気軽に足を延ばせます。",
+          "湖畔の風を感じながら走るサイクリングは、季節ごとに異なる自然を満喫できる人気の楽しみ方。写真撮影やカフェ巡りにもおすすめです。"
+        ],
+        "location": "洞爺湖温泉街",
+        "accessFromHotel": "徒歩約5分",
+        "officialSite": "https://www.laketoya.com/",
+        "categories": [
+          "active"
+        ]
+      },
+      {
+        "id": "silo-observatory",
+        "name": "サイロ展望台",
+        "image": {
+          "label": "サイロ展望台",
+          "src": "/assets/photos/facility-out12.png",
+          "alt": "サイロ展望台"
+        },
+        "description": [
+          "洞爺湖、中島、有珠山、昭和新山を一望できる、洞爺湖を代表する絶景スポットです。晴れた日には羊蹄山まで見渡せることもあり、旅の記念写真にも人気です。",
+          "展望台では名物のプリンやソフトクリームを味わえるほか、夏季はスカイクルージング、冬季はスノーモービルなど季節限定のアクティビティも楽しめます。"
+        ],
+        "location": "北海道虻田郡洞爺湖町成香3-5",
+        "accessFromHotel": "車約15分",
+        "officialSite": "https://toyako.biz/",
+        "categories": [
+          "view",
+          "family"
+        ]
+      },
+      {
+        "id": "usuzan-ropeway",
+        "name": "有珠山ロープウェイ",
+        "shopName": "有珠山ロープウェイ",
+        "image": {
+          "label": "有珠山ロープウェイ",
+          "src": "/assets/photos/facility-out9.png",
+          "alt": "有珠山ロープウェイ"
+        },
+        "description": [
+          "昭和新山の麓から山頂へ約6分で到着するロープウェイです。眼下には洞爺湖や昭和新山、遠くには噴火湾まで広がる雄大な景色を一望できます。",
+          "山頂には展望台や散策路が整備されており、有珠山の火山活動が生み出したダイナミックな地形を間近で体感できます。四季折々で異なる景色を楽しめる人気スポットです。"
+        ],
+        "location": "北海道有珠郡壮瞥町昭和新山184-5",
+        "accessFromHotel": "車約10分",
+        "officialSite": "https://usuzan.hokkaido.jp/",
+        "categories": [
+          "view"
+        ]
+      },
+      {
+        "id": "showa-shinzan",
+        "name": "昭和新山",
+        "image": {
+          "label": "昭和新山",
+          "src": "/assets/photos/facility-out6.png",
+          "alt": "昭和新山"
+        },
+        "description": [
+          "1943年の噴火によって誕生した、今もなお迫力ある姿を残す活火山です。赤褐色の山肌は間近で見ると圧倒される迫力があります。",
+          "有珠山ロープウェイや熊牧場にも近く、周辺観光とあわせて立ち寄りやすいスポットです。洞爺湖ならではの火山の歴史や自然の力を感じられます。"
+        ],
+        "location": "北海道有珠郡壮瞥町昭和新山",
+        "accessFromHotel": "車約10分",
+        "officialSite": "https://usuzan.hokkaido.jp/",
+        "categories": [
+          "view",
+          "learn"
+        ]
+      },
+      {
+        "id": "sunflower-field",
+        "name": "洞爺湖ひまわり畑",
+        "image": {
+          "label": "洞爺湖ひまわり畑",
+          "src": "/assets/photos/facility-out18.png",
+          "alt": "洞爺湖ひまわり畑"
+        },
+        "description": [
+          "夏になると一面に咲き誇るひまわりが、青空と洞爺湖の景色を鮮やかに彩ります。見渡す限りの黄色い花畑は、思わず写真を撮りたくなる人気スポットです。",
+          "夏だけの特別な景色を楽しめる季節限定スポット。ドライブや湖畔散策とあわせて訪れるのもおすすめです。"
+        ],
+        "location": "北海道虻田郡洞爺湖町周辺",
+        "accessFromHotel": "車約10分",
+        "officialSite": "https://www.laketoya.com/",
+        "categories": [
+          "view",
+          "family"
+        ]
+      },
+      {
+        "id": "geopark-walk",
+        "name": "火山・ジオパーク散策",
+        "image": {
+          "label": "火山・ジオパーク散策",
+          "src": "/assets/photos/facility-out14.png",
+          "alt": "火山・ジオパーク散策"
+        },
+        "description": [
+          "洞爺湖有珠山ジオパークでは、西山山麓火口散策路や金比羅火口災害遺構散策路などを歩きながら、有珠山噴火の痕跡や大地の変化を間近で見ることができます。",
+          "隆起した道路や火口、被災した建物など、自然の力と復興の歩みを感じられる貴重なスポットです。洞爺湖ビジターセンターとあわせて訪れると、火山の歴史や防災についてより深く学べます。"
+        ],
+        "location": "北海道虻田郡洞爺湖町洞爺湖温泉周辺",
+        "accessFromHotel": "車約5分",
+        "officialSite": "https://www.laketoya.com/",
+        "categories": [
+          "learn"
+        ]
+      },
+      {
+        "id": "bear-ranch",
+        "name": "昭和新山熊牧場",
+        "shopName": "昭和新山熊牧場",
+        "image": {
+          "label": "昭和新山熊牧場",
+          "src": "/assets/photos/facility-out13.png",
+          "alt": "昭和新山熊牧場"
+        },
+        "description": [
+          "間近で見るヒグマの迫力は圧巻。北海道ならではの大自然を感じられる人気スポットで、大人も子どもも夢中になれる体験が待っています。",
+          "エサやり体験では、おやつをもらおうと芸をするようなしぐさを見せてくれることも。運が良ければ愛らしい子グマにも出会え、旅の思い出に残るひとときを過ごせます。"
+        ],
+        "location": "北海道有珠郡壮瞥町昭和新山183",
+        "accessFromHotel": "車約10分",
+        "officialSite": "https://kumakuma.co.jp/",
+        "categories": [
+          "family"
+        ]
+      },
+      {
+        "id": "laketoya-ranch",
+        "name": "レイクトーヤランチ",
+        "shopName": "レイクトーヤランチ",
+        "image": {
+          "label": "レイクトーヤランチ",
+          "src": "/assets/photos/facility-out15.png",
+          "alt": "レイクトーヤランチ"
+        },
+        "description": [
+          "北海道の雄大な自然に囲まれたロケーションで乗馬体験を楽しめます。初めての方でも安心して参加できるコースが用意されています。",
+          "馬とふれあいながら、ゆったりとした時間を過ごせる人気のアクティビティ。北海道らしい景色の中で特別な思い出を作れます。"
+        ],
+        "location": "北海道虻田郡洞爺湖町月浦44",
+        "accessFromHotel": "車約10分",
+        "officialSite": "https://www.laketoya-ranch.com/",
+        "categories": [
+          "family",
+          "active"
+        ]
+      },
+      {
+        "id": "lakehill-farm",
+        "name": "レークヒル・ファーム",
+        "image": {
+          "label": "レークヒル・ファーム",
+          "src": "/assets/photos/facility-out16.png",
+          "alt": "レークヒル・ファーム"
+        },
+        "description": [
+          "広大な牧場で動物たちとふれあったり、無料で借りられるボールやバドミントンなどで遊んだりと、ご家族やカップルでゆったり過ごせる人気スポットです。時間を忘れてのんびり楽しめるのも魅力です。",
+          "牧場自慢のジェラートはもちろん、焼きたてピザや地ビールも絶品。北海道らしい景色を眺めながら味わう食事は、旅のひとときをさらに豊かにしてくれます。"
+        ],
+        "location": "北海道虻田郡洞爺湖町花和127",
+        "accessFromHotel": "車約15分",
+        "officialSite": "https://lake-hill.com/",
+        "categories": [
+          "family",
+          "active"
+        ]
+      }
+    ]
+  },
+  "usageNotice": {
+    "heading": "ご利用にあたって",
+    "items": [
+      "館内サービス・周辺アクティビティは、季節・天候・営業状況により内容が変更となる場合があります。",
+      "詳しくはフロントまでお気軽にお問い合わせください。"
+    ]
+  }
+}

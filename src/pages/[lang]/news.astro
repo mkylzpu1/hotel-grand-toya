@@ -1,7 +1,7 @@
 ---
 import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import { localeFromId, type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
 
@@ -15,7 +15,11 @@ const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = a
   'news-page',
   'news',
 );
-const page = pageEntry.data;
+const [pageMetaEntry] = await Promise.all([getEntry('news-page-meta', `news-page-meta.${lang}`)]);
+const page = {
+  ...pageEntry.data,
+  ...(pageMetaEntry?.data ?? {}),
+};
 
 const categoryIdMap: Record<string, string> = {
   お知らせ: 'other',

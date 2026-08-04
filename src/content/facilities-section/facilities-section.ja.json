@@ -1,0 +1,52 @@
+{
+  "icon": "設",
+  "eyebrow": "Facilities",
+  "heading": "館内施設",
+  "hoursLabel": "営業時間",
+  "feeLabel": "料金",
+  "paymentLabel": "支払方法",
+  "languagesLabel": "対応言語",
+  "contactFallbackLabel": "フロントまでお問い合わせください",
+  "items": [
+    {
+      "id": "lobby",
+      "name": "ロビー",
+      "image": {
+        "label": "ロビー",
+        "src": "/assets/photos/facility2.png",
+        "alt": "ロビー"
+      },
+      "description": [
+        "多言語対応可能なスタッフが、ご滞在をサポートいたします。"
+      ],
+      "hours": "24時間"
+    },
+    {
+      "id": "shop",
+      "name": "売店",
+      "image": {
+        "label": "売店",
+        "src": "/assets/photos/facility1.png",
+        "alt": "売店"
+      },
+      "description": [
+        "地元の銘菓やお土産、日用品などを取り揃えております。"
+      ],
+      "hours": "8:00〜21:00",
+      "payment": "現金・クレジットカード"
+    },
+    {
+      "id": "cafe-space",
+      "name": "喫茶スペース",
+      "image": {
+        "label": "喫茶スペース",
+        "src": "/assets/photos/facility3.png",
+        "alt": "喫茶スペース"
+      },
+      "description": [
+        "コーヒーやソフトドリンクなどの喫茶メニューをご用意しております。ご到着後や湯上がりのひとときに、ゆったりとお過ごしください。"
+      ],
+      "hours": "10:00〜17:00"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "pageTitle": "공지사항",
+  "pageTitleEn": "NEWS",
+  "icon": "報",
+  "categoryFilters": [
+    {
+      "id": "other",
+      "label": "공지사항"
+    },
+    {
+      "id": "event",
+      "label": "이벤트"
+    },
+    {
+      "id": "maintenance",
+      "label": "점검・정비"
+    },
+    {
+      "id": "campaign",
+      "label": "캠페인"
+    }
+  ],
+  "allCategoryLabel": "전체",
+  "emptyLabel": "해당하는 공지사항이 없습니다.",
+  "importantLabel": "중요"
+}

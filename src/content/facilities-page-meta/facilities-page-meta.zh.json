@@ -1,0 +1,29 @@
+{
+  "pageTitle": "馆内设施・周边观光",
+  "pageTitleEn": "FACILITIES & SIGHTSEEING",
+  "intro": {
+    "icon": "館",
+    "eyebrow": "Facilities & Sightseeing",
+    "heading": "酒店的休闲方式",
+    "description": [
+      "为您介绍能让入住格兰多洞爷酒店更加舒适的馆内设施・服务・周边观光景点。",
+      "无论是想在馆内悠闲度过，还是想尽情享受洞爷湖周边的各种活动，都能配合您的旅行风格加以利用。",
+      "为使海外游客也能安心入住，我们同时提供多语言服务。"
+    ]
+  },
+  "icon": "館",
+  "quickNav": [
+    {
+      "href": "#section-facilities",
+      "label": "馆内设施"
+    },
+    {
+      "href": "#section-services",
+      "label": "馆内服务"
+    },
+    {
+      "href": "#section-activities",
+      "label": "周边观光"
+    }
+  ]
+}

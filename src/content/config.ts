@@ -375,20 +375,20 @@ const cuisinePageMeta = defineCollection({
     pageTitleEn: z.string(),
     reservationLinkLabel: z.string(),
     intro: z.object({
-      icon: z.string(),
+      icon: z.string().optional(),
       eyebrow: z.string(),
       heading: z.string(),
       description: z.array(z.string()),
     }),
-    icon: z.string(),
-    quickNav: z.array(z.object({ href: z.string(), label: z.string() })),
+    icon: z.string().optional(),
+    quickNav: z.array(z.object({ href: z.string().optional(), label: z.string() })),
   }),
 });
 
 const cuisineDinnerSection = defineCollection({
   type: 'data',
   schema: z.object({
-    icon: z.string(),
+    icon: z.string().optional(),
     eyebrow: z.string(),
     heading: z.string(),
     description: z.array(z.string()),
@@ -401,7 +401,7 @@ const cuisineDinnerSection = defineCollection({
 const cuisineBreakfastSection = defineCollection({
   type: 'data',
   schema: z.object({
-    icon: z.string(),
+    icon: z.string().optional(),
     eyebrow: z.string(),
     heading: z.string(),
     description: z.array(z.string()),
@@ -412,7 +412,7 @@ const cuisineBreakfastSection = defineCollection({
 const cuisineDiningVenues = defineCollection({
   type: 'data',
   schema: z.object({
-    icon: z.string(),
+    icon: z.string().optional(),
     eyebrow: z.string(),
     heading: z.string(),
     inRoom: z.object({
@@ -436,7 +436,7 @@ const cuisineGuestConsiderations = defineCollection({
   schema: z.object({
     items: z.array(
       z.object({
-        icon: z.string(),
+        icon: z.string().optional(),
         heading: z.string(),
         description: z.string(),
       }),
@@ -509,6 +509,129 @@ const activityItem = z.object({
     .optional(),
   categories: z.array(z.string()).optional(), // 複数カテゴリに属してよい
 });
+
+const facilitiesPageMeta = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    intro: z.object({
+      icon: z.string().optional(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      description: z.array(z.string()),
+    }),
+    icon: z.string().optional(),
+    quickNav: z.array(z.object({ href: z.string().optional(), label: z.string() })),
+  }),
+});
+
+const facilitiesSectionContent = defineCollection({
+  type: 'data',
+  schema: z.object({
+    icon: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    hoursLabel: z.string(),
+    feeLabel: z.string(),
+    paymentLabel: z.string(),
+    languagesLabel: z.string(),
+    contactFallbackLabel: z.string(),
+    items: z.array(facilityItem),
+  }),
+});
+
+const facilitiesServicesContent = defineCollection({
+  type: 'data',
+  schema: z.object({
+    icon: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    feeLabel: z.string(),
+    plansLabel: z.string(),
+    receptionHoursLabel: z.string(),
+    reservationMethodLabel: z.string(),
+    hoursLabel: z.string(),
+    items: z.array(serviceItem),
+  }),
+});
+
+const facilitiesActivitiesContent = defineCollection({
+  type: 'data',
+  schema: z.object({
+    icon: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    partnerHeading: z.string(),
+    otherHeading: z.string(),
+    categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
+    allCategoryLabel: z.string(),
+    partnerBadgeDefaultLabel: z.string(),
+    includedInPlansHeading: z.string(),
+    includedInPlansHeadingShort: z.string(),
+    officialSiteLinkLabel: z.string(),
+    officialSiteLinkLabelShort: z.string(),
+    items: z.array(activityItem),
+  }),
+});
+
+const facilitiesUsageNoticeContent = defineCollection({
+  type: 'data',
+  schema: z.object({
+    heading: z.string(),
+    items: z.array(z.string()),
+  }),
+});
+
+const facilitiesContent = defineCollection({
+  type: 'data',
+  schema: z.object({
+    facilitiesSection: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      hoursLabel: z.string(),
+      feeLabel: z.string(),
+      paymentLabel: z.string(),
+      languagesLabel: z.string(),
+      contactFallbackLabel: z.string(),
+      items: z.array(facilityItem),
+    }),
+    servicesSection: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      feeLabel: z.string(),
+      plansLabel: z.string(),
+      receptionHoursLabel: z.string(),
+      reservationMethodLabel: z.string(),
+      hoursLabel: z.string(),
+      items: z.array(serviceItem),
+    }),
+    activitiesSection: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      partnerHeading: z.string(),
+      otherHeading: z.string(),
+      categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
+      allCategoryLabel: z.string(),
+      partnerBadgeDefaultLabel: z.string(),
+      includedInPlansHeading: z.string(),
+      includedInPlansHeadingShort: z.string(),
+      officialSiteLinkLabel: z.string(),
+      officialSiteLinkLabelShort: z.string(),
+      items: z.array(activityItem),
+    }),
+    usageNotice: z
+      .object({
+        heading: z.string(),
+        items: z.array(z.string()),
+      })
+      .optional(),
+  }),
+});
+
 const facilitiesPage = defineCollection({
   type: 'data',
   schema: z.object({
@@ -562,6 +685,124 @@ const facilitiesPage = defineCollection({
     usageNotice: z.object({
       heading: z.string(),
       items: z.array(z.string()),
+    }),
+  }),
+});
+
+const accessPageMeta = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    icon: z.string().optional(),
+    quickNav: z.array(z.object({ href: z.string().optional(), label: z.string() })),
+  }),
+});
+
+const accessContent = defineCollection({
+  type: 'data',
+  schema: z.object({
+    byTrain: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      nearestStation: z.string(),
+      step1Badge: z.string(),
+      step2Badge: z.string(),
+      step3Badge: z.string().optional(),
+      toStationSuffix: z.string(),
+      fromStationAccessSuffix: z.string(),
+      step3Heading: z.string().optional(),
+      step3SubLabel: z.string().optional(),
+      walkLabel: z.string().optional(),
+      linkLabel: z.string().optional(),
+      officialTimetableLabel: z.string().optional(),
+      departures: z.array(
+        z.object({
+          from: z.string(),
+          boardingStation: z.string(),
+          trainName: z.string(),
+          duration: z.string(),
+        }),
+      ),
+      toHotelOptions: z.array(
+        z.object({
+          method: z.string(),
+          line: z.string().optional(),
+          boarding: z.string().optional(),
+          alighting: z.string().optional(),
+          duration: z.string(),
+          frequency: z.string().optional(),
+          note: z.string().optional(),
+          url: z.string().optional(),
+          linkLabel: z.string().optional(),
+        }),
+      ),
+      walkToHotel: z
+        .object({
+          duration: z.string(),
+          distance: z.string().optional(),
+          note: z.string().optional(),
+        })
+        .optional(),
+      shuttleAvailable: z.string().optional(),
+      officialTimetableUrl: z.string().optional(),
+    }),
+    byCar: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      step1Badge: z.string(),
+      step2Badge: z.string(),
+      step1Heading: z.string(),
+      step2Heading: z.string(),
+      departures: z.array(
+        z.object({
+          from: z.string(),
+          ic: z.string(),
+          duration: z.string(),
+        }),
+      ),
+      fromIc: z.array(
+        z.object({
+          ic: z.string(),
+          duration: z.string(),
+        }),
+      ),
+    }),
+    byBus: z
+      .object({
+        icon: z.string(),
+        eyebrow: z.string(),
+        heading: z.string(),
+        from: z.string(),
+        to: z.string(),
+        duration: z.string(),
+        frequency: z.string().optional(),
+        note: z.string().optional(),
+        url: z.string().optional(),
+        connectionLabel: z.string().optional(),
+        timetableLabel: z.string().optional(),
+      })
+      .optional(),
+    map: z.object({
+      icon: z.string(),
+      eyebrow: z.string(),
+      heading: z.string(),
+      embedUrl: z.string(),
+      openMapUrl: z.string(),
+      routeUrl: z.string(),
+      noMapText: z.string().optional(),
+      openMapLabel: z.string(),
+      routeLabel: z.string(),
+    }),
+    parking: z.object({
+      heading: z.string(),
+      notes: z.array(z.string()),
+    }),
+    surroundings: z.object({
+      heading: z.string(),
+      items: z.array(z.object({ label: z.string(), duration: z.string() })),
     }),
   }),
 });
@@ -683,6 +924,43 @@ const accessPage = defineCollection({
   }),
 });
 
+const faqPageMeta = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    icon: z.string().optional(),
+    qaSection: z.object({
+      icon: z.string().optional(),
+      eyebrow: z.string(),
+      heading: z.string(),
+    }),
+    contact: z.object({
+      leadText: z.string(),
+      emailNote: z.string(),
+    }),
+  }),
+});
+
+const faqCategories = defineCollection({
+  type: 'data',
+  schema: z.object({
+    categories: z.array(
+      z.object({
+        id: z.string(),
+        icon: z.string(),
+        label: z.string(),
+        items: z.array(
+          z.object({
+            question: z.string(),
+            answer: z.string(),
+          }),
+        ),
+      }),
+    ),
+  }),
+});
+
 const faqPage = defineCollection({
   type: 'data',
   schema: z.object({
@@ -728,6 +1006,19 @@ const relatedLinksCollection = defineCollection({
         label: z.string(),
       }),
     ),
+  }),
+});
+
+const newsPageMeta = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    icon: z.string().optional(),
+    categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
+    allCategoryLabel: z.string(),
+    emptyLabel: z.string(),
+    importantLabel: z.string(),
   }),
 });
 
@@ -838,6 +1129,46 @@ const recruitBenefitSchema = z.object({
   label: z.string(),
 });
 
+const recruitPageMeta = defineCollection({
+  type: 'data',
+  schema: z.object({
+    pageTitle: z.string(),
+    pageTitleEn: z.string(),
+    icon: z.string().optional(),
+    heading: z.string(),
+    description: z.array(z.string()),
+    emailAddress: z.string(),
+    tel: z.string(),
+    telLabel: z.string(),
+    emailLabel: z.string(),
+  }),
+});
+
+const recruitContent = defineCollection({
+  type: 'data',
+  schema: z.object({
+    workLife: z.object({
+      heading: z.string(),
+      description: z.string(),
+      points: z.array(z.string()),
+      photos: z.array(
+        z.object({
+          src: imagePath,
+          alt: z.string(),
+        }),
+      ),
+    }),
+    positionsHeading: z.string(),
+    positionsDescription: z.string(),
+    positions: z.array(recruitJobSchema),
+    processHeading: z.string(),
+    processDescription: z.string(),
+    process: z.array(recruitProcessStepSchema),
+    benefitsHeading: z.string(),
+    benefits: z.array(recruitBenefitSchema),
+  }),
+});
+
 const recruitPage = defineCollection({
   type: 'data',
   schema: z.object({
@@ -897,12 +1228,25 @@ export const collections = {
   'cuisine-venues': cuisineDiningVenues,
   'cuisine-guest-considerations': cuisineGuestConsiderations,
   'facilities-page': facilitiesPage,
+  'facilities-page-meta': facilitiesPageMeta,
+  'facilities-section': facilitiesSectionContent,
+  'facilities-services': facilitiesServicesContent,
+  'facilities-activities': facilitiesActivitiesContent,
+  'facilities-usage-notice': facilitiesUsageNoticeContent,
+  'facilities-content': facilitiesContent,
   'access-page': accessPage,
+  'access-page-meta': accessPageMeta,
+  'access-content': accessContent,
   'faq-page': faqPage,
+  'faq-page-meta': faqPageMeta,
+  'faq-categories': faqCategories,
   'related-links': relatedLinksCollection,
   'news-page': newsPage,
+  'news-page-meta': newsPageMeta,
   news,
   'privacy-page': privacyPage,
   'information-page': informationPage,
   'recruit-page': recruitPage,
+  'recruit-page-meta': recruitPageMeta,
+  'recruit-content': recruitContent,
 };

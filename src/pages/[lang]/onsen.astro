@@ -9,7 +9,7 @@ import {
   getLangLinks,
 } from '../../utils/pageContext';
 export async function getStaticPaths() {
-  return getLocalizedStaticPaths('onsen-page');
+  return getLocalizedStaticPaths('onsen-page-meta');
 }
 const { lang } = Astro.params as { lang: Locale };
 const [common, langLinks, metaEntry, qualityEntry, facilitiesEntry, stayEntry, dayUseEntry] =

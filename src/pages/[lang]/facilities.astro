@@ -5,6 +5,7 @@ import { type Locale } from '../../content/config';
 import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
 import { Footprints, Car, Star, Ticket, MapPin, ExternalLink, Store } from 'lucide-astro';
 import AmenityIcon from '../../components/common/AmenityIcon.astro';
+import { getEntry } from 'astro:content';
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('facilities-page');
 }
@@ -15,29 +16,66 @@ const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = a
   'facilities',
 );
 const page = pageEntry.data;
+const [
+  pageMetaEntry,
+  facilitiesSectionEntry,
+  servicesSectionEntry,
+  activitiesSectionEntry,
+  usageNoticeEntry,
+  legacyContentEntry,
+] = await Promise.all([
+  getEntry('facilities-page-meta', `facilities-page-meta.${lang}`),
+  getEntry('facilities-section', `facilities-section.${lang}`),
+  getEntry('facilities-services', `facilities-services.${lang}`),
+  getEntry('facilities-activities', `facilities-activities.${lang}`),
+  getEntry('facilities-usage-notice', `facilities-usage-notice.${lang}`),
+  getEntry('facilities-content', `facilities-content.${lang}`),
+]);
+const pageMeta = pageMetaEntry?.data ?? {
+  pageTitle: page.pageTitle,
+  pageTitleEn: page.pageTitleEn,
+  intro: page.intro,
+  icon: page.icon,
+  quickNav: page.quickNav,
+};
+const legacyContent = legacyContentEntry?.data ?? {
+  facilitiesSection: page.facilitiesSection,
+  servicesSection: page.servicesSection,
+  activitiesSection: page.activitiesSection,
+  usageNotice: page.usageNotice,
+};
+const content = {
+  facilitiesSection:
+    facilitiesSectionEntry?.data ?? legacyContent.facilitiesSection ?? page.facilitiesSection,
+  servicesSection:
+    servicesSectionEntry?.data ?? legacyContent.servicesSection ?? page.servicesSection,
+  activitiesSection:
+    activitiesSectionEntry?.data ?? legacyContent.activitiesSection ?? page.activitiesSection,
+  usageNotice: usageNoticeEntry?.data ?? legacyContent.usageNotice ?? page.usageNotice,
+};
 // 未確定項目のフォールバック表示
-const withFallback = (value?: string) => value || page.facilitiesSection.contactFallbackLabel;
+const withFallback = (value?: string) => value || content.facilitiesSection?.contactFallbackLabel;
 function getAccessIcon(accessText?: string) {
   if (!accessText) return null;
   if (accessText.includes('徒歩')) return 'walk';
   if (accessText.includes('車')) return 'car';
   return null;
 }
-const partnerActivities = page.activitiesSection.items.filter((item) => item.isPartner);
-const otherActivities = page.activitiesSection.items.filter((item) => !item.isPartner);
+const partnerActivities = (content.activitiesSection?.items ?? []).filter((item) => item.isPartner);
+const otherActivities = (content.activitiesSection?.items ?? []).filter((item) => !item.isPartner);
 ---
 
 <PageTemplate
   lang={lang}
-  title={`${page.pageTitle}｜${siteEntry.data.title}`}
+  title={`${pageMeta.pageTitle}｜${siteEntry.data.title}`}
   description={siteEntry.data.description}
   navigation={navigationEntry.data}
   site={siteEntry.data}
   langLinks={langLinks}
-  heroIcon={page.icon}
-  pageTitle={page.pageTitle}
-  pageTitleEn={page.pageTitleEn}
-  quickNav={page.quickNav}
+  heroIcon={pageMeta.icon}
+  pageTitle={pageMeta.pageTitle}
+  pageTitleEn={pageMeta.pageTitleEn}
+  quickNav={pageMeta.quickNav}
   quickNavLabel="ページ内ナビゲーション"
   currentPageId="facilities"
   relatedLinksHeading={relatedLinksData.heading}
@@ -47,13 +85,13 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
 >
   <section class="mx-auto max-w-[1320px] px-5 py-[88px] lg:px-10 lg:py-[108px]">
     <SectionEyebrow
-      icon={page.intro.icon}
-      eyebrow={page.intro.eyebrow}
-      heading={page.intro.heading}
+      icon={pageMeta.intro.icon}
+      eyebrow={pageMeta.intro.eyebrow}
+      heading={pageMeta.intro.heading}
     />
     <div class="mt-8 max-w-[640px]">
       {
-        page.intro.description.map((line) => (
+        pageMeta.intro.description.map((line) => (
           <p class="mb-4 text-[0.94rem] leading-[1.9] text-[#55524C] last:mb-0">{line}</p>
         ))
       }
@@ -64,14 +102,14 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
     <div class="mx-auto max-w-[1320px] px-5 lg:px-10">
       <div class="mb-14 max-w-[760px]">
         <SectionEyebrow
-          icon={page.facilitiesSection.icon}
-          eyebrow={page.facilitiesSection.eyebrow}
-          heading={page.facilitiesSection.heading}
+          icon={content.facilitiesSection.icon}
+          eyebrow={content.facilitiesSection.eyebrow}
+          heading={content.facilitiesSection.heading}
         />
       </div>
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {
-          page.facilitiesSection.items.map((item) => (
+          content.facilitiesSection.items.map((item) => (
             <div id={item.id} class="scroll-mt-24 border border-[#D8D7D2] bg-white">
               <div class="aspect-[4/3] overflow-hidden bg-[#EFEDE8]">
                 <img
@@ -94,7 +132,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                 <div class="mt-3 flex flex-col gap-1.5 border-t border-[#EDEBE6] pt-3 text-[0.78rem] text-[#8A8781]">
                   {(item.hours || item.location) && (
                     <div class="flex justify-between gap-2">
-                      <dt>{page.facilitiesSection.hoursLabel}</dt>
+                      <dt>{content.facilitiesSection.hoursLabel}</dt>
                       <dd class="text-right text-[#1E1C1A]">
                         {withFallback(item.hours ?? item.location)}
                       </dd>
@@ -102,19 +140,19 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                   )}
                   {item.fee && (
                     <div class="flex justify-between gap-2">
-                      <dt>{page.facilitiesSection.feeLabel}</dt>
+                      <dt>{content.facilitiesSection.feeLabel}</dt>
                       <dd class="text-right text-[#1E1C1A]">{item.fee}</dd>
                     </div>
                   )}
                   {item.payment && (
                     <div class="flex justify-between gap-2">
-                      <dt>{page.facilitiesSection.paymentLabel}</dt>
+                      <dt>{content.facilitiesSection.paymentLabel}</dt>
                       <dd class="text-right text-[#1E1C1A]">{item.payment}</dd>
                     </div>
                   )}
                   {item.languages && (
                     <div class="flex justify-between gap-2">
-                      <dt>{page.facilitiesSection.languagesLabel}</dt>
+                      <dt>{content.facilitiesSection.languagesLabel}</dt>
                       <dd class="text-right text-[#1E1C1A]">{item.languages.join('／')}</dd>
                     </div>
                   )}
@@ -131,14 +169,14 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
     <div class="mx-auto max-w-[1320px] px-5 lg:px-10">
       <div class="mb-14 max-w-[760px]">
         <SectionEyebrow
-          icon={page.servicesSection.icon}
-          eyebrow={page.servicesSection.eyebrow}
-          heading={page.servicesSection.heading}
+          icon={content.servicesSection.icon}
+          eyebrow={content.servicesSection.eyebrow}
+          heading={content.servicesSection.heading}
         />
       </div>
       {/* メインカード（マッサージ）：周辺アクティビティの提携カードに準拠 */}
       {
-        page.servicesSection.items
+        content.servicesSection.items
           .filter((item) => item.isFeatured)
           .map((item) => (
             <div
@@ -163,23 +201,25 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                 ))}
                 <dl class="mt-5 space-y-2.5 text-[0.78rem] text-[#8A8781]">
                   <div class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
-                    <dt class="shrink-0 sm:w-24">{page.servicesSection.feeLabel}</dt>
+                    <dt class="shrink-0 sm:w-24">{content.servicesSection.feeLabel}</dt>
                     <dd class="text-[#1E1C1A] sm:flex-1 sm:text-right">{item.fee}</dd>
                   </div>
                   {item.plans && (
                     <div class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
-                      <dt class="shrink-0 sm:w-24">{page.servicesSection.plansLabel}</dt>
+                      <dt class="shrink-0 sm:w-24">{content.servicesSection.plansLabel}</dt>
                       <dd class="text-[#1E1C1A] sm:flex-1 sm:text-right">
                         {item.plans.join('／')}
                       </dd>
                     </div>
                   )}
                   <div class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
-                    <dt class="shrink-0 sm:w-24">{page.servicesSection.receptionHoursLabel}</dt>
+                    <dt class="shrink-0 sm:w-24">{content.servicesSection.receptionHoursLabel}</dt>
                     <dd class="text-[#1E1C1A] sm:flex-1 sm:text-right">{item.receptionHours}</dd>
                   </div>
                   <div class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-2">
-                    <dt class="shrink-0 sm:w-24">{page.servicesSection.reservationMethodLabel}</dt>
+                    <dt class="shrink-0 sm:w-24">
+                      {content.servicesSection.reservationMethodLabel}
+                    </dt>
                     <dd class="text-[#1E1C1A] sm:flex-1 sm:text-right">{item.reservationMethod}</dd>
                   </div>
                 </dl>
@@ -190,7 +230,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
       {/* その他の館内サービス（リスト） */}
       <div class="border-l border-t border-[#D8D7D2] lg:grid lg:grid-cols-3">
         {
-          page.servicesSection.items
+          content.servicesSection.items
             .filter((item) => !item.isFeatured)
             .map((item) => (
               <div
@@ -216,12 +256,12 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                 <div class="flex flex-wrap gap-1.5 pl-[46px] pt-2.5 lg:pl-[50px] lg:pt-3">
                   {item.fee && (
                     <span class="rounded-full bg-[#FAECE7] px-2.5 py-1 text-[0.69rem] text-[#712B13] lg:text-[0.72rem]">
-                      {page.servicesSection.feeLabel} {item.fee}
+                      {content.servicesSection.feeLabel} {item.fee}
                     </span>
                   )}
                   {item.hours && (
                     <span class="rounded-full bg-[#FAECE7] px-2.5 py-1 text-[0.69rem] text-[#712B13] lg:text-[0.72rem]">
-                      {page.servicesSection.hoursLabel} {item.hours}
+                      {content.servicesSection.hoursLabel} {item.hours}
                     </span>
                   )}
                   {item.reservationMethod && (
@@ -241,9 +281,9 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
     <div class="mx-auto max-w-[1320px] px-5 lg:px-10">
       <div class="mb-14 max-w-[760px]">
         <SectionEyebrow
-          icon={page.activitiesSection.icon}
-          eyebrow={page.activitiesSection.eyebrow}
-          heading={page.activitiesSection.heading}
+          icon={content.activitiesSection.icon}
+          eyebrow={content.activitiesSection.eyebrow}
+          heading={content.activitiesSection.heading}
         />
       </div>
       {/* 提携アクティビティ（先頭・横長カード） */}
@@ -251,7 +291,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
         partnerActivities.length > 0 && (
           <div class="mb-14">
             <p class="mb-4 text-[0.78rem] font-medium tracking-[0.06em] text-[#A24730]">
-              {page.activitiesSection.partnerHeading}
+              {content.activitiesSection.partnerHeading}
             </p>
             <div class="space-y-6">
               {partnerActivities.map((item) => (
@@ -270,14 +310,14 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                     ) : (
                       <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-[#A8A5A0]">
                         <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF] font-serif text-[1.1rem]">
-                          {page.activitiesSection.icon}
+                          {content.activitiesSection.icon}
                         </span>
                         <span class="text-[0.7rem] tracking-[0.06em]">{item.name}</span>
                       </div>
                     )}
                     <span class="absolute left-3 top-3 flex items-center gap-1.5 bg-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-white">
                       <Star size={13} strokeWidth={2} />
-                      {item.partnerBadgeLabel ?? page.activitiesSection.partnerBadgeDefaultLabel}
+                      {item.partnerBadgeLabel ?? content.activitiesSection.partnerBadgeDefaultLabel}
                     </span>
                     {item.accessFromHotel && (
                       <span class="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.72rem] font-medium text-[#1E1C1A]">
@@ -306,7 +346,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                     {item.includedInPlans && item.includedInPlans.length > 0 && (
                       <div class="mt-5">
                         <p class="mb-2.5 text-[0.72rem] tracking-[0.02em] text-[#8A8781]">
-                          {page.activitiesSection.includedInPlansHeading}
+                          {content.activitiesSection.includedInPlansHeading}
                         </p>
                         <div class="flex flex-wrap gap-2">
                           {item.includedInPlans.map((plan) => (
@@ -345,7 +385,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                             rel="noopener noreferrer"
                             class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-3 py-1 text-[0.74rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
                           >
-                            {page.activitiesSection.officialSiteLinkLabel}
+                            {content.activitiesSection.officialSiteLinkLabel}
                             <ExternalLink
                               size={12}
                               strokeWidth={2}
@@ -368,7 +408,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
           <div>
             {partnerActivities.length > 0 && (
               <p class="mb-5 text-[0.78rem] font-medium tracking-[0.06em] text-[#8A8781]">
-                {page.activitiesSection.otherHeading}
+                {content.activitiesSection.otherHeading}
               </p>
             )}
             {/* カテゴリフィルタタブ */}
@@ -378,9 +418,9 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                 data-activity-category="all"
                 class="activity-tab rounded-full border border-[#A24730] bg-[#A24730] px-4 py-2 text-[0.78rem] font-medium text-white transition-colors"
               >
-                {page.activitiesSection.allCategoryLabel}
+                {content.activitiesSection.allCategoryLabel}
               </button>
-              {page.activitiesSection.categoryFilters.map((cat) => (
+              {content.activitiesSection.categoryFilters.map((cat) => (
                 <button
                   type="button"
                   data-activity-category={cat.id}
@@ -413,7 +453,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                     ) : (
                       <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-[#A8A5A0]">
                         <span class="flex h-12 w-12 items-center justify-center rounded-full border border-[#C7C5BF] font-serif text-[1.1rem]">
-                          {page.activitiesSection.icon}
+                          {content.activitiesSection.icon}
                         </span>
                         <span class="text-[0.7rem] tracking-[0.06em]">{item.name}</span>
                       </div>
@@ -440,7 +480,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                     {item.categories && item.categories.length > 0 && (
                       <div class="mb-3 flex flex-wrap gap-1.5">
                         {item.categories.map((catId) => {
-                          const cat = page.activitiesSection.categoryFilters.find(
+                          const cat = content.activitiesSection.categoryFilters.find(
                             (c) => c.id === catId,
                           );
                           return cat ? (
@@ -459,7 +499,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                     {item.includedInPlans && item.includedInPlans.length > 0 && (
                       <div class="mt-3">
                         <p class="mb-2 text-[0.7rem] text-[#8A8781]">
-                          {page.activitiesSection.includedInPlansHeadingShort}
+                          {content.activitiesSection.includedInPlansHeadingShort}
                         </p>
                         <div class="flex flex-wrap gap-1.5">
                           {item.includedInPlans.map((plan) => (
@@ -498,7 +538,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                             rel="noopener noreferrer"
                             class="group inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
                           >
-                            {page.activitiesSection.officialSiteLinkLabelShort}
+                            {content.activitiesSection.officialSiteLinkLabelShort}
                             <ExternalLink
                               size={11}
                               strokeWidth={2}
@@ -541,7 +581,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                         />
                       ) : (
                         <div class="flex h-full w-full items-center justify-center font-serif text-[0.9rem] text-[#A8A5A0]">
-                          {page.activitiesSection.icon}
+                          {content.activitiesSection.icon}
                         </div>
                       )}
                     </div>
@@ -582,7 +622,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                     {item.includedInPlans && item.includedInPlans.length > 0 && (
                       <div class="mt-3">
                         <p class="mb-2 text-[0.7rem] text-[#8A8781]">
-                          {page.activitiesSection.includedInPlansHeadingShort}
+                          {content.activitiesSection.includedInPlansHeadingShort}
                         </p>
                         <div class="flex flex-wrap gap-1.5">
                           {item.includedInPlans.map((plan) => (
@@ -621,7 +661,7 @@ const otherActivities = page.activitiesSection.items.filter((item) => !item.isPa
                             rel="noopener noreferrer"
                             class="group/link inline-flex items-center gap-1.5 rounded-full border border-[#A24730] px-2.5 py-1 text-[0.7rem] font-medium text-[#A24730] transition-colors hover:bg-[#A24730] hover:text-white"
                           >
-                            {page.activitiesSection.officialSiteLinkLabelShort}
+                            {content.activitiesSection.officialSiteLinkLabelShort}
                             <ExternalLink
                               size={11}
                               strokeWidth={2}

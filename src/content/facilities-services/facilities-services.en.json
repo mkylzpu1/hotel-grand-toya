@@ -1,0 +1,101 @@
+{
+  "icon": "泊",
+  "eyebrow": "Services",
+  "heading": "In-house Services",
+  "feeLabel": "Fee",
+  "plansLabel": "Plans",
+  "receptionHoursLabel": "Reception Hours",
+  "reservationMethodLabel": "Reservation Method",
+  "hoursLabel": "Hours",
+  "items": [
+    {
+      "id": "room-service",
+      "name": "Room Service",
+      "image": {
+        "label": "Room service"
+      },
+      "description": [
+        "Enjoy drinks and light snacks in your room."
+      ],
+      "hours": "18:00-22:00",
+      "reservationMethod": "Please order using the phone in your room.",
+      "notes": [
+        "Last order is at 21:30."
+      ]
+    },
+    {
+      "id": "massage",
+      "name": "Massage",
+      "image": {
+        "label": "Massage",
+        "alt": "Massage",
+        "src": "/assets/photos/facility-service1.png"
+      },
+      "description": [
+        "We offer a massage service to soothe the fatigue of travel."
+      ],
+      "fee": "From ¥3,300",
+      "plans": [
+        "30-min course ¥3,300",
+        "60-min course ¥6,000"
+      ],
+      "receptionHours": "15:00-22:00",
+      "reservationMethod": "Please inquire at the front desk.",
+      "isFeatured": true
+    },
+    {
+      "id": "mahjong",
+      "name": "Mahjong",
+      "image": {
+        "label": "Mahjong"
+      },
+      "description": [
+        "We rent out mahjong tables for time spent with family or friends."
+      ],
+      "fee": "¥1,100 (table rental, no time limit)",
+      "hours": "10:00-22:00",
+      "reservationMethod": "Please inquire at the front desk.",
+      "icon": "mahjong"
+    },
+    {
+      "id": "go-shogi",
+      "name": "Go / Shogi",
+      "image": {
+        "label": "Go / Shogi"
+      },
+      "description": [
+        "We rent out Go and Shogi boards."
+      ],
+      "fee": "¥550 (no time limit)",
+      "reservationMethod": "Available for rent at the front desk.",
+      "icon": "goshogi"
+    },
+    {
+      "id": "laundry",
+      "name": "Washer / Dryer",
+      "image": {
+        "label": "Washer / Dryer"
+      },
+      "description": [
+        "Coin-operated washers and dryers are available, convenient for longer stays."
+      ],
+      "fee": "Wash: ¥300 / Dry: ¥300 (30 min.)",
+      "hours": "6:00-23:00",
+      "location": "1st floor laundry corner",
+      "icon": "washer"
+    },
+    {
+      "id": "wifi",
+      "name": "Wi-Fi",
+      "image": {
+        "label": "Wi-Fi"
+      },
+      "description": [
+        "Free Wi-Fi is available throughout the hotel and in all guest rooms."
+      ],
+      "fee": "Free",
+      "hours": "24 hours",
+      "icon": "wifi"
+    }
+  ]
+}

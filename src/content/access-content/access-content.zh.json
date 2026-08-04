@@ -1,0 +1,153 @@
+{
+  "byTrain": {
+    "icon": "駅",
+    "eyebrow": "By Train",
+    "heading": "乘坐JR前来",
+    "nearestStation": "JR洞爷站",
+    "step1Badge": "STEP 1",
+    "step2Badge": "STEP 2",
+    "step3Badge": "STEP 3",
+    "toStationSuffix": "为止",
+    "fromStationAccessSuffix": "到酒店的交通方式",
+    "step3Heading": "从巴士站到酒店",
+    "step3SubLabel": "（乘坐巴士时）",
+    "walkLabel": "步行",
+    "linkLabel": "查看路线・时刻表",
+    "officialTimetableLabel": "查看JR时刻表（外部网站）",
+    "departures": [
+      {
+        "from": "札幌",
+        "boardingStation": "JR札幌站",
+        "trainName": "JR特快「北斗」",
+        "duration": "约1小时55分钟"
+      },
+      {
+        "from": "函馆",
+        "boardingStation": "JR函馆站",
+        "trainName": "JR特快「北斗」",
+        "duration": "约2小时"
+      },
+      {
+        "from": "室兰",
+        "boardingStation": "JR室兰站",
+        "trainName": "JR特快「北斗」／普通列车",
+        "duration": "约1小时"
+      }
+    ],
+    "toHotelOptions": [
+      {
+        "method": "出租车",
+        "duration": "约10分钟"
+      },
+      {
+        "method": "路线巴士",
+        "line": "道南巴士「室兰洞爷线」",
+        "boarding": "洞爷站前",
+        "alighting": "洞爷湖温泉",
+        "duration": "约24分钟（乘坐6站）",
+        "frequency": "无需预约，大约每小时1班",
+        "url": "https://www.donanbus.co.jp/map/toyako_toyakoonsen/"
+      }
+    ],
+    "walkToHotel": {
+      "duration": "约2分钟",
+      "distance": "170米",
+      "note": "如乘坐巴士，请在「洞爷湖温泉」站下车后步行前往酒店。"
+    },
+    "shuttleAvailable": "本酒店不提供接送服务，请利用上述出租车或路线巴士前来。",
+    "officialTimetableUrl": "https://www.jrhokkaido.co.jp/"
+  },
+  "byCar": {
+    "icon": "車",
+    "eyebrow": "By Car",
+    "heading": "自驾前来",
+    "step1Badge": "STEP 1",
+    "step2Badge": "STEP 2",
+    "step1Heading": "到最近的高速出口",
+    "step2Heading": "从高速出口到酒店",
+    "departures": [
+      {
+        "from": "札幌",
+        "ic": "虻田洞爷湖IC",
+        "duration": "约1小时50分钟"
+      },
+      {
+        "from": "新千岁机场",
+        "ic": "虻田洞爷湖IC",
+        "duration": "约1小时30分钟"
+      },
+      {
+        "from": "苫小牧",
+        "ic": "虻田洞爷湖IC",
+        "duration": "约1小时15分钟"
+      },
+      {
+        "from": "函馆・八云方向",
+        "ic": "丰浦IC／伊达IC",
+        "duration": "约2小时～2小时30分钟"
+      }
+    ],
+    "fromIc": [
+      {
+        "ic": "虻田洞爷湖IC",
+        "duration": "约5分钟"
+      },
+      {
+        "ic": "伊达IC",
+        "duration": "约30分钟"
+      },
+      {
+        "ic": "丰浦IC",
+        "duration": "约40分钟"
+      }
+    ]
+  },
+  "byBus": {
+    "icon": "バス",
+    "eyebrow": "By Highway Bus",
+    "heading": "乘坐高速巴士可直达，无需换乘",
+    "from": "札幌站前",
+    "to": "洞爷湖温泉",
+    "duration": "约2小时40分钟",
+    "frequency": "每日数班",
+    "note": "需完全预约。可在乘车日1个月前开始，最晚于当日首班车发车前2小时通过电话或网上预约系统预约。",
+    "url": "https://www.donanbus.co.jp/map/sap_toyako/",
+    "connectionLabel": "无需换乘・直达",
+    "timetableLabel": "查看时刻表"
+  },
+  "map": {
+    "icon": "図",
+    "eyebrow": "Map & Contact",
+    "heading": "地图・联系方式",
+    "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
+    "openMapUrl": "https://maps.google.com/?q=ホテルグランドトーヤ",
+    "routeUrl": "https://www.google.com/maps/dir/?api=1&destination=ホテルグランドトーヤ",
+    "noMapText": "地图准备中",
+    "openMapLabel": "在Google地图中打开",
+    "routeLabel": "查看路线"
+  },
+  "parking": {
+    "heading": "停车场信息",
+    "notes": [
+      "除酒店内停车场外，马路对面也设有停车场。",
+      "无需预约，抵达时会有工作人员为您引导。"
+    ]
+  },
+  "surroundings": {
+    "heading": "周边交通",
+    "items": [
+      {
+        "label": "到便利店",
+        "duration": "步行约5分钟"
+      },
+      {
+        "label": "到洞爷湖温泉街",
+        "duration": "步行约10分钟"
+      },
+      {
+        "label": "到游览船码头",
+        "duration": "步行约8分钟"
+      }
+    ]
+  }
+}

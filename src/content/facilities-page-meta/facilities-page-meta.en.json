@@ -1,0 +1,29 @@
+{
+  "pageTitle": "Facilities & Sightseeing",
+  "pageTitleEn": "FACILITIES & SIGHTSEEING",
+  "intro": {
+    "icon": "館",
+    "eyebrow": "Facilities & Sightseeing",
+    "heading": "Ways to Enjoy the Hotel",
+    "description": [
+      "Here are the in-house facilities, services, and nearby sightseeing spots that make your stay at Hotel Grand Toya more comfortable.",
+      "Whether you'd like to relax at the hotel or enjoy activities around Lake Toya, there's something for every travel style.",
+      "We also offer multilingual support so that guests visiting from overseas can feel at ease."
+    ]
+  },
+  "icon": "館",
+  "quickNav": [
+    {
+      "href": "#section-facilities",
+      "label": "In-house Facilities"
+    },
+    {
+      "href": "#section-services",
+      "label": "In-house Services"
+    },
+    {
+      "href": "#section-activities",
+      "label": "Nearby Sightseeing"
+    }
+  ]
+}

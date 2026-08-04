@@ -1,0 +1,14 @@
+{
+  "pageTitle": "よくあるご質問",
+  "pageTitleEn": "FAQ",
+  "icon": "問",
+  "qaSection": {
+    "icon": "問",
+    "eyebrow": "FAQ",
+    "heading": "よくあるご質問"
+  },
+  "contact": {
+    "leadText": "ご不明な点がございましたら、お気軽にお問い合わせください",
+    "emailNote": "メールでのお問い合わせ"
+  }
+}
