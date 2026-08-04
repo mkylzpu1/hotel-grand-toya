@@ -605,8 +605,6 @@
     createClass({
       render: function () {
         var data = this.props.entry.get('data');
-        var getAsset = this.props.getAsset;
-        var sections = arr(data.get('sections'));
         var quickNav = arr(data.get('quickNav'));
         var stayNotice = data.get('stayNotice');
         var firstFloorNotice = data.get('firstFloorNotice');
@@ -618,172 +616,14 @@
 
         return Wrapper(
           PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
-
-          // ★追加: ページ内アンカーナビ
           QuickNavBadges(quickNav),
 
-          sections.map(function (section, si) {
-            var rooms = arr(get(section, 'rooms'));
-            return h(
-              'div',
-              { key: si, style: { marginBottom: '36px' } },
-              rooms.map(function (room, ri) {
-                var floors = arr(get(room, 'floors'));
-                var basicInfo = arr(get(room, 'basicInfo'));
-                return Card(
-                  [
-                    Eyebrow(get(room, 'icon'), get(room, 'eyebrow'), get(room, 'name')),
-                    h(
-                      'div',
-                      {
-                        key: 'img',
-                        style: { height: '160px', overflow: 'hidden', marginBottom: '10px' },
-                      },
-                      ImgTag(
-                        getAsset,
-                        get(get(room, 'image'), 'src'),
-                        get(get(room, 'image'), 'alt'),
-                      ),
-                    ),
-                    Lines(get(room, 'description')),
-                    // ★追加: 基本情報（広さ・定員・ベッド／布団・眺望・喫煙可否 など）
-                    basicInfo.length > 0 &&
-                      h(
-                        'div',
-                        {
-                          key: 'basicInfo',
-                          style: {
-                            margin: '10px 0',
-                            fontSize: '0.78rem',
-                            color: COLOR.inkFaint,
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            gap: '10px',
-                          },
-                        },
-                        basicInfo.map(function (bi, bii) {
-                          return h(
-                            'span',
-                            { key: bii },
-                            get(bi, 'label') + ': ' + get(bi, 'value'),
-                          );
-                        }),
-                      ),
-                    // ★追加: 料金パネル（priceLabel / priceFrom）
-                    get(room, 'priceFrom') &&
-                      h(
-                        'p',
-                        {
-                          key: 'price',
-                          style: {
-                            fontWeight: 600,
-                            color: COLOR.bengara,
-                            marginBottom: '10px',
-                            fontSize: '0.9rem',
-                          },
-                        },
-                        (get(room, 'priceLabel') || '') + ' ' + get(room, 'priceFrom'),
-                      ),
-                    h(
-                      'div',
-                      { key: 'floors' },
-                      floors.map(function (floor, fi) {
-                        var images = arr(get(floor, 'images'));
-                        var badges = toJS(get(floor, 'badges')) || [];
-                        return h(
-                          'div',
-                          {
-                            key: fi,
-                            style: { borderTop: '1px dashed ' + COLOR.line, padding: '12px 0' },
-                          },
-                          h(
-                            'p',
-                            {
-                              style: { fontWeight: 600, color: COLOR.indigo, marginBottom: '6px' },
-                            },
-                            get(floor, 'label'),
-                          ),
-                          badges.length > 0 &&
-                            h(
-                              'div',
-                              {
-                                style: {
-                                  display: 'flex',
-                                  flexWrap: 'wrap',
-                                  gap: '6px',
-                                  marginBottom: '8px',
-                                },
-                              },
-                              badges.map(function (b, bi) {
-                                return h(
-                                  'span',
-                                  {
-                                    key: bi,
-                                    style: {
-                                      fontSize: '0.7rem',
-                                      color: COLOR.bengara,
-                                      border: '1px solid ' + COLOR.bengara,
-                                      borderRadius: '2px',
-                                      padding: '2px 8px',
-                                    },
-                                  },
-                                  b,
-                                );
-                              }),
-                            ),
-                          h(
-                            'div',
-                            {
-                              style: {
-                                display: 'grid',
-                                gridTemplateColumns:
-                                  'repeat(' + Math.max(images.length, 1) + ', 1fr)',
-                                gap: '8px',
-                                marginBottom: '8px',
-                              },
-                            },
-                            images.map(function (img, ii) {
-                              return h(
-                                'div',
-                                { key: ii, style: { height: '90px', overflow: 'hidden' } },
-                                ImgTag(getAsset, get(img, 'src'), get(img, 'alt')),
-                              );
-                            }),
-                          ),
-                          Lines(get(floor, 'description')),
-                          // ★追加: 1階客室の注意書き（isFirstFloorのフロアにのみ表示）
-                          get(floor, 'isFirstFloor') &&
-                            firstFloorNotice &&
-                            h(
-                              'div',
-                              {
-                                style: {
-                                  marginTop: '8px',
-                                  background: COLOR.panel,
-                                  padding: '10px',
-                                  fontSize: '0.76rem',
-                                },
-                              },
-                              h(
-                                'p',
-                                { style: { fontWeight: 600, marginBottom: '4px' } },
-                                get(firstFloorNotice, 'heading'),
-                              ),
-                              arr(get(firstFloorNotice, 'items')).map(function (it, ii) {
-                                return h('p', { key: ii }, '※ ' + it);
-                              }),
-                            ),
-                        );
-                      }),
-                    ),
-                  ],
-                  { key: ri },
-                );
-              }),
-            );
-          }),
+          h(
+            'p',
+            { style: { fontSize: '0.8rem', color: COLOR.inkFaint, marginBottom: '20px' } },
+            '※ 客室タイプ（和室・洋室など）本体は「03 客室ページ｜客室タイプ」コレクションで編集してください。',
+          ),
 
-          // ★追加: 無料設備・アメニティ（共通設備一覧）
           commonAmenities.length > 0 &&
             h(
               'div',
@@ -811,7 +651,6 @@
               ),
             ),
 
-          // ★追加: ご滞在案内（チェックイン・チェックアウト・支払い・キャンセル規定）
           stayNotice &&
             h(
               'div',
@@ -846,7 +685,20 @@
               ),
             ),
 
-          // ★追加: 料金に関する注記・重要なご案内
+          firstFloorNotice &&
+            h(
+              'div',
+              { style: { marginBottom: '16px', fontSize: '0.8rem', color: COLOR.inkFaint } },
+              h(
+                'p',
+                { style: { fontWeight: 600, marginBottom: '4px' } },
+                get(firstFloorNotice, 'heading'),
+              ),
+              arr(get(firstFloorNotice, 'items')).map(function (it, i) {
+                return h('p', { key: i }, '※ ' + it);
+              }),
+            ),
+
           priceNote &&
             h(
               'p',

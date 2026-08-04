@@ -184,7 +184,7 @@ collections:
     icon: 'home'
     label: 'トップページ'
     label_singular: 'トップページ'
-    description: 'サイトタイトル・住所・電話番号・フッター文言など、全ページ共通の情報です。'
+    description: 'トップページの内容です。'
     folder: 'src/content'
     create: false
     delete: false
@@ -229,12 +229,7 @@ collections:
     format: json
     summary: '{{fields.menuLabel}}'
     fields:
-      - {
-          label: '管理画面側の表示ラベル',
-          name: menuLabel,
-          widget: string,
-          i18n: duplicate,
-        }
+      - { label: '管理画面側の表示ラベル', name: menuLabel, widget: string, i18n: duplicate }
       - {
           label: '表示順（数字が小さいほど上に表示）',
           name: order,
@@ -383,17 +378,144 @@ collections:
   - divider: true
 
   # ── 客室ページ ───────────────────────
+  - name: 客室
+    icon: 'hotel'
+    label: '客室'
+    label_singular: '客室'
+    description: '客室ページの内容です。'
+    folder: 'src/content'
+    create: false
+    delete: false
+    fields:
+      - { label: 'blank', name: 'blank', widget: string }
+
+  - name: 'rooms'
+    label: '客室一覧'
+    icon: 'arrow_right'
+    label_singular: '客室一覧'
+    description: '客室タイプごとの内容です。客室ページの本文・共通設備・ご滞在案内などは「その他」で編集します。'
+    folder: 'src/content/rooms'
+    create: true
+    delete: false
+    slug: '{{slug}}'
+    i18n: true
+    extension: json
+    format: json
+    summary: '{{fields.name}}'
+    fields:
+      - {
+          label: '表示順（数字が小さいほど上に表示。同じカテゴリID内での並び順にも使用）',
+          name: order,
+          widget: number,
+          i18n: duplicate,
+        }
+      - {
+          label: 'カテゴリID（和室=japanese、洋室=western など。同じ値のもの同士がひとつのセクションにまとまります。言語共通）',
+          name: categoryId,
+          widget: string,
+          i18n: duplicate,
+        }
+      - { label: 'アンカーID(言語共通)', name: id, widget: string, i18n: duplicate }
+      - { label: 'アイコン', name: icon, widget: string, i18n: duplicate }
+      - { label: 'アイキャッチ文言', name: eyebrow, widget: string, i18n: true }
+      - { label: '客室名', name: name, widget: string, i18n: true }
+      - label: '説明文(改行ごとに1項目)'
+        name: description
+        widget: list
+        i18n: true
+        field: { label: '段落', name: paragraph, widget: text }
+      - label: '代表画像'
+        name: image
+        widget: object
+        i18n: true
+        fields:
+          - { label: 'ラベル', name: label, widget: string }
+          - { label: '画像(言語共通)', name: src, widget: image, required: false, i18n: duplicate }
+          - { label: '代替テキスト(alt)', name: alt, widget: string, required: false }
+      - label: '基本情報（自由に項目を追加・削除できます）'
+        name: basicInfo
+        widget: list
+        i18n: true
+        summary: '{{label}}：{{value}}'
+        collapsed: true
+        required: false
+        fields:
+          - { label: 'ラベル(例: 広さ)', name: label, widget: string }
+          - { label: '値(例: 26㎡)', name: value, widget: string }
+      - {
+          label: '料金パネルのラベル(例: 「1泊2食付・お一人様」)',
+          name: priceLabel,
+          widget: string,
+          required: false,
+          i18n: true,
+        }
+      - {
+          label: '料金目安(例: 「15,000円台〜」。単位まで含めて入力)',
+          name: priceFrom,
+          widget: string,
+          required: false,
+          i18n: true,
+        }
+      - label: 'フロア(部屋タイプ)'
+        name: floors
+        widget: list
+        i18n: true
+        summary: '{{label}}'
+        collapsed: true
+        fields:
+          - { label: 'ラベル', name: label, widget: string }
+          - { label: '予約サイト表示名', name: reservationName, widget: string }
+          - {
+              label: '予約リンク先(言語共通)',
+              name: reservationUrl,
+              widget: string,
+              required: false,
+              i18n: duplicate,
+            }
+          - label: 'バッジ'
+            name: badges
+            widget: list
+            required: false
+            field: { label: 'バッジ文言', name: badge, widget: string }
+          - label: '画像(最大3枚)'
+            name: images
+            widget: list
+            max: 3
+            summary: '{{label}}'
+            fields:
+              - { label: 'ラベル', name: label, widget: string }
+              - {
+                  label: '画像(言語共通)',
+                  name: src,
+                  widget: image,
+                  required: false,
+                  i18n: duplicate,
+                }
+              - { label: '代替テキスト(alt)', name: alt, widget: string, required: false }
+          - label: '説明文(改行ごとに1項目)'
+            name: description
+            widget: list
+            field: { label: '段落', name: paragraph, widget: text }
+          - {
+              label: '1階の客室として扱う',
+              name: isFirstFloor,
+              widget: boolean,
+              required: false,
+              default: false,
+            }
+
   - name: 'rooms-page'
-    label: '03 客室ページ'
-    label_singular: '客室ページ'
-    description: '/rooms/ ページの内容です。「和室セクション」「洋室セクション」の中に、客室タイプごとの説明とフロア別プランが入れ子になっています。'
+    label: 'その他'
+    icon: 'arrow_right'
+    label_singular: 'その他'
+    description: '客室ページの本文・共通設備・ご滞在案内など、客室タイプ以外の内容です。'
     folder: 'src/content/rooms-page'
     create: false
     delete: false
     i18n: true
     extension: json
     format: json
-    summary: '{{fields.pageTitle}}'
+    summary: '客室一覧以外の設定'
     fields:
       - { label: 'ページタイトル', name: 'pageTitle', widget: 'string', i18n: true }
       - {
@@ -479,99 +601,8 @@ collections:
           - { label: '支払い方法', name: paymentValue, widget: string }
           - { label: 'キャンセル規定ラベル', name: cancellationLabel, widget: string }
           - { label: 'キャンセル規定', name: cancellationValue, widget: string }
-      - label: '客室セクション(和室・洋室)'
-        name: 'sections'
-        widget: 'list'
-        i18n: true
-        summary: '{{id}}'
-        fields:
-          - { label: 'アンカーID(言語共通・例: japanese / western)', name: 'id', widget: 'string' }
-          - label: '客室一覧'
-            name: 'rooms'
-            widget: 'list'
-            summary: '{{name}}（定員{{capacity}}）'
-            fields:
-              - { label: 'アンカーID(言語共通)', name: 'id', widget: 'string' }
-              - { label: 'アイコン', name: 'icon', widget: 'string' }
-              - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string' }
-              - { label: '客室名', name: 'name', widget: 'string' }
-              - label: '説明文(改行ごとに1項目)'
-                name: 'description'
-                widget: 'list'
-                field: { label: '段落', name: 'paragraph', widget: 'text' }
-              - label: '代表画像'
-                name: 'image'
-                widget: 'object'
-                fields:
-                  - { label: 'ラベル', name: 'label', widget: 'string' }
-                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false, i18n: duplicate }
-                  - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
-              - label: '基本情報（自由に項目を追加・削除できます）'
-                name: 'basicInfo'
-                widget: 'list'
-                summary: '{{label}}：{{value}}'
-                collapsed: true
-                hint: '「広さ」「定員」以外にも、「Wi-Fi」「駐車場」など好きな項目を追加できます。'
-                fields:
-                  - { label: 'ラベル(例: 広さ)', name: 'label', widget: 'string' }
-                  - { label: '値(例: 26㎡)', name: 'value', widget: 'string' }
-              - {
-                  label: '料金パネルのラベル(例: 「1泊2食付・お一人様」)',
-                  name: 'priceLabel',
-                  widget: 'string',
-                  required: false,
-                }
-              - {
-                  label: '料金目安(例: 「15,000円台〜」。単位まで含めて入力)',
-                  name: 'priceFrom',
-                  widget: 'string',
-                  required: false,
-                  hint: '実際の料金と異なる場合があるため、目安である旨が伝わる書き方にしてください。',
-                }
-              - label: 'フロア(部屋タイプ)'
-                name: 'floors'
-                widget: 'list'
-                summary: '{{label}}'
-                collapsed: true
-                fields:
-                  - { label: 'ラベル', name: 'label', widget: 'string' }
-                  - { label: '予約サイト表示名', name: 'reservationName', widget: 'string' }
-                  - {
-                      label: '予約リンク先(言語共通)',
-                      name: 'reservationUrl',
-                      widget: 'string',
-                      required: false,
-                    }
-                  - label: 'バッジ'
-                    name: 'badges'
-                    widget: 'list'
-                    required: false
-                    field: { label: 'バッジ文言', name: 'badge', widget: 'string' }
-                  - label: '画像(最大3枚)'
-                    name: 'images'
-                    widget: 'list'
-                    max: 3
-                    summary: '{{label}}'
-                    fields:
-                      - { label: 'ラベル', name: 'label', widget: 'string' }
-                      - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false, i18n: duplicate }
-                      - {
-                          label: '代替テキスト(alt)',
-                          name: 'alt',
-                          widget: 'string',
-                          required: false,
-                        }
-                  - label: '説明文(改行ごとに1項目)'
-                    name: 'description'
-                    widget: 'list'
-                    field: { label: '段落', name: 'paragraph', widget: 'text' }
-                  - {
-                      label: '1階の客室として扱う',
-                      name: 'isFirstFloor',
-                      widget: 'boolean',
-                      required: false,
-                      default: false,
-                    }
+
+  - divider: true
 
   # ── 温泉ページ ───────────────────────
   - name: 'onsen-page'
@@ -1026,7 +1057,13 @@ collections:
                 required: false
                 fields:
                   - { label: 'ラベル', name: 'label', widget: 'string' }
-                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false, i18n: duplicate }
+                  - {
+                      label: '画像(言語共通)',
+                      name: 'src',
+                      widget: 'image',
+                      required: false,
+                      i18n: duplicate,
+                    }
                   - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
               - label: '説明文(改行ごとに1項目)'
                 name: 'description'
@@ -1081,7 +1118,13 @@ collections:
                 required: false
                 fields:
                   - { label: 'ラベル', name: 'label', widget: 'string' }
-                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false, i18n: duplicate }
+                  - {
+                      label: '画像(言語共通)',
+                      name: 'src',
+                      widget: 'image',
+                      required: false,
+                      i18n: duplicate,
+                    }
                   - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
               - label: '説明文(改行ごとに1項目)'
                 name: 'description'
@@ -1183,7 +1226,13 @@ collections:
                 required: false
                 fields:
                   - { label: 'ラベル', name: 'label', widget: 'string' }
-                  - { label: '画像(言語共通)', name: 'src', widget: 'image', required: false, i18n: duplicate }
+                  - {
+                      label: '画像(言語共通)',
+                      name: 'src',
+                      widget: 'image',
+                      required: false,
+                      i18n: duplicate,
+                    }
                   - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
               - label: '説明文(改行ごとに1項目)'
                 name: 'description'

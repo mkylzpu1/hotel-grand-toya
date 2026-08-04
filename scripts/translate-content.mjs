@@ -237,7 +237,9 @@ async function main() {
         const before = getAtPath(targetContent, p);
         setAtPath(targetContent, p, value);
         if (before !== value) {
-          console.log(`  [${code}] ${p.join('.')}: 画像パスを複製 -> "${value}"（元: "${before}"）`);
+          console.log(
+            `  [${code}] ${p.join('.')}: 画像パスを複製 -> "${value}"（元: "${before}"）`,
+          );
         } else {
           console.log(`  [${code}] ${p.join('.')}: 画像パスは既に一致`);
         }

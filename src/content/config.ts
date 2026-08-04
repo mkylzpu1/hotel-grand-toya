@@ -289,41 +289,40 @@ const roomsPage = defineCollection({
       heading: z.string(),
       items: z.array(z.string()),
     }),
-    // 和室セクション・洋室セクション。ページ内の大枠はこの2つのみ。
-    sections: z.array(
+  }),
+});
+
+// top-sections と同じ「1客室タイプ＝1ファイル」構成。
+const roomTypeItem = defineCollection({
+  type: 'data',
+  schema: z.object({
+    order: z.number(), // 表示順（数字が小さいほど上）
+    categoryId: z.string(), // 旧 sections[].id 相当（例: "japanese" / "western"）。言語共通・アンカーIDとしても使用
+    id: z.string(), // 客室タイプ固有ID（言語共通）
+    icon: z.string(),
+    eyebrow: z.string(),
+    name: z.string(),
+    description: z.array(z.string()),
+    image: roomGalleryItem,
+    basicInfo: z
+      .array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+        }),
+      )
+      .optional(),
+    priceLabel: z.string().optional(),
+    priceFrom: z.string().optional(),
+    floors: z.array(
       z.object({
-        id: z.string(),
-        rooms: z.array(
-          z.object({
-            id: z.string(),
-            icon: z.string(),
-            eyebrow: z.string(),
-            name: z.string(),
-            description: z.array(z.string()),
-            image: roomGalleryItem,
-            basicInfo: z
-              .array(
-                z.object({
-                  label: z.string(), // 例: 「広さ」「Wi-Fi」「駐車場」
-                  value: z.string(), // 例: 「26㎡」「無料」「近隣に有り」
-                }),
-              )
-              .optional(),
-            priceLabel: z.string().optional(),
-            priceFrom: z.string().optional(),
-            floors: z.array(
-              z.object({
-                label: z.string(),
-                reservationName: z.string(),
-                reservationUrl: z.string().url().optional(),
-                badges: z.array(z.string()).optional(),
-                images: z.array(roomGalleryItem).max(3),
-                description: z.array(z.string()),
-                isFirstFloor: z.boolean().optional(),
-              }),
-            ),
-          }),
-        ),
+        label: z.string(),
+        reservationName: z.string(),
+        reservationUrl: z.string().url().optional(),
+        badges: z.array(z.string()).optional(),
+        images: z.array(roomGalleryItem).max(3),
+        description: z.array(z.string()),
+        isFirstFloor: z.boolean().optional(),
       }),
     ),
   }),
@@ -849,6 +848,7 @@ export const collections = {
   'top-sections': topSections,
   'onsen-page': onsenPage,
   'rooms-page': roomsPage,
+  rooms: roomTypeItem,
   'cuisine-page': cuisinePage,
   'facilities-page': facilitiesPage,
   'access-page': accessPage,

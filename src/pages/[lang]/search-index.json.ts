@@ -40,18 +40,17 @@ export const GET: APIRoute = async ({ params }) => {
   const entries: SearchEntry[] = [];
 
   // --- 客室ページ ---
-  const roomsEntry = findByLang(await getCollection('rooms-page'), lang);
-  if (roomsEntry) {
-    const page = roomsEntry.data;
-    for (const section of page.sections) {
-      for (const room of section.rooms) {
-        entries.push({
-          title: room.name,
-          excerpt: excerpt(room.description),
-          url: `/${lang}/rooms/#${room.id}`,
-          category: page.pageTitle,
-        });
-      }
+  const roomsPageEntry = findByLang(await getCollection('rooms-page'), lang);
+  const roomTypeEntries = await getCollection('rooms', (entry) => localeFromId(entry.id) === lang);
+  if (roomsPageEntry) {
+    const page = roomsPageEntry.data;
+    for (const room of roomTypeEntries) {
+      entries.push({
+        title: room.data.name,
+        excerpt: excerpt(room.data.description),
+        url: `/${lang}/rooms/#${room.data.id}`,
+        category: page.pageTitle,
+      });
     }
   }
 

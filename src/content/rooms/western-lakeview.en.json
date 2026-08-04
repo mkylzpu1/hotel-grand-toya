@@ -1,0 +1,57 @@
+{
+  "order": 2,
+  "categoryId": "western",
+  "id": "western-lakeview",
+  "icon": "洋",
+  "eyebrow": "Western-style Room",
+  "name": "Western-style Room",
+  "image": {
+    "label": "Room overview",
+    "src": "/assets/photos/facility-3.jpg",
+    "alt": "Lakeside Western-style room (standard)"
+  },
+  "basicInfo": [
+    { "label": "Size", "value": "26㎡" },
+    { "label": "Capacity", "value": "1-2 guests" },
+    { "label": "Bed / Futon", "value": "Twin beds" },
+    { "label": "View", "value": "Lake Toya view" },
+    { "label": "Smoking", "value": "Non-smoking" }
+  ],
+  "priceLabel": "1 night with 2 meals from",
+  "priceFrom": "16,000 yen per person (varies by season)",
+  "description": [
+    "For guests who prefer not to sleep on tatami, or who prefer beds, our Western-style rooms are recommended.",
+    "Choose from the first floor or higher floors."
+  ],
+  "floors": [
+    {
+      "label": "1st Floor Room",
+      "reservationName": "[1F] Western-style twin room facing the lake",
+      "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017389&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
+      "badges": ["Lake Toya view", "Fireworks viewable (4/28-10/31)"],
+      "images": [
+        { "label": "Room overview", "src": "/assets/photos/room-1st-1.png" },
+        { "label": "View from window", "src": "/assets/photos/image2.png", "alt": "View from the room" }
+      ],
+      "description": [
+        "A first-floor Western-style room facing the lake, letting you enjoy a bed at a more affordable price.",
+        "As it is on the first floor, the view is somewhat limited. Thank you for your understanding."
+      ],
+      "isFirstFloor": true
+    },
+    {
+      "label": "2nd Floor & Above",
+      "reservationName": "Western-style twin room facing the lake",
+      "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017388&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
+      "badges": ["Lake Toya view", "View of Nakajima Island & Mt. Yotei", "Fireworks viewable (4/28-10/31)"],
+      "images": [
+        { "label": "Room overview", "src": "/assets/photos/hero-lake.jpg", "alt": "Lakeside Japanese-style room (standard)" },
+        { "label": "View from window", "src": "/assets/photos/image2.png", "alt": "View from the room" }
+      ],
+      "description": [
+        "A Western-style room for guests who prefer a bed, with views of Lake Toya, Nakajima Island, and Mt. Yotei.",
+        "Just like the Japanese-style rooms, you can watch the Long-Run Fireworks Festival from your room."
+      ]
+    }
+  ]
+}

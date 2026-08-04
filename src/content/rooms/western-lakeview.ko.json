@@ -1,0 +1,57 @@
+{
+  "order": 2,
+  "categoryId": "western",
+  "id": "western-lakeview",
+  "icon": "洋",
+  "eyebrow": "Western-style Room",
+  "name": "서양식 객실",
+  "image": {
+    "label": "객실 전경",
+    "src": "/assets/photos/facility-3.jpg",
+    "alt": "호수 측 서양식 객실（스탠다드）"
+  },
+  "basicInfo": [
+    { "label": "면적", "value": "26㎡" },
+    { "label": "정원", "value": "1〜2명" },
+    { "label": "침대／이불", "value": "트윈" },
+    { "label": "전망", "value": "도야코 뷰" },
+    { "label": "흡연 여부", "value": "금연" }
+  ],
+  "priceLabel": "1박 2식 포함・1인 기준",
+  "priceFrom": "16,000엔대〜（1인 기준・시즌에 따라 변동）",
+  "description": [
+    "다다미에서의 취침이 익숙하지 않으신 분이나 침대 숙박을 선호하시는 분께는 서양식 객실을 추천드립니다.",
+    "1층 또는 2층 이상의 층에서 선택하실 수 있습니다."
+  ],
+  "floors": [
+    {
+      "label": "1층 객실",
+      "reservationName": "【1층】호수에 면한 서양식 트윈룸",
+      "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017389&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
+      "badges": ["도야코 뷰", "불꽃놀이 감상 가능（4/28〜10/31）"],
+      "images": [
+        { "label": "객실 전경", "src": "/assets/photos/room-1st-1.png" },
+        { "label": "창밖 풍경", "src": "/assets/photos/image2.png", "alt": "객실에서 바라본 풍경" }
+      ],
+      "description": [
+        "호수 측에 면한 1층 서양식 객실로, 가격을 절약하면서 침대 타입을 이용하실 수 있습니다.",
+        "1층이기 때문에 경관에 다소 제약이 있습니다. 미리 양해 부탁드립니다."
+      ],
+      "isFirstFloor": true
+    },
+    {
+      "label": "2층 이상 객실",
+      "reservationName": "호수에 면한 서양식 트윈룸",
+      "reservationUrl": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002996&pl=PL00045414&rmcd001=RM00017388&rm001=1&lt001=0_1_2_3_4_5&lnum001=2_0_0_0_0_0&sumrm=1&way=1&cinon=true&dpck=false&DPCheckEnable=false",
+      "badges": ["도야코 뷰", "나카지마・요테이산 조망", "불꽃놀이 감상 가능（4/28〜10/31）"],
+      "images": [
+        { "label": "객실 전경", "src": "/assets/photos/hero-lake.jpg", "alt": "호수 측 일본식 객실（스탠다드）" },
+        { "label": "창밖 풍경", "src": "/assets/photos/image2.png", "alt": "객실에서 바라본 풍경" }
+      ],
+      "description": [
+        "침대 타입을 원하시는 고객님을 위한 서양식 객실로, 도야코・나카지마・요테이산을 바라보실 수 있습니다.",
+        "일본식 객실과 마찬가지로 롱런 불꽃축제를 객실에서 감상하실 수 있습니다."
+      ]
+    }
+  ]
+}
