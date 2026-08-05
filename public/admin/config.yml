@@ -9,7 +9,6 @@ backend:
 publish_mode: editorial_workflow
 media_folder: 'public/assets/photos'
 public_folder: '/assets/photos'
-
 site_url: 'https://mkylzpu1.github.io/hotel-grand-toya/ja/'
 # サイト全体の多言語設定。
 # structure: multiple_files -> 1言語につき1ファイルを生成（例: hero.ja.json, hero.en.json）
@@ -45,14 +44,18 @@ collections:
     fields:
       - { label: '背景画像（言語共通）', name: image, widget: image, i18n: duplicate }
       - { label: '画像の代替テキスト (alt)', name: imageAlt, widget: string, i18n: true }
-      - { label: 'アイキャッチ文言（例: 洞爺湖温泉）', name: eyebrow, widget: string, i18n: duplicate }
+      - {
+          label: 'アイキャッチ文言（例: 洞爺湖温泉）',
+          name: eyebrow,
+          widget: string,
+          i18n: duplicate,
+        }
       - label: '見出し（改行ごとに1項目）'
         name: titleLines
         widget: list
         i18n: true
         field: { label: '行', name: line, widget: string }
       - { label: '説明文', name: description, widget: text, i18n: true }
-
   # ── トップページ コンテンツセクション（客室・温泉・お料理・館内・コンセプト）──
   - name: top_sections
     label: '各紹介セクション'
@@ -147,7 +150,6 @@ collections:
           - { label: '画像（言語共通）', name: src, widget: image, i18n: duplicate }
           - { label: '代替テキスト (alt)', name: alt, widget: string }
           - { label: 'キャプション', name: caption, widget: string, required: false }
-
   # ── アクセス・周辺観光セクション（トップページ下部） ───────────────────────
   - name: access
     label: 'アクセス・周辺観光'
@@ -164,7 +166,12 @@ collections:
     fields:
       - { label: 'ヒーロー画像（言語共通）', name: heroImage, widget: image, i18n: duplicate }
       - { label: '画像の代替テキスト (alt)', name: heroImageAlt, widget: string, i18n: true }
-      - { label: 'アイキャッチ文言（例: Access）', name: eyebrow, widget: string, i18n: duplicate }
+      - {
+          label: 'アイキャッチ文言（例: Access）',
+          name: eyebrow,
+          widget: string,
+          i18n: duplicate,
+        }
       - { label: '見出し', name: heading, widget: string, i18n: true }
       - label: 'アクセス手段リスト'
         name: accessList
@@ -204,7 +211,6 @@ collections:
           i18n: true,
         }
   - divider: true
-
   # ── 客室ページ ───────────────────────
   - name: 客室
     icon: 'hotel'
@@ -216,7 +222,6 @@ collections:
     delete: false
     fields:
       - { label: 'blank', name: 'blank', widget: string }
-
   - name: 'rooms'
     label: '客室一覧'
     icon: 'arrow_right'
@@ -291,11 +296,13 @@ collections:
             name: badges
             widget: list
             required: false
+            i18n: true
             field: { label: 'バッジ文言', name: badge, widget: string }
           - label: '画像(最大3枚)'
             name: images
             widget: list
             max: 3
+            i18n: true
             summary: '{{label}}'
             fields:
               - { label: 'ラベル', name: label, widget: string }
@@ -318,7 +325,6 @@ collections:
               required: false,
               default: false,
             }
-
   - name: 'rooms-page'
     label: 'その他'
     icon: 'arrow_right'
@@ -402,9 +408,7 @@ collections:
           - { label: '支払い方法', name: paymentValue, widget: string }
           - { label: 'キャンセル規定ラベル', name: cancellationLabel, widget: string }
           - { label: 'キャンセル規定', name: cancellationValue, widget: string }
-
   - divider: true
-
   - name: ご宿泊・日帰り入浴
     icon: 'bath_outdoor'
     label: 'ご宿泊・日帰り入浴'
@@ -415,7 +419,6 @@ collections:
     delete: false
     fields:
       - { label: 'blank', name: 'blank', widget: string }
-
   # ── 基本設定 ───────────────────────
   - name: 'onsen-page-meta'
     label: '基本設定'
@@ -437,7 +440,6 @@ collections:
           i18n: duplicate,
         }
       - { label: 'ページアイコン(1文字)', name: 'icon', widget: 'string', i18n: duplicate }
-
   # ── 泉質・効能 ───────────────────────
   - name: 'onsen-quality'
     label: '泉質・効能'
@@ -486,7 +488,6 @@ collections:
         fields:
           - { label: 'ラベル', name: 'label', widget: 'string' }
           - { label: '内容', name: 'value', widget: 'text' }
-
   # ── 温泉施設紹介 ───────────────────────
   - name: 'onsen-facilities'
     label: '温泉施設紹介'
@@ -515,7 +516,6 @@ collections:
           - { label: '代替テキスト(alt)', name: 'imageAlt', widget: 'string' }
           - { label: '説明', name: 'description', widget: 'text' }
           - { label: '利用時間', name: 'hours', widget: 'string' }
-
   # ── 宿泊のお客様向け利用案内 ───────────────────────
   - name: 'onsen-usage-stay'
     label: '宿泊のお客様利用案内'
@@ -553,7 +553,6 @@ collections:
         fields:
           - { label: 'ラベル', name: 'label', widget: 'string' }
           - { label: '内容', name: 'value', widget: 'text' }
-
   # ── 日帰り入浴のお客様向け利用案内 ───────────────────────
   - name: 'onsen-usage-dayuse'
     label: '日帰り入浴のお客様利用案内'
@@ -595,9 +594,7 @@ collections:
         i18n: true
         required: false
         field: { label: '項目', name: 'note', widget: 'string' }
-
   - divider: true
-
   # ── お料理ページ ───────────────────────
   - name: お料理
     icon: 'fork_spoon'
@@ -645,7 +642,6 @@ collections:
             widget: 'list'
             i18n: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
-
   - name: 'cuisine-dinner'
     label: '夕食プラン'
     icon: 'arrow_right'
@@ -731,7 +727,6 @@ collections:
               required: false,
               i18n: duplicate,
             }
-
   - name: 'cuisine-breakfast'
     label: '朝食プラン'
     icon: 'arrow_right'
@@ -782,7 +777,6 @@ collections:
             collapsed: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
           - { label: '季節の注意書き', name: 'seasonalNote', widget: 'string', i18n: true }
-
   - name: 'cuisine-venues'
     label: 'お食事会場'
     icon: 'arrow_right'
@@ -873,7 +867,6 @@ collections:
         i18n: true
         collapsed: true
         field: { label: '段落', name: 'paragraph', widget: 'text' }
-
   - name: 'cuisine-guest-considerations'
     label: 'ご利用にあたっての注意事項'
     icon: 'arrow_right'
@@ -897,9 +890,7 @@ collections:
           - { label: 'アイコン', name: 'icon', widget: 'string' }
           - { label: '見出し', name: 'heading', widget: 'string' }
           - { label: '説明', name: 'description', widget: 'string' }
-
   - divider: true
-
   # ── 館内施設ページ ───────────────────────
   - name: 館内施設・周辺観光
     icon: 'trip'
@@ -911,7 +902,6 @@ collections:
     delete: false
     fields:
       - { label: 'blank', name: 'blank', widget: 'string' }
-
   - name: 'facilities-page-meta'
     label: '基本設定'
     icon: 'arrow_right'
@@ -952,7 +942,6 @@ collections:
             widget: 'list'
             i18n: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
-
   - name: 'facilities-section'
     label: '館内施設一覧'
     icon: 'arrow_right'
@@ -1007,7 +996,6 @@ collections:
           - { label: '場所', name: 'location', widget: 'string', i18n: true, required: false }
           - { label: '料金', name: 'fee', widget: 'string', i18n: true, required: false }
           - { label: '支払い方法', name: 'payment', widget: 'string', i18n: true, required: false }
-
   - name: 'facilities-services'
     label: '館内サービス一覧'
     icon: 'arrow_right'
@@ -1102,7 +1090,6 @@ collections:
               default: false,
             }
           - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate, required: false }
-
   - name: 'facilities-activities'
     label: '周辺観光一覧'
     icon: 'arrow_right'
@@ -1226,9 +1213,7 @@ collections:
         allow_add: false
         i18n: true
         field: { label: '項目', name: 'item', widget: 'string' }
-
   - divider: true
-
   # ── アクセスページ(詳細版) ───────────────────────
   - name: アクセス
     icon: 'airport_shuttle'
@@ -1240,7 +1225,6 @@ collections:
     delete: false
     fields:
       - { label: 'blank', name: 'blank', widget: 'string' }
-
   - name: 'access-page-meta'
     label: '基本設定'
     icon: 'arrow_right'
@@ -1268,7 +1252,6 @@ collections:
           required: false,
           i18n: duplicate,
         }
-
   - name: 'access-content'
     label: '本文'
     icon: 'arrow_right'
@@ -1308,9 +1291,7 @@ collections:
             fields:
               - { label: '名称', name: 'label', widget: 'string' }
               - { label: '所要時間', name: 'duration', widget: 'string' }
-
   - divider: true
-
   # ── よくある質問ページ ───────────────────────
   - name: よくある質問
     icon: 'question_mark'
@@ -1322,7 +1303,6 @@ collections:
     delete: false
     fields:
       - { label: 'blank', name: 'blank', widget: 'string' }
-
   - name: 'faq-page-meta'
     label: '基本設定'
     icon: 'arrow_right'
@@ -1365,7 +1345,6 @@ collections:
         fields:
           - { label: 'ご不明な点の案内文', name: 'leadText', widget: 'string', i18n: true }
           - { label: 'メール案内文', name: 'emailNote', widget: 'string', i18n: true }
-
   - name: 'faq-categories'
     label: 'FAQ一覧'
     icon: 'arrow_right'
@@ -1397,9 +1376,7 @@ collections:
             fields:
               - { label: '質問', name: 'question', widget: 'string', i18n: true }
               - { label: '回答', name: 'answer', widget: 'text', i18n: true }
-
   - divider: true
-
   # ── お知らせページ ───────────────────────
   - name: お知らせ
     icon: 'circle_notifications'
@@ -1411,7 +1388,6 @@ collections:
     delete: false
     fields:
       - { label: 'blank', name: 'blank', widget: 'string', i18n: true }
-
   - name: 'news-page-meta'
     label: '基本設定'
     icon: 'arrow_right'
@@ -1439,7 +1415,6 @@ collections:
           required: false,
           i18n: duplicate,
         }
-
   # ── お知らせ投稿 ───────────────────────
   - name: news
     label: '投稿一覧'
@@ -1491,9 +1466,7 @@ collections:
         i18n: true
         hint: '1行＝1段落として表示されます。まず日本語だけ入力すれば、コミット時に他言語へ自動翻訳されます。'
         field: { label: '段落', name: paragraph, widget: text }
-
   - divider: true
-
   # ── 採用情報ページ ───────────────────────
   - name: 採用情報
     icon: 'diversity_3'
@@ -1505,7 +1478,6 @@ collections:
     delete: false
     fields:
       - { label: 'blank', name: 'blank', widget: 'string' }
-
   - name: 'recruit-page-meta'
     label: '基本設定'
     icon: 'arrow_right'
@@ -1543,7 +1515,6 @@ collections:
       - { label: '電話番号', name: 'tel', widget: 'string', i18n: duplicate }
       - { label: '電話ラベル', name: 'telLabel', widget: 'string', i18n: true }
       - { label: 'メールラベル', name: 'emailLabel', widget: 'string', i18n: true }
-
   - name: 'recruit-content'
     label: '本文'
     icon: 'arrow_right'
@@ -1602,38 +1573,48 @@ collections:
             widget: 'select'
             options: ['open', 'closed']
             default: 'open'
+            i18n: duplicate
           - label: 'アイコン(写真が無い場合に使用)'
             name: 'icon'
             widget: 'select'
             options: ['chef-hat', 'bed-double', 'concierge-bell']
+            i18n: duplicate
           - label: '写真(任意・ある場合はこちらを優先表示)'
             name: 'image'
             widget: 'object'
             required: false
             fields:
               - { label: '画像(言語共通)', name: 'src', widget: 'image', i18n: duplicate }
-              - { label: '代替テキスト(alt)', name: 'alt', widget: 'string' }
-          - { label: '職種名', name: 'title', widget: 'string' }
-          - { label: '雇用形態', name: 'employmentType', widget: 'string' }
-          - { label: '採用人数(数字)', name: 'recruitCount', widget: 'number' }
+              - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', i18n: true }
+          - { label: '職種名', name: 'title', widget: 'string', i18n: true }
+          - { label: '雇用形態', name: 'employmentType', widget: 'string', i18n: true }
+          - {
+              label: '採用人数(数字)',
+              name: 'recruitCount',
+              widget: 'number',
+              i18n: duplicate,
+            }
           - {
               label: '採用人数の表示文言（{count}が数字に置き換わります）',
               name: 'recruitCountLabel',
               widget: 'string',
               default: '採用人数 {count}名',
               hint: '例: 「採用人数 {count}名」',
+              i18n: true,
             }
-          - { label: '仕事紹介文', name: 'summary', widget: 'text' }
+          - { label: '仕事紹介文', name: 'summary', widget: 'text', i18n: true }
           - label: '主な仕事内容'
             name: 'duties'
             widget: 'list'
+            i18n: true
             field: { label: '項目', name: 'duty', widget: 'string' }
-          - { label: '給与情報', name: 'salaryRoughLabel', widget: 'string' }
-          - { label: '就業時間', name: 'workingHours', widget: 'string' }
-          - { label: '休日・休暇', name: 'holidays', widget: 'string' }
+          - { label: '給与情報', name: 'salaryRoughLabel', widget: 'string', i18n: true }
+          - { label: '就業時間', name: 'workingHours', widget: 'string', i18n: true }
+          - { label: '休日・休暇', name: 'holidays', widget: 'string', i18n: true }
           - label: 'タグ'
             name: 'tags'
             widget: 'list'
+            i18n: true
             field: { label: 'タグ', name: 'tag', widget: 'string' }
       - { label: '採用フロー見出し', name: 'processHeading', widget: 'string', i18n: true }
       - { label: '採用フロー説明文', name: 'processDescription', widget: 'text', i18n: true }
@@ -1659,11 +1640,10 @@ collections:
               name: 'icon',
               widget: 'select',
               options: ['shield-check', 'home', 'car', 'shirt', 'globe', 'sparkles'],
+              i18n: duplicate,
             }
-          - { label: 'ラベル', name: 'label', widget: 'string' }
-
+          - { label: 'ラベル', name: 'label', widget: 'string', i18n: true }
   - divider: true
-
   # ── プライバシーポリシーページ ───────────────────────
   - name: 'privacy-page'
     label: 'プライバシーポリシー'
@@ -1712,9 +1692,7 @@ collections:
             widget: 'list'
             required: false
             field: { label: '項目', name: 'item', widget: 'string' }
-
   - divider: true
-
   # ── 関連情報ページ(福利厚生) ───────────────────────
   - name: 'information-page'
     label: '福利厚生'
