@@ -149,12 +149,6 @@ collections:
         fields:
           - { label: '画像（言語共通）', name: src, widget: image, i18n: duplicate }
           - { label: '代替テキスト (alt)', name: alt, widget: string }
-          - {
-              label: 'CSSクラス（デザイン調整用・通常は編集不要）',
-              name: className,
-              widget: string,
-              required: false,
-            }
           - { label: 'キャプション', name: caption, widget: string, required: false }
 
   # ── アクセス・周辺観光セクション（トップページ下部） ───────────────────────
@@ -384,7 +378,7 @@ collections:
         summary: '{{label}}'
         collapsed: true
         fields:
-          - { label: 'キー(言語共通)', name: 'key', widget: 'string' }
+          - { label: 'キー(言語共通)', name: 'key', widget: 'string', i18n: duplicate }
           - { label: '表示名', name: 'label', widget: 'string' }
           - { label: '補足', name: 'note', widget: 'string', required: false }
       - label: '1階客室の注意書き'
@@ -520,7 +514,7 @@ collections:
         collapsed: true
         fields:
           - { label: '名称', name: 'name', widget: 'string' }
-          - { label: '画像(言語共通)', name: 'image', widget: 'image' }
+          - { label: '画像(言語共通)', name: 'image', widget: 'image', i18n: duplicate }
           - { label: '代替テキスト(alt)', name: 'imageAlt', widget: 'string' }
           - { label: '説明', name: 'description', widget: 'text' }
           - { label: '利用時間', name: 'hours', widget: 'string' }
@@ -1137,13 +1131,13 @@ collections:
         summary: '{{name}}（{{accessFromHotel}}）'
         collapsed: true
         fields:
-          - { label: 'ID(言語共通)', name: 'id', widget: 'string' }
+          - { label: 'ID(言語共通)', name: 'id', widget: 'string', i18n: duplicate }
           - { label: '名称', name: 'name', widget: 'string' }
           - { label: '店舗名', name: 'shopName', widget: 'string', required: false }
           - label: '画像'
             name: 'image'
             widget: 'object'
-            collapsed: true,
+            collapsed: true
             required: true
             fields:
               - { label: 'ラベル', name: 'label', widget: 'string' }
@@ -1158,7 +1152,7 @@ collections:
           - label: '説明文(改行ごとに1項目)'
             name: 'description'
             widget: 'list'
-            collapsed: true,
+            collapsed: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
           - { label: '場所', name: 'location', widget: 'string', required: false }
           - {
@@ -1564,7 +1558,7 @@ collections:
             summary: '{{alt}}'
             collapsed: true
             fields:
-              - { label: '画像(言語共通)', name: 'src', widget: 'image' }
+              - { label: '画像(言語共通)', name: 'src', widget: 'image', i18n: duplicate }
               - { label: '代替テキスト(alt)', name: 'alt', widget: 'string' }
       - {
           label: '募集職種セクション見出し',
@@ -1599,7 +1593,7 @@ collections:
             widget: 'object'
             required: true
             fields:
-              - { label: '画像(言語共通)', name: 'src', widget: 'image' }
+              - { label: '画像(言語共通)', name: 'src', widget: 'image', i18n: duplicate }
               - { label: '代替テキスト(alt)', name: 'alt', widget: 'string' }
           - { label: '職種名', name: 'title', widget: 'string' }
           - { label: '雇用形態', name: 'employmentType', widget: 'string' }
@@ -1680,7 +1674,7 @@ collections:
         summary: '{{heading}}'
         collapsed: true
         fields:
-          - { label: '目次アンカーID(言語共通)', name: 'id', widget: 'string' }
+          - { label: '目次アンカーID(言語共通)', name: 'id', widget: 'string', i18n: duplicate }
           - { label: '見出し', name: 'heading', widget: 'string' }
           - { label: '導入文', name: 'intro', widget: 'text', required: false }
           - label: '段落'
