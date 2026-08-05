@@ -178,7 +178,7 @@
         "label": "Active Experiences"
       },
       {
-        "id": "learn",
+        "id": "nature",
         "label": "Nature Walks"
       }
     ],
@@ -270,7 +270,7 @@
         "accessFromHotel": "About 1 min. walk",
         "officialSite": "https://www.laketoya.com/",
         "categories": [
-          "learn",
+          "nature",
           "family"
         ]
       },
@@ -410,7 +410,7 @@
         "officialSite": "https://usuzan.hokkaido.jp/",
         "categories": [
           "view",
-          "learn"
+          "nature"
         ]
       },
       {
@@ -443,13 +443,13 @@
         },
         "description": [
           "At the Toya-Usu Geopark, you can walk trails such as the Nishiyama Crater Walk and the Konpirayama Crater Disaster Remains Walk, and see up close the traces of Mt. Usu's eruptions and the changing land.",
-          "Uplifted roads, craters, and damaged buildings offer a valuable look at the power of nature and the process of recovery. Combined with the Lake Toya Visitor Center, you can learn even more about volcanic history and disaster preparedness."
+          "Uplifted roads, craters, and damaged buildings offer a valuable look at the power of nature and the process of recovery. Combined with the Lake Toya Visitor Center, you can nature even more about volcanic history and disaster preparedness."
         ],
         "location": "Around Toyako Onsen, Toyako-cho, Abuta-gun, Hokkaido",
         "accessFromHotel": "About 5 min. by car",
         "officialSite": "https://www.laketoya.com/",
         "categories": [
-          "learn"
+          "nature"
         ]
       },
       {

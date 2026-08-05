@@ -92,7 +92,7 @@
       "accessFromHotel": "도보 약 1분",
       "officialSite": "https://www.laketoya.com/",
       "categories": [
-        "learn",
+        "nature",
         "family"
       ]
     },
@@ -232,7 +232,7 @@
       "officialSite": "https://usuzan.hokkaido.jp/",
       "categories": [
         "view",
-        "learn"
+        "nature"
       ]
     },
     {
@@ -271,7 +271,7 @@
       "accessFromHotel": "차로 약 5분",
       "officialSite": "https://www.laketoya.com/",
       "categories": [
-        "learn"
+        "nature"
       ]
     },
     {
@@ -375,7 +375,7 @@
       "label": "액티브 체험"
     },
     {
-      "id": "learn",
+      "id": "nature",
       "label": "자연 산책"
     }
   ]

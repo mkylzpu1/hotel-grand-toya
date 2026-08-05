@@ -178,7 +178,7 @@
         "label": "活力体验"
       },
       {
-        "id": "learn",
+        "id": "nature",
         "label": "自然漫步"
       }
     ],
@@ -270,7 +270,7 @@
         "accessFromHotel": "步行约1分钟",
         "officialSite": "https://www.laketoya.com/",
         "categories": [
-          "learn",
+          "nature",
           "family"
         ]
       },
@@ -410,7 +410,7 @@
         "officialSite": "https://usuzan.hokkaido.jp/",
         "categories": [
           "view",
-          "learn"
+          "nature"
         ]
       },
       {
@@ -449,7 +449,7 @@
         "accessFromHotel": "车程约5分钟",
         "officialSite": "https://www.laketoya.com/",
         "categories": [
-          "learn"
+          "nature"
         ]
       },
       {

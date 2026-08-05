@@ -1184,7 +1184,7 @@ collections:
             name: 'categories'
             widget: 'list'
             required: false
-            field: { label: 'カテゴリID', name: 'category', widget: 'select', options: ['learn', 'family', 'view', 'active'] }
+            field: { label: 'カテゴリID', name: 'category', widget: 'select', options: ['nature', 'family', 'view', 'active'] }
 
   - name: 'facilities-usage-notice'
     label: '利用上の注意'
