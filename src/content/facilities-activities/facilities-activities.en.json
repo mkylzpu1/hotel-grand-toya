@@ -337,13 +337,13 @@
     },
     {
       "id": "test",
-      "image": {
-        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg",
-        "label": "test",
-        "alt": "Create a new account and it will be associated with your %s ID."
-      },
       "name": "Test Spot",
       "shopName": "Test Stores",
+      "image": {
+        "label": "test",
+        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg",
+        "alt": "Create a new account and it will be associated with your %s ID."
+      },
       "description": [
         "Tess and post."
       ],
@@ -352,9 +352,9 @@
       "partnerBadgeLabel": "Tess and post."
     }
   ],
-  "includedInPlansHeadingShort": "Plans",
-  "includedInPlansHeading": "Included in Plans",
   "allCategoryLabel": "All",
+  "includedInPlansHeading": "Included in Plans",
+  "includedInPlansHeadingShort": "Plans",
   "partnerBadgeDefaultLabel": "Special value with our plans",
   "officialSiteLinkLabel": "Official Site",
   "officialSiteLinkLabelShort": "Official Site",

@@ -337,13 +337,13 @@
     },
     {
       "id": "test",
-      "image": {
-        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg",
-        "label": "미리듣기",
-        "alt": "으아아아아"
-      },
       "name": "테스트 스팟",
       "shopName": "테스트 스토어",
+      "image": {
+        "label": "미리듣기",
+        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg",
+        "alt": "으아아아아"
+      },
       "description": [
         "Tess and post."
       ],
@@ -352,9 +352,9 @@
       "partnerBadgeLabel": "Tess and post."
     }
   ],
-  "includedInPlansHeadingShort": "플랜",
-  "includedInPlansHeading": "플랜 포함",
   "allCategoryLabel": "전체",
+  "includedInPlansHeading": "플랜 포함",
+  "includedInPlansHeadingShort": "플랜",
   "partnerBadgeDefaultLabel": "플랜으로 알뜰하게 체험",
   "officialSiteLinkLabel": "공식 사이트",
   "officialSiteLinkLabelShort": "공식 사이트",

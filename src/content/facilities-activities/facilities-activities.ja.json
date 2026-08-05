@@ -349,18 +349,18 @@
       ],
       "location": "テスと投稿です",
       "accessFromHotel": "テスと投稿です",
-      "officialSite": "テスと投稿です",
+      "officialSite": "https://fonts.google.com/icons?icon.set=Material+Symbols&icon.platform=web&selected=Material+Symbols+Outlined:diversity_3:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%23e3e3e3&icon.query=member",
       "isPartner": false,
       "partnerBadgeLabel": "テスと投稿です",
       "includedInPlans": [],
       "categories": [
-        "1"
+        "learn"
       ]
     }
   ],
-  "includedInPlansHeadingShort": "含まれるプラン",
-  "includedInPlansHeading": "この体験が含まれるプラン",
   "allCategoryLabel": "すべて",
+  "includedInPlansHeading": "この体験が含まれるプラン",
+  "includedInPlansHeadingShort": "含まれるプラン",
   "partnerBadgeDefaultLabel": "おすすめ",
   "officialSiteLinkLabel": "公式サイトを見る",
   "officialSiteLinkLabelShort": "公式サイト",

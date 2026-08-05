@@ -337,13 +337,13 @@
     },
     {
       "id": "test",
-      "image": {
-        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg",
-        "label": "Test",
-        "alt": "（逃跑）啊~啊~啊——"
-      },
       "name": "测试点",
       "shopName": "测试商店",
+      "image": {
+        "label": "Test",
+        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg",
+        "alt": "（逃跑）啊~啊~啊——"
+      },
       "description": [
         "TESS和POST。"
       ],
@@ -352,9 +352,9 @@
       "partnerBadgeLabel": "TESS和POST。"
     }
   ],
-  "includedInPlansHeadingShort": "住宿方案",
-  "includedInPlansHeading": "包含在住宿方案中",
   "allCategoryLabel": "全部",
+  "includedInPlansHeading": "包含在住宿方案中",
+  "includedInPlansHeadingShort": "住宿方案",
   "partnerBadgeDefaultLabel": "住宿方案超值体验",
   "officialSiteLinkLabel": "官方网站",
   "officialSiteLinkLabelShort": "官网",
