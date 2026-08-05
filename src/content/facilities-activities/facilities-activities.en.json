@@ -334,30 +334,11 @@
         "family",
         "active"
       ]
-    },
-    {
-      "id": "test",
-      "name": "Test Spot",
-      "shopName": "Test Stores",
-      "image": {
-        "label": "test",
-        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg",
-        "alt": "Create a new account and it will be associated with your %s ID."
-      },
-      "description": [
-        "Tess and post."
-      ],
-      "location": "Tess and post.",
-      "accessFromHotel": "Tess and post.",
-      "partnerBadgeLabel": "Tess and post.",
-      "categories": [
-        "nature"
-      ]
     }
   ],
-  "includedInPlansHeadingShort": "Plans",
-  "includedInPlansHeading": "Included in Plans",
   "allCategoryLabel": "All",
+  "includedInPlansHeading": "Included in Plans",
+  "includedInPlansHeadingShort": "Plans",
   "partnerBadgeDefaultLabel": "Special value with our plans",
   "officialSiteLinkLabel": "Official Site",
   "officialSiteLinkLabelShort": "Official Site",

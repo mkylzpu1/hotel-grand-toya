@@ -334,30 +334,11 @@
         "family",
         "active"
       ]
-    },
-    {
-      "id": "test",
-      "name": "테스트 스팟",
-      "shopName": "테스트 스토어",
-      "image": {
-        "label": "미리듣기",
-        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg",
-        "alt": "으아아아아"
-      },
-      "description": [
-        "Tess and post."
-      ],
-      "location": "Tess and post.",
-      "accessFromHotel": "Tess and post.",
-      "partnerBadgeLabel": "Tess and post.",
-      "categories": [
-        "학습"
-      ]
     }
   ],
-  "includedInPlansHeadingShort": "플랜",
-  "includedInPlansHeading": "플랜 포함",
   "allCategoryLabel": "전체",
+  "includedInPlansHeading": "플랜 포함",
+  "includedInPlansHeadingShort": "플랜",
   "partnerBadgeDefaultLabel": "플랜으로 알뜰하게 체험",
   "officialSiteLinkLabel": "공식 사이트",
   "officialSiteLinkLabelShort": "공식 사이트",
