@@ -608,63 +608,6 @@ const facilitiesContent = defineCollection({
   }),
 });
 
-const facilitiesPage = defineCollection({
-  type: 'data',
-  schema: z.object({
-    pageTitle: z.string(),
-    pageTitleEn: z.string(),
-    intro: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      description: z.array(z.string()),
-    }),
-    icon: z.string(),
-    quickNav: z.array(z.object({ href: z.string(), label: z.string() })),
-    facilitiesSection: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      hoursLabel: z.string(), // 「営業時間」
-      feeLabel: z.string(), // 「料金」
-      paymentLabel: z.string(), // 「支払方法」
-      languagesLabel: z.string(), // 「対応言語」
-      contactFallbackLabel: z.string(), // 未確定項目時のフォールバック文言
-      items: z.array(facilityItem),
-    }),
-    servicesSection: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      feeLabel: z.string(), // 「料金」
-      plansLabel: z.string(), // 「コース」
-      receptionHoursLabel: z.string(), // 「受付時間」
-      reservationMethodLabel: z.string(), // 「予約方法」
-      hoursLabel: z.string(), // 「利用時間」(バッジ用)
-      items: z.array(serviceItem),
-    }),
-    activitiesSection: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      partnerHeading: z.string(),
-      otherHeading: z.string(),
-      categoryFilters: z.array(z.object({ id: z.string().optional(), label: z.string() })),
-      allCategoryLabel: z.string(), // 例: "すべて"
-      partnerBadgeDefaultLabel: z.string(), // 「おすすめ」(itemごとの上書き未設定時)
-      includedInPlansHeading: z.string(), // 「この体験が含まれるプラン」
-      includedInPlansHeadingShort: z.string(), // 「含まれるプラン」
-      officialSiteLinkLabel: z.string(), // 「公式サイトを見る」
-      officialSiteLinkLabelShort: z.string(), // 「公式サイト」
-      items: z.array(activityItem),
-    }),
-    usageNotice: z.object({
-      heading: z.string(),
-      items: z.array(z.string()),
-    }),
-  }),
-});
-
 const accessPageMeta = defineCollection({
   type: 'data',
   schema: z.object({
@@ -783,123 +726,6 @@ const accessContent = defineCollection({
   }),
 });
 
-const accessPage = defineCollection({
-  type: 'data',
-  schema: z.object({
-    pageTitle: z.string(),
-    pageTitleEn: z.string(),
-    icon: z.string(),
-    quickNav: z.array(
-      z.object({
-        href: z.string(),
-        label: z.string(),
-      }),
-    ),
-    byTrain: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      nearestStation: z.string(),
-      step1Badge: z.string(),
-      step2Badge: z.string(),
-      step3Badge: z.string().optional(),
-      toStationSuffix: z.string(), // 「まで」
-      fromStationAccessSuffix: z.string(), // 「からのアクセス」
-      step3Heading: z.string().optional(), // 「バス停からホテルまで」
-      step3SubLabel: z.string().optional(), // 「（バスご利用の場合）」
-      walkLabel: z.string().optional(), // 「徒歩」
-      linkLabel: z.string().optional(), // 「路線・時刻表を見る」（各optionでも上書き可）
-      officialTimetableLabel: z.string().optional(), // 「JR時刻表を見る（外部サイト）」
-      departures: z.array(
-        z.object({
-          from: z.string(),
-          boardingStation: z.string(),
-          trainName: z.string(),
-          duration: z.string(),
-        }),
-      ),
-      toHotelOptions: z.array(
-        z.object({
-          method: z.string(),
-          line: z.string().optional(),
-          boarding: z.string().optional(),
-          alighting: z.string().optional(),
-          duration: z.string(),
-          frequency: z.string().optional(),
-          note: z.string().optional(),
-          url: z.string().optional(),
-          linkLabel: z.string().optional(), // 個別リンク文言を上書きしたい場合
-        }),
-      ),
-      walkToHotel: z
-        .object({
-          duration: z.string(),
-          distance: z.string().optional(),
-          note: z.string().optional(),
-        })
-        .optional(),
-      shuttleAvailable: z.string().optional(),
-      officialTimetableUrl: z.string().optional(),
-    }),
-    byCar: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      step1Badge: z.string(),
-      step2Badge: z.string(),
-      step1Heading: z.string(), // 「最寄ICまで」
-      step2Heading: z.string(), // 「ICからホテルまで」
-      departures: z.array(
-        z.object({
-          from: z.string(),
-          ic: z.string(),
-          duration: z.string(),
-        }),
-      ),
-      fromIc: z.array(
-        z.object({
-          ic: z.string(),
-          duration: z.string(),
-        }),
-      ),
-    }),
-    byBus: z
-      .object({
-        icon: z.string(),
-        eyebrow: z.string(),
-        heading: z.string(),
-        from: z.string(),
-        to: z.string(),
-        duration: z.string(),
-        frequency: z.string().optional(),
-        note: z.string().optional(),
-        url: z.string().optional(),
-        connectionLabel: z.string().optional(), // 「乗り換えなし・直行」
-        timetableLabel: z.string().optional(), // 「時刻表を見る」
-      })
-      .optional(),
-    map: z.object({
-      icon: z.string(),
-      eyebrow: z.string(),
-      heading: z.string(),
-      embedUrl: z.string(),
-      openMapUrl: z.string(),
-      routeUrl: z.string(),
-      noMapText: z.string().optional(), // 「地図を準備中です」
-      openMapLabel: z.string(), // 「Googleマップで開く」
-      routeLabel: z.string(), // 「ルート案内」
-    }),
-    parking: z.object({
-      heading: z.string(),
-      notes: z.array(z.string()),
-    }),
-    surroundings: z.object({
-      heading: z.string(),
-      items: z.array(z.object({ label: z.string(), duration: z.string() })),
-    }),
-  }),
-});
-
 const faqPageMeta = defineCollection({
   type: 'data',
   schema: z.object({
@@ -991,19 +817,6 @@ const newsPageMeta = defineCollection({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
     icon: z.string().optional(),
-    categoryFilters: z.array(z.object({ id: z.string().optional(), label: z.string() })),
-    allCategoryLabel: z.string(),
-    emptyLabel: z.string(),
-    importantLabel: z.string(),
-  }),
-});
-
-const newsPage = defineCollection({
-  type: 'data',
-  schema: z.object({
-    pageTitle: z.string(),
-    pageTitleEn: z.string(),
-    icon: z.string(),
     categoryFilters: z.array(z.object({ id: z.string().optional(), label: z.string() })),
     allCategoryLabel: z.string(),
     emptyLabel: z.string(),
@@ -1144,46 +957,6 @@ const recruitContent = defineCollection({
   }),
 });
 
-const recruitPage = defineCollection({
-  type: 'data',
-  schema: z.object({
-    pageTitle: z.string(),
-    pageTitleEn: z.string(),
-    icon: z.string(),
-    heading: z.string(), // 改行込みの見出し
-    description: z.array(z.string()),
-    emailAddress: z.string(),
-    tel: z.string(),
-    telLabel: z.string(),
-    emailLabel: z.string(),
-
-    // --- ここから追加 ---
-    workLife: z.object({
-      heading: z.string(),
-      description: z.string(),
-      points: z.array(z.string()), // 職場の特徴を箇条書きで
-      photos: z.array(
-        z.object({
-          src: imagePath, // 例: "/images/recruit/kitchen.jpg"
-          alt: z.string(),
-        }),
-      ),
-    }),
-
-    positionsHeading: z.string(),
-    positionsDescription: z.string(),
-    positions: z.array(recruitJobSchema), // 募集職種。増減はこの配列を編集するだけ
-
-    processHeading: z.string(),
-    processDescription: z.string(),
-    process: z.array(recruitProcessStepSchema), // 採用までの流れ（STEP表示）
-
-    benefitsHeading: z.string(),
-    benefits: z.array(recruitBenefitSchema),
-    // --- ここまで追加 ---
-  }),
-});
-
 export const collections = {
   site,
   navigation,
@@ -1202,26 +975,22 @@ export const collections = {
   'cuisine-breakfast': cuisineBreakfastSection,
   'cuisine-venues': cuisineDiningVenues,
   'cuisine-guest-considerations': cuisineGuestConsiderations,
-  'facilities-page': facilitiesPage,
   'facilities-page-meta': facilitiesPageMeta,
   'facilities-section': facilitiesSectionContent,
   'facilities-services': facilitiesServicesContent,
   'facilities-activities': facilitiesActivitiesContent,
   'facilities-usage-notice': facilitiesUsageNoticeContent,
   'facilities-content': facilitiesContent,
-  'access-page': accessPage,
   'access-page-meta': accessPageMeta,
   'access-content': accessContent,
   'faq-page': faqPage,
   'faq-page-meta': faqPageMeta,
   'faq-categories': faqCategories,
   'related-links': relatedLinksCollection,
-  'news-page': newsPage,
   'news-page-meta': newsPageMeta,
   news,
   'privacy-page': privacyPage,
   'information-page': informationPage,
-  'recruit-page': recruitPage,
   'recruit-page-meta': recruitPageMeta,
   'recruit-content': recruitContent,
 };

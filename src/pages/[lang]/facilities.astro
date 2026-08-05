@@ -280,20 +280,20 @@ const otherActivities = (content.activitiesSection?.items ?? []).filter((item) =
           heading={content.activitiesSection.heading}
         />
       </div>
-            {
-          usageNoticeEntry.data.items.length > 0 && (
-            <div class="mx-auto mb-4 max-w-[1320px]">
-                <div class="flex items-start gap-3 border border-[#A24730]/30 bg-[#FAF6F3] px-5 py-4">
-                  <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-[1.5px] border-[#A24730] text-[0.68rem] font-bold text-[#A24730]">
-                    !
-                  </span>
+      {
+        usageNoticeEntry.data.items.length > 0 && (
+          <div class="mx-auto mb-4 max-w-[1320px]">
+            <div class="flex items-start gap-3 border border-[#A24730]/30 bg-[#FAF6F3] px-5 py-4">
+              <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-[1.5px] border-[#A24730] text-[0.68rem] font-bold text-[#A24730]">
+                !
+              </span>
               {usageNoticeEntry.data.items.map((note) => (
-                  <p class="text-[0.84rem] leading-[1.85] text-[#55524C]">{note}</p>
-                ))}
-                </div>
+                <p class="text-[0.84rem] leading-[1.85] text-[#55524C]">{note}</p>
+              ))}
             </div>
-          )
-        }
+          </div>
+        )
+      }
       {/* 提携アクティビティ（先頭・横長カード） */}
       {
         partnerActivities.length > 0 && (

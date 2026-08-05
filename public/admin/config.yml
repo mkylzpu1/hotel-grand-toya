@@ -999,7 +999,13 @@ collections:
                   required: false,
                   i18n: duplicate,
                 }
-              - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', i18n: true, required: false }
+              - {
+                  label: '代替テキスト(alt)',
+                  name: 'alt',
+                  widget: 'string',
+                  i18n: true,
+                  required: false,
+                }
           - label: '説明文(改行ごとに1項目)'
             name: 'description'
             widget: 'list'
@@ -1049,7 +1055,13 @@ collections:
                   required: false,
                   i18n: duplicate,
                 }
-              - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', i18n: true, required: false }
+              - {
+                  label: '代替テキスト(alt)',
+                  name: 'alt',
+                  widget: 'string',
+                  i18n: true,
+                  required: false,
+                }
           - label: '説明文(改行ごとに1項目)'
             name: 'description'
             widget: 'list'
@@ -1063,8 +1075,20 @@ collections:
             field: { label: 'プラン名', name: 'plan', widget: 'string', i18n: true }
           - { label: '所要時間', name: 'duration', widget: 'string', i18n: true, required: false }
           - { label: '利用時間', name: 'hours', widget: 'string', i18n: true, required: false }
-          - { label: '受付時間', name: 'receptionHours', widget: 'string', i18n: true, required: false }
-          - { label: '予約方法', name: 'reservationMethod', widget: 'string', i18n: true, required: false }
+          - {
+              label: '受付時間',
+              name: 'receptionHours',
+              widget: 'string',
+              i18n: true,
+              required: false,
+            }
+          - {
+              label: '予約方法',
+              name: 'reservationMethod',
+              widget: 'string',
+              i18n: true,
+              required: false,
+            }
           - { label: '場所', name: 'location', widget: 'string', i18n: true, required: false }
           - {
               label: 'キャンセル規定',
