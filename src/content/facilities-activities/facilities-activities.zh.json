@@ -4,30 +4,6 @@
   "heading": "周边观光",
   "partnerHeading": "特别推荐・合作活动",
   "otherHeading": "其他周边观光",
-  "allCategoryLabel": "全部",
-  "partnerBadgeDefaultLabel": "住宿方案超值体验",
-  "includedInPlansHeading": "包含在住宿方案中",
-  "includedInPlansHeadingShort": "住宿方案",
-  "officialSiteLinkLabel": "官方网站",
-  "officialSiteLinkLabelShort": "官网",
-  "categoryFilters": [
-    {
-      "id": "family",
-      "label": "家庭 / 亲子"
-    },
-    {
-      "id": "view",
-      "label": "绝美景观"
-    },
-    {
-      "id": "active",
-      "label": "活力体验"
-    },
-    {
-      "id": "learn",
-      "label": "自然漫步"
-    }
-  ],
   "items": [
     {
       "id": "cruise",
@@ -358,6 +334,36 @@
         "family",
         "active"
       ]
+    },
+    {
+      "id": "test",
+      "image": {
+        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg"
+      }
+    }
+  ],
+  "includedInPlansHeadingShort": "住宿方案",
+  "includedInPlansHeading": "包含在住宿方案中",
+  "allCategoryLabel": "全部",
+  "partnerBadgeDefaultLabel": "住宿方案超值体验",
+  "officialSiteLinkLabel": "官方网站",
+  "officialSiteLinkLabelShort": "官网",
+  "categoryFilters": [
+    {
+      "id": "family",
+      "label": "家庭 / 亲子"
+    },
+    {
+      "id": "view",
+      "label": "绝美景观"
+    },
+    {
+      "id": "active",
+      "label": "活力体验"
+    },
+    {
+      "id": "learn",
+      "label": "自然漫步"
     }
   ]
 }

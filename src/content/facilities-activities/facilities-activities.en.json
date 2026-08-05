@@ -4,30 +4,6 @@
   "heading": "Nearby Sightseeing",
   "partnerHeading": "Especially Recommended / Partner Activities",
   "otherHeading": "Other Nearby Sightseeing",
-  "allCategoryLabel": "All",
-  "partnerBadgeDefaultLabel": "Special value with our plans",
-  "includedInPlansHeading": "Included in Plans",
-  "includedInPlansHeadingShort": "Plans",
-  "officialSiteLinkLabel": "Official Site",
-  "officialSiteLinkLabelShort": "Official Site",
-  "categoryFilters": [
-    {
-      "id": "family",
-      "label": "Family / Kids"
-    },
-    {
-      "id": "view",
-      "label": "Scenic Views"
-    },
-    {
-      "id": "active",
-      "label": "Active Experiences"
-    },
-    {
-      "id": "learn",
-      "label": "Nature Walks"
-    }
-  ],
   "items": [
     {
       "id": "cruise",
@@ -358,6 +334,36 @@
         "family",
         "active"
       ]
+    },
+    {
+      "id": "test",
+      "image": {
+        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg"
+      }
+    }
+  ],
+  "includedInPlansHeadingShort": "Plans",
+  "includedInPlansHeading": "Included in Plans",
+  "allCategoryLabel": "All",
+  "partnerBadgeDefaultLabel": "Special value with our plans",
+  "officialSiteLinkLabel": "Official Site",
+  "officialSiteLinkLabelShort": "Official Site",
+  "categoryFilters": [
+    {
+      "id": "family",
+      "label": "Family / Kids"
+    },
+    {
+      "id": "view",
+      "label": "Scenic Views"
+    },
+    {
+      "id": "active",
+      "label": "Active Experiences"
+    },
+    {
+      "id": "learn",
+      "label": "Nature Walks"
     }
   ]
 }

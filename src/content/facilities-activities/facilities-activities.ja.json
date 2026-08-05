@@ -4,30 +4,6 @@
   "heading": "周辺観光",
   "partnerHeading": "特におすすめ・提携アクティビティ",
   "otherHeading": "その他の周辺観光",
-  "allCategoryLabel": "すべて",
-  "partnerBadgeDefaultLabel": "おすすめ",
-  "includedInPlansHeading": "この体験が含まれるプラン",
-  "includedInPlansHeadingShort": "含まれるプラン",
-  "officialSiteLinkLabel": "公式サイトを見る",
-  "officialSiteLinkLabelShort": "公式サイト",
-  "categoryFilters": [
-    {
-      "id": "family",
-      "label": "ご家族 / お子様"
-    },
-    {
-      "id": "view",
-      "label": "絶景"
-    },
-    {
-      "id": "active",
-      "label": "アクティブに体験"
-    },
-    {
-      "id": "learn",
-      "label": "自然散策"
-    }
-  ],
   "items": [
     {
       "id": "cruise",
@@ -358,6 +334,52 @@
         "family",
         "active"
       ]
+    },
+    {
+      "id": "test",
+      "name": "テストスポット",
+      "shopName": "テスト店舗",
+      "image": {
+        "label": "テスト",
+        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg",
+        "alt": "あああ"
+      },
+      "description": [
+        "テスと投稿です"
+      ],
+      "location": "テスと投稿です",
+      "accessFromHotel": "テスと投稿です",
+      "officialSite": "テスと投稿です",
+      "isPartner": false,
+      "partnerBadgeLabel": "テスと投稿です",
+      "includedInPlans": [],
+      "categories": [
+        "1"
+      ]
+    }
+  ],
+  "includedInPlansHeadingShort": "含まれるプラン",
+  "includedInPlansHeading": "この体験が含まれるプラン",
+  "allCategoryLabel": "すべて",
+  "partnerBadgeDefaultLabel": "おすすめ",
+  "officialSiteLinkLabel": "公式サイトを見る",
+  "officialSiteLinkLabelShort": "公式サイト",
+  "categoryFilters": [
+    {
+      "id": "family",
+      "label": "ご家族 / お子様"
+    },
+    {
+      "id": "view",
+      "label": "絶景"
+    },
+    {
+      "id": "active",
+      "label": "アクティブに体験"
+    },
+    {
+      "id": "learn",
+      "label": "自然散策"
     }
   ]
 }
