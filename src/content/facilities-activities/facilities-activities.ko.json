@@ -355,9 +355,9 @@
       ]
     }
   ],
-  "allCategoryLabel": "전체",
-  "includedInPlansHeading": "플랜 포함",
   "includedInPlansHeadingShort": "플랜",
+  "includedInPlansHeading": "플랜 포함",
+  "allCategoryLabel": "전체",
   "partnerBadgeDefaultLabel": "플랜으로 알뜰하게 체험",
   "officialSiteLinkLabel": "공식 사이트",
   "officialSiteLinkLabelShort": "공식 사이트",

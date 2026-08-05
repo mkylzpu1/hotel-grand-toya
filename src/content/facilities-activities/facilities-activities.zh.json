@@ -355,9 +355,9 @@
       ]
     }
   ],
-  "allCategoryLabel": "全部",
-  "includedInPlansHeading": "包含在住宿方案中",
   "includedInPlansHeadingShort": "住宿方案",
+  "includedInPlansHeading": "包含在住宿方案中",
+  "allCategoryLabel": "全部",
   "partnerBadgeDefaultLabel": "住宿方案超值体验",
   "officialSiteLinkLabel": "官方网站",
   "officialSiteLinkLabelShort": "官网",

@@ -355,9 +355,9 @@
       ]
     }
   ],
-  "allCategoryLabel": "All",
-  "includedInPlansHeading": "Included in Plans",
   "includedInPlansHeadingShort": "Plans",
+  "includedInPlansHeading": "Included in Plans",
+  "allCategoryLabel": "All",
   "partnerBadgeDefaultLabel": "Special value with our plans",
   "officialSiteLinkLabel": "Official Site",
   "officialSiteLinkLabelShort": "Official Site",
