@@ -230,7 +230,7 @@ const onsenFacilities = defineCollection({
 const onsenUsageStay = defineCollection({
   type: 'data',
   schema: z.object({
-    id: z.string(),
+    id: z.string().optional(),
     icon: z.string(),
     eyebrow: z.string(),
     heading: z.string(),
@@ -244,14 +244,10 @@ const onsenUsageStay = defineCollection({
 const onsenUsageDayuse = defineCollection({
   type: 'data',
   schema: z.object({
-    id: z.string(),
+    id: z.string().optional(),
     icon: z.string(),
     eyebrow: z.string(),
     heading: z.string(),
-    fee: labeledValue.optional(), // 入浴料金
-    receptionHours: labeledValue.optional(), // 受付時間
-    usageHours: labeledValue.optional(), // 利用時間
-    usageNotes: labeledValue.optional(), // 利用上の注意
     items: z.array(labeledValue).optional(),
     rentalsLabel: z.string().optional(),
     rentals: z.array(labeledValue).optional(),
@@ -276,9 +272,7 @@ const roomsPage = defineCollection({
   schema: z.object({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
-    intro: z.object({
-      icon: z.string(),
-    }),
+    icon: z.string(),
     priceNote: z.string().optional(),
     importantNotice: z.string().optional(),
     stayNotice: z.object({
@@ -317,8 +311,8 @@ const roomTypeItem = defineCollection({
   type: 'data',
   schema: z.object({
     order: z.number(), // 表示順（数字が小さいほど上）
-    categoryId: z.string(), // 旧 sections[].id 相当（例: "japanese" / "western"）。言語共通・アンカーIDとしても使用
-    id: z.string(), // 客室タイプ固有ID（言語共通）
+    categoryid: z.string().optional(), // 旧 sections[].id 相当（例: "japanese" / "western"）。言語共通・アンカーIDとしても使用
+    id: z.string().optional(), // 客室タイプ固有ID（言語共通）
     icon: z.string(),
     eyebrow: z.string(),
     name: z.string(),
@@ -445,7 +439,7 @@ const cuisineGuestConsiderations = defineCollection({
 });
 
 const facilityItem = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   name: z.string(),
   image: roomGalleryItem.optional(),
   description: z.array(z.string()),
@@ -453,13 +447,9 @@ const facilityItem = z.object({
   location: z.string().optional(),
   fee: z.string().optional(), // 「無料」「有料（○○円）」など
   payment: z.string().optional(),
-  target: z.string().optional(),
-  // 多言語対応など、他項目に当てはまらない補足
-  languages: z.array(z.string()).optional(),
-  staffSupport: z.string().optional(),
 });
 const serviceItem = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   name: z.string(),
   image: roomGalleryItem.optional(),
   description: z.array(z.string()),
@@ -476,27 +466,14 @@ const serviceItem = z.object({
   icon: z.string().optional(), // サービス一覧ページのアイコン表示用
 });
 const activityItem = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   name: z.string(),
   shopName: z.string().optional(),
   image: roomGalleryItem.optional(),
   description: z.array(z.string()),
   location: z.string().optional(),
   accessFromHotel: z.string().optional(),
-  duration: z.string().optional(),
-  hours: z.string().optional(),
-  closedDays: z.string().optional(),
-  period: z.string().optional(),
-  fee: z.string().optional(),
-  rentalItems: z.string().optional(),
-  planDetails: z.string().optional(),
-  reservationMethod: z.string().optional(),
-  targetAge: z.string().optional(),
-  beginnerFriendly: z.string().optional(),
-  rainyDayPolicy: z.string().optional(),
-  itemsToBring: z.string().optional(),
   officialSite: z.string().optional(),
-  notes: z.array(z.string()).optional(),
   isPartner: z.boolean().optional(),
   partnerBadgeLabel: z.string().optional(),
   includedInPlans: z
@@ -535,7 +512,6 @@ const facilitiesSectionContent = defineCollection({
     hoursLabel: z.string(),
     feeLabel: z.string(),
     paymentLabel: z.string(),
-    languagesLabel: z.string(),
     contactFallbackLabel: z.string(),
     items: z.array(facilityItem),
   }),
@@ -564,7 +540,7 @@ const facilitiesActivitiesContent = defineCollection({
     heading: z.string(),
     partnerHeading: z.string(),
     otherHeading: z.string(),
-    categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
+    categoryFilters: z.array(z.object({ id: z.string().optional(), label: z.string() })),
     allCategoryLabel: z.string(),
     partnerBadgeDefaultLabel: z.string(),
     includedInPlansHeading: z.string(),
@@ -614,7 +590,7 @@ const facilitiesContent = defineCollection({
       heading: z.string(),
       partnerHeading: z.string(),
       otherHeading: z.string(),
-      categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
+      categoryFilters: z.array(z.object({ id: z.string().optional(), label: z.string() })),
       allCategoryLabel: z.string(),
       partnerBadgeDefaultLabel: z.string(),
       includedInPlansHeading: z.string(),
@@ -673,7 +649,7 @@ const facilitiesPage = defineCollection({
       heading: z.string(),
       partnerHeading: z.string(),
       otherHeading: z.string(),
-      categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
+      categoryFilters: z.array(z.object({ id: z.string().optional(), label: z.string() })),
       allCategoryLabel: z.string(), // 例: "すべて"
       partnerBadgeDefaultLabel: z.string(), // 「おすすめ」(itemごとの上書き未設定時)
       includedInPlansHeading: z.string(), // 「この体験が含まれるプラン」
@@ -947,7 +923,7 @@ const faqCategories = defineCollection({
   schema: z.object({
     categories: z.array(
       z.object({
-        id: z.string(),
+        id: z.string().optional(),
         icon: z.string(),
         label: z.string(),
         items: z.array(
@@ -969,7 +945,7 @@ const faqPage = defineCollection({
     icon: z.string(),
     categories: z.array(
       z.object({
-        id: z.string(), // タブ切替用のスラッグ（例: "checkin"）
+        id: z.string().optional(), // タブ切替用のスラッグ（例: "checkin"）
         icon: z.string(), // SectionEyebrow等と同じ1〜2文字アイコン
         label: z.string(),
         items: z.array(
@@ -998,7 +974,7 @@ const relatedLinksCollection = defineCollection({
     heading: z.string(),
     links: z.array(
       z.object({
-        id: z.string(), // ページを一意に識別するキー（rooms / onsen / reservation など）
+        id: z.string().optional(), // ページを一意に識別するキー（rooms / onsen / reservation など）
         href: z.string(),
         image: z.string(),
         imageAlt: z.string(),
@@ -1015,7 +991,7 @@ const newsPageMeta = defineCollection({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
     icon: z.string().optional(),
-    categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
+    categoryFilters: z.array(z.object({ id: z.string().optional(), label: z.string() })),
     allCategoryLabel: z.string(),
     emptyLabel: z.string(),
     importantLabel: z.string(),
@@ -1028,7 +1004,7 @@ const newsPage = defineCollection({
     pageTitle: z.string(),
     pageTitleEn: z.string(),
     icon: z.string(),
-    categoryFilters: z.array(z.object({ id: z.string(), label: z.string() })),
+    categoryFilters: z.array(z.object({ id: z.string().optional(), label: z.string() })),
     allCategoryLabel: z.string(),
     emptyLabel: z.string(),
     importantLabel: z.string(),
@@ -1051,7 +1027,7 @@ const news = defineCollection({
  * 1. プライバシーポリシー
  * ------------------------------------------------------- */
 const privacySection = z.object({
-  id: z.string(), // 目次のアンカーID (例: "sec-1")
+  id: z.string().optional(), // 目次のアンカーID (例: "sec-1")
   heading: z.string(), // 例: "1．個人情報保護方針"
   intro: z.string().optional(), // 箇条書きの前に置く導入文
   paragraphs: z.array(z.string()).optional(), // 通常の段落
@@ -1112,7 +1088,6 @@ const recruitJobSchema = z.object({
   recruitCountLabel: z.string(), // 「採用人数 {count}名」のようなテンプレート文言。{count}が数値に置換される
   summary: z.string(), // 求職者向けのやさしい仕事紹介文
   duties: z.array(z.string()), // 主な仕事内容（箇条書き）
-  salaryType: z.string(),
   salaryRoughLabel: z.string(), // ざっくり表示（例: "月給18万円台〜"）
   workingHours: z.string(), // 就業時間の要約
   holidays: z.string(), // 休日・休暇の要約

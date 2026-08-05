@@ -17,169 +17,6 @@ i18n:
   locales: [ja, en, zh, ko]
   default_locale: ja
 collections:
-  # ── ヘッダー / ドロワーナビゲーション ───────────────────────
-  - name: navigation
-    label: '01 サイト共通｜ヘッダー・ナビゲーション'
-    label_singular: 'ヘッダー・ナビゲーション'
-    description: 'ヘッダーのメニュー・検索窓・ドロワーメニューの文言です。ページごとの本文はここには含まれません。'
-    folder: 'src/content/navigation'
-    create: false
-    delete: false
-    i18n: true
-    extension: json
-    format: json
-    summary: 'ヘッダー・ナビゲーション'
-    fields:
-      - label: '主要ナビ（客室・温泉など）'
-        name: primaryNavItems
-        widget: list
-        i18n: true
-        summary: '{{label}}'
-        collapsed: true
-        fields:
-          - { label: 'リンク先 (#rooms など。言語共通)', name: href, widget: string }
-          - { label: '表示ラベル', name: label, widget: string }
-          - { label: '英語表記（常に英語で表示される小さな文字）', name: en, widget: string }
-          - { label: 'アイコン文字（漢字1文字・言語共通）', name: icon, widget: string }
-      - label: '副次ナビ（会社情報・規約など）'
-        name: secondaryNavItems
-        widget: list
-        i18n: true
-        summary: '{{label}}'
-        collapsed: true
-        fields:
-          - { label: 'リンク先', name: href, widget: string }
-          - { label: '表示ラベル', name: label, widget: string }
-      - { label: '予約CTAボタン文言', name: reserveCta, widget: string, i18n: true }
-      - {
-          label: '予約ボタン下の注記（例：※外部予約サイトに移動します）',
-          name: reserveNoteLabel,
-          widget: string,
-          i18n: true,
-        }
-      - { label: '電話ボタンaria-label', name: phoneAriaLabel, widget: string, i18n: true }
-      - { label: 'メニューを開くaria-label', name: menuOpenLabel, widget: string, i18n: true }
-      - { label: 'メニューを閉じるaria-label', name: menuCloseLabel, widget: string, i18n: true }
-      - { label: '「SITE INFORMATION」見出し', name: siteInfoHeading, widget: string, i18n: true }
-      - { label: '言語切替ボタンaria-label', name: langSwitcherLabel, widget: string, i18n: true }
-      - { label: 'グローバルナビのaria-label', name: navAriaLabel, widget: string, i18n: true }
-      - { label: 'ドロワーナビのaria-label', name: drawerNavAriaLabel, widget: string, i18n: true }
-      - { label: 'ロゴ画像のalt', name: logoAlt, widget: string, i18n: true }
-      - label: 'サイト内検索'
-        name: search
-        widget: object
-        i18n: true
-        fields:
-          - { label: '検索を開くボタンのaria-label', name: openLabel, widget: string }
-          - { label: '検索窓のプレースホルダー', name: placeholder, widget: string }
-          - { label: '「該当なし」の文言', name: noResultsLabel, widget: string }
-          - { label: '検索前の案内文言', name: emptyStateLabel, widget: string }
-          - { label: 'キーボードヒント「移動」', name: navigateHintLabel, widget: string }
-          - { label: 'キーボードヒント「開く」', name: openHintLabel, widget: string }
-          - { label: '検索語クリアボタンのaria-label', name: clearButtonLabel, widget: string }
-      - label: 'スマホ版ボトムナビ'
-        name: bottomNav
-        widget: object
-        i18n: true
-        fields:
-          - { label: '検索ラベル', name: searchLabel, widget: string }
-          - { label: '電話ラベル', name: telLabel, widget: string }
-          - { label: '予約ラベル', name: reserveLabel, widget: string }
-          - { label: 'メニューラベル', name: menuLabel, widget: string }
-
-  # ── 関連リンク集(各ページ末尾の「関連ページ」ブロック) ─────
-  - name: 'related-links'
-    label: '01 サイト共通｜関連リンク'
-    label_singular: '関連リンクグループ'
-    description: '各ページ下部の「あわせてご覧ください」ブロックです。'
-    folder: 'src/content/related-links'
-    create: true
-    delete: false
-    slug: '{{slug}}'
-    i18n: true
-    extension: json
-    format: json
-    summary: '見出し: {{fields.heading}}'
-    fields:
-      - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-      - label: 'リンク一覧'
-        name: 'links'
-        widget: 'list'
-        i18n: true
-        summary: '{{label}}'
-        collapsed: true
-        fields:
-          - { label: '識別ID(言語共通・rooms/onsen等)', name: 'id', widget: 'string' }
-          - { label: 'リンク先', name: 'href', widget: 'string' }
-          - { label: '画像(言語共通)', name: 'image', widget: 'image' }
-          - { label: '代替テキスト(alt)', name: 'imageAlt', widget: 'string' }
-          - { label: 'アイコン', name: 'icon', widget: 'string' }
-          - { label: '表示ラベル', name: 'label', widget: 'string' }
-
-  # ── サイト全体設定・フッター文言 ───────────────────────
-  - name: site
-    label: '01 サイト共通｜基本情報・フッター'
-    label_singular: 'サイト基本情報'
-    description: 'サイトタイトル・住所・電話番号・フッター文言など、全ページ共通の情報です。'
-    folder: 'src/content/site'
-    create: false
-    delete: false
-    i18n: true
-    extension: json
-    format: json
-    summary: '{{fields.name}}'
-    fields:
-      - { label: 'サイトタイトル (metaタイトル)', name: title, widget: string, i18n: true }
-      - { label: 'サイト説明文 (meta description)', name: description, widget: text, i18n: true }
-      - { label: '施設名(フル)', name: name, widget: string, i18n: true }
-      - { label: '郵便番号', name: postalCode, widget: string, i18n: duplicate }
-      - { label: '住所', name: address, widget: string, i18n: true }
-      - { label: '電話番号', name: tel, widget: string, i18n: duplicate }
-      - { label: 'FAX番号', name: fax, widget: string, i18n: duplicate }
-      - { label: 'メールアドレス', name: email, widget: string, i18n: duplicate }
-      - { label: '電話受付時間', name: businessHours, widget: string, required: false, i18n: true }
-      - label: '連絡先ラベル'
-        name: contactLabels
-        widget: object
-        i18n: true
-        fields:
-          - { label: '「住所」ラベル', name: address, widget: string }
-          - { label: '「電話」ラベル', name: tel, widget: string }
-          - { label: '「FAX」ラベル', name: fax, widget: string }
-          - { label: '「お問合せ」ラベル', name: contact, widget: string }
-      - { label: '予約サイトURL', name: reservationUrl, widget: string, i18n: duplicate }
-      - { label: '予約ボタン文言', name: reservationLabel, widget: string, i18n: true }
-      - label: 'フッター文言'
-        name: footer
-        widget: object
-        i18n: true
-        fields:
-          - { label: '「ご利用案内」見出し', name: guideHeading, widget: string, i18n: true }
-          - { label: '「サイト情報」見出し', name: infoHeading, widget: string, i18n: true }
-          - { label: '「ご予約」見出し', name: reservationHeading, widget: string, i18n: true }
-          - {
-              label: '外部予約サイトへのリンク文言',
-              name: reservationExternalText,
-              widget: string,
-              i18n: true,
-            }
-          - {
-              label: '予約リンク下の注記（例：※外部の予約サイトに移動します）',
-              name: reservationExternalNote,
-              widget: string,
-              i18n: true,
-            }
-          - { label: 'コピーライト', name: copyright, widget: string, i18n: duplicate }
-          - { label: 'モバイル用「電話」ラベル', name: mobileTelLabel, widget: string, i18n: true }
-          - {
-              label: 'モバイル用「予約」ラベル',
-              name: mobileReserveLabel,
-              widget: string,
-              i18n: true,
-            }
-
-  - divider: true
-
   - name: トップページ
     icon: 'home'
     label: 'トップページ'
@@ -403,19 +240,6 @@ collections:
     format: json
     summary: '{{fields.name}}'
     fields:
-      - {
-          label: '表示順（数字が小さいほど上に表示。同じカテゴリID内での並び順にも使用）',
-          name: order,
-          widget: number,
-          i18n: duplicate,
-        }
-      - {
-          label: 'カテゴリID（和室=japanese、洋室=western など。同じ値のもの同士がひとつのセクションにまとまります。言語共通）',
-          name: categoryId,
-          widget: string,
-          i18n: duplicate,
-        }
-      - { label: 'アンカーID(言語共通)', name: id, widget: string, i18n: duplicate }
       - { label: 'アイコン', name: icon, widget: string, i18n: duplicate }
       - { label: 'アイキャッチ文言', name: eyebrow, widget: string, i18n: true }
       - { label: '客室名', name: name, widget: string, i18n: true }
@@ -524,21 +348,7 @@ collections:
           widget: 'string',
           i18n: duplicate,
         }
-      - label: 'イントロ'
-        name: 'intro'
-        widget: 'object'
-        i18n: true
-        fields:
-          - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-      - label: 'ページ内アンカーナビ'
-        name: 'quickNav'
-        widget: 'list'
-        i18n: true
-        summary: '{{label}}'
-        collapsed: true
-        fields:
-          - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
-          - { label: '表示ラベル', name: 'label', widget: 'string' }
+      - { label: 'ページアイコン(1文字)', name: 'icon', widget: 'string', i18n: duplicate }
       - {
           label: '設備セクション アイコン',
           name: 'amenitiesIcon',
@@ -635,17 +445,7 @@ collections:
           widget: 'string',
           i18n: duplicate,
         }
-      - { label: 'アイコン(1文字)', name: 'icon', widget: 'string', i18n: duplicate }
-      - { label: '見出し(利用案内セクション)', name: 'usageHeading', widget: 'string', i18n: true }
-      - label: 'ページ内アンカーナビ'
-        name: 'quickNav'
-        widget: 'list'
-        i18n: true
-        summary: '{{label}}'
-        collapsed: true
-        fields:
-          - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
-          - { label: '表示ラベル', name: 'label', widget: 'string' }
+      - { label: 'ページアイコン(1文字)', name: 'icon', widget: 'string', i18n: duplicate }
 
   # ── 泉質・効能 ───────────────────────
   - name: 'onsen-quality'
@@ -667,6 +467,7 @@ collections:
         name: 'waterQuality'
         widget: 'object'
         i18n: true
+        collapsed: true
         fields:
           - { label: 'ラベル', name: 'label', widget: 'string' }
           - { label: '内容', name: 'value', widget: 'text' }
@@ -674,6 +475,7 @@ collections:
         name: 'benefits'
         widget: 'object'
         i18n: true
+        collapsed: true
         fields:
           - { label: 'ラベル', name: 'label', widget: 'string' }
           - { label: '内容', name: 'value', widget: 'text' }
@@ -681,6 +483,7 @@ collections:
         name: 'characteristics'
         widget: 'object'
         i18n: true
+        collapsed: true
         fields:
           - { label: 'ラベル', name: 'label', widget: 'string' }
           - { label: '内容', name: 'value', widget: 'text' }
@@ -688,6 +491,7 @@ collections:
         name: 'sourceInfo'
         widget: 'object'
         i18n: true
+        collapsed: true
         fields:
           - { label: 'ラベル', name: 'label', widget: 'string' }
           - { label: '内容', name: 'value', widget: 'text' }
@@ -775,34 +579,15 @@ collections:
       - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
       - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-      - label: '① 入浴料金'
-        name: 'fee'
-        widget: 'object'
+      - label: 'ご利用案内内容'
+        name: 'items'
+        widget: 'list'
         i18n: true
+        summary: '{{label}}'
+        collapsed: true
         fields:
-          - { label: 'ラベル', name: 'label', widget: 'string' }
-          - { label: '内容', name: 'value', widget: 'text' }
-      - label: '② 受付時間'
-        name: 'receptionHours'
-        widget: 'object'
-        i18n: true
-        fields:
-          - { label: 'ラベル', name: 'label', widget: 'string' }
-          - { label: '内容', name: 'value', widget: 'text' }
-      - label: '③ 利用時間'
-        name: 'usageHours'
-        widget: 'object'
-        i18n: true
-        fields:
-          - { label: 'ラベル', name: 'label', widget: 'string' }
-          - { label: '内容', name: 'value', widget: 'text' }
-      - label: '④ 利用上の注意'
-        name: 'usageNotes'
-        widget: 'object'
-        i18n: true
-        fields:
-          - { label: 'ラベル', name: 'label', widget: 'string' }
-          - { label: '内容', name: 'value', widget: 'text' }
+          - { label: '名称', name: 'label', widget: 'string' }
+          - { label: '値', name: 'value', widget: 'string' }
       - { label: 'レンタル品見出し', name: 'rentalsLabel', widget: 'string', i18n: true }
       - label: 'レンタル用品'
         name: 'rentals'
@@ -853,16 +638,13 @@ collections:
           widget: 'string',
           i18n: duplicate,
         }
-      - {
-          label: 'プラン予約ボタンの文言（{name}の部分が各プラン名に置換されます）',
-          name: 'reservationLinkLabel',
-          widget: 'string',
-          i18n: true,
-        }
-      - label: 'イントロ'
+      - { label: 'ページアイコン(1文字)', name: 'icon', widget: 'string', i18n: duplicate }
+      - label: '冒頭のページ紹介文'
         name: 'intro'
         widget: 'object'
         i18n: true
+        summary: '冒頭セクション設定'
+        collapsed: true
         fields:
           - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
           - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
@@ -872,16 +654,6 @@ collections:
             widget: 'list'
             i18n: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
-      - { label: 'アイコン(1文字)', name: 'icon', widget: 'string', i18n: duplicate }
-      - label: 'ページ内アンカーナビ'
-        name: 'quickNav'
-        widget: 'list'
-        i18n: true
-        summary: '{{label}}'
-        collapsed: true
-        fields:
-          - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
-          - { label: '表示ラベル', name: 'label', widget: 'string' }
 
   - name: 'cuisine-dinner'
     label: '夕食プラン'
@@ -903,6 +675,7 @@ collections:
         name: 'description'
         widget: 'list'
         i18n: true
+        collapsed: true
         field: { label: '段落', name: 'paragraph', widget: 'text' }
       - {
           label: 'プラン比較のご案内文',
@@ -911,27 +684,13 @@ collections:
           required: false,
           i18n: true,
         }
-      - {
-          label: '「おすすめ対象」ラベル文言（例：「こんな方に：」）',
-          name: 'recommendedForLabel',
-          widget: 'string',
-          required: false,
-          i18n: true,
-          hint: 'プランカードに表示される、おすすめ対象の見出し部分です。空欄の場合はおすすめ表示自体が出ません。',
-        }
       - label: 'プラン一覧'
         name: 'plans'
         widget: 'list'
         i18n: true
+        collapsed: true
         summary: '{{name}}'
         fields:
-          - {
-              label: 'プランID(言語共通)',
-              name: 'id',
-              widget: 'string',
-              required: false,
-              i18n: duplicate,
-            }
           - { label: 'プラン名', name: 'name', widget: 'string', i18n: true }
           - {
               label: 'プラン名(英語)',
@@ -951,6 +710,7 @@ collections:
             name: 'description'
             widget: 'list'
             i18n: true
+            collapsed: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
           - {
               label: 'おすすめの対象（例：肉料理が好きな方に）',
@@ -962,8 +722,9 @@ collections:
           - label: 'メニュー例'
             name: 'menuExample'
             widget: 'object'
-            required: false
+            required: true
             i18n: true
+            collapsed: true
             fields:
               - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
               - label: '項目'
@@ -1000,19 +761,14 @@ collections:
         name: 'description'
         widget: 'list'
         i18n: true
+        collapsed: true
         field: { label: '段落', name: 'paragraph', widget: 'text' }
       - label: 'プラン内容'
         name: 'plan'
         widget: 'object'
         i18n: true
+        collapsed: true
         fields:
-          - {
-              label: 'プランID(言語共通)',
-              name: 'id',
-              widget: 'string',
-              required: false,
-              i18n: duplicate,
-            }
           - { label: 'プラン名', name: 'name', widget: 'string', i18n: true }
           - {
               label: 'プラン名(英語)',
@@ -1032,6 +788,7 @@ collections:
             name: 'description'
             widget: 'list'
             i18n: true
+            collapsed: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
           - { label: '季節の注意書き', name: 'seasonalNote', widget: 'string', i18n: true }
 
@@ -1055,6 +812,7 @@ collections:
         name: 'inRoom'
         widget: 'object'
         i18n: true
+        collapsed: true
         fields:
           - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
           - label: '画像'
@@ -1081,12 +839,14 @@ collections:
             name: 'description'
             widget: 'list'
             i18n: true
+            collapsed: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
           - { label: '注意書き', name: 'note', widget: 'string', i18n: true }
       - label: '会場食'
         name: 'hall'
         widget: 'object'
         i18n: true
+        collapsed: true
         fields:
           - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
           - label: '画像'
@@ -1112,6 +872,7 @@ collections:
           - label: '説明文(改行ごとに1項目)'
             name: 'description'
             widget: 'list'
+            collapsed: true
             i18n: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
           - { label: '注意書き', name: 'note', widget: 'string', i18n: true }
@@ -1119,6 +880,7 @@ collections:
         name: 'planNote'
         widget: 'list'
         i18n: true
+        collapsed: true
         field: { label: '段落', name: 'paragraph', widget: 'text' }
 
   - name: 'cuisine-guest-considerations'
@@ -1179,7 +941,14 @@ collections:
           widget: 'string',
           i18n: duplicate,
         }
-      - label: 'イントロ'
+      - {
+          label: 'ページアイコン(1文字)',
+          name: 'icon',
+          widget: 'string',
+          required: false,
+          i18n: duplicate,
+        }
+      - label: '冒頭のページ紹介文'
         name: 'intro'
         widget: 'object'
         i18n: true
@@ -1192,22 +961,6 @@ collections:
             widget: 'list'
             i18n: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
-      - {
-          label: 'アイコン(1文字)',
-          name: 'icon',
-          widget: 'string',
-          required: false,
-          i18n: duplicate,
-        }
-      - label: 'ページ内アンカーナビ'
-        name: 'quickNav'
-        widget: 'list'
-        i18n: true
-        summary: '{{label}}'
-        collapsed: true
-        fields:
-          - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
-          - { label: '表示ラベル', name: 'label', widget: 'string' }
 
   - name: 'facilities-section'
     label: '館内施設一覧'
@@ -1223,18 +976,8 @@ collections:
     summary: '{{fields.heading}}'
     fields:
       - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-      - { label: '利用時間ラベル', name: 'hoursLabel', widget: 'string', i18n: true }
-      - { label: '料金ラベル', name: 'feeLabel', widget: 'string', i18n: true }
-      - { label: '支払方法ラベル', name: 'paymentLabel', widget: 'string', i18n: true }
-      - { label: '対応言語ラベル', name: 'languagesLabel', widget: 'string', i18n: true }
-      - {
-          label: '未確定項目のフォールバック文言',
-          name: 'contactFallbackLabel',
-          widget: 'string',
-          i18n: true,
-        }
       - label: '施設一覧'
         name: 'items'
         widget: 'list'
@@ -1242,14 +985,13 @@ collections:
         summary: '{{name}}'
         collapsed: true
         fields:
-          - { label: '施設ID(言語共通)', name: 'id', widget: 'string' }
-          - { label: '名称', name: 'name', widget: 'string' }
+          - { label: '名称', name: 'name', widget: 'string', i18n: true }
           - label: '画像'
             name: 'image'
             widget: 'object'
-            required: false
+            required: true
             fields:
-              - { label: 'ラベル', name: 'label', widget: 'string' }
+              - { label: 'ラベル', name: 'label', widget: 'string', i18n: true }
               - {
                   label: '画像(言語共通)',
                   name: 'src',
@@ -1257,22 +999,17 @@ collections:
                   required: false,
                   i18n: duplicate,
                 }
-              - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
+              - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', i18n: true, required: false }
           - label: '説明文(改行ごとに1項目)'
             name: 'description'
             widget: 'list'
+            i18n: true
+            collapsed: true
             field: { label: '段落', name: 'paragraph', widget: 'text' }
-          - { label: '利用時間', name: 'hours', widget: 'string', required: false }
-          - { label: '場所', name: 'location', widget: 'string', required: false }
-          - { label: '料金', name: 'fee', widget: 'string', required: false }
-          - { label: '支払い方法', name: 'payment', widget: 'string', required: false }
-          - { label: '対象', name: 'target', widget: 'string', required: false }
-          - label: '対応言語'
-            name: 'languages'
-            widget: 'list'
-            required: false
-            field: { label: '言語', name: 'language', widget: 'string' }
-          - { label: 'スタッフサポート', name: 'staffSupport', widget: 'string', required: false }
+          - { label: '利用時間', name: 'hours', widget: 'string', i18n: true, required: false }
+          - { label: '場所', name: 'location', widget: 'string', i18n: true, required: false }
+          - { label: '料金', name: 'fee', widget: 'string', i18n: true, required: false }
+          - { label: '支払い方法', name: 'payment', widget: 'string', i18n: true, required: false }
 
   - name: 'facilities-services'
     label: '館内サービス一覧'
@@ -1288,13 +1025,8 @@ collections:
     summary: '{{fields.heading}}'
     fields:
       - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-      - { label: '料金ラベル', name: 'feeLabel', widget: 'string', i18n: true }
-      - { label: 'コースラベル', name: 'plansLabel', widget: 'string', i18n: true }
-      - { label: '受付時間ラベル', name: 'receptionHoursLabel', widget: 'string', i18n: true }
-      - { label: '予約方法ラベル', name: 'reservationMethodLabel', widget: 'string', i18n: true }
-      - { label: '利用時間ラベル(バッジ用)', name: 'hoursLabel', widget: 'string', i18n: true }
       - label: 'サービス一覧'
         name: 'items'
         widget: 'list'
@@ -1302,14 +1034,14 @@ collections:
         summary: '{{name}}'
         collapsed: true
         fields:
-          - { label: 'サービスID(言語共通)', name: 'id', widget: 'string' }
-          - { label: '名称', name: 'name', widget: 'string' }
+          - { label: '名称', name: 'name', widget: 'string', i18n: true }
           - label: '画像'
             name: 'image'
             widget: 'object'
-            required: false
+            required: true
+            i18n: duplicate
             fields:
-              - { label: 'ラベル', name: 'label', widget: 'string' }
+              - { label: 'ラベル', name: 'label', widget: 'string', i18n: true }
               - {
                   label: '画像(言語共通)',
                   name: 'src',
@@ -1317,41 +1049,44 @@ collections:
                   required: false,
                   i18n: duplicate,
                 }
-              - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
+              - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', i18n: true, required: false }
           - label: '説明文(改行ごとに1項目)'
             name: 'description'
             widget: 'list'
-            field: { label: '段落', name: 'paragraph', widget: 'text' }
-          - { label: '料金', name: 'fee', widget: 'string', required: false }
+            field: { label: '段落', name: 'paragraph', widget: 'text', i18n: true }
+          - { label: '料金', name: 'fee', widget: 'string', i18n: true, required: false }
           - label: 'プラン'
             name: 'plans'
             widget: 'list'
+            i18n: true
             required: false
-            field: { label: 'プラン名', name: 'plan', widget: 'string' }
-          - { label: '所要時間', name: 'duration', widget: 'string', required: false }
-          - { label: '利用時間', name: 'hours', widget: 'string', required: false }
-          - { label: '受付時間', name: 'receptionHours', widget: 'string', required: false }
-          - { label: '予約方法', name: 'reservationMethod', widget: 'string', required: false }
-          - { label: '場所', name: 'location', widget: 'string', required: false }
+            field: { label: 'プラン名', name: 'plan', widget: 'string', i18n: true }
+          - { label: '所要時間', name: 'duration', widget: 'string', i18n: true, required: false }
+          - { label: '利用時間', name: 'hours', widget: 'string', i18n: true, required: false }
+          - { label: '受付時間', name: 'receptionHours', widget: 'string', i18n: true, required: false }
+          - { label: '予約方法', name: 'reservationMethod', widget: 'string', i18n: true, required: false }
+          - { label: '場所', name: 'location', widget: 'string', i18n: true, required: false }
           - {
               label: 'キャンセル規定',
               name: 'cancellationPolicy',
               widget: 'string',
+              i18n: true,
               required: false,
             }
           - label: '注意事項'
             name: 'notes'
             widget: 'list'
             required: false
-            field: { label: '項目', name: 'note', widget: 'string' }
+            field: { label: '項目', name: 'note', widget: 'string', i18n: true }
           - {
               label: 'おすすめとして強調',
               name: 'isFeatured',
               widget: 'boolean',
+              i18n: duplicate,
               required: false,
               default: false,
             }
-          - { label: 'アイコン', name: 'icon', widget: 'string', required: false }
+          - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate, required: false }
 
   - name: 'facilities-activities'
     label: '周辺観光一覧'
@@ -1371,46 +1106,6 @@ collections:
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - { label: '提携施設の見出し', name: 'partnerHeading', widget: 'string', i18n: true }
       - { label: 'その他施設の見出し', name: 'otherHeading', widget: 'string', i18n: true }
-      - label: 'カテゴリフィルター'
-        name: 'categoryFilters'
-        widget: 'list'
-        i18n: true
-        summary: '{{label}}'
-        collapsed: true
-        fields:
-          - { label: 'ID', name: 'id', widget: 'string' }
-          - { label: '表示名', name: 'label', widget: 'string' }
-      - { label: '「すべて」ラベル', name: 'allCategoryLabel', widget: 'string', i18n: true }
-      - {
-          label: '提携バッジのデフォルト文言',
-          name: 'partnerBadgeDefaultLabel',
-          widget: 'string',
-          i18n: true,
-        }
-      - {
-          label: '含まれるプラン見出し(提携カード用)',
-          name: 'includedInPlansHeading',
-          widget: 'string',
-          i18n: true,
-        }
-      - {
-          label: '含まれるプラン見出し(グリッドカード用・短縮)',
-          name: 'includedInPlansHeadingShort',
-          widget: 'string',
-          i18n: true,
-        }
-      - {
-          label: '公式サイトリンク文言(提携カード用)',
-          name: 'officialSiteLinkLabel',
-          widget: 'string',
-          i18n: true,
-        }
-      - {
-          label: '公式サイトリンク文言(グリッドカード用・短縮)',
-          name: 'officialSiteLinkLabelShort',
-          widget: 'string',
-          i18n: true,
-        }
       - label: 'アクティビティ一覧'
         name: 'items'
         widget: 'list'
@@ -1424,7 +1119,8 @@ collections:
           - label: '画像'
             name: 'image'
             widget: 'object'
-            required: false
+            collapsed: true,
+            required: true
             fields:
               - { label: 'ラベル', name: 'label', widget: 'string' }
               - {
@@ -1438,6 +1134,7 @@ collections:
           - label: '説明文(改行ごとに1項目)'
             name: 'description'
             widget: 'list'
+            collapsed: true,
             field: { label: '段落', name: 'paragraph', widget: 'text' }
           - { label: '場所', name: 'location', widget: 'string', required: false }
           - {
@@ -1446,33 +1143,16 @@ collections:
               widget: 'string',
               required: false,
             }
-          - { label: '所要時間', name: 'duration', widget: 'string', required: false }
-          - { label: '営業時間', name: 'hours', widget: 'string', required: false }
-          - { label: '定休日', name: 'closedDays', widget: 'string', required: false }
-          - { label: '実施期間', name: 'period', widget: 'string', required: false }
-          - { label: '料金', name: 'fee', widget: 'string', required: false }
-          - { label: 'レンタル品', name: 'rentalItems', widget: 'string', required: false }
-          - { label: 'プラン詳細', name: 'planDetails', widget: 'string', required: false }
-          - { label: '予約方法', name: 'reservationMethod', widget: 'string', required: false }
-          - { label: '対象年齢', name: 'targetAge', widget: 'string', required: false }
-          - { label: '初心者対応', name: 'beginnerFriendly', widget: 'string', required: false }
-          - { label: '雨天時の対応', name: 'rainyDayPolicy', widget: 'string', required: false }
-          - { label: '持ち物', name: 'itemsToBring', widget: 'string', required: false }
           - { label: '公式サイト', name: 'officialSite', widget: 'string', required: false }
-          - label: '注意事項'
-            name: 'notes'
-            widget: 'list'
-            required: false
-            field: { label: '項目', name: 'note', widget: 'string' }
           - {
-              label: '提携施設として扱う',
+              label: '特におすすめとして扱う',
               name: 'isPartner',
               widget: 'boolean',
               required: false,
               default: false,
             }
           - {
-              label: '提携バッジ文言',
+              label: 'おすすめバッジ文言',
               name: 'partnerBadgeLabel',
               widget: 'string',
               required: false,
@@ -1504,10 +1184,10 @@ collections:
     format: json
     summary: '{{fields.heading}}'
     fields:
-      - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: '項目'
         name: 'items'
         widget: 'list'
+        allow_add: false
         i18n: true
         field: { label: '項目', name: 'item', widget: 'string' }
 
@@ -1546,21 +1226,12 @@ collections:
           i18n: duplicate,
         }
       - {
-          label: 'アイコン(1文字)',
+          label: 'ページアイコン(1文字)',
           name: 'icon',
           widget: 'string',
           required: false,
           i18n: duplicate,
         }
-      - label: 'ページ内アンカーナビ'
-        name: 'quickNav'
-        widget: 'list'
-        i18n: true
-        summary: '{{label}}'
-        collapsed: true
-        fields:
-          - { label: 'リンク先(#で始まるID・言語共通)', name: 'href', widget: 'string' }
-          - { label: '表示ラベル', name: 'label', widget: 'string' }
 
   - name: 'access-content'
     label: '本文'
@@ -1575,241 +1246,6 @@ collections:
     format: json
     summary: 'アクセスの本文'
     fields:
-      - label: '電車でお越しの方'
-        name: 'byTrain'
-        widget: 'object'
-        i18n: true
-        fields:
-          - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
-          - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-          - { label: '最寄駅', name: 'nearestStation', widget: 'string', i18n: true }
-          - { label: 'STEP1バッジ文言', name: 'step1Badge', widget: 'string', i18n: true }
-          - { label: 'STEP2バッジ文言', name: 'step2Badge', widget: 'string', i18n: true }
-          - {
-              label: 'STEP3バッジ文言',
-              name: 'step3Badge',
-              widget: 'string',
-              required: false,
-              i18n: true,
-            }
-          - {
-              label: '最寄駅見出しの接尾語(例：「まで」)',
-              name: 'toStationSuffix',
-              widget: 'string',
-              i18n: true,
-            }
-          - {
-              label: '最寄駅見出しの接尾語(例：「からのアクセス」)',
-              name: 'fromStationAccessSuffix',
-              widget: 'string',
-              i18n: true,
-            }
-          - {
-              label: 'STEP3見出し(例：「バス停からホテルまで」)',
-              name: 'step3Heading',
-              widget: 'string',
-              required: false,
-              i18n: true,
-            }
-          - {
-              label: 'STEP3補足文言(例：「（バスご利用の場合）」)',
-              name: 'step3SubLabel',
-              widget: 'string',
-              required: false,
-              i18n: true,
-            }
-          - {
-              label: '「徒歩」ラベル',
-              name: 'walkLabel',
-              widget: 'string',
-              required: false,
-              i18n: true,
-            }
-          - {
-              label: '路線・時刻表リンクの文言',
-              name: 'linkLabel',
-              widget: 'string',
-              required: false,
-              i18n: true,
-            }
-          - {
-              label: '公式時刻表リンクの文言',
-              name: 'officialTimetableLabel',
-              widget: 'string',
-              required: false,
-              i18n: true,
-            }
-          - label: '出発地からの所要時間'
-            name: 'departures'
-            widget: 'list'
-            i18n: true
-            summary: '{{from}} → {{boardingStation}}（{{duration}}）'
-            collapsed: true
-            fields:
-              - { label: '出発地', name: 'from', widget: 'string' }
-              - { label: '乗車駅', name: 'boardingStation', widget: 'string' }
-              - { label: '列車名', name: 'trainName', widget: 'string' }
-              - { label: '所要時間', name: 'duration', widget: 'string' }
-          - label: '最寄駅からホテルまでの手段'
-            name: 'toHotelOptions'
-            widget: 'list'
-            i18n: true
-            summary: '{{method}}（{{duration}}）'
-            collapsed: true
-            fields:
-              - { label: '手段', name: 'method', widget: 'string' }
-              - { label: '路線名', name: 'line', widget: 'string', required: false }
-              - { label: '乗車場所', name: 'boarding', widget: 'string', required: false }
-              - { label: '降車場所', name: 'alighting', widget: 'string', required: false }
-              - { label: '所要時間', name: 'duration', widget: 'string' }
-              - {
-                  label: '運行頻度・予約要否',
-                  name: 'frequency',
-                  widget: 'string',
-                  required: false,
-                }
-              - { label: '補足', name: 'note', widget: 'string', required: false }
-              - {
-                  label: 'リンク先(バス会社の路線ページ等)',
-                  name: 'url',
-                  widget: 'string',
-                  required: false,
-                }
-              - {
-                  label: 'リンク文言(個別に上書きしたい場合)',
-                  name: 'linkLabel',
-                  widget: 'string',
-                  required: false,
-                }
-          - label: 'ホテルまで徒歩の場合'
-            name: 'walkToHotel'
-            widget: 'object'
-            required: false
-            i18n: true
-            fields:
-              - { label: '所要時間', name: 'duration', widget: 'string', i18n: true }
-              - { label: '距離', name: 'distance', widget: 'string', required: false, i18n: true }
-              - { label: '補足', name: 'note', widget: 'string', required: false, i18n: true }
-          - {
-              label: '送迎の有無',
-              name: 'shuttleAvailable',
-              widget: 'string',
-              required: false,
-              i18n: true,
-            }
-          - {
-              label: '公式時刻表URL',
-              name: 'officialTimetableUrl',
-              widget: 'string',
-              required: false,
-              i18n: duplicate,
-            }
-      - label: 'お車でお越しの方'
-        name: 'byCar'
-        widget: 'object'
-        i18n: true
-        fields:
-          - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
-          - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-          - { label: 'STEP1バッジ文言', name: 'step1Badge', widget: 'string', i18n: true }
-          - { label: 'STEP2バッジ文言', name: 'step2Badge', widget: 'string', i18n: true }
-          - {
-              label: 'STEP1見出し(例：「最寄ICまで」)',
-              name: 'step1Heading',
-              widget: 'string',
-              i18n: true,
-            }
-          - {
-              label: 'STEP2見出し(例：「ICからホテルまで」)',
-              name: 'step2Heading',
-              widget: 'string',
-              i18n: true,
-            }
-          - label: '出発地から最寄ICまで'
-            name: 'departures'
-            widget: 'list'
-            i18n: true
-            summary: '{{from}} → {{ic}}（{{duration}}）'
-            collapsed: true
-            fields:
-              - { label: '出発地', name: 'from', widget: 'string' }
-              - { label: 'インターチェンジ', name: 'ic', widget: 'string' }
-              - { label: '所要時間', name: 'duration', widget: 'string' }
-          - label: 'ICからホテルまで'
-            name: 'fromIc'
-            widget: 'list'
-            i18n: true
-            summary: '{{ic}}（{{duration}}）'
-            collapsed: true
-            fields:
-              - { label: 'インターチェンジ', name: 'ic', widget: 'string' }
-              - { label: '所要時間', name: 'duration', widget: 'string' }
-      - label: 'バスでお越しの方(任意)'
-        name: 'byBus'
-        widget: 'object'
-        required: false
-        i18n: true
-        fields:
-          - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
-          - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-          - { label: '出発地', name: 'from', widget: 'string', i18n: true }
-          - { label: '到着地', name: 'to', widget: 'string', i18n: true }
-          - { label: '所要時間', name: 'duration', widget: 'string', i18n: true }
-          - { label: '運行頻度', name: 'frequency', widget: 'string', required: false, i18n: true }
-          - { label: '補足', name: 'note', widget: 'string', required: false, i18n: true }
-          - { label: 'リンク先', name: 'url', widget: 'string', required: false, i18n: duplicate }
-          - {
-              label: '「乗り換えなし・直行」文言',
-              name: 'connectionLabel',
-              widget: 'string',
-              required: false,
-              i18n: true,
-            }
-          - {
-              label: '「時刻表を見る」文言',
-              name: 'timetableLabel',
-              widget: 'string',
-              required: false,
-              i18n: true,
-            }
-      - label: '地図'
-        name: 'map'
-        widget: 'object'
-        i18n: true
-        fields:
-          - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
-          - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
-          - {
-              label: 'Googleマップ埋め込みURL(言語共通)',
-              name: 'embedUrl',
-              widget: 'string',
-              i18n: duplicate,
-            }
-          - {
-              label: 'Googleマップを開くURL(言語共通)',
-              name: 'openMapUrl',
-              widget: 'string',
-              i18n: duplicate,
-            }
-          - { label: '経路検索URL(言語共通)', name: 'routeUrl', widget: 'string', i18n: duplicate }
-          - {
-              label: '地図未設定時の表示文言',
-              name: 'noMapText',
-              widget: 'string',
-              required: false,
-              i18n: true,
-            }
-          - {
-              label: '「Googleマップで開く」文言',
-              name: 'openMapLabel',
-              widget: 'string',
-              i18n: true,
-            }
-          - { label: '「ルート案内」文言', name: 'routeLabel', widget: 'string', i18n: true }
       - label: '駐車場'
         name: 'parking'
         widget: 'object'
@@ -1872,7 +1308,7 @@ collections:
           i18n: duplicate,
         }
       - {
-          label: 'アイコン(1文字)',
+          label: 'ページアイコン(1文字)',
           name: 'icon',
           widget: 'string',
           required: false,
@@ -1914,17 +1350,17 @@ collections:
         summary: '{{label}}'
         collapsed: true
         fields:
-          - { label: 'ID(言語共通)', name: 'id', widget: 'string' }
-          - { label: 'アイコン', name: 'icon', widget: 'string' }
-          - { label: '表示名', name: 'label', widget: 'string' }
+          - { label: 'アイコン', name: 'icon', widget: 'string', i18n: true }
+          - { label: '表示名', name: 'label', widget: 'string', i18n: true }
           - label: 'Q&A項目'
             name: 'items'
             widget: 'list'
             summary: '{{question}}'
+            i18n: true
             collapsed: true
             fields:
-              - { label: '質問', name: 'question', widget: 'string' }
-              - { label: '回答', name: 'answer', widget: 'text' }
+              - { label: '質問', name: 'question', widget: 'string', i18n: true }
+              - { label: '回答', name: 'answer', widget: 'text', i18n: true }
 
   - divider: true
 
@@ -1938,7 +1374,7 @@ collections:
     create: false
     delete: false
     fields:
-      - { label: 'blank', name: 'blank', widget: 'string' }
+      - { label: 'blank', name: 'blank', widget: 'string', i18n: true }
 
   - name: 'news-page-meta'
     label: '基本設定'
@@ -1961,30 +1397,12 @@ collections:
           i18n: duplicate,
         }
       - {
-          label: 'アイコン(1文字)',
+          label: 'ページアイコン(1文字)',
           name: 'icon',
           widget: 'string',
           required: false,
           i18n: duplicate,
         }
-      - { label: '「すべて」ラベル', name: 'allCategoryLabel', widget: 'string', i18n: true }
-      - { label: '該当なし文言', name: 'emptyLabel', widget: 'string', i18n: true }
-      - {
-          label: '重要ラベル',
-          name: 'importantLabel',
-          widget: 'string',
-          i18n: true,
-          default: '【重要】',
-        }
-      - label: 'カテゴリフィルター'
-        name: 'categoryFilters'
-        widget: 'list'
-        i18n: true
-        summary: '{{label}}'
-        collapsed: true
-        fields:
-          - { label: 'ID', name: 'id', widget: 'string' }
-          - { label: '表示名', name: 'label', widget: 'string' }
 
   # ── お知らせ投稿 ───────────────────────
   - name: news
@@ -2073,7 +1491,7 @@ collections:
           i18n: duplicate,
         }
       - {
-          label: 'アイコン(1文字)',
+          label: 'ページアイコン(1文字)',
           name: 'icon',
           widget: 'string',
           required: false,
@@ -2155,26 +1573,19 @@ collections:
           - label: '写真(任意・ある場合はこちらを優先表示)'
             name: 'image'
             widget: 'object'
-            required: false
+            required: true
             fields:
               - { label: '画像(言語共通)', name: 'src', widget: 'image' }
               - { label: '代替テキスト(alt)', name: 'alt', widget: 'string' }
           - { label: '職種名', name: 'title', widget: 'string' }
           - { label: '雇用形態', name: 'employmentType', widget: 'string' }
           - { label: '採用人数(数字)', name: 'recruitCount', widget: 'number' }
-          - {
-              label: '採用人数表示文言(「{count}」が数字に置換されます 例：「採用人数 {count}名」)',
-              name: 'recruitCountLabel',
-              widget: 'string',
-              i18n: true,
-            }
           - { label: '仕事紹介文', name: 'summary', widget: 'text' }
           - label: '主な仕事内容'
             name: 'duties'
             widget: 'list'
             field: { label: '項目', name: 'duty', widget: 'string' }
-          - { label: '給与タイプ', name: 'salaryType', widget: 'string' }
-          - { label: 'ざっくり表示', name: 'salaryRoughLabel', widget: 'string' }
+          - { label: '給与情報', name: 'salaryRoughLabel', widget: 'string' }
           - { label: '就業時間', name: 'workingHours', widget: 'string' }
           - { label: '休日・休暇', name: 'holidays', widget: 'string' }
           - label: 'タグ'

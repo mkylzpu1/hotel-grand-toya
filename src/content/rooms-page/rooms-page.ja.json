@@ -2,9 +2,7 @@
   "pageTitle": "客室",
   "amenitiesHeading": "無料設備・アメニティ",
   "detailCtaText": "この客室を予約する",
-  "intro": {
-    "icon": "室"
-  },
+  "icon": "室",
   "commonAmenities": [
     {
       "key": "wifi",

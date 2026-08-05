@@ -2,9 +2,7 @@
   "pageTitle": "客房",
   "amenitiesHeading": "免费设施・备品",
   "detailCtaText": "预订此客房",
-  "intro": {
-    "icon": "室"
-  },
+  "icon": "室",
   "commonAmenities": [
     {
       "key": "wifi",

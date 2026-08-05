@@ -4,13 +4,15 @@ import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import { getEntry } from 'astro:content';
 import { type Locale } from '../../content/config';
 import {
-  getLocalizedStaticPaths,
   getCommonPageContext,
   getLangLinks,
+  getLocalizedStaticPaths,
 } from '../../utils/pageContext';
+
 export async function getStaticPaths() {
   return getLocalizedStaticPaths('onsen-page-meta');
 }
+
 const { lang } = Astro.params as { lang: Locale };
 const [common, langLinks, metaEntry, qualityEntry, facilitiesEntry, stayEntry, dayUseEntry] =
   await Promise.all([
@@ -24,13 +26,7 @@ const [common, langLinks, metaEntry, qualityEntry, facilitiesEntry, stayEntry, d
   ]);
 const { siteEntry, navigationEntry, relatedLinksData } = common;
 
-const dayUseItems = (dayUseEntry!.data.items ??
-  [
-    dayUseEntry!.data.fee,
-    dayUseEntry!.data.receptionHours,
-    dayUseEntry!.data.usageHours,
-    dayUseEntry!.data.usageNotes,
-  ].filter(Boolean)) as Array<{ label: string; value: string }>;
+const dayUseItems = dayUseEntry!.data.items as Array<{ label: string; value: string }>;
 
 const page = {
   ...metaEntry!.data,

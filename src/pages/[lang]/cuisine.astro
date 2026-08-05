@@ -29,6 +29,13 @@ const [pageMetaEntry, dinnerEntry, breakfastEntry, venuesEntry, considerationsEn
     getEntry('cuisine-guest-considerations', `cuisine-guest-considerations.${lang}`),
   ]);
 
+const legacyPage = page as Partial<{
+  dinner: unknown;
+  breakfast: unknown;
+  diningVenues: unknown;
+  guestConsiderations: unknown;
+}>;
+
 const pageMeta = pageMetaEntry?.data ?? {
   pageTitle: page.pageTitle,
   pageTitleEn: page.pageTitleEn,
@@ -38,10 +45,79 @@ const pageMeta = pageMetaEntry?.data ?? {
   quickNav: page.quickNav,
 };
 
-const dinnerSection = dinnerEntry?.data ?? page.dinner;
-const breakfastSection = breakfastEntry?.data ?? page.breakfast;
-const diningVenues = venuesEntry?.data ?? page.diningVenues;
-const guestConsiderations = considerationsEntry?.data.items ?? page.guestConsiderations ?? [];
+const fallbackDinnerSection = {
+  icon: '',
+  eyebrow: '',
+  heading: '',
+  description: [] as string[],
+  comparisonNote: '',
+  recommendedForLabel: '',
+  plans: [] as Array<{
+    id?: string;
+    name: string;
+    nameEn?: string;
+    image: { src: string; alt: string };
+    description: string[];
+    recommendedFor?: string;
+    menuExample?: { heading: string; items: string[] };
+    seasonalNote: string;
+    reservationHref?: string;
+  }>,
+};
+
+const fallbackBreakfastSection = {
+  icon: '',
+  eyebrow: '',
+  heading: '',
+  description: [] as string[],
+  plan: {
+    id: '',
+    name: '',
+    nameEn: '',
+    image: { src: '', alt: '' },
+    description: [] as string[],
+    seasonalNote: '',
+  },
+};
+
+const fallbackDiningVenues = {
+  icon: '',
+  eyebrow: '',
+  heading: '',
+  inRoom: {
+    heading: '',
+    image: { src: '', alt: '' },
+    description: [] as string[],
+    note: '',
+  },
+  hall: {
+    heading: '',
+    image: { src: '', alt: '' },
+    description: [] as string[],
+    note: '',
+  },
+  planNote: [] as string[],
+};
+
+const fallbackGuestConsiderations: Array<{ icon?: string; heading: string; description: string }> =
+  [];
+
+const dinnerSection =
+  dinnerEntry?.data ??
+  (legacyPage.dinner as typeof fallbackDinnerSection | undefined) ??
+  fallbackDinnerSection;
+const breakfastSection =
+  breakfastEntry?.data ??
+  (legacyPage.breakfast as typeof fallbackBreakfastSection | undefined) ??
+  fallbackBreakfastSection;
+const diningVenues =
+  venuesEntry?.data ??
+  (legacyPage.diningVenues as typeof fallbackDiningVenues | undefined) ??
+  fallbackDiningVenues;
+const guestConsiderations =
+  considerationsEntry?.data.items ??
+  (legacyPage.guestConsiderations as typeof fallbackGuestConsiderations | undefined) ??
+  fallbackGuestConsiderations;
 ---
 
 <PageTemplate
@@ -51,10 +127,10 @@ const guestConsiderations = considerationsEntry?.data.items ?? page.guestConside
   navigation={navigationEntry.data}
   site={siteEntry.data}
   langLinks={langLinks}
-  heroIcon={pageMeta.icon}
+  heroIcon={pageMeta.icon ?? ''}
   pageTitle={pageMeta.pageTitle}
   pageTitleEn={pageMeta.pageTitleEn}
-  quickNav={pageMeta.quickNav}
+  quickNav={pageMeta.quickNav.map((item) => ({ label: item.label, href: item.href ?? '#' }))}
   quickNavLabel="ページ内ナビゲーション"
   currentPageId="cuisine"
   relatedLinksHeading={relatedLinksData.heading}
@@ -65,7 +141,7 @@ const guestConsiderations = considerationsEntry?.data.items ?? page.guestConside
   {/* リード */}
   <section class="mx-auto max-w-[1320px] px-5 py-[88px] lg:px-10 lg:py-[108px]">
     <SectionEyebrow
-      icon={pageMeta.intro.icon}
+      icon={pageMeta.intro.icon ?? ''}
       eyebrow={pageMeta.intro.eyebrow}
       heading={pageMeta.intro.heading}
     />
@@ -83,7 +159,7 @@ const guestConsiderations = considerationsEntry?.data.items ?? page.guestConside
     <div class="mx-auto max-w-[1320px] px-5 lg:px-10">
       <div class="mb-8 max-w-[760px]">
         <SectionEyebrow
-          icon={dinnerSection.icon}
+          icon={dinnerSection.icon ?? ''}
           eyebrow={dinnerSection.eyebrow}
           heading={dinnerSection.heading}
         />
@@ -136,7 +212,7 @@ const guestConsiderations = considerationsEntry?.data.items ?? page.guestConside
     <div class="mx-auto max-w-[1320px] px-5 lg:px-10">
       <div class="mb-8 max-w-[760px]">
         <SectionEyebrow
-          icon={breakfastSection.icon}
+          icon={breakfastSection.icon ?? ''}
           eyebrow={breakfastSection.eyebrow}
           heading={breakfastSection.heading}
         />
@@ -166,7 +242,7 @@ const guestConsiderations = considerationsEntry?.data.items ?? page.guestConside
     <div class="mx-auto max-w-[1320px] px-5 lg:px-10">
       <div class="mb-14 max-w-[760px]">
         <SectionEyebrow
-          icon={diningVenues.icon}
+          icon={diningVenues.icon ?? ''}
           eyebrow={diningVenues.eyebrow}
           heading={diningVenues.heading}
         />

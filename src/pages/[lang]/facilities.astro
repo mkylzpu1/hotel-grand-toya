@@ -150,12 +150,6 @@ const otherActivities = (content.activitiesSection?.items ?? []).filter((item) =
                       <dd class="text-right text-[#1E1C1A]">{item.payment}</dd>
                     </div>
                   )}
-                  {item.languages && (
-                    <div class="flex justify-between gap-2">
-                      <dt>{content.facilitiesSection.languagesLabel}</dt>
-                      <dd class="text-right text-[#1E1C1A]">{item.languages.join('／')}</dd>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
@@ -286,6 +280,20 @@ const otherActivities = (content.activitiesSection?.items ?? []).filter((item) =
           heading={content.activitiesSection.heading}
         />
       </div>
+            {
+          usageNoticeEntry.data.items.length > 0 && (
+            <div class="mx-auto mb-4 max-w-[1320px]">
+                <div class="flex items-start gap-3 border border-[#A24730]/30 bg-[#FAF6F3] px-5 py-4">
+                  <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-[1.5px] border-[#A24730] text-[0.68rem] font-bold text-[#A24730]">
+                    !
+                  </span>
+              {usageNoticeEntry.data.items.map((note) => (
+                  <p class="text-[0.84rem] leading-[1.85] text-[#55524C]">{note}</p>
+                ))}
+                </div>
+            </div>
+          )
+        }
       {/* 提携アクティビティ（先頭・横長カード） */}
       {
         partnerActivities.length > 0 && (
@@ -548,13 +556,6 @@ const otherActivities = (content.activitiesSection?.items ?? []).filter((item) =
                         )}
                       </div>
                     </div>
-                    {item.notes && item.notes.length > 0 && (
-                      <ul class="mt-3 space-y-1">
-                        {item.notes.map((note) => (
-                          <li class="text-[0.72rem] leading-[1.6] text-[#8A8781]">※ {note}</li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
                 </div>
               ))}
@@ -671,13 +672,6 @@ const otherActivities = (content.activitiesSection?.items ?? []).filter((item) =
                         )}
                       </div>
                     </div>
-                    {item.notes && item.notes.length > 0 && (
-                      <ul class="mt-3 space-y-1">
-                        {item.notes.map((note) => (
-                          <li class="text-[0.72rem] leading-[1.6] text-[#8A8781]">※ {note}</li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
                 </details>
               ))}

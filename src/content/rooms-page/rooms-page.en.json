@@ -2,9 +2,7 @@
   "pageTitle": "Rooms",
   "amenitiesHeading": "Free Facilities & Amenities",
   "detailCtaText": "Book This Room",
-  "intro": {
-    "icon": "室"
-  },
+  "icon": "室",
   "commonAmenities": [
     {
       "key": "wifi",

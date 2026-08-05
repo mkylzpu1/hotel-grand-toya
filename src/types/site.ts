@@ -48,7 +48,7 @@ export interface SiteContent {
   fax: string;
   email: string;
   reservationUrl: string;
-  reservationLabel: string;
+  reservationLabel?: string;
   footer: {
     guideHeading: string;
     infoHeading: string;
