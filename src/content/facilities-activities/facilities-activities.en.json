@@ -349,7 +349,10 @@
       ],
       "location": "Tess and post.",
       "accessFromHotel": "Tess and post.",
-      "partnerBadgeLabel": "Tess and post."
+      "partnerBadgeLabel": "Tess and post.",
+      "categories": [
+        "learn"
+      ]
     }
   ],
   "allCategoryLabel": "All",

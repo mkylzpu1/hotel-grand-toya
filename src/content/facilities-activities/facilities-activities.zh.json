@@ -349,7 +349,10 @@
       ],
       "location": "TESS和POST。",
       "accessFromHotel": "TESS和POST。",
-      "partnerBadgeLabel": "TESS和POST。"
+      "partnerBadgeLabel": "TESS和POST。",
+      "categories": [
+        "learn"
+      ]
     }
   ],
   "allCategoryLabel": "全部",
