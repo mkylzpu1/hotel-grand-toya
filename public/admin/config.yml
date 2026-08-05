@@ -43,7 +43,7 @@ collections:
     fields:
       - { label: '背景画像（言語共通）', name: image, widget: image, i18n: duplicate }
       - { label: '画像の代替テキスト (alt)', name: imageAlt, widget: string, i18n: true }
-      - { label: 'アイキャッチ文言（例: 洞爺湖温泉）', name: eyebrow, widget: string, i18n: true }
+      - { label: 'アイキャッチ文言（例: 洞爺湖温泉）', name: eyebrow, widget: string, i18n: duplicate }
       - label: '見出し（改行ごとに1項目）'
         name: titleLines
         widget: list
@@ -58,7 +58,7 @@ collections:
     label_singular: '紹介セクション'
     description: 'トップページ中段の「客室」「温泉」「お料理」「館内施設」等の紹介ブロックです。'
     folder: 'src/content/top-sections'
-    create: true
+    create: false
     delete: false
     slug: '{{slug}}'
     i18n: true
@@ -73,25 +73,20 @@ collections:
           widget: number,
           i18n: duplicate,
         }
-      - {
-          label: 'アンカーID（客室=rooms、温泉=onsen など。空欄可・言語共通）',
-          name: sectionId,
-          widget: string,
-          required: false,
-          i18n: duplicate,
-        }
       - { label: 'アイコン文字（漢字1文字）', name: icon, widget: string, i18n: duplicate }
-      - { label: 'アイキャッチ文言（例: Rooms）', name: eyebrow, widget: string, i18n: true }
+      - { label: 'アイキャッチ文言（例: Rooms）', name: eyebrow, widget: string, i18n: duplicate }
       - label: '見出し（改行ごとに1項目）'
         name: titleLines
         widget: list
         i18n: true
         required: false
+        collapsed: true
         field: { label: '行', name: line, widget: string }
       - label: '説明文（改行ごとに1項目）'
         name: description
         widget: list
         i18n: true
+        collapsed: true
         required: false
         field: { label: '段落', name: paragraph, widget: text }
       - {
@@ -167,7 +162,7 @@ collections:
     fields:
       - { label: 'ヒーロー画像（言語共通）', name: heroImage, widget: image, i18n: duplicate }
       - { label: '画像の代替テキスト (alt)', name: heroImageAlt, widget: string, i18n: true }
-      - { label: 'アイキャッチ文言（例: Access）', name: eyebrow, widget: string, i18n: true }
+      - { label: 'アイキャッチ文言（例: Access）', name: eyebrow, widget: string, i18n: duplicate }
       - { label: '見出し', name: heading, widget: string, i18n: true }
       - label: 'アクセス手段リスト'
         name: accessList
@@ -235,7 +230,7 @@ collections:
     summary: '{{fields.name}}'
     fields:
       - { label: 'アイコン', name: icon, widget: string, i18n: duplicate }
-      - { label: 'アイキャッチ文言', name: eyebrow, widget: string, i18n: true }
+      - { label: 'アイキャッチ文言', name: eyebrow, widget: string, i18n: duplicate }
       - { label: '客室名', name: name, widget: string, i18n: true }
       - label: '説明文(改行ごとに1項目)'
         name: description
@@ -455,7 +450,7 @@ collections:
     summary: '{{fields.heading}}'
     fields:
       - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: '① 泉質'
         name: 'waterQuality'
@@ -503,7 +498,7 @@ collections:
     summary: '{{fields.heading}}'
     fields:
       - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - { label: '利用時間ラベル', name: 'hoursLabel', widget: 'string', i18n: true }
       - label: '施設一覧（大浴場・露天風呂など。増減自由）'
@@ -533,7 +528,7 @@ collections:
     fields:
       - { label: 'アンカーID(言語共通)', name: 'id', widget: 'string', i18n: duplicate }
       - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: '① 利用時間'
         name: 'hours'
@@ -571,7 +566,7 @@ collections:
     fields:
       - { label: 'アンカーID(言語共通)', name: 'id', widget: 'string', i18n: duplicate }
       - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: 'ご利用案内内容'
         name: 'items'
@@ -641,7 +636,7 @@ collections:
         collapsed: true
         fields:
           - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
           - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
           - label: '説明文(改行ごとに1項目)'
             name: 'description'
@@ -663,7 +658,7 @@ collections:
     summary: '夕食概要とプラン一覧'
     fields:
       - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: '説明文(改行ごとに1項目)'
         name: 'description'
@@ -749,7 +744,7 @@ collections:
     summary: '朝食概要とプラン一覧'
     fields:
       - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: '説明文(改行ごとに1項目)'
         name: 'description'
@@ -800,7 +795,7 @@ collections:
     summary: '{{fields.heading}}'
     fields:
       - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: 'お部屋食'
         name: 'inRoom'
@@ -948,7 +943,7 @@ collections:
         i18n: true
         fields:
           - { label: 'アイコン', name: 'icon', widget: 'string', required: false, i18n: duplicate }
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
           - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
           - label: '説明文(改行ごとに1項目)'
             name: 'description'
@@ -1120,7 +1115,7 @@ collections:
     summary: '周辺観光一覧'
     fields:
       - { label: 'アイコン', name: 'icon', widget: 'string', i18n: duplicate }
-      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+      - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
       - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - { label: '提携施設の見出し', name: 'partnerHeading', widget: 'string', i18n: true }
       - { label: 'その他施設の見出し', name: 'otherHeading', widget: 'string', i18n: true }
@@ -1338,7 +1333,7 @@ collections:
         i18n: true
         fields:
           - { label: 'アイコン', name: 'icon', widget: 'string', required: false, i18n: duplicate }
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
           - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: 'お問い合わせ先'
         name: 'contact'
@@ -1672,7 +1667,7 @@ collections:
         widget: 'object'
         i18n: true
         fields:
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
           - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
       - label: 'セクション一覧'
         name: 'sections'
@@ -1723,7 +1718,7 @@ collections:
         widget: 'object'
         i18n: true
         fields:
-          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: true }
+          - { label: 'アイキャッチ文言', name: 'eyebrow', widget: 'string', i18n: duplicate }
           - { label: '見出し', name: 'heading', widget: 'string', i18n: true }
           - { label: '説明文', name: 'description', widget: 'text', i18n: true }
           - label: '制度一覧'
