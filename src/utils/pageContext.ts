@@ -82,6 +82,35 @@ export async function getCommonPageContext(lang: Locale) {
   };
 }
 
+/**
+ * ページごとに分割されたコンテンツ（page-meta / content / section 等）のデータを
+ * 汎用的にマージするヘルパー。存在しない（undefined / null の）ソースは無視される。
+ * 各ページファイルで手書きしていた `{...a.data, ...(b?.data ?? {})}` のような
+ * スプレッド処理を共通化し、コレクション追加・変更時の書き漏れを防ぐ。
+ * 引数の型をそのまま交差型として合成するため、後続の分割代入・プロパティアクセスは
+ * すべてのソースの型を反映したものになる。
+ */
+type DefinedSources<Sources extends readonly unknown[]> = Sources extends [
+  infer Head,
+  ...infer Rest,
+]
+  ? [Head] extends [null | undefined]
+    ? DefinedSources<Rest>
+    : [NonNullable<Head>, ...DefinedSources<Rest>]
+  : [];
+
+type MergedPageData<Sources extends readonly unknown[]> =
+  DefinedSources<Sources> extends [infer Head, ...infer Rest]
+    ? Head & MergedPageData<Rest>
+    : // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+      {};
+
+export function mergePageData<Sources extends Array<Record<string, unknown> | null | undefined>>(
+  ...sources: Sources
+): MergedPageData<Sources> {
+  return Object.assign({}, ...sources.filter(Boolean)) as MergedPageData<Sources>;
+}
+
 export async function getLangLinks<C extends CollectionKey>(
   lang: Locale,
   collectionName: C,

@@ -1,29 +1,22 @@
 ---
 import PageTemplate from '../../layouts/PageTemplate.astro';
 import { type Locale } from '../../content/config';
-import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
+import { getLocalizedStaticPaths, getPageContext, mergePageData } from '../../utils/pageContext';
 import { Mail, Phone, ShieldCheck, Home, Car, Shirt, Globe, Sparkles } from 'lucide-astro';
 import JobCard from '../../components/recruit/JobCard.astro';
 import { getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
-  return getLocalizedStaticPaths('recruit-page');
+  return getLocalizedStaticPaths('recruit-page-meta');
 }
 const { lang } = Astro.params as { lang: Locale };
 const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
   lang,
-  'recruit-page',
+  'recruit-page-meta',
   'recruit',
 );
-const [pageMetaEntry, contentEntry] = await Promise.all([
-  getEntry('recruit-page-meta', `recruit-page-meta.${lang}`),
-  getEntry('recruit-content', `recruit-content.${lang}`),
-]);
-const page = {
-  ...pageEntry.data,
-  ...(pageMetaEntry?.data ?? {}),
-  ...(contentEntry?.data ?? {}),
-};
+const [contentEntry] = await Promise.all([getEntry('recruit-content', `recruit-content.${lang}`)]);
+const page = mergePageData(pageEntry.data, contentEntry?.data);
 const headingLines = page.heading.split('\n');
 
 // 募集終了（status: "closed"）の職種は非表示
@@ -47,7 +40,7 @@ const benefitIconMap = {
   navigation={navigationEntry.data}
   site={siteEntry.data}
   langLinks={langLinks}
-  heroIcon={page.icon}
+  heroIcon={page.icon ?? ''}
   pageTitle={page.pageTitle}
   pageTitleEn={page.pageTitleEn}
   currentPageId="recruit"

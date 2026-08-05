@@ -2,26 +2,19 @@
 import PageTemplate from '../../layouts/PageTemplate.astro';
 import SectionEyebrow from '../../components/common/SectionEyebrow.astro';
 import { type Locale } from '../../content/config';
-import { getLocalizedStaticPaths, getPageContext } from '../../utils/pageContext';
+import { getLocalizedStaticPaths, getPageContext, mergePageData } from '../../utils/pageContext';
 import { getEntry } from 'astro:content';
 export async function getStaticPaths() {
-  return getLocalizedStaticPaths('access-page');
+  return getLocalizedStaticPaths('access-page-meta');
 }
 const { lang } = Astro.params as { lang: Locale };
 const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
   lang,
-  'access-page',
+  'access-page-meta',
   'access',
 );
-const [pageMetaEntry, contentEntry] = await Promise.all([
-  getEntry('access-page-meta', `access-page-meta.${lang}`),
-  getEntry('access-content', `access-content.${lang}`),
-]);
-const page = {
-  ...pageEntry.data,
-  ...(pageMetaEntry?.data ?? {}),
-  ...(contentEntry?.data ?? {}),
-};
+const [contentEntry] = await Promise.all([getEntry('access-content', `access-content.${lang}`)]);
+const page = mergePageData(pageEntry.data, contentEntry?.data);
 ---
 
 <PageTemplate
@@ -31,10 +24,10 @@ const page = {
   navigation={navigationEntry.data}
   site={siteEntry.data}
   langLinks={langLinks}
-  heroIcon={page.icon}
+  heroIcon={page.icon ?? ''}
   pageTitle={page.pageTitle}
   pageTitleEn={page.pageTitleEn}
-  quickNav={page.quickNav}
+  quickNav={page.quickNav.map((item) => ({ label: item.label, href: item.href ?? '#' }))}
   quickNavLabel="ページ内ナビゲーション"
   currentPageId="access"
   relatedLinksHeading={relatedLinksData.heading}

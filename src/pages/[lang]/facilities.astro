@@ -7,51 +7,35 @@ import { Footprints, Car, Star, Ticket, MapPin, ExternalLink, Store } from 'luci
 import AmenityIcon from '../../components/common/AmenityIcon.astro';
 import { getEntry } from 'astro:content';
 export async function getStaticPaths() {
-  return getLocalizedStaticPaths('facilities-page');
+  return getLocalizedStaticPaths('facilities-page-meta');
 }
 const { lang } = Astro.params as { lang: Locale };
 const { siteEntry, navigationEntry, pageEntry, relatedLinksData, langLinks } = await getPageContext(
   lang,
-  'facilities-page',
+  'facilities-page-meta',
   'facilities',
 );
 const page = pageEntry.data;
 const [
-  pageMetaEntry,
   facilitiesSectionEntry,
   servicesSectionEntry,
   activitiesSectionEntry,
   usageNoticeEntry,
   legacyContentEntry,
 ] = await Promise.all([
-  getEntry('facilities-page-meta', `facilities-page-meta.${lang}`),
   getEntry('facilities-section', `facilities-section.${lang}`),
   getEntry('facilities-services', `facilities-services.${lang}`),
   getEntry('facilities-activities', `facilities-activities.${lang}`),
   getEntry('facilities-usage-notice', `facilities-usage-notice.${lang}`),
   getEntry('facilities-content', `facilities-content.${lang}`),
 ]);
-const pageMeta = pageMetaEntry?.data ?? {
-  pageTitle: page.pageTitle,
-  pageTitleEn: page.pageTitleEn,
-  intro: page.intro,
-  icon: page.icon,
-  quickNav: page.quickNav,
-};
-const legacyContent = legacyContentEntry?.data ?? {
-  facilitiesSection: page.facilitiesSection,
-  servicesSection: page.servicesSection,
-  activitiesSection: page.activitiesSection,
-  usageNotice: page.usageNotice,
-};
+const pageMeta = page;
+const legacyContent = legacyContentEntry?.data ?? {};
 const content = {
-  facilitiesSection:
-    facilitiesSectionEntry?.data ?? legacyContent.facilitiesSection ?? page.facilitiesSection,
-  servicesSection:
-    servicesSectionEntry?.data ?? legacyContent.servicesSection ?? page.servicesSection,
-  activitiesSection:
-    activitiesSectionEntry?.data ?? legacyContent.activitiesSection ?? page.activitiesSection,
-  usageNotice: usageNoticeEntry?.data ?? legacyContent.usageNotice ?? page.usageNotice,
+  facilitiesSection: facilitiesSectionEntry?.data ?? legacyContent.facilitiesSection,
+  servicesSection: servicesSectionEntry?.data ?? legacyContent.servicesSection,
+  activitiesSection: activitiesSectionEntry?.data ?? legacyContent.activitiesSection,
+  usageNotice: usageNoticeEntry?.data ?? legacyContent.usageNotice,
 };
 // 未確定項目のフォールバック表示
 const withFallback = (value?: string) => value || content.facilitiesSection?.contactFallbackLabel;
@@ -72,10 +56,10 @@ const otherActivities = (content.activitiesSection?.items ?? []).filter((item) =
   navigation={navigationEntry.data}
   site={siteEntry.data}
   langLinks={langLinks}
-  heroIcon={pageMeta.icon}
+  heroIcon={pageMeta.icon ?? ''}
   pageTitle={pageMeta.pageTitle}
   pageTitleEn={pageMeta.pageTitleEn}
-  quickNav={pageMeta.quickNav}
+  quickNav={pageMeta.quickNav.map((item) => ({ label: item.label, href: item.href ?? '#' }))}
   quickNavLabel="ページ内ナビゲーション"
   currentPageId="facilities"
   relatedLinksHeading={relatedLinksData.heading}
@@ -85,7 +69,7 @@ const otherActivities = (content.activitiesSection?.items ?? []).filter((item) =
 >
   <section class="mx-auto max-w-[1320px] px-5 py-[88px] lg:px-10 lg:py-[108px]">
     <SectionEyebrow
-      icon={pageMeta.intro.icon}
+      icon={pageMeta.intro.icon ?? ''}
       eyebrow={pageMeta.intro.eyebrow}
       heading={pageMeta.intro.heading}
     />
@@ -234,7 +218,7 @@ const otherActivities = (content.activitiesSection?.items ?? []).filter((item) =
                 <div class="flex items-center gap-2.5 lg:gap-3">
                   <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-[1.5px] border-[#A24730] lg:h-[38px] lg:w-[38px]">
                     <AmenityIcon
-                      iconKey={item.icon}
+                      iconKey={item.icon ?? ''}
                       class="h-4 w-4 text-[#A24730] lg:h-[17px] lg:w-[17px]"
                     />
                   </span>
