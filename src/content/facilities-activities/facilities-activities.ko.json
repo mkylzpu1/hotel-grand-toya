@@ -338,8 +338,18 @@
     {
       "id": "test",
       "image": {
-        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg"
-      }
+        "src": "/assets/photos/LINE_ALBUM_ああ_260720_36.jpg",
+        "label": "미리듣기",
+        "alt": "으아아아아"
+      },
+      "name": "테스트 스팟",
+      "shopName": "테스트 스토어",
+      "description": [
+        "Tess and post."
+      ],
+      "location": "Tess and post.",
+      "accessFromHotel": "Tess and post.",
+      "partnerBadgeLabel": "Tess and post."
     }
   ],
   "includedInPlansHeadingShort": "플랜",
