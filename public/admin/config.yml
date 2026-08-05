@@ -1129,15 +1129,15 @@ collections:
         collapsed: true
         fields:
           - { label: 'ID(言語共通)', name: 'id', widget: 'string', i18n: duplicate }
-          - { label: '名称', name: 'name', widget: 'string' }
-          - { label: '店舗名', name: 'shopName', widget: 'string', required: false }
+          - { label: '名称', name: 'name', widget: 'string', i18n: true }
+          - { label: '店舗名', name: 'shopName', widget: 'string', required: false, i18n: true }
           - label: '画像'
             name: 'image'
             widget: 'object'
             collapsed: true
             required: true
             fields:
-              - { label: 'ラベル', name: 'label', widget: 'string' }
+              - { label: 'ラベル', name: 'label', widget: 'string', i18n: true }
               - {
                   label: '画像(言語共通)',
                   name: 'src',
@@ -1145,32 +1145,47 @@ collections:
                   required: false,
                   i18n: duplicate,
                 }
-              - { label: '代替テキスト(alt)', name: 'alt', widget: 'string', required: false }
+              - {
+                  label: '代替テキスト(alt)',
+                  name: 'alt',
+                  widget: 'string',
+                  required: false,
+                  i18n: true,
+                }
           - label: '説明文(改行ごとに1項目)'
             name: 'description'
             widget: 'list'
             collapsed: true
-            field: { label: '段落', name: 'paragraph', widget: 'text' }
-          - { label: '場所', name: 'location', widget: 'string', required: false }
+            field: { label: '段落', name: 'paragraph', widget: 'text', i18n: true }
+          - { label: '場所', name: 'location', widget: 'string', required: false, i18n: true }
           - {
               label: 'ホテルからのアクセス',
               name: 'accessFromHotel',
               widget: 'string',
               required: false,
+              i18n: true,
             }
-          - { label: '公式サイト', name: 'officialSite', widget: 'string', required: false }
+          - {
+              label: '公式サイト',
+              name: 'officialSite',
+              widget: 'string',
+              required: false,
+              i18n: duplicate,
+            }
           - {
               label: '特におすすめとして扱う',
               name: 'isPartner',
               widget: 'boolean',
               required: false,
               default: false,
+              i18n: duplicate,
             }
           - {
               label: 'おすすめバッジ文言',
               name: 'partnerBadgeLabel',
               widget: 'string',
               required: false,
+              i18n: true,
             }
           - label: '対象プラン'
             name: 'includedInPlans'
@@ -1178,14 +1193,20 @@ collections:
             required: false
             summary: '{{name}}'
             fields:
-              - { label: 'プラン名', name: 'name', widget: 'string' }
-              - { label: 'リンク先', name: 'href', widget: 'string' }
+              - { label: 'プラン名', name: 'name', widget: 'string', i18n: true }
+              - { label: 'リンク先', name: 'href', widget: 'string', i18n: duplicate }
           - label: 'カテゴリ(複数可)'
             name: 'categories'
             widget: 'list'
             required: false
-            field: { label: 'カテゴリID', name: 'category', widget: 'select', options: ['nature', 'family', 'view', 'active'] }
-
+            field:
+              {
+                label: 'カテゴリID',
+                name: 'category',
+                widget: 'select',
+                options: ['nature', 'family', 'view', 'active'],
+                i18n: duplicate,
+              }
   - name: 'facilities-usage-notice'
     label: '利用上の注意'
     icon: 'arrow_right'
