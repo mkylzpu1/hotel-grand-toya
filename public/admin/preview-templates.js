@@ -1,7 +1,7 @@
 /* ==========================================================
    Decap CMS プレビューテンプレート集
    hyperscript(h) + createClass のみで書かれています（ビルド不要）。
-   対象外（登録なし・標準プレビューのまま）: site / navigation / related-links / news-page
+   対象外（登録なし・標準プレビューのまま）: site / navigation / related-links / news-page-meta
    ========================================================== */
 (function () {
   var h = window.h || (window.CMS && window.CMS.h);
@@ -495,28 +495,53 @@
     }),
   );
 
-  // ---------- onsen-page ----------
+  // ---------- onsen-page-meta ----------
   CMS.registerPreviewTemplate(
-    'onsen-page',
+    'onsen-page-meta',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        return Wrapper(
+          PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
+          h(
+            'p',
+            { style: { fontWeight: 600, color: COLOR.indigo, marginBottom: '10px' } },
+            data.get('usageHeading'),
+          ),
+          QuickNavBadges(data.get('quickNav')),
+        );
+      },
+    }),
+  );
+
+  // ---------- onsen-quality ----------
+  CMS.registerPreviewTemplate(
+    'onsen-quality',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        return Wrapper(
+          Eyebrow(data.get('icon'), data.get('eyebrow'), data.get('heading')),
+          ['waterQuality', 'benefits', 'characteristics', 'sourceInfo'].map(function (key, i) {
+            var item = data.get(key);
+            return LabelValueRow(get(item, 'label'), get(item, 'value'), i);
+          }),
+        );
+      },
+    }),
+  );
+
+  // ---------- onsen-facilities ----------
+  CMS.registerPreviewTemplate(
+    'onsen-facilities',
     createClass({
       render: function () {
         var data = this.props.entry.get('data');
         var getAsset = this.props.getAsset;
-        var quality = data.get('quality');
-        var facilities = data.get('facilities');
-        var stay = data.get('stay');
-        var dayUse = data.get('dayUse');
+        var items = arr(data.get('items'));
+        var notes = arr(data.get('notes'));
         return Wrapper(
-          PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
-          Eyebrow(get(quality, 'icon'), get(quality, 'eyebrow'), get(quality, 'heading')),
-          h(
-            'div',
-            { style: { marginBottom: '32px' } },
-            arr(get(quality, 'items')).map(function (item, i) {
-              return LabelValueRow(get(item, 'label'), get(item, 'value'), i);
-            }),
-          ),
-          Eyebrow(get(facilities, 'icon'), get(facilities, 'eyebrow'), get(facilities, 'heading')),
+          Eyebrow(data.get('icon'), data.get('eyebrow'), data.get('heading')),
           h(
             'div',
             {
@@ -524,10 +549,10 @@
                 display: 'grid',
                 gridTemplateColumns: 'repeat(3, 1fr)',
                 gap: '14px',
-                marginBottom: '32px',
+                marginBottom: '20px',
               },
             },
-            arr(get(facilities, 'items')).map(function (item, i) {
+            items.map(function (item, i) {
               return Card(
                 [
                   h(
@@ -554,18 +579,18 @@
                   h(
                     'p',
                     { key: 'h', style: { fontSize: '0.72rem', color: COLOR.inkFaint } },
-                    get(facilities, 'hoursLabel') + ': ' + get(item, 'hours'),
+                    data.get('hoursLabel') + ': ' + get(item, 'hours'),
                   ),
                 ],
                 { key: i },
               );
             }),
           ),
-          arr(get(facilities, 'notes')).length > 0 &&
+          notes.length > 0 &&
             h(
               'div',
-              { style: { marginBottom: '32px' } },
-              arr(get(facilities, 'notes')).map(function (note, i) {
+              {},
+              notes.map(function (note, i) {
                 return h(
                   'p',
                   { key: i, style: { fontSize: '0.78rem', color: COLOR.inkFaint } },
@@ -573,27 +598,63 @@
                 );
               }),
             ),
-          h('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' } }, [
+        );
+      },
+    }),
+  );
+
+  // ---------- onsen-usage-stay ----------
+  CMS.registerPreviewTemplate(
+    'onsen-usage-stay',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        return Wrapper(
+          Eyebrow(data.get('icon'), data.get('eyebrow'), data.get('heading')),
+          ['hours', 'amenities', 'usageNotes'].map(function (key, i) {
+            var item = data.get(key);
+            return LabelValueRow(get(item, 'label'), get(item, 'value'), i);
+          }),
+        );
+      },
+    }),
+  );
+
+  // ---------- onsen-usage-dayuse ----------
+  CMS.registerPreviewTemplate(
+    'onsen-usage-dayuse',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var items = arr(data.get('items'));
+        var rentals = arr(data.get('rentals'));
+        var notes = arr(data.get('notes'));
+        return Wrapper(
+          Eyebrow(data.get('icon'), data.get('eyebrow'), data.get('heading')),
+          items.map(function (item, i) {
+            return LabelValueRow(get(item, 'label'), get(item, 'value'), i);
+          }),
+          rentals.length > 0 &&
+            h(
+              'p',
+              { style: { fontWeight: 600, color: COLOR.indigo, margin: '14px 0 6px' } },
+              data.get('rentalsLabel'),
+            ),
+          rentals.map(function (item, i) {
+            return LabelValueRow(get(item, 'label'), get(item, 'value'), 'r' + i);
+          }),
+          notes.length > 0 &&
             h(
               'div',
-              { key: 'stay' },
-              Eyebrow(get(stay, 'icon'), get(stay, 'eyebrow'), get(stay, 'heading')),
-              arr(get(stay, 'items')).map(function (item, i) {
-                return LabelValueRow(get(item, 'label'), get(item, 'value'), i);
+              { style: { marginTop: '12px' } },
+              notes.map(function (note, i) {
+                return h(
+                  'p',
+                  { key: i, style: { fontSize: '0.78rem', color: COLOR.inkFaint } },
+                  '※ ' + note,
+                );
               }),
             ),
-            h(
-              'div',
-              { key: 'dayUse' },
-              Eyebrow(get(dayUse, 'icon'), get(dayUse, 'eyebrow'), get(dayUse, 'heading')),
-              arr(get(dayUse, 'items')).map(function (item, i) {
-                return LabelValueRow(get(item, 'label'), get(item, 'value'), i);
-              }),
-              arr(get(dayUse, 'rentals')).map(function (item, i) {
-                return LabelValueRow(get(item, 'label'), get(item, 'value'), 'r' + i);
-              }),
-            ),
-          ]),
         );
       },
     }),
@@ -716,7 +777,7 @@
     }),
   );
 
-  // ---------- cuisine-page ----------
+  // ---------- cuisine-page-meta / cuisine-dinner / cuisine-breakfast / cuisine-venues / cuisine-guest-considerations ----------
   function CuisinePlanCard(getAsset, plan, key, recommendedForLabel) {
     var menuExample = get(plan, 'menuExample');
     var recommendedFor = get(plan, 'recommendedFor');
@@ -794,56 +855,81 @@
     );
   }
   CMS.registerPreviewTemplate(
-    'cuisine-page',
+    'cuisine-page-meta',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var intro = data.get('intro');
+        return Wrapper(
+          PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
+          QuickNavBadges(data.get('quickNav')),
+          Eyebrow(get(intro, 'icon'), get(intro, 'eyebrow'), get(intro, 'heading')),
+          Lines(get(intro, 'description')),
+        );
+      },
+    }),
+  );
+
+  // ---------- cuisine-dinner ----------
+  CMS.registerPreviewTemplate(
+    'cuisine-dinner',
     createClass({
       render: function () {
         var data = this.props.entry.get('data');
         var getAsset = this.props.getAsset;
-        var dinner = data.get('dinner');
-        var breakfast = data.get('breakfast');
-        var diningVenues = data.get('diningVenues');
-        var quickNav = arr(data.get('quickNav'));
-        var guestConsiderations = arr(data.get('guestConsiderations'));
-        var recommendedForLabel = get(dinner, 'recommendedForLabel');
-
+        var plans = arr(data.get('plans'));
+        var recommendedForLabel = data.get('recommendedForLabel');
         return Wrapper(
-          PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
-
-          // ★追加: ページ内アンカーナビ
-          QuickNavBadges(quickNav),
-
-          Eyebrow(
-            get(data.get('intro'), 'icon'),
-            get(data.get('intro'), 'eyebrow'),
-            get(data.get('intro'), 'heading'),
-          ),
-          Lines(get(data.get('intro'), 'description'), { marginBottom: '32px' }),
-          Eyebrow(get(dinner, 'icon'), get(dinner, 'eyebrow'), get(dinner, 'heading')),
-          h(
-            'div',
-            {
-              style: {
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '16px',
-                marginBottom: '24px',
-              },
-            },
-            arr(get(dinner, 'plans')).map(function (p, i) {
-              return CuisinePlanCard(getAsset, p, i, recommendedForLabel);
-            }),
-          ),
-          Eyebrow(get(breakfast, 'icon'), get(breakfast, 'eyebrow'), get(breakfast, 'heading')),
-          CuisinePlanCard(getAsset, get(breakfast, 'plan'), 'bf', recommendedForLabel),
-          Eyebrow(
-            get(diningVenues, 'icon'),
-            get(diningVenues, 'eyebrow'),
-            get(diningVenues, 'heading'),
-          ),
+          Eyebrow(data.get('icon'), data.get('eyebrow'), data.get('heading')),
+          Lines(data.get('description'), { marginBottom: '12px' }),
+          data.get('comparisonNote') &&
+            h(
+              'p',
+              { style: { fontSize: '0.8rem', color: COLOR.inkFaint, marginBottom: '16px' } },
+              data.get('comparisonNote'),
+            ),
           h(
             'div',
             { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' } },
-            [get(diningVenues, 'inRoom'), get(diningVenues, 'hall')].map(function (v, i) {
+            plans.map(function (p, i) {
+              return CuisinePlanCard(getAsset, p, i, recommendedForLabel);
+            }),
+          ),
+        );
+      },
+    }),
+  );
+
+  // ---------- cuisine-breakfast ----------
+  CMS.registerPreviewTemplate(
+    'cuisine-breakfast',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var getAsset = this.props.getAsset;
+        return Wrapper(
+          Eyebrow(data.get('icon'), data.get('eyebrow'), data.get('heading')),
+          Lines(data.get('description'), { marginBottom: '12px' }),
+          CuisinePlanCard(getAsset, data.get('plan'), 'bf', null),
+        );
+      },
+    }),
+  );
+
+  // ---------- cuisine-venues ----------
+  CMS.registerPreviewTemplate(
+    'cuisine-venues',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var getAsset = this.props.getAsset;
+        var planNote = arr(data.get('planNote'));
+        return Wrapper(
+          Eyebrow(data.get('icon'), data.get('eyebrow'), data.get('heading')),
+          h(
+            'div',
+            { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' } },
+            [data.get('inRoom'), data.get('hall')].map(function (v, i) {
               return Card(
                 [
                   h(
@@ -860,7 +946,6 @@
                     get(v, 'heading'),
                   ),
                   Lines(get(v, 'description')),
-                  // ★追加: 注意書き（note）
                   get(v, 'note') &&
                     h(
                       'p',
@@ -875,52 +960,12 @@
               );
             }),
           ),
-
-          // ★追加: プランに関する注意書き（planNote）
-          arr(get(diningVenues, 'planNote')).length > 0 &&
+          planNote.length > 0 &&
             h(
               'div',
-              {
-                style: {
-                  marginTop: '16px',
-                  marginBottom: '16px',
-                  fontSize: '0.82rem',
-                  color: COLOR.inkSoft,
-                },
-              },
-              arr(get(diningVenues, 'planNote')).map(function (line, i) {
+              { style: { marginTop: '16px', fontSize: '0.82rem', color: COLOR.inkSoft } },
+              planNote.map(function (line, i) {
                 return h('p', { key: i }, line);
-              }),
-            ),
-
-          // ★追加: ご利用にあたっての注意事項（アレルギー対応・お子様連れ等）
-          guestConsiderations.length > 0 &&
-            h(
-              'div',
-              {
-                style: {
-                  marginTop: '24px',
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '12px',
-                },
-              },
-              guestConsiderations.map(function (item, i) {
-                return Card(
-                  [
-                    h(
-                      'p',
-                      { key: 'h', style: { fontWeight: 600, color: COLOR.ink } },
-                      get(item, 'icon') + ' ' + get(item, 'heading'),
-                    ),
-                    h(
-                      'p',
-                      { key: 'd', style: { fontSize: '0.82rem', color: COLOR.inkSoft } },
-                      get(item, 'description'),
-                    ),
-                  ],
-                  { key: i },
-                );
               }),
             ),
         );
@@ -928,48 +973,71 @@
     }),
   );
 
-  // ---------- facilities-page ----------
+  // ---------- cuisine-guest-considerations ----------
   CMS.registerPreviewTemplate(
-    'facilities-page',
+    'cuisine-guest-considerations',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var items = arr(data.get('items'));
+        return Wrapper(
+          h(
+            'div',
+            { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' } },
+            items.map(function (item, i) {
+              return Card(
+                [
+                  h(
+                    'p',
+                    { key: 'h', style: { fontWeight: 600, color: COLOR.ink } },
+                    (get(item, 'icon') || '') + ' ' + get(item, 'heading'),
+                  ),
+                  h(
+                    'p',
+                    { key: 'd', style: { fontSize: '0.82rem', color: COLOR.inkSoft } },
+                    get(item, 'description'),
+                  ),
+                ],
+                { key: i },
+              );
+            }),
+          ),
+        );
+      },
+    }),
+  );
+
+  // ---------- facilities-page-meta ----------
+  CMS.registerPreviewTemplate(
+    'facilities-page-meta',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var intro = data.get('intro');
+        return Wrapper(
+          PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
+          QuickNavBadges(data.get('quickNav')),
+          Eyebrow(get(intro, 'icon'), get(intro, 'eyebrow'), get(intro, 'heading')),
+          Lines(get(intro, 'description')),
+        );
+      },
+    }),
+  );
+
+  // ---------- facilities-section ----------
+  CMS.registerPreviewTemplate(
+    'facilities-section',
     createClass({
       render: function () {
         var data = this.props.entry.get('data');
         var getAsset = this.props.getAsset;
-        var facilitiesSection = data.get('facilitiesSection');
-        var servicesSection = data.get('servicesSection');
-        var activitiesSection = data.get('activitiesSection');
-        var quickNav = arr(data.get('quickNav'));
-        var usageNotice = data.get('usageNotice');
-
+        var items = arr(data.get('items'));
         return Wrapper(
-          PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
-
-          // ★追加: ページ内アンカーナビ
-          QuickNavBadges(quickNav),
-
-          Eyebrow(
-            get(data.get('intro'), 'icon'),
-            get(data.get('intro'), 'eyebrow'),
-            get(data.get('intro'), 'heading'),
-          ),
-          Lines(get(data.get('intro'), 'description'), { marginBottom: '28px' }),
-
-          Eyebrow(
-            get(facilitiesSection, 'icon'),
-            get(facilitiesSection, 'eyebrow'),
-            get(facilitiesSection, 'heading'),
-          ),
+          Eyebrow(data.get('icon'), data.get('eyebrow'), data.get('heading')),
           h(
             'div',
-            {
-              style: {
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '12px',
-                marginBottom: '28px',
-              },
-            },
-            arr(get(facilitiesSection, 'items')).map(function (item, i) {
+            { style: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' } },
+            items.map(function (item, i) {
               return Card(
                 [
                   h(
@@ -990,7 +1058,6 @@
                     get(item, 'name'),
                   ),
                   Lines(get(item, 'description')),
-                  // ★追加: 利用時間・料金・支払方法・対応言語
                   h(
                     'div',
                     {
@@ -999,30 +1066,15 @@
                     },
                     [
                       get(item, 'hours') &&
-                        h(
-                          'p',
-                          { key: 'h' },
-                          get(facilitiesSection, 'hoursLabel') + ': ' + get(item, 'hours'),
-                        ),
+                        h('p', { key: 'h' }, data.get('hoursLabel') + ': ' + get(item, 'hours')),
+                      get(item, 'location') && h('p', { key: 'loc' }, get(item, 'location')),
                       get(item, 'fee') &&
-                        h(
-                          'p',
-                          { key: 'f' },
-                          get(facilitiesSection, 'feeLabel') + ': ' + get(item, 'fee'),
-                        ),
+                        h('p', { key: 'f' }, data.get('feeLabel') + ': ' + get(item, 'fee')),
                       get(item, 'payment') &&
                         h(
                           'p',
                           { key: 'p' },
-                          get(facilitiesSection, 'paymentLabel') + ': ' + get(item, 'payment'),
-                        ),
-                      arr(get(item, 'languages')).length > 0 &&
-                        h(
-                          'p',
-                          { key: 'l' },
-                          get(facilitiesSection, 'languagesLabel') +
-                            ': ' +
-                            arr(get(item, 'languages')).join('／'),
+                          data.get('paymentLabel') + ': ' + get(item, 'payment'),
                         ),
                     ],
                   ),
@@ -1031,100 +1083,97 @@
               );
             }),
           ),
+        );
+      },
+    }),
+  );
 
-          Eyebrow(
-            get(servicesSection, 'icon'),
-            get(servicesSection, 'eyebrow'),
-            get(servicesSection, 'heading'),
-          ),
-          h(
-            'div',
-            { style: { marginBottom: '28px' } },
-            arr(get(servicesSection, 'items')).map(function (item, i) {
-              return Card(
-                [
+  // ---------- facilities-services ----------
+  CMS.registerPreviewTemplate(
+    'facilities-services',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var items = arr(data.get('items'));
+        return Wrapper(
+          Eyebrow(data.get('icon'), data.get('eyebrow'), data.get('heading')),
+          items.map(function (item, i) {
+            return Card(
+              [
+                h(
+                  'p',
+                  { key: 'n', style: { fontWeight: 600, color: COLOR.ink, marginBottom: '4px' } },
+                  get(item, 'name') + (get(item, 'isFeatured') ? '（おすすめ）' : ''),
+                ),
+                Lines(get(item, 'description')),
+                h(
+                  'div',
+                  {
+                    key: 'meta',
+                    style: { marginTop: '6px', fontSize: '0.76rem', color: COLOR.inkFaint },
+                  },
+                  [
+                    get(item, 'fee') &&
+                      h('p', { key: 'fee' }, data.get('feeLabel') + ': ' + get(item, 'fee')),
+                    arr(get(item, 'plans')).length > 0 &&
+                      h(
+                        'p',
+                        { key: 'plans' },
+                        data.get('plansLabel') + ': ' + arr(get(item, 'plans')).join('／'),
+                      ),
+                    get(item, 'hours') &&
+                      h('p', { key: 'hours' }, data.get('hoursLabel') + ': ' + get(item, 'hours')),
+                    get(item, 'receptionHours') &&
+                      h(
+                        'p',
+                        { key: 'rh' },
+                        data.get('receptionHoursLabel') + ': ' + get(item, 'receptionHours'),
+                      ),
+                    get(item, 'reservationMethod') &&
+                      h(
+                        'p',
+                        { key: 'rm' },
+                        data.get('reservationMethodLabel') + ': ' + get(item, 'reservationMethod'),
+                      ),
+                    get(item, 'location') &&
+                      h('p', { key: 'loc' }, '場所: ' + get(item, 'location')),
+                  ],
+                ),
+                arr(get(item, 'notes')).length > 0 &&
                   h(
-                    'p',
-                    { key: 'n', style: { fontWeight: 600, color: COLOR.ink, marginBottom: '4px' } },
-                    get(item, 'name') + (get(item, 'isFeatured') ? '（おすすめ）' : ''),
+                    'ul',
+                    { key: 'notes', style: { marginTop: '6px', paddingLeft: '16px' } },
+                    arr(get(item, 'notes')).map(function (note, ni) {
+                      return h(
+                        'li',
+                        { key: ni, style: { fontSize: '0.72rem', color: COLOR.inkFaint } },
+                        '※ ' + note,
+                      );
+                    }),
                   ),
-                  Lines(get(item, 'description')),
-                  // ★追加: 料金・コース・利用時間・受付時間・予約方法・場所
-                  h(
-                    'div',
-                    {
-                      key: 'meta',
-                      style: { marginTop: '6px', fontSize: '0.76rem', color: COLOR.inkFaint },
-                    },
-                    [
-                      get(item, 'fee') &&
-                        h(
-                          'p',
-                          { key: 'fee' },
-                          get(servicesSection, 'feeLabel') + ': ' + get(item, 'fee'),
-                        ),
-                      arr(get(item, 'plans')).length > 0 &&
-                        h(
-                          'p',
-                          { key: 'plans' },
-                          get(servicesSection, 'plansLabel') +
-                            ': ' +
-                            arr(get(item, 'plans')).join('／'),
-                        ),
-                      get(item, 'hours') &&
-                        h(
-                          'p',
-                          { key: 'hours' },
-                          get(servicesSection, 'hoursLabel') + ': ' + get(item, 'hours'),
-                        ),
-                      get(item, 'receptionHours') &&
-                        h(
-                          'p',
-                          { key: 'rh' },
-                          get(servicesSection, 'receptionHoursLabel') +
-                            ': ' +
-                            get(item, 'receptionHours'),
-                        ),
-                      get(item, 'reservationMethod') &&
-                        h(
-                          'p',
-                          { key: 'rm' },
-                          get(servicesSection, 'reservationMethodLabel') +
-                            ': ' +
-                            get(item, 'reservationMethod'),
-                        ),
-                      get(item, 'location') &&
-                        h('p', { key: 'loc' }, '場所: ' + get(item, 'location')),
-                    ],
-                  ),
-                  // ★追加: 注意事項
-                  arr(get(item, 'notes')).length > 0 &&
-                    h(
-                      'ul',
-                      { key: 'notes', style: { marginTop: '6px', paddingLeft: '16px' } },
-                      arr(get(item, 'notes')).map(function (note, ni) {
-                        return h(
-                          'li',
-                          { key: ni, style: { fontSize: '0.72rem', color: COLOR.inkFaint } },
-                          '※ ' + note,
-                        );
-                      }),
-                    ),
-                ],
-                { key: i },
-              );
-            }),
-          ),
+              ],
+              { key: i },
+            );
+          }),
+        );
+      },
+    }),
+  );
 
-          Eyebrow(
-            get(activitiesSection, 'icon'),
-            get(activitiesSection, 'eyebrow'),
-            get(activitiesSection, 'heading'),
-          ),
+  // ---------- facilities-activities ----------
+  CMS.registerPreviewTemplate(
+    'facilities-activities',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var getAsset = this.props.getAsset;
+        var items = arr(data.get('items'));
+        return Wrapper(
+          Eyebrow(data.get('icon'), data.get('eyebrow'), data.get('heading')),
           h(
             'div',
             { style: { display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' } },
-            arr(get(activitiesSection, 'items')).map(function (item, i) {
+            items.map(function (item, i) {
               var plans = arr(get(item, 'includedInPlans'));
               var categories = toJS(get(item, 'categories')) || [];
               return Card(
@@ -1146,7 +1195,6 @@
                     { key: 'n', style: { fontWeight: 600, color: COLOR.ink } },
                     get(item, 'name') + (get(item, 'isPartner') ? '（提携）' : ''),
                   ),
-                  // ★追加: 店舗名
                   get(item, 'shopName') &&
                     h(
                       'p',
@@ -1164,7 +1212,6 @@
                       .join(' / '),
                   ),
                   Lines(get(item, 'description')),
-                  // ★追加: カテゴリタグ
                   categories.length > 0 &&
                     h(
                       'div',
@@ -1189,7 +1236,6 @@
                         );
                       }),
                     ),
-                  // ★追加: 対象プラン（includedInPlans）
                   plans.length > 0 &&
                     h(
                       'div',
@@ -1197,7 +1243,7 @@
                       h(
                         'p',
                         { style: { fontSize: '0.7rem', color: COLOR.inkFaint } },
-                        get(activitiesSection, 'includedInPlansHeadingShort'),
+                        data.get('includedInPlansHeadingShort'),
                       ),
                       plans.map(function (plan, pi) {
                         return h(
@@ -1207,7 +1253,6 @@
                         );
                       }),
                     ),
-                  // ★追加: 公式サイト
                   get(item, 'officialSite') &&
                     h(
                       'p',
@@ -1215,70 +1260,69 @@
                         key: 'os',
                         style: { fontSize: '0.72rem', color: COLOR.bengara, marginTop: '6px' },
                       },
-                      get(activitiesSection, 'officialSiteLinkLabelShort') +
-                        ': ' +
-                        get(item, 'officialSite'),
-                    ),
-                  // ★追加: 注意事項
-                  arr(get(item, 'notes')).length > 0 &&
-                    h(
-                      'ul',
-                      { key: 'notes', style: { marginTop: '6px', paddingLeft: '16px' } },
-                      arr(get(item, 'notes')).map(function (note, ni) {
-                        return h(
-                          'li',
-                          { key: ni, style: { fontSize: '0.7rem', color: COLOR.inkFaint } },
-                          '※ ' + note,
-                        );
-                      }),
+                      data.get('officialSiteLinkLabelShort') + ': ' + get(item, 'officialSite'),
                     ),
                 ],
                 { key: i },
               );
             }),
           ),
-
-          // ★追加: 利用上の注意
-          usageNotice &&
-            h(
-              'div',
-              {
-                style: {
-                  marginTop: '28px',
-                  borderTop: '1px solid ' + COLOR.line,
-                  paddingTop: '16px',
-                },
-              },
-              h(
-                'p',
-                { style: { fontWeight: 600, color: COLOR.indigo, marginBottom: '6px' } },
-                get(usageNotice, 'heading'),
-              ),
-              arr(get(usageNotice, 'items')).map(function (note, i) {
-                return h(
-                  'p',
-                  { key: i, style: { fontSize: '0.82rem', color: COLOR.inkSoft } },
-                  '※ ' + note,
-                );
-              }),
-            ),
         );
       },
     }),
   );
 
-  // ---------- access-page ----------
+  // ---------- facilities-usage-notice ----------
   CMS.registerPreviewTemplate(
-    'access-page',
+    'facilities-usage-notice',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var items = arr(data.get('items'));
+        return Wrapper(
+          h(
+            'p',
+            { style: { fontWeight: 600, color: COLOR.indigo, marginBottom: '8px' } },
+            data.get('heading'),
+          ),
+          items.map(function (note, i) {
+            return h(
+              'p',
+              { key: i, style: { fontSize: '0.84rem', color: COLOR.inkSoft } },
+              '※ ' + note,
+            );
+          }),
+        );
+      },
+    }),
+  );
+
+  // ---------- access-page-meta ----------
+  CMS.registerPreviewTemplate(
+    'access-page-meta',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        return Wrapper(
+          PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
+          QuickNavBadges(data.get('quickNav')),
+        );
+      },
+    }),
+  );
+
+  // ---------- access-content ----------
+  CMS.registerPreviewTemplate(
+    'access-content',
     createClass({
       render: function () {
         var data = this.props.entry.get('data');
         var byTrain = data.get('byTrain');
         var byCar = data.get('byCar');
+        var byBus = data.get('byBus');
         var parking = data.get('parking');
         var surroundings = data.get('surroundings');
         return Wrapper(
-          PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
           h(
             'div',
             {
@@ -1316,6 +1360,17 @@
               ),
             ],
           ),
+          byBus &&
+            h(
+              'div',
+              { style: { marginBottom: '20px' } },
+              Eyebrow(get(byBus, 'icon'), get(byBus, 'eyebrow'), get(byBus, 'heading')),
+              LabelValueRow(
+                get(byBus, 'from') + ' → ' + get(byBus, 'to'),
+                get(byBus, 'duration'),
+                'bus',
+              ),
+            ),
           h(
             'p',
             { style: { fontWeight: 600, marginBottom: '6px', color: COLOR.indigo } },
@@ -1335,15 +1390,36 @@
     }),
   );
 
-  // ---------- faq-page ----------
+  // ---------- faq-page-meta ----------
   CMS.registerPreviewTemplate(
-    'faq-page',
+    'faq-page-meta',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var qaSection = data.get('qaSection');
+        var contact = data.get('contact');
+        return Wrapper(
+          PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
+          Eyebrow(get(qaSection, 'icon'), get(qaSection, 'eyebrow'), get(qaSection, 'heading')),
+          h(
+            'div',
+            { style: { marginTop: '16px', fontSize: '0.86rem', color: COLOR.inkSoft } },
+            h('p', {}, get(contact, 'leadText')),
+            h('p', {}, get(contact, 'emailNote')),
+          ),
+        );
+      },
+    }),
+  );
+
+  // ---------- faq-categories ----------
+  CMS.registerPreviewTemplate(
+    'faq-categories',
     createClass({
       render: function () {
         var data = this.props.entry.get('data');
         var categories = arr(data.get('categories'));
         return Wrapper(
-          PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
           categories.map(function (cat, ci) {
             return h(
               'div',
@@ -1543,19 +1619,12 @@
     }),
   );
 
-  // ---------- recruit-page ----------
+  // ---------- recruit-page-meta ----------
   CMS.registerPreviewTemplate(
-    'recruit-page',
+    'recruit-page-meta',
     createClass({
       render: function () {
         var data = this.props.entry.get('data');
-        var getAsset = this.props.getAsset;
-        var workLife = data.get('workLife');
-        var positions = arr(data.get('positions'));
-        var process = arr(data.get('process'));
-        var benefits = arr(data.get('benefits'));
-        var photos = arr(get(workLife, 'photos'));
-
         return Wrapper(
           PageTitle(data.get('pageTitle'), data.get('pageTitleEn')),
           h(
@@ -1572,8 +1641,39 @@
             },
             data.get('heading'),
           ),
-          Lines(data.get('description'), { marginBottom: '24px' }),
+          Lines(data.get('description'), { marginBottom: '20px' }),
+          h(
+            'div',
+            {
+              style: {
+                borderTop: '1px solid ' + COLOR.line,
+                paddingTop: '16px',
+                fontSize: '0.84rem',
+                color: COLOR.ink,
+              },
+            },
+            h('p', { key: 'email' }, data.get('emailLabel') + ': ' + data.get('emailAddress')),
+            h('p', { key: 'tel' }, data.get('telLabel') + ': ' + data.get('tel')),
+          ),
+        );
+      },
+    }),
+  );
 
+  // ---------- recruit-content ----------
+  CMS.registerPreviewTemplate(
+    'recruit-content',
+    createClass({
+      render: function () {
+        var data = this.props.entry.get('data');
+        var getAsset = this.props.getAsset;
+        var workLife = data.get('workLife');
+        var positions = arr(data.get('positions'));
+        var process = arr(data.get('process'));
+        var benefits = arr(data.get('benefits'));
+        var photos = arr(get(workLife, 'photos'));
+
+        return Wrapper(
           h(
             'h3',
             { style: { fontWeight: 600, color: COLOR.indigo, marginBottom: '8px' } },
@@ -1599,7 +1699,6 @@
             }),
           ),
 
-          // ★追加: 働く環境紹介の写真
           photos.length > 0 &&
             h(
               'div',
@@ -1757,22 +1856,6 @@
                 get(b, 'label'),
               );
             }),
-          ),
-
-          // ★追加: 連絡先（メール・電話）
-          h(
-            'div',
-            {
-              style: {
-                marginTop: '24px',
-                borderTop: '1px solid ' + COLOR.line,
-                paddingTop: '16px',
-                fontSize: '0.84rem',
-                color: COLOR.ink,
-              },
-            },
-            h('p', { key: 'email' }, data.get('emailLabel') + ': ' + data.get('emailAddress')),
-            h('p', { key: 'tel' }, data.get('telLabel') + ': ' + data.get('tel')),
           ),
         );
       },
