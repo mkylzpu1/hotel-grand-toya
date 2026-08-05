@@ -2,19 +2,19 @@
   "pageTitle": "Stay & Day-trip Onsen",
   "pageTitleEn": "STAY & DAY-TRIP ONSEN",
   "icon": "泉",
-  "usageHeading": "Usage Guide",
   "quickNav": [
     {
-      "href": "#facilities",
-      "label": "Onsen Facilities"
+      "label": "Onsen Facilities",
+      "href": "#facilities"
     },
     {
-      "href": "#quality",
-      "label": "Water Quality & Benefits"
+      "label": "Water Quality & Benefits",
+      "href": "#quality"
     },
     {
-      "href": "#useage",
-      "label": "Usage Guide"
+      "label": "Usage Guide",
+      "href": "#useage"
     }
-  ]
+  ],
+  "usageHeading": "Usage Guide"
 }

@@ -2,19 +2,19 @@
   "pageTitle": "숙박・일일 온천",
   "pageTitleEn": "STAY & DAY-TRIP ONSEN",
   "icon": "泉",
-  "usageHeading": "이용 안내",
   "quickNav": [
     {
-      "href": "#facilities",
-      "label": "온천 시설 소개"
+      "label": "온천 시설 소개",
+      "href": "#facilities"
     },
     {
-      "href": "#quality",
-      "label": "泉質・효능"
+      "label": "泉質・효능",
+      "href": "#quality"
     },
     {
-      "href": "#useage",
-      "label": "이용 안내"
+      "label": "이용 안내",
+      "href": "#useage"
     }
-  ]
+  ],
+  "usageHeading": "이용 안내"
 }

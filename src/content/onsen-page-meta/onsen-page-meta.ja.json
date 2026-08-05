@@ -1,11 +1,20 @@
 {
-  "pageTitle": "ご宿泊・日帰り入浴",
+  "pageTitle": "ご宿泊・日帰り入浴。",
   "pageTitleEn": "STAY & DAY-TRIP ONSEN",
   "icon": "泉",
-  "usageHeading": "ご利用案内",
   "quickNav": [
-    { "href": "#facilities", "label": "温泉施設のご紹介" },
-    { "href": "#quality", "label": "泉質・効能" },
-    { "href": "#useage", "label": "ご利用案内" }
-  ]
+    {
+      "label": "温泉施設のご紹介",
+      "href": "#facilities"
+    },
+    {
+      "label": "泉質・効能",
+      "href": "#quality"
+    },
+    {
+      "label": "ご利用案内",
+      "href": "#useage"
+    }
+  ],
+  "usageHeading": "ご利用案内"
 }
