@@ -1591,13 +1591,20 @@ collections:
           - label: '写真(任意・ある場合はこちらを優先表示)'
             name: 'image'
             widget: 'object'
-            required: true
+            required: false
             fields:
               - { label: '画像(言語共通)', name: 'src', widget: 'image', i18n: duplicate }
               - { label: '代替テキスト(alt)', name: 'alt', widget: 'string' }
           - { label: '職種名', name: 'title', widget: 'string' }
           - { label: '雇用形態', name: 'employmentType', widget: 'string' }
           - { label: '採用人数(数字)', name: 'recruitCount', widget: 'number' }
+          - {
+              label: '採用人数の表示文言（{count}が数字に置き換わります）',
+              name: 'recruitCountLabel',
+              widget: 'string',
+              default: '採用人数 {count}名',
+              hint: '例: 「採用人数 {count}名」',
+            }
           - { label: '仕事紹介文', name: 'summary', widget: 'text' }
           - label: '主な仕事内容'
             name: 'duties'
