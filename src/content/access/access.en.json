@@ -1,5 +1,8 @@
 {
   "heroImage": "/assets/photos/image12.jpg",
+  "heroImageAlt": "Around Hotel Grand Toya",
+  "eyebrow": "Access",
+  "heading": "Access & Sightseeing",
   "accessList": [
     {
       "label": "By Car",
@@ -18,11 +21,13 @@
       "value": "About 2 hours by airport limousine bus"
     }
   ],
-  "heading": "Access & Sightseeing",
-  "heroImageAlt": "Around Hotel Grand Toya",
-  "sceneryDescription": "Hotel Grand Toya sits right on the shore of Lake Toya, making it easy to reach seasonal highlights — cherry blossoms in spring, the Long-Run Fireworks Festival and sunflower fields in summer, autumn foliage, and winter illuminations.",
-  "eyebrow": "Access",
+  "note": "In winter, roads may be snowy or icy — please make sure your car is fitted with winter tires.",
   "shuttleNote": "We do not offer a shuttle service from JR Toya Station or New Chitose Airport. Please use a taxi or local bus from the nearest station.",
+  "detailLinkText": "Learn More",
+  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
+  "mapTitle": "Map of Hotel Grand Toya",
+  "sceneryHeading": "A location to enjoy Lake Toya through every season",
+  "sceneryDescription": "Hotel Grand Toya sits right on the shore of Lake Toya, making it easy to reach seasonal highlights — cherry blossoms in spring, the Long-Run Fireworks Festival and sunflower fields in summer, autumn foliage, and winter illuminations.",
   "sceneryItems": [
     {
       "img": "/assets/photos/facility-out18.png",
@@ -40,10 +45,5 @@
       "note": "About 8 min. walk to the pier"
     }
   ],
-  "sceneryHeading": "A location to enjoy Lake Toya through every season",
-  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
-  "note": "In winter, roads may be snowy or icy — please make sure your car is fitted with winter tires.",
-  "detailLinkText": "Learn More",
-  "sceneryLinkText": "Explore the Area",
-  "mapTitle": "Map of Hotel Grand Toya"
+  "sceneryLinkText": "Explore the Area"
 }

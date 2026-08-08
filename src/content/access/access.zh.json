@@ -1,5 +1,8 @@
 {
   "heroImage": "/assets/photos/image12.jpg",
+  "heroImageAlt": "格兰多洞爷酒店周边",
+  "eyebrow": "Access",
+  "heading": "交通与周边观光",
   "accessList": [
     {
       "label": "自驾",
@@ -18,11 +21,13 @@
       "value": "乘坐机场接驳巴士约2小时"
     }
   ],
-  "heading": "交通与周边观光",
-  "heroImageAlt": "格兰多洞爷酒店周边",
-  "sceneryDescription": "格兰多洞爷酒店坐落于洞爷湖畔，春季樱花、夏季长期烟花大会与向日葵花田、秋季红叶、冬季灯光秀，四季景致皆可轻松前往。",
-  "eyebrow": "交通指南",
+  "note": "冬季道路可能积雪结冰，自驾前来时请务必装配冬季轮胎。",
   "shuttleNote": "本酒店不提供从JR洞爷站及新千岁机场出发的接送服务。请从最近车站搭乘出租车或路线巴士前来。",
+  "detailLinkText": "查看详情",
+  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
+  "mapTitle": "格兰多洞爷酒店地图",
+  "sceneryHeading": "四季皆宜的洞爷湖畔地理位置",
+  "sceneryDescription": "格兰多洞爷酒店坐落于洞爷湖畔，春季樱花、夏季长期烟花大会与向日葵花田、秋季红叶、冬季灯光秀，四季景致皆可轻松前往。",
   "sceneryItems": [
     {
       "img": "/assets/photos/facility-out18.png",
@@ -40,10 +45,5 @@
       "note": "步行至码头约8分钟"
     }
   ],
-  "sceneryHeading": "四季皆宜的洞爷湖畔地理位置",
-  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2938.515404605304!2d140.81545087618343!3d42.565581722092354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9fe2bdc82d202d%3A0x94c12be9cc1e0e64!2z44Ob44OG44Or44Kw44Op44Oz44OJ44OI44O844Ok!5e0!3m2!1sja!2sjp!4v1784723174147!5m2!1sja!2sjp",
-  "note": "冬季道路可能积雪结冰，自驾前来时请务必装配冬季轮胎。",
-  "detailLinkText": "查看详情",
-  "sceneryLinkText": "查看周边观光",
-  "mapTitle": "格兰多洞爷酒店地图"
+  "sceneryLinkText": "查看周边观光"
 }
