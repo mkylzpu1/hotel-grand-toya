@@ -11,6 +11,26 @@ const LANG_LABELS: Record<Locale, string> = {
 };
 
 /**
+ * 言語切替リンクを組み立てる（全ページ共通の唯一の実装）。
+ * available を省略すると全言語分を返す。pathPrefix が空ならトップページ。
+ */
+export function buildLangLinks(
+  lang: Locale,
+  pathPrefix: string,
+  available: ReadonlySet<Locale> | readonly Locale[] = locales,
+) {
+  const availableSet = new Set<Locale>(available);
+  return locales
+    .filter((code) => availableSet.has(code))
+    .map((code) => ({
+      code,
+      label: LANG_LABELS[code],
+      href: `/${code}/${pathPrefix ? `${pathPrefix}/` : ''}`,
+      active: code === lang,
+    }));
+}
+
+/**
  * 各ページ共通の getStaticPaths。
  * 指定したコレクションにエントリが存在する言語のみビルドする。
  */
@@ -40,18 +60,7 @@ export async function getPageContext<C extends CollectionKey>(
   const { reservationUrl } = siteEntry.data;
   const relatedLinksData = await getRelatedLinksData(lang, reservationUrl);
 
-  const availableEntries = await getCollection(collectionName);
-  const availableLocales = new Set(
-    availableEntries.map((entry: { id: string }) => localeFromId(entry.id)),
-  );
-  const langLinks = locales
-    .filter((code) => availableLocales.has(code))
-    .map((code) => ({
-      code,
-      label: LANG_LABELS[code],
-      href: `/${code}/${pathPrefix}/`,
-      active: code === lang,
-    }));
+  const langLinks = await getLangLinks(lang, collectionName, pathPrefix);
 
   return {
     siteEntry,
@@ -117,16 +126,6 @@ export async function getLangLinks<C extends CollectionKey>(
   pathPrefix: string,
 ) {
   const availableEntries = await getCollection(collectionName);
-  const availableLocales = new Set(
-    availableEntries.map((entry: { id: string }) => localeFromId(entry.id)),
-  );
-
-  return locales
-    .filter((code) => availableLocales.has(code))
-    .map((code) => ({
-      code,
-      label: LANG_LABELS[code],
-      href: `/${code}/${pathPrefix}/`,
-      active: code === lang,
-    }));
+  const availableLocales = availableEntries.map((entry: { id: string }) => localeFromId(entry.id));
+  return buildLangLinks(lang, pathPrefix, availableLocales);
 }

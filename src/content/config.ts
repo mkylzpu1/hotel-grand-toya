@@ -1,9 +1,7 @@
 import { defineCollection, z } from 'astro:content';
+import { asset } from '../utils/asset';
 
-const imagePath = z.string().transform((path) => {
-  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-  return `${base}/${path.replace(/^\//, '')}`;
-});
+const imagePath = z.string().transform((path) => asset(path));
 
 // サポートする言語。Decap CMS の i18n 設定 (public/admin/config.yml) と一致させること。
 export const locales = ['ja', 'en', 'zh', 'ko'] as const;

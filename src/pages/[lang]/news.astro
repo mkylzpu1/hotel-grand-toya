@@ -127,74 +127,56 @@ const posts = newsEntries
     </p>
   </section>
 
-  <script is:inline>
-    (function () {
-      const buttons = document.querySelectorAll('.news-filter-btn');
-      const items = document.querySelectorAll('.news-item');
-      const emptyMessage = document.getElementById('news-empty');
+  <script>
+    import { initHashFlash } from '../../scripts/flashHashTarget';
 
-      function updateEmptyState(filter) {
-        const visibleCount = Array.from(items).filter((item) => {
-          const category = item.getAttribute('data-category');
-          return filter === 'all' || filter === category;
-        }).length;
-        if (emptyMessage) {
-          emptyMessage.classList.toggle('hidden', visibleCount !== 0);
-        }
-      }
+    const buttons = document.querySelectorAll<HTMLElement>('.news-filter-btn');
+    const items = document.querySelectorAll<HTMLElement>('.news-item');
+    const emptyMessage = document.getElementById('news-empty');
 
-      function applyFilter(filter) {
-        buttons.forEach((b) => {
-          const active = b.getAttribute('data-filter') === filter;
-          b.classList.toggle('is-active', active);
-          b.classList.toggle('bg-[#A24730]', active);
-          b.classList.toggle('text-white', active);
-          b.classList.toggle('border-[#A24730]', active);
-          b.classList.toggle('bg-white', !active);
-          b.classList.toggle('text-[#55524C]', !active);
-          b.classList.toggle('border-[#D8D7D2]', !active);
-        });
+    function updateEmptyState(filter: string | null) {
+      const visibleCount = Array.from(items).filter((item) => {
+        const category = item.getAttribute('data-category');
+        return filter === 'all' || filter === category;
+      }).length;
+      emptyMessage?.classList.toggle('hidden', visibleCount !== 0);
+    }
 
-        items.forEach((item) => {
-          const category = item.getAttribute('data-category');
-          const show = filter === 'all' || filter === category;
-          item.style.display = show ? '' : 'none';
-        });
-
-        updateEmptyState(filter);
-      }
-
-      buttons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          applyFilter(btn.getAttribute('data-filter'));
-        });
+    function applyFilter(filter: string | null) {
+      buttons.forEach((b) => {
+        const active = b.getAttribute('data-filter') === filter;
+        b.classList.toggle('is-active', active);
+        b.classList.toggle('bg-[#A24730]', active);
+        b.classList.toggle('text-white', active);
+        b.classList.toggle('border-[#A24730]', active);
+        b.classList.toggle('bg-white', !active);
+        b.classList.toggle('text-[#55524C]', !active);
+        b.classList.toggle('border-[#D8D7D2]', !active);
       });
 
-      // --- 検索結果からの遷移: ハッシュ一致記事へスクロール＆一瞬ハイライト ---
-      function flashHashTarget() {
-        const hash = decodeURIComponent(location.hash.replace(/^#/, ''));
-        if (!hash) return;
+      items.forEach((item) => {
+        const category = item.getAttribute('data-category');
+        const show = filter === 'all' || filter === category;
+        item.style.display = show ? '' : 'none';
+      });
 
-        const target = document.getElementById(hash);
-        if (!target) return;
+      updateEmptyState(filter);
+    }
 
-        // 現在のフィルターで隠れている場合は「すべて」に戻す
-        if (target.style.display === 'none') {
-          applyFilter('all');
-        }
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        applyFilter(btn.getAttribute('data-filter'));
+      });
+    });
 
-        requestAnimationFrame(() => {
-          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          target.classList.add('search-highlight');
-          setTimeout(() => target.classList.remove('search-highlight'), 2000);
-        });
-      }
-
-      // 初期表示（記事が0件の場合にも対応）
-      updateEmptyState('all');
-      flashHashTarget();
-      window.addEventListener('hashchange', flashHashTarget);
-    })();
+    // 初期表示（記事が0件の場合にも対応）
+    updateEmptyState('all');
+    // 検索結果からの遷移: 現在のフィルターで隠れている場合は「すべて」に戻してからハイライト
+    initHashFlash({
+      beforeFlash: (target) => {
+        if (target.style.display === 'none') applyFilter('all');
+      },
+    });
   </script>
 
   <style>
@@ -204,18 +186,6 @@ const posts = newsEntries
       background-color: #a24730;
       border-color: #a24730;
       color: #ffffff;
-    }
-    .search-highlight {
-      animation: search-flash 2s ease-out;
-    }
-    @keyframes search-flash {
-      0%,
-      40% {
-        box-shadow: 0 0 0 3px #a24730;
-      }
-      100% {
-        box-shadow: 0 0 0 3px transparent;
-      }
     }
   </style>
 </PageTemplate>

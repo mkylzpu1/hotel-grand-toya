@@ -1,53 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import SearchOverlay from '../components/common/SearchOverlay';
 import { ExternalLink, Phone } from 'lucide-react';
-import { asset } from './../utils/asset';
+import { asset } from '../utils/asset';
+import type { Locale } from '../content/config';
+import type { LangLink, NavigationContent } from '../types/site';
 
-interface PrimaryNavItem {
-  href: string;
-  label: string;
-  en: string;
-  icon: string;
-}
-interface SecondaryNavItem {
-  href: string;
-  label: string;
-}
-interface LangLink {
-  code: string;
-  label: string;
-  href: string;
-  active: boolean;
-}
 interface HeaderProps {
-  lang: string;
-  primaryNavItems: PrimaryNavItem[];
-  secondaryNavItems: SecondaryNavItem[];
-  reserveCta: string;
-  reserveNoteLabel: string;
-  phoneAriaLabel: string;
-  menuOpenLabel: string;
-  menuCloseLabel: string;
-  siteInfoHeading: string;
+  lang: Locale;
+  navigation: NavigationContent;
   reservationUrl: string;
   tel: string;
-  logoAlt: string;
-  navAriaLabel: string;
-  drawerNavAriaLabel: string;
   langLinks: LangLink[];
-  langSwitcherLabel: string;
   searchIndexUrl: string;
-  searchPlaceholder: string;
-  searchOpenLabel: string;
-  searchNoResultsLabel: string;
-  searchEmptyStateLabel: string;
-  searchNavigateHintLabel: string;
-  searchOpenHintLabel: string;
-  searchClearButtonLabel: string;
-  bottomNavSearchLabel?: string;
-  bottomNavTelLabel?: string;
-  bottomNavReserveLabel?: string;
-  bottomNavMenuLabel?: string;
 }
 
 function LanguageDropdown({ langLinks, label }: { langLinks: LangLink[]; label: string }) {
@@ -141,34 +105,39 @@ function LanguageDropdown({ langLinks, label }: { langLinks: LangLink[]; label: 
 
 export default function Header({
   lang,
-  primaryNavItems,
-  secondaryNavItems,
-  reserveCta,
-  reserveNoteLabel,
-  phoneAriaLabel,
-  menuOpenLabel,
-  menuCloseLabel,
-  siteInfoHeading,
+  navigation,
   reservationUrl,
   tel,
-  logoAlt,
-  navAriaLabel,
-  drawerNavAriaLabel,
   langLinks,
-  langSwitcherLabel,
   searchIndexUrl,
-  searchPlaceholder,
-  searchOpenLabel,
-  searchNoResultsLabel,
-  searchEmptyStateLabel,
-  searchNavigateHintLabel,
-  searchOpenHintLabel,
-  searchClearButtonLabel,
-  bottomNavSearchLabel = '検索',
-  bottomNavTelLabel = '電話',
-  bottomNavReserveLabel = '予約',
-  bottomNavMenuLabel = 'メニュー',
 }: HeaderProps) {
+  const {
+    primaryNavItems,
+    secondaryNavItems,
+    reserveCta,
+    reserveNoteLabel,
+    phoneAriaLabel,
+    menuOpenLabel,
+    menuCloseLabel,
+    siteInfoHeading,
+    logoAlt,
+    navAriaLabel,
+    drawerNavAriaLabel,
+    langSwitcherLabel,
+    search,
+    bottomNav,
+  } = navigation;
+  const searchPlaceholder = search.placeholder;
+  const searchOpenLabel = search.openLabel;
+  const searchNoResultsLabel = search.noResultsLabel;
+  const searchEmptyStateLabel = search.emptyStateLabel;
+  const searchNavigateHintLabel = search.navigateHintLabel;
+  const searchOpenHintLabel = search.openHintLabel;
+  const searchClearButtonLabel = search.clearButtonLabel;
+  const bottomNavSearchLabel = bottomNav.searchLabel;
+  const bottomNavTelLabel = bottomNav.telLabel;
+  const bottomNavReserveLabel = bottomNav.reserveLabel;
+  const bottomNavMenuLabel = bottomNav.menuLabel;
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const closeNav = () => setIsOpen(false);
@@ -188,7 +157,7 @@ export default function Header({
       <div className="flex items-center justify-center lg:justify-start">
         <a href={asset(`/${lang}/`)} className="flex-none">
           <img
-            src={`${import.meta.env.BASE_URL}assets/photos/ttl.png`}
+            src={asset('assets/photos/ttl.png')}
             alt={logoAlt}
             className="block w-[150px] lg:w-[170px]"
           />
