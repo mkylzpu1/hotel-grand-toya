@@ -29,7 +29,7 @@ interface Props {
   relatedLinks: RelatedLink[];
   reservationLabel?: string;
   relatedLinksBackground?: 'white' | 'none';
-  showRelatedLinks?: 'true' | 'false';
+  showRelatedLinks?: boolean;
 }
 const {
   lang,
@@ -48,7 +48,7 @@ const {
   relatedLinksHeading,
   relatedLinks,
   relatedLinksBackground = 'white',
-  showRelatedLinks = 'true',
+  showRelatedLinks = true,
   reservationLabel,
 } = Astro.props;
 const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
@@ -62,7 +62,7 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
   site={site}
   langLinks={langLinks}
 >
-  <main id="top">
+  <div id="top">
     <!-- ページタイトル帯（全ページ共通） -->
     <PageHeroBand
       icon={heroIcon}
@@ -103,7 +103,7 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
     <!-- ▲ ここまで ▲ -->
     <!-- 関連ページへの導線（全ページ共通） -->
     {
-      showRelatedLinks === 'true' && (
+      showRelatedLinks && (
         <RelatedLinks
           heading={relatedLinksHeading}
           links={relatedLinks}
@@ -113,7 +113,7 @@ const shouldShowQuickNav = showQuickNav && quickNav && quickNav.length > 0;
         />
       )
     }
-  </main>
+  </div>
 
   <!-- 検索結果からの遷移時に、該当箇所をハイライトする -->
   <script is:inline>

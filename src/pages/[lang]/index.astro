@@ -1,17 +1,11 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import Hero from '../../components/top/Hero';
-import ContentSection from '../../components/top/ContentSection';
-import Access from '../../components/top/Access';
+import Hero from '../../components/top/Hero.astro';
+import ContentSection from '../../components/top/ContentSection.astro';
+import Access from '../../components/top/Access.astro';
 import { locales, localeFromId, type Locale } from '../../content/config';
-
-const LANG_LABELS: Record<Locale, string> = {
-  ja: 'JP',
-  en: 'EN',
-  zh: 'CH',
-  ko: 'KR',
-};
+import { buildLangLinks } from '../../utils/pageContext';
 
 export async function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }));
@@ -35,12 +29,7 @@ const sections = sectionEntries
   .sort((a, b) => a.data.order - b.data.order)
   .map((entry) => entry.data);
 
-const langLinks = locales.map((code) => ({
-  code,
-  label: LANG_LABELS[code],
-  href: `/${code}/`,
-  active: code === lang,
-}));
+const langLinks = buildLangLinks(lang, '');
 ---
 
 <Layout
@@ -51,9 +40,9 @@ const langLinks = locales.map((code) => ({
   site={siteEntry.data}
   langLinks={langLinks}
 >
-  <main id="top">
-    <Hero client:load {...heroEntry.data} />
+  <div id="top">
+    <Hero {...heroEntry.data} />
     {sections.map((section) => <ContentSection {...section} />)}
     <Access lang={lang} {...accessEntry.data} />
-  </main>
+  </div>
 </Layout>

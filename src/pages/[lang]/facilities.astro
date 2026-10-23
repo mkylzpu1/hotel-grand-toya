@@ -666,21 +666,9 @@ const otherActivities = (content.activitiesSection?.items ?? []).filter((item) =
     </div>
   </section>
 </PageTemplate>
-<style>
-  .search-highlight {
-    animation: search-flash 2s ease-out;
-  }
-  @keyframes search-flash {
-    0%,
-    40% {
-      box-shadow: 0 0 0 3px #a24730;
-    }
-    100% {
-      box-shadow: 0 0 0 3px transparent;
-    }
-  }
-</style>
 <script>
+  import { initHashFlash } from '../../scripts/flashHashTarget';
+
   const activityTablist = document.getElementById('activity-tablist');
   const activityTabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.activity-tab'));
   const activityCards = Array.from(document.querySelectorAll<HTMLElement>('.activity-card'));
@@ -716,18 +704,5 @@ const otherActivities = (content.activitiesSection?.items ?? []).filter((item) =
       card.style.display = show ? '' : 'none';
     });
   });
-  // --- 検索結果からの遷移: ハッシュ一致要素へスクロール＆一瞬ハイライト ---
-  function flashHashTarget() {
-    const hash = decodeURIComponent(location.hash.replace(/^#/, ''));
-    if (!hash) return;
-    const target = document.getElementById(hash);
-    if (!target) return;
-    requestAnimationFrame(() => {
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      target.classList.add('search-highlight');
-      setTimeout(() => target.classList.remove('search-highlight'), 2000);
-    });
-  }
-  flashHashTarget();
-  window.addEventListener('hashchange', flashHashTarget);
+  initHashFlash();
 </script>

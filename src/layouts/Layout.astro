@@ -1,10 +1,11 @@
 ---
 import '../styles/global.css';
 import Header from './Header';
-import Footer from './Footer';
+import Footer from './Footer.astro';
 import { locales, type Locale } from '../content/config';
 import type { LangLink, NavigationContent, SiteContent } from '../types/site';
 import bgTexture from '../../public/assets/textures/bg_v4_2x.jpg';
+import { asset } from '../utils/asset';
 
 interface Props {
   lang: Locale;
@@ -20,7 +21,7 @@ const { lang, title, description, navigation, site, langLinks, ogImage } = Astro
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 const resolvedOgImage = new URL(
-  ogImage ?? `${import.meta.env.BASE_URL}assets/photos/ogp.jpg`,
+  ogImage ?? asset('assets/photos/ogp.jpg'),
   Astro.site ?? Astro.url.origin,
 );
 
@@ -44,39 +45,35 @@ const ogLocaleMap: Record<Locale, string> = {
     <link
       rel="alternate"
       hreflang="x-default"
-      href={new URL(`${import.meta.env.BASE_URL}en/`, Astro.site ?? Astro.url.origin)}
+      href={new URL(asset('en/'), Astro.site ?? Astro.url.origin)}
     />
 
     <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href={`${import.meta.env.BASE_URL}assets/favicon/favicon.ico`}
-    />
+    <link rel="icon" type="image/x-icon" href={asset('assets/favicon/favicon.ico')} />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href={`${import.meta.env.BASE_URL}assets/favicon/favicon-16x16.png`}
+      href={asset('assets/favicon/favicon-16x16.png')}
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href={`${import.meta.env.BASE_URL}assets/favicon/favicon-32x32.png`}
+      href={asset('assets/favicon/favicon-32x32.png')}
     />
     <link
       rel="icon"
       type="image/png"
       sizes="48x48"
-      href={`${import.meta.env.BASE_URL}assets/favicon/favicon-48x48.png`}
+      href={asset('assets/favicon/favicon-48x48.png')}
     />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href={`${import.meta.env.BASE_URL}assets/favicon/apple-touch-icon.png`}
+      href={asset('assets/favicon/apple-touch-icon.png')}
     />
-    <link rel="manifest" href={`${import.meta.env.BASE_URL}assets/favicon/site.webmanifest`} />
+    <link rel="manifest" href={asset('assets/favicon/site.webmanifest')} />
     <meta name="theme-color" content="#12172D" />
 
     <!-- OGP -->
@@ -111,48 +108,15 @@ const ogLocaleMap: Record<Locale, string> = {
     <Header
       client:load
       lang={lang}
-      primaryNavItems={navigation.primaryNavItems}
-      secondaryNavItems={navigation.secondaryNavItems}
-      reserveCta={navigation.reserveCta}
-      reserveNoteLabel={navigation.reserveNoteLabel}
-      phoneAriaLabel={navigation.phoneAriaLabel}
-      menuOpenLabel={navigation.menuOpenLabel}
-      menuCloseLabel={navigation.menuCloseLabel}
-      siteInfoHeading={navigation.siteInfoHeading}
+      navigation={navigation}
       reservationUrl={site.reservationUrl}
       tel={site.tel}
-      logoAlt={navigation.logoAlt}
-      navAriaLabel={navigation.navAriaLabel}
-      drawerNavAriaLabel={navigation.drawerNavAriaLabel}
       langLinks={langLinks}
-      langSwitcherLabel={navigation.langSwitcherLabel}
-      searchIndexUrl={`${import.meta.env.BASE_URL}${lang}/search-index.json`}
-      searchOpenLabel={navigation.search.openLabel}
-      searchPlaceholder={navigation.search.placeholder}
-      searchNoResultsLabel={navigation.search.noResultsLabel}
-      searchEmptyStateLabel={navigation.search.emptyStateLabel}
-      searchNavigateHintLabel={navigation.search.navigateHintLabel}
-      searchOpenHintLabel={navigation.search.openHintLabel}
-      searchClearButtonLabel={navigation.search.clearButtonLabel}
-      bottomNavSearchLabel={navigation.bottomNav.searchLabel}
-      bottomNavTelLabel={navigation.bottomNav.telLabel}
-      bottomNavReserveLabel={navigation.bottomNav.reserveLabel}
-      bottomNavMenuLabel={navigation.bottomNav.menuLabel}
+      searchIndexUrl={asset(`${lang}/search-index.json`)}
     />
     <main class="pb-16 lg:pb-0">
       <slot />
     </main>
-    <Footer
-      guideLinks={navigation.primaryNavItems}
-      infoLinks={navigation.secondaryNavItems}
-      copy={site.footer}
-      address={site.address}
-      tel={site.tel}
-      fax={site.fax}
-      email={site.email}
-      reservationUrl={site.reservationUrl}
-      logoAlt={navigation.logoAlt}
-      logoSrc={`${import.meta.env.BASE_URL}assets/photos/ttl.png`}
-    />
+    <Footer navigation={navigation} site={site} logoSrc={asset('assets/photos/ttl.png')} />
   </body>
 </html>

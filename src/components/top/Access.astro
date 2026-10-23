@@ -1,0 +1,133 @@
+---
+import ArrowLink from '../ui/ArrowLink.astro';
+import EyebrowStamp from '../common/EyebrowStamp.astro';
+import { asset } from '../../utils/asset';
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '../../content/config';
+
+type Props = { lang: Locale } & CollectionEntry<'access'>['data'];
+
+const {
+  lang,
+  heroImage,
+  heroImageAlt,
+  eyebrow,
+  heading,
+  accessList,
+  note,
+  shuttleNote,
+  detailLinkText,
+  mapEmbedUrl,
+  mapTitle,
+  sceneryHeading,
+  sceneryDescription,
+  sceneryItems,
+  sceneryLinkText,
+} = Astro.props;
+
+// シームレスな無限スクロールのためにリストを複製
+const sceneryLoop = [...sceneryItems, ...sceneryItems];
+---
+
+<section
+  class="relative mx-auto max-w-[1320px] px-10 pb-[108px] before:absolute before:left-0 before:right-0 before:top-0 before:h-px before:bg-[#D8D7D2] before:content-[''] after:absolute after:-top-px after:left-1/2 after:h-[3px] after:w-11 after:-translate-x-1/2 after:bg-[#A24730] after:content-['']"
+  id="access"
+>
+  <!-- Hero image (full-bleed) -->
+  <div class="mb-20 ml-[calc(50%-50vw)] h-[52vh] min-h-[340px] w-screen overflow-hidden">
+    <img src={heroImage} alt={heroImageAlt} class="block h-full w-full object-cover" />
+  </div>
+  <!-- Heading -->
+  <div class="mb-[72px] text-center">
+    <p
+      class="mb-[18px] flex items-center justify-center gap-2.5 text-[0.74rem] font-medium tracking-[0.14em] text-[#29415C]"
+    >
+      <EyebrowStamp icon="道" />
+      {eyebrow}
+    </p>
+    <h2
+      class="font-serif text-[clamp(1.5rem,1.2rem+1.1vw,2.05rem)] font-semibold leading-[1.65] text-[#1E1C1A]"
+    >
+      {heading}
+    </h2>
+  </div>
+  <!-- Access info + map -->
+  <div class="mb-[110px] grid grid-cols-1 items-start gap-[72px] lg:grid-cols-[1.2fr_1fr]">
+    <div>
+      <ul class="m-0 list-none p-0">
+        {
+          accessList.map((item) => (
+            <li class="border-b border-[#D8D7D2] py-4 text-[0.9rem]">
+              <b>{item.label}</b>：{item.value}
+            </li>
+          ))
+        }
+      </ul>
+      <p
+        class="mt-4 flex items-start gap-2 border-l-2 border-[#A24730] bg-[#FAF6F0] px-3 py-2.5 text-[0.78rem] leading-[1.7] text-[#712B13]"
+      >
+        <span aria-hidden="true">※</span>
+        {shuttleNote}
+      </p>
+      <p
+        class="mb-[30px] mt-4 flex items-start gap-2 border-l-2 border-[#A24730] bg-[#FAF6F0] px-3 py-2.5 text-[0.78rem] leading-[1.7] text-[#712B13]"
+      >
+        <span aria-hidden="true">※</span>
+        {note}
+      </p>
+      <ArrowLink href={asset(`/${lang}/access/`)}>{detailLinkText}</ArrowLink>
+    </div>
+    <div class="h-[360px] border-[0.5px] border-[#29415C]">
+      <iframe
+        src={mapEmbedUrl}
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="strict-origin-when-cross-origin"
+        title={mapTitle}
+        class="block h-full w-full border-0"></iframe>
+    </div>
+  </div>
+  <!-- Scenery lead + marquee gallery -->
+  <div class="text-center">
+    <h3 class="mb-5 text-[1.7rem] font-medium">{sceneryHeading}</h3>
+    <p class="mx-auto mb-14 max-w-[720px] leading-[2] text-[#55524C]">
+      {sceneryDescription}
+    </p>
+    <div class="ml-[calc(50%-50vw)] mt-[60px] w-screen overflow-hidden">
+      <div class="flex w-max gap-7" style="animation: galleryScroll 32s linear infinite;">
+        {
+          sceneryLoop.map((item) => (
+            <figure class="group m-0 w-[400px] flex-none">
+              <div class="overflow-hidden rounded-[18px]">
+                <img
+                  src={item.img}
+                  alt=""
+                  class="block h-[250px] w-full origin-center object-cover transition-transform duration-[450ms] ease-out group-hover:scale-[1.08] group-hover:cursor-pointer"
+                />
+              </div>
+              <figcaption class="px-1 pb-0 pt-[18px] text-left">
+                <h4 class="mb-1.5 text-base font-semibold text-[#1E1C1A]">{item.title}</h4>
+                <p class="m-0 text-[0.85rem] leading-[1.7] text-[#55524C]">{item.note}</p>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <div class="mt-[70px] text-center">
+    <ArrowLink href={asset(`/${lang}/facilities/`)}>{sceneryLinkText}</ArrowLink>
+  </div>
+</section>
+
+<!-- キーフレームはTailwind標準にないため個別定義 -->
+<style is:global>
+  @keyframes galleryScroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-50% - 14px));
+    }
+  }
+</style>

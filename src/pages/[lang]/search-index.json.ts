@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { locales, localeFromId, type Locale } from '../../content/config';
+import { asset } from '../../utils/asset';
 
 export const prerender = true;
 
@@ -27,12 +28,6 @@ function findByLang<T extends { id: string; data: unknown }>(
   lang: Locale,
 ): T | undefined {
   return entries.find((e) => localeFromId(e.id) === lang);
-}
-
-// entries内のurl(先頭/付きの絶対パス)にbaseを付与する
-function withBase(url: string): string {
-  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-  return `${base}${url}`;
 }
 
 export const GET: APIRoute = async ({ params }) => {
@@ -106,13 +101,8 @@ export const GET: APIRoute = async ({ params }) => {
           category: page.pageTitle,
         });
       }
-      // 日帰り入浴のお客様(料金、時間、注意事項)
-      for (const item of [
-        dayUse.fee,
-        dayUse.receptionHours,
-        dayUse.usageHours,
-        dayUse.usageNotes,
-      ].filter(Boolean)) {
+      // 日帰り入浴のお客様(料金、受付時間、利用時間、注意事項)
+      for (const item of dayUse.items ?? []) {
         entries.push({
           title: item.label,
           excerpt: excerpt(item.value),
@@ -332,7 +322,7 @@ export const GET: APIRoute = async ({ params }) => {
     }
   }
 
-  return new Response(JSON.stringify(entries.map((e) => ({ ...e, url: withBase(e.url) }))), {
+  return new Response(JSON.stringify(entries.map((e) => ({ ...e, url: asset(e.url) }))), {
     headers: { 'Content-Type': 'application/json' },
   });
 };
