@@ -101,13 +101,8 @@ export const GET: APIRoute = async ({ params }) => {
           category: page.pageTitle,
         });
       }
-      // 日帰り入浴のお客様(料金、時間、注意事項)
-      for (const item of [
-        dayUse.fee,
-        dayUse.receptionHours,
-        dayUse.usageHours,
-        dayUse.usageNotes,
-      ].filter(Boolean)) {
+      // 日帰り入浴のお客様(料金、受付時間、利用時間、注意事項)
+      for (const item of dayUse.items ?? []) {
         entries.push({
           title: item.label,
           excerpt: excerpt(item.value),
